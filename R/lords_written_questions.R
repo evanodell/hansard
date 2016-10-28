@@ -1,7 +1,14 @@
-### LORDS QUESTIONS
-
 
 ### 15 LORDS WRITTEN QUESTIONS
+
+#' House of Lords Attendance
+#'
+#' This imports data on House of Lords written questions
+#' @param all Imports all available House of Lords written questions Defaults to TRUE.
+#' @keywords House of Lords Written Questions
+#' @export
+#' @examples
+#' lords_written_questions()
 
 lords_written_questions <- function(all = TRUE) {
 
