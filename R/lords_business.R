@@ -3,63 +3,63 @@
 
 ### 12 LORDS ATTENDANCE
 
-lords_attendance <- function(all=TRUE) {
+lords_attendance <- function(all = TRUE) {
 
-  baseurl_lordsAttend <- " http://lda.data.parliament.uk/lordsattendances.json"
+    baseurl_lordsAttend <- " http://lda.data.parliament.uk/lordsattendances.json"
 
-  lordsAttend <- fromJSON(" http://lda.data.parliament.uk/lordsattendances.json")
+    lordsAttend <- jsonlite::fromJSON(" http://lda.data.parliament.uk/lordsattendances.json")
 
-  lordsAttendJpage <- round(lordsAttend$result$totalResults/10+1,digits = 0)
+    lordsAttendJpage <- round(lordsAttend$result$totalResults/10 + 1, digits = 0)
 
-  pages <- list()
+    pages <- list()
 
-  for(i in 0:lordsAttendJpage){
-    mydata <- fromJSON(paste0(baseurl_lordsAttend, "?_page=", i), flatten=TRUE)
-    message("Retrieving page ", i)
-    pages[[i+1]] <- mydata$result$items
-  }
+    for (i in 0:lordsAttendJpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsAttend, "?_page=", i), flatten = TRUE)
+        message("Retrieving page ", i)
+        pages[[i + 1]] <- mydata$result$items
+    }
 }
 
 
 
 ### 13 LORDS AMMENDMENTS
 
-lords_ammendments <- function(all=TRUE) {
+lords_ammendments <- function(all = TRUE) {
 
-  baseurl_lordsAmmend <- "http://lda.data.parliament.uk/lordsbillamendments.json"
+    baseurl_lordsAmmend <- "http://lda.data.parliament.uk/lordsbillamendments.json"
 
-  lordsAmmend <- fromJSON("http://lda.data.parliament.uk/lordsbillamendments.json")
+    lordsAmmend <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsbillamendments.json")
 
-  lordsAmmendJpage <- round(lordsAmmend$result$totalResults/10+1,digits = 0)
+    lordsAmmendJpage <- round(lordsAmmend$result$totalResults/10 + 1, digits = 0)
 
-  pages <- list()
+    pages <- list()
 
-  for(i in 0:lordsAmmendJpage){
-    mydata <- fromJSON(paste0(baseurl_lordsAmmend, "?_page=", i), flatten=TRUE)
-    message("Retrieving page ", i)
-    pages[[i+1]] <- mydata$result$items
-  }
+    for (i in 0:lordsAmmendJpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsAmmend, "?_page=", i), flatten = TRUE)
+        message("Retrieving page ", i)
+        pages[[i + 1]] <- mydata$result$items
+    }
 }
 
 
 
 ### 14 LORDS DIVISIONS
 
-lords_divisions <- function(all=TRUE) {
+lords_divisions <- function(all = TRUE) {
 
-  baseurl_lordsDivs <- "http://lda.data.parliament.uk/lordsdivisions.json"
+    baseurl_lordsDivs <- "http://lda.data.parliament.uk/lordsdivisions.json"
 
-  lordsDivs <- fromJSON("http://lda.data.parliament.uk/lordsdivisions.json")
+    lordsDivs <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsdivisions.json")
 
-  lordsDivsJpage <- round(lordsDivs$result$totalResults/10+1,digits = 0)
+    lordsDivsJpage <- round(lordsDivs$result$totalResults/10 + 1, digits = 0)
 
-  pages <- list()
+    pages <- list()
 
-  for(i in 0:lordsDivsJpage){
-    mydata <- fromJSON(paste0(baseurl_lordsDivs, "?_page=", i), flatten=TRUE)
-    message("Retrieving page ", i)
-    pages[[i+1]] <- mydata$result$items
-  }
+    for (i in 0:lordsDivsJpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsDivs, "?_page=", i), flatten = TRUE)
+        message("Retrieving page ", i)
+        pages[[i + 1]] <- mydata$result$items
+    }
 }
 
 

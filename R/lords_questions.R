@@ -3,19 +3,19 @@
 
 ### 15 LORDS WRITTEN QUESTIONS
 
-lords_written_questions <- function(all=TRUE) {
+lords_written_questions <- function(all = TRUE) {
 
-  baseurl_lordsWrit <- "http://lda.data.parliament.uk/lordswrittenquestions.json"
+    baseurl_lordsWrit <- "http://lda.data.parliament.uk/lordswrittenquestions.json"
 
-  lordsWrit <- fromJSON("http://lda.data.parliament.uk/lordswrittenquestions.json")
+    lordsWrit <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordswrittenquestions.json")
 
-  lordsWritJpage <- round(lordsWrit$result$totalResults/10+1,digits = 0)
+    lordsWritJpage <- round(lordsWrit$result$totalResults/10 + 1, digits = 0)
 
-  pages <- list()
+    pages <- list()
 
-  for(i in 0:lordsWritJpage){
-    mydata <- fromJSON(paste0(baseurl_lordsWrit, "?_page=", i), flatten=TRUE)
-    message("Retrieving page ", i)
-    pages[[i+1]] <- mydata$result$items
-  }
+    for (i in 0:lordsWritJpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsWrit, "?_page=", i), flatten = TRUE)
+        message("Retrieving page ", i)
+        pages[[i + 1]] <- mydata$result$items
+    }
 }
