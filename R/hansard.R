@@ -8,7 +8,7 @@ library(xml2)
 
 ###ORAL QUESTIONS
 
-oral_questions <- function{
+oral_questions <- function(all=TRUE){
 
 baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?"
 
@@ -22,10 +22,9 @@ for(i in 0:oralJpage){
   mydata <- fromJSON(paste0(baseurl_oral, "_page=", i), flatten=TRUE)
   message("Retrieving page ", i)
   pages[[i+1]] <- mydata$result$items
-}
+  }
 
-
-oralQs <- rbind.pages(pages)
+oralQs2 <- rbind.pages(pages)
 }
 
 toMatch <- "disability|disabled people|disabled"
@@ -33,10 +32,9 @@ toMatch <- "disability|disabled people|disabled"
 disOralQs <- oralQs[grep(toMatch, oralQs$questionText),]
 
 
-
-
-
 ###WRITTEN QUESTIONS
+
+written_questions <- function(all=TRUE) {
 
 baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions.json?"
 
@@ -51,24 +49,12 @@ for(i in 0:writJpage){
   message("Retrieving page ", i)
   pages[[i+1]] <- mydata$result$items
 }
-
 ##Need to figure out how to identify the number of pages available
-
 writQs <- rbind.pages(pages)
+}
 
 
 toMatch <- "disability|disabled people|disabled"
 
 disWritQs <- oralQs[grep(toMatch, oralQs$questionText),]
-
-
-cat_function <- function(love=TRUE){
-  if(love==TRUE){
-    print("I love cats!")
-  }
-  else {
-    print("I am not a cool person.")
-  }
-}
-
 
