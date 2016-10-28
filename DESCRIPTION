@@ -4,6 +4,6 @@ Title: Provides easy downloading capabilities for the UK Parliament API
 Version: 0.1.0
 Author: Evan Odell
 Maintainer: evanodell91@gmail.com
-Description: More about what it does (maybe more than one line)
+Description: Downloads all available data from the data.parliament.uk APIs. Functions for each new API will be added as and when they become available.
 License: MIT
 LazyData: TRUE
