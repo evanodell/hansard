@@ -1,9 +1,9 @@
 Package: hansard
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Provides easy downloading capabilities for the UK Parliament API
 Version: 0.1.0
 Author: Evan Odell
-Maintainer: Who to complain to <evanodell91@gmail.com>
+Maintainer: evanodell91@gmail.com
 Description: More about what it does (maybe more than one line)
 License: MIT
 LazyData: TRUE
