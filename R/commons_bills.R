@@ -10,19 +10,39 @@
 #' commons_bills()
 
 
-commons_bills <- function(all = TRUE) {
+commons_bills <- function(type) {
 
-  baseurl_bills <- "http://lda.data.parliament.uk/commonswrittenquestions.json"
+  if(!type %in% c("all", "ammendments", "sponsor",
+                  "stage", "publications", "stage types"))
+    ("Warning: Please select an API query")
 
-  bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonswrittenquestions.json")
 
-  billsJpage <- round(bills$result$totalResults/10 + 1, digits = 0)
+
+
+  baseurl_bills <- "http://lda.data.parliament.uk/bills.json?_pageSize=500"
+
+  bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/bills.json?_pageSize=500")
+
+  billsJpage <- round(bills$result$itemsPerPage/bills$result$totalResults, digits = 0)
 
   pages <- list()
 
   for (i in 0:billsJpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i, " of ", billsJpage)
+    mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
+    message("Retrieving page ", i+1, " of ", billsJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
+
+  ##Sponsor
+
+  ##Ammendments
+
+  ##Stage
+
+  ##Publications
+
+  ##Stage Types
+
+
+
 }
