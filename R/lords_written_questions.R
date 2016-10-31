@@ -22,7 +22,7 @@ lords_written_questions <- function(all = TRUE) {
 
     for (i in 0:lordsWritJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_lordsWrit, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", lordsWritJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

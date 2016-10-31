@@ -22,7 +22,7 @@ commons_interest <- function(all = TRUE) {
 
   for (i in 0:comInterestJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_comInterest, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", comInterestJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

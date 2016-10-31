@@ -9,8 +9,6 @@
 #' @examples
 #' commons_written_questions()
 
-
-
 commons_written_questions <- function(all = TRUE) {
 
   baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions.json"
@@ -23,7 +21,7 @@ commons_written_questions <- function(all = TRUE) {
 
   for (i in 0:writJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_writ, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", writJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

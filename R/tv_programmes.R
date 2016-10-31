@@ -11,8 +11,6 @@
 #' tv_programmes()
 
 
-
-
 tv_programmes <- function(all = TRUE) {
 
   baseurl_av <- "http://lda.data.parliament.uk/tvprogrammes.json"
@@ -25,7 +23,7 @@ tv_programmes <- function(all = TRUE) {
 
   for (i in 0:avJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_av, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", avJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

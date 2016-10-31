@@ -24,7 +24,7 @@ commons_members <- function(all = TRUE) {
 
   for (i in 0:comMemsJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_comMems, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", comMemsJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

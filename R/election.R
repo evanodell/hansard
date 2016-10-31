@@ -24,7 +24,7 @@ elections <- function(all = TRUE) {
 
   for (i in 0:electJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_elect, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", electJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

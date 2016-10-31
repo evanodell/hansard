@@ -22,7 +22,7 @@ early_day_motions <- function(all = TRUE) {
 
   for (i in 0:edmsJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_edms, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", edmsJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

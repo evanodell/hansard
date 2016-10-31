@@ -22,12 +22,11 @@ commons_oral_questions <- function(all = TRUE) {
     # if(numpages=TRUE){
     oralJpage <- round(oral$result$totalResults/10 + 1, digits = 0)
     # }else { oralJpage <- numpages }
-
     pages <- list()
 
     for (i in 0:oralJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_oral, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", oralJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

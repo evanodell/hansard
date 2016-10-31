@@ -22,7 +22,7 @@ lords_interest <- function(all = TRUE) {
 
   for (i in 0:lordInterestJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_lordInterest, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", lordInterestJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

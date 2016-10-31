@@ -22,7 +22,7 @@ commons_divisions <- function(all = TRUE) {
 
     for (i in 0:divisJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_divis, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", divisJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

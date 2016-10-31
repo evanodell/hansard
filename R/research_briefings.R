@@ -22,7 +22,7 @@ research_briefings <- function(all = TRUE) {
 
   for (i in 0:researchJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_research, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", researchJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

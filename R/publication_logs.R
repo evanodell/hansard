@@ -25,7 +25,7 @@ publication_logs <- function(all = TRUE) {
 
     for (i in 0:logsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_logs, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", logsJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

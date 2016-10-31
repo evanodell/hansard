@@ -22,7 +22,7 @@ commons_answered_questions <- function(all = TRUE) {
 
   for (i in 0:comAnsweredJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", comAnsweredJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

@@ -23,7 +23,7 @@ all_members <- function(all = TRUE) {
 
     for (i in 0:allMemsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_allMems, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", allMemsJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

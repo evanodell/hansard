@@ -22,7 +22,7 @@ commons_bills <- function(all = TRUE) {
 
   for (i in 0:billsJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", billsJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

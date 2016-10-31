@@ -10,7 +10,6 @@
 #' @examples
 #' lords_divisions()
 
-
 lords_divisions <- function(all = TRUE) {
 
   baseurl_lordsDivs <- "http://lda.data.parliament.uk/lordsdivisions.json"
@@ -23,7 +22,7 @@ lords_divisions <- function(all = TRUE) {
 
   for (i in 0:lordsDivsJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_lordsDivs, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", lordsDivsJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

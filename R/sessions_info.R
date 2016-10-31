@@ -22,7 +22,7 @@ sessions_info <- function(all = TRUE) {
 
     for (i in 0:sessionsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_sessions, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i)
+        message("Retrieving page ", i, " of ", sessionsJpage)
         pages[[i + 1]] <- mydata$result$items
     }
 }

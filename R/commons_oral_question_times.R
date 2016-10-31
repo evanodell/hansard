@@ -22,7 +22,7 @@ commons_oral_question_times <- function(all = TRUE) {
 
   for (i in 0:oralTimesJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_oralTimes, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", oralTimesJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }

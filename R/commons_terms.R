@@ -21,7 +21,7 @@ commons_terms <- function(all = TRUE) {
 
   for (i in 0:cTermsJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_terms, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i)
+    message("Retrieving page ", i, " of ", cTermsJpage)
     pages[[i + 1]] <- mydata$result$items
   }
 }
