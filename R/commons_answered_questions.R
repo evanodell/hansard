@@ -10,11 +10,14 @@
 #' commons_answered_questions()
 
 
-commons_answered_questions <- function(all = TRUE, date=NA,
-                                       uin=NA, department=NA,
-                                       answeredby=NA) {
+commons_answered_questions <- function(type) {
 
-  if(all==TRUE){
+  if(!type %in% c("all", "date",
+                  "uin", "department",
+                  "answered by"))
+    ("Warning: Please select an API query")
+
+  if(type=="all"){  ##UNKNOWN
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
 
       comAnswered <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsansweredquestions.json")
@@ -29,23 +32,28 @@ commons_answered_questions <- function(all = TRUE, date=NA,
         pages[[i + 1]] <- mydata$result$items
     }
 
-  }else if (is.na(date)==FALSE){
+  }else if (type=="date"){  ##WORKING!
+
+      qDate <- readline("Enter date. Format: yyyy-mm-dd:  ")
+
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
 
-      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?date=", date))
+      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?date=", qDate))
 
-      comAnsweredJpage <- round(comAnswered$result$totalResults/10 + 1, digits = 0)
+      comAnsweredJpage <- round(comAnswered$result$totalResults/10, digits = 0)
 
       pages <- list()
 
       for (i in 0:comAnsweredJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?date=", qDate, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i, " of ", comAnsweredJpage)
         pages[[i + 1]] <- mydata$result$items
-    }
+      }
 
-  }else if (is.na(uin)==FALSE){
+  }else if (type=="uin"){  ##UNKNOWN
     #   commonsansweredquestions?uin={uin}
+      qUin <- readline <- ("Enter the question's UIN:  ")
+
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
 
       comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?uin=", uin))
@@ -60,11 +68,13 @@ commons_answered_questions <- function(all = TRUE, date=NA,
         pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(is.na(department)==FALSE){
-    #   commonsansweredquestions/answeringdepartment?q={query}
+  } else if(type=="department"){ ##UNKNOWN
+
+      qDepartment <- readline("Enter department: ")
+
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
 
-      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=0", "&AnsweringBody.=", department))
+      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=0", "&AnsweringBody.=", qDepartment))
 
       comAnsweredJpage <- round(comAnswered$result$totalResults/10 + 1, digits = 0)
 
@@ -75,20 +85,23 @@ commons_answered_questions <- function(all = TRUE, date=NA,
         message("Retrieving page ", i, " of ", comAnsweredJpage)
         pages[[i + 1]] <- mydata$result$items
     }
-  } else if(is.na(answeredby)==FALSE) {
-    #  commonsansweredquestions/answeredby/{mnisId}
-      baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
+  } else if(type=="answered by") { ##WORKING!
 
-      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?date=", date))
+      qAnsweredBy <- readline("Enter MP ID: ")
 
-      comAnsweredJpage <- round(comAnswered$result$totalResults/10 + 1, digits = 0)
+      baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions/answeredby/"
+
+      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qAnsweredBy,".json"))
+
+      comAnsweredJpage <- round(comAnswered$result$totalResults/10, digits = 0)
 
       pages <- list()
 
       for (i in 0:comAnsweredJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qAnsweredBy,".json", "?_page=", i), flatten = TRUE)
         message("Retrieving page ", i, " of ", comAnsweredJpage)
         pages[[i + 1]] <- mydata$result$items
-    }
+      }
   }
+  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 }
