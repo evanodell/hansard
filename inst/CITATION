@@ -1,0 +1,11 @@
+citHeader("To cite hansard in publications, please use:")
+
+citEntry(entry = "book",
+  author = "Evan Odell",
+  title = "hansard: Accessing Westminster Parliament Data",
+  publisher = "",
+  year = "2016",
+  isbn = "",
+  url = "",
+
+)
