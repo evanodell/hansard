@@ -160,9 +160,8 @@ members <- function(house=c("all","commons","commons interests",
 #' @export
 #' @examples
 #' # Function searches for the string and returns a data frame with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage.
-#' members_search ("query")
-#'
-#'
+#' # The default search is NULL, which returns a data frame of all members of both houses, the same result as members("all").
+#'members_search (Search=NULL)
 #'
 #'
 #'

@@ -9,4 +9,4 @@ bibEntry(entry = "book",
   url = "https://github.com/EvanOdell/hansard"
 )
 
-textVersion = paste0("Evan Odell" (",2016,"). hansard: Accessing Westminster Parliament Data.",note, ".")
+textVersion = paste0("Evan Odell" (",2016,") hansard: Accessing Westminster Parliament Data.",note, ".")
