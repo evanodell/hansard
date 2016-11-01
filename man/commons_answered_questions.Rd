@@ -4,7 +4,8 @@
 \alias{commons_answered_questions}
 \title{House of Commons Answered Questions}
 \usage{
-commons_answered_questions(all = TRUE)
+commons_answered_questions(type = c("all", "date", "department",
+  "answered by", "recent"))
 }
 \arguments{
 \item{all}{Imports all available answered questions Defaults to TRUE.}

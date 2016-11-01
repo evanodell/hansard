@@ -10,11 +10,9 @@
 #' commons_answered_questions()
 
 
-commons_answered_questions <- function(type) {
-
-  if(!type %in% c("all", "date", "department",
-                  "answered by", "recent"))
-    ("Warning: Please select an API query")
+commons_answered_questions <- function(type =c("all", "date", "department",
+                                               "answered by", "recent")) {
+  match.arg(type)
 
   if(type=="all"){  ##WORKING!
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json?_pageSize=500"
@@ -68,7 +66,7 @@ commons_answered_questions <- function(type) {
       pages <- list()
 
       for (i in 0:comAnsweredJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=", i, "&AnsweringBody.=", department), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=", i, "&AnsweringBody.=", qDepartment), flatten = TRUE)
         message("Retrieving page ", i+1, " of ", comAnsweredJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
