@@ -14,10 +14,6 @@ members(house = c("all", "commons", "commons interests", "lords",
 This imports data on All Members of Parliament including the Lords and the Commons
 }
 \examples{
-<<<<<<< HEAD
-=======
-NOT RUN
->>>>>>> ae4fc913a10035284c6c7182f9b1ea837cfbdf92
 x <- members("all")
 Returns a data frame with information on all members of Parliament, including both the House of Lords and the House of Commons. The data frame includes both current and previous members, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.
 
@@ -26,6 +22,12 @@ Returns a data frame with information on all members of the House of Commons. Th
 
 z <- members("lords")
 Returns a data frame with information on all members of the House of Lords. The data frame includes both current and previous members of the House of Lords, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.
+
+a <- members("commons interests")
+Returns a list of data frames, each details on the registered interests of a member of the House of Commons
+
+b <- members("lords interests")
+Returns a list of data frames, each details on the registered interests of a member of the House of Lords
 
 }
 \keyword{All}
