@@ -152,14 +152,15 @@ members <- function(house=c("all","commons","commons interests",
 }
 
 
-#' MP ID
+#' MP Search
 #'
 #' This imports data on All Members of Parliament including the Lords and the Commons
 #' @param all Imports all available members Defaults to TRUE.
 #' @keywords All Members of Parliament
 #' @export
 #' @examples
-#' MP.ID("query")
+#' # Function searches for the string and returns a data frame with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage.
+#' members_search ("query")
 #'
 #'
 #'
@@ -167,15 +168,15 @@ members <- function(house=c("all","commons","commons interests",
 #'
 #'
 #'
-MP.ID <- function(mpidSearch=NULL) {
+members_search <- function(Search=NULL) {
 
-  if(is.null(mpidSearch)) {
+  if(is.null(Search)) {
     members("all")
   } else {
 
   baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
 
-  mpidResults <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*",mpidSearch,"*"))
+  mpidResults <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*",Search,"*"))
 
   if(mpidResults$result$totalResults > mpidResults$result$itemsPerPage) {
   mpidJpage <- round(mpidResults$result$totalResults/mpidResults$result$itemsPerPage, digits = 0)
@@ -183,7 +184,7 @@ MP.ID <- function(mpidSearch=NULL) {
   pages <- list()
 
   for (i in 0:mpidJpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_MPID, mpidSearch,"*", "&_page=", i), flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(baseurl_MPID, Search,"*", "&_page=", i), flatten = TRUE)
     message("Retrieving page ", i+1, " of ", mpidJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
