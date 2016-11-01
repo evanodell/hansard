@@ -14,7 +14,29 @@ commons_answered_questions(type = c("all", "date", "department",
 This imports data on House of Commons answered questions
 }
 \examples{
-commons_answered_questions()
+commons_answered_questions("all")
+# Returns a data frame with all answered questions in the House of Commons
+
+commons_answered_questions("date")
+# Returns:
+Enter date. Format: yyyy-mm-dd: #eg 2016-10-10
+
+# Returns a data frame with all answered questions in the House of Commons on the given date
+
+commons_answered_questions("department")
+# Returns:
+Enter department:
+#Enter department as string. Eg "Department of Health"
+# Returns a data frame with all answered questions in the House of Commons from the given department
+
+commons_answered_questions("answered by")
+# Returns
+Enter MP ID:
+# Enter the ID number of the MP Eg 8 (Theresa May)
+# Returns a data frame with all answered questions in the House of Commons by the given MP
+
+commons_answered_questions("recent")
+# Returns a data frame with all answered questions from the House of Commons
 }
 \keyword{bills}
 
