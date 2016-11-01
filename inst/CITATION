@@ -1,11 +1,12 @@
-citHeader("To cite hansard in publications, please use:")
+bibHeader("To cite hansard in publications, please use:")
 
-citEntry(entry = "book",
+bibEntry(entry = "book",
   author = "Evan Odell",
-  title = "hansard: Accessing Westminster Parliament Data",
+  title = "{hansard}: Accessing Westminster Parliament Data",
   publisher = "",
   year = "2016",
   isbn = "",
-  url = "https://github.com/EvanOdell/hansard",
-
+  url = "https://github.com/EvanOdell/hansard"
 )
+
+textVersion = paste0("Evan Odell" (",2016,"). hansard: Accessing Westminster Parliament Data.",note, ".")
