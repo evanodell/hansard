@@ -12,16 +12,16 @@
 
 research_briefings <- function(all = TRUE) {
 
-  baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json"
+  baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500"
 
-  research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefings.json")
+  research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500")
 
   researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
 
   pages <- list()
 
   for (i in 0:researchJpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_research, "?_page=", i), flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
     message("Retrieving page ", i+1, " of ", researchJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
