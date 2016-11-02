@@ -4,7 +4,7 @@
 \alias{commons_oral_questions}
 \title{House of Commons Oral Questions}
 \usage{
-commons_oral_questions(type = c("all", "written", "oral"))
+commons_oral_questions(type = c("all", "times"))
 }
 \arguments{
 \item{all}{Imports all available oral questions. Defaults to TRUE.}

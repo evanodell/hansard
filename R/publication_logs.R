@@ -15,16 +15,16 @@
 
 publication_logs <- function(all = TRUE) {
 
-    baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json"
+    baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500"
 
-    logs <- jsonlite::fromJSON("http://lda.data.parliament.uk/publicationlogs.json")
+    logs <- jsonlite::fromJSON("http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500")
 
     logsJpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:logsJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_logs, "?_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl_logs, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i+1, " of ", logsJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }

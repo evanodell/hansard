@@ -4,7 +4,7 @@
 \alias{commons_questions}
 \title{House of Commons Oral Questions}
 \usage{
-commons_questions(type = c("all", "written", "oral"))
+commons_questions(type = c("written", "oral"))
 }
 \arguments{
 \item{all}{Imports all available oral questions. Defaults to TRUE.}
@@ -13,7 +13,12 @@ commons_questions(type = c("all", "written", "oral"))
 This imports data on House of Commons oral questiosn
 }
 \examples{
-commons_questions()
+
+commons_questions("written")
+
+
+
+commons_questions("oral")
 }
 \keyword{bills}
 

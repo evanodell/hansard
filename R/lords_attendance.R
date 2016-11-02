@@ -12,17 +12,17 @@
 
 lords_attendance <- function(all = TRUE) {
 
-    baseurl_lordsAttend <- " http://lda.data.parliament.uk/lordsattendances.json"
+    baseurl_lordsAttend <- " http://lda.data.parliament.uk/lordsattendances.json?_pageSize=500"
 
-    lordsAttend <- jsonlite::fromJSON(" http://lda.data.parliament.uk/lordsattendances.json")
+    lordsAttend <- jsonlite::fromJSON(" http://lda.data.parliament.uk/lordsattendances.json?_pageSize=500")
 
     lordsAttendJpage <- round(lordsAttend$result$totalResults/lordsAttend$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:lordsAttendJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsAttend, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i, " of ", lordsAttendJpage)
+        mydata <- jsonlite::fromJSON(paste0(baseurl_lordsAttend, "&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i+1, " of ", lordsAttendJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
 }

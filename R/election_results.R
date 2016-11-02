@@ -15,17 +15,17 @@
 
 election_results <- function(all = TRUE) {
 
-  baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json"
+  baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?_pageSize=500"
 
-  electR <- jsonlite::fromJSON("http://lda.data.parliament.uk/electionresults.json")
+  electR <- jsonlite::fromJSON("http://lda.data.parliament.uk/electionresults.json?_pageSize=500")
 
   electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
 
   pages <- list()
 
   for (i in 0:electRJpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_electR, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i, " of ", electRJpage)
+    mydata <- jsonlite::fromJSON(paste0(baseurl_electR, "&_page=", i), flatten = TRUE)
+    message("Retrieving page ", i+1, " of ", electRJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
 }
