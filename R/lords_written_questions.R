@@ -16,7 +16,7 @@ lords_written_questions <- function(all = TRUE) {
 
     lordsWrit <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordswrittenquestions.json")
 
-    lordsWritJpage <- round(lordsWrit$result$totalResults/10 + 1, digits = 0)
+    lordsWritJpage <- round(lordsWrit$result$totalResults/lordsWrit$result$itemsPerPage, digits = 0)
 
     pages <- list()
 

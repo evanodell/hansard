@@ -16,7 +16,7 @@ lords_ammendments <- function(all = TRUE) {
 
   lordsAmmend <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsbillamendments.json")
 
-  lordsAmmendJpage <- round(lordsAmmend$result$totalResults/10 + 1, digits = 0)
+  lordsAmmendJpage <- round(lordsAmmend$result$totalResults/lordsAmmend$result$itemsPerPage, digits = 0)
 
   pages <- list()
 

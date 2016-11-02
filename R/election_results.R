@@ -19,7 +19,7 @@ election_results <- function(all = TRUE) {
 
   electR <- jsonlite::fromJSON("http://lda.data.parliament.uk/electionresults.json")
 
-  electRJpage <- round(electR$result$totalResults/10 + 1, digits = 0)
+  electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
 
   pages <- list()
 

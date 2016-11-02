@@ -10,6 +10,8 @@
 #' bills()
 
 
+##Needs examples, still incomplete on all functions
+
 bills <- function(type=c("all", "ammended", "sponsor",
                                  "stage", "publications", "stage types")) {
 
@@ -87,7 +89,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
 
     df <- rbind.pages(pages[sapply(pages, length)>0])
 
-  } else if(type=="publications") {
+  } else if(type=="publications") { ## Not yet Working
 
     baseurl_bills <- "http://lda.data.parliament.uk/billpublications.json?_pageSize=500"
 

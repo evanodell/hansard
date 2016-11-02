@@ -18,12 +18,14 @@
 #' z <- members("lords")
 #' # Returns a data frame with information on all members of the House of Lords. The data frame includes both current and previous members of the House of Lords, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.
 #'
-#' a <- members("commons interests")
+#' a <- members("commons interests") #Not Working
 #' # Returns a list of data frames, each details on the registered interests of a member of the House of Commons
 #'
 #' b <- members("lords interests")
 #' # Returns a dataframe of the registered interests a member of the House of Lords, selected by their ID.
 
+
+### All working except for Commons Interest, which still returns the list of frames of lists of whatevers
 
 
 members <- function(house=c("all","commons","commons interests",

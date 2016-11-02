@@ -16,13 +16,13 @@ sessions_info <- function(all = TRUE) {
 
     sessions <- jsonlite::fromJSON("http://lda.data.parliament.uk/sessions.json")
 
-    sessionsJpage <- round(sessions$result$totalResults/10 + 1, digits = 0)
+    sessionsJpage <- round(sessions$result$totalResults/sessions$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:sessionsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_sessions, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i, " of ", sessionsJpage)
+        message("Retrieving page ", i+1, " of ", sessionsJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
 }

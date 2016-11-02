@@ -15,13 +15,13 @@ commons_written_questions <- function(all = TRUE) {
 
   writ <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonswrittenquestions.json")
 
-  writJpage <- round(writ$result$totalResults/10 + 1, digits = 0)
+  writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
 
   pages <- list()
 
   for (i in 0:writJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_writ, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i, " of ", writJpage)
+    message("Retrieving page ", i+1, " of ", writJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
 }

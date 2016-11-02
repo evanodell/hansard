@@ -16,7 +16,7 @@ commons_oral_question_times <- function(all = TRUE) {
 
   oralTimes <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestiontimes.json")
 
-  oralTimesJpage <- round(oralTimes$result$totalResults/10 + 1, digits = 0)
+  oralTimesJpage <- round(oralTimes$result$totalResults/oralTimes$result$itemsPerPage, digits = 0)
 
   pages <- list()
 

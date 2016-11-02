@@ -17,13 +17,13 @@ papers_laid <- function(all = TRUE) {
 
     papers <- jsonlite::fromJSON("http://lda.data.parliament.uk/paperslaid.json")
 
-    papersJpage <- round(papers$result$totalResults/10 + 1, digits = 0)
+    papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:papersJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i, " of ", papersJpage)
+        message("Retrieving page ", i+1, " of ", papersJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
 }

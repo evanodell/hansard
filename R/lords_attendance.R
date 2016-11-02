@@ -16,7 +16,7 @@ lords_attendance <- function(all = TRUE) {
 
     lordsAttend <- jsonlite::fromJSON(" http://lda.data.parliament.uk/lordsattendances.json")
 
-    lordsAttendJpage <- round(lordsAttend$result$totalResults/10 + 1, digits = 0)
+    lordsAttendJpage <- round(lordsAttend$result$totalResults/lordsAttend$result$itemsPerPage, digits = 0)
 
     pages <- list()
 

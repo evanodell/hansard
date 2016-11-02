@@ -16,13 +16,13 @@ constituencies <- function(all = TRUE) {
 
     conts <- jsonlite::fromJSON("http://lda.data.parliament.uk/constituencies.json")
 
-    contsJpage <- round(conts$result$totalResults/10 + 1, digits = 0)
+    contsJpage <- round(conts$result$totalResults/conts$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:contsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_conts, "?_page=", i), flatten = TRUE)
-        message("Retrieving page ", i, " of ", contsJpage)
+        message("Retrieving page ", i+1, " of ", contsJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
 }

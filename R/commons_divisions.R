@@ -16,7 +16,7 @@ commons_divisions <- function(all = TRUE) {
 
     divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json")
 
-    divisJpage <- round(divis$result$totalResults/10 + 1, digits = 0)
+    divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
     pages <- list()
 

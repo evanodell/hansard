@@ -16,7 +16,7 @@ early_day_motions <- function(all = TRUE) {
 
   edms <- jsonlite::fromJSON("http://lda.data.parliament.uk/edms.json")
 
-  edmsJpage <- round(edms$result$totalResults/10 + 1, digits = 0)
+  edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
 
   pages <- list()
 

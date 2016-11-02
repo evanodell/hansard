@@ -16,7 +16,7 @@ lords_divisions <- function(all = TRUE) {
 
   lordsDivs <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsdivisions.json")
 
-  lordsDivsJpage <- round(lordsDivs$result$totalResults/10 + 1, digits = 0)
+  lordsDivsJpage <- round(lordsDivs$result$totalResults/lordsDivs$result$itemsPerPage, digits = 0)
 
   pages <- list()
 

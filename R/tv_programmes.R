@@ -17,13 +17,13 @@ tv_programmes <- function(all = TRUE) {
 
   av <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvprogrammes.json")
 
-  avJpage <- round(av$result$totalResults/10 + 1, digits = 0)
+  avJpage <- round(av$result$totalResults/av$result$itemsPerPage, digits = 0)
 
   pages <- list()
 
   for (i in 0:avJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_av, "?_page=", i), flatten = TRUE)
-    message("Retrieving page ", i, " of ", avJpage)
+    message("Retrieving page ", i+1, " of ", avJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
 }
