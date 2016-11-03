@@ -9,25 +9,23 @@
 #' @keywords Elections
 #' @export
 #' @examples
-#' elections()
+#' elections(all = TRUE)
+#' # Returns a data frame with the date and type of all general and by-elections since 1945
 
 
-elections <- function(all = TRUE) {
+elections <- function(all = TRUE) {#WORKING!
 
   baseurl_elect <- "http://lda.data.parliament.uk/elections.json?_pageSize=500"
 
   elect <- jsonlite::fromJSON("http://lda.data.parliament.uk/elections.json?_pageSize=500")
 
-  electJpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
-
   pages <- list()
 
-  for (i in 0:electJpage) {
+  for (i in 0:0) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_elect, "&_page=", i), flatten = TRUE)
-    message("Retrieving page ", i+1, " of ", electJpage+1)
+    message("Retrieving page ", i+1, " of ", 1)
     pages[[i + 1]] <- mydata$result$items
   }
-
 
   df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 

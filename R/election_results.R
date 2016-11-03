@@ -9,7 +9,8 @@
 #' @keywords Election Results
 #' @export
 #' @examples
-#' election_results()
+#' election_results(all=TRUE)
+#' #Returns general and by-election resuls for each consituency from the 2010 general election onwards.
 
 
 
@@ -30,6 +31,5 @@ election_results <- function(all = TRUE) {
   }
 
   df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
-
 
 }

@@ -4,7 +4,7 @@
 \alias{early_day_motions}
 \title{Early Day Motions}
 \usage{
-early_day_motions(all = TRUE)
+early_day_motions(type = c("all", "signatures"))
 }
 \arguments{
 \item{all}{Imports all available EDMs. Defaults to TRUE.}
@@ -13,7 +13,12 @@ early_day_motions(all = TRUE)
 This imports data on early day motions
 }
 \examples{
-early_day_motions()
+early_day_motions("all")
+#Returns a data frame of all early day motions
+
+
+early_day_motions("signatures")
+#Returns a data frame of all early day motions signatures
 }
 \keyword{EDM}
 

@@ -13,7 +13,8 @@ election_results(all = TRUE)
 This imports data on general election results
 }
 \examples{
-election_results()
+election_results(all=TRUE)
+#Returns general and by-election resuls for each consituency from the 2010 general election onwards.
 }
 \keyword{Election}
 \keyword{Results}

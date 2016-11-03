@@ -4,7 +4,7 @@
 \alias{constituencies}
 \title{House of Commons Constituencies}
 \usage{
-constituencies(all = TRUE)
+constituencies(type = c("all"))
 }
 \arguments{
 \item{all}{Imports all available constituencies information Defaults to TRUE.}
@@ -13,7 +13,10 @@ constituencies(all = TRUE)
 This imports data on House of Commons constituencies
 }
 \examples{
-constituencies()
+constituencies("all")
+# Returns a data frame of all constituencies
+
+
 }
 \keyword{Constituencies}
 

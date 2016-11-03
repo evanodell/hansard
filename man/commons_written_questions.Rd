@@ -4,7 +4,7 @@
 \alias{commons_written_questions}
 \title{House of Commons Bills Written Questions}
 \usage{
-commons_written_questions(all = TRUE)
+commons_written_questions(type = c("all", "department", "dates"))
 }
 \arguments{
 \item{all}{Imports all available written questions Defaults to TRUE.}
@@ -13,7 +13,16 @@ commons_written_questions(all = TRUE)
 This imports data on House of Commons written questions
 }
 \examples{
-commons_written_questions()
+commons_written_questions("all")
+#Returns all written questions
+
+commons_written_questions("department")
+#Returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health
+
+
+commons_written_questions("dates")
+#Returns all written questions tabled between two chosen dates
+
 }
 \keyword{Questions}
 \keyword{Written}
