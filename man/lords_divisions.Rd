@@ -7,6 +7,8 @@
 lords_divisions(type = c("all", "date", "notContent", "content"))
 }
 \arguments{
+\item{type}{Accepts arguments "all", "date", "notContent" and "content"}
+
 \item{all}{Imports all available divisions.}
 
 \item{date}{Imports all available divisions on a date.}

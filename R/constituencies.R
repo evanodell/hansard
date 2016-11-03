@@ -1,5 +1,5 @@
 
-### 8 CONSTITUENCIES - Mostly done
+### 8 CONSTITUENCIES
 
 #' House of Commons Constituencies
 #'
