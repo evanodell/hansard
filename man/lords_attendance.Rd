@@ -4,10 +4,14 @@
 \alias{lords_attendance}
 \title{House of Lords Attendance}
 \usage{
-lords_attendance(all = TRUE)
+lords_attendance(type = c("all", "date"))
 }
 \arguments{
-\item{all}{Imports all available House of Lords attendance records Defaults to TRUE.}
+\item{type}{Accepts arguments "all" and "date"}
+
+\item{all}{Imports all available House of Lords attendance records}
+
+\item{date}{all available House of Lords attendance records on a given date}
 }
 \description{
 This imports data on House of Lords attendance
