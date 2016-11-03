@@ -1,5 +1,5 @@
 
-### 13 LORDS AMMENDMENTS
+### 13 LORDS AMMENDMENTS - Now working
 
 #' House of Lords Ammendments
 #'
@@ -9,8 +9,9 @@
 #' @export
 #' @examples
 #' x <- lords_ammendments()
+#' # Returns all lords ammendments
 
-lords_ammendments <- function(all = TRUE) {
+lords_ammendments <- function(all = TRUE) { #FUNCTIONING!
 
   baseurl_lordsAmmend <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
 
@@ -26,8 +27,6 @@ lords_ammendments <- function(all = TRUE) {
     pages[[i + 1]] <- mydata$result$items
   }
 
-
   df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
-
 
 }

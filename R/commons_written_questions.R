@@ -3,9 +3,11 @@
 #' House of Commons Bills Written Questions
 #'
 #' This imports data on House of Commons written questions
-#' @param type The type of data you want, allows the arguments
-#' @param all Imports all available written questions Defaults to TRUE.
-#' @keywords Written Questions
+#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
+#' @param all Imports all available written questions
+#' @param department Imports all available written questions answered by a given department
+#' @param dates Imports all available written questions from between two given dates
+#' @keywords House of Commons Written Questions
 #' @export
 #' @examples
 #' x <- commons_written_questions("all")
@@ -20,7 +22,7 @@
 #' #Returns all written questions tabled between two chosen dates
 #'
 
-commons_written_questions <- function(type =c("all","department","dates")) {
+commons_written_questions <- function(type =c("all", "department", "dates")) {
 
   match.arg(type)
 
@@ -44,7 +46,7 @@ commons_written_questions <- function(type =c("all","department","dates")) {
 
     answering.department <- readline("Enter the name of the answering department: ")
 
-    baseurl_writ <- "commonswrittenquestions/answeringdepartment.json?q="
+    baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions/answeringdepartment.json?q="
 
     writ <- jsonlite::fromJSON(paste0(baseurl_writ,answering.department,"&pageSize=500"))
 
@@ -60,9 +62,9 @@ commons_written_questions <- function(type =c("all","department","dates")) {
 
   } else if(type=="dates") {
 
-    start.date <- readline("Enter start date: ")
+    start.date <- readline("Enter start date (yyyy-mm-dd): ")
 
-    end.date <- readline("Enter end date: ")
+    end.date <- readline("Enter end date (yyyy-mm-dd): ")
 
     baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions/tabled.json?startDate="
 

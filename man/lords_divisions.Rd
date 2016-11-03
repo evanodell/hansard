@@ -4,16 +4,34 @@
 \alias{lords_divisions}
 \title{House of Lords Divisions}
 \usage{
-lords_divisions(all = TRUE)
+lords_divisions(type = c("all", "date", "notContent", "content"))
 }
 \arguments{
-\item{all}{Imports all available House of Lords divisions Defaults to TRUE.}
+\item{all}{Imports all available divisions.}
+
+\item{date}{Imports all available divisions on a date.}
+
+\item{notContent}{Imports all divisions where a given lord voted not content.}
+
+\item{content}{Imports all divisions where a given lord voted content.}
 }
 \description{
 This imports data on House of Lords divisions
+#' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
 }
 \examples{
-x <- lords_divisions()
+x <- lords_divisions("all")
+
+
+x <- lords_divisions("date")
+
+
+x <- lords_divisions("notContent")
+
+
+x <- lords_divisions("content")
+
+
 }
 \keyword{Divisions}
 \keyword{Lords}

@@ -2,18 +2,30 @@
 % Please edit documentation in R/lords_written_questions.R
 \name{lords_written_questions}
 \alias{lords_written_questions}
-\title{House of Lords Attendance}
+\title{House of Lords Written Questions}
 \usage{
-lords_written_questions(all = TRUE)
+lords_written_questions(type = c("all", "department", "dates"))
 }
 \arguments{
-\item{all}{Imports all available House of Lords written questions Defaults to TRUE.}
+\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
+
+\item{all}{Imports all available written questions}
+
+\item{department}{Imports all available written questions answered by a given department}
+
+\item{dates}{Imports all available written questions from between two given dates}
 }
 \description{
 This imports data on House of Lords written questions
 }
 \examples{
-x <- lords_written_questions()
+x <- lords_written_questions("all")
+
+
+x <- lords_written_questions("department")
+
+
+x <- lords_written_questions("dates")
 }
 \keyword{House}
 \keyword{Lords}

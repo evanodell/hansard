@@ -7,9 +7,13 @@
 commons_written_questions(type = c("all", "department", "dates"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments}
+\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
 
-\item{all}{Imports all available written questions Defaults to TRUE.}
+\item{all}{Imports all available written questions}
+
+\item{department}{Imports all available written questions answered by a given department}
+
+\item{dates}{Imports all available written questions from between two given dates}
 }
 \description{
 This imports data on House of Commons written questions
@@ -27,6 +31,9 @@ x <- commons_written_questions("dates")
 #Returns all written questions tabled between two chosen dates
 
 }
+\keyword{Commons}
+\keyword{House}
 \keyword{Questions}
 \keyword{Written}
+\keyword{of}
 

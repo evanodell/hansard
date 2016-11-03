@@ -9,7 +9,13 @@ commons_divisions(type = c("all", "date", "no", "aye"))
 \arguments{
 \item{type}{The type of data you want, allows the arguments "all", "date", "no", "aye"}
 
-\item{all}{Imports all available divisions. Defaults to TRUE.}
+\item{all}{Imports all available divisions.}
+
+\item{date}{Imports all available divisions on a date.}
+
+\item{no}{Imports all divisions where a given MP voted no.}
+
+\item{aye}{Imports all divisions where a given MP voted aye.}
 }
 \description{
 This imports data on House of Commons divisions

@@ -14,6 +14,7 @@ This imports data on House of Lords Ammendments
 }
 \examples{
 x <- lords_ammendments()
+# Returns all lords ammendments
 }
 \keyword{Ammendments}
 \keyword{House}

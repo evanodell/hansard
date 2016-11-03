@@ -5,7 +5,10 @@
 #'
 #' This imports data on House of Commons divisions
 #' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
-#' @param all Imports all available divisions. Defaults to TRUE.
+#' @param all Imports all available divisions.
+#' @param date Imports all available divisions on a date.
+#' @param no Imports all divisions where a given MP voted no.
+#' @param aye Imports all divisions where a given MP voted aye.
 #' @keywords divisions
 #' @export
 #' @examples
@@ -23,8 +26,7 @@
 #'
 #'
 
-commons_divisions <- function(type =c("all", "date", "no",
-                                      "aye")) {
+commons_divisions <- function(type =c("all", "date", "no","aye")) {
 
   match.arg(type)
 
@@ -66,7 +68,7 @@ commons_divisions <- function(type =c("all", "date", "no",
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="no") {
+  }  else if (type=="no") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 
@@ -84,7 +86,7 @@ commons_divisions <- function(type =c("all", "date", "no",
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="aye") {
+  }  else if (type=="aye") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 
