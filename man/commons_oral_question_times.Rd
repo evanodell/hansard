@@ -13,7 +13,8 @@ commons_oral_question_times(all = TRUE)
 This imports data on House of Commons oral question times
 }
 \examples{
-commons_oral_question_times()
+commons_oral_question_times(all = TRUE)
+#Returns a data frame with all of the oral question times
 }
 \keyword{Oral}
 \keyword{Questions}

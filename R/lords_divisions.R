@@ -25,6 +25,9 @@ lords_divisions <- function(all = TRUE) {
     message("Retrieving page ", i+1, " of ", lordsDivsJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
+
+  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+
 }
 
 

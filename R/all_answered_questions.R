@@ -6,7 +6,8 @@
 #' @keywords Answered Questions
 #' @export
 #' @examples
-#' all_answered_questions()
+#' all_answered_questions(all=TRUE)
+#' #Returns all answered questions
 
 
 ### 18 ALL ANSWERED QUESTIONS
@@ -26,4 +27,7 @@ all_answered_questions <- function(all = TRUE) {
     message("Retrieving page ", i+1, " of ", allAnsweredJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
+
+  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+
 }

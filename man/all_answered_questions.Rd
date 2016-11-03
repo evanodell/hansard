@@ -13,7 +13,8 @@ all_answered_questions(all = TRUE)
 This imports data on answered parliamentary questions
 }
 \examples{
-all_answered_questions()
+all_answered_questions(all=TRUE)
+#Returns all answered questions
 }
 \keyword{Answered}
 \keyword{Questions}
