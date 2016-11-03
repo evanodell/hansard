@@ -15,13 +15,17 @@ commons_divisions(type = c("all", "date", "no", "aye"))
 This imports data on House of Commons divisions
 }
 \examples{
-commons_divisions("all")
+x <- commons_divisions("all")
+# Returns all divisions
 
-commons_divisions("date")
+x <- commons_divisions("date")
+# Returns all divisions on a given date
 
-commons_divisions("no")
+x <- commons_divisions("no")
+# Returns all divisions in which a given MP voted no
 
-commons_divisions("aye")
+x <- commons_divisions("aye")
+# Returns all divisions in which a given MP voted aye
 
 
 }

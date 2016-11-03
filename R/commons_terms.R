@@ -7,7 +7,7 @@
 #' @keywords parliamentary thesaurus
 #' @export
 #' @examples
-#' commons_terms()
+#' x <- commons_terms()
 
 commons_terms <- function(all = TRUE) {
 

@@ -13,7 +13,17 @@
 #' @keywords bills
 #' @export
 #' @examples
-#' bills()
+#' x <- bills("all")
+#'
+#' x <- bills("ammended")
+#'
+#' x <- bills("sponsor")
+#'
+#' x <- bills("stage")
+#'
+#' x <- bills("publications")
+#'
+#' x <- bills("stageTypes")
 
 
 ##Needs examples, still incomplete on all functions

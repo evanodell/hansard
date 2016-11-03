@@ -13,7 +13,7 @@ sessions_info(all = TRUE)
 This imports data on Parliamentary Sessions
 }
 \examples{
-sessions_info()
+x <- sessions_info()
 }
 \keyword{Parliamentary}
 \keyword{Sessions}

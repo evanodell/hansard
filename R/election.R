@@ -9,7 +9,7 @@
 #' @keywords Elections
 #' @export
 #' @examples
-#' elections(all = TRUE)
+#' x <- elections(all = TRUE)
 #' # Returns a data frame with the date and type of all general and by-elections since 1945
 
 

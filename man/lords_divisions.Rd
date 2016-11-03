@@ -13,7 +13,7 @@ lords_divisions(all = TRUE)
 This imports data on House of Lords divisions
 }
 \examples{
-lords_divisions()
+x <- lords_divisions()
 }
 \keyword{Divisions}
 \keyword{Lords}

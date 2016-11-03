@@ -9,13 +9,15 @@ commons_oral_questions(type = c("all", "times"))
 \arguments{
 \item{type}{The type of data you want, allows the arguments "all" and "times"}
 
-\item{all}{Imports all available oral questions. Defaults to TRUE.}
+\item{all}{Imports all available oral questions}
+
+\item{times}{Imports the times of all available oral questions}
 }
 \description{
 This imports data on House of Commons oral questions
 }
 \examples{
-commons_oral_questions()
+x <- commons_oral_questions()
 }
 \keyword{bills}
 

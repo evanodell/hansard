@@ -13,7 +13,7 @@ publication_logs(all = TRUE)
 This imports data on Publication Logs
 }
 \examples{
-publication_logs()
+x <- publication_logs()
 }
 \keyword{Logs}
 \keyword{Publication}

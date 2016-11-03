@@ -15,7 +15,7 @@ constituencies(type = c("all"))
 This imports data on House of Commons constituencies
 }
 \examples{
-constituencies("all")
+x <- constituencies("all")
 # Returns a data frame of all constituencies
 
 

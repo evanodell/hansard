@@ -8,7 +8,7 @@
 #' @keywords Oral Questions
 #' @export
 #' @examples
-#' commons_oral_question_times(all = TRUE)
+#' x <- commons_oral_question_times(all = TRUE)
 #' #Returns a data frame with all of the oral question times
 
 commons_oral_question_times <- function(all = TRUE) { #READY

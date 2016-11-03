@@ -26,7 +26,17 @@ bills(type = c("all", "ammended", "sponsor", "stage", "publications",
 This imports data on House of Commons and House of Lords bills
 }
 \examples{
-bills()
+x <- bills("all")
+
+x <- bills("ammended")
+
+x <- bills("sponsor")
+
+x <- bills("stage")
+
+x <- bills("publications")
+
+x <- bills("stageTypes")
 }
 \keyword{bills}
 

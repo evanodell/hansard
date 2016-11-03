@@ -13,7 +13,7 @@ tv_programmes(all = TRUE)
 This imports data on TV broadcasts
 }
 \examples{
-tv_programmes()
+x <- tv_programmes()
 }
 \keyword{TV}
 

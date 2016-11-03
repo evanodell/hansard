@@ -9,7 +9,7 @@
 #' @keywords Constituencies
 #' @export
 #' @examples
-#' constituencies("all")
+#' x <- constituencies("all")
 #'# Returns a data frame of all constituencies
 #'
 #'

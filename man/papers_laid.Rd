@@ -13,7 +13,7 @@ papers_laid(all = TRUE)
 This imports data on Papers Laid
 }
 \examples{
-papers_laid
+x <- papers_laid()
 }
 \keyword{Laid}
 \keyword{Papers}

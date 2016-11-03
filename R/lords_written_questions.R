@@ -8,7 +8,7 @@
 #' @keywords House of Lords Written Questions
 #' @export
 #' @examples
-#' lords_written_questions()
+#' x <- lords_written_questions()
 
 lords_written_questions <- function(all = TRUE) {
 

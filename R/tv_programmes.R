@@ -8,7 +8,7 @@
 #' @keywords TV
 #' @export
 #' @examples
-#' tv_programmes()
+#' x <- tv_programmes()
 
 
 tv_programmes <- function(all = TRUE) {

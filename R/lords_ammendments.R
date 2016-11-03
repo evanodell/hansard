@@ -8,7 +8,7 @@
 #' @keywords House of Lords Ammendments
 #' @export
 #' @examples
-#' lords_ammendments()
+#' x <- lords_ammendments()
 
 lords_ammendments <- function(all = TRUE) {
 

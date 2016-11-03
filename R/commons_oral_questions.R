@@ -8,11 +8,12 @@
 #'
 #' This imports data on House of Commons oral questions
 #' @param type The type of data you want, allows the arguments "all" and "times"
-#' @param all Imports all available oral questions. Defaults to TRUE.
+#' @param all Imports all available oral questions
+#' @param times Imports the times of all available oral questions
 #' @keywords bills
 #' @export
 #' @examples
-#' commons_oral_questions()
+#' x <- commons_oral_questions()
 
 
 ## To DO!: Add functionality for date, time, etc of questions, the IF/ELSE bits

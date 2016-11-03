@@ -6,11 +6,15 @@
 #' This imports data on House of Lords attendance
 #' @param type Accepts arguments "all" and "date"
 #' @param all Imports all available House of Lords attendance records
-#' @param date all available House of Lords attendance records on a given date
+#' @param date Imports all available House of Lords attendance records for a given date
 #' @keywords House of Lords Attendance
 #' @export
 #' @examples
-#' lords_attendance()
+#' x <- lords_attendance("all")
+#' #Returns all House of Lords attendance
+#'
+#' x <- lords_attendance("date")
+#' #Returns House of Lords attendance data for a given date
 
 lords_attendance <- function(type =c("all","date")) {
 

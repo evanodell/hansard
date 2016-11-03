@@ -8,7 +8,7 @@
 #' @keywords Parliamentary Sessions
 #' @export
 #' @examples
-#' sessions_info()
+#' x <- sessions_info()
 
 sessions_info <- function(all = TRUE) {
 

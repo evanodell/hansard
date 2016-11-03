@@ -16,29 +16,29 @@
 #' @examples
 #' x <- members("all")
 #' # Returns a data frame with information on all members of Parliament, including both
-#' the House of Lords and the House of Commons. The data frame includes both current and
-#' previous members, and the API currently does not have information on when a member first
-#' sat in the house, or to distinguish current from former members.
+#' # the House of Lords and the House of Commons. The data frame includes both current and
+#' # previous members, and the API currently does not have information on when a member first
+#' # sat in the house, or to distinguish current from former members.
 #'
 #' y <- members("commons")
 #' # Returns a data frame with information on all members of the House of Commons. The data
-#' frame includes both current and previous members of the House of Commons, and the API
-#' currently does not have information on when a member first sat in the house, or to
-#' distinguish current from former members.
+#' # frame includes both current and previous members of the House of Commons, and the API
+#' # currently does not have information on when a member first sat in the house, or to
+#' # distinguish current from former members.
 #'
 #' z <- members("lords")
 #' # Returns a data frame with information on all members of the House of Lords. The data
-#' frame includes both current and previous members of the House of Lords, and the API
-#' currently does not have information on when a member first sat in the house, or to
-#' distinguish current from former members.
+#' # frame includes both current and previous members of the House of Lords, and the API
+#' # currently does not have information on when a member first sat in the house, or to
+#' # distinguish current from former members.
 #'
 #' a <- members("commonsInterests") #Not Working
 #' # Returns a list of data frames, each details on the registered interests of a member
-#' of the House of Commons
+#' # of the House of Commons
 #'
 #' b <- members("lordsInterests")
 #' # Returns a dataframe of the registered interests a member of the House of Lords,
-#' selected by their ID.
+#' # selected by their ID.
 
 
 ### All working except for Commons Interest, which still returns the list of frames of lists of whatevers
@@ -174,18 +174,20 @@ members <- function(house=c("all","commons","commonsInterests",
 #'
 #' This imports data on All Members of Parliament including the Lords and the Commons
 #'
-#' @param Search Search for members by name and constituency
-#' @keywords All Members of Parliament
-#' @export
-#' @examples
-#' # Function searches for the string and returns a data frame with all matches from
+#'#' # Function searches for the string and returns a data frame with all matches from
 #' # both houses of parliament. Returns all partial matches in the members' names,
 #' # constituencies, twitter handle and webpage.
 #' # The default search is NULL, which returns a data frame of all members of both
 #' # houses, the same result as members("all").
-#' # members_search (Search=NULL)
 #'
-#'
+#' @param Search Search for members by name and constituency
+#' @keywords All Members of Parliament
+#' @export
+#' @examples
+#' x <- members_search(Search=NULL)
+#' # Returns members("all")
+#' x <- members_search("chris")
+#' # Returns all members with "chris" in their name or the name of their constituency
 #'
 #'
 #'

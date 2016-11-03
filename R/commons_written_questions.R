@@ -8,20 +8,19 @@
 #' @keywords Written Questions
 #' @export
 #' @examples
-#' commons_written_questions("all")
+#' x <- commons_written_questions("all")
 #' #Returns all written questions
 #'
-#' commons_written_questions("department")
+#' x <- commons_written_questions("department")
 #' #Returns all written questions by department. The query acts as a search, so entering <health>
-#' will return all questions answered by the Department of Health
+#' # will return all questions answered by the Department of Health
 #'
 #'
-#' commons_written_questions("dates")
+#' x <- commons_written_questions("dates")
 #' #Returns all written questions tabled between two chosen dates
 #'
 
-commons_written_questions <- function(type =c("all","department",
-                                              "dates")) {
+commons_written_questions <- function(type =c("all","department","dates")) {
 
   match.arg(type)
 

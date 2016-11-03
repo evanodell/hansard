@@ -13,7 +13,7 @@ commons_terms(all = TRUE)
 This imports the parliamentary thesaurus
 }
 \examples{
-commons_terms()
+x <- commons_terms()
 }
 \keyword{parliamentary}
 \keyword{thesaurus}

@@ -8,7 +8,7 @@
 #' @keywords Publication Logs
 #' @export
 #' @examples
-#' publication_logs()
+#' x <- publication_logs()
 
 
 ### 19 PUBLICATION LOGS

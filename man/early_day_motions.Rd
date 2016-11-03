@@ -17,14 +17,13 @@ early_day_motions(type = c("all", "signatures"))
 This imports data on early day motions
 }
 \examples{
-if (requireNamespace("jsonlite", quietly = TRUE)) {
-early_day_motions("all")
+
+x <- early_day_motions("all")
 #Returns a data frame of all early day motions
 
 
-early_day_motions("signatures")
+x <- early_day_motions("signatures")
 #Returns a data frame of all early day motions signatures
-}
 }
 \keyword{EDM}
 

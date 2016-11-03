@@ -8,7 +8,7 @@
 #' @keywords  Parliamentary Research Briefings
 #' @export
 #' @examples
-#' research_briefings()
+#' x <- research_briefings()
 
 research_briefings <- function(all = TRUE) {
 

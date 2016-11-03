@@ -11,13 +11,17 @@ lords_attendance(type = c("all", "date"))
 
 \item{all}{Imports all available House of Lords attendance records}
 
-\item{date}{all available House of Lords attendance records on a given date}
+\item{date}{Imports all available House of Lords attendance records for a given date}
 }
 \description{
 This imports data on House of Lords attendance
 }
 \examples{
-lords_attendance()
+x <- lords_attendance("all")
+#Returns all House of Lords attendance
+
+x <- lords_attendance("date")
+#Returns House of Lords attendance data for a given date
 }
 \keyword{Attendance}
 \keyword{House}

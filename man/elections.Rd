@@ -13,7 +13,7 @@ elections(all = TRUE)
 This imports data on elections
 }
 \examples{
-elections(all = TRUE)
+x <- elections(all = TRUE)
 # Returns a data frame with the date and type of all general and by-elections since 1945
 }
 \keyword{Elections}

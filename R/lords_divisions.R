@@ -8,7 +8,7 @@
 #' @keywords Lords Divisions
 #' @export
 #' @examples
-#' lords_divisions()
+#' x <- lords_divisions()
 
 lords_divisions <- function(all = TRUE) {
 

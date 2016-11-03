@@ -13,7 +13,7 @@ lords_written_questions(all = TRUE)
 This imports data on House of Lords written questions
 }
 \examples{
-lords_written_questions()
+x <- lords_written_questions()
 }
 \keyword{House}
 \keyword{Lords}

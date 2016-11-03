@@ -26,29 +26,29 @@ This imports data on All Members of Parliament including the Lords and the Commo
 \examples{
 x <- members("all")
 # Returns a data frame with information on all members of Parliament, including both
-the House of Lords and the House of Commons. The data frame includes both current and
-previous members, and the API currently does not have information on when a member first
-sat in the house, or to distinguish current from former members.
+# the House of Lords and the House of Commons. The data frame includes both current and
+# previous members, and the API currently does not have information on when a member first
+# sat in the house, or to distinguish current from former members.
 
 y <- members("commons")
 # Returns a data frame with information on all members of the House of Commons. The data
-frame includes both current and previous members of the House of Commons, and the API
-currently does not have information on when a member first sat in the house, or to
-distinguish current from former members.
+# frame includes both current and previous members of the House of Commons, and the API
+# currently does not have information on when a member first sat in the house, or to
+# distinguish current from former members.
 
 z <- members("lords")
 # Returns a data frame with information on all members of the House of Lords. The data
-frame includes both current and previous members of the House of Lords, and the API
-currently does not have information on when a member first sat in the house, or to
-distinguish current from former members.
+# frame includes both current and previous members of the House of Lords, and the API
+# currently does not have information on when a member first sat in the house, or to
+# distinguish current from former members.
 
 a <- members("commonsInterests") #Not Working
 # Returns a list of data frames, each details on the registered interests of a member
-of the House of Commons
+# of the House of Commons
 
 b <- members("lordsInterests")
 # Returns a dataframe of the registered interests a member of the House of Lords,
-selected by their ID.
+# selected by their ID.
 }
 \keyword{All}
 \keyword{Members}

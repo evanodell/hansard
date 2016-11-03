@@ -9,7 +9,7 @@
 #' @keywords Papers Laid
 #' @export
 #' @examples
-#' papers_laid
+#' x <- papers_laid()
 
 papers_laid <- function(all = TRUE) {
 

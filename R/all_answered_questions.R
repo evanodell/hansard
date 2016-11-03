@@ -6,7 +6,7 @@
 #' @keywords Answered Questions
 #' @export
 #' @examples
-#' all_answered_questions(all=TRUE)
+#' x <- all_answered_questions(all=TRUE)
 #' #Returns all answered questions
 
 

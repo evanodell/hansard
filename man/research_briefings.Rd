@@ -13,7 +13,7 @@ research_briefings(all = TRUE)
 This imports data on  Parliamentary Research Briefings
 }
 \examples{
-research_briefings()
+x <- research_briefings()
 }
 \keyword{Briefings}
 \keyword{Parliamentary}
