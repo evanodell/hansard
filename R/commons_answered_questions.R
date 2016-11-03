@@ -3,7 +3,11 @@
 #' House of Commons Answered Questions
 #'
 #' This imports data on House of Commons answered questions
-#' @param all Imports all available answered questions Defaults to TRUE.
+#' @param all Imports all available answered questions
+#' @param date Imports all available answered questions on a particular date
+#' @param department Imports all available answered questions by answering department
+#' @param answeredBy Imports all available answered questions by answering MP
+#' @param recent Imports all available answered questions - NOT WORKING!
 #' @keywords bills
 #' @export
 #' @examples
@@ -22,7 +26,7 @@
 #' #Enter department as string. Eg "Department of Health"
 #' # Returns a data frame with all answered questions in the House of Commons from the given department
 #'
-#' commons_answered_questions("answered by")
+#' commons_answered_questions("answeredBy")
 #' # Returns
 #' Enter MP ID:
 #' # Enter the ID number of the MP Eg 8 (Theresa May)
@@ -32,7 +36,7 @@
 #' # Returns a data frame with all answered questions from the House of Commons
 
 commons_answered_questions <- function(type =c("all", "date", "department",
-                                               "answered by", "recent")) {
+                                               "answeredBy", "recent")) {
   match.arg(type)
 
   if(type=="all"){  ##WORKING!
@@ -91,7 +95,7 @@ commons_answered_questions <- function(type =c("all", "date", "department",
         message("Retrieving page ", i+1, " of ", comAnsweredJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
-  } else if(type=="answered by") { ##WORKING!
+  } else if(type=="answeredBy") { ##WORKING!
 
       qAnsweredBy <- readline("Enter MP ID: ")
 

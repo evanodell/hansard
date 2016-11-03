@@ -5,10 +5,20 @@
 \title{Bills}
 \usage{
 bills(type = c("all", "ammended", "sponsor", "stage", "publications",
-  "stage types"))
+  "stageTypes"))
 }
 \arguments{
-\item{all}{Imports all available bills Defaults to TRUE.}
+\item{all}{Imports all available bills}
+
+\item{ammended}{Imports all ammended bills}
+
+\item{sponsor}{Imports bills by sponsor}
+
+\item{stage}{Imports bills by stage}
+
+\item{publications}{Imports data on publications}
+
+\item{stageTypes}{Imports all stage types}
 }
 \description{
 This imports data on House of Commons and House of Lords bills

@@ -7,12 +7,15 @@
 early_day_motions(type = c("all", "signatures"))
 }
 \arguments{
-\item{all}{Imports all available EDMs. Defaults to TRUE.}
+\item{all}{Imports all available EDMs.}
+
+\item{signatures}{Imports all available signatures.}
 }
 \description{
 This imports data on early day motions
 }
 \examples{
+
 early_day_motions("all")
 #Returns a data frame of all early day motions
 

@@ -3,7 +3,12 @@
 #' Bills
 #'
 #' This imports data on House of Commons and House of Lords bills
-#' @param all Imports all available bills Defaults to TRUE.
+#' @param all Imports all available bills
+#' @param ammended Imports all ammended bills
+#' @param sponsor Imports bills by sponsor
+#' @param stage Imports bills by stage
+#' @param publications Imports data on publications
+#' @param stageTypes Imports all stage types
 #' @keywords bills
 #' @export
 #' @examples
@@ -13,7 +18,7 @@
 ##Needs examples, still incomplete on all functions
 
 bills <- function(type=c("all", "ammended", "sponsor",
-                                 "stage", "publications", "stage types")) {
+                                 "stage", "publications", "stageTypes")) {
 
   match.arg(type)
 
@@ -107,7 +112,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
 
     df <- rbind.pages(pages[sapply(pages, length)>0])
 
-  } else if(type=="stage types") { #Working
+  } else if(type=="stageTypes") { #Working
 
     baseurl_bills <- "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500"
 

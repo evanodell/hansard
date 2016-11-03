@@ -4,11 +4,19 @@
 \alias{commons_answered_questions}
 \title{House of Commons Answered Questions}
 \usage{
-commons_answered_questions(type = c("all", "date", "department",
-  "answered by", "recent"))
+commons_answered_questions(type = c("all", "date", "department", "answeredBy",
+  "recent"))
 }
 \arguments{
-\item{all}{Imports all available answered questions Defaults to TRUE.}
+\item{all}{Imports all available answered questions}
+
+\item{date}{Imports all available answered questions on a particular date}
+
+\item{department}{Imports all available answered questions by answering department}
+
+\item{answeredBy}{Imports all available answered questions by answering MP}
+
+\item{recent}{Imports all available answered questions - NOT WORKING!}
 }
 \description{
 This imports data on House of Commons answered questions
@@ -29,7 +37,7 @@ Enter department:
 #Enter department as string. Eg "Department of Health"
 # Returns a data frame with all answered questions in the House of Commons from the given department
 
-commons_answered_questions("answered by")
+commons_answered_questions("answeredBy")
 # Returns
 Enter MP ID:
 # Enter the ID number of the MP Eg 8 (Theresa May)

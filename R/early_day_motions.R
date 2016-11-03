@@ -2,10 +2,12 @@
 #' Early Day Motions
 #'
 #' This imports data on early day motions
-#' @param all Imports all available EDMs. Defaults to TRUE.
+#' @param all Imports all available EDMs.
+#' @param signatures Imports all available signatures.
 #' @keywords EDM
 #' @export
 #' @examples
+#'
 #' early_day_motions("all")
 #' #Returns a data frame of all early day motions
 #'
