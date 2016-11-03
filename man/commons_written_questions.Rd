@@ -7,6 +7,8 @@
 commons_written_questions(type = c("all", "department", "dates"))
 }
 \arguments{
+\item{type}{The type of data you want, allows the arguments}
+
 \item{all}{Imports all available written questions Defaults to TRUE.}
 }
 \description{
@@ -17,7 +19,8 @@ commons_written_questions("all")
 #Returns all written questions
 
 commons_written_questions("department")
-#Returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health
+#Returns all written questions by department. The query acts as a search, so entering <health>
+will return all questions answered by the Department of Health
 
 
 commons_written_questions("dates")

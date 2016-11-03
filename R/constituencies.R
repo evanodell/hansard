@@ -4,6 +4,7 @@
 #' House of Commons Constituencies
 #'
 #' This imports data on House of Commons constituencies
+#' @param type The type of data you want, allows the arguments "all"
 #' @param all Imports all available constituencies information Defaults to TRUE.
 #' @keywords Constituencies
 #' @export
@@ -34,7 +35,7 @@ constituencies <- function(type =c("all")) {
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+    df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
   }# else if(type=="ID") {#Working Weirdly
 

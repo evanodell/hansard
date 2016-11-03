@@ -8,6 +8,8 @@ commons_answered_questions(type = c("all", "date", "department", "answeredBy",
   "recent"))
 }
 \arguments{
+\item{type}{The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"}
+
 \item{all}{Imports all available answered questions}
 
 \item{date}{Imports all available answered questions on a particular date}

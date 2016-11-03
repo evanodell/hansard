@@ -1,12 +1,9 @@
-bibHeader("To cite hansard in publications, please use:")
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
 
-bibEntry(entry = "book",
-  author = "Evan Odell",
-  title = "{hansard}: Accessing Westminster Parliament Data",
-  publisher = "",
-  year = "2016",
-  isbn = "",
-  url = "https://github.com/EvanOdell/hansard"
-)
-
-textVersion = paste0("Evan Odell" (",2016,") hansard: Accessing Westminster Parliament Data.",note, ".")
+bibentry(bibtype = "Manual",
+         title = "{hansard}: Accessing Westminster Parliament Data",
+         author = c(person("Evan", "Odell")),
+         year = year,
+         note = note,
+         url = "https://github.com/EvanOdell/hansard/")

@@ -8,6 +8,8 @@ bills(type = c("all", "ammended", "sponsor", "stage", "publications",
   "stageTypes"))
 }
 \arguments{
+\item{type}{The type of data you want, allows the arguments "all", "ammended", "sponsor", "stage", "publications", "stageTypes"}
+
 \item{all}{Imports all available bills}
 
 \item{ammended}{Imports all ammended bills}

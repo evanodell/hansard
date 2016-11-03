@@ -27,6 +27,6 @@ elections <- function(all = TRUE) {#WORKING!
     pages[[i + 1]] <- mydata$result$items
   }
 
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

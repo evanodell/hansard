@@ -23,11 +23,11 @@ all_answered_questions <- function(all = TRUE) {
   pages <- list()
 
   for (i in 0:allAnsweredJpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_allAnswered, "?_page=", i), flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(baseurl_allAnswered, "&_page=", i), flatten = TRUE)
     message("Retrieving page ", i+1, " of ", allAnsweredJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
 
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

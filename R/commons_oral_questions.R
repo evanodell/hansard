@@ -6,7 +6,8 @@
 
 #' House of Commons Oral Questions
 #'
-#' This imports data on House of Commons oral questiosn
+#' This imports data on House of Commons oral questions
+#' @param type The type of data you want, allows the arguments "all" and "times"
 #' @param all Imports all available oral questions. Defaults to TRUE.
 #' @keywords bills
 #' @export
@@ -54,7 +55,7 @@ commons_oral_questions <- function(type=c("all","times")) {
         pages[[i + 1]] <- mydata$result$items
       }
     }
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 }
 
 

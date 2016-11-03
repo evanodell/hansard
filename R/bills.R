@@ -3,6 +3,7 @@
 #' Bills
 #'
 #' This imports data on House of Commons and House of Lords bills
+#' @param type The type of data you want, allows the arguments "all", "ammended", "sponsor", "stage", "publications", "stageTypes"
 #' @param all Imports all available bills
 #' @param ammended Imports all ammended bills
 #' @param sponsor Imports bills by sponsor
@@ -38,7 +39,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
       pages[[i+1]] <- mydata$result$items
     }
 
-    df <- rbind.pages(pages[sapply(pages, length)>0])
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
 
   } else if(type=="ammended") { #Working but return is weird
 
@@ -56,7 +57,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- rbind.pages(pages[sapply(pages, length)>0])
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
 
   } else if(type=="sponsor") { ##Not working
 
@@ -74,7 +75,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- rbind.pages(pages[sapply(pages, length)>0])
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
 
   } else if(type=="stage") { #Not working
 
@@ -92,7 +93,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- rbind.pages(pages[sapply(pages, length)>0])
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
 
   } else if(type=="publications") { ## Not yet Working
 
@@ -110,7 +111,7 @@ bills <- function(type=c("all", "ammended", "sponsor",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- rbind.pages(pages[sapply(pages, length)>0])
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
 
   } else if(type=="stageTypes") { #Working
 

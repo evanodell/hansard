@@ -2,22 +2,24 @@
 #' Early Day Motions
 #'
 #' This imports data on early day motions
+#' @param type The type of data you want, allows the arguments "all", "signatures"
 #' @param all Imports all available EDMs.
 #' @param signatures Imports all available signatures.
 #' @keywords EDM
 #' @export
 #' @examples
-#'
+#'if (requireNamespace("jsonlite", quietly = TRUE)) {
 #' early_day_motions("all")
 #' #Returns a data frame of all early day motions
 #'
 #'
 #' early_day_motions("signatures")
 #' #Returns a data frame of all early day motions signatures
+#' }
 
 ### 9 EARLY DAY MOTIONS
 
-early_day_motions <- function(type =c("all","signatures")) {
+early_day_motions <- function(type=c("all","signatures")) {
 
   match.arg(type)
 
@@ -68,6 +70,6 @@ early_day_motions <- function(type =c("all","signatures")) {
 #    }
 #  }
 
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

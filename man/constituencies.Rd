@@ -7,6 +7,8 @@
 constituencies(type = c("all"))
 }
 \arguments{
+\item{type}{The type of data you want, allows the arguments "all"}
+
 \item{all}{Imports all available constituencies information Defaults to TRUE.}
 }
 \description{

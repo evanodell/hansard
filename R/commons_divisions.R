@@ -4,6 +4,7 @@
 #' House of Commons Divisions
 #'
 #' This imports data on House of Commons divisions
+#' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
 #' @param all Imports all available divisions. Defaults to TRUE.
 #' @keywords divisions
 #' @export
@@ -14,12 +15,12 @@
 #'
 #' commons_divisions("no")
 #'
-#' commons_divisions("yes")
+#' commons_divisions("aye")
 #'
 #'
 
 commons_divisions <- function(type =c("all", "date", "no",
-                                      "yes")) {
+                                      "aye")) {
 
   match.arg(type)
 
@@ -79,7 +80,7 @@ commons_divisions <- function(type =c("all", "date", "no",
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="yes") {
+  }  else if (type=="aye") {
 
     mp.id <- readline("Enter Member ID: ")
 
@@ -112,7 +113,7 @@ commons_divisions <- function(type =c("all", "date", "no",
 #      pages[[i + 1]] <- mydata$result$items
 #    }
 #  }
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 }
 
 

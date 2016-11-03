@@ -3,6 +3,7 @@
 #' House of Commons Bills Written Questions
 #'
 #' This imports data on House of Commons written questions
+#' @param type The type of data you want, allows the arguments
 #' @param all Imports all available written questions Defaults to TRUE.
 #' @keywords Written Questions
 #' @export
@@ -11,7 +12,8 @@
 #' #Returns all written questions
 #'
 #' commons_written_questions("department")
-#' #Returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health
+#' #Returns all written questions by department. The query acts as a search, so entering <health>
+#' will return all questions answered by the Department of Health
 #'
 #'
 #' commons_written_questions("dates")
@@ -79,6 +81,6 @@ commons_written_questions <- function(type =c("all","department",
 
   }
 
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

@@ -26,6 +26,6 @@ commons_oral_question_times <- function(all = TRUE) { #READY
     message("Retrieving page ", i+1, " of ", oralTimesJpage+1)
     pages[[i + 1]] <- mydata$result$items
   }
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

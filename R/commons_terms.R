@@ -26,6 +26,6 @@ commons_terms <- function(all = TRUE) {
   }
 
 
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }

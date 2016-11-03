@@ -3,6 +3,7 @@
 #' House of Commons Answered Questions
 #'
 #' This imports data on House of Commons answered questions
+#' @param type The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"
 #' @param all Imports all available answered questions
 #' @param date Imports all available answered questions on a particular date
 #' @param department Imports all available answered questions by answering department
@@ -130,5 +131,5 @@ commons_answered_questions <- function(type =c("all", "date", "department",
       pages[[i + 1]] <- mydata$result$items
     }
   }
-  df<- rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 }

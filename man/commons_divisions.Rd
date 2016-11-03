@@ -4,9 +4,11 @@
 \alias{commons_divisions}
 \title{House of Commons Divisions}
 \usage{
-commons_divisions(type = c("all", "date", "no", "yes"))
+commons_divisions(type = c("all", "date", "no", "aye"))
 }
 \arguments{
+\item{type}{The type of data you want, allows the arguments "all", "date", "no", "aye"}
+
 \item{all}{Imports all available divisions. Defaults to TRUE.}
 }
 \description{
@@ -19,7 +21,7 @@ commons_divisions("date")
 
 commons_divisions("no")
 
-commons_divisions("yes")
+commons_divisions("aye")
 
 
 }
