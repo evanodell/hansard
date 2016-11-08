@@ -22,7 +22,7 @@ This imports data on All Members of Parliament including the Lords and the Commo
 \examples{
 x <- members_search(Search=NULL)
 # Returns members("all")
-x <- members_search("chris")
+x <- members_search(Search="chris")
 # Returns all members with "chris" in their name or the name of their constituency
 
 

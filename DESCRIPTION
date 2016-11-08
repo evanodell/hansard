@@ -10,7 +10,7 @@ Description: Downloads all available data from the data.parliament.uk APIs.
     Functions for each new API will be added as and when they become available.
 URL: https://github.com/EvanOdell/hansard
 BugReports: https://github.com/EvanOdell/hansard/issues
-License: MIT
+License: file LICENSE
 LazyData: TRUE
 Imports:
     httr,

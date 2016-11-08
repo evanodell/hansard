@@ -4,11 +4,15 @@
 #' Publication Logs
 #'
 #' This imports data on Publication Logs
-#' @param all Imports all available Publication Logs Defaults to TRUE.
+#' @param all Imports all available Publication Logs. Defaults to TRUE.
 #' @keywords Publication Logs
 #' @export
 #' @examples
-#' x <- publication_logs()
+#' x <- publication_logs(all = TRUE)
+#' # returns a data frame with all publication logs
+#' # NOT RUN:
+#' # x <- publication_logs()
+#' # head(x) ###
 
 
 ### 19 PUBLICATION LOGS
@@ -17,7 +21,7 @@ publication_logs <- function(all = TRUE) {
 
     baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500"
 
-    logs <- jsonlite::fromJSON("http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500")
+    logs <- jsonlite::fromJSON(baseurl_logs)
 
     logsJpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)
 

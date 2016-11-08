@@ -1,16 +1,15 @@
 
 
-### 16a ALL MEMBERS
+### 16a ALL MEMBERS - WORKING
 
 #' All Members of Parliament
 #'
 #' This imports data on All Members of Parliament including the Lords and the Commons
 #' @param house The type of data you want, allows the arguments
-#' @param all Imports all available members
+#' @param all Imports all available members. The default value return
 #' @param commons Imports all available members
 #' @param lords Imports all available members
 #' @param lordsInterests Imports all available members
-#' @param commonsInterests Imports all available members
 #' @keywords All Members of Parliament
 #' @export
 #' @examples
@@ -32,19 +31,16 @@
 #' # currently does not have information on when a member first sat in the house, or to
 #' # distinguish current from former members.
 #'
-#' a <- members("commonsInterests") #Not Working
-#' # Returns a list of data frames, each details on the registered interests of a member
-#' # of the House of Commons
 #'
 #' b <- members("lordsInterests")
-#' # Returns a dataframe of the registered interests a member of the House of Lords,
-#' # selected by their ID.
+#' # Requests a member ID, and returns a dataframe of the registered interests of that
+#' # member of the House of Lords.
 
 
 ### All working except for Commons Interest, which still returns the list of frames of lists of whatevers
 
 
-members <- function(house=c("all","commons","commonsInterests",
+members <- function(house=c("all","commons",#"commonsInterests", [commonsInterests not currently working when calling by ID]
                             "lords", "lordsInterests")) {
 
   if (house=="all") { # Working
@@ -95,21 +91,21 @@ members <- function(house=c("all","commons","commonsInterests",
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if (house=="commonsInterests") {#Not working
+#  } else if (house=="commonsInterests") {#Not working
 
-    baseurl_allMems <- "http://lda.data.parliament.uk/commonsregisteredinterests.json?_pageSize=500"
+#    baseurl_allMems <- "http://lda.data.parliament.uk/commonsregisteredinterests.json?_pageSize=500"
 
-    allMems <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsregisteredinterests.json?_pageSize=500")
+#    allMems <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsregisteredinterests.json?_pageSize=500")
 
-    allMemsJpage <- round(allMems$result$totalResults/allMems$result$itemsPerPage, digits = 0)
+#    allMemsJpage <- round(allMems$result$totalResults/allMems$result$itemsPerPage, digits = 0)
 
-    pages <- list()
+#    pages <- list()
 
-    for (i in 0:allMemsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_allMems, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", allMemsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
+#    for (i in 0:allMemsJpage) {
+#      mydata <- jsonlite::fromJSON(paste0(baseurl_allMems, "&_page=", i), flatten = TRUE)
+#      message("Retrieving page ", i+1, " of ", allMemsJpage+1)
+#      pages[[i + 1]] <- mydata$result$items
+#    }
 
   } else if (house=="lordsInterests") { #Working
 
@@ -186,7 +182,7 @@ members <- function(house=c("all","commons","commonsInterests",
 #' @examples
 #' x <- members_search(Search=NULL)
 #' # Returns members("all")
-#' x <- members_search("chris")
+#' x <- members_search(Search="chris")
 #' # Returns all members with "chris" in their name or the name of their constituency
 #'
 #'

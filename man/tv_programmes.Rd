@@ -4,16 +4,26 @@
 \alias{tv_programmes}
 \title{TV Programmes}
 \usage{
-tv_programmes(all = TRUE)
+tv_programmes(type = c("TV", "clips"))
 }
 \arguments{
-\item{all}{Imports data on all available TV Broadcasts Defaults to TRUE.}
+\item{type}{The type of data you want, allows the arguments "TV" and "clips"}
+
+\item{TV}{Imports data on all TV broadcasts produced by the Westminster Parliament}
+
+\item{clips}{Imports data on all video clips produced by the Westminster Parliament}
 }
 \description{
 This imports data on TV broadcasts
 }
 \examples{
-x <- tv_programmes()
+x <- tv_programmes("TV")
+# Returns a data frame with details on all TV broadcasts produced by the
+# Westminster Parliament
+
+x <- tv_programmes("clips")
+# Returns a data frame with details on all video clips produced by the
+# Westminster Parliament
 }
 \keyword{TV}
 

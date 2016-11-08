@@ -5,17 +5,24 @@
 #' Papers Laid
 #'
 #' This imports data on Papers Laid
-#' @param all Imports all available papers laid Defaults to TRUE.
+#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
+#' @param all Imports all available papers laid
 #' @keywords Papers Laid
 #' @export
 #' @examples
-#' x <- papers_laid()
+#' x <- papers_laid("all")
+#'
 
-papers_laid <- function(all = TRUE) {
+papers_laid <- function(type=c("all", "all","all")) { #NOT DONE!
+
+
+  match.arg(type)
+
+  if(type=="all") {
 
     baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 
-    papers <- jsonlite::fromJSON("http://lda.data.parliament.uk/paperslaid.json?_pageSize=500")
+    papers <- jsonlite::fromJSON(baseurl_papers)
 
     papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
 
@@ -26,6 +33,38 @@ papers_laid <- function(all = TRUE) {
         message("Retrieving page ", i+1, " of ", papersJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
+  } else if(type=="all") {
+
+    baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
+
+    papers <- jsonlite::fromJSON(baseurl_papers)
+
+    papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
+
+    pages <- list()
+
+    for (i in 0:papersJpage) {
+      mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "&_page=", i), flatten = TRUE)
+      message("Retrieving page ", i+1, " of ", papersJpage+1)
+      pages[[i + 1]] <- mydata$result$items
+    }
+  } else if(type=="all") {
+
+    baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
+
+    papers <- jsonlite::fromJSON(baseurl_papers)
+
+    papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
+
+    pages <- list()
+
+    for (i in 0:papersJpage) {
+      mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "&_page=", i), flatten = TRUE)
+      message("Retrieving page ", i+1, " of ", papersJpage+1)
+      pages[[i + 1]] <- mydata$result$items
+    }
+  }
+
 
   df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 

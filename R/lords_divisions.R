@@ -14,16 +14,16 @@
 #' @export
 #' @examples
 #' x <- lords_divisions("all")
-#'
+#' # Returns all divisions in the House of Lords
 #'
 #' x <- lords_divisions("date")
-#'
+#' # Requests a date, and then returns all divisions on that date
 #'
 #' x <- lords_divisions("notContent")
-#'
+#' # Requests a member ID, and then returns all divisions in which they have voted not content
 #'
 #' x <- lords_divisions("content")
-#'
+#' # Requests a member ID, and then returns all divisions in which they have voted content
 #'
 
 lords_divisions <- function(type =c("all", "date", "notContent","content")) {

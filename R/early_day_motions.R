@@ -2,9 +2,8 @@
 #' Early Day Motions
 #'
 #' This imports data on early day motions
-#' @param type The type of data you want, allows the arguments "all", "signatures"
+#' @param type The type of data you want, allows the argument "all"
 #' @param all Imports all available EDMs.
-#' @param signatures Imports all available signatures.
 #' @keywords EDM
 #' @export
 #' @examples
@@ -13,13 +12,12 @@
 #' #Returns a data frame of all early day motions
 #'
 #'
-#' x <- early_day_motions("signatures")
-#' #Returns a data frame of all early day motions signatures
+#'
 
 
 ### 9 EARLY DAY MOTIONS
 
-early_day_motions <- function(type=c("all","signatures")) {
+early_day_motions <- function(type=c("all")) {
 
   match.arg(type)
 
@@ -38,22 +36,24 @@ early_day_motions <- function(type=c("all","signatures")) {
     message("Retrieving page ", i+1, " of ", edmsJpage+1)
     pages[[i + 1]] <- mydata$result$items
     }
-  } else if (type=="signatures"){#Not working
+  }# else if (type=="ID"){#Not working
 
-    baseurl_edms <- "http://lda.data.parliament.uk/edmsignatures.json?_pageSize=500"
+#    mp.id <- readline("Enter Member ID: ")
 
-    edms <- jsonlite::fromJSON(baseurl_edms)
+#    baseurl_edms <- "http://lda.data.parliament.uk/edmsignatures.json?_pageSize=500"
 
-    edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
+#    edms <- jsonlite::fromJSON(baseurl_edms)
 
-    pages <- list()
+#    edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
 
-    for (i in 0:edmsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_edms, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", edmsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-  } #else if (type=="signature"){
+#    pages <- list()
+
+#    for (i in 0:edmsJpage) {
+#      mydata <- jsonlite::fromJSON(paste0(baseurl_edms, "&_page=", i), flatten = TRUE)
+#      message("Retrieving page ", i+1, " of ", edmsJpage+1)
+#      pages[[i + 1]] <- mydata$result$items
+#    }
+#  } #else if (type=="signature"){
 
 #    baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
 

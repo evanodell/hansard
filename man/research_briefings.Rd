@@ -4,16 +4,62 @@
 \alias{research_briefings}
 \title{Parliamentary Research Briefings}
 \usage{
-research_briefings(all = TRUE)
+research_briefings(type = c("all", "topics", "types", "byTopic", "subTopic",
+  "topicSubTopic"))
 }
 \arguments{
-\item{all}{Imports all available Parliamentary Research Briefings Defaults to TRUE.}
+\item{type}{The type of data you want, allows the arguments "all", "topics", "types",
+# "byTopic","subTopic" and "topicSubTopic"}
+
+\item{all}{Imports a data frame with all available Parliamentary Research Briefings.}
+
+\item{topics}{Imports a data frame with all Parliamentary Research Briefings topics.}
+
+\item{types}{Imports a data frame with all Parliamentary Research Briefings types.}
+
+\item{subTopic}{Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.}
+
+\item{byTopic}{Requests a topic, and imports a data frame with all available
+# Parliamentary Research Briefings on that topic}
+
+\item{topicSubTopic}{Requests a topic and a subtopic, and imports a data frame with all available
+# Parliamentary Research Briefings on that subtopic}
 }
 \description{
 This imports data on  Parliamentary Research Briefings
 }
 \examples{
-x <- research_briefings()
+x <- research_briefings("all")
+# NOT RUN
+# x <- research_briefings("all")
+# head(x)
+
+x <- research_briefings("topics")
+# NOT RUN
+# x <- research_briefings("topics")
+# print(x)
+
+x <- research_briefings("types")
+# NOT RUN
+# x <- research_briefings("types")
+# print(x)
+
+x <- research_briefings("byTopic")
+# NOT RUN
+# x <- research_briefings("byTopic")
+# RETURNS:
+# Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+#
+
+
+
+x <- research_briefings("subTopic")
+
+
+
+
+
+x <- research_briefings("topicSubTopic")
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

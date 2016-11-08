@@ -4,17 +4,31 @@
 \alias{all_answered_questions}
 \title{Parliamentary Answered Questions}
 \usage{
-all_answered_questions(all = TRUE)
+all_answered_questions(type = c("all", "askedBy"))
 }
 \arguments{
-\item{all}{Imports data on all available answered questions Defaults to TRUE.}
+\item{type}{The type of questions you want, accepts the arguments "all" and "askedBy"}
+
+\item{all}{Imports data on all available answered questions.}
+
+\item{askedBy}{Requests a member ID, and imports data on all available questions asked by that member}
 }
 \description{
 This imports data on answered parliamentary questions
 }
 \examples{
-x <- all_answered_questions(all=TRUE)
+x <- all_answered_questions("all")
 #Returns all answered questions
+#NOT RUN
+# x <- all_answered_questions("all")
+# head(x)
+
+x <- all_answered_questions("askedBy")
+#NOT RUN
+# x <- all_answered_questions("askedBy")
+# ### RETURNS:
+# Enter Member ID: 172
+# head(x) #All questions asked by Diane Abbott
 }
 \keyword{Answered}
 \keyword{Questions}

@@ -4,21 +4,18 @@
 \alias{members}
 \title{All Members of Parliament}
 \usage{
-members(house = c("all", "commons", "commonsInterests", "lords",
-  "lordsInterests"))
+members(house = c("all", "commons", "lords", "lordsInterests"))
 }
 \arguments{
 \item{house}{The type of data you want, allows the arguments}
 
-\item{all}{Imports all available members}
+\item{all}{Imports all available members. The default value return}
 
 \item{commons}{Imports all available members}
 
 \item{lords}{Imports all available members}
 
 \item{lordsInterests}{Imports all available members}
-
-\item{commonsInterests}{Imports all available members}
 }
 \description{
 This imports data on All Members of Parliament including the Lords and the Commons
@@ -42,13 +39,10 @@ z <- members("lords")
 # currently does not have information on when a member first sat in the house, or to
 # distinguish current from former members.
 
-a <- members("commonsInterests") #Not Working
-# Returns a list of data frames, each details on the registered interests of a member
-# of the House of Commons
 
 b <- members("lordsInterests")
-# Returns a dataframe of the registered interests a member of the House of Lords,
-# selected by their ID.
+# Requests a member ID, and returns a dataframe of the registered interests of that
+# member of the House of Lords.
 }
 \keyword{All}
 \keyword{Members}
