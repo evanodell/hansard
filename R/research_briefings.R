@@ -10,10 +10,12 @@
 #' @param all Imports a data frame with all available Parliamentary Research Briefings.
 #' @param topics Imports a data frame with all Parliamentary Research Briefings topics.
 #' @param types Imports a data frame with all Parliamentary Research Briefings types.
-#' @param subTopic Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.
+#' @param subTopic Requests a topic, and imports a data frame with all of the possible
+#' # sub-topics for that topic.
 #' @param byTopic Requests a topic, and imports a data frame with all available
 #' # Parliamentary Research Briefings on that topic
-#' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with all available
+#' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with
+#' # all available
 #' # Parliamentary Research Briefings on that subtopic
 #' @keywords  Parliamentary Research Briefings
 #' @export
@@ -38,17 +40,56 @@
 #' # x <- research_briefings("byTopic")
 #' # RETURNS:
 #' # Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
-#' #
+#' # RETURNS:
+#' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+#' # [3] "Business, industry and consumers"             "Communities and families"
+#' # [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+#' # [7] "Defence"                                      "Economy and finance"
+#' # [9] "Education"                                    "Employment and training"
+#' # [11] "Energy and environment"                       "European Union"
+#' # [13] "Health services and medicine"                 "Housing and planning"
+#' # [15] "International affairs"                        "Parliament, government and politics"
+#' # [17] "Science and technology"                       "Social Security and pensions"
+#' # [19] "Social services"                              "Transport"
+#' # Enter Topic. For ease of use, copy and paste the topic: Education
+#' # head(x)
 #'
 #'
 #'
 #' x <- research_briefings("subTopic")
-#'
-#'
-#'
+#' # RETURNS:
+#' # Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+#' # RETURNS:
+#' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+#' # [3] "Business, industry and consumers"             "Communities and families"
+#' # [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+#' # [7] "Defence"                                      "Economy and finance"
+#' # [9] "Education"                                    "Employment and training"
+#' # [11] "Energy and environment"                       "European Union"
+#' # [13] "Health services and medicine"                 "Housing and planning"
+#' # [15] "International affairs"                        "Parliament, government and politics"
+#' # [17] "Science and technology"                       "Social Security and pensions"
+#' # [19] "Social services"                              "Transport"
+#' # Enter Topic. For ease of use, copy and paste the topic: Education
+#' # head(x)
 #'
 #'
 #' x <- research_briefings("topicSubTopic")
+#' # NOT RUN
+#' # Enter topic. Topics are case sensitive. To return a list of possible topics, enter yes: yes
+#' # RETURNS:
+#' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+#' # [3] "Business, industry and consumers"             "Communities and families"
+#' # [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+#' # [7] "Defence"                                      "Economy and finance"
+#' # [9] "Education"                                    "Employment and training"
+#' # [11] "Energy and environment"                       "European Union"
+#' # [13] "Health services and medicine"                 "Housing and planning"
+#' # [15] "International affairs"                        "Parliament, government and politics"
+#' # [17] "Science and technology"                       "Social Security and pensions"
+#' # [19] "Social services"                              "Transport"
+#' # Enter Topic. For ease of use, copy and paste the topic:
+#' #Enter sub-topic. Sub-topics are case sensitive. To return a list of possible sub-topics, enter yes:
 
 research_briefings  <- function(type =c("all", "topics", "types","byTopic","subTopic","topicSubTopic")) {
 
@@ -107,7 +148,8 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
 
   } else if(type=="byTopic") {
 
-    topic <- readline("Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes: ")
+    print("Topics are case sensititve. To return list of topics, enter yes.")
+    topic <- readline("Enter topic:  ")
 
     yesList <-c("yes","Yes","yEs","yeS","YES","yES","YEs","YeS", "y","ye","Y","YE","Ye","yE")
 
@@ -143,7 +185,8 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
 
   } else if(type=="subTopic") {
 
-    topic <- readline("Enter Topic. Topics are case sensititve. To return a list of possible topics, enter yes: ")
+    print("Topics are case sensititve. To return list of topics, enter yes.")
+    topic <- readline("Enter topic:  ")
 
     yesList <-c("yes","Yes","yEs","yeS","YES","yES","YEs","YeS", "y","ye","Y","YE","Ye","yE")
 
@@ -179,7 +222,8 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
 
   } else if(type=="topicSubTopic") {
 
-    topic <- readline("Enter topic. Topics are case sensitive. To return a list of possible topics, enter yes: ")
+    print("Topics are case sensititve. To return list of topics, enter yes.")
+    topic <- readline("Enter topic:  ")
 
     yesList <-c("yes","Yes","yEs","yeS","YES","yES","YEs","YeS", "y","ye","Y","YE","Ye","yE")
 
@@ -192,8 +236,8 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
       topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
 
     }
-
-    subTopic <- readline("Enter sub-topic. Sub-topics are case sensitive. To return a list of possible sub-topics, enter yes: ")
+    print("Sub-topics are case sensititve. To return list of sub-topics, enter yes.")
+    subTopic <- readline("Enter sub-topic:  ")
 
     yesList <-c("yes","Yes","yEs","yeS","YES","yES","YEs","YeS", "y","ye","Y","YE","Ye","yE")
 

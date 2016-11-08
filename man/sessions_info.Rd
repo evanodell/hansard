@@ -4,16 +4,26 @@
 \alias{sessions_info}
 \title{Parliamentary Sessions}
 \usage{
-sessions_info(all = TRUE)
+sessions_info(type = c("all", "days"))
 }
 \arguments{
-\item{all}{Imports Parliamentary Sessions Defaults to TRUE.}
+\item{type}{The type of data being requested, allows the arguments "all" and "days"}
+
+\item{all}{Imports information on all available parliamentary sessions}
+
+\item{days}{Imports information on the days in all available parliamentary sessions}
 }
 \description{
 This imports data on Parliamentary Sessions
 }
 \examples{
-x <- sessions_info()
+x <- sessions_info("all")
+# NOT RUN
+# x <- sessions_info("all")
+# head(x)
+#
+# x <- sessions_info("days")
+# head(x)
 }
 \keyword{Parliamentary}
 \keyword{Sessions}

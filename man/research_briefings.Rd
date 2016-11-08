@@ -17,12 +17,14 @@ research_briefings(type = c("all", "topics", "types", "byTopic", "subTopic",
 
 \item{types}{Imports a data frame with all Parliamentary Research Briefings types.}
 
-\item{subTopic}{Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.}
+\item{subTopic}{Requests a topic, and imports a data frame with all of the possible
+# sub-topics for that topic.}
 
 \item{byTopic}{Requests a topic, and imports a data frame with all available
 # Parliamentary Research Briefings on that topic}
 
-\item{topicSubTopic}{Requests a topic and a subtopic, and imports a data frame with all available
+\item{topicSubTopic}{Requests a topic and a subtopic, and imports a data frame with
+# all available
 # Parliamentary Research Briefings on that subtopic}
 }
 \description{
@@ -49,17 +51,56 @@ x <- research_briefings("byTopic")
 # x <- research_briefings("byTopic")
 # RETURNS:
 # Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
-#
+# RETURNS:
+# [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+# [3] "Business, industry and consumers"             "Communities and families"
+# [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+# [7] "Defence"                                      "Economy and finance"
+# [9] "Education"                                    "Employment and training"
+# [11] "Energy and environment"                       "European Union"
+# [13] "Health services and medicine"                 "Housing and planning"
+# [15] "International affairs"                        "Parliament, government and politics"
+# [17] "Science and technology"                       "Social Security and pensions"
+# [19] "Social services"                              "Transport"
+# Enter Topic. For ease of use, copy and paste the topic: Education
+# head(x)
 
 
 
 x <- research_briefings("subTopic")
-
-
-
+# RETURNS:
+# Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+# RETURNS:
+# [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+# [3] "Business, industry and consumers"             "Communities and families"
+# [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+# [7] "Defence"                                      "Economy and finance"
+# [9] "Education"                                    "Employment and training"
+# [11] "Energy and environment"                       "European Union"
+# [13] "Health services and medicine"                 "Housing and planning"
+# [15] "International affairs"                        "Parliament, government and politics"
+# [17] "Science and technology"                       "Social Security and pensions"
+# [19] "Social services"                              "Transport"
+# Enter Topic. For ease of use, copy and paste the topic: Education
+# head(x)
 
 
 x <- research_briefings("topicSubTopic")
+# NOT RUN
+# Enter topic. Topics are case sensitive. To return a list of possible topics, enter yes: yes
+# RETURNS:
+# [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
+# [3] "Business, industry and consumers"             "Communities and families"
+# [5] "Crime, civil law, justice and rights"         "Culture, media and sport"
+# [7] "Defence"                                      "Economy and finance"
+# [9] "Education"                                    "Employment and training"
+# [11] "Energy and environment"                       "European Union"
+# [13] "Health services and medicine"                 "Housing and planning"
+# [15] "International affairs"                        "Parliament, government and politics"
+# [17] "Science and technology"                       "Social Security and pensions"
+# [19] "Social services"                              "Transport"
+# Enter Topic. For ease of use, copy and paste the topic:
+#Enter sub-topic. Sub-topics are case sensitive. To return a list of possible sub-topics, enter yes:
 }
 \keyword{Briefings}
 \keyword{Parliamentary}
