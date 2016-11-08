@@ -1,5 +1,5 @@
 
-### 17 PAPERS LAID - NOT DONE
+### 17 PAPERS LAID
 
 
 #' Papers Laid
@@ -13,8 +13,7 @@
 #' x <- papers_laid("all")
 #'
 
-papers_laid <- function(type=c("all", "all","all")) { #NOT DONE!
-
+papers_laid <- function(type=c("all")) {
 
   match.arg(type)
 
@@ -33,39 +32,7 @@ papers_laid <- function(type=c("all", "all","all")) { #NOT DONE!
         message("Retrieving page ", i+1, " of ", papersJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
-  } else if(type=="all") {
-
-    baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
-
-    papers <- jsonlite::fromJSON(baseurl_papers)
-
-    papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:papersJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", papersJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-  } else if(type=="all") {
-
-    baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
-
-    papers <- jsonlite::fromJSON(baseurl_papers)
-
-    papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:papersJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", papersJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
   }
-
-
   df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 }
