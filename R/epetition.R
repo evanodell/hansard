@@ -3,20 +3,28 @@
 #' ePetitions
 #'
 #' This imports data on petitions
-#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
-#' @param all Imports all available papers laid
+#' @param petType The type of data you want, allows the arguments "all", "byConstituency",
+#' # "petitionID", "response", and "idConstituency"
+#' @param all Imports all available epetitions
+#' @param byConstituency Imports all available epetition signatures by constituency
+#' @param petitionID Requests a petition ID, and then returns information on that petition
+#' @param response Requests a petition ID, and then returns the governments response to that petition
+#' @param idConstituency Requests a petition ID, and then returns the signatures per constituency for that petition
 #' @keywords Papers Laid
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- papers_laid("all")
-#'
+#' # x <- papers_laid()
+#'}
 
 
-epetition <- function(type =c("all", "date", "no","aye")) {
+epetition <- function(petType =c("all", "byConstituency",
+                                 "petitionID","response",
+                                 "idConstituency")) {
 
-  match.arg(type)
+  match.arg(petType)
 
-  if(type=="all") {
+  if(petType=="all") {
 
     baseurl_petition <- "http://lda.data.parliament.uk/epetitions.json?_pageSize=500"
 
@@ -32,7 +40,7 @@ epetition <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }else if(type=="byConstituency") {
+  }else if(petType=="byConstituency") {
 
     baseurl_petition <- "http://lda.data.parliament.uk/epetitions/signaturesbyconstituency.json?_pageSize=500"
 
@@ -48,7 +56,7 @@ epetition <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="petitionID") {
+  } else if(petType=="petitionID") {
 
     pet_ID <- readline("Enter the petition ID: ")
 
@@ -66,7 +74,7 @@ epetition <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="response") {
+  } else if(petType=="response") {
 
     pet_ID <- readline("Enter the petition ID: ")
 
@@ -84,7 +92,7 @@ epetition <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="idConstituency") {
+  } else if(petType=="idConstituency") {
 
     pet_ID <- readline("Enter the petition ID: ")
 

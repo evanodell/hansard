@@ -5,7 +5,7 @@
 #' Parliamentary Research Briefings
 #'
 #' This imports data on  Parliamentary Research Briefings
-#' @param type The type of data you want, allows the arguments "all", "topics", "types",
+#' @param resType The type of data you want, allows the arguments "all", "topics", "types",
 #' # "byTopic","subTopic" and "topicSubTopic"
 #' @param all Imports a data frame with all available Parliamentary Research Briefings.
 #' @param topics Imports a data frame with all Parliamentary Research Briefings topics.
@@ -19,7 +19,7 @@
 #' # Parliamentary Research Briefings on that subtopic
 #' @keywords  Parliamentary Research Briefings
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- research_briefings("all")
 #' # NOT RUN
 #' # x <- research_briefings("all")
@@ -39,7 +39,8 @@
 #' # NOT RUN
 #' # x <- research_briefings("byTopic")
 #' # RETURNS:
-#' # Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Enter sub-topic:  #yes
 #' # RETURNS:
 #' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 #' # [3] "Business, industry and consumers"             "Communities and families"
@@ -58,7 +59,8 @@
 #'
 #' x <- research_briefings("subTopic")
 #' # RETURNS:
-#' # Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Enter sub-topic:  #yes
 #' # RETURNS:
 #' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 #' # [3] "Business, industry and consumers"             "Communities and families"
@@ -76,7 +78,8 @@
 #'
 #' x <- research_briefings("topicSubTopic")
 #' # NOT RUN
-#' # Enter topic. Topics are case sensitive. To return a list of possible topics, enter yes: yes
+#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Enter sub-topic: yes
 #' # RETURNS:
 #' # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 #' # [3] "Business, industry and consumers"             "Communities and families"
@@ -89,16 +92,15 @@
 #' # [17] "Science and technology"                       "Social Security and pensions"
 #' # [19] "Social services"                              "Transport"
 #' # Enter Topic. For ease of use, copy and paste the topic:
-#' #Enter sub-topic. Sub-topics are case sensitive. To return a list of possible sub-topics, enter yes:
+#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Enter sub-topic:}
 
-research_briefings  <- function(type =c("all", "topics", "types","byTopic","subTopic","topicSubTopic")) {
 
-  if(!type %in% c("all", "topics",
-                  "types","byTopic",
-                  "subTopic","topicSubTopic"))
-    warning("Type not recognised")
+research_briefings  <- function(resType =c("all", "topics", "types","byTopic","subTopic","topicSubTopic")) {
 
-  if(type=="all") {
+  match.arg(resType)
+
+  if(resType=="all") {
 
   baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500"
 
@@ -114,7 +116,7 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
     pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="topics") {
+  } else if(resType=="topics") {
 
     baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500"
 
@@ -130,7 +132,7 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="types") {
+  } else if(resType=="types") {
 
     baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtypes.json?_pageSize=500"
 
@@ -146,7 +148,7 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="byTopic") {
+  } else if(resType=="byTopic") {
 
     print("Topics are case sensititve. To return list of topics, enter yes.")
     topic <- readline("Enter topic:  ")
@@ -183,7 +185,7 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="subTopic") {
+  } else if(resType=="subTopic") {
 
     print("Topics are case sensititve. To return list of topics, enter yes.")
     topic <- readline("Enter topic:  ")
@@ -220,7 +222,7 @@ research_briefings  <- function(type =c("all", "topics", "types","byTopic","subT
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="topicSubTopic") {
+  } else if(resType=="topicSubTopic") {
 
     print("Topics are case sensititve. To return list of topics, enter yes.")
     topic <- readline("Enter topic:  ")

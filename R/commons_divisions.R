@@ -4,14 +4,14 @@
 #' House of Commons Divisions
 #'
 #' This imports data on House of Commons divisions
-#' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
+#' @param comsDivType The type of data you want, allows the arguments "all", "date", "no", "aye"
 #' @param all Imports all available divisions.
 #' @param date Imports all available divisions on a date.
 #' @param no Imports all divisions where a given MP voted no.
 #' @param aye Imports all divisions where a given MP voted aye.
 #' @keywords divisions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- commons_divisions("all")
 #' # Returns all divisions
 #'
@@ -23,14 +23,14 @@
 #'
 #' x <- commons_divisions("aye")
 #' # Returns all divisions in which a given MP voted aye
+#' }
 #'
-#'
 
-commons_divisions <- function(type =c("all", "date", "no","aye")) {
+commons_divisions <- function(comsDivType =c("all", "date", "no","aye")) {
 
-  match.arg(type)
+  match.arg(comsDivType)
 
-  if(type=="all") {
+  if(comsDivType=="all") {
 
     baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
 
@@ -46,7 +46,7 @@ commons_divisions <- function(type =c("all", "date", "no","aye")) {
         pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if (type=="date") {
+  } else if (comsDivType=="date") {
 
     divis_date <- readline("Select division date: ")
 
@@ -68,7 +68,7 @@ commons_divisions <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="no") { #WORKING
+  }  else if (comsDivType=="no") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 
@@ -86,7 +86,7 @@ commons_divisions <- function(type =c("all", "date", "no","aye")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="aye") { #WORKING
+  }  else if (comsDivType=="aye") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 
@@ -103,7 +103,7 @@ commons_divisions <- function(type =c("all", "date", "no","aye")) {
       message("Retrieving page ", i+1, " of ", divisJpage+1)
       pages[[i + 1]] <- mydata$result$items
     }
-  }  #else if (type=="session") {
+  }  #else if (comsDivType=="session") {
 
 #    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
 

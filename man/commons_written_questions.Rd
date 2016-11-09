@@ -4,10 +4,10 @@
 \alias{commons_written_questions}
 \title{House of Commons Bills Written Questions}
 \usage{
-commons_written_questions(type = c("all", "department", "dates"))
+commons_written_questions(comsWritType = c("all", "department", "dates"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
+\item{comsWritType}{The type of data you want, allows the arguments "all", "department" and "dates"}
 
 \item{all}{Imports all available written questions}
 
@@ -19,6 +19,7 @@ commons_written_questions(type = c("all", "department", "dates"))
 This imports data on House of Commons written questions
 }
 \examples{
+\donttest{
 x <- commons_written_questions("all")
 #Returns all written questions
 
@@ -29,7 +30,7 @@ x <- commons_written_questions("department")
 
 x <- commons_written_questions("dates")
 #Returns all written questions tabled between two chosen dates
-
+}
 }
 \keyword{Commons}
 \keyword{House}

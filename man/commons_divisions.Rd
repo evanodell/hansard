@@ -4,10 +4,10 @@
 \alias{commons_divisions}
 \title{House of Commons Divisions}
 \usage{
-commons_divisions(type = c("all", "date", "no", "aye"))
+commons_divisions(comsDivType = c("all", "date", "no", "aye"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "date", "no", "aye"}
+\item{comsDivType}{The type of data you want, allows the arguments "all", "date", "no", "aye"}
 
 \item{all}{Imports all available divisions.}
 
@@ -21,6 +21,7 @@ commons_divisions(type = c("all", "date", "no", "aye"))
 This imports data on House of Commons divisions
 }
 \examples{
+\donttest{
 x <- commons_divisions("all")
 # Returns all divisions
 
@@ -32,7 +33,7 @@ x <- commons_divisions("no")
 
 x <- commons_divisions("aye")
 # Returns all divisions in which a given MP voted aye
-
+}
 
 }
 \keyword{divisions}

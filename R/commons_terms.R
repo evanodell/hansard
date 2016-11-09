@@ -6,22 +6,23 @@
 #' Parliamentary Thesaurus
 #'
 #' This imports the parliamentary thesaurus
-#' @param type The type of data you want, allows the argument "all"
+#' @param termsType The type of data you want, allows the argument "all"
 #' @param all Imports all information in the parliamentary thesaurus
 #' @keywords parliamentary thesaurus
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- commons_terms("all")
 #' #NOT RUN
 #' # x <- commons_terms("all")
 #' # head(x)
 #' # Returns a data frame with all definitions in the parliamentary thesaurus
+#'  }
 
-commons_terms <- function(type=c("all")) {
+commons_terms <- function(termsType=c("all")) {
 
-  match.arg(type)
+  match.arg(termsType)
 
-  if(type=="all") {
+  if(termsType=="all") {
 
   baseurl_terms <- "http://lda.data.parliament.uk/terms.json?_pageSize=500"
 

@@ -2,41 +2,64 @@
 #' Bills
 #'
 #' This imports data on House of Commons and House of Lords bills
-#' @param type The type of data you want, allows the arguments "all", "ammended", "sponsor", "stage", "publications", "stageTypes"
-#' @param all Imports all available bills
-#' @param ammended Imports all ammended bills
-#' @param sponsor Imports bills by sponsor
-#' @param stage Imports bills by stage
-#' @param publications Imports data on publications
-#' @param stageTypes Imports all stage types
+#' @param billType The type of data you want, allows the arguments "ammended", "publications" and "stageTypes"
+#' @param ammended Imports a data frame with all ammended bills
+#' @param stageTypes Imports a data frame with all bill stage types
+#' @param publications Imports a data frame with all bill publications
 #' @keywords bills
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- bills("all")
 #'
 #' x <- bills("ammended")
 #'
-#' x <- bills("sponsor")
-#'
-#' x <- bills("stage")
-#'
-#' x <- bills("publications")
-#'
 #' x <- bills("stageTypes")
+#' }
 
 
 ##Needs examples, still incomplete on all functions
 
-bills <- function(type=c("all", "ammended", "sponsor",
-                                 "stage", "publications", "stageTypes")) {
+bills <- function(billType=c("ammended", "stageTypes", "publications")) {
 
-  match.arg(type)
 
-  if(type=="all"){ #Not working
+  match.arg(billType)
 
-    baseurl_bills <- "http://lda.data.parliament.uk/bills.json?_pageSize=500"
+  if(billType=="ammended") { #Working but return is weird
 
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/bills.json?_pageSize=500")
+    baseurl_bills <- "http://lda.data.parliament.uk/billswithamendments.json?_pageSize=500"
+
+    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billswithamendments.json?_pageSize=500")
+
+    billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
+
+    pages <- list()
+
+    for (i in 0:1) {
+      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
+      message("Retrieving page ", i+1, " of ", billsJpage+1)
+      pages[[i + 1]] <- mydata$result$items
+    }
+
+  } else if(billType=="stageTypes") { #Working
+
+    baseurl_bills <- "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500"
+
+    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500")
+
+    billsJpage <- 0
+
+    pages <- list()
+
+    for (i in 0:billsJpage) {
+      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
+      message("Retrieving page ", i+1, " of ", billsJpage+1)
+      pages[[i+1]] <- mydata$result$items
+    }
+  } else if(billType=="publications") { #Working
+
+    baseurl_bills <- "http://lda.data.parliament.uk/billpublications.json?_pageSize=500"
+
+    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billpublications.json?_pageSize=500")
 
     billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
 
@@ -47,87 +70,8 @@ bills <- function(type=c("all", "ammended", "sponsor",
       message("Retrieving page ", i+1, " of ", billsJpage+1)
       pages[[i+1]] <- mydata$result$items
     }
+  }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
+  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
-  } else if(type=="ammended") { #Working but return is weird
-
-    baseurl_bills <- "http://lda.data.parliament.uk/billswithamendments.json?_pageSize=500"
-
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billswithamendments.json?_pageSize=500")
-
-    billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:billsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", billsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
-
-  } else if(type=="sponsor") { ##Not working
-
-    baseurl_bills <- "http://lda.data.parliament.uk/bills.json?_pageSize=500"
-
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/bills.json?_pageSize=500")
-
-    billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:billsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", billsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
-
-  } else if(type=="stage") { #Not working
-
-    baseurl_bills <- "http://lda.data.parliament.uk/bills.json?_pageSize=500"
-
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/bills.json?_pageSize=500")
-
-    billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:billsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", billsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
-
-  } else if(type=="publications") { ## Not yet Working
-
-    baseurl_bills <- "http://lda.data.parliament.uk/billpublications.json?_pageSize=500"
-
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billpublications.json?_pageSize=500")
-
-    billsJpage <- round(bills$result$itemsPerPage/bills$result$totalResults, digits = 0)
-
-    pages <- list()
-
-    for (i in 0:billsJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_bills, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", billsJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length)>0])
-
-  } else if(type=="stageTypes") { #Working
-
-    baseurl_bills <- "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500"
-
-    bills <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500")
-
-    df <- bills$result$items
-    }
 }

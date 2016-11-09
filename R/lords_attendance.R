@@ -4,23 +4,23 @@
 #' House of Lords Attendance
 #'
 #' This imports data on House of Lords attendance
-#' @param type Accepts arguments "all" and "date"
+#' @param lordsAttendType Accepts arguments "all" and "date"
 #' @param all Imports all available House of Lords attendance records
 #' @param date Imports all available House of Lords attendance records for a given date
 #' @keywords House of Lords Attendance
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- lords_attendance("all")
 #' #Returns all House of Lords attendance
 #'
 #' x <- lords_attendance("date")
-#' #Returns House of Lords attendance data for a given date
+#' #Returns House of Lords attendance data for a given date }
 
-lords_attendance <- function(type =c("all","date")) {
+lords_attendance <- function(lordsAttendType =c("all","date")) {
 
-  match.arg(type)
+  match.arg(lordsAttendType)
 
-  if(type=="all") {
+  if(lordsAttendType=="all") {
 
     baseurl_lordsAttend <- "http://lda.data.parliament.uk/lordsattendances.json?_pageSize=500"
 
@@ -35,7 +35,7 @@ lords_attendance <- function(type =c("all","date")) {
         message("Retrieving page ", i+1, " of ", lordsAttendJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
-  } else if(type=="date") {
+  } else if(lordsAttendType=="date") {
 
     attend.date <- readline("Enter date (yyyy-mm-dd): ")
 
@@ -50,7 +50,7 @@ lords_attendance <- function(type =c("all","date")) {
       message("Retrieving page ", i+1, " of ", 1)
       pages[[i + 1]] <- mydata$result$items
     }
-#  } else if(type=="ID") {
+#  } else if(lordsAttendType=="ID") {
 
 # Lords.ID <- readline("Enter lords ID number: ")
 
@@ -68,8 +68,6 @@ lords_attendance <- function(type =c("all","date")) {
 #      pages[[i + 1]] <- mydata$result$items
 #    }
   }
-
-
 
   df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 

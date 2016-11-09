@@ -2,12 +2,12 @@
 #' Parliamentary Answered Questions
 #'
 #' This imports data on answered parliamentary questions
-#' @param type The type of questions you want, accepts the arguments "all" and "askedBy"
+#' @param allAnsType The type of questions you want, accepts the arguments "all" and "askedBy"
 #' @param all Imports data on all available answered questions.
 #' @param askedBy Requests a member ID, and imports data on all available questions asked by that member
 #' @keywords Answered Questions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- all_answered_questions("all")
 #' #Returns all answered questions
 #' #NOT RUN
@@ -19,16 +19,16 @@
 #' # x <- all_answered_questions("askedBy")
 #' # ### RETURNS:
 #' # Enter Member ID: 172
-#' # head(x) #All questions asked by Diane Abbott
+#' # head(x) #All questions asked by Diane Abbott }
 
 
 ### 18 ALL ANSWERED QUESTIONS - Not Done
 
-all_answered_questions <- function(type=c("all","askedBy")) {
+all_answered_questions <- function(allAnsType=c("all","askedBy")) {
 
-  match.arg(type)
+  match.arg(allAnsType)
 
-  if(type=="all") {
+if(allAnsType=="all") {
 
   baseurl_allAnswered <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
 
@@ -44,7 +44,7 @@ all_answered_questions <- function(type=c("all","askedBy")) {
     pages[[i + 1]] <- mydata$result$items
   }
 
-  } else if(type=="askedBy") {
+  } else if(allAnsType=="askedBy") {
 
     mp.id <- readline("Enter Member ID: ")
 

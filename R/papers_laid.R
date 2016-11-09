@@ -5,19 +5,19 @@
 #' Papers Laid
 #'
 #' This imports data on Papers Laid
-#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
+#' @param paperType The type of data you want, allows the arguments "all", "department" and "dates"
 #' @param all Imports all available papers laid
 #' @keywords Papers Laid
 #' @export
-#' @examples
-#' x <- papers_laid("all")
+#' @examples \donttest{
+#' x <- papers_laid("all") }
 #'
 
-papers_laid <- function(type=c("all")) {
+papers_laid <- function(paperType=c("all")) {
 
-  match.arg(type)
+  match.arg(paperType)
 
-  if(type=="all") {
+  if(paperType=="all") {
 
     baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 

@@ -13,8 +13,12 @@ lords_ammendments(all = TRUE)
 This imports data on House of Lords Ammendments
 }
 \examples{
+\donttest{
 x <- lords_ammendments()
-# Returns all lords ammendments
+# NOT RUN
+# x <- lords_ammendments()
+# head(x)
+# Returns all lords ammendments }
 }
 \keyword{Ammendments}
 \keyword{House}

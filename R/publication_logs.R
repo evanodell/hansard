@@ -7,12 +7,12 @@
 #' @param all Imports all available Publication Logs. Defaults to TRUE.
 #' @keywords Publication Logs
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- publication_logs(all = TRUE)
 #' # returns a data frame with all publication logs
 #' # NOT RUN:
 #' # x <- publication_logs()
-#' # head(x) ###
+#' # head(x) ### }
 
 
 ### 19 PUBLICATION LOGS

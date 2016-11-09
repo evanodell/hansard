@@ -4,19 +4,31 @@
 \alias{epetition}
 \title{ePetitions}
 \usage{
-epetition(type = c("all", "date", "no", "aye"))
+epetition(petType = c("all", "byConstituency", "petitionID", "response",
+  "idConstituency"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
+\item{petType}{The type of data you want, allows the arguments "all", "byConstituency",
+# "petitionID", "response", and "idConstituency"}
 
-\item{all}{Imports all available papers laid}
+\item{all}{Imports all available epetitions}
+
+\item{byConstituency}{Imports all available epetition signatures by constituency}
+
+\item{petitionID}{Requests a petition ID, and then returns information on that petition}
+
+\item{response}{Requests a petition ID, and then returns the governments response to that petition}
+
+\item{idConstituency}{Requests a petition ID, and then returns the signatures per constituency for that petition}
 }
 \description{
 This imports data on petitions
 }
 \examples{
+\donttest{
 x <- papers_laid("all")
-
+# x <- papers_laid()
+}
 }
 \keyword{Laid}
 \keyword{Papers}

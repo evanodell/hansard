@@ -4,13 +4,13 @@
 #' House of Lords Written Questions
 #'
 #' This imports data on House of Lords written questions
-#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
+#' @param lordsWritType The type of data you want, allows the arguments "all", "department" and "dates"
 #' @param all Imports all available written questions
 #' @param department Imports all available written questions answered by a given department
 #' @param dates Imports all available written questions from between two given dates
 #' @keywords House of Lords Written Questions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- lords_written_questions("all")
 #' # Returns all written questions from the house of lords
 #' # NOT RUN
@@ -33,13 +33,13 @@
 #' ####RETURNS:
 #' # Enter start date(yyyy-mm-dd): 2016-10-10
 #' # Enter start date(yyyy-mm-dd): 2016-10-15
-#' # head(x)
+#' # head(x) }
 
-lords_written_questions <- function(type =c("all", "department", "dates")) {
+lords_written_questions <- function(lordsWritType =c("all", "department", "dates")) {
 
-  match.arg(type)
+  match.arg(lordsWritType)
 
-  if(type=="all") {
+  if(lordsWritType=="all") {
 
     baseurl_writ <- "http://lda.data.parliament.uk/lordswrittenquestions.json"
 
@@ -55,7 +55,7 @@ lords_written_questions <- function(type =c("all", "department", "dates")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="department") {
+  } else if(lordsWritType=="department") {
 
     answering.department <- readline("Enter the name of the answering department: ")
 
@@ -73,7 +73,7 @@ lords_written_questions <- function(type =c("all", "department", "dates")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="dates") {
+  } else if(lordsWritType=="dates") {
 
     start.date <- readline("Enter start date(yyyy-mm-dd): ")
 

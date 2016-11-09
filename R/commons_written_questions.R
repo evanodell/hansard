@@ -3,13 +3,13 @@
 #' House of Commons Bills Written Questions
 #'
 #' This imports data on House of Commons written questions
-#' @param type The type of data you want, allows the arguments "all", "department" and "dates"
+#' @param comsWritType The type of data you want, allows the arguments "all", "department" and "dates"
 #' @param all Imports all available written questions
 #' @param department Imports all available written questions answered by a given department
 #' @param dates Imports all available written questions from between two given dates
 #' @keywords House of Commons Written Questions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- commons_written_questions("all")
 #' #Returns all written questions
 #'
@@ -20,13 +20,13 @@
 #'
 #' x <- commons_written_questions("dates")
 #' #Returns all written questions tabled between two chosen dates
-#'
+#' }
 
-commons_written_questions <- function(type =c("all", "department", "dates")) {
+commons_written_questions <- function(comsWritType =c("all", "department", "dates")) {
 
-  match.arg(type)
+  match.arg(comsWritType)
 
-  if(type=="all") {
+  if(comsWritType=="all") {
 
   baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions.json"
 
@@ -42,7 +42,7 @@ commons_written_questions <- function(type =c("all", "department", "dates")) {
     pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="department") {
+  } else if(comsWritType=="department") {
 
     answering.department <- readline("Enter the name of the answering department: ")
 
@@ -60,7 +60,7 @@ commons_written_questions <- function(type =c("all", "department", "dates")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="dates") {
+  } else if(comsWritType=="dates") {
 
     start.date <- readline("Enter start date (yyyy-mm-dd): ")
 

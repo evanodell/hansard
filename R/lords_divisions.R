@@ -5,14 +5,14 @@
 #'
 #' This imports data on House of Lords divisions
 #' #' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
-#' @param type Accepts arguments "all", "date", "notContent" and "content"
+#' @param lordsDivType Accepts arguments "all", "date", "notContent" and "content"
 #' @param all Imports all available divisions.
 #' @param date Imports all available divisions on a date.
 #' @param notContent Imports all divisions where a given lord voted not content.
 #' @param content Imports all divisions where a given lord voted content.
 #' @keywords Lords Divisions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- lords_divisions("all")
 #' # Returns all divisions in the House of Lords
 #'
@@ -24,13 +24,13 @@
 #'
 #' x <- lords_divisions("content")
 #' # Requests a member ID, and then returns all divisions in which they have voted content
-#'
+#'}
 
-lords_divisions <- function(type =c("all", "date", "notContent","content")) {
+lords_divisions <- function(lordsDivType =c("all", "date", "notContent","content")) {
 
-  match.arg(type)
+  match.arg(lordsDivType)
 
-  if(type=="all") {
+  if(lordsDivType=="all") {
 
     baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions.json?_pageSize=500"
 
@@ -46,7 +46,7 @@ lords_divisions <- function(type =c("all", "date", "notContent","content")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if (type=="notContent") {
+  } else if (lordsDivType=="date") {
 
     divis_date <- readline("Select division date: ")
 
@@ -68,7 +68,7 @@ lords_divisions <- function(type =c("all", "date", "notContent","content")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="no") { #WORKING
+  }  else if (lordsDivType=="notContent") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 
@@ -86,7 +86,7 @@ lords_divisions <- function(type =c("all", "date", "notContent","content")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  }  else if (type=="content") { #WORKING
+  }  else if (lordsDivType=="content") { #WORKING
 
     mp.id <- readline("Enter Member ID: ")
 

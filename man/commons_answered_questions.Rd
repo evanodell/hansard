@@ -4,11 +4,11 @@
 \alias{commons_answered_questions}
 \title{House of Commons Answered Questions}
 \usage{
-commons_answered_questions(type = c("all", "date", "department", "answeredBy",
-  "recent"))
+commons_answered_questions(comsAnsType = c("all", "date", "department",
+  "answeredBy", "recent"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"}
+\item{comsAnsType}{The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"}
 
 \item{all}{Imports all available answered questions}
 
@@ -24,6 +24,7 @@ commons_answered_questions(type = c("all", "date", "department", "answeredBy",
 This imports data on House of Commons answered questions
 }
 \examples{
+\donttest{
 commons_answered_questions("all")
 # Returns a data frame with all answered questions in the House of Commons
 
@@ -40,6 +41,7 @@ commons_answered_questions("answeredBy")
 
 commons_answered_questions("recent")
 # Returns a data frame with all answered questions from the House of Commons
+}
 }
 \keyword{bills}
 

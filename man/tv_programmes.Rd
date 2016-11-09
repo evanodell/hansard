@@ -4,10 +4,10 @@
 \alias{tv_programmes}
 \title{TV Programmes}
 \usage{
-tv_programmes(type = c("TV", "clips"))
+tv_programmes(AVtype = c("TV", "clips"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "TV" and "clips"}
+\item{AVtype}{The type of data you want, allows the arguments "TV" and "clips"}
 
 \item{TV}{Imports data on all TV broadcasts produced by the Westminster Parliament}
 
@@ -17,13 +17,14 @@ tv_programmes(type = c("TV", "clips"))
 This imports data on TV broadcasts
 }
 \examples{
+\donttest{
 x <- tv_programmes("TV")
 # Returns a data frame with details on all TV broadcasts produced by the
 # Westminster Parliament
 
 x <- tv_programmes("clips")
 # Returns a data frame with details on all video clips produced by the
-# Westminster Parliament
+# Westminster Parliament}
 }
 \keyword{TV}
 

@@ -7,9 +7,10 @@
 #' @param all Imports all available bills Defaults to TRUE.
 #' @keywords Oral Questions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- commons_oral_question_times(all = TRUE)
 #' #Returns a data frame with all of the oral question times
+#' }
 
 commons_oral_question_times <- function(all = TRUE) { #READY
 

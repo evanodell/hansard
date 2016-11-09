@@ -8,9 +8,10 @@
 #' @param all Imports all available election results Defaults to TRUE.
 #' @keywords Election Results
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- election_results(all=TRUE)
 #' #Returns general and by-election resuls for each consituency from the 2010 general election onwards.
+#' }
 
 
 

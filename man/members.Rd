@@ -21,6 +21,7 @@ members(house = c("all", "commons", "lords", "lordsInterests"))
 This imports data on All Members of Parliament including the Lords and the Commons
 }
 \examples{
+\donttest{
 x <- members("all")
 # Returns a data frame with information on all members of Parliament, including both
 # the House of Lords and the House of Commons. The data frame includes both current and
@@ -42,7 +43,7 @@ z <- members("lords")
 
 b <- members("lordsInterests")
 # Requests a member ID, and returns a dataframe of the registered interests of that
-# member of the House of Lords.
+# member of the House of Lords. }
 }
 \keyword{All}
 \keyword{Members}

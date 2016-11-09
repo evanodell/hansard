@@ -4,10 +4,10 @@
 \alias{lords_written_questions}
 \title{House of Lords Written Questions}
 \usage{
-lords_written_questions(type = c("all", "department", "dates"))
+lords_written_questions(lordsWritType = c("all", "department", "dates"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
+\item{lordsWritType}{The type of data you want, allows the arguments "all", "department" and "dates"}
 
 \item{all}{Imports all available written questions}
 
@@ -19,6 +19,7 @@ lords_written_questions(type = c("all", "department", "dates"))
 This imports data on House of Lords written questions
 }
 \examples{
+\donttest{
 x <- lords_written_questions("all")
 # Returns all written questions from the house of lords
 # NOT RUN
@@ -41,7 +42,7 @@ x <- lords_written_questions("dates")
 ####RETURNS:
 # Enter start date(yyyy-mm-dd): 2016-10-10
 # Enter start date(yyyy-mm-dd): 2016-10-15
-# head(x)
+# head(x) }
 }
 \keyword{House}
 \keyword{Lords}

@@ -4,12 +4,12 @@
 #' Parliamentary Sessions
 #'
 #' This imports data on Parliamentary Sessions
-#' @param type The type of data being requested, allows the arguments "all" and "days"
+#' @param sesType The type of data being requested, allows the arguments "all" and "days"
 #' @param all Imports information on all available parliamentary sessions
 #' @param days Imports information on the days in all available parliamentary sessions
 #' @keywords Parliamentary Sessions
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- sessions_info("all")
 #' # NOT RUN
 #' # x <- sessions_info("all")
@@ -17,14 +17,14 @@
 #' #
 #' # NOT RUN
 #' # x <- sessions_info("days")
-#' # head(x)
+#' # head(x)}
 
 
-sessions_info <- function(type =c("all", "days")) {
+sessions_info <- function(sesType =c("all", "days")) {
 
-      match.arg(type)
+  match.arg(sesType)
 
-      if(type=="all") {
+      if(sesType=="all") {
 
         baseurl_sessions <- "http://lda.data.parliament.uk/sessions.json?_pageSize=500"
 
@@ -38,7 +38,7 @@ sessions_info <- function(type =c("all", "days")) {
           pages[[i + 1]] <- mydata$result$items
         }
 
-      } else if (type=="days"){
+      } else if (sesType=="days"){
 
         baseurl_sessions <- "http://lda.data.parliament.uk/sessions/days.json?_pageSize=500"
 

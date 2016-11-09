@@ -3,7 +3,7 @@
 #' House of Commons Answered Questions
 #'
 #' This imports data on House of Commons answered questions
-#' @param type The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"
+#' @param comsAnsType The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"
 #' @param all Imports all available answered questions
 #' @param date Imports all available answered questions on a particular date
 #' @param department Imports all available answered questions by answering department
@@ -11,7 +11,7 @@
 #' @param recent Imports all available answered questions - NOT WORKING!
 #' @keywords bills
 #' @export
-#' @examples
+#' @examples \donttest{
 #' commons_answered_questions("all")
 #' # Returns a data frame with all answered questions in the House of Commons
 #'
@@ -28,12 +28,14 @@
 #'
 #' commons_answered_questions("recent")
 #' # Returns a data frame with all answered questions from the House of Commons
+#' }
 
-commons_answered_questions <- function(type =c("all", "date", "department",
+commons_answered_questions <- function(comsAnsType =c("all", "date", "department",
                                                "answeredBy", "recent")) {
-  match.arg(type)
 
-  if(type=="all"){  ##WORKING!
+  match.arg(comsAnsType)
+
+  if(comsAnsType=="all"){  ##WORKING!
       baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json?_pageSize=500"
 
       comAnswered <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsansweredquestions.json?_pageSize=500")
@@ -48,7 +50,7 @@ commons_answered_questions <- function(type =c("all", "date", "department",
         pages[[i + 1]] <- mydata$result$items
     }
 
-  }else if (type=="date"){  ##WORKING!
+  }else if (comsAnsType=="date"){  ##WORKING!
 
       qDate <- readline("Enter date (yyyy-mm-dd): ")
 
@@ -66,13 +68,13 @@ commons_answered_questions <- function(type =c("all", "date", "department",
         pages[[i + 1]] <- mydata$result$items
       }
 
-#  } else if (type=="uin"){  ##UNKNOWN
+#  } else if (comsAnsType=="uin"){  ##UNKNOWN
 #     qUin <- readline("Enter the question's UIN:  ")
 #     baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
 #      comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?uin=", qUin))
 ###MAYBE ONE DAY I'LL GET AROUND TO ADDING THE ABILITY TO SEARCH BY UIN
 
-  } else if(type=="department"){ ##UNKNOWN
+  } else if(comsAnsType=="department"){ ##UNKNOWN
 
       qDepartment <- readline("Enter department: ")
 
@@ -89,7 +91,7 @@ commons_answered_questions <- function(type =c("all", "date", "department",
         message("Retrieving page ", i+1, " of ", comAnsweredJpage+1)
         pages[[i + 1]] <- mydata$result$items
     }
-  } else if(type=="answeredBy") { ##WORKING!
+  } else if(comsAnsType=="answeredBy") { ##WORKING!
 
       qAnsweredBy <- readline("Enter MP ID: ")
 
@@ -106,7 +108,7 @@ commons_answered_questions <- function(type =c("all", "date", "department",
         message("Retrieving page ", i+1, " of ", comAnsweredJpage+1)
         pages[[i + 1]] <- mydata$result$items
       }
-  } else if (type=="recent"){  ##Not Working!
+  } else if (comsAnsType=="recent"){  ##Not Working!
 
     qRecent <- readline("Select the number of answers ")
 

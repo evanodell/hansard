@@ -12,7 +12,7 @@
 #' @param lordsInterests Imports all available members
 #' @keywords All Members of Parliament
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- members("all")
 #' # Returns a data frame with information on all members of Parliament, including both
 #' # the House of Lords and the House of Commons. The data frame includes both current and
@@ -34,7 +34,7 @@
 #'
 #' b <- members("lordsInterests")
 #' # Requests a member ID, and returns a dataframe of the registered interests of that
-#' # member of the House of Lords.
+#' # member of the House of Lords. }
 
 
 ### All working except for Commons Interest, which still returns the list of frames of lists of whatevers
@@ -43,7 +43,9 @@
 members <- function(house=c("all","commons",#"commonsInterests", [commonsInterests not currently working when calling by ID]
                             "lords", "lordsInterests")) {
 
-  if (house=="all") { # Working
+  match.arg(house)
+
+  if(house=="all"){ # Working
 
     baseurl_allMems <- "http://lda.data.parliament.uk/members.json?_pageSize=500"
 
@@ -135,33 +137,6 @@ members <- function(house=c("all","commons",#"commonsInterests", [commonsInteres
   df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
 
 
-  if(house=="all" | house=="commons"){
-
-
-    df$constituency._about <- lapply(df$constituency._about, function(x) {
-      gsub("http://data.parliament.uk/resources/", "", x)
-    })
-
-  names(df)[names(df)=="constituency._about"] <- "constituencyCode"
-  names(df)[names(df)=="constituency.label._value"] <- "constituency"
-
-
-  df$`_about` <- lapply(df$`_about`, function(x) {
-    gsub("http://data.parliament.uk/members/", "", x)
-  })
-  } else if (house=="all" | house=="commons" | house=="lords"){
-
-  names(df)[names(df)=="_about"] <- "MP.ID"
-  names(df)[names(df)=="additionalName._value"] <- "additionalName"
-  names(df)[names(df)=="familyName._value"] <- "familyName"
-  names(df)[names(df)=="fullName._value"] <- "fullName"
-  names(df)[names(df)=="gender._value"] <- "gender"
-  names(df)[names(df)=="givenName._value"] <- "givenName"
-  names(df)[names(df)=="label._value"] <- "label"
-  names(df)[names(df)=="party._value"] <- "party"
-  names(df)[names(df)=="twitter._value"] <- "twitter"
-  }
-  return(df)
 
 }
 

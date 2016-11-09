@@ -4,39 +4,28 @@
 \alias{bills}
 \title{Bills}
 \usage{
-bills(type = c("all", "ammended", "sponsor", "stage", "publications",
-  "stageTypes"))
+bills(billType = c("ammended", "stageTypes", "publications"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "ammended", "sponsor", "stage", "publications", "stageTypes"}
+\item{billType}{The type of data you want, allows the arguments "ammended", "publications" and "stageTypes"}
 
-\item{all}{Imports all available bills}
+\item{ammended}{Imports a data frame with all ammended bills}
 
-\item{ammended}{Imports all ammended bills}
+\item{stageTypes}{Imports a data frame with all bill stage types}
 
-\item{sponsor}{Imports bills by sponsor}
-
-\item{stage}{Imports bills by stage}
-
-\item{publications}{Imports data on publications}
-
-\item{stageTypes}{Imports all stage types}
+\item{publications}{Imports a data frame with all bill publications}
 }
 \description{
 This imports data on House of Commons and House of Lords bills
 }
 \examples{
+\donttest{
 x <- bills("all")
 
 x <- bills("ammended")
 
-x <- bills("sponsor")
-
-x <- bills("stage")
-
-x <- bills("publications")
-
 x <- bills("stageTypes")
+}
 }
 \keyword{bills}
 

@@ -2,26 +2,26 @@
 #' Early Day Motions
 #'
 #' This imports data on early day motions
-#' @param type The type of data you want, allows the argument "all"
+#' @param edmType The type of data you want, allows the argument "all"
 #' @param all Imports all available EDMs.
 #' @keywords EDM
 #' @export
-#' @examples
+#' @examples \donttest{
 #'
 #' x <- early_day_motions("all")
 #' #Returns a data frame of all early day motions
 #'
 #'
-#'
+#' }
 
 
 ### 9 EARLY DAY MOTIONS
 
-early_day_motions <- function(type=c("all")) {
+early_day_motions <- function(edmType=c("all")) {
 
-  match.arg(type)
+  match.arg(edmType)
 
-  if(type=="all") {#Working
+  if(edmType=="all") {#Working
 
   baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
 
@@ -36,7 +36,7 @@ early_day_motions <- function(type=c("all")) {
     message("Retrieving page ", i+1, " of ", edmsJpage+1)
     pages[[i + 1]] <- mydata$result$items
     }
-  }# else if (type=="ID"){#Not working
+  }# else if (edmType=="ID"){#Not working
 
 #    mp.id <- readline("Enter Member ID: ")
 
@@ -53,7 +53,7 @@ early_day_motions <- function(type=c("all")) {
 #      message("Retrieving page ", i+1, " of ", edmsJpage+1)
 #      pages[[i + 1]] <- mydata$result$items
 #    }
-#  } #else if (type=="signature"){
+#  } #else if (edmType=="signature"){
 
 #    baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
 

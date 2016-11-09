@@ -4,10 +4,10 @@
 \alias{constituencies}
 \title{House of Commons Constituencies}
 \usage{
-constituencies(type = c("all"))
+constituencies(contType = c("all"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all"}
+\item{contType}{The type of data you want, allows the arguments "all"}
 
 \item{all}{Imports all available constituencies information Defaults to TRUE.}
 }
@@ -15,9 +15,10 @@ constituencies(type = c("all"))
 This imports data on House of Commons constituencies
 }
 \examples{
+\donttest{
 x <- constituencies("all")
 # Returns a data frame of all constituencies
-
+}
 
 }
 \keyword{Constituencies}

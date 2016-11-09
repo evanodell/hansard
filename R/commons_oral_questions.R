@@ -4,22 +4,23 @@
 #' House of Commons Oral Questions
 #'
 #' This imports data on House of Commons oral questions
-#' @param type The type of data you want, allows the arguments "all" and "times"
+#' @param comsOralType The type of data you want, allows the arguments "all" and "times"
 #' @param all Imports all available oral questions
 #' @param times Imports the times of all available oral questions
 #' @keywords bills
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- commons_oral_questions()
+#' }
 
 
 ## To DO!: Add functionality for date, time, etc of questions, the IF/ELSE bits
 
-commons_oral_questions <- function(type=c("all","times")) {
+commons_oral_questions <- function(comsOralType=c("all","times")) {
 
-    match.arg(type)
+  match.arg(comsOralType)
 
-    if(type=="all") {
+    if(comsOralType=="all") {
 
     baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500"
 
@@ -36,7 +37,7 @@ commons_oral_questions <- function(type=c("all","times")) {
         pages[[i + 1]] <- mydata$result$items
     }
 
-    } else if(type=="times"){
+    } else if(comsOralType=="times"){
 
       baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
 

@@ -4,11 +4,11 @@
 \alias{research_briefings}
 \title{Parliamentary Research Briefings}
 \usage{
-research_briefings(type = c("all", "topics", "types", "byTopic", "subTopic",
-  "topicSubTopic"))
+research_briefings(resType = c("all", "topics", "types", "byTopic",
+  "subTopic", "topicSubTopic"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "topics", "types",
+\item{resType}{The type of data you want, allows the arguments "all", "topics", "types",
 # "byTopic","subTopic" and "topicSubTopic"}
 
 \item{all}{Imports a data frame with all available Parliamentary Research Briefings.}
@@ -31,6 +31,7 @@ research_briefings(type = c("all", "topics", "types", "byTopic", "subTopic",
 This imports data on  Parliamentary Research Briefings
 }
 \examples{
+\donttest{
 x <- research_briefings("all")
 # NOT RUN
 # x <- research_briefings("all")
@@ -50,7 +51,8 @@ x <- research_briefings("byTopic")
 # NOT RUN
 # x <- research_briefings("byTopic")
 # RETURNS:
-# Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Enter sub-topic:  #yes
 # RETURNS:
 # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 # [3] "Business, industry and consumers"             "Communities and families"
@@ -69,7 +71,8 @@ x <- research_briefings("byTopic")
 
 x <- research_briefings("subTopic")
 # RETURNS:
-# Enter Topic. Topics are case sensitive. To return a list of possible topics, enter yes:  #yes
+# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Enter sub-topic:  #yes
 # RETURNS:
 # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 # [3] "Business, industry and consumers"             "Communities and families"
@@ -87,7 +90,8 @@ x <- research_briefings("subTopic")
 
 x <- research_briefings("topicSubTopic")
 # NOT RUN
-# Enter topic. Topics are case sensitive. To return a list of possible topics, enter yes: yes
+# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Enter sub-topic: yes
 # RETURNS:
 # [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"
 # [3] "Business, industry and consumers"             "Communities and families"
@@ -100,7 +104,8 @@ x <- research_briefings("topicSubTopic")
 # [17] "Science and technology"                       "Social Security and pensions"
 # [19] "Social services"                              "Transport"
 # Enter Topic. For ease of use, copy and paste the topic:
-#Enter sub-topic. Sub-topics are case sensitive. To return a list of possible sub-topics, enter yes:
+# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Enter sub-topic:}
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

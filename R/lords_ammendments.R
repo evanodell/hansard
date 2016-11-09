@@ -7,9 +7,12 @@
 #' @param all Imports all available House of Lords Ammendments Defaults to TRUE.
 #' @keywords House of Lords Ammendments
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- lords_ammendments()
-#' # Returns all lords ammendments
+#' # NOT RUN
+#' # x <- lords_ammendments()
+#' # head(x)
+#' # Returns all lords ammendments }
 
 lords_ammendments <- function(all = TRUE) { #FUNCTIONING!
 

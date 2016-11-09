@@ -4,10 +4,10 @@
 \alias{commons_oral_questions}
 \title{House of Commons Oral Questions}
 \usage{
-commons_oral_questions(type = c("all", "times"))
+commons_oral_questions(comsOralType = c("all", "times"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all" and "times"}
+\item{comsOralType}{The type of data you want, allows the arguments "all" and "times"}
 
 \item{all}{Imports all available oral questions}
 
@@ -17,7 +17,9 @@ commons_oral_questions(type = c("all", "times"))
 This imports data on House of Commons oral questions
 }
 \examples{
+\donttest{
 x <- commons_oral_questions()
+}
 }
 \keyword{bills}
 

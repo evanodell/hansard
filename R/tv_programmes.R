@@ -4,28 +4,28 @@
 #' TV Programmes
 #'
 #' This imports data on TV broadcasts
-#' @param type The type of data you want, allows the arguments "TV" and "clips"
+#' @param AVtype The type of data you want, allows the arguments "TV" and "clips"
 #' @param TV Imports data on all TV broadcasts produced by the Westminster Parliament
 #' @param clips Imports data on all video clips produced by the Westminster Parliament
 #' @keywords TV
 #' @export
-#' @examples
+#' @examples \donttest{
 #' x <- tv_programmes("TV")
 #' # Returns a data frame with details on all TV broadcasts produced by the
 #' # Westminster Parliament
 #'
 #' x <- tv_programmes("clips")
 #' # Returns a data frame with details on all video clips produced by the
-#' # Westminster Parliament
+#' # Westminster Parliament}
 
 
 
 
-tv_programmes  <- function(type =c("TV","clips")) {
+tv_programmes  <- function(AVtype =c("TV","clips")) {
 
-  match.arg(type)
+  match.arg(AVtype)
 
-  if(type=="TV") {
+  if(AVtype=="TV") {
 
     baseurl_tv <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
 
@@ -41,7 +41,7 @@ tv_programmes  <- function(type =c("TV","clips")) {
       pages[[i + 1]] <- mydata$result$items
     }
 
-  } else if(type=="clips") {
+  } else if(AVtype=="clips") {
 
     baseurl_tv <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
 

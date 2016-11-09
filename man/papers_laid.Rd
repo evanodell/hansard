@@ -4,10 +4,10 @@
 \alias{papers_laid}
 \title{Papers Laid}
 \usage{
-papers_laid(type = c("all"))
+papers_laid(paperType = c("all"))
 }
 \arguments{
-\item{type}{The type of data you want, allows the arguments "all", "department" and "dates"}
+\item{paperType}{The type of data you want, allows the arguments "all", "department" and "dates"}
 
 \item{all}{Imports all available papers laid}
 }
@@ -15,7 +15,8 @@ papers_laid(type = c("all"))
 This imports data on Papers Laid
 }
 \examples{
-x <- papers_laid("all")
+\donttest{
+x <- papers_laid("all") }
 
 }
 \keyword{Laid}

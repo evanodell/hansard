@@ -13,11 +13,12 @@ publication_logs(all = TRUE)
 This imports data on Publication Logs
 }
 \examples{
+\donttest{
 x <- publication_logs(all = TRUE)
 # returns a data frame with all publication logs
 # NOT RUN:
 # x <- publication_logs()
-# head(x) ###
+# head(x) ### }
 }
 \keyword{Logs}
 \keyword{Publication}
