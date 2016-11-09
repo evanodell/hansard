@@ -1,10 +1,9 @@
 
-### 3 Commons DIVISIONS - Mostly Done - just needs sessions and stuff
 
 #' House of Commons Divisions
 #'
 #' This imports data on House of Commons divisions
-#' @param comsDivType The type of data you want, allows the arguments "all", "date", "no", "aye"
+#' @param comsDivType The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 #' @param all Imports all available divisions.
 #' @param date Imports all available divisions on a date.
 #' @param no Imports all divisions where a given MP voted no.
@@ -12,114 +11,115 @@
 #' @keywords divisions
 #' @export
 #' @examples \donttest{
-#' x <- commons_divisions("all")
+#' x <- commons_divisions('all')
 #' # Returns all divisions
 #'
-#' x <- commons_divisions("date")
+#' x <- commons_divisions('date')
 #' # Returns all divisions on a given date
 #'
-#' x <- commons_divisions("no")
+#' x <- commons_divisions('no')
 #' # Returns all divisions in which a given MP voted no
 #'
-#' x <- commons_divisions("aye")
+#' x <- commons_divisions('aye')
 #' # Returns all divisions in which a given MP voted aye
 #' }
 #'
 
-commons_divisions <- function(comsDivType =c("all", "date", "no","aye")) {
+commons_divisions <- function(comsDivType = c("all", "date", "no", "aye")) {
 
-  match.arg(comsDivType)
+    match.arg(comsDivType)
 
-  if(comsDivType=="all") {
+    if (comsDivType == "all") {
 
-    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
+        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
 
-    divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500")
+        divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500")
 
-    divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
-    pages <- list()
+        pages <- list()
 
-    for (i in 0:divisJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_divis, "&_page=", i), flatten = TRUE)
-        message("Retrieving page ", i+1, " of ", divisJpage+1)
-        pages[[i + 1]] <- mydata$result$items
-    }
+        for (i in 0:divisJpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
 
-  } else if (comsDivType=="date") {
+    } else if (comsDivType == "date") {
 
-    divis_date <- readline("Select division date: ")
+        divis_date <- readline("Select division date: ")
 
-    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/date/"
+        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/date/"
 
-    divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/",divis_date,".json?_pageSize=500"))
+        divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/", divis_date, ".json?_pageSize=500"))
 
-    if(divis$result$itemsPerPage>divis$result$totalResults){
-      divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
-    } else {
-      divisJpage <-0
-    }
+        if (divis$result$itemsPerPage > divis$result$totalResults) {
+            divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        } else {
+            divisJpage <- 0
+        }
 
-    pages <- list()
+        pages <- list()
 
-    for (i in 0:divisJpage) {
-      mydata <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/",divis_date,".json?_pageSize=500", "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", divisJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
+        for (i in 0:divisJpage) {
+            mydata <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/", divis_date, ".json?_pageSize=500",
+                "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
 
-  }  else if (comsDivType=="no") { #WORKING
+    } else if (comsDivType == "no") {
+        # WORKING
 
-    mp.id <- readline("Enter Member ID: ")
+        mp.id <- readline("Enter Member ID: ")
 
-    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
+        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
 
-    divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId=",mp.id,"&_pageSize=500"))
+        divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId=", mp.id, "&_pageSize=500"))
 
-    divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
-    pages <- list()
+        pages <- list()
 
-    for (i in 0:divisJpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl_divis, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", divisJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
+        for (i in 0:divisJpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
 
-  }  else if (comsDivType=="aye") { #WORKING
+    } else if (comsDivType == "aye")
+        {
+            # WORKING
 
-    mp.id <- readline("Enter Member ID: ")
+            mp.id <- readline("Enter Member ID: ")
 
-    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
+            baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
 
-    divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=",mp.id,"&_pageSize=500"))
+            divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=", mp.id, "&_pageSize=500"))
 
-    divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+            divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
-    pages <- list()
+            pages <- list()
 
-    for (i in 0:divisJpage) {
-      mydata <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=",mp.id,"&_pageSize=500", "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i+1, " of ", divisJpage+1)
-      pages[[i + 1]] <- mydata$result$items
-    }
-  }  #else if (comsDivType=="session") {
+            for (i in 0:divisJpage) {
+                mydata <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=", mp.id, "&_pageSize=500",
+                  "&_page=", i), flatten = TRUE)
+                message("Retrieving page ", i + 1, " of ", divisJpage + 1)
+                pages[[i + 1]] <- mydata$result$items
+            }
+        }  #else if (comsDivType=='session') {
 
-#    baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
+    # baseurl_divis <- 'http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500'
 
-#    divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500")
+    # divis <- jsonlite::fromJSON('http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500')
 
-#    divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+    # divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
-#    pages <- list()
+    # pages <- list()
 
-#    for (i in 0:divisJpage) {
-#      mydata <- jsonlite::fromJSON(paste0(baseurl_divis, "&_page=", i), flatten = TRUE)
-#      message("Retrieving page ", i+1, " of ", divisJpage+1)
-#      pages[[i + 1]] <- mydata$result$items
-#    }
-#  }
-  df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+    # for (i in 0:divisJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_divis, '&_page=', i), flatten = TRUE)
+    # message('Retrieving page ', i+1, ' of ', divisJpage+1) pages[[i + 1]] <- mydata$result$items } }
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 }
 
 

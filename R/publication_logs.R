@@ -1,4 +1,3 @@
-#### PUBLICATION INFORMATION
 
 
 #' Publication Logs
@@ -14,9 +13,6 @@
 #' # x <- publication_logs()
 #' # head(x) ### }
 
-
-### 19 PUBLICATION LOGS
-
 publication_logs <- function(all = TRUE) {
 
     baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500"
@@ -29,11 +25,11 @@ publication_logs <- function(all = TRUE) {
 
     for (i in 0:logsJpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_logs, "&_page=", i), flatten = TRUE)
-        message("Retrieving page ", i+1, " of ", logsJpage+1)
+        message("Retrieving page ", i + 1, " of ", logsJpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df<- jsonlite::rbind.pages(pages[sapply(pages, length)>0]) #The data frame that is returned
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
 }
 

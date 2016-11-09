@@ -8,8 +8,8 @@ epetition(petType = c("all", "byConstituency", "petitionID", "response",
   "idConstituency"))
 }
 \arguments{
-\item{petType}{The type of data you want, allows the arguments "all", "byConstituency",
-# "petitionID", "response", and "idConstituency"}
+\item{petType}{The type of data you want, allows the arguments 'all', 'byConstituency',
+# 'petitionID', 'response', and 'idConstituency'}
 
 \item{all}{Imports all available epetitions}
 
@@ -26,7 +26,7 @@ This imports data on petitions
 }
 \examples{
 \donttest{
-x <- papers_laid("all")
+x <- papers_laid('all')
 # x <- papers_laid()
 }
 }

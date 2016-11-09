@@ -7,7 +7,7 @@
 lords_attendance(lordsAttendType = c("all", "date"))
 }
 \arguments{
-\item{lordsAttendType}{Accepts arguments "all" and "date"}
+\item{lordsAttendType}{Accepts arguments 'all' and 'date'}
 
 \item{all}{Imports all available House of Lords attendance records}
 
@@ -18,10 +18,10 @@ This imports data on House of Lords attendance
 }
 \examples{
 \donttest{
-x <- lords_attendance("all")
+x <- lords_attendance('all')
 #Returns all House of Lords attendance
 
-x <- lords_attendance("date")
+x <- lords_attendance('date')
 #Returns House of Lords attendance data for a given date }
 }
 \keyword{Attendance}

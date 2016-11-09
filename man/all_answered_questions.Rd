@@ -7,7 +7,7 @@
 all_answered_questions(allAnsType = c("all", "askedBy"))
 }
 \arguments{
-\item{allAnsType}{The type of questions you want, accepts the arguments "all" and "askedBy"}
+\item{allAnsType}{The type of questions you want, accepts the arguments 'all' and 'askedBy'}
 
 \item{all}{Imports data on all available answered questions.}
 
@@ -18,15 +18,15 @@ This imports data on answered parliamentary questions
 }
 \examples{
 \donttest{
-x <- all_answered_questions("all")
+x <- all_answered_questions('all')
 #Returns all answered questions
 #NOT RUN
-# x <- all_answered_questions("all")
+# x <- all_answered_questions('all')
 # head(x)
 
-x <- all_answered_questions("askedBy")
+x <- all_answered_questions('askedBy')
 #NOT RUN
-# x <- all_answered_questions("askedBy")
+# x <- all_answered_questions('askedBy')
 # ### RETURNS:
 # Enter Member ID: 172
 # head(x) #All questions asked by Diane Abbott }

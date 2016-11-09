@@ -8,7 +8,7 @@ commons_answered_questions(comsAnsType = c("all", "date", "department",
   "answeredBy", "recent"))
 }
 \arguments{
-\item{comsAnsType}{The type of data you want, allows the arguments "all", "date", "department", "answeredBy", "recent"}
+\item{comsAnsType}{The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'}
 
 \item{all}{Imports all available answered questions}
 
@@ -25,21 +25,21 @@ This imports data on House of Commons answered questions
 }
 \examples{
 \donttest{
-commons_answered_questions("all")
+commons_answered_questions('all')
 # Returns a data frame with all answered questions in the House of Commons
 
-commons_answered_questions("date")
+commons_answered_questions('date')
 # Returns all questions answered on a given date
 
 # Returns a data frame with all answered questions in the House of Commons on the given date
 
-commons_answered_questions("department")
+commons_answered_questions('department')
 # Returns a data frame with all answered questions in the House of Commons from the given department
 
-commons_answered_questions("answeredBy")
+commons_answered_questions('answeredBy')
 # Returns a data frame with all answered questions in the House of Commons by the given MP
 
-commons_answered_questions("recent")
+commons_answered_questions('recent')
 # Returns a data frame with all answered questions from the House of Commons
 }
 }

@@ -7,7 +7,7 @@
 sessions_info(sesType = c("all", "days"))
 }
 \arguments{
-\item{sesType}{The type of data being requested, allows the arguments "all" and "days"}
+\item{sesType}{The type of data being requested, allows the arguments 'all' and 'days'}
 
 \item{all}{Imports information on all available parliamentary sessions}
 
@@ -18,13 +18,13 @@ This imports data on Parliamentary Sessions
 }
 \examples{
 \donttest{
-x <- sessions_info("all")
+x <- sessions_info('all')
 # NOT RUN
-# x <- sessions_info("all")
+# x <- sessions_info('all')
 # head(x)
 #
 # NOT RUN
-# x <- sessions_info("days")
+# x <- sessions_info('days')
 # head(x)}
 }
 \keyword{Parliamentary}

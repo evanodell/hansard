@@ -7,7 +7,7 @@
 commons_oral_questions(comsOralType = c("all", "times"))
 }
 \arguments{
-\item{comsOralType}{The type of data you want, allows the arguments "all" and "times"}
+\item{comsOralType}{The type of data you want, allows the arguments 'all' and 'times'}
 
 \item{all}{Imports all available oral questions}
 

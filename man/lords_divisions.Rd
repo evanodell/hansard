@@ -7,7 +7,7 @@
 lords_divisions(lordsDivType = c("all", "date", "notContent", "content"))
 }
 \arguments{
-\item{lordsDivType}{Accepts arguments "all", "date", "notContent" and "content"}
+\item{lordsDivType}{Accepts arguments 'all', 'date', 'notContent' and 'content'}
 
 \item{all}{Imports all available divisions.}
 
@@ -19,20 +19,20 @@ lords_divisions(lordsDivType = c("all", "date", "notContent", "content"))
 }
 \description{
 This imports data on House of Lords divisions
-#' @param type The type of data you want, allows the arguments "all", "date", "no", "aye"
+#' @param type The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 }
 \examples{
 \donttest{
-x <- lords_divisions("all")
+x <- lords_divisions('all')
 # Returns all divisions in the House of Lords
 
-x <- lords_divisions("date")
+x <- lords_divisions('date')
 # Requests a date, and then returns all divisions on that date
 
-x <- lords_divisions("notContent")
+x <- lords_divisions('notContent')
 # Requests a member ID, and then returns all divisions in which they have voted not content
 
-x <- lords_divisions("content")
+x <- lords_divisions('content')
 # Requests a member ID, and then returns all divisions in which they have voted content
 }
 }

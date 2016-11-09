@@ -7,7 +7,7 @@
 bills(billType = c("ammended", "stageTypes", "publications"))
 }
 \arguments{
-\item{billType}{The type of data you want, allows the arguments "ammended", "publications" and "stageTypes"}
+\item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stageTypes'}
 
 \item{ammended}{Imports a data frame with all ammended bills}
 
@@ -18,13 +18,18 @@ bills(billType = c("ammended", "stageTypes", "publications"))
 \description{
 This imports data on House of Commons and House of Lords bills
 }
+\note{
+There are problems with the Bills API, as the JSON data available for some queries,
+including the query to return all bills currently before the house, is inconsistently formatted
+and cannot be parsed into a data frame.
+}
 \examples{
 \donttest{
-x <- bills("all")
+x <- bills('all')
 
-x <- bills("ammended")
+x <- bills('ammended')
 
-x <- bills("stageTypes")
+x <- bills('stageTypes')
 }
 }
 \keyword{bills}

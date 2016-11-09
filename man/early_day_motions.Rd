@@ -7,7 +7,7 @@
 early_day_motions(edmType = c("all"))
 }
 \arguments{
-\item{edmType}{The type of data you want, allows the argument "all"}
+\item{edmType}{The type of data you want, allows the argument 'all'}
 
 \item{all}{Imports all available EDMs.}
 }
@@ -17,7 +17,7 @@ This imports data on early day motions
 \examples{
 \donttest{
 
-x <- early_day_motions("all")
+x <- early_day_motions('all')
 #Returns a data frame of all early day motions
 
 
