@@ -1,5 +1,5 @@
 #Comments 
-This is the first submission of thsi package
+This is the first submission of this package
 
 
 
