@@ -17,9 +17,6 @@ This imports data on petitions
 \examples{
 x <- papers_laid("all")
 
-
-
-
 }
 \keyword{Laid}
 \keyword{Papers}

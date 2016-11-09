@@ -1,6 +1,5 @@
 
 
-
 #' ePetitions
 #'
 #' This imports data on petitions
@@ -10,9 +9,6 @@
 #' @export
 #' @examples
 #' x <- papers_laid("all")
-#'
-#'
-#'
 #'
 
 
