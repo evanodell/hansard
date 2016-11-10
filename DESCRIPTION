@@ -6,8 +6,8 @@ Date: 2016-10-31
 Authors@R: person("Evan Odell", email="evanodell91@gmail.com", role=c("aut", "cre"))
 Author: Evan Odell [aut, cre]
 Maintainer: Evan Odell <evanodell91@gmail.com>
-Description: Provides functions to download data from the data.parliament.uk APIs.
-    Functions for each new API will be added as and when they become available on data.parliament.uk. Because of the structure of the data.parliament.uk API, there is a named function for each type of available data for ease of use.
+Description: Provides functions to download data from the data.parliament.uk APIs. 
+    Because of the structure of the data.parliament.uk API, there is a named function for each type of available data for ease of use. Functions for each new API will be added as and when they become available on data.parliament.uk. 
 URL: https://github.com/EvanOdell/hansard
 BugReports: https://github.com/EvanOdell/hansard/issues
 License: MIT + file LICENSE
