@@ -20,24 +20,20 @@ This imports data on House of Lords written questions
 }
 \examples{
 \donttest{
-x <- lords_written_questions('all')
-# Returns all written questions from the house of lords
 # NOT RUN
+# Returns all written questions from the house of lords
 # x <- lords_written_questions('all')
 # head(x)
 
-
-x <- lords_written_questions('department')
-# Requests a department, and then returns all written questions answered by that department
 # NOT RUN
+# Requests a department, and then returns all written questions answered by that department
 # x <- lords_written_questions('department')
 # Enter the name of the answering department: Health
 # head(x) # Returns all answered questions where the answering department
           # includes 'Health' in its name
-
-x <- lords_written_questions('dates')
-# Requests two dates, and then returns all written questions within those two dates
 # NOT RUN
+# Requests two dates, and then returns all written questions within those two dates
+# x <- lords_written_questions('dates')
 # x <- lords_written_questions('dates')
 ####RETURNS:
 # Enter start date(yyyy-mm-dd): 2016-10-10

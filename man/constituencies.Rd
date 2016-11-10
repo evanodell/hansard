@@ -16,7 +16,8 @@ This imports data on House of Commons constituencies
 }
 \examples{
 \donttest{
-x <- constituencies('all')
+### NOT RUN:
+#x <- constituencies('all')
 # Returns a data frame of all constituencies
 }
 

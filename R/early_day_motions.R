@@ -7,11 +7,9 @@
 #' @keywords EDM
 #' @export
 #' @examples \donttest{
-#'
-#' x <- early_day_motions('all')
+#' #### NOT RUN:
+#' # x <- early_day_motions('all')
 #' #Returns a data frame of all early day motions
-#'
-#'
 #' }
 
 

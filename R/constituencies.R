@@ -8,8 +8,9 @@
 #' @keywords Constituencies
 #' @export
 #' @examples \donttest{
-#' x <- constituencies('all')
-#'# Returns a data frame of all constituencies
+#' ### NOT RUN:
+#' #x <- constituencies('all')
+#' # Returns a data frame of all constituencies
 #' }
 #'
 

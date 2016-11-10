@@ -18,7 +18,10 @@ This imports data on House of Commons oral questions
 }
 \examples{
 \donttest{
-x <- commons_oral_questions()
+### NOT RUN:
+# x <- commons_oral_questions("all")
+#
+# x <- commons_oral_questions("times")
 }
 }
 \keyword{bills}

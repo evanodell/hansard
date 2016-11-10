@@ -8,7 +8,10 @@
 #' @keywords bills
 #' @export
 #' @examples \donttest{
-#' x <- commons_oral_questions()
+#' ### NOT RUN:
+#' # x <- commons_oral_questions("all")
+#' #
+#' # x <- commons_oral_questions("times")
 #' }
 
 

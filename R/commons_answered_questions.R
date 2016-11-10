@@ -12,21 +12,20 @@
 #' @keywords bills
 #' @export
 #' @examples \donttest{
-#' commons_answered_questions('all')
+#' #### NOT RUN:
+#' # x <- commons_answered_questions('all')
 #' # Returns a data frame with all answered questions in the House of Commons
 #'
-#' commons_answered_questions('date')
-#' # Returns all questions answered on a given date
-#'
+#' # x <- commons_answered_questions('date')
 #' # Returns a data frame with all answered questions in the House of Commons on the given date
 #'
-#' commons_answered_questions('department')
+#' # x <- commons_answered_questions('department')
 #' # Returns a data frame with all answered questions in the House of Commons from the given department
 #'
-#' commons_answered_questions('answeredBy')
+#' # x <- commons_answered_questions('answeredBy')
 #' # Returns a data frame with all answered questions in the House of Commons by the given MP
 #'
-#' commons_answered_questions('recent')
+#' # x <- commons_answered_questions('recent')
 #' # Returns a data frame with all answered questions from the House of Commons
 #' }
 

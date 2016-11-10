@@ -9,11 +9,12 @@
 #' @keywords TV
 #' @export
 #' @examples \donttest{
-#' x <- tv_programmes('TV')
+#' #### NOT RUN:
+#' # x <- tv_programmes('TV')
 #' # Returns a data frame with details on all TV broadcasts produced by the
 #' # Westminster Parliament
 #'
-#' x <- tv_programmes('clips')
+#' # x <- tv_programmes('clips')
 #' # Returns a data frame with details on all video clips produced by the
 #' # Westminster Parliament}
 

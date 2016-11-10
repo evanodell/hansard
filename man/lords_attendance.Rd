@@ -18,10 +18,11 @@ This imports data on House of Lords attendance
 }
 \examples{
 \donttest{
-x <- lords_attendance('all')
+#### NOT RUN:
+# x <- lords_attendance('all')
 #Returns all House of Lords attendance
 
-x <- lords_attendance('date')
+# x <- lords_attendance('date')
 #Returns House of Lords attendance data for a given date }
 }
 \keyword{Attendance}

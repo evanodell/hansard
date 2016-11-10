@@ -7,7 +7,8 @@
 #' @keywords Elections
 #' @export
 #' @examples \donttest{
-#' x <- elections(all = TRUE)
+#' ### NOT RUN:
+#' # x <- elections(all = TRUE)
 #' # Returns a data frame with the date and type of all general and by-elections since 1945
 #' }
 
