@@ -1,5 +1,5 @@
 #Comments 
-This is the first submission of this package
+This is a re-submission of this package. The initial submission used an incorrect license template.
 
 
 ## Test environments
