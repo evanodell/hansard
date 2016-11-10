@@ -28,7 +28,4 @@ File 'LICENSE':
 Possibly mis-spelled words in DESCRIPTION:
   API (3:69, 10:28)
   APIs (9:71)
-  
-## Downstream dependencies
-
 
