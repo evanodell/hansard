@@ -16,7 +16,6 @@ This imports the parliamentary thesaurus
 }
 \examples{
 \donttest{
-x <- commons_terms('all')
 #NOT RUN
 # x <- commons_terms('all')
 # head(x)

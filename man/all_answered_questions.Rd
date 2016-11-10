@@ -18,13 +18,10 @@ This imports data on answered parliamentary questions
 }
 \examples{
 \donttest{
-x <- all_answered_questions('all')
-#Returns all answered questions
 #NOT RUN
 # x <- all_answered_questions('all')
-# head(x)
+#Returns all answered questions
 
-x <- all_answered_questions('askedBy')
 #NOT RUN
 # x <- all_answered_questions('askedBy')
 # ### RETURNS:

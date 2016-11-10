@@ -16,7 +16,8 @@ This imports data on Papers Laid
 }
 \examples{
 \donttest{
-x <- papers_laid('all') }
+#### NOT RUN:
+# x <- papers_laid('all') }
 
 }
 \keyword{Laid}

@@ -25,11 +25,12 @@ and cannot be parsed into a data frame.
 }
 \examples{
 \donttest{
-x <- bills('all')
+#### NOT RUN:
+# x <- bills('all')
 
-x <- bills('ammended')
+# x <- bills('ammended')
 
-x <- bills('stageTypes')
+# x <- bills('stageTypes')
 }
 }
 \keyword{bills}

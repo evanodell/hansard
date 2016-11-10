@@ -7,7 +7,8 @@
 #' @keywords Papers Laid
 #' @export
 #' @examples \donttest{
-#' x <- papers_laid('all') }
+#' #### NOT RUN:
+#' # x <- papers_laid('all') }
 #'
 
 papers_laid <- function(paperType = c("all")) {

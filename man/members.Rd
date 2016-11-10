@@ -22,26 +22,27 @@ This imports data on All Members of Parliament including the Lords and the Commo
 }
 \examples{
 \donttest{
-x <- members('all')
+### NOT RUN:
+# x <- members('all')
 # Returns a data frame with information on all members of Parliament, including both
 # the House of Lords and the House of Commons. The data frame includes both current and
 # previous members, and the API currently does not have information on when a member first
 # sat in the house, or to distinguish current from former members.
 
-y <- members('commons')
+# y <- members('commons')
 # Returns a data frame with information on all members of the House of Commons. The data
 # frame includes both current and previous members of the House of Commons, and the API
 # currently does not have information on when a member first sat in the house, or to
 # distinguish current from former members.
 
-z <- members('lords')
+# z <- members('lords')
 # Returns a data frame with information on all members of the House of Lords. The data
 # frame includes both current and previous members of the House of Lords, and the API
 # currently does not have information on when a member first sat in the house, or to
 # distinguish current from former members.
 
 
-b <- members('lordsInterests')
+# b <- members('lordsInterests')
 # Requests a member ID, and returns a dataframe of the registered interests of that
 # member of the House of Lords. }
 }

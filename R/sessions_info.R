@@ -8,12 +8,10 @@
 #' @keywords Parliamentary Sessions
 #' @export
 #' @examples \donttest{
-#' x <- sessions_info('all')
 #' # NOT RUN
 #' # x <- sessions_info('all')
 #' # head(x)
 #' #
-#' # NOT RUN
 #' # x <- sessions_info('days')
 #' # head(x)}
 

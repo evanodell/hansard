@@ -8,10 +8,11 @@
 #' @keywords House of Lords Attendance
 #' @export
 #' @examples \donttest{
-#' x <- lords_attendance('all')
+#' #### NOT RUN:
+#' # x <- lords_attendance('all')
 #' #Returns all House of Lords attendance
 #'
-#' x <- lords_attendance('date')
+#' # x <- lords_attendance('date')
 #' #Returns House of Lords attendance data for a given date }
 
 lords_attendance <- function(lordsAttendType = c("all", "date")) {

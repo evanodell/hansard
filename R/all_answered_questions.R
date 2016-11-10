@@ -9,13 +9,10 @@
 #' @import httr plyr jsonlite
 #' @export
 #' @examples \donttest{
-#' x <- all_answered_questions('all')
-#' #Returns all answered questions
 #' #NOT RUN
 #' # x <- all_answered_questions('all')
-#' # head(x)
+#' #Returns all answered questions
 #'
-#' x <- all_answered_questions('askedBy')
 #' #NOT RUN
 #' # x <- all_answered_questions('askedBy')
 #' # ### RETURNS:
@@ -23,7 +20,7 @@
 #' # head(x) #All questions asked by Diane Abbott }
 
 
-### 18 ALL ANSWERED QUESTIONS - Not Done
+### 18 ALL ANSWERED QUESTIONS
 
 all_answered_questions <- function(allAnsType = c("all", "askedBy")) {
 

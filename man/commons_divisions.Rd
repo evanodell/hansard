@@ -22,16 +22,17 @@ This imports data on House of Commons divisions
 }
 \examples{
 \donttest{
-x <- commons_divisions('all')
+### NOT RUN:
+# x <- commons_divisions('all')
 # Returns all divisions
 
-x <- commons_divisions('date')
+# x <- commons_divisions('date')
 # Returns all divisions on a given date
 
-x <- commons_divisions('no')
+# x <- commons_divisions('no')
 # Returns all divisions in which a given MP voted no
 
-x <- commons_divisions('aye')
+# x <- commons_divisions('aye')
 # Returns all divisions in which a given MP voted aye
 }
 

@@ -32,23 +32,16 @@ This imports data on  Parliamentary Research Briefings
 }
 \examples{
 \donttest{
-x <- research_briefings('all')
 # NOT RUN
 # x <- research_briefings('all')
 # head(x)
 
-x <- research_briefings('topics')
-# NOT RUN
 # x <- research_briefings('topics')
 # print(x)
 
-x <- research_briefings('types')
-# NOT RUN
 # x <- research_briefings('types')
 # print(x)
 
-x <- research_briefings('byTopic')
-# NOT RUN
 # x <- research_briefings('byTopic')
 # RETURNS:
 # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
@@ -67,7 +60,7 @@ x <- research_briefings('byTopic')
 # Enter Topic. For ease of use, copy and paste the topic: Education
 # head(x)
 
-x <- research_briefings('subTopic')
+# x <- research_briefings('subTopic')
 # RETURNS:
 # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic:  #yes
@@ -85,7 +78,7 @@ x <- research_briefings('subTopic')
 # Enter Topic. For ease of use, copy and paste the topic: Education
 # head(x)
 
-x <- research_briefings('topicSubTopic')
+# x <- research_briefings('topicSubTopic')
 # NOT RUN
 # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic: yes

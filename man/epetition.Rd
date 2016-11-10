@@ -26,10 +26,24 @@ This imports data on petitions
 }
 \examples{
 \donttest{
-x <- papers_laid('all')
-# x <- papers_laid()
+#### NOT RUN
+# x <- epetition("all")
+
+# x <- epetition("byConstituency")
+
+# x <- epetition("petitionID")
+### RETURNS:
+# Enter the petition ID:
+
+# x <- epetition("response")
+### RETURNS:
+# Enter the petition ID:
+
+# x <- epetition("idConstituency")
+### RETURNS:
+# Enter the petition ID:
+
 }
 }
-\keyword{Laid}
-\keyword{Papers}
+\keyword{ePetitions}
 

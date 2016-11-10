@@ -7,8 +7,7 @@
 #' @keywords House of Lords Ammendments
 #' @export
 #' @examples \donttest{
-#' x <- lords_ammendments()
-#' # NOT RUN
+#' #### NOT RUN:
 #' # x <- lords_ammendments()
 #' # head(x)
 #' # Returns all lords ammendments }

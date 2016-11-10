@@ -4,7 +4,7 @@ This is the first submission of this package
 
 ## Test environments
 
-* ubuntu 14.04 (on Digital Ocean), R 3.3.1
+* ubuntu 14.04 (on Digital Ocean), R 3.3.2
 * local MacOS 10.11.6 installation, R 3.3.2
 * win-builder (devel and release)
  

@@ -7,10 +7,9 @@
 #' @keywords Publication Logs
 #' @export
 #' @examples \donttest{
-#' x <- publication_logs(all = TRUE)
-#' # returns a data frame with all publication logs
 #' # NOT RUN:
 #' # x <- publication_logs()
+#' #' # returns a data frame with all publication logs
 #' # head(x) ### }
 
 publication_logs <- function(all = TRUE) {

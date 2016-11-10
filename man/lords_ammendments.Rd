@@ -14,8 +14,7 @@ This imports data on House of Lords Ammendments
 }
 \examples{
 \donttest{
-x <- lords_ammendments()
-# NOT RUN
+#### NOT RUN:
 # x <- lords_ammendments()
 # head(x)
 # Returns all lords ammendments }
