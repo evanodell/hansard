@@ -7,7 +7,7 @@
 members_search(Search = NULL)
 }
 \arguments{
-\item{Search}{Search for members by name and constituency}
+\item{Search}{Search for members by name and constituency. Defaults to NULL.}
 }
 \description{
 This imports data on All Members of Parliament including the Lords and the Commons
@@ -21,10 +21,11 @@ This imports data on All Members of Parliament including the Lords and the Commo
 }
 \examples{
 \donttest{
+###NOT RUN
 # x <- members_search(Search=NULL)
 # Returns members('all')
-x <- members_search(Search='chris')
-head(x)
+# x <- members_search(Search='chris')
+# head(x)
 # Returns all members with 'chris' in their name or the name of their constituency}
 }
 \keyword{All}

@@ -146,14 +146,15 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
 #' # The default search is NULL, which returns a data frame of all members of both
 #' # houses, the same result as members('all').
 #'
-#' @param Search Search for members by name and constituency
+#' @param Search Search for members by name and constituency. Defaults to NULL.
 #' @keywords All Members of Parliament
 #' @export
 #' @examples \donttest{
+#' ###NOT RUN
 #' # x <- members_search(Search=NULL)
 #' # Returns members('all')
-#' x <- members_search(Search='chris')
-#' head(x)
+#' # x <- members_search(Search='chris')
+#' # head(x)
 #' # Returns all members with 'chris' in their name or the name of their constituency}
 
 members_search <- function(Search = NULL) {
