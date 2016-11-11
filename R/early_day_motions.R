@@ -1,7 +1,7 @@
 
 #' Early Day Motions
 #'
-#' This imports data on early day motions
+#' Imports data on early day motions
 #' @param edmType The type of data you want, allows the argument 'all'
 #' @param all Imports all available EDMs.
 #' @keywords EDM

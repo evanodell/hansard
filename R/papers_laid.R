@@ -1,7 +1,7 @@
 
 #' Papers Laid
 #'
-#' This imports data on Papers Laid
+#' Imports data on Papers Laid
 #' @param paperType The type of data you want, allows the arguments 'all', 'department' and 'dates'
 #' @param all Imports all available papers laid
 #' @keywords Papers Laid

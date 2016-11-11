@@ -16,7 +16,7 @@ bills(billType = c("ammended", "stageTypes", "publications"))
 \item{publications}{Imports a data frame with all bill publications}
 }
 \description{
-This imports data on House of Commons and House of Lords bills
+Imports data on House of Commons and House of Lords bills
 }
 \note{
 There are problems with the Bills API, as the JSON data available for some queries,

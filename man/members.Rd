@@ -18,7 +18,7 @@ members(house = c("all", "commons", "lords", "lordsInterests"))
 \item{lordsInterests}{Imports all available members}
 }
 \description{
-This imports data on All Members of Parliament including the Lords and the Commons
+Imports data on All Members of Parliament including the Lords and the Commons
 }
 \examples{
 \donttest{

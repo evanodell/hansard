@@ -1,7 +1,7 @@
 
 #' All Members of Parliament
 #'
-#' This imports data on All Members of Parliament including the Lords and the Commons
+#' Imports data on All Members of Parliament including the Lords and the Commons
 #' @param house The type of data you want, allows the arguments
 #' @param all Imports all available members. The default value return
 #' @param commons Imports all available members
@@ -39,7 +39,6 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
     match.arg(house)
 
     if (house == "all") {
-        # Working
 
         baseurl_allMems <- "http://lda.data.parliament.uk/members.json?_pageSize=500"
 
@@ -56,7 +55,6 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
         }
 
     } else if (house == "commons") {
-        # Working
 
         baseurl_allMems <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
 
@@ -73,7 +71,6 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
         }
 
     } else if (house == "lords") {
-        # Working
 
         baseurl_allMems <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
 
@@ -103,7 +100,6 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
         # message('Retrieving page ', i+1, ' of ', allMemsJpage+1) pages[[i + 1]] <- mydata$result$items }
 
     } else if (house == "lordsInterests") {
-        # Working
 
         MP.ID <- readline("Enter the members ID number: ")
 
@@ -131,14 +127,12 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
     }
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
-
-
 }
 
 
 #' MP Search
 #'
-#' This imports data on All Members of Parliament including the Lords and the Commons
+#' Search for an MP or Lord by name and constituency
 #'
 #'#' # Function searches for the string and returns a data frame with all matches from
 #' # both houses of parliament. Returns all partial matches in the members' names,

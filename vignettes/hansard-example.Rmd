@@ -1,0 +1,129 @@
+---
+title: "hansard-example"
+author: "Evan Odell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{hansard-example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`hansard` is an R package to pull data from the UK parliament through the data.parliament.uk API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a limited range of arguments, and functions that require additional information to retrieve the data you requested will ask for after you execute the function.
+
+
+##Installing `hansard`
+
+###From CRAN
+
+install.packages("hansard")
+
+###From GitHub (Development Version)
+
+install.packages("devtools")
+devtools::install_github("EvanOdell/hansard")
+
+###Load `hansard`
+
+library("hansard")
+
+
+##Using `hansard`
+
+There are 24 functions that currently work with the Parliamentary API:
+
+`all_answered_questions`
+
+`bills`
+
+`commons_answered_questions`
+
+`commons_divisions`
+
+`commons_oral_question_times`
+
+`commons_oral_questions`
+
+`commons_terms`
+
+`commons_written_questions`
+
+`constituencies`
+
+`early_day_motions`
+
+`election_results`
+
+`elections`
+
+`epetition`
+
+`lords_ammendments`
+
+`lords_attendance`
+
+`lords_divisions`
+
+`lords_written_questions`
+
+`members`
+
+`members_search`
+
+`papers_laid`
+
+`publication_logs`
+
+`research_briefings`
+
+`sessions_info`
+
+`tv_programmes`
+
+
+
+
+###Using `members_search`
+Looking up information on an individual MP or Lord through the Parliamentary API requires knowing their parliamentary ID number. This can be hard to find on the web, but luckily you can look it up through the API. We want information on the voting record of Labour MP for Hackney North and Stoke Newington Diane Abbott, but we don't know her ID number, so we search for her:
+
+```{r}
+library(hansard)
+members_search("abbot")
+
+```
+The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her.
+
+
+###Using `commons_divisions`
+
+The `commons_divisions` function returns divisions in the House of Commons and the divisions that a member votes no or aye in. The example below returns all Commons Divisions where Diane Abbott voted aye.
+
+```{r results = "hide",warning = FALSE,eval = FALSE}
+x <- commons_divisions("aye")
+#> Enter Member ID: 172
+#> Retrieving page 1 of 4
+#> Retrieving page 2 of 4
+#> Retrieving page 3 of 4
+#> Retrieving page 4 of 4
+#> head(x)
+#>  _about                                                              title
+#> 1 http://data.parliament.uk/resources/626911                            Opposition Motion: Community Pharmacies
+#> 2 http://data.parliament.uk/resources/626953                           Opposition Motion: Police Officer Safety
+#> 3 http://data.parliament.uk/resources/621252                                           Opposition Motion: Yemen
+#> 4 http://data.parliament.uk/resources/607490 Closure Motion: Sexual Offences (Pardons Etc.) Bill second reading
+#> 5 http://data.parliament.uk/resources/582798      Opposition Motion: NHS sustainabiliy and transformation plans
+#> 6 http://data.parliament.uk/resources/576587                                Finance Bill: Report Stage Amdt 174
+#>                 uin date._value date._datatype
+#> 1 CD:2016-11-02:142  2016-11-02       dateTime
+#> 2 CD:2016-11-02:143  2016-11-02       dateTime
+#> 3 CD:2016-10-26:139  2016-10-26       dateTime
+#> 4 CD:2016-10-21:138  2016-10-21       dateTime
+#> 5 CD:2016-09-14:134  2016-09-14       dateTime
+#> 6 CD:2016-09-06:125  2016-09-06       dateTime
+
+```
+
+
+
+
+

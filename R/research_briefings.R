@@ -1,7 +1,7 @@
 
 #' Parliamentary Research Briefings
 #'
-#' This imports data on  Parliamentary Research Briefings
+#' Imports data on  Parliamentary Research Briefings
 #' @param resType The type of data you want, allows the arguments 'all', 'topics', 'types',
 #' # 'byTopic','subTopic' and 'topicSubTopic'
 #' @param all Imports a data frame with all available Parliamentary Research Briefings.

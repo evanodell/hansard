@@ -2,7 +2,7 @@
 
 #' Parliamentary Thesaurus
 #'
-#' This imports the parliamentary thesaurus
+#' Imports the parliamentary thesaurus
 #' @param termsType The type of data you want, allows the argument 'all'
 #' @param all Imports all information in the parliamentary thesaurus
 #' @keywords parliamentary thesaurus

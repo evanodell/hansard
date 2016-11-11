@@ -10,7 +10,7 @@ election_results(all = TRUE)
 \item{all}{Imports all available election results Defaults to TRUE.}
 }
 \description{
-This imports data on general election results
+Imports data on general election results
 }
 \examples{
 \donttest{

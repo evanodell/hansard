@@ -16,7 +16,7 @@ lords_written_questions(lordsWritType = c("all", "department", "dates"))
 \item{dates}{Imports all available written questions from between two given dates}
 }
 \description{
-This imports data on House of Lords written questions
+Imports data on House of Lords written questions
 }
 \examples{
 \donttest{

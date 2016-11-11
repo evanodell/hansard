@@ -14,7 +14,7 @@ sessions_info(sesType = c("all", "days"))
 \item{days}{Imports information on the days in all available parliamentary sessions}
 }
 \description{
-This imports data on Parliamentary Sessions
+Imports data on Parliamentary Sessions
 }
 \examples{
 \donttest{

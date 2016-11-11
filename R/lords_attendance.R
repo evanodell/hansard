@@ -1,7 +1,7 @@
 
 #' House of Lords Attendance
 #'
-#' This imports data on House of Lords attendance
+#' Imports data on House of Lords attendance
 #' @param lordsAttendType Accepts arguments 'all' and 'date'
 #' @param all Imports all available House of Lords attendance records
 #' @param date Imports all available House of Lords attendance records for a given date

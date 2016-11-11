@@ -18,7 +18,7 @@ lords_divisions(lordsDivType = c("all", "date", "notContent", "content"))
 \item{content}{Imports all divisions where a given lord voted content.}
 }
 \description{
-This imports data on House of Lords divisions
+Imports data on House of Lords divisions
 #' @param type The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 }
 \examples{

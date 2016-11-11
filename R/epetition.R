@@ -2,7 +2,7 @@
 
 #' ePetitions
 #'
-#' This imports data on petitions
+#' Imports data on petitions
 #' @param petType The type of data you want, allows the arguments 'all', 'byConstituency',
 #' # 'petitionID', 'response', and 'idConstituency'
 #' @param all Imports all available epetitions

@@ -1,7 +1,7 @@
 
 #' House of Commons Oral Questions
 #'
-#' This imports data on House of Commons oral questions
+#' Imports data on House of Commons oral questions
 #' @param comsOralType The type of data you want, allows the arguments 'all' and 'times'
 #' @param all Imports all available oral questions
 #' @param times Imports the times of all available oral questions

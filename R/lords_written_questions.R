@@ -1,7 +1,7 @@
 
 #' House of Lords Written Questions
 #'
-#' This imports data on House of Lords written questions
+#' Imports data on House of Lords written questions
 #' @param lordsWritType The type of data you want, allows the arguments 'all', 'department' and 'dates'
 #' @param all Imports all available written questions
 #' @param department Imports all available written questions answered by a given department

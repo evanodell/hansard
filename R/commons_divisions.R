@@ -2,7 +2,7 @@
 
 #' House of Commons Divisions
 #'
-#' This imports data on House of Commons divisions
+#' Imports data on House of Commons divisions
 #' @param comsDivType The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 #' @param all Imports all available divisions.
 #' @param date Imports all available divisions on a date.
@@ -16,13 +16,13 @@
 #' # Returns all divisions
 #'
 #' # x <- commons_divisions('date')
-#' # Returns all divisions on a given date
+#' # Requests a date, and returns all divisions on that date
 #'
 #' # x <- commons_divisions('no')
-#' # Returns all divisions in which a given MP voted no
+#' # Requests an MP ID number, and returns all divisions in which that MP voted no
 #'
 #' # x <- commons_divisions('aye')
-#' # Returns all divisions in which a given MP voted aye
+#' # Requests an MP ID number, and returns all divisions in which that MP voted aye
 #' }
 #'
 
@@ -48,7 +48,7 @@ commons_divisions <- function(comsDivType = c("all", "date", "no", "aye")) {
 
     } else if (comsDivType == "date") {
 
-        divis_date <- readline("Select division date: ")
+        divis_date <- readline("Enter division date (yyyy-mm-dd): ")
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/date/"
 

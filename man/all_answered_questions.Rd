@@ -14,7 +14,7 @@ all_answered_questions(allAnsType = c("all", "askedBy"))
 \item{askedBy}{Requests a member ID, and imports data on all available questions asked by that member}
 }
 \description{
-This imports data on answered parliamentary questions
+Imports data on answered parliamentary questions
 }
 \examples{
 \donttest{
