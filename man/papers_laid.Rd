@@ -12,7 +12,7 @@ papers_laid(paperType = c("all"))
 \item{all}{Imports all available papers laid}
 }
 \description{
-This imports data on Papers Laid
+Imports data on Papers Laid
 }
 \examples{
 \donttest{

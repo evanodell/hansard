@@ -28,7 +28,7 @@ research_briefings(resType = c("all", "topics", "types", "byTopic",
 # Parliamentary Research Briefings on that subtopic}
 }
 \description{
-This imports data on  Parliamentary Research Briefings
+Imports data on  Parliamentary Research Briefings
 }
 \examples{
 \donttest{

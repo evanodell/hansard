@@ -18,7 +18,7 @@ commons_divisions(comsDivType = c("all", "date", "no", "aye"))
 \item{aye}{Imports all divisions where a given MP voted aye.}
 }
 \description{
-This imports data on House of Commons divisions
+Imports data on House of Commons divisions
 }
 \examples{
 \donttest{
@@ -27,13 +27,13 @@ This imports data on House of Commons divisions
 # Returns all divisions
 
 # x <- commons_divisions('date')
-# Returns all divisions on a given date
+# Requests a date, and returns all divisions on that date
 
 # x <- commons_divisions('no')
-# Returns all divisions in which a given MP voted no
+# Requests an MP ID number, and returns all divisions in which that MP voted no
 
 # x <- commons_divisions('aye')
-# Returns all divisions in which a given MP voted aye
+# Requests an MP ID number, and returns all divisions in which that MP voted aye
 }
 
 }

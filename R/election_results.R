@@ -1,7 +1,7 @@
 
 #' Elections Results
 #'
-#' This imports data on general election results
+#' Imports data on general election results
 #' @param all Imports all available election results Defaults to TRUE.
 #' @keywords Election Results
 #' @export

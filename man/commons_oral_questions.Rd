@@ -14,7 +14,7 @@ commons_oral_questions(comsOralType = c("all", "times"))
 \item{times}{Imports the times of all available oral questions}
 }
 \description{
-This imports data on House of Commons oral questions
+Imports data on House of Commons oral questions
 }
 \examples{
 \donttest{

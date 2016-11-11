@@ -1,7 +1,7 @@
 
 #' Parliamentary Sessions
 #'
-#' This imports data on Parliamentary Sessions
+#' Imports data on Parliamentary Sessions
 #' @param sesType The type of data being requested, allows the arguments 'all' and 'days'
 #' @param all Imports information on all available parliamentary sessions
 #' @param days Imports information on the days in all available parliamentary sessions

@@ -22,7 +22,7 @@ epetition(petType = c("all", "byConstituency", "petitionID", "response",
 \item{idConstituency}{Requests a petition ID, and then returns the signatures per constituency for that petition}
 }
 \description{
-This imports data on petitions
+Imports data on petitions
 }
 \examples{
 \donttest{

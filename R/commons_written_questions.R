@@ -1,7 +1,7 @@
 
 #' House of Commons Bills Written Questions
 #'
-#' This imports data on House of Commons written questions
+#' Imports data on House of Commons written questions
 #' @param comsWritType The type of data you want, allows the arguments 'all', 'department' and 'dates'
 #' @param all Imports all available written questions
 #' @param department Imports all available written questions answered by a given department

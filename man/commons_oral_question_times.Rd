@@ -10,7 +10,7 @@ commons_oral_question_times(all = TRUE)
 \item{all}{Imports all available bills Defaults to TRUE.}
 }
 \description{
-This imports data on House of Commons oral question times
+Imports data on House of Commons oral question times
 }
 \examples{
 \donttest{

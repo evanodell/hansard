@@ -2,7 +2,7 @@
 
 #' House of Commons Constituencies
 #'
-#' This imports data on House of Commons constituencies
+#' Imports data on House of Commons constituencies
 #' @param contType The type of data you want, allows the arguments 'all'
 #' @param all Imports all available constituencies information Defaults to TRUE.
 #' @keywords Constituencies

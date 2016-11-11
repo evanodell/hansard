@@ -1,7 +1,7 @@
 
 #' House of Commons Oral Question Times
 #'
-#' This imports data on House of Commons oral question times
+#' Imports data on House of Commons oral question times
 #' @param all Imports all available bills Defaults to TRUE.
 #' @keywords Oral Questions
 #' @export

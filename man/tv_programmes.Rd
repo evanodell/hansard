@@ -14,7 +14,7 @@ tv_programmes(AVtype = c("TV", "clips"))
 \item{clips}{Imports data on all video clips produced by the Westminster Parliament}
 }
 \description{
-This imports data on TV broadcasts
+Imports data on TV broadcasts
 }
 \examples{
 \donttest{

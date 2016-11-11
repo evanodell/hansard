@@ -1,7 +1,7 @@
 
 #' Bills
 #'
-#' This imports data on House of Commons and House of Lords bills
+#' Imports data on House of Commons and House of Lords bills
 #' @param billType The type of data you want, allows the arguments 'ammended', 'publications' and 'stageTypes'
 #' @param ammended Imports a data frame with all ammended bills
 #' @param stageTypes Imports a data frame with all bill stage types

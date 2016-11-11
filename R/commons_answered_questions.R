@@ -2,7 +2,7 @@
 
 #' House of Commons Answered Questions
 #'
-#' This imports data on House of Commons answered questions
+#' Imports data on House of Commons answered questions
 #' @param comsAnsType The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'
 #' @param all Imports all available answered questions
 #' @param date Imports all available answered questions on a particular date
@@ -77,16 +77,16 @@ commons_answered_questions <- function(comsAnsType = c("all", "date", "departmen
 
         qDepartment <- readline("Enter department: ")
 
-        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json"
+        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions/answeringdepartment.json?q="
 
-        comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=0", "&AnsweringBody.=", qDepartment))
+        comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDepartment))
 
         comAnsweredJpage <- round(comAnswered$result$totalResults/comAnswered$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
         for (i in 0:comAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "?_page=", i, "&AnsweringBody.=", qDepartment), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDepartment, "&_pageSize=500", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

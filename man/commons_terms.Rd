@@ -12,7 +12,7 @@ commons_terms(termsType = c("all"))
 \item{all}{Imports all information in the parliamentary thesaurus}
 }
 \description{
-This imports the parliamentary thesaurus
+Imports the parliamentary thesaurus
 }
 \examples{
 \donttest{

@@ -2,7 +2,7 @@
 
 #' Elections
 #'
-#' This imports data on elections
+#' Imports data on elections
 #' @param all Imports all available elections Defaults to TRUE.
 #' @keywords Elections
 #' @export

@@ -16,7 +16,7 @@ commons_written_questions(comsWritType = c("all", "department", "dates"))
 \item{dates}{Imports all available written questions from between two given dates}
 }
 \description{
-This imports data on House of Commons written questions
+Imports data on House of Commons written questions
 }
 \examples{
 \donttest{

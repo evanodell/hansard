@@ -2,7 +2,7 @@
 
 #' House of Lords Divisions
 #'
-#' This imports data on House of Lords divisions
+#' Imports data on House of Lords divisions
 #' #' @param type The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 #' @param lordsDivType Accepts arguments 'all', 'date', 'notContent' and 'content'
 #' @param all Imports all available divisions.

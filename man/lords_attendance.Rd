@@ -14,7 +14,7 @@ lords_attendance(lordsAttendType = c("all", "date"))
 \item{date}{Imports all available House of Lords attendance records for a given date}
 }
 \description{
-This imports data on House of Lords attendance
+Imports data on House of Lords attendance
 }
 \examples{
 \donttest{

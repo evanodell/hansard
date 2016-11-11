@@ -2,7 +2,7 @@
 
 #' TV Programmes
 #'
-#' This imports data on TV broadcasts
+#' Imports data on TV broadcasts
 #' @param AVtype The type of data you want, allows the arguments 'TV' and 'clips'
 #' @param TV Imports data on all TV broadcasts produced by the Westminster Parliament
 #' @param clips Imports data on all video clips produced by the Westminster Parliament

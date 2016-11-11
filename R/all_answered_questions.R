@@ -1,7 +1,7 @@
 
 #' Parliamentary Answered Questions
 #'
-#' This imports data on answered parliamentary questions
+#' Imports data on answered parliamentary questions
 #' @param allAnsType The type of questions you want, accepts the arguments 'all' and 'askedBy'
 #' @param all Imports data on all available answered questions.
 #' @param askedBy Requests a member ID, and imports data on all available questions asked by that member

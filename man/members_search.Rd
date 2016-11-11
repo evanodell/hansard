@@ -10,7 +10,7 @@ members_search(Search = NULL)
 \item{Search}{Search for members by name and constituency. Defaults to NULL.}
 }
 \description{
-This imports data on All Members of Parliament including the Lords and the Commons
+Search for an MP or Lord by name and constituency
 }
 \details{
 #' # Function searches for the string and returns a data frame with all matches from

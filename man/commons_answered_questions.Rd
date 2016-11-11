@@ -21,7 +21,7 @@ commons_answered_questions(comsAnsType = c("all", "date", "department",
 \item{recent}{Imports all available answered questions - NOT WORKING!}
 }
 \description{
-This imports data on House of Commons answered questions
+Imports data on House of Commons answered questions
 }
 \examples{
 \donttest{

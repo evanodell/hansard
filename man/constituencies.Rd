@@ -12,7 +12,7 @@ constituencies(contType = c("all"))
 \item{all}{Imports all available constituencies information Defaults to TRUE.}
 }
 \description{
-This imports data on House of Commons constituencies
+Imports data on House of Commons constituencies
 }
 \examples{
 \donttest{

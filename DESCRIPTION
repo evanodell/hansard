@@ -17,3 +17,6 @@ Imports:
     jsonlite,
     plyr
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

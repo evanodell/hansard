@@ -7,10 +7,10 @@
 lords_ammendments(all = TRUE)
 }
 \arguments{
-\item{all}{Imports all available House of Lords Ammendments Defaults to TRUE.}
+\item{all}{Imports all available House of Lords Ammendments. Defaults to TRUE.}
 }
 \description{
-This imports data on House of Lords Ammendments
+Imports data on House of Lords Ammendments
 }
 \examples{
 \donttest{

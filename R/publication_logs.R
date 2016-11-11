@@ -2,7 +2,7 @@
 
 #' Publication Logs
 #'
-#' This imports data on Publication Logs
+#' Imports data on Publication Logs
 #' @param all Imports all available Publication Logs. Defaults to TRUE.
 #' @keywords Publication Logs
 #' @export

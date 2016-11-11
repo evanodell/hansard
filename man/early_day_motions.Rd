@@ -12,7 +12,7 @@ early_day_motions(edmType = c("all"))
 \item{all}{Imports all available EDMs.}
 }
 \description{
-This imports data on early day motions
+Imports data on early day motions
 }
 \examples{
 \donttest{

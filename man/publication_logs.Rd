@@ -10,7 +10,7 @@ publication_logs(all = TRUE)
 \item{all}{Imports all available Publication Logs. Defaults to TRUE.}
 }
 \description{
-This imports data on Publication Logs
+Imports data on Publication Logs
 }
 \examples{
 \donttest{
