@@ -4,14 +4,12 @@
 #'
 #' Imports the parliamentary thesaurus
 #' @param termsType The type of data you want, allows the argument 'all'
-#' @param all Imports all information in the parliamentary thesaurus
+#' @param all Returns a data frame with all definitions in the parliamentary thesaurus
 #' @keywords parliamentary thesaurus
 #' @export
-#' @examples \donttest{
-#' #NOT RUN
-#' # x <- commons_terms('all')
-#' # head(x)
-#' # Returns a data frame with all definitions in the parliamentary thesaurus
+#' @examples \dontrun{
+#' x <- commons_terms('all')
+#' head(x)
 #'  }
 
 commons_terms <- function(termsType = c("all")) {

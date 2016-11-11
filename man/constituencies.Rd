@@ -9,16 +9,14 @@ constituencies(contType = c("all"))
 \arguments{
 \item{contType}{The type of data you want, allows the arguments 'all'}
 
-\item{all}{Imports all available constituencies information Defaults to TRUE.}
+\item{all}{Returns a data frame of all constituencies. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons constituencies
 }
 \examples{
-\donttest{
-### NOT RUN:
-#x <- constituencies('all')
-# Returns a data frame of all constituencies
+\dontrun{
+x <- constituencies('all')
 }
 
 }

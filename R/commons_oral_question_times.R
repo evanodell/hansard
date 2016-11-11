@@ -2,13 +2,11 @@
 #' House of Commons Oral Question Times
 #'
 #' Imports data on House of Commons oral question times
-#' @param all Imports all available bills Defaults to TRUE.
+#' @param all Returns a data frame with all of the oral question times. Defaults to TRUE.
 #' @keywords Oral Questions
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- commons_oral_question_times(all = TRUE)
-#' #Returns a data frame with all of the oral question times
+#' @examples \dontrun{
+#' x <- commons_oral_question_times(all = TRUE)
 #' }
 
 commons_oral_question_times <- function(all = TRUE) {

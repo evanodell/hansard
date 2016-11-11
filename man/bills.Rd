@@ -24,13 +24,12 @@ including the query to return all bills currently before the house, is inconsist
 and cannot be parsed into a data frame.
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- bills('all')
+\dontrun{
+x <- bills('all')
 
-# x <- bills('ammended')
+x <- bills('ammended')
 
-# x <- bills('stageTypes')
+x <- bills('stageTypes')
 }
 }
 \keyword{bills}

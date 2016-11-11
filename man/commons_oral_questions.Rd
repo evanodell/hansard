@@ -17,11 +17,10 @@ commons_oral_questions(comsOralType = c("all", "times"))
 Imports data on House of Commons oral questions
 }
 \examples{
-\donttest{
-### NOT RUN:
-# x <- commons_oral_questions('all')
-#
-# x <- commons_oral_questions('times')
+\dontrun{
+x <- commons_oral_questions('all')
+
+x <- commons_oral_questions('times')
 }
 }
 \keyword{bills}

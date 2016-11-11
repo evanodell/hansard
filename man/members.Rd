@@ -7,44 +7,29 @@
 members(house = c("all", "commons", "lords", "lordsInterests"))
 }
 \arguments{
-\item{house}{The type of data you want, allows the arguments}
+\item{house}{The type of data you want, allows the arguments 'all', 'commons', 'lords', 'lordsInterests'}
 
-\item{all}{Imports all available members. The default value return}
+\item{all}{Returns a data frame with information on all members of Parliament, including both the House of Lords and the House of Commons. The data frame includes both current and previous members, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.}
 
-\item{commons}{Imports all available members}
+\item{commons}{Returns a data frame with information on all members of the House of Commons. The data frame includes both current and previous members of the House of Commons, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.}
 
-\item{lords}{Imports all available members}
+\item{lords}{Returns a data frame with all available members of the House of Lords.}
 
-\item{lordsInterests}{Imports all available members}
+\item{lordsInterests}{Requests a member ID, and returns a data frame of the registered interests of that member of the House of Lords.}
 }
 \description{
 Imports data on All Members of Parliament including the Lords and the Commons
 }
 \examples{
-\donttest{
-### NOT RUN:
-# x <- members('all')
-# Returns a data frame with information on all members of Parliament, including both
-# the House of Lords and the House of Commons. The data frame includes both current and
-# previous members, and the API currently does not have information on when a member first
-# sat in the house, or to distinguish current from former members.
+\dontrun{
+x <- members('all')
 
-# y <- members('commons')
-# Returns a data frame with information on all members of the House of Commons. The data
-# frame includes both current and previous members of the House of Commons, and the API
-# currently does not have information on when a member first sat in the house, or to
-# distinguish current from former members.
+x <- members('commons')
 
-# z <- members('lords')
-# Returns a data frame with information on all members of the House of Lords. The data
-# frame includes both current and previous members of the House of Lords, and the API
-# currently does not have information on when a member first sat in the house, or to
-# distinguish current from former members.
+x <- members('lords')
 
-
-# b <- members('lordsInterests')
-# Requests a member ID, and returns a dataframe of the registered interests of that
-# member of the House of Lords. }
+b <- members('lordsInterests')
+}
 }
 \keyword{All}
 \keyword{Members}

@@ -7,17 +7,15 @@
 lords_ammendments(all = TRUE)
 }
 \arguments{
-\item{all}{Imports all available House of Lords Ammendments. Defaults to TRUE.}
+\item{all}{Returns a data frame with all available House of Lords Ammendments. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Lords Ammendments
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- lords_ammendments()
-# head(x)
-# Returns all lords ammendments }
+\dontrun{
+x <- lords_ammendments()
+}
 }
 \keyword{Ammendments}
 \keyword{House}

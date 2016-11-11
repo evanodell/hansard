@@ -25,23 +25,16 @@ epetition(petType = c("all", "byConstituency", "petitionID", "response",
 Imports data on petitions
 }
 \examples{
-\donttest{
-#### NOT RUN
-# x <- epetition('all')
+\dontrun{
+x <- epetition('all')
 
-# x <- epetition('byConstituency')
+x <- epetition('byConstituency')
 
-# x <- epetition('petitionID')
-### RETURNS:
-# Enter the petition ID:
+x <- epetition('petitionID')
 
 # x <- epetition('response')
-### RETURNS:
-# Enter the petition ID:
 
 # x <- epetition('idConstituency')
-### RETURNS:
-# Enter the petition ID:
 
 }
 }

@@ -7,16 +7,14 @@
 elections(all = TRUE)
 }
 \arguments{
-\item{all}{Imports all available elections Defaults to TRUE.}
+\item{all}{Returns a data frame with the date and type of all general and by-elections since 1945. Defaults to TRUE.}
 }
 \description{
 Imports data on elections
 }
 \examples{
-\donttest{
-### NOT RUN:
-# x <- elections(all = TRUE)
-# Returns a data frame with the date and type of all general and by-elections since 1945
+\dontrun{
+x <- elections(all = TRUE)
 }
 }
 \keyword{Elections}

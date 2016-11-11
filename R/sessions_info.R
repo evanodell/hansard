@@ -7,13 +7,13 @@
 #' @param days Imports information on the days in all available parliamentary sessions
 #' @keywords Parliamentary Sessions
 #' @export
-#' @examples \donttest{
-#' # NOT RUN
-#' # x <- sessions_info('all')
-#' # head(x)
-#' #
-#' # x <- sessions_info('days')
-#' # head(x)}
+#' @examples \dontrun{
+#'
+#' x <- sessions_info('all')
+#' head(x)
+#'
+#' x <- sessions_info('days')
+#' head(x)}
 
 sessions_info <- function(sesType = c("all", "days")) {
     

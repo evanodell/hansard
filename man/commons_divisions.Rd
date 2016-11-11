@@ -9,31 +9,26 @@ commons_divisions(comsDivType = c("all", "date", "no", "aye"))
 \arguments{
 \item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'}
 
-\item{all}{Imports all available divisions.}
+\item{all}{Returns a data frame with all available divisions.}
 
-\item{date}{Imports all available divisions on a date.}
+\item{date}{Returns a data frame with all available divisions on a date.}
 
-\item{no}{Imports all divisions where a given MP voted no.}
+\item{no}{Returns a data frame with all divisions where a given MP voted no.}
 
-\item{aye}{Imports all divisions where a given MP voted aye.}
+\item{aye}{Returns a data frame with all divisions where a given MP voted aye.}
 }
 \description{
 Imports data on House of Commons divisions
 }
 \examples{
-\donttest{
-### NOT RUN:
+\dontrun{
 # x <- commons_divisions('all')
-# Returns all divisions
 
 # x <- commons_divisions('date')
-# Requests a date, and returns all divisions on that date
 
 # x <- commons_divisions('no')
-# Requests an MP ID number, and returns all divisions in which that MP voted no
 
 # x <- commons_divisions('aye')
-# Requests an MP ID number, and returns all divisions in which that MP voted aye
 }
 
 }

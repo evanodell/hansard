@@ -17,13 +17,13 @@ sessions_info(sesType = c("all", "days"))
 Imports data on Parliamentary Sessions
 }
 \examples{
-\donttest{
-# NOT RUN
-# x <- sessions_info('all')
-# head(x)
-#
-# x <- sessions_info('days')
-# head(x)}
+\dontrun{
+
+x <- sessions_info('all')
+head(x)
+
+x <- sessions_info('days')
+head(x)}
 }
 \keyword{Parliamentary}
 \keyword{Sessions}

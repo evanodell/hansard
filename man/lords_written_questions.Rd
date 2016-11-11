@@ -9,36 +9,23 @@ lords_written_questions(lordsWritType = c("all", "department", "dates"))
 \arguments{
 \item{lordsWritType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
 
-\item{all}{Imports all available written questions}
+\item{all}{Returns a data frame all written questions from the house of lords}
 
-\item{department}{Imports all available written questions answered by a given department}
+\item{department}{Requests a department, and then returns a data frame with all written questions answered by that department}
 
-\item{dates}{Imports all available written questions from between two given dates}
+\item{dates}{Requests two dates, and returns a data frame with all available written questions from between the two given dates}
 }
 \description{
 Imports data on House of Lords written questions
 }
 \examples{
-\donttest{
-# NOT RUN
-# Returns all written questions from the house of lords
-# x <- lords_written_questions('all')
-# head(x)
+\dontrun{
+x <- lords_written_questions('all')
 
-# NOT RUN
-# Requests a department, and then returns all written questions answered by that department
 # x <- lords_written_questions('department')
-# Enter the name of the answering department: Health
-# head(x) # Returns all answered questions where the answering department
-          # includes 'Health' in its name
-# NOT RUN
-# Requests two dates, and then returns all written questions within those two dates
+
 # x <- lords_written_questions('dates')
-# x <- lords_written_questions('dates')
-####RETURNS:
-# Enter start date(yyyy-mm-dd): 2016-10-10
-# Enter start date(yyyy-mm-dd): 2016-10-15
-# head(x) }
+}
 }
 \keyword{House}
 \keyword{Lords}

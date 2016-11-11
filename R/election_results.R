@@ -2,13 +2,11 @@
 #' Elections Results
 #'
 #' Imports data on general election results
-#' @param all Imports all available election results Defaults to TRUE.
+#' @param all Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.
 #' @keywords Election Results
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- election_results(all=TRUE)
-#' #Returns general and by-election resuls for each consituency from the 2010 general election onwards.
+#' @examples \dontrun{
+#' x <- election_results(all=TRUE)
 #' }
 
 election_results <- function(all = TRUE) {

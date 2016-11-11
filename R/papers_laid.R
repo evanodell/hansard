@@ -3,12 +3,11 @@
 #'
 #' Imports data on Papers Laid
 #' @param paperType The type of data you want, allows the arguments 'all', 'department' and 'dates'
-#' @param all Imports all available papers laid
+#' @param all Returns a data frame with all available papers laid.
 #' @keywords Papers Laid
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- papers_laid('all') }
+#' @examples \dontrun{
+#' x <- papers_laid('all') }
 #'
 
 papers_laid <- function(paperType = c("all")) {

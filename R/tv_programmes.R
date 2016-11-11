@@ -4,19 +4,17 @@
 #'
 #' Imports data on TV broadcasts
 #' @param AVtype The type of data you want, allows the arguments 'TV' and 'clips'
-#' @param TV Imports data on all TV broadcasts produced by the Westminster Parliament
-#' @param clips Imports data on all video clips produced by the Westminster Parliament
+#' @param TV Returns a data frame with details on all TV broadcasts produced by the Westminster Parliament.
+#' @param clips Returns a data frame with details on all video clips produced by the Westminster Parliament.
 #' @keywords TV
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- tv_programmes('TV')
-#' # Returns a data frame with details on all TV broadcasts produced by the
-#' # Westminster Parliament
+#' @examples \dontrun{
 #'
-#' # x <- tv_programmes('clips')
-#' # Returns a data frame with details on all video clips produced by the
-#' # Westminster Parliament}
+#' x <- tv_programmes('TV')
+#'
+#'
+#' x <- tv_programmes('clips')
+#' }
 
 tv_programmes <- function(AVtype = c("TV", "clips")) {
     

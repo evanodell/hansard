@@ -9,23 +9,21 @@ tv_programmes(AVtype = c("TV", "clips"))
 \arguments{
 \item{AVtype}{The type of data you want, allows the arguments 'TV' and 'clips'}
 
-\item{TV}{Imports data on all TV broadcasts produced by the Westminster Parliament}
+\item{TV}{Returns a data frame with details on all TV broadcasts produced by the Westminster Parliament.}
 
-\item{clips}{Imports data on all video clips produced by the Westminster Parliament}
+\item{clips}{Returns a data frame with details on all video clips produced by the Westminster Parliament.}
 }
 \description{
 Imports data on TV broadcasts
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- tv_programmes('TV')
-# Returns a data frame with details on all TV broadcasts produced by the
-# Westminster Parliament
+\dontrun{
 
-# x <- tv_programmes('clips')
-# Returns a data frame with details on all video clips produced by the
-# Westminster Parliament}
+x <- tv_programmes('TV')
+
+
+x <- tv_programmes('clips')
+}
 }
 \keyword{TV}
 

@@ -3,14 +3,12 @@
 #' Publication Logs
 #'
 #' Imports data on Publication Logs
-#' @param all Imports all available Publication Logs. Defaults to TRUE.
+#' @param all Returns a data frame with all available Publication Logs. Defaults to TRUE.
 #' @keywords Publication Logs
 #' @export
-#' @examples \donttest{
-#' # NOT RUN:
+#' @examples \dontrun{
 #' # x <- publication_logs()
-#' #' # returns a data frame with all publication logs
-#' # head(x) ### }
+#' }
 
 publication_logs <- function(all = TRUE) {
     

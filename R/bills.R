@@ -8,13 +8,12 @@
 #' @param publications Imports a data frame with all bill publications
 #' @keywords bills
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- bills('all')
+#' @examples \dontrun{
+#' x <- bills('all')
 #'
-#' # x <- bills('ammended')
+#' x <- bills('ammended')
 #'
-#' # x <- bills('stageTypes')
+#' x <- bills('stageTypes')
 #' }
 #' @note There are problems with the Bills API, as the JSON data available for some queries,
 #' including the query to return all bills currently before the house, is inconsistently formatted

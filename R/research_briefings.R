@@ -7,80 +7,24 @@
 #' @param all Imports a data frame with all available Parliamentary Research Briefings.
 #' @param topics Imports a data frame with all Parliamentary Research Briefings topics.
 #' @param types Imports a data frame with all Parliamentary Research Briefings types.
-#' @param subTopic Requests a topic, and imports a data frame with all of the possible
-#' # sub-topics for that topic.
-#' @param byTopic Requests a topic, and imports a data frame with all available
-#' # Parliamentary Research Briefings on that topic
-#' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with
-#' # all available
-#' # Parliamentary Research Briefings on that subtopic
+#' @param byTopic Requests a topic, and imports a data frame with all available Parliamentary Research Briefings on that topic
+#' @param subTopic Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.
+#' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with all available Parliamentary Research Briefings on that subtopic
 #' @keywords  Parliamentary Research Briefings
 #' @export
-#' @examples \donttest{
-#' # NOT RUN
-#' # x <- research_briefings('all')
-#' # head(x)
+#' @examples \dontrun{
+#' x <- research_briefings('all')
 #'
-#' # x <- research_briefings('topics')
-#' # print(x)
+#' x <- research_briefings('topics')
 #'
-#' # x <- research_briefings('types')
-#' # print(x)
+#' x <- research_briefings('types')
 #'
-#' # x <- research_briefings('byTopic')
-#' # RETURNS:
-#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#' # Enter sub-topic:  #yes
-#' # RETURNS:
-#' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
-#' # [3] 'Business, industry and consumers'             'Communities and families'
-#' # [5] 'Crime, civil law, justice and rights'         'Culture, media and sport'
-#' # [7] 'Defence'                                      'Economy and finance'
-#' # [9] 'Education'                                    'Employment and training'
-#' # [11] 'Energy and environment'                       'European Union'
-#' # [13] 'Health services and medicine'                 'Housing and planning'
-#' # [15] 'International affairs'                        'Parliament, government and politics'
-#' # [17] 'Science and technology'                       'Social Security and pensions'
-#' # [19] 'Social services'                              'Transport'
-#' # Enter Topic. For ease of use, copy and paste the topic: Education
-#' # head(x)
+#' x <- research_briefings('byTopic')
 #'
-#' # x <- research_briefings('subTopic')
-#' # RETURNS:
-#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#' # Enter sub-topic:  #yes
-#' # RETURNS:
-#' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
-#' # [3] 'Business, industry and consumers'             'Communities and families'
-#' # [5] 'Crime, civil law, justice and rights'         'Culture, media and sport'
-#' # [7] 'Defence'                                      'Economy and finance'
-#' # [9] 'Education'                                    'Employment and training'
-#' # [11] 'Energy and environment'                       'European Union'
-#' # [13] 'Health services and medicine'                 'Housing and planning'
-#' # [15] 'International affairs'                        'Parliament, government and politics'
-#' # [17] 'Science and technology'                       'Social Security and pensions'
-#' # [19] 'Social services'                              'Transport'
-#' # Enter Topic. For ease of use, copy and paste the topic: Education
-#' # head(x)
+#' x <- research_briefings('subTopic')
 #'
-#' # x <- research_briefings('topicSubTopic')
-#' # NOT RUN
-#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#' # Enter sub-topic: yes
-#' # RETURNS:
-#' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
-#' # [3] 'Business, industry and consumers'             'Communities and families'
-#' # [5] 'Crime, civil law, justice and rights'         'Culture, media and sport'
-#' # [7] 'Defence'                                      'Economy and finance'
-#' # [9] 'Education'                                    'Employment and training'
-#' # [11] 'Energy and environment'                       'European Union'
-#' # [13] 'Health services and medicine'                 'Housing and planning'
-#' # [15] 'International affairs'                        'Parliament, government and politics'
-#' # [17] 'Science and technology'                       'Social Security and pensions'
-#' # [19] 'Social services'                              'Transport'
-#' # Enter Topic. For ease of use, copy and paste the topic:
-#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#' # Enter sub-topic:}
+#' x <- research_briefings('topicSubTopic')
+#' }
 
 research_briefings <- function(resType = c("all", "topics", "types", "byTopic", "subTopic", "topicSubTopic")) {
     

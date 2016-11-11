@@ -7,16 +7,14 @@
 commons_oral_question_times(all = TRUE)
 }
 \arguments{
-\item{all}{Imports all available bills Defaults to TRUE.}
+\item{all}{Returns a data frame with all of the oral question times. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons oral question times
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- commons_oral_question_times(all = TRUE)
-#Returns a data frame with all of the oral question times
+\dontrun{
+x <- commons_oral_question_times(all = TRUE)
 }
 }
 \keyword{Oral}

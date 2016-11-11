@@ -7,17 +7,15 @@
 publication_logs(all = TRUE)
 }
 \arguments{
-\item{all}{Imports all available Publication Logs. Defaults to TRUE.}
+\item{all}{Returns a data frame with all available Publication Logs. Defaults to TRUE.}
 }
 \description{
 Imports data on Publication Logs
 }
 \examples{
-\donttest{
-# NOT RUN:
+\dontrun{
 # x <- publication_logs()
-#' # returns a data frame with all publication logs
-# head(x) ### }
+}
 }
 \keyword{Logs}
 \keyword{Publication}

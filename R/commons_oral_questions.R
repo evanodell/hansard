@@ -7,11 +7,10 @@
 #' @param times Imports the times of all available oral questions
 #' @keywords bills
 #' @export
-#' @examples \donttest{
-#' ### NOT RUN:
-#' # x <- commons_oral_questions('all')
-#' #
-#' # x <- commons_oral_questions('times')
+#' @examples \dontrun{
+#' x <- commons_oral_questions('all')
+#'
+#' x <- commons_oral_questions('times')
 #' }
 
 

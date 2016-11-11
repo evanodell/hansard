@@ -9,9 +9,9 @@ commons_written_questions(comsWritType = c("all", "department", "dates"))
 \arguments{
 \item{comsWritType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
 
-\item{all}{Imports all available written questions}
+\item{all}{Returns a data frame with all written questions}
 
-\item{department}{Imports all available written questions answered by a given department}
+\item{department}{Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
 
 \item{dates}{Imports all available written questions from between two given dates}
 }
@@ -19,18 +19,12 @@ commons_written_questions(comsWritType = c("all", "department", "dates"))
 Imports data on House of Commons written questions
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- commons_written_questions('all')
-#Returns all written questions
+\dontrun{
+x <- commons_written_questions('all')
 
-# x <- commons_written_questions('department')
-#Returns all written questions by department. The query acts as a search, so entering <health>
-# will return all questions answered by the Department of Health
+x <- commons_written_questions('department')
 
-
-# x <- commons_written_questions('dates')
-#Returns all written questions tabled between two chosen dates
+x <- commons_written_questions('dates')
 }
 }
 \keyword{Commons}

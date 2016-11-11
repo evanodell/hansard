@@ -4,13 +4,11 @@
 #'
 #' Imports data on House of Commons constituencies
 #' @param contType The type of data you want, allows the arguments 'all'
-#' @param all Imports all available constituencies information Defaults to TRUE.
+#' @param all Returns a data frame of all constituencies. Defaults to TRUE.
 #' @keywords Constituencies
 #' @export
-#' @examples \donttest{
-#' ### NOT RUN:
-#' #x <- constituencies('all')
-#' # Returns a data frame of all constituencies
+#' @examples \dontrun{
+#' x <- constituencies('all')
 #' }
 #'
 

@@ -9,15 +9,14 @@ papers_laid(paperType = c("all"))
 \arguments{
 \item{paperType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
 
-\item{all}{Imports all available papers laid}
+\item{all}{Returns a data frame with all available papers laid.}
 }
 \description{
 Imports data on Papers Laid
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- papers_laid('all') }
+\dontrun{
+x <- papers_laid('all') }
 
 }
 \keyword{Laid}

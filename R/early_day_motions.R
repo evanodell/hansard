@@ -3,13 +3,11 @@
 #'
 #' Imports data on early day motions
 #' @param edmType The type of data you want, allows the argument 'all'
-#' @param all Imports all available EDMs.
+#' @param all Returns a data frame of all early day motions
 #' @keywords EDM
 #' @export
-#' @examples \donttest{
-#' #### NOT RUN:
-#' # x <- early_day_motions('all')
-#' #Returns a data frame of all early day motions
+#' @examples \dontrun{
+#' x <- early_day_motions('all')
 #' }
 
 
@@ -19,7 +17,6 @@ early_day_motions <- function(edmType = c("all")) {
     
     if (edmType == "all") 
         {
-            # Working
             
             baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
             

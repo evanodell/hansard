@@ -9,32 +9,27 @@ lords_divisions(lordsDivType = c("all", "date", "notContent", "content"))
 \arguments{
 \item{lordsDivType}{Accepts arguments 'all', 'date', 'notContent' and 'content'}
 
-\item{all}{Imports all available divisions.}
+\item{all}{Returns a data frame with all available divisions in the House of Lords.}
 
-\item{date}{Imports all available divisions on a date.}
+\item{date}{Requests a date, and then returns a data frame with all divisions on that date.}
 
-\item{notContent}{Imports all divisions where a given lord voted not content.}
+\item{notContent}{Requests a member ID, and then returns a data frame with all divisions in which they have voted not content.}
 
-\item{content}{Imports all divisions where a given lord voted content.}
+\item{content}{Requests a member ID, and then returns a data frame with all divisions in which they have voted content.}
 }
 \description{
 Imports data on House of Lords divisions
 #' @param type The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
 }
 \examples{
-\donttest{
-### NOT RUN:
-# x <- lords_divisions('all')
-# Returns all divisions in the House of Lords
+\dontrun{
+x <- lords_divisions('all')
 
-# x <- lords_divisions('date')
-# Requests a date, and then returns all divisions on that date
+x <- lords_divisions('date')
 
-# x <- lords_divisions('notContent')
-# Requests a member ID, and then returns all divisions in which they have voted not content
+x <- lords_divisions('notContent')
 
-# x <- lords_divisions('content')
-# Requests a member ID, and then returns all divisions in which they have voted content
+x <- lords_divisions('content')
 }
 }
 \keyword{Divisions}

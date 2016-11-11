@@ -7,23 +7,22 @@
 lords_attendance(lordsAttendType = c("all", "date"))
 }
 \arguments{
-\item{lordsAttendType}{Accepts arguments 'all' and 'date'}
+\item{lordsAttendType}{Accepts arguments 'all' and 'date'.}
 
-\item{all}{Imports all available House of Lords attendance records}
+\item{all}{Returns a data frame with all available House of Lords attendance records.}
 
-\item{date}{Imports all available House of Lords attendance records for a given date}
+\item{date}{Requests a date and returns a data frame with all available House of Lords attendance records for that date.}
 }
 \description{
 Imports data on House of Lords attendance
 }
 \examples{
-\donttest{
-#### NOT RUN:
-# x <- lords_attendance('all')
-#Returns all House of Lords attendance
+\dontrun{
+x <- lords_attendance('all')
 
-# x <- lords_attendance('date')
-#Returns House of Lords attendance data for a given date }
+x <- lords_attendance('date')
+}
+
 }
 \keyword{Attendance}
 \keyword{House}
