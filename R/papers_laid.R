@@ -12,19 +12,19 @@
 #'
 
 papers_laid <- function(paperType = c("all")) {
-
+    
     match.arg(paperType)
-
+    
     if (paperType == "all") {
-
+        
         baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
-
+        
         papers <- jsonlite::fromJSON(baseurl_papers)
-
+        
         papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:papersJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_papers, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", papersJpage + 1)
@@ -32,7 +32,7 @@ papers_laid <- function(paperType = c("all")) {
         }
     }
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+    
 }
 
 

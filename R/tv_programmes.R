@@ -19,43 +19,43 @@
 #' # Westminster Parliament}
 
 tv_programmes <- function(AVtype = c("TV", "clips")) {
-
+    
     match.arg(AVtype)
-
+    
     if (AVtype == "TV") {
-
+        
         baseurl_tv <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
-
+        
         tv <- jsonlite::fromJSON(baseurl_tv)
-
+        
         tvJpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:tvJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_tv, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", tvJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (AVtype == "clips") {
-
+        
         baseurl_tv <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
-
+        
         tv <- jsonlite::fromJSON(baseurl_tv)
-
+        
         tvJpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:tvJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_tv, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", tvJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     }
-
+    
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+    
 }

@@ -83,186 +83,186 @@
 #' # Enter sub-topic:}
 
 research_briefings <- function(resType = c("all", "topics", "types", "byTopic", "subTopic", "topicSubTopic")) {
-
+    
     match.arg(resType)
-
+    
     if (resType == "all") {
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500"
-
+        
         research <- jsonlite::fromJSON(baseurl_research)
-
+        
         researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (resType == "topics") {
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500"
-
+        
         research <- jsonlite::fromJSON(baseurl_research)
-
+        
         researchJpage <- 0
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (resType == "types") {
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtypes.json?_pageSize=500"
-
+        
         research <- jsonlite::fromJSON(baseurl_research)
-
+        
         researchJpage <- 0
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (resType == "byTopic") {
-
+        
         print("Topics are case sensititve. To return list of topics, enter yes.")
         topic <- readline("Enter topic:  ")
-
+        
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-
+        
         if (topic %in% yesList == TRUE) {
-
+            
             research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-
+            
             print(research$result$items$prefLabel$`_value`)
-
+            
             topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
-
+            
         }
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
-
+        
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
-
+        
         if (research$result$totalResults > research$result$itemsPerPage) {
-
+            
             researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-
+            
         } else {
             researchJpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (resType == "subTopic") {
-
+        
         print("Topics are case sensititve. To return list of topics, enter yes.")
         topic <- readline("Enter topic:  ")
-
+        
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-
+        
         if (topic %in% yesList == TRUE) {
-
+            
             research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-
+            
             print(research$result$items$prefLabel$`_value`)
-
+            
             topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
-
+            
         }
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingsubtopics/"
-
+        
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
-
+        
         if (research$result$totalResults > research$result$itemsPerPage) {
-
+            
             researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-
+            
         } else {
             researchJpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else if (resType == "topicSubTopic") {
-
+        
         print("Topics are case sensititve. To return list of topics, enter yes.")
         topic <- readline("Enter topic:  ")
-
+        
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-
+        
         if (topic %in% yesList == TRUE) {
-
+            
             research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-
+            
             print(research$result$items$prefLabel$`_value`)
-
+            
             topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
-
+            
         }
         print("Sub-topics are case sensititve. To return list of sub-topics, enter yes.")
         subTopic <- readline("Enter sub-topic:  ")
-
+        
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-
+        
         if (subTopic %in% yesList == TRUE) {
-
+            
             research <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", topic, ".json?_pageSize=500"))
-
+            
             print(research$result$items$prefLabel$`_value`)
-
+            
             subTopic <- readline("Enter sub-topic. For ease of use, copy and paste the sub-topic: ")
-
+            
         }
-
+        
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
-
+        
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500"))
-
+        
         if (research$result$totalResults > research$result$itemsPerPage) {
-
+            
             researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-
+            
         } else {
             researchJpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:researchJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
     }
-
+    
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+    
 }
 
 
