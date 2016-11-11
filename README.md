@@ -4,5 +4,9 @@ An R package to automatically fetch data from the UK Parliament API. Ironically,
 
 Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API.
 
-To install run `devtools::install_github("EvanOdell/hansard")`
+To install the development version run:
+```
+install.packages("devtools")
+devtools::install_github("EvanOdell/hansard")
+```
 
