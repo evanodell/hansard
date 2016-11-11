@@ -1,5 +1,5 @@
 #Resubmission 
-This is a re-submission of this package. The initial submission used an incorrect license template, this has now been corrected. I have also added a vignette and 
+This is a re-submission of this package. The initial submission used an incorrect license template, this has now been corrected. I have also added a vignette and a message for when the call to the API does not return any data.
 
 
 ## Test environments
