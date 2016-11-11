@@ -9,7 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-`hansard` is an R package to pull data from the UK parliament through the data.parliament.uk API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a limited range of arguments, and functions that require additional information to retrieve the data you requested will ask for after you execute the function.
+`hansard` is an R package to pull data from the UK parliament through the data.parliament.uk API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a limited range of arguments, and functions that require additional information to retrieve the data you requested will ask for it after you execute the function.
 =======
 `hansard` is an R package retrieve data from the UK parliament through the data.parliament.uk API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data.
 

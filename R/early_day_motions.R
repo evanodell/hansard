@@ -46,9 +46,8 @@ early_day_motions <- function(edmType = c("all")) {
     
     # pages <- list()
     
-    # for (i in 0:edmsJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_edms, '&_page=', i), flatten = TRUE)
-    # message('Retrieving page ', i+1, ' of ', edmsJpage+1) pages[[i + 1]] <- mydata$result$items } } #else if
-    # (edmType=='signature'){
+    # for (i in 0:edmsJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_edms, '&_page=', i), flatten = TRUE) message('Retrieving
+    # page ', i+1, ' of ', edmsJpage+1) pages[[i + 1]] <- mydata$result$items } } #else if (edmType=='signature'){
     
     # baseurl_edms <- 'http://lda.data.parliament.uk/edms.json?_pageSize=500'
     
@@ -58,9 +57,13 @@ early_day_motions <- function(edmType = c("all")) {
     
     # pages <- list()
     
-    # for (i in 0:edmsJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_edms, '&_page=', i), flatten = TRUE)
-    # message('Retrieving page ', i+1, ' of ', edmsJpage+1) pages[[i + 1]] <- mydata$result$items } }
+    # for (i in 0:edmsJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_edms, '&_page=', i), flatten = TRUE) message('Retrieving
+    # page ', i+1, ' of ', edmsJpage+1) pages[[i + 1]] <- mydata$result$items } }
     
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-    
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+    }
 }

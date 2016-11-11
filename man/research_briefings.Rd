@@ -44,7 +44,7 @@ Imports data on  Parliamentary Research Briefings
 
 # x <- research_briefings('byTopic')
 # RETURNS:
-# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic:  #yes
 # RETURNS:
 # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -62,7 +62,7 @@ Imports data on  Parliamentary Research Briefings
 
 # x <- research_briefings('subTopic')
 # RETURNS:
-# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic:  #yes
 # RETURNS:
 # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -80,7 +80,7 @@ Imports data on  Parliamentary Research Briefings
 
 # x <- research_briefings('topicSubTopic')
 # NOT RUN
-# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic: yes
 # RETURNS:
 # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -94,7 +94,7 @@ Imports data on  Parliamentary Research Briefings
 # [17] 'Science and technology'                       'Social Security and pensions'
 # [19] 'Social services'                              'Transport'
 # Enter Topic. For ease of use, copy and paste the topic:
-# [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+# Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 # Enter sub-topic:}
 }
 \keyword{Briefings}

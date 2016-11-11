@@ -29,7 +29,7 @@
 #'
 #' # x <- research_briefings('byTopic')
 #' # RETURNS:
-#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 #' # Enter sub-topic:  #yes
 #' # RETURNS:
 #' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -47,7 +47,7 @@
 #'
 #' # x <- research_briefings('subTopic')
 #' # RETURNS:
-#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 #' # Enter sub-topic:  #yes
 #' # RETURNS:
 #' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -65,7 +65,7 @@
 #'
 #' # x <- research_briefings('topicSubTopic')
 #' # NOT RUN
-#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 #' # Enter sub-topic: yes
 #' # RETURNS:
 #' # [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
@@ -79,7 +79,7 @@
 #' # [17] 'Science and technology'                       'Social Security and pensions'
 #' # [19] 'Social services'                              'Transport'
 #' # Enter Topic. For ease of use, copy and paste the topic:
-#' # [1]Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#' # Sub-topics are case sensititve. To return list of sub-topics, enter yes.
 #' # Enter sub-topic:}
 
 research_briefings <- function(resType = c("all", "topics", "types", "byTopic", "subTopic", "topicSubTopic")) {
@@ -92,7 +92,7 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
         research <- jsonlite::fromJSON(baseurl_research)
         
-        researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
+        researchJpage <- 0
         
         pages <- list()
         
@@ -136,8 +136,9 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
     } else if (resType == "byTopic") {
         
-        print("Topics are case sensititve. To return list of topics, enter yes.")
+        message("Topics are case sensititve. To return list of topics, enter yes.")
         topic <- readline("Enter topic:  ")
+        topic <- URLencode(topic)
         
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
         
@@ -147,7 +148,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
             
             print(research$result$items$prefLabel$`_value`)
             
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
+            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
+            topic <- URLencode(topic)
             
         }
         
@@ -155,13 +157,7 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
         
-        if (research$result$totalResults > research$result$itemsPerPage) {
-            
-            researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-            
-        } else {
-            researchJpage <- 0
-        }
+        researchJpage <- 0
         
         pages <- list()
         
@@ -173,8 +169,9 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
     } else if (resType == "subTopic") {
         
-        print("Topics are case sensititve. To return list of topics, enter yes.")
         topic <- readline("Enter topic:  ")
+        topic <- URLencode(topic)
+        
         
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
         
@@ -184,21 +181,15 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
             
             print(research$result$items$prefLabel$`_value`)
             
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
-            
+            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
+            topic <- URLencode(topic)
         }
         
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingsubtopics/"
         
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
         
-        if (research$result$totalResults > research$result$itemsPerPage) {
-            
-            researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-            
-        } else {
-            researchJpage <- 0
-        }
+        researchJpage <- 0
         
         pages <- list()
         
@@ -211,7 +202,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
     } else if (resType == "topicSubTopic") {
         
         print("Topics are case sensititve. To return list of topics, enter yes.")
-        topic <- readline("Enter topic:  ")
+        topic <- readline("Enter topic: ")
+        topic <- URLencode(topic)
         
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
         
@@ -221,11 +213,13 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
             
             print(research$result$items$prefLabel$`_value`)
             
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic: ")
+            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
+            topic <- URLencode(topic)
             
         }
-        print("Sub-topics are case sensititve. To return list of sub-topics, enter yes.")
+        message("Sub-topics are case sensititve. To return list of sub-topics, enter yes.")
         subTopic <- readline("Enter sub-topic:  ")
+        subTopic <- URLencode(subTopic)
         
         yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
         
@@ -236,6 +230,7 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
             print(research$result$items$prefLabel$`_value`)
             
             subTopic <- readline("Enter sub-topic. For ease of use, copy and paste the sub-topic: ")
+            subTopic <- URLencode(subTopic)
             
         }
         
@@ -243,18 +238,12 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500"))
         
-        if (research$result$totalResults > research$result$itemsPerPage) {
-            
-            researchJpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
-            
-        } else {
-            researchJpage <- 0
-        }
+        researchJpage <- 0
         
         pages <- list()
         
         for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -262,7 +251,11 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
     }
     
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-    
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+    }
 }
 
 

@@ -5,7 +5,7 @@
 \title{House of Commons Answered Questions}
 \usage{
 commons_answered_questions(comsAnsType = c("all", "date", "department",
-  "answeredBy", "recent"))
+  "answeredBy"))
 }
 \arguments{
 \item{comsAnsType}{The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'}
@@ -17,8 +17,6 @@ commons_answered_questions(comsAnsType = c("all", "date", "department",
 \item{department}{Imports all available answered questions by answering department}
 
 \item{answeredBy}{Imports all available answered questions by answering MP}
-
-\item{recent}{Imports all available answered questions - NOT WORKING!}
 }
 \description{
 Imports data on House of Commons answered questions
@@ -37,9 +35,6 @@ Imports data on House of Commons answered questions
 
 # x <- commons_answered_questions('answeredBy')
 # Returns a data frame with all answered questions in the House of Commons by the given MP
-
-# x <- commons_answered_questions('recent')
-# Returns a data frame with all answered questions from the House of Commons
 }
 }
 \keyword{bills}

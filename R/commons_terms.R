@@ -36,5 +36,9 @@ commons_terms <- function(termsType = c("all")) {
         
     }
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-    
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+    }
 }
