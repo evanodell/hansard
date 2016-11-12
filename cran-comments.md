@@ -1,5 +1,7 @@
 #Resubmission 
-This is a re-submission of this package. The initial submission used an incorrect license template, this has now been corrected. I have also added a vignette and a message for when the call to the API does not return any data.
+This is the second re-submission of this package. The initial submission used an incorrect license template, this has now been corrected. I have also added a vignette and a message for when the call to the API does not return any data.
+
+For the second re-submission, links in the DESCRIPTION file, the README and the vignette were changed from .data.parliament.uk to <http://www.data.parliament.uk/>.
 
 
 ## Test environments
