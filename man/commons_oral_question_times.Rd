@@ -4,19 +4,28 @@
 \alias{commons_oral_question_times}
 \title{House of Commons Oral Question Times}
 \usage{
-commons_oral_question_times(all = TRUE)
+commons_oral_question_times(cOralTimeType = c("all", "ID", "session"))
 }
 \arguments{
-\item{all}{Returns a data frame with all of the oral question times. Defaults to TRUE.}
+\item{cOralTimeType}{Accepts the arguments "all" and "ID"}
+
+\item{all}{Returns a data frame with all of the oral question times.}
+
+\item{ID}{Requests a requestion time ID, and returns a data frame of that question time.}
+
+\item{session}{Requests a session in format yyyy/yy (e.g. 2016/17) and returns a data frame of all oral question times from that session}
 }
 \description{
 Imports data on House of Commons oral question times
 }
 \examples{
 \dontrun{
-x <- commons_oral_question_times(all = TRUE)
+x <- commons_oral_question_times("all")
+
+x <- commons_oral_question_times("ID")
 }
 }
 \keyword{Oral}
 \keyword{Questions}
+\keyword{Time}
 

@@ -7,9 +7,11 @@
 election_results(resultType = c("all", "ID"))
 }
 \arguments{
-\item{all}{Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.}
+\item{resultType}{Accepts the arguments "all" and "ID"}
 
-\item{ID}{Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.}
+\item{all}{Returns general and by-election resuls for each consituency from the 2010 general election onwards.}
+
+\item{ID}{Returns general and by-election resuls for each consituency from the 2010 general election onwards.}
 }
 \description{
 Imports data on general election results

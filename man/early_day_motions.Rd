@@ -4,12 +4,21 @@
 \alias{early_day_motions}
 \title{Early Day Motions}
 \usage{
-early_day_motions(edmType = c("all"))
+early_day_motions(edmType = c("all", "allSponsors", "primarySponsor",
+  "signatures", "ID"))
 }
 \arguments{
-\item{edmType}{The type of data you want, allows the argument 'all'}
+\item{edmType}{The type of data you want, allows the arguments "all", "allSponsors", "primarySponsor", "signatures" and "ID"}
 
 \item{all}{Returns a data frame of all early day motions}
+
+\item{allSponsors}{Requests a member's ID, and returns a data frame of early day motions where the given member is a sponsor}
+
+\item{primarySponsor}{Requests a member's ID, and returns a data frame of early day motions where the given member is the primary sponsor}
+
+\item{signatures}{Returns a data frame of all early day motion signatures.}
+
+\item{ID}{Requests an Early Day Motion ID, and returns a data frame with information on that Motion.}
 }
 \description{
 Imports data on early day motions

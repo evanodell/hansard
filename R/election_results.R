@@ -2,8 +2,9 @@
 #' Elections Results
 #'
 #' Imports data on general election results
-#' @param all Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.
-#' @param ID Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.
+#' @param resultType Accepts the arguments "all" and "ID"
+#' @param all Returns general and by-election resuls for each consituency from the 2010 general election onwards.
+#' @param ID Returns general and by-election resuls for each consituency from the 2010 general election onwards.
 #' @keywords Election Results
 #' @export
 #' @examples \dontrun{
