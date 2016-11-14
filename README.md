@@ -4,6 +4,13 @@ An R package to automatically fetch data from the UK Parliament API. Ironically,
 
 Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API.
 
+To install from CRAN run:
+
+```
+install.packages("hansard")
+```
+
+
 To install the development version run:
 ```
 install.packages("devtools")
