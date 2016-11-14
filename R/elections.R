@@ -3,11 +3,15 @@
 #' Elections
 #'
 #' Imports data on elections
-#' @param all Returns a data frame with the date and type of all general and by-elections since 1945. Defaults to TRUE.
+#' @param electType Allows the arguments "all" and "ID"
+#' @param all Returns a data frame with the date and type of all general and by-elections since 1945.
+#' @param ID Requests an election ID, and returns a data frame with the date and type of that election.
 #' @keywords Elections
 #' @export
 #' @examples \dontrun{
-#' x <- elections(all = TRUE)
+#' x <- elections("all")
+#'
+#' x <- elections("ID")
 #' }
 
 
@@ -46,7 +50,6 @@ elections <- function(electType = c("all", "ID")) {
       df <- as.data.frame(df)
 
     }
-
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

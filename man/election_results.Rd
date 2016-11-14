@@ -4,10 +4,12 @@
 \alias{election_results}
 \title{Elections Results}
 \usage{
-election_results(all = TRUE)
+election_results(resultType = c("all", "ID"))
 }
 \arguments{
 \item{all}{Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.}
+
+\item{ID}{Returns general and by-election resuls for each consituency from the 2010 general election onwards. Defaults to TRUE.}
 }
 \description{
 Imports data on general election results

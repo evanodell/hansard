@@ -10,7 +10,11 @@
 #' x <- election_results(all=TRUE)
 #' }
 
-election_results <- function(all = TRUE, ID = NULL) {
+election_results <- function(resultType = c("all", "ID")){
+
+    match.arg(resultType)
+
+    if(resultType=="all"){
 
     baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?_pageSize=500"
 
@@ -24,6 +28,30 @@ election_results <- function(all = TRUE, ID = NULL) {
         mydata <- jsonlite::fromJSON(paste0(baseurl_electR, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", electRJpage + 1)
         pages[[i + 1]] <- mydata$result$items
+    }
+
+    } else if (resultType=="ID") {
+
+      electID <- readline("Enter the election ID: ")
+
+      baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?electionId="
+
+      electR <- jsonlite::fromJSON(paste0(baseurl_electR, electID, "&_pageSize=500"))
+
+      if(electR$result$totalResults>electR$result$itemsPerPage){
+
+      electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
+      } else {
+        electRJpage <- 0
+      }
+      pages <- list()
+
+      for (i in 0:electRJpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl_electR,electID, "&_pageSize=500", "&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", electRJpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+      }
+
     }
 
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
