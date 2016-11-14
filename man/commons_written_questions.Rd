@@ -13,7 +13,7 @@ commons_written_questions(comsWritType = c("all", "department", "dates"))
 
 \item{department}{Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
 
-\item{dates}{Imports all available written questions from between two given dates}
+\item{dates}{Requests two dates and imports a data frame with all available written questions from between the two dates.}
 }
 \description{
 Imports data on House of Commons written questions

@@ -5,7 +5,7 @@
 #' @param comsWritType The type of data you want, allows the arguments 'all', 'department' and 'dates'
 #' @param all Returns a data frame with all written questions
 #' @param department Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health
-#' @param dates Imports all available written questions from between two given dates
+#' @param dates Requests two dates and imports a data frame with all available written questions from between the two dates.
 #' @keywords House of Commons Written Questions
 #' @export
 #' @examples \dontrun{
@@ -50,7 +50,7 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
         pages <- list()
         
         for (i in 0:writJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, answering.department, "&_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", writJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

@@ -5,14 +5,24 @@
 \title{House of Commons Oral Questions}
 \usage{
 commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
-  "daysAnswered", "askedBy", "session"))
+  "daysAnswered", "askedBy", "session", "department"))
 }
 \arguments{
-\item{comsOralType}{The type of data you want, allows the arguments "all" and "times"}
+\item{comsOralType}{The type of data you want, allows the arguments "all", "times", "daysTabled", "daysAnswered", "askedBy" and "session"}
 
 \item{all}{Imports all available oral questions}
 
 \item{times}{Imports the times of all available oral questions}
+
+\item{daysTabled}{Requests two dates, and returns a data frame with all oral questions asked between those two dates}
+
+\item{daysAnswered}{Requests two dates, and returns a data frame with all oral questions answered between those two dates}
+
+\item{askedBy}{Requests a member ID and returns a data frame with all oral questions asked by that member}
+
+\item{session}{Requests a session ID and returns a data frame with all oral questions asked in that session}
+
+\item{department}{Requests a Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
 }
 \description{
 Imports data on House of Commons oral questions
@@ -22,6 +32,17 @@ Imports data on House of Commons oral questions
 x <- commons_oral_questions("all")
 
 x <- commons_oral_questions("times")
+
+x <- commons_oral_questions("daysTabled")
+
+x <- commons_oral_questions("daysAnswered")
+
+x <- commons_oral_questions("askedBy")
+
+x <- commons_oral_questions("session")
+
+x <- commons_oral_questions("department")
+
 }
 }
 \keyword{bills}

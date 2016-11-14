@@ -4,7 +4,8 @@
 \alias{lords_divisions}
 \title{House of Lords Divisions}
 \usage{
-lords_divisions(lordsDivType = c("all", "date", "notContent", "content"))
+lords_divisions(lordsDivType = c("all", "date", "notContent", "content",
+  "session"))
 }
 \arguments{
 \item{lordsDivType}{Accepts arguments 'all', 'date', 'notContent' and 'content'}
