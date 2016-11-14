@@ -4,10 +4,11 @@
 \alias{commons_divisions}
 \title{House of Commons Divisions}
 \usage{
-commons_divisions(comsDivType = c("all", "date", "no", "aye"))
+commons_divisions(comsDivType = c("all", "date", "no", "aye", "voteSummary",
+  "voteFull", "session"))
 }
 \arguments{
-\item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'}
+\item{comsDivType}{The type of data you want, allows the arguments "all", "date", "no", "aye"}
 
 \item{all}{Returns a data frame with all available divisions.}
 
@@ -16,19 +17,29 @@ commons_divisions(comsDivType = c("all", "date", "no", "aye"))
 \item{no}{Returns a data frame with all divisions where a given MP voted no.}
 
 \item{aye}{Returns a data frame with all divisions where a given MP voted aye.}
+
+\item{voteSummary}{Requests a division ID, and returns a summary of results of that division in a data frame.}
+
+\item{voteFull}{Requests a division ID, and returns a data frame with details on how each individual member voted.}
 }
 \description{
 Imports data on House of Commons divisions
 }
 \examples{
 \dontrun{
-# x <- commons_divisions('all')
+x <- commons_divisions("all")
 
-# x <- commons_divisions('date')
+x <- commons_divisions("date")
 
-# x <- commons_divisions('no')
+x <- commons_divisions("no")
 
-# x <- commons_divisions('aye')
+x <- commons_divisions("aye")
+
+x <- commons_divisions("voteSummary")
+
+x <- commons_divisions("voteFull")
+
+x <- commons_divisions("session")
 }
 
 }

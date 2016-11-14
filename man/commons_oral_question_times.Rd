@@ -23,6 +23,8 @@ Imports data on House of Commons oral question times
 x <- commons_oral_question_times("all")
 
 x <- commons_oral_question_times("ID")
+
+x <- commons_oral_question_times("session")
 }
 }
 \keyword{Oral}

@@ -18,7 +18,9 @@ Imports data on general election results
 }
 \examples{
 \dontrun{
-x <- election_results(all=TRUE)
+x <- election_results("all")
+
+x <- election_results("ID")
 }
 }
 \keyword{Election}

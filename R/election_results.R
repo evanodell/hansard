@@ -8,7 +8,9 @@
 #' @keywords Election Results
 #' @export
 #' @examples \dontrun{
-#' x <- election_results(all=TRUE)
+#' x <- election_results("all")
+#'
+#' x <- election_results("ID")
 #' }
 
 election_results <- function(resultType = c("all", "ID")){

@@ -25,7 +25,17 @@ Imports data on early day motions
 }
 \examples{
 \dontrun{
-x <- early_day_motions('all')
+x <- early_day_motions("all")
+
+x <- early_day_motions("allSponsors")
+
+x <- early_day_motions("all")
+
+x <- early_day_motions("primarySponsor")
+
+x <- early_day_motions("signatures")
+
+x <- early_day_motions("ID")
 }
 }
 \keyword{EDM}

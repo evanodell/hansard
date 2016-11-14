@@ -12,6 +12,8 @@
 #' x <- commons_oral_question_times("all")
 #'
 #' x <- commons_oral_question_times("ID")
+#'
+#' x <- commons_oral_question_times("session")
 #' }
 
 commons_oral_question_times <- function(cOralTimeType = c("all", "ID", "session")) {
