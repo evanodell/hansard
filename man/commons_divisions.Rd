@@ -8,7 +8,7 @@ commons_divisions(comsDivType = c("all", "date", "no", "aye", "voteSummary",
   "voteFull", "session", "uinSummary", "uinFull"))
 }
 \arguments{
-\item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'}
+\item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'no', 'aye', 'voteSummary', 'voteFull', 'session', 'uinSummary' and 'uinFull'}
 
 \item{all}{Returns a data frame with all available divisions.}
 

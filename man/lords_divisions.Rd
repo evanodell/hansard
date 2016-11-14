@@ -17,10 +17,12 @@ lords_divisions(lordsDivType = c("all", "date", "notContent", "content",
 \item{notContent}{Requests a member ID, and then returns a data frame with all divisions in which they have voted not content.}
 
 \item{content}{Requests a member ID, and then returns a data frame with all divisions in which they have voted content.}
+
+\item{session}{Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all House of Lords divisions in that session.}
 }
 \description{
 Imports data on House of Lords divisions
-#' @param type The type of data you want, allows the arguments 'all', 'date', 'no', 'aye'
+#' @param type The type of data you want, allows the arguments 'all', 'date', 'notContent', 'content' and 'session'
 }
 \examples{
 \dontrun{
@@ -31,6 +33,8 @@ x <- lords_divisions('date')
 x <- lords_divisions('notContent')
 
 x <- lords_divisions('content')
+
+x <- lords_divisions('session')
 }
 }
 \keyword{Divisions}

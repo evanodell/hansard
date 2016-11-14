@@ -8,7 +8,7 @@ commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
   "daysAnswered", "askedBy", "session", "department"))
 }
 \arguments{
-\item{comsOralType}{The type of data you want, allows the arguments "all", "times", "daysTabled", "daysAnswered", "askedBy" and "session"}
+\item{comsOralType}{The type of data you want, allows the arguments 'all', 'times', 'daysTabled', 'daysAnswered', 'askedBy' and 'session'}
 
 \item{all}{Imports all available oral questions}
 
@@ -29,19 +29,19 @@ Imports data on House of Commons oral questions
 }
 \examples{
 \dontrun{
-x <- commons_oral_questions("all")
+x <- commons_oral_questions('all')
 
-x <- commons_oral_questions("times")
+x <- commons_oral_questions('times')
 
-x <- commons_oral_questions("daysTabled")
+x <- commons_oral_questions('daysTabled')
 
-x <- commons_oral_questions("daysAnswered")
+x <- commons_oral_questions('daysAnswered')
 
-x <- commons_oral_questions("askedBy")
+x <- commons_oral_questions('askedBy')
 
-x <- commons_oral_questions("session")
+x <- commons_oral_questions('session')
 
-x <- commons_oral_questions("department")
+x <- commons_oral_questions('department')
 
 }
 }
