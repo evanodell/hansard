@@ -7,7 +7,7 @@
 elections(electType = c("all", "ID"))
 }
 \arguments{
-\item{electType}{Allows the arguments "all" and "ID"}
+\item{electType}{Allows the arguments 'all' and 'ID'}
 
 \item{all}{Returns a data frame with the date and type of all general and by-elections since 1945.}
 
@@ -18,9 +18,9 @@ Imports data on elections
 }
 \examples{
 \dontrun{
-x <- elections("all")
+x <- elections('all')
 
-x <- elections("ID")
+x <- elections('ID')
 }
 }
 \keyword{Elections}

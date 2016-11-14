@@ -7,7 +7,7 @@
 commons_oral_question_times(cOralTimeType = c("all", "ID", "session"))
 }
 \arguments{
-\item{cOralTimeType}{Accepts the arguments "all" and "ID"}
+\item{cOralTimeType}{Accepts the arguments 'all' and 'ID'}
 
 \item{all}{Returns a data frame with all of the oral question times.}
 
@@ -20,11 +20,11 @@ Imports data on House of Commons oral question times
 }
 \examples{
 \dontrun{
-x <- commons_oral_question_times("all")
+x <- commons_oral_question_times('all')
 
-x <- commons_oral_question_times("ID")
+x <- commons_oral_question_times('ID')
 
-x <- commons_oral_question_times("session")
+x <- commons_oral_question_times('session')
 }
 }
 \keyword{Oral}

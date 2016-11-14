@@ -8,7 +8,7 @@ early_day_motions(edmType = c("all", "allSponsors", "primarySponsor",
   "signatures", "ID"))
 }
 \arguments{
-\item{edmType}{The type of data you want, allows the arguments "all", "allSponsors", "primarySponsor", "signatures" and "ID"}
+\item{edmType}{The type of data you want, allows the arguments 'all', 'allSponsors', 'primarySponsor', 'signatures' and 'ID'}
 
 \item{all}{Returns a data frame of all early day motions}
 
@@ -25,17 +25,17 @@ Imports data on early day motions
 }
 \examples{
 \dontrun{
-x <- early_day_motions("all")
+x <- early_day_motions('all')
 
-x <- early_day_motions("allSponsors")
+x <- early_day_motions('allSponsors')
 
-x <- early_day_motions("all")
+x <- early_day_motions('all')
 
-x <- early_day_motions("primarySponsor")
+x <- early_day_motions('primarySponsor')
 
-x <- early_day_motions("signatures")
+x <- early_day_motions('signatures')
 
-x <- early_day_motions("ID")
+x <- early_day_motions('ID')
 }
 }
 \keyword{EDM}

@@ -7,7 +7,7 @@
 election_results(resultType = c("all", "ID"))
 }
 \arguments{
-\item{resultType}{Accepts the arguments "all" and "ID"}
+\item{resultType}{Accepts the arguments 'all' and 'ID'}
 
 \item{all}{Returns general and by-election resuls for each consituency from the 2010 general election onwards.}
 
@@ -18,9 +18,9 @@ Imports data on general election results
 }
 \examples{
 \dontrun{
-x <- election_results("all")
+x <- election_results('all')
 
-x <- election_results("ID")
+x <- election_results('ID')
 }
 }
 \keyword{Election}

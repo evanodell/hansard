@@ -4,10 +4,11 @@
 \alias{commons_oral_questions}
 \title{House of Commons Oral Questions}
 \usage{
-commons_oral_questions(comsOralType = c("all", "times"))
+commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
+  "daysAnswered", "askedBy", "session"))
 }
 \arguments{
-\item{comsOralType}{The type of data you want, allows the arguments 'all' and 'times'}
+\item{comsOralType}{The type of data you want, allows the arguments "all" and "times"}
 
 \item{all}{Imports all available oral questions}
 
@@ -18,9 +19,9 @@ Imports data on House of Commons oral questions
 }
 \examples{
 \dontrun{
-x <- commons_oral_questions('all')
+x <- commons_oral_questions("all")
 
-x <- commons_oral_questions('times')
+x <- commons_oral_questions("times")
 }
 }
 \keyword{bills}

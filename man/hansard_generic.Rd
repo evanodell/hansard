@@ -10,11 +10,11 @@ hansard_generic(path)
 \item{path}{The url path to the data you wish to retrieve}
 }
 \description{
-A semi-generic function for the parliamentary API. Provides greater flexibility, including any newly released features or data not yet included in the individual functions of the hansard package. Users must specify ".json" in their path.
+A semi-generic function for the parliamentary API. Provides greater flexibility, including any newly released features or data not yet included in the individual functions of the hansard package. Users must specify '.json' in their path.
 }
 \examples{
 \dontrun{
-x <- hansard_generic("elections.json")
+x <- hansard_generic('elections.json')
 }
 }
 \keyword{API}

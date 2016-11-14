@@ -31,6 +31,8 @@
 #'
 #' \code{\link{epetition}}
 #'
+#' \code{\link{hansard_generic}}
+#'
 #' \code{\link{lords_ammendments}}
 #'
 #' \code{\link{lords_attendance}}
