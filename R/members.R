@@ -146,8 +146,7 @@ members_search <- function(Search = NULL) {
         
         baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
         
-        mpidResults <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*", Search, 
-            "*"))
+        mpidResults <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*", Search, "*"))
         
         if (mpidResults$result$totalResults > mpidResults$result$itemsPerPage) {
             mpidJpage <- round(mpidResults$result$totalResults/mpidResults$result$itemsPerPage, digits = 0)

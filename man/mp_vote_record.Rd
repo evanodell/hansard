@@ -9,7 +9,7 @@ mp_vote_record(mp.id, voteRecord = c("all", "aye", "no"))
 \arguments{
 \item{mp.id}{The ID number of a member of the House of Commons.}
 
-\item{voteRecord}{Accepts the arguments "all", "aye" and "no". Defaults to "all".}
+\item{voteRecord}{Accepts the arguments 'all', 'aye' and 'no'. Defaults to 'all'.}
 
 \item{all}{Returns a data frame with all recorded votes for a given member of the house of commons.}
 
@@ -22,7 +22,7 @@ Accepts an ID number for a member of the house of commons, and returns a data fr
 }
 \examples{
 \dontrun{
-x <- mp_vote_record(172, "all")
+x <- mp_vote_record(172, 'all')
 }
 
 }

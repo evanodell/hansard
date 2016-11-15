@@ -8,7 +8,7 @@ commons_divisions(comsDivType = c("all", "date", "aye", "no", "voteSummary",
   "voteFull", "session", "uinSummary", "uinFull"))
 }
 \arguments{
-\item{comsDivType}{The type of data you want, allows the arguments "all", "date", "aye", "no", "voteSummary", "voteFull", "uinSummary", "uinFull" and "session". Defaults to "all".}
+\item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'aye', 'no', 'voteSummary', 'voteFull', 'uinSummary', 'uinFull' and 'session'. Defaults to 'all'.}
 
 \item{all}{Returns a data frame with all available divisions.}
 
@@ -33,23 +33,23 @@ Imports data on House of Commons divisions
 }
 \examples{
 \dontrun{
-x <- commons_divisions("all")
+x <- commons_divisions('all')
 
-x <- commons_divisions("date")
+x <- commons_divisions('date')
 
-x <- commons_divisions("no")
+x <- commons_divisions('no')
 
-x <- commons_divisions("aye")
+x <- commons_divisions('aye')
 
-x <- commons_divisions("voteSummary")
+x <- commons_divisions('voteSummary')
 
-x <- commons_divisions("voteFull")
+x <- commons_divisions('voteFull')
 
-x <- commons_divisions("session")
+x <- commons_divisions('session')
 
-x <- commons_divisions("uinSummary")
+x <- commons_divisions('uinSummary')
 
-x <- commons_divisions("uinFull")
+x <- commons_divisions('uinFull')
 }
 }
 \keyword{divisions}
