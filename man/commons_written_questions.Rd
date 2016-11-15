@@ -7,7 +7,7 @@
 commons_written_questions(comsWritType = c("all", "department", "dates"))
 }
 \arguments{
-\item{comsWritType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
+\item{comsWritType}{The type of data you want, allows the arguments "all", "department" and "dates"}
 
 \item{all}{Returns a data frame with all written questions}
 
@@ -20,11 +20,11 @@ Imports data on House of Commons written questions
 }
 \examples{
 \dontrun{
-x <- commons_written_questions('all')
+x <- commons_written_questions("all")
 
-x <- commons_written_questions('department')
+x <- commons_written_questions("department")
 
-x <- commons_written_questions('dates')
+x <- commons_written_questions("dates")
 }
 }
 \keyword{Commons}

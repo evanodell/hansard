@@ -3,8 +3,8 @@
 #' House of Lords Divisions
 #'
 #' Imports data on House of Lords divisions
-#' #' @param type The type of data you want, allows the arguments 'all', 'date', 'notContent', 'content' and 'session'
-#' @param lordsDivType Accepts arguments 'all', 'date', 'notContent' and 'content'
+#' #' @param type The type of data you want, allows the arguments "all", "date", "notContent", "content" and "session"
+#' @param lordsDivType Accepts arguments "all", "date", "notContent" and "content"
 #' @param all Returns a data frame with all available divisions in the House of Lords.
 #' @param date Requests a date, and then returns a data frame with all divisions on that date.
 #' @param notContent Requests a member ID, and then returns a data frame with all divisions in which they have voted not content.
@@ -13,15 +13,15 @@
 #' @keywords Lords Divisions
 #' @export
 #' @examples \dontrun{
-#' x <- lords_divisions('all')
+#' x <- lords_divisions("all")
 #'
-#' x <- lords_divisions('date')
+#' x <- lords_divisions("date")
 #'
-#' x <- lords_divisions('notContent')
+#' x <- lords_divisions("notContent")
 #'
-#' x <- lords_divisions('content')
+#' x <- lords_divisions("content")
 #'
-#' x <- lords_divisions('session')
+#' x <- lords_divisions("session")
 #' }
 
 lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "content", "session")) {

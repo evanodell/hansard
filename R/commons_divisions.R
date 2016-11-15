@@ -3,39 +3,39 @@
 #' House of Commons Divisions
 #'
 #' Imports data on House of Commons divisions
-#' @param comsDivType The type of data you want, allows the arguments 'all', 'date', 'no', 'aye', 'voteSummary', 'voteFull', 'session', 'uinSummary' and 'uinFull'
+#' @param comsDivType The type of data you want, allows the arguments "all", "date", "aye", "no", "voteSummary", "voteFull", "uinSummary", "uinFull" and "session". Defaults to "all".
 #' @param all Returns a data frame with all available divisions.
-#' @param date Returns a data frame with all available divisions on a date.
-#' @param no Returns a data frame with all divisions where a given MP voted no.
+#' @param date Requests a date in yyyy-mm-dd format and returns a data frame with all available divisions on that date.
 #' @param aye Returns a data frame with all divisions where a given MP voted aye.
+#' @param no Returns a data frame with all divisions where a given MP voted no.
 #' @param voteSummary Requests a division ID, and returns a summary of results of that division in a data frame.
 #' @param voteFull Requests a division ID, and returns a data frame with details on how each individual member voted.
-#' @param session Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all divisions in that session.
 #' @param uinSummary Requests a division UIN and returns a data frame with a summary of results of that division.
 #' @param uinFull Requests a division UIN and returns a data frame with the full results of that division.
+#' @param session Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all divisions in that session.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- commons_divisions('all')
+#' x <- commons_divisions("all")
 #'
-#' x <- commons_divisions('date')
+#' x <- commons_divisions("date")
 #'
-#' x <- commons_divisions('no')
+#' x <- commons_divisions("no")
 #'
-#' x <- commons_divisions('aye')
+#' x <- commons_divisions("aye")
 #'
-#' x <- commons_divisions('voteSummary')
+#' x <- commons_divisions("voteSummary")
 #'
-#' x <- commons_divisions('voteFull')
+#' x <- commons_divisions("voteFull")
 #'
-#' x <- commons_divisions('session')
+#' x <- commons_divisions("session")
 #'
-#' x <- commons_divisions('uinSummary')
+#' x <- commons_divisions("uinSummary")
 #'
-#' x <- commons_divisions('uinFull')
+#' x <- commons_divisions("uinFull")
 #' }
 
-commons_divisions <- function(comsDivType = c("all", "date", "no", "aye", "voteSummary", "voteFull", "session", "uinSummary", "uinFull")) {
+commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteSummary", "voteFull", "session", "uinSummary", "uinFull")) {
 
     match.arg(comsDivType)
 
@@ -234,38 +234,35 @@ commons_divisions <- function(comsDivType = c("all", "date", "no", "aye", "voteS
 }
 
 
-#' Divisions where an MP voted aye
+#' commons_division_date
 #'
 #' Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
-#' @param mp.id The ID number of a member of the House of Commons.
+#' @param date The ID number of a member of the House of Commons.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- mp_aye(172)
+#' x <- commons_division_date(2016-10-10)
 #' }
+#'
 
 
-mp_aye <- function(mp.id){
+commons_division_date <- function(date){
 
-  if(is.numeric(mp.id)==FALSE){
-    stop("The request did not return any data. Please check your search parameters.")
-  }
+  baseurl_date <- "http://lda.data.parliament.uk/commonsdivisions/date/"
 
-  baseurl_aye <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
+  url_date <- jsonlite::fromJSON(paste0(baseurl_date, date, ".json?_pageSize=500"), flatten = TRUE)
 
-  url_aye <- jsonlite::fromJSON(paste0(baseurl_aye, mp.id, "&_pageSize=500"), flatten = TRUE)
-
-  if (url_aye$result$itemsPerPage < url_aye$result$totalResults) {
-    ayeJPage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+  if (url_date$result$itemsPerPage < url_date$result$totalResults) {
+    dateJPage <- round(url_date$result$totalResults/url_date$result$itemsPerPage, digits = 0)
   } else {
-    ayeJPage <- 0
+    dateJPage <- 0
   }
 
   pages <- list()
 
-  for (i in 0:ayeJPage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_aye, mp.id, "&_pageSize=500&_page=", i), flatten = TRUE)
-    message("Retrieving page ", i + 1, " of ", ayeJPage + 1)
+  for (i in 0:dateJPage) {
+    mydata <- jsonlite::fromJSON(paste0(baseurl_date, date, "&_pageSize=500&_page=", i), flatten = TRUE)
+    message("Retrieving page ", i + 1, " of ", dateJPage + 1)
     pages[[i + 1]] <- mydata$result$items
   }
 
@@ -280,49 +277,4 @@ mp_aye <- function(mp.id){
 }
 
 
-
-#' Divisions where an MP voted no
-#'
-#' Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
-#' @param mp.id The ID number of a member of the House of Commons.
-#' @keywords divisions
-#' @export
-#' @examples \dontrun{
-#' x <- mp_no(336)
-#' }
-
-
-mp_no <- function(mp.id){
-
-  if(is.numeric(mp.id)==FALSE){
-    stop("The request did not return any data. Please check your search parameters.")
-  }
-
-  baseurl_no <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
-
-  url_no <- jsonlite::fromJSON(paste0(baseurl_no, mp.id, "&_pageSize=500"), flatten = TRUE)
-
-  if (url_no$result$itemsPerPage < url_no$result$totalResults) {
-    noJPage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
-  } else {
-    noJPage <- 0
-  }
-
-  pages <- list()
-
-  for (i in 0:noJPage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl_no, mp.id, "&_pageSize=500&_page=", i), flatten = TRUE)
-    message("Retrieving page ", i + 1, " of ", noJPage + 1)
-    pages[[i + 1]] <- mydata$result$items
-  }
-
-  df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-  if (nrow(df) == 0) {
-    message("The request did not return any data. Please check your search parameters.")
-  } else {
-    df
-  }
-
-}
 
