@@ -234,11 +234,10 @@ commons_divisions <- function(comsDivType = c("all", "date", "no", "aye", "voteS
 }
 
 
-
 #' Divisions where an MP voted aye
 #'
 #' Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
-#' @param mp.id Accepts the ID number of a member of the House of Commons
+#' @param mp.id The ID number of a member of the House of Commons
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -287,11 +286,11 @@ mp_aye <- function(mp.id){
 #' Divisions where an MP voted no
 #'
 #' Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
-#' @param mp.id Accepts the ID number of a member of the House of Commons
+#' @param mp.id The ID number of a member of the House of Commons
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- mp_no(172)
+#' x <- mp_no(336)
 #' }
 
 

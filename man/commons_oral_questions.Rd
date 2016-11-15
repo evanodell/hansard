@@ -22,7 +22,7 @@ commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
 
 \item{session}{Requests a session ID and returns a data frame with all oral questions asked in that session}
 
-\item{department}{Requests a Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
+\item{department}{Requests a Requests a department name, and returns all oral questions answered by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
 }
 \description{
 Imports data on House of Commons oral questions

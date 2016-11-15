@@ -51,6 +51,10 @@ Provides functions to download data from the data.parliament.uk APIs. Because of
 
 \code{\link{members_search}}
 
+\code{\link{mp_aye}}
+
+\code{\link{mp_no}}
+
 \code{\link{papers_laid}}
 
 \code{\link{publication_logs}}

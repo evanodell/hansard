@@ -7,7 +7,7 @@
 mp_aye(mp.id)
 }
 \arguments{
-\item{mp.id}{Accepts the ID number of a member of the House of Commons}
+\item{mp.id}{The ID number of a member of the House of Commons}
 }
 \description{
 Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
