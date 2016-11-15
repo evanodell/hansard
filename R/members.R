@@ -1,5 +1,5 @@
 
-#' All Members of Parliament
+#' members
 #'
 #' Imports data on All Members of Parliament including the Lords and the Commons
 #' @param house The type of data you want, allows the arguments 'all', 'commons', 'lords', 'lordsInterests'
@@ -107,9 +107,9 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
     }
 
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-      df
+        df
     }
 
 }

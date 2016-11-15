@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_oral_questions.R
 \name{commons_oral_questions}
 \alias{commons_oral_questions}
-\title{House of Commons Oral Questions}
+\title{commons_oral_questions}
 \usage{
 commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
   "daysAnswered", "askedBy", "session", "department"))

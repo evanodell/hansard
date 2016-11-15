@@ -2,7 +2,7 @@
 % Please edit documentation in R/tv_programmes.R
 \name{tv_programmes}
 \alias{tv_programmes}
-\title{TV Programmes}
+\title{tv_programmes}
 \usage{
 tv_programmes(AVtype = c("TV", "clips"))
 }

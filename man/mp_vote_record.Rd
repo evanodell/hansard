@@ -18,7 +18,7 @@ mp_vote_record(mp.id, voteRecord = c("all", "aye", "no"))
 \item{no}{Returns a data frame with all divisions where a given MP voted no.}
 }
 \description{
-Accepts an ID number for a member of the house of commons, and returns a data frame of of all their votes.
+Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
 }
 \examples{
 \dontrun{

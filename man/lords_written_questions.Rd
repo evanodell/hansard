@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_written_questions.R
 \name{lords_written_questions}
 \alias{lords_written_questions}
-\title{House of Lords Written Questions}
+\title{lords_written_questions}
 \usage{
 lords_written_questions(lordsWritType = c("all", "department", "dates"))
 }

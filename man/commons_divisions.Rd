@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_divisions.R
 \name{commons_divisions}
 \alias{commons_divisions}
-\title{House of Commons Divisions}
+\title{commons_divisions}
 \usage{
 commons_divisions(comsDivType = c("all", "date", "aye", "no", "voteSummary",
   "voteFull", "session", "uinSummary", "uinFull"))

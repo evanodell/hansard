@@ -2,31 +2,26 @@
 % Please edit documentation in R/members_search.R
 \name{members_search}
 \alias{members_search}
-\title{Members Search}
+\title{members_search}
 \usage{
 members_search(Search = NULL)
 }
 \arguments{
-\item{Search}{Search for members by name and constituency. Defaults to NULL.}
+\item{Search}{Accepts any string. Defaults to NULL.}
 }
 \description{
 Search for an MP or Lord by name and constituency
 }
 \details{
-#' # Function searches for the string and returns a data frame with all matches from
-# both houses of parliament. Returns all partial matches in the members' names,
-# constituencies, twitter handle and webpage.
-# The default search is NULL, which returns a data frame of all members of both
-# houses, the same result as members('all').
+Function searches for the string and returns a data frame with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a data frame of all members of both houses, the same result as members('all').
 }
 \examples{
-\donttest{
-###NOT RUN
-# x <- members_search(Search=NULL)
-# Returns members('all')
-# x <- members_search(Search='chris')
-# head(x)
-# Returns all members with 'chris' in their name or the name of their constituency}
+\dontrun{
+
+x <- members_search('chris')
+
+x <- members_search(Search='chris')
+}
 }
 \keyword{All}
 \keyword{Members}

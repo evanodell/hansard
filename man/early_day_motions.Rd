@@ -2,7 +2,7 @@
 % Please edit documentation in R/early_day_motions.R
 \name{early_day_motions}
 \alias{early_day_motions}
-\title{Early Day Motions}
+\title{early_day_motions}
 \usage{
 early_day_motions(edmType = c("all", "allSponsors", "primarySponsor",
   "signatures", "ID"))

@@ -2,7 +2,7 @@
 
 #' lords_vote_record
 #'
-#' Accepts an ID number for a member of the house of lords, and returns a data frame of of all their votes.
+#' Accepts an ID number for a member of the House of Lords, and returns a data frame of their votes. Provides similar functionality to the lords_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
 #' @param lord.id The ID number of a member of the House of Lords. To look up the ID number of a member of the House of Lords use the members_search() function.
 #' @param lordsRecord Accepts the arguments 'all', 'content' and 'notContent'. Defaults to 'all'.
 #' @param all Returns a data frame with all recorded votes for a given member of the house of lords.
@@ -20,6 +20,7 @@ lords_vote_record <- function(lord.id, lordsRecord = c("all", "content", "notCon
     match.arg(lordsRecord)
     
     if (lordsRecord == "all") {
+        
         message("Retrieving content votes:")
         df_content <- lords_vote_record(lord.id, "content")
         
@@ -38,6 +39,7 @@ lords_vote_record <- function(lord.id, lordsRecord = c("all", "content", "notCon
         df
         
     } else if (lordsRecord == "content") {
+        
         baseurl_aye <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
         
         url_aye <- jsonlite::fromJSON(paste0(baseurl_aye, lord.id), flatten = TRUE)
@@ -59,6 +61,7 @@ lords_vote_record <- function(lord.id, lordsRecord = c("all", "content", "notCon
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
         
     } else if (lordsRecord == "notContent") {
+        
         baseurl_no <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
         
         url_no <- jsonlite::fromJSON(paste0(baseurl_no, lord.id), flatten = TRUE)

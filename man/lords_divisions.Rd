@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_divisions.R
 \name{lords_divisions}
 \alias{lords_divisions}
-\title{House of Lords Divisions}
+\title{lords_divisions}
 \usage{
 lords_divisions(lordsDivType = c("all", "date", "notContent", "content",
   "session"))

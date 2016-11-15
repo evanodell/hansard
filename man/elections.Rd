@@ -2,7 +2,7 @@
 % Please edit documentation in R/elections.R
 \name{elections}
 \alias{elections}
-\title{Elections}
+\title{elections}
 \usage{
 elections(electType = c("all", "ID"))
 }

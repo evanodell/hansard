@@ -2,7 +2,7 @@
 % Please edit documentation in R/sessions_info.R
 \name{sessions_info}
 \alias{sessions_info}
-\title{Parliamentary Sessions}
+\title{sessions_info}
 \usage{
 sessions_info(sesType = c("all", "days"))
 }
@@ -20,10 +20,9 @@ Imports data on Parliamentary Sessions
 \dontrun{
 
 x <- sessions_info('all')
-head(x)
 
 x <- sessions_info('days')
-head(x)}
+}
 }
 \keyword{Parliamentary}
 \keyword{Sessions}

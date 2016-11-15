@@ -2,7 +2,7 @@
 % Please edit documentation in R/research_briefings.R
 \name{research_briefings}
 \alias{research_briefings}
-\title{Parliamentary Research Briefings}
+\title{research_briefings}
 \usage{
 research_briefings(resType = c("all", "topics", "types", "byTopic",
   "subTopic", "topicSubTopic"))

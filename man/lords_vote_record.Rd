@@ -18,7 +18,7 @@ lords_vote_record(lord.id, lordsRecord = c("all", "content", "notContent"))
 \item{notContent}{Returns a data frame with all divisions where a given lord voted no.}
 }
 \description{
-Accepts an ID number for a member of the house of lords, and returns a data frame of of all their votes.
+Accepts an ID number for a member of the House of Lords, and returns a data frame of their votes. Provides similar functionality to the lords_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
 }
 \examples{
 \dontrun{

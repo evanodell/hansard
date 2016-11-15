@@ -2,7 +2,7 @@
 % Please edit documentation in R/members.R
 \name{members}
 \alias{members}
-\title{All Members of Parliament}
+\title{members}
 \usage{
 members(house = c("all", "commons", "lords", "lordsInterests"))
 }

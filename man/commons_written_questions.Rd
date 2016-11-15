@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_written_questions.R
 \name{commons_written_questions}
 \alias{commons_written_questions}
-\title{House of Commons Bills Written Questions}
+\title{commons_written_questions}
 \usage{
 commons_written_questions(comsWritType = c("all", "department", "dates",
   "askedBy"))

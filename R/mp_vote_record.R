@@ -2,7 +2,7 @@
 
 #' mp_vote_record
 #'
-#' Accepts an ID number for a member of the house of commons, and returns a data frame of of all their votes.
+#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
 #' @param mp.id The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.
 #' @param voteRecord Accepts the arguments 'all', 'aye' and 'no'. Defaults to 'all'.
 #' @param all Returns a data frame with all recorded votes for a given member of the house of commons.
