@@ -59,6 +59,8 @@ mp_vote_record <- function(mp.id, voteRecord = c("all", "aye", "no")) {
         }
         
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df$date._datatype <- as.factor(df$date._datatype)
+        df$date._value <- as.Date(df$date._value)
         
         
     } else if (voteRecord == "no") {
@@ -81,6 +83,8 @@ mp_vote_record <- function(mp.id, voteRecord = c("all", "aye", "no")) {
         }
         
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df$date._datatype <- as.factor(df$date._datatype)
+        df$date._value <- as.Date(df$date._value)
         
     }
     
