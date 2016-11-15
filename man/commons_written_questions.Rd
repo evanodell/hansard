@@ -8,7 +8,7 @@ commons_written_questions(comsWritType = c("all", "department", "dates",
   "askedBy"))
 }
 \arguments{
-\item{comsWritType}{The type of data you want, allows the arguments 'all', 'department', 'dates' and "askedBy"}
+\item{comsWritType}{The type of data you want, allows the arguments 'all', 'department', 'dates' and 'askedBy'}
 
 \item{all}{Returns a data frame with all written questions}
 

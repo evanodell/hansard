@@ -7,7 +7,7 @@
 mp_vote_record(mp.id, voteRecord = c("all", "aye", "no"))
 }
 \arguments{
-\item{mp.id}{The ID number of a member of the House of Commons.}
+\item{mp.id}{The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.}
 
 \item{voteRecord}{Accepts the arguments 'all', 'aye' and 'no'. Defaults to 'all'.}
 

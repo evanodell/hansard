@@ -7,7 +7,7 @@
 lords_vote_record(lord.id, lordsRecord = c("all", "content", "notContent"))
 }
 \arguments{
-\item{lord.id}{The ID number of a member of the House of Lords.}
+\item{lord.id}{The ID number of a member of the House of Lords. To look up the ID number of a member of the House of Lords use the members_search() function.}
 
 \item{lordsRecord}{Accepts the arguments 'all', 'content' and 'notContent'. Defaults to 'all'.}
 
