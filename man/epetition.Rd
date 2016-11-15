@@ -2,14 +2,13 @@
 % Please edit documentation in R/epetition.R
 \name{epetition}
 \alias{epetition}
-\title{ePetitions}
+\title{epetition}
 \usage{
 epetition(petType = c("all", "byConstituency", "petitionID", "response",
   "idConstituency"))
 }
 \arguments{
-\item{petType}{The type of data you want, allows the arguments 'all', 'byConstituency',
-# 'petitionID', 'response', and 'idConstituency'}
+\item{petType}{The type of data you want, allows the arguments 'all', 'byConstituency', 'petitionID', 'response', and 'idConstituency'}
 
 \item{all}{Imports all available epetitions}
 
@@ -22,7 +21,7 @@ epetition(petType = c("all", "byConstituency", "petitionID", "response",
 \item{idConstituency}{Requests a petition ID, and then returns the signatures per constituency for that petition}
 }
 \description{
-Imports data on petitions
+Imports data on Epetitions
 }
 \examples{
 \dontrun{

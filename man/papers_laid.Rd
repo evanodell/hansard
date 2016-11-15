@@ -2,7 +2,7 @@
 % Please edit documentation in R/papers_laid.R
 \name{papers_laid}
 \alias{papers_laid}
-\title{Papers Laid}
+\title{papers_laid}
 \usage{
 papers_laid(paperType = c("all"))
 }

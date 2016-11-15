@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_attendance.R
 \name{lords_attendance}
 \alias{lords_attendance}
-\title{House of Lords Attendance}
+\title{lords_attendance}
 \usage{
 lords_attendance(lordsAttendType = c("all", "date"))
 }

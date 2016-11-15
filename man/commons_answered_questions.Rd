@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_answered_questions.R
 \name{commons_answered_questions}
 \alias{commons_answered_questions}
-\title{House of Commons Answered Questions}
+\title{commons_answered_questions}
 \usage{
 commons_answered_questions(comsAnsType = c("all", "date", "department",
   "answeredBy"))

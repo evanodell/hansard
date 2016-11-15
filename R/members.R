@@ -1,5 +1,5 @@
 
-#' All Members of Parliament
+#' members
 #'
 #' Imports data on All Members of Parliament including the Lords and the Commons
 #' @param house The type of data you want, allows the arguments 'all', 'commons', 'lords', 'lordsInterests'
@@ -39,6 +39,11 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
             pages[[i + 1]] <- mydata$result$items
         }
 
+<<<<<<< HEAD
+=======
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+>>>>>>> origin/master
     } else if (house == "commons") {
 
         baseurl_allMems <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
@@ -55,6 +60,11 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
             pages[[i + 1]] <- mydata$result$items
         }
 
+<<<<<<< HEAD
+=======
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+>>>>>>> origin/master
     } else if (house == "lords") {
 
         baseurl_allMems <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
@@ -71,6 +81,7 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
             pages[[i + 1]] <- mydata$result$items
         }
 
+<<<<<<< HEAD
         # } else if (house=='commonsInterests') {#Not working
 
         # baseurl_allMems <- 'http://lda.data.parliament.uk/commonsregisteredinterests.json?_pageSize=500'
@@ -83,6 +94,9 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
 
         # for (i in 0:allMemsJpage) { mydata <- jsonlite::fromJSON(paste0(baseurl_allMems, '&_page=', i), flatten = TRUE)
         # message('Retrieving page ', i+1, ' of ', allMemsJpage+1) pages[[i + 1]] <- mydata$result$items }
+=======
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+>>>>>>> origin/master
 
     } else if (house == "lordsInterests") {
 
@@ -109,12 +123,18 @@ members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
             message("Retrieving page ", i + 1, " of ", allMemsJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
+<<<<<<< HEAD
     }
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
 }
+=======
+>>>>>>> origin/master
 
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    }
 
+<<<<<<< HEAD
 #' MP Search
 #'
 #' Search for an MP or Lord by name and constituency
@@ -193,6 +213,12 @@ members_search <- function(search) {
 
             return(df)
         }
+=======
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+>>>>>>> origin/master
     }
-}
 
+}

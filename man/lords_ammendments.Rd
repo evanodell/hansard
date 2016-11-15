@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_ammendments.R
 \name{lords_ammendments}
 \alias{lords_ammendments}
-\title{House of Lords Ammendments}
+\title{lords_ammendments}
 \usage{
 lords_ammendments(all = TRUE)
 }

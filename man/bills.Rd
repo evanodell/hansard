@@ -2,7 +2,7 @@
 % Please edit documentation in R/bills.R
 \name{bills}
 \alias{bills}
-\title{Bills}
+\title{bills}
 \usage{
 bills(billType = c("ammended", "stageTypes", "publications"))
 }

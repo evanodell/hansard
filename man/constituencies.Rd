@@ -2,7 +2,7 @@
 % Please edit documentation in R/constituencies.R
 \name{constituencies}
 \alias{constituencies}
-\title{House of Commons Constituencies}
+\title{constituencies}
 \usage{
 constituencies(contType = c("all"))
 }

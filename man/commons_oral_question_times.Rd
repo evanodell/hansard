@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_oral_question_times.R
 \name{commons_oral_question_times}
 \alias{commons_oral_question_times}
-\title{House of Commons Oral Question Times}
+\title{commons_oral_question_times}
 \usage{
 commons_oral_question_times(cOralTimeType = c("all", "ID", "session"))
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/all_answered_questions.R
 \name{all_answered_questions}
 \alias{all_answered_questions}
-\title{Parliamentary Answered Questions}
+\title{all_answered_questions}
 \usage{
 all_answered_questions(allAnsType = c("all", "askedBy"))
 }

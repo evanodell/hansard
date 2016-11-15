@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_terms.R
 \name{commons_terms}
 \alias{commons_terms}
-\title{Parliamentary Thesaurus}
+\title{commons_terms}
 \usage{
 commons_terms(termsType = c("all"))
 }

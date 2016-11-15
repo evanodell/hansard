@@ -2,7 +2,7 @@
 % Please edit documentation in R/election_results.R
 \name{election_results}
 \alias{election_results}
-\title{Elections Results}
+\title{election_results}
 \usage{
 election_results(resultType = c("all", "ID"))
 }

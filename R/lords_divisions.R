@@ -1,6 +1,6 @@
 
 
-#' House of Lords Divisions
+#' lords_divisions
 #'
 #' Imports data on House of Lords divisions
 #' #' @param type The type of data you want, allows the arguments 'all', 'date', 'notContent', 'content' and 'session'
@@ -143,11 +143,12 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
-    } else if (comsDivType == "voteSummary") { ###HERE DONE ALL NEEDS WORK
+    } else if (lordsDivType == "voteSummary") {
+        ### HERE DOWN ALL NEEDS WORK
 
         vote.ID <- readline("Enter vote ID: ")
 
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
+        baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/id/"
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
@@ -166,11 +167,11 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         df <- as.data.frame(df)
 
-    } else if (comsDivType == "voteFull") {
+    } else if (lordsDivType == "voteFull") {
 
         vote.ID <- readline("Enter vote ID: ")
 
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
+        baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/id/"
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
@@ -178,12 +179,12 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         df
 
-    } else if (comsDivType == "uinSummary") {
+    } else if (lordsDivType == "uinSummary") {
 
         divis_uin <- readline("Enter division UIN (format: CD:yyyy-mm-dd:uin): ")
         divis_uin <- URLencode(divis_uin)
 
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
+        baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions.json?uin="
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin))
 
@@ -204,12 +205,12 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         df
 
-    } else if (comsDivType == "uinFull") {
+    } else if (lordsDivType == "uinFull") {
 
         divis_uin <- readline("Enter division UIN: ")
         divis_uin <- URLencode(divis_uin)
 
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
+        baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions.json?uin="
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin, "&_pageSize=500"))
 
@@ -225,3 +226,5 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
         df
     }
 }
+
+

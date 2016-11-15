@@ -2,7 +2,7 @@
 % Please edit documentation in R/publication_logs.R
 \name{publication_logs}
 \alias{publication_logs}
-\title{Publication Logs}
+\title{publication_logs}
 \usage{
 publication_logs(all = TRUE)
 }
