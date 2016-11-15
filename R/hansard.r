@@ -39,11 +39,15 @@
 #'
 #' \code{\link{lords_divisions}}
 #'
+#' \code{\link{lords_vote_record}}
+#'
 #' \code{\link{lords_written_questions}}
 #'
 #' \code{\link{members}}
 #'
 #' \code{\link{members_search}}
+#'
+#' \code{\link{mp_questions}}
 #'
 #' \code{\link{mp_vote_record}}
 #'
