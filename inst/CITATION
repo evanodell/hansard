@@ -2,8 +2,8 @@ year <- sub("-.*", "", meta$Date)
 note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "Manual",
-         title = "{hansard}: Accessing Westminster Parliament Data",
+         title = "{hansard}: Provides Easy Downloading Capabilities for the UK Parliament API",
          author = c(person("Evan", "Odell")),
          year = year,
          note = note,
-         url = "https://github.com/EvanOdell/hansard/")
+         url = "https://cran.r-project.org/web/packages/hansard/")
