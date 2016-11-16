@@ -33,6 +33,8 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
 
         baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
 
+        message("Connecting to API")
+
         edms <- jsonlite::fromJSON(baseurl_edms)
 
         edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
@@ -45,15 +47,16 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
 
     } else if (edmType == "allSponsors") {
-        # Not tested
 
         mp.id <- readline("Enter Member ID: ")
 
         baseurl_edms <- "http://lda.data.parliament.uk/edms.json?mnisId="
 
+        message("Connecting to API")
+
         edms <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500"))
 
         if (edms$result$totalResults > edms$result$itemsPerPage) {
@@ -72,15 +75,16 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
 
     } else if (edmType == "primarySponsor") {
-        ## Not tested
 
         mp.id <- readline("Enter Member ID: ")
 
         baseurl_edms <- "http://lda.data.parliament.uk/edmbysponsor.json?mnisId="
 
+        message("Connecting to API")
+
         edms <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500"))
 
         if (edms$result$totalResults > edms$result$itemsPerPage) {
@@ -99,12 +103,13 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
 
     } else if (edmType == "signatures") {
-        ## Not tested
 
         baseurl_edms <- "http://lda.data.parliament.uk/edmsignatures.json?_pageSize=500"
+
+        message("Connecting to API")
 
         edms <- jsonlite::fromJSON(baseurl_edms)
 
@@ -122,15 +127,14 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
 
 
     } else if (edmType == "ID") {
-        ## Returns
 
         edmsID <- readline("Enter an Early Day Motion ID: ")
 
         baseurl_edms <- "http://lda.data.parliament.uk/edms/"
 
-        edms <- jsonlite::fromJSON(paste0(baseurl_edms, edmsID, ".json"))
+        message("Connecting to API")
 
-        # df <- edms$result$primaryTopic
+        edms <- jsonlite::fromJSON(paste0(baseurl_edms, edmsID, ".json"))
 
         list <- edms$result$primaryTopic
 
@@ -144,3 +148,7 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
         df
     }
 }
+
+
+
+
