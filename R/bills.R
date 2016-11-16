@@ -32,7 +32,6 @@ bills <- function(billType = c("ammended", "stageTypes", "publications")) {
 
         bills <- jsonlite::fromJSON(baseurl_bills)
 
-
         if(bills$result$totalResults>bills$result$itemsPerPage){
 
         billsJpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
