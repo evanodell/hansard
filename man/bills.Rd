@@ -4,7 +4,7 @@
 \alias{bills}
 \title{bills}
 \usage{
-bills(billType = c("all", "ammended", "stageTypes", "publications"))
+bills(billType = c("ammended", "stageTypes", "publications"))
 }
 \arguments{
 \item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stageTypes'}
