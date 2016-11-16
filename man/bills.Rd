@@ -4,7 +4,7 @@
 \alias{bills}
 \title{bills}
 \usage{
-bills(billType = c("ammended", "stageTypes", "publications"))
+bills(billType = c("all", "ammended", "stageTypes", "publications"))
 }
 \arguments{
 \item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stageTypes'}
@@ -19,9 +19,7 @@ bills(billType = c("ammended", "stageTypes", "publications"))
 Imports data on House of Commons and House of Lords bills
 }
 \note{
-There are problems with the Bills API, as the JSON data available for some queries,
-including the query to return all bills currently before the house, is inconsistently formatted
-and cannot be parsed into a data frame.
+There are problems with the Bills API, as the JSON data available for some queries, including the query to return all bills currently before the house, is inconsistently formatted and cannot be parsed into a data frame.
 }
 \examples{
 \dontrun{

@@ -21,7 +21,7 @@
 ### Rbind common columns only for bills?
 
 
-bills <- function(billType = c("all" ,"ammended", "stageTypes", "publications")) {
+bills <- function(billType = c("ammended", "stageTypes", "publications")) {
 
     match.arg(billType)
 
