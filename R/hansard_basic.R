@@ -88,7 +88,7 @@ hansard_basic <- function() {
 
     select1 <- select.list(hansard_list, title="Please select a data set")
 
-    if(select1==hansard_list[1]) {
+    if(select1==hansard_list[1]) {#DONE
 
     select_av <- select.list(av_list)
 
@@ -103,17 +103,21 @@ hansard_basic <- function() {
       }
 
     }
-    else if (select1==hansard_list[2]) {
+    else if (select1==hansard_list[2]) {#DONE
 
-      select_av <- select.list(av_list)
+      select_bills <- select.list(bills_list)
 
-      if(select_av==av_list[1]){
+      if(select_bills==bills_list[1]){
 
-        tv_programmes("TV")
+        bills("ammended")
 
-      } else if (select_av==av_list[2]) {
+      } else if (select_bills==bills_list[2]) {
 
-        tv_programmes("clips")
+        bills("stageTypes")
+
+      }else if (select_bills==bills_list[3]) {
+
+        bills("publications")
 
       }
 
