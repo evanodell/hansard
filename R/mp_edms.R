@@ -6,7 +6,7 @@
 #' @param edmType The type of data you want, allows the arguments "signed" and "sponsor". Defaults to "signed".
 #' @param mp.id Required parameter. The ID number of an MP.
 #' @param signed Returns a data frame of all early day motions signed by the given MP.
-#' @param Sponsor Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor.
+#' @param sponsor Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor.
 #' @keywords Early Day Motion
 #' @export
 #' @examples \dontrun{
