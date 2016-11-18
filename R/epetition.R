@@ -1,5 +1,4 @@
 
-
 #' epetition
 #'
 #' Imports data on Epetitions
