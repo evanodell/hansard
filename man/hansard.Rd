@@ -39,6 +39,8 @@ Provides functions to download data from the data.parliament.uk APIs. Because of
 
 \code{\link{hansard_generic}}
 
+\code{\link{hansard_basic}}
+
 \code{\link{lords_ammendments}}
 
 \code{\link{lords_attendance}}

@@ -33,6 +33,8 @@
 #'
 #' \code{\link{hansard_generic}}
 #'
+#' \code{\link{hansard_basic}}
+#'
 #' \code{\link{lords_ammendments}}
 #'
 #' \code{\link{lords_attendance}}

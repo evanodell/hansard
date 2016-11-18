@@ -15,7 +15,7 @@ hansard_basic <- function(call = TRUE) {
     hansard_list <- c("AV Live Logging", "Bills", "Commons Answered Questions", "Commons Divisions", "Commons Oral Question Times",
         "Commons Oral Questions", "Commons Written Questions", "Constituencies", "Early Day Motions", "Elections", "Election Results",
         "Lords Attendances", "Lords Bill Amendments", "Lords Divisions", "Lords Written Questions", "Members", "Papers Laid",
-        "Parliamentary Questions Answered", "Publication Logs", "Research Briefings", "Sessions", "Thesaurus", "e-Petitions")
+        "Publication Logs", "Research Briefings", "Sessions", "Thesaurus", "e-Petitions")
 
     select1 <- select.list(hansard_list, title = "Please select a data set")
 
