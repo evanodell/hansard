@@ -14,37 +14,38 @@
 
 
 constituencies <- function(contType = c("all")) {
-
+    
     match.arg(contType)
-
-    if (contType == "all"){
-
+    
+    if (contType == "all") 
+        {
+            
             baseurl_conts <- "http://lda.data.parliament.uk/constituencies.json?_pageSize=500"
-
+            
             conts <- jsonlite::fromJSON("http://lda.data.parliament.uk/constituencies.json?_pageSize=500")
-
+            
             contsJpage <- round(conts$result$totalResults/conts$result$itemsPerPage, digits = 0)
-
+            
             pages <- list()
-
+            
             for (i in 0:contsJpage) {
                 mydata <- jsonlite::fromJSON(paste0(baseurl_conts, "&_page=", i), flatten = TRUE)
                 message("Retrieving page ", i + 1, " of ", contsJpage + 1)
                 pages[[i + 1]] <- mydata$result$items
             }
-
+            
         }  # else if(contType=='ID') {#Working Weirdly
-
+    
     # cont.ID <- readline('Enter the constituency ID: ')
-
+    
     # cont.ID <- as.numeric(cont.ID)
-
+    
     # baseurl_conts <- 'http://lda.data.parliament.uk/constituencies/'
-
+    
     # conts <- jsonlite::fromJSON(paste0('http://lda.data.parliament.uk/constituencies/',cont.ID,'.json?'))
-
+    
     # df<-conts$result
-
+    
     # }
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
     if (nrow(df) == 0) {
