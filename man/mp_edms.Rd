@@ -13,7 +13,7 @@ mp_edms(mp.id, edmType = c("signed", "sponsor"))
 
 \item{signed}{Returns a data frame of all early day motions signed by the given MP.}
 
-\item{Sponsor}{Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor.}
+\item{sponsor}{Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor.}
 }
 \description{
 Imports data on early day motions
