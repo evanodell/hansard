@@ -30,166 +30,180 @@
 #' }
 
 commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled", "daysAnswered", "askedBy", "session", "department")) {
-    
+
     match.arg(comsOralType)
-    
+
     if (comsOralType == "all") {
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500"
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500")
-        
+
         # if(numpages=TRUE){
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
         # }else { oralJpage <- numpages }
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else if (comsOralType == "times") {
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500")
-        
+
         # if(numpages=TRUE){
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
         # }else { oralJpage <- numpages }
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else if (comsOralType == "daysTabled") {
-        
+
         start.date <- readline("Enter start date (yyyy-mm-dd): ")
-        
+
         end.date <- readline("Enter end date (yyyy-mm-dd): ")
-        
+
         start.date <- URLencode(start.date)
-        
+
         end.date <- URLencode(end.date)
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/tabled.json?startDate="
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500"))
-        
+
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", 
+            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=",
                 i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else if (comsOralType == "daysAnswered") {
-        
+
         start.date <- readline("Enter start date (yyyy-mm-dd): ")
-        
+
         end.date <- readline("Enter end date (yyyy-mm-dd): ")
-        
+
         start.date <- URLencode(start.date)
-        
+
         end.date <- URLencode(end.date)
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answerDate.json?startDate="
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500"))
-        
+
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", 
+            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=",
                 i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else if (comsOralType == "askedBy") {
-        
+
         mp.id <- readline("Enter Member ID: ")
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, mp.id, "&_pageSize=500"))
-        
+
         if (oral$result$totalResults > oral$result$itemsPerPage) {
             oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
         } else {
             oralJpage <- 0
         }
-        
+
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp.id, "&_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else if (comsOralType == "session") {
-        
+
         oral_session <- readline("Enter session (yyyy/yy): ")
         oral_session <- URLencode(oral_session)
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, oral_session, "&_pageSize=500"))
-        
+
         if (oral$result$itemsPerPage < oral$result$totalResults) {
             oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
         } else {
             oralJpage <- 0
         }
-        
+
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, oral_session, "&_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
     } else if (comsOralType == "department") {
-        
+
         answering.department <- readline("Enter the name of the answering department: ")
         answering.department <- URLencode(answering.department)
-        
+
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answeringdepartment.json?q="
-        
+
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, answering.department, "&_pageSize=500"))
-        
+
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, answering.department, "&_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     }
-    
+
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         df
     }
-    
+
 }
 
 
