@@ -11,7 +11,7 @@ install.packages("hansard")
 ```
 
 
-To install the development version (version 0.3.0) run:
+To install the development version (version 0.3.2) run:
 ```
 install.packages("devtools")
 devtools::install_github("EvanOdell/hansard")
