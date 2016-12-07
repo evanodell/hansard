@@ -42,7 +42,7 @@ sessions_info <- function(sesType = c("all", "days")) {
 
         message("Connecting to API")
 
-        sessionsJpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        sessionsJpage <- round(url_sessions$result$totalResults/url_sessions$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
