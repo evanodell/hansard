@@ -38,9 +38,11 @@ sessions_info <- function(sesType = c("all", "days")) {
 
         baseurl_sessions <- "http://lda.data.parliament.uk/sessions/days.json?_pageSize=500"
 
+        url_sessions <- jsonlite::fromJSON(paste0(baseurl_sessions), flatten = TRUE)
+
         message("Connecting to API")
 
-        sessionsJpage <- 0
+        sessionsJpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
 
         pages <- list()
 

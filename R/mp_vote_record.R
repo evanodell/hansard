@@ -1,5 +1,4 @@
 
-
 #' mp_vote_record
 #'
 #' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
@@ -12,8 +11,11 @@
 #' @export
 #' @examples \dontrun{
 #' x <- mp_vote_record(172, 'all')
-#' }
 #'
+#' x <- mp_vote_record(172, 'aye')
+#'
+#' x <- mp_vote_record(172, 'no')
+#' }
 
 
 mp_vote_record <- function(mp.id, voteRecord = c("all", "aye", "no")) {

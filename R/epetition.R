@@ -23,7 +23,6 @@
 #'
 #'}
 
-
 epetition <- function(petType = c("all", "byConstituency", "petitionID", "response", "idConstituency")) {
 
     match.arg(petType)
