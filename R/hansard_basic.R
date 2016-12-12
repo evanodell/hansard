@@ -2,7 +2,7 @@
 
 #' hansard_basic
 #'
-#' Walks the user through the various steps of calling data from the parliamentary API. STILL A WORK IN PROGRESS, DO NOT USE!!!!
+#' Walks the user through the various steps of calling data from the parliamentary API.
 #' @param call Begins the process of calling to the API. Defaults to TRUE.
 #' @keywords Hansard API
 #' @export
@@ -10,7 +10,7 @@
 #' x <- hansard_basic()
 #' }
 
-hansard_basic <- function(call = TRUE) {
+hansard_basic <- function() {
 
     hansard_list <- c("AV Live Logging", "Bills", "Commons Answered Questions", "Commons Divisions", "Commons Oral Question Times",
         "Commons Oral Questions", "Commons Written Questions", "Constituencies", "Early Day Motions", "Elections", "Election Results",

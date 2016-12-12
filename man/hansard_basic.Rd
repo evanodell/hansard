@@ -4,13 +4,13 @@
 \alias{hansard_basic}
 \title{hansard_basic}
 \usage{
-hansard_basic(call = TRUE)
+hansard_basic()
 }
 \arguments{
 \item{call}{Begins the process of calling to the API. Defaults to TRUE.}
 }
 \description{
-Walks the user through the various steps of calling data from the parliamentary API. STILL A WORK IN PROGRESS, DO NOT USE!!!!
+Walks the user through the various steps of calling data from the parliamentary API.
 }
 \examples{
 \dontrun{

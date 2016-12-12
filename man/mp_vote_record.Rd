@@ -23,8 +23,11 @@ Accepts an ID number for a member of the House of Commons, and returns a data fr
 \examples{
 \dontrun{
 x <- mp_vote_record(172, 'all')
-}
 
+x <- mp_vote_record(172, 'aye')
+
+x <- mp_vote_record(172, 'no')
+}
 }
 \keyword{divisions}
 

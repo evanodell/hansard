@@ -1,5 +1,16 @@
 
 
+# hansard 0.3.3
+
+## Bug fixes and hansard_basic()
+
+As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
+
+# hansard 0.3.2
+
+## Bug Fixes
+
+
 # hansard 0.3.0
 
 ## Requesting data through function parameters
