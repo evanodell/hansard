@@ -1,8 +1,13 @@
 #Resubmission 
-This is the second re-submission of this package. The initial submission used an incorrect license template, this has now been corrected. I have also added a vignette and a message for when the call to the API does not return any data.
+This is the first update of this package. The previous version, 0.2.5, was accepted and published on cran on 2016-11-12. 
 
-For the second re-submission, links in the DESCRIPTION file, the README and the vignette were changed from .data.parliament.uk to <http://www.data.parliament.uk/>.
+This version, 0.3.4, provides four new functions that allow for search parameters to be included in the function call. They are: `lords_vote_record`, `mp_questions`, `mp_vote_record` and `mp_edms`.
 
+This update also includes the new function `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
+
+There are also bug fixes for `lords_attendance`, deprecation of `lords_ammendments` in favour of `lords_amendments`
+
+Fixed an issue with `lords_written_questions` and `commons_written_questions` returning a 404 error on some requests.
 
 ## Test environments
 

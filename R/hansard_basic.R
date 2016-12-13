@@ -263,7 +263,7 @@ hansard_basic <- function(call) {
 
             election_results("all")
 
-        } else if (election_results_lists == election_results_list[2]) {
+        } else if (select_election_results == election_results_list[2]) {
 
             election_results("ID")
 

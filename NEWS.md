@@ -29,6 +29,8 @@ In response to a request, I've added three new functions that allow you to reque
 
 `mp_vote_record`
 
+`mp_edms`
+
 The option to use console input has been preserved in `commons_divisions`, `lords_divisions`, `commons_written_questions` and `commons_oral_questions`, along with other features not available in the new functions. 
 
 ## Bug fixes
