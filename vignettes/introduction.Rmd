@@ -1,10 +1,10 @@
 ---
-title: "Hansard Example"
+title: "Introduction to Hansard"
 author: "Evan Odell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Hansard Example}
+  %\VignetteIndexEntry{Hansard Introduction}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
