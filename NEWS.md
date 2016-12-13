@@ -1,4 +1,8 @@
+# hansard 0.3.4
 
+## Bug fixes
+
+The `lords_attendance` function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, @meenaparam)
 
 # hansard 0.3.3
 
