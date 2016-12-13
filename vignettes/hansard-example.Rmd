@@ -223,7 +223,14 @@ The function `research_briefings` is unusual in that it requests names instead o
 #> Enter sub-topic. For ease of use, copy and paste the sub-topic: Teachers
 ```
 
-###Using the hansard_generic function
+###Using the hansard_basic function
 
+```{r, eval=FALSE}
+x <- hansard_generic("commonsansweredquestions.json")
+```
+
+the page size thing
+
+link to full list of data sets
 
 

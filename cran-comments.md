@@ -1,7 +1,7 @@
 #Resubmission 
 This is the first update of this package. The previous version, 0.2.5, was accepted and published on cran on 2016-11-12. 
 
-This version, 0.3.4, provides four new functions that allow for search parameters to be included in the function call. They are: `lords_vote_record`, `mp_questions`, `mp_vote_record` and `mp_edms`.
+This version, 0.3.4, provides four new functions that allow for search parameters to be included in the function call. They are: `lords_vote_record`, `mp_questions`, `mp_vote_record` and `mp_edms`. An example of `mp_vote_record` has been added to the vignette.
 
 This update also includes the new function `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
 
