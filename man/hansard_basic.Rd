@@ -4,7 +4,7 @@
 \alias{hansard_basic}
 \title{hansard_basic}
 \usage{
-hansard_basic()
+hansard_basic(call)
 }
 \arguments{
 \item{call}{Begins the process of calling to the API. Defaults to TRUE.}

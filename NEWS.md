@@ -4,6 +4,8 @@
 
 The `lords_attendance` function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, @meenaparam)
 
+Fixed spelling of amendments, so that `lords_ammendments` is now `lords_amendments`. The `lords_ammendments` function has been deprecated, and will be removed in a future release.
+
 # hansard 0.3.3
 
 ## Bug fixes and hansard_basic()

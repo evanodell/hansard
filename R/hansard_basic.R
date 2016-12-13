@@ -10,7 +10,7 @@
 #' x <- hansard_basic()
 #' }
 
-hansard_basic <- function() {
+hansard_basic <- function(call) {
 
     hansard_list <- c("AV Live Logging", "Bills", "Commons Answered Questions", "Commons Divisions", "Commons Oral Question Times",
         "Commons Oral Questions", "Commons Written Questions", "Constituencies", "Early Day Motions", "Elections", "Election Results",
@@ -257,13 +257,13 @@ hansard_basic <- function() {
 
         election_results_list <- c("All", "Election ID")
 
-        select_election_results <- select.list(election_results_lists)
+        select_election_results <- select.list(election_results_list)
 
-        if (select_election_results == election_results_lists[1]) {
+        if (select_election_results == election_results_list[1]) {
 
             election_results("all")
 
-        } else if (election_results_lists == election_results_lists[2]) {
+        } else if (election_results_lists == election_results_list[2]) {
 
             election_results("ID")
 
@@ -287,9 +287,15 @@ hansard_basic <- function() {
 
     } else if (select1 == hansard_list[13]) {
 
-        # lords_bill_amendments_list <- c('All')
+        #lords_bill_amendments_list <- c('All')
 
-        lords_bill_amendments("all")
+        #select_lords_bill_amendments <- select.list(lords_bill_amendments_list)
+
+        #if (select_lords_bill_amendments == lords_bill_amendments_list[1]) {
+
+          lords_amendments("all")
+
+        #}
 
     } else if (select1 == hansard_list[14]) {
 
@@ -415,11 +421,11 @@ hansard_basic <- function() {
 
         if (select_sessions == sessions_list[1]) {
 
-            sessions("all")
+            sessions_info("all")
 
         } else if (select_sessions == sessions_list[2]) {
 
-            sessions("days")
+          sessions_info("days")
 
         }
 
@@ -427,7 +433,7 @@ hansard_basic <- function() {
 
         # thesaurus_list <- c('All')
 
-        thesaurus("all")
+        commons_terms("all")
 
     } else if (select1 == hansard_list[22]) {
 
