@@ -1,3 +1,20 @@
+# hansard 0.3.4
+
+## Bug fixes
+
+The `lords_attendance` function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, @meenaparam)
+
+Fixed spelling of amendments, so that `lords_ammendments` is now `lords_amendments`. The `lords_ammendments` function has been deprecated, and will be removed in a future release.
+
+# hansard 0.3.3
+
+## hansard_basic()
+
+As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
+
+# hansard 0.3.2
+
+## Bug Fixes
 
 
 # hansard 0.3.0
@@ -11,6 +28,8 @@ In response to a request, I've added three new functions that allow you to reque
 `mp_questions`
 
 `mp_vote_record`
+
+`mp_edms`
 
 The option to use console input has been preserved in `commons_divisions`, `lords_divisions`, `commons_written_questions` and `commons_oral_questions`, along with other features not available in the new functions. 
 

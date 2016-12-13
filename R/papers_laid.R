@@ -18,6 +18,8 @@ papers_laid <- function(paperType = c("all")) {
 
         baseurl_papers <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 
+        message("Connecting to API")
+
         papers <- jsonlite::fromJSON(baseurl_papers)
 
         papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)

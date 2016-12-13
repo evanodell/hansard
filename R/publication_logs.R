@@ -14,6 +14,8 @@ publication_logs <- function(all = TRUE) {
 
     baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500"
 
+    message("Connecting to API")
+
     logs <- jsonlite::fromJSON(baseurl_logs)
 
     logsJpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)

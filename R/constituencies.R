@@ -21,6 +21,8 @@ constituencies <- function(contType = c("all")) {
 
             baseurl_conts <- "http://lda.data.parliament.uk/constituencies.json?_pageSize=500"
 
+            message("Connecting to API")
+
             conts <- jsonlite::fromJSON("http://lda.data.parliament.uk/constituencies.json?_pageSize=500")
 
             contsJpage <- round(conts$result$totalResults/conts$result$itemsPerPage, digits = 0)

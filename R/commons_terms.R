@@ -20,6 +20,8 @@ commons_terms <- function(termsType = c("all")) {
 
         baseurl_terms <- "http://lda.data.parliament.uk/terms.json?_pageSize=500"
 
+        message("Connecting to API")
+
         cTerms <- jsonlite::fromJSON("http://lda.data.parliament.uk/terms.json?_pageSize=500")
 
         cTermsJpage <- round(cTerms$result$totalResults/cTerms$result$itemsPerPage, digits = 0)

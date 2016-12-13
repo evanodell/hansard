@@ -21,6 +21,8 @@ election_results <- function(resultType = c("all", "ID")) {
 
         baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?_pageSize=500"
 
+        message("Connecting to API")
+
         electR <- jsonlite::fromJSON("http://lda.data.parliament.uk/electionresults.json?_pageSize=500")
 
         electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
@@ -38,6 +40,8 @@ election_results <- function(resultType = c("all", "ID")) {
         electID <- readline("Enter the election ID: ")
 
         baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?electionId="
+
+        message("Connecting to API")
 
         electR <- jsonlite::fromJSON(paste0(baseurl_electR, electID, "&_pageSize=500"))
 

@@ -1,5 +1,4 @@
 
-
 #' epetition
 #'
 #' Imports data on Epetitions
@@ -24,7 +23,6 @@
 #'
 #'}
 
-
 epetition <- function(petType = c("all", "byConstituency", "petitionID", "response", "idConstituency")) {
 
     match.arg(petType)
@@ -32,6 +30,8 @@ epetition <- function(petType = c("all", "byConstituency", "petitionID", "respon
     if (petType == "all") {
 
         baseurl_petition <- "http://lda.data.parliament.uk/epetitions.json?_pageSize=500"
+
+        message("Connecting to API")
 
         petition <- jsonlite::fromJSON(baseurl_petition)
 
@@ -48,6 +48,8 @@ epetition <- function(petType = c("all", "byConstituency", "petitionID", "respon
     } else if (petType == "byConstituency") {
 
         baseurl_petition <- "http://lda.data.parliament.uk/epetitions/signaturesbyconstituency.json?_pageSize=500"
+
+        message("Connecting to API")
 
         petition <- jsonlite::fromJSON(baseurl_petition)
 
@@ -69,6 +71,8 @@ epetition <- function(petType = c("all", "byConstituency", "petitionID", "respon
 
         baseurl_petition <- "http://lda.data.parliament.uk/epetitions/"
 
+        message("Connecting to API")
+
         petition <- jsonlite::fromJSON(paste0(baseurl_petition, pet_ID, ".json?_pageSize=500"))
 
         petitionJpage <- round(petition$result$totalResults/petition$result$itemsPerPage, digits = 0)
@@ -89,6 +93,8 @@ epetition <- function(petType = c("all", "byConstituency", "petitionID", "respon
 
         baseurl_petition <- "http://lda.data.parliament.uk/epetitions/"
 
+        message("Connecting to API")
+
         petition <- jsonlite::fromJSON(paste0(baseurl_petition, pet_ID, "/governmentresponse.json?_pageSize=500"))
 
         petitionJpage <- round(petition$result$totalResults/petition$result$itemsPerPage, digits = 0)
@@ -108,6 +114,8 @@ epetition <- function(petType = c("all", "byConstituency", "petitionID", "respon
         pet_ID <- URLencode(pet_ID)
 
         baseurl_petition <- "http://lda.data.parliament.uk/epetitions/"
+
+        message("Connecting to API")
 
         petition <- jsonlite::fromJSON(paste0(baseurl_petition, pet_ID, "/signaturesbyconstituency?_pageSize=500"))
 

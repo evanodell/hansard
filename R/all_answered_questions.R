@@ -23,6 +23,8 @@ all_answered_questions <- function(allAnsType = c("all", "askedBy")) {
 
         baseurl_allAnswered <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
 
+        message("Connecting to API")
+
         allAnswered <- jsonlite::fromJSON("http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500")
 
         allAnsweredJpage <- round(allAnswered$result$totalResults/allAnswered$result$itemsPerPage, digits = 0)
@@ -41,6 +43,8 @@ all_answered_questions <- function(allAnsType = c("all", "askedBy")) {
         mp.id <- URLencode(mp.id)
 
         baseurl_allAnswered <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+
+        message("Connecting to API")
 
         allAnswered <- jsonlite::fromJSON(paste0(baseurl_allAnswered, mp.id))
 

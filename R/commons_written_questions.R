@@ -27,6 +27,8 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
 
         baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions.json"
 
+        message("Connecting to API")
+
         writ <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonswrittenquestions.json")
 
         writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
@@ -45,6 +47,8 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
         answering.department <- URLencode(answering.department)
 
         baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions/answeringdepartment.json?q="
+
+        message("Connecting to API")
 
         writ <- jsonlite::fromJSON(paste0(baseurl_writ, answering.department, "&pageSize=500"))
 
@@ -70,6 +74,8 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
 
         baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions/tabled.json?startDate="
 
+        message("Connecting to API")
+
         writ <- jsonlite::fromJSON(paste0(baseurl_writ, start.date, "&endDate=", end.date, "&_pageSize=500"))
 
         writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
@@ -77,8 +83,8 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
         pages <- list()
 
         for (i in 0:writJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", i),
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=",
+                i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", writJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -88,6 +94,8 @@ commons_written_questions <- function(comsWritType = c("all", "department", "dat
         mp.id <- readline("Enter Member ID: ")
 
         baseurl_writ <- "http://lda.data.parliament.uk/commonswrittenquestions.json?mnisId="
+
+        message("Connecting to API")
 
         writ <- jsonlite::fromJSON(paste0(baseurl_writ, mp.id, "&_pageSize=500"))
 

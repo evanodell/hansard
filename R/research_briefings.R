@@ -34,6 +34,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500"
 
+        message("Connecting to API")
+
         research <- jsonlite::fromJSON(baseurl_research)
 
         researchJpage <- 0
@@ -50,6 +52,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500"
 
+        message("Connecting to API")
+
         research <- jsonlite::fromJSON(baseurl_research)
 
         researchJpage <- 0
@@ -65,6 +69,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
     } else if (resType == "types") {
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtypes.json?_pageSize=500"
+
+        message("Connecting to API")
 
         research <- jsonlite::fromJSON(baseurl_research)
 
@@ -99,6 +105,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
 
+        message("Connecting to API")
+
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
 
         researchJpage <- 0
@@ -130,6 +138,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         }
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefingsubtopics/"
+
+        message("Connecting to API")
 
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
 
@@ -180,6 +190,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
 
         baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
 
+        message("Connecting to API")
+
         research <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500"))
 
         researchJpage <- 0
@@ -187,7 +199,8 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         pages <- list()
 
         for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=",
+                i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

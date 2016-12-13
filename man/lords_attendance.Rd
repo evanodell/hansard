@@ -14,7 +14,7 @@ lords_attendance(lordsAttendType = c("all", "date"))
 \item{date}{Requests a date and returns a data frame with all available House of Lords attendance records for that date.}
 }
 \description{
-Imports data on House of Lords attendance
+Imports data on House of Lords attendance. Please note that the attendance data frames are not as tidy as some of the others that are accessible through this API.
 }
 \examples{
 \dontrun{

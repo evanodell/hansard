@@ -1,18 +1,21 @@
 
 
-#' lords_ammendments
+#' lords_amendments
 #'
-#' Imports data on House of Lords Ammendments
-#' @param all Returns a data frame with all available House of Lords Ammendments. Defaults to TRUE.
-#' @keywords House of Lords Ammendments
+#' Imports data on House of Lords Amendments
+#' @param all Returns a data frame with all available House of Lords Amendments Defaults to TRUE.
+#' @keywords House of Lords Amendments
 #' @export
 #' @examples \dontrun{
-#' x <- lords_ammendments()
+#' x <- lords_amendments()
 #' }
 
-lords_ammendments <- function(all = TRUE) {
+
+lords_amendments <- function(all = TRUE) {
 
     baseurl_lordsAmmend <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
+
+    message("Connecting to API")
 
     lordsAmmend <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500")
 
@@ -33,3 +36,10 @@ lords_ammendments <- function(all = TRUE) {
         df
     }
 }
+
+
+lords_ammendments <- function(all=TRUE) {
+  .Deprecated("lords_amendments") #include a package argument, too
+  lords_amendments(all = TRUE)
+}
+

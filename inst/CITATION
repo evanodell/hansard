@@ -6,4 +6,4 @@ bibentry(bibtype = "Manual",
          author = c(person("Evan", "Odell")),
          year = year,
          note = note,
-         url = "https://cran.r-project.org/web/packages/hansard/")
+         url = "https://cran.r-project.org/package=hansard")

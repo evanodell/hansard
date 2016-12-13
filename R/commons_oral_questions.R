@@ -37,6 +37,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500"
 
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500")
 
         # if(numpages=TRUE){
@@ -53,6 +55,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
     } else if (comsOralType == "times") {
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
+
+        message("Connecting to API")
 
         oral <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500")
 
@@ -79,6 +83,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/tabled.json?startDate="
 
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500"))
 
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
@@ -86,8 +92,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         pages <- list()
 
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", i),
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=",
+                i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -104,6 +110,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answerDate.json?startDate="
 
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500"))
 
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
@@ -111,8 +119,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         pages <- list()
 
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", i),
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=",
+                i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -122,6 +130,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         mp.id <- readline("Enter Member ID: ")
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
+
+        message("Connecting to API")
 
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, mp.id, "&_pageSize=500"))
 
@@ -146,6 +156,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
 
+        message("Connecting to API")
+
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, oral_session, "&_pageSize=500"))
 
         if (oral$result$itemsPerPage < oral$result$totalResults) {
@@ -167,6 +179,8 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         answering.department <- URLencode(answering.department)
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answeringdepartment.json?q="
+
+        message("Connecting to API")
 
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, answering.department, "&_pageSize=500"))
 

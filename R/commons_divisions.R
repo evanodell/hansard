@@ -35,13 +35,16 @@
 #' x <- commons_divisions('uinFull')
 #' }
 
-commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteSummary", "voteFull", "session", "uinSummary", "uinFull")) {
+commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteSummary", "voteFull", "session", "uinSummary",
+    "uinFull")) {
 
     match.arg(comsDivType)
 
     if (comsDivType == "all") {
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500")
 
@@ -63,6 +66,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
         divis_date <- URLencode(divis_date)
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/date/"
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/", divis_date, ".json?_pageSize=500"))
 
@@ -89,6 +94,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId=", mp.id, "&_pageSize=500"))
 
         divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
@@ -110,6 +117,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=", mp.id, "&_pageSize=500"))
 
         divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
@@ -129,6 +138,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
         vote.ID <- readline("Enter vote ID: ")
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
@@ -153,6 +164,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
         df <- divis$result$primaryTopic$vote
@@ -165,6 +178,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
         divis_session <- URLencode(divis_session)
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_session, "&_pageSize=500"))
 
@@ -191,6 +206,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin))
 
         df <- divis$result$items
@@ -216,6 +233,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
         divis_uin <- URLencode(divis_uin)
 
         baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin, "&_pageSize=500"))
 
@@ -249,6 +268,8 @@ commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteS
 commons_division_date <- function(date) {
 
     baseurl_date <- "http://lda.data.parliament.uk/commonsdivisions/date/"
+
+    message("Connecting to API")
 
     url_date <- jsonlite::fromJSON(paste0(baseurl_date, date, ".json?_pageSize=500"), flatten = TRUE)
 

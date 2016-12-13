@@ -32,6 +32,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions.json?_pageSize=500"
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsdivisions.json?_pageSize=500")
 
         divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
@@ -53,6 +55,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
         divis_date <- URLencode(divis_date)
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/date/"
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/lordsdivisions/date/", divis_date, ".json?_pageSize=500"))
 
@@ -81,6 +85,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, mp.id, "&_pageSize=500"))
 
         divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
@@ -103,6 +109,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId=", mp.id, "&_pageSize=500"))
 
         divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
@@ -124,6 +132,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
         divis_session <- URLencode(divis_session)
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordssdivisions.json?session="
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_session, "&_pageSize=500"))
 
@@ -150,6 +160,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/id/"
 
+        message("Connecting to API")
+
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
         df <- divis$result$primaryTopic
@@ -172,6 +184,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
         vote.ID <- readline("Enter vote ID: ")
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions/id/"
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
 
@@ -211,6 +225,8 @@ lords_divisions <- function(lordsDivType = c("all", "date", "notContent", "conte
         divis_uin <- URLencode(divis_uin)
 
         baseurl_divis <- "http://lda.data.parliament.uk/lordsdivisions.json?uin="
+
+        message("Connecting to API")
 
         divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin, "&_pageSize=500"))
 

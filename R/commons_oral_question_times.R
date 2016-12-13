@@ -24,6 +24,8 @@ commons_oral_question_times <- function(cOralTimeType = c("all", "ID", "session"
 
         baseurl_oralTimes <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
 
+        message("Connecting to API")
+
         oralTimes <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500")
 
         oralTimesJpage <- round(oralTimes$result$totalResults/oralTimes$result$itemsPerPage, digits = 0)
@@ -44,6 +46,8 @@ commons_oral_question_times <- function(cOralTimeType = c("all", "ID", "session"
 
         baseurl_oralTimes <- "http://lda.data.parliament.uk/commonsoralquestiontimes/"
 
+        message("Connecting to API")
+
         oralTimes <- jsonlite::fromJSON(paste0(baseurl_oralTimes, timeID, ".json"))
 
         mydata <- jsonlite::fromJSON(paste0(baseurl_oralTimes, timeID, ".json"), flatten = TRUE)
@@ -59,6 +63,8 @@ commons_oral_question_times <- function(cOralTimeType = c("all", "ID", "session"
         sessionID <- URLencode(sessionID)
 
         baseurl_oralTimes <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?session="
+
+        message("Connecting to API")
 
         oralTimes <- jsonlite::fromJSON(paste0(baseurl_oralTimes, sessionID, "&_pageSize=500"))
 
