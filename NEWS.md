@@ -8,7 +8,7 @@ Fixed spelling of amendments, so that `lords_ammendments` is now `lords_amendmen
 
 # hansard 0.3.3
 
-## Bug fixes and hansard_basic()
+## hansard_basic()
 
 As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
 

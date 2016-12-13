@@ -225,12 +225,10 @@ The function `research_briefings` is unusual in that it requests names instead o
 
 ###Using the hansard_basic function
 
+The `hansard_basic` function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the [DDP Explorer website](http://explore.data.parliament.uk/).
+
 ```{r, eval=FALSE}
 x <- hansard_generic("commonsansweredquestions.json")
 ```
 
-the page size thing
-
-link to full list of data sets
-
-
+Note that the API defaults to returning 10 items per page, but allows up to 500 items per page. The other `hansard` functions include `"_pageSize=500"` as a suffix in the path to reduce the number of page calls required.
