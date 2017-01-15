@@ -64,7 +64,7 @@ committee_reports <- function(id = NULL, recommendations = FALSE) {
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
     if (nrow(df) == 0) {
       message("The request did not return any data. Please check your search parameters.")
-    } else {
+    } else{
       df
     }
 
