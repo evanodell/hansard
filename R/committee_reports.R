@@ -10,6 +10,7 @@
 #' }
 
 ### API NOT OPEN!!!
+
 committee_reports <- function(id = NULL, recommendations = FALSE) {
 
   if  (is.null(id)==TRUE) {
