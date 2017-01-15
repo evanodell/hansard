@@ -1,5 +1,3 @@
-
-
 #' lords_amendments
 #'
 #' Imports data on House of Lords Amendments
@@ -9,7 +7,6 @@
 #' @examples \dontrun{
 #' x <- lords_amendments()
 #' }
-
 
 lords_amendments <- function(all = TRUE) {
 

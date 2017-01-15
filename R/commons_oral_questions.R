@@ -35,11 +35,11 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
     if (comsOralType == "all") {
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500"
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500"
 
         message("Connecting to API")
 
-        oral <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsoralquestions.json?_pageSize=500")
+        oral <- jsonlite::fromJSON(baseurl_commons_oral_questions)
 
         # if(numpages=TRUE){
         oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
@@ -47,14 +47,14 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         pages <- list()
 
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_commons_oral_questions, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
 
     } else if (comsOralType == "times") {
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestiontimes.json?_pageSize=500"
 
         message("Connecting to API")
 
@@ -81,7 +81,7 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         end.date <- URLencode(end.date)
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/tabled.json?startDate="
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestions/tabled.json?startDate="
 
         message("Connecting to API")
 
@@ -108,7 +108,7 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         end.date <- URLencode(end.date)
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answerDate.json?startDate="
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestions/answerDate.json?startDate="
 
         message("Connecting to API")
 
@@ -129,7 +129,7 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
 
         mp.id <- readline("Enter Member ID: ")
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
 
         message("Connecting to API")
 
@@ -154,7 +154,7 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         oral_session <- readline("Enter session (yyyy/yy): ")
         oral_session <- URLencode(oral_session)
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
 
         message("Connecting to API")
 
@@ -178,7 +178,7 @@ commons_oral_questions <- function(comsOralType = c("all", "times", "daysTabled"
         answering.department <- readline("Enter the name of the answering department: ")
         answering.department <- URLencode(answering.department)
 
-        baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions/answeringdepartment.json?q="
+        baseurl_commons_oral_questions <- "http://lda.data.parliament.uk/commonsoralquestions/answeringdepartment.json?q="
 
         message("Connecting to API")
 
