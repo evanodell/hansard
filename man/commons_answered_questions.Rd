@@ -4,19 +4,17 @@
 \alias{commons_answered_questions}
 \title{commons_answered_questions}
 \usage{
-commons_answered_questions(comsAnsType = c("all", "date", "department",
-  "answeredBy"))
+commons_answered_questions(date = NULL, department = NULL,
+  answered_by = NULL)
 }
 \arguments{
-\item{comsAnsType}{The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'}
+\item{date}{Returns a data frame with all answered questions in the House of Commons on the given date, in 'yyyy-mm-dd' format. Defaults to NULL.}
 
-\item{all}{Returns a data frame with all answered questions in the House of Commons}
+\item{department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
 
-\item{date}{Returns a data frame with all answered questions in the House of Commons on the given date}
+\item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
 
-\item{department}{Returns a data frame with all answered questions in the House of Commons from the given department}
-
-\item{answeredBy}{Returns a data frame with all answered questions in the House of Commons by the given MP}
+\item{all}{Returns a data frame with all answered questions in the House of Commons. The default response, but is overriden by other parameters. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons answered questions
@@ -29,8 +27,7 @@ x <- commons_answered_questions('date')
 
 x <- commons_answered_questions('department')
 
-x <- commons_answered_questions('answeredBy')
+x <- commons_answered_questions('answered_by')
 }
 }
 \keyword{bills}
-

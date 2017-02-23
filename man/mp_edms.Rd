@@ -29,4 +29,3 @@ x <- mp_edms('sponsor')
 \keyword{Day}
 \keyword{Early}
 \keyword{Motion}
-

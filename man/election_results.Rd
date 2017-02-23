@@ -25,4 +25,3 @@ x <- election_results('ID')
 }
 \keyword{Election}
 \keyword{Results}
-

@@ -16,7 +16,7 @@ commons_committee_inquiries <- function(id=NULL, inquiries=FALSE, current=FALSE,
 
     if  (is.null(id)==TRUE) {
 
-      baseurl_commons_committee_inquiries <- "http://lda.data.parliament.uk/committeereports.json?_pageSize=500"
+      baseurl <- "http://lda.data.parliament.uk/committeereports.json?_pageSize=500"
 
       message("Connecting to API")
 
@@ -27,7 +27,7 @@ commons_committee_inquiries <- function(id=NULL, inquiries=FALSE, current=FALSE,
       pages <- list()
 
       for (i in 0:lordsAmmendJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_commons_committee_inquiries, "&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", commons_committee_inquiries_jpage + 1)
         pages[[i + 1]] <- mydata$result$items
       }

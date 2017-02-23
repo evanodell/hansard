@@ -44,4 +44,3 @@ x <- research_briefings('topicSubTopic')
 \keyword{Briefings}
 \keyword{Parliamentary}
 \keyword{Research}
-

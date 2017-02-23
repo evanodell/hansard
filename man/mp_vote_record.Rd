@@ -30,4 +30,3 @@ x <- mp_vote_record(172, 'no')
 }
 }
 \keyword{divisions}
-

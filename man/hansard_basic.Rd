@@ -19,4 +19,3 @@ x <- hansard_basic()
 }
 \keyword{API}
 \keyword{Hansard}
-

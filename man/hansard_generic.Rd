@@ -19,4 +19,3 @@ x <- hansard_generic('elections.json')
 }
 \keyword{API}
 \keyword{Hansard}
-

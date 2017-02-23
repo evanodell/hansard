@@ -4,14 +4,14 @@
 \alias{bills}
 \title{bills}
 \usage{
-bills(billType = c("ammended", "stageTypes", "publications"))
+bills(billType = c("ammended", "stage_types", "publications"))
 }
 \arguments{
-\item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stageTypes'}
+\item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stage_types'}
 
 \item{ammended}{Imports a data frame with all ammended bills}
 
-\item{stageTypes}{Imports a data frame with all bill stage types}
+\item{stage_types}{Imports a data frame with all bill stage types}
 
 \item{publications}{Imports a data frame with all bill publications}
 }
@@ -27,8 +27,7 @@ x <- bills('all')
 
 x <- bills('ammended')
 
-x <- bills('stageTypes')
+x <- bills('stage_types')
 }
 }
 \keyword{bills}
-

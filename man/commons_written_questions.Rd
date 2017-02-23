@@ -37,4 +37,3 @@ x <- commons_written_questions('askedBy')
 \keyword{Questions}
 \keyword{Written}
 \keyword{of}
-

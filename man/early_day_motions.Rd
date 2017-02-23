@@ -39,4 +39,3 @@ x <- early_day_motions('ID')
 }
 }
 \keyword{EDM}
-

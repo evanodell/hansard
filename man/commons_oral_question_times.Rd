@@ -30,4 +30,3 @@ x <- commons_oral_question_times('session')
 \keyword{Oral}
 \keyword{Questions}
 \keyword{Time}
-

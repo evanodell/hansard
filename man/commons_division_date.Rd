@@ -19,4 +19,3 @@ x <- commons_division_date(2016-10-10)
 
 }
 \keyword{divisions}
-

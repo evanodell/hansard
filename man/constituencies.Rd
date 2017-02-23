@@ -21,4 +21,3 @@ x <- constituencies('all')
 
 }
 \keyword{Constituencies}
-

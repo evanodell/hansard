@@ -21,4 +21,3 @@ x <- lords_amendments()
 \keyword{House}
 \keyword{Lords}
 \keyword{of}
-

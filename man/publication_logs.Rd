@@ -19,4 +19,3 @@ Imports data on Publication Logs
 }
 \keyword{Logs}
 \keyword{Publication}
-

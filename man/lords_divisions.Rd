@@ -39,4 +39,3 @@ x <- lords_divisions('session')
 }
 \keyword{Divisions}
 \keyword{Lords}
-

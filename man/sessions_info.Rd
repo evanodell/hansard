@@ -26,4 +26,3 @@ x <- sessions_info('days')
 }
 \keyword{Parliamentary}
 \keyword{Sessions}
-

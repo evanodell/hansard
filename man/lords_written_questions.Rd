@@ -32,4 +32,3 @@ x <- lords_written_questions('all')
 \keyword{Questions}
 \keyword{Written}
 \keyword{of}
-

@@ -35,4 +35,3 @@ b <- members('lordsInterests')
 \keyword{Members}
 \keyword{Parliament}
 \keyword{of}
-

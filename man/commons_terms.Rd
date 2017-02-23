@@ -22,4 +22,3 @@ head(x)
 }
 \keyword{parliamentary}
 \keyword{thesaurus}
-

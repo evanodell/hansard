@@ -4,14 +4,10 @@
 \alias{all_answered_questions}
 \title{all_answered_questions}
 \usage{
-all_answered_questions(allAnsType = c("all", "askedBy"))
+all_answered_questions(mp_id = NULL)
 }
 \arguments{
-\item{allAnsType}{The type of questions you want, accepts the arguments 'all' and 'askedBy'}
-
-\item{all}{Returns a data frame with all available answered questions.}
-
-\item{askedBy}{Requests a member ID, and returns a data frame with all available questions asked by that member.}
+\item{mp_id}{Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.}
 }
 \description{
 Imports data on answered parliamentary questions
@@ -19,11 +15,9 @@ Imports data on answered parliamentary questions
 \examples{
 \dontrun{
 
-x <- all_answered_questions('all')
+x <- all_answered_questions(172)
 
-x <- all_answered_questions('askedBy')
 }
 }
 \keyword{Answered}
 \keyword{Questions}
-

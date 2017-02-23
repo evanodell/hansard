@@ -24,4 +24,3 @@ x <- elections('ID')
 }
 }
 \keyword{Elections}
-

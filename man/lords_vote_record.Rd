@@ -27,4 +27,3 @@ x <- lords_vote_record(172, 'all')
 
 }
 \keyword{divisions}
-

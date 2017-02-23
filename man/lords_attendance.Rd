@@ -28,4 +28,3 @@ x <- lords_attendance('date')
 \keyword{House}
 \keyword{Lords}
 \keyword{of}
-

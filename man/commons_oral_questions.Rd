@@ -46,4 +46,3 @@ x <- commons_oral_questions('department')
 }
 }
 \keyword{bills}
-

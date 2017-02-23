@@ -21,4 +21,3 @@ x <- papers_laid('all') }
 }
 \keyword{Laid}
 \keyword{Papers}
-

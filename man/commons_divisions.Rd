@@ -53,4 +53,3 @@ x <- commons_divisions('uinFull')
 }
 }
 \keyword{divisions}
-

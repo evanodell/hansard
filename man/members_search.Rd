@@ -27,4 +27,3 @@ x <- members_search(Search='chris')
 \keyword{Members}
 \keyword{Parliament}
 \keyword{of}
-

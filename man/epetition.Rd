@@ -38,4 +38,3 @@ x <- epetition('petitionID')
 }
 }
 \keyword{ePetitions}
-

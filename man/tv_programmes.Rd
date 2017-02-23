@@ -26,4 +26,3 @@ x <- tv_programmes('clips')
 }
 }
 \keyword{TV}
-
