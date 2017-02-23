@@ -1,3 +1,16 @@
+
+
+# hansard 0.4.0
+
+Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package. These changes ensure greater consistency in syntax across the package, both in the functions and in the function's code. Changes have been made to the following functions:
+
+`all_answered_questions`: Command line interface is gone, now operates as a function with the ID for a given MP accepted as the only function parameter. Returns all answered questions if blank.
+
+`bills`: Changed parameter name `stageTypes` to `stage_types`
+
+`commons_answered_questions`: `answeredBy` to `answered_by`
+
+
 # hansard 0.3.4
 
 ## Bug fixes

@@ -10,6 +10,7 @@
 #' }
 
 ### API NOT OPEN!!!
+### INCOMPLETE!
 
 committee_reports <- function(id = NULL, recommendations = FALSE) {
 
@@ -27,7 +28,7 @@ committee_reports <- function(id = NULL, recommendations = FALSE) {
 
   for (i in 0:lordsAmmendJpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl_committee_reports, "&_page=", i), flatten = TRUE)
-    message("Retrieving page ", i + 1, " of ", lordsAmmendJpage + 1)
+    message("Retrieving page ", i + 1, " of ", committee_reports_jpage + 1)
     pages[[i + 1]] <- mydata$result$items
   }
 
@@ -58,7 +59,7 @@ committee_reports <- function(id = NULL, recommendations = FALSE) {
 
     for (i in 0:lordsAmmendJpage) {
       mydata <- jsonlite::fromJSON(paste0(baseurl_committee_reports, "&_page=", i), flatten = TRUE)
-      message("Retrieving page ", i + 1, " of ", lordsAmmendJpage + 1)
+      message("Retrieving page ", i + 1, " of ", committee_reports_jpage + 1)
       pages[[i + 1]] <- mydata$result$items
     }
 

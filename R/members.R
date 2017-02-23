@@ -19,6 +19,9 @@
 #' b <- members('lordsInterests')
 #'}
 
+
+###rewrite this to also search by id
+
 members <- function(house = c("all", "commons", "lords", "lordsInterests")) {
 
   match.arg(house)
