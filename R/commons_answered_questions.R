@@ -3,6 +3,7 @@
 #' commons_answered_questions
 #'
 #' Imports data on House of Commons answered questions
+
 #' @param all Returns a data frame with all answered questions in the House of Commons. The default response, but is overriden by other parameters. Defaults to TRUE.
 #' @param date Returns a data frame with all answered questions in the House of Commons on the given date. Defaults to NULL.
 #' @param department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
@@ -18,7 +19,6 @@
 #'
 #' x <- commons_answered_questions('answered_by')
 #' }
-
 
 ###Probably have to move the thing that creates the final data frame with each 'if' function
 commons_answered_questions <- function(date = NULL, department = NULL, answered_by = NULL) {
@@ -99,7 +99,11 @@ commons_answered_questions <- function(date = NULL, department = NULL, answered_
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-    }
+
+    } else if (comsAnsType == "answered_by") {
+
+        qAnsweredBy <- readline("Enter MP ID: ")
+        qAnsweredBy <- URLencode(qAnsweredBy)
 
   else if (is.null(answered_by)==FALSE) {
 
