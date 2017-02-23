@@ -2,65 +2,60 @@
 #' all_answered_questions
 #'
 #' Imports data on answered parliamentary questions
-#' @param allAnsType The type of questions you want, accepts the arguments 'all' and 'askedBy'
-#' @param all Returns a data frame with all available answered questions.
-#' @param askedBy Requests a member ID, and returns a data frame with all available questions asked by that member.
+#' @param mp_id Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.
 #' @keywords Answered Questions
 #' @import httr plyr jsonlite
 #' @export
 #' @examples \dontrun{
 #'
-#'x <- all_answered_questions('all')
+#'x <- all_answered_questions(172)
 #'
-#' x <- all_answered_questions('askedBy')
 #' }
 
-all_answered_questions <- function(allAnsType = c("all", "askedBy")) {
+all_answered_questions <- function(mp_id = NULL) {
 
-    match.arg(allAnsType)
+    if (is.null(mp_id)==TRUE) {
 
-    if (allAnsType == "all") {
-
-        baseurl_allAnswered <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
+        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
 
         message("Connecting to API")
 
-        allAnswered <- jsonlite::fromJSON("http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500")
+        all <- jsonlite::fromJSON("http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500")
 
-        allAnsweredJpage <- round(allAnswered$result$totalResults/allAnswered$result$itemsPerPage, digits = 0)
+        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
-        for (i in 0:allAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_allAnswered, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", allAnsweredJpage + 1)
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
 
-    } else if (allAnsType == "askedBy") {
+    } else {
 
-        mp.id <- readline("Enter Member ID: ")
-        mp.id <- URLencode(mp.id)
+      mp_id <- as.character(mp_id)
 
-        baseurl_allAnswered <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+        baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
 
         message("Connecting to API")
 
-        allAnswered <- jsonlite::fromJSON(paste0(baseurl_allAnswered, mp.id))
+        all <- jsonlite::fromJSON(paste0(baseurl, mp_id))
 
-        if (allAnswered$result$totalResults/allAnswered$result$itemsPerPage > 1) {
+        if (all$result$totalResults/all$result$itemsPerPage > 1) {
 
-            allAnsweredJpage <- round(allAnswered$result$totalResults/allAnswered$result$itemsPerPage, digits = 0)
+            jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
 
         } else {
-            allAnsweredJpage <- 0
+
+            jpage <- 0
         }
 
         pages <- list()
 
-        for (i in 0:allAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_allAnswered, mp.id, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", allAnsweredJpage + 1)
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
     }

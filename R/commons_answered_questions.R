@@ -3,11 +3,10 @@
 #' commons_answered_questions
 #'
 #' Imports data on House of Commons answered questions
-#' @param comsAnsType The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'
-#' @param all Returns a data frame with all answered questions in the House of Commons
+#' @param all Returns a data frame with all answered questions in the House of Commons. Defaults to false.
 #' @param date Returns a data frame with all answered questions in the House of Commons on the given date
 #' @param department Returns a data frame with all answered questions in the House of Commons from the given department
-#' @param answeredBy Returns a data frame with all answered questions in the House of Commons by the given MP
+#' @param answered_by Returns a data frame with all answered questions in the House of Commons by the given MP
 #' @keywords bills
 #' @export
 #' @examples \dontrun{
@@ -17,10 +16,10 @@
 #'
 #' x <- commons_answered_questions('department')
 #'
-#' x <- commons_answered_questions('answeredBy')
+#' x <- commons_answered_questions('answered_by')
 #' }
 
-commons_answered_questions <- function(comsAnsType = c("all", "date", "department", "answeredBy")) {
+commons_answered_questions <- function(all, date, department, answered_by)) {
 
     match.arg(comsAnsType)
 
@@ -83,7 +82,7 @@ commons_answered_questions <- function(comsAnsType = c("all", "date", "departmen
             message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-    } else if (comsAnsType == "answeredBy") {
+    } else if (comsAnsType == "answered_by") {
 
         qAnsweredBy <- readline("Enter MP ID: ")
         qAnsweredBy <- URLencode(qAnsweredBy)
