@@ -21,36 +21,36 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date="1
 
     if (is.null(division_id) == TRUE) {
 
-        if (is.null(date) == FALSE) {
-            date <- as.character(date)
-            date <- paste0("&date=", date)
-        }
+      if (is.null(date) == FALSE) {
+        date <- as.character(date)
+        date <- paste0("&date=", date)
+      }
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
+      baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
 
-        message("Connecting to API")
+      message("Connecting to API")
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates))
+      divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates))
 
-        jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+      jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
 
-        pages <- list()
+      pages <- list()
 
-        for (i in 0:jpage) {
-          mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+      for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+      }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+      df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
-        if (nrow(df) == 0) {
-          message("The request did not return any data. Please check your search parameters.")
-        } else {
+      if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+      } else {
 
-          df
+        df
 
-        }
+      }
 
     } else if (is.null(division_id) == FALSE) {
 
@@ -64,13 +64,13 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date="1
 
       if (summary == TRUE) {
 
-            df <- divis$result$primaryTopic
+        df <- divis$result$primaryTopic
 
-            df$AbstainCount <- df$AbstainCount$`_value`
-            df$AyesCount <- df$AyesCount$`_value`
-            df$Didnotvotecount <- df$Didnotvotecount$`_value`
-            df$Errorvotecount <- df$Errorvotecount$`_value`
-            df$Noesvotecount <- df$Noesvotecount$`_value`
+        df$AbstainCount <- df$AbstainCount$`_value`
+        df$AyesCount <- df$AyesCount$`_value`
+        df$Didnotvotecount <- df$Didnotvotecount$`_value`
+        df$Errorvotecount <- df$Errorvotecount$`_value`
+        df$Noesvotecount <- df$Noesvotecount$`_value`
             df$Noneligiblecount <- df$Noneligiblecount$`_value`
             df$vote <- NULL
             df$Margin <- df$Margin$`_value`

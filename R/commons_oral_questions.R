@@ -32,7 +32,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department=NULL, star
 
     query <- NULL
 
-    }
+  }
 
   dates <-paste0("&_properties=AnswerDate&max-AnswerDate=",end_date, "&min-AnswerDate=",start_date)
 
@@ -52,13 +52,13 @@ commons_oral_questions <- function(mp_id = NULL, answering_department=NULL, star
     pages[[i + 1]] <- mydata$result$items
   }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+  df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-        df
-    }
+  if (nrow(df) == 0) {
+    message("The request did not return any data. Please check your search parameters.")
+  } else {
+    df
+  }
 
 }
 
