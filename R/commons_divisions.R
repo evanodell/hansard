@@ -11,7 +11,7 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- commons_divisions(division_id = 694163, summary = FALSE, start_date="1900-01-01", end_date=Sys.Date())
+#' x <- commons_divisions(division_id = 694163, summary = FALSE)
 #'
 #' }
 

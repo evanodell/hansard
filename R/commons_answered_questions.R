@@ -1,10 +1,10 @@
 
+## Start and end dates do not appear to be working on this API as of 2017-02-24
+
 
 #' commons_answered_questions
 #'
 #' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
-#' @param start_date The earliest date to include in the data frame. Defaults to "1900-01-01".
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
 #' @param answered_by Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.
 #' @keywords bills
@@ -16,10 +16,10 @@
 #' }
 ##Still need to check
 
-commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date="1900-01-01", end_date=Sys.Date()) {
+commons_answered_questions <- function(answering_department = NULL, answered_by = NULL) {
 
 
-  dates <-paste0("&_properties=dateOfAnswer&max-dateOfAnswer=",end_date, "&min-dateOfAnswer=",start_date)
+  #dates <-paste0("&_properties=dateOfAnswer&max-dateOfAnswer=",end_date, "&min-dateOfAnswer=",start_date)
 
   if (is.null(answered_by)==FALSE){
     answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/", answered_by)
@@ -41,14 +41,14 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
       message("Connecting to API")
 
-      answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?",answering_department, answered_by, dates, "&_pageSize=500"), flatten=TRUE)
+      answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?",answering_department, answered_by, "&_pageSize=500"), flatten=TRUE)
 
       jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
 
       pages <- list()
 
       for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, dates, "&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?",answering_department, answered_by, "&_pageSize=500&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

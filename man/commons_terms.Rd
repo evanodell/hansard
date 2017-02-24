@@ -4,11 +4,9 @@
 \alias{commons_terms}
 \title{commons_terms}
 \usage{
-commons_terms(termsType = c("all"))
+commons_terms(all = TRUE)
 }
 \arguments{
-\item{termsType}{The type of data you want, allows the argument 'all'}
-
 \item{all}{Returns a data frame with all definitions in the parliamentary thesaurus}
 }
 \description{
@@ -16,9 +14,10 @@ Imports the parliamentary thesaurus
 }
 \examples{
 \dontrun{
-x <- commons_terms('all')
-head(x)
- }
+
+x <- commons_terms(all)
+
+}
 }
 \keyword{parliamentary}
 \keyword{thesaurus}

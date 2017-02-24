@@ -4,15 +4,12 @@
 \alias{commons_answered_questions}
 \title{commons_answered_questions}
 \usage{
-commons_answered_questions(date = NULL, department = NULL,
-  answered_by = NULL)
+commons_answered_questions(answering_department = NULL, answered_by = NULL)
 }
 \arguments{
-\item{date}{Returns a data frame with all answered questions in the House of Commons on the given date, in 'yyyy-mm-dd' format. Defaults to NULL.}
+\item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
 
 \item{department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
-
-\item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
@@ -20,7 +17,7 @@ Imports data on House of Commons answered questions. If all parameters are left 
 \examples{
 \dontrun{
 
-x <- commons_answered_questions(date = '2017-02-23', department = 'health', answered_by = '4019')
+x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
 
 }
 }
