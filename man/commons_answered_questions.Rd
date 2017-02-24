@@ -13,21 +13,15 @@ commons_answered_questions(date = NULL, department = NULL,
 \item{department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
 
 \item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
-
-\item{all}{Returns a data frame with all answered questions in the House of Commons. The default response, but is overriden by other parameters. Defaults to TRUE.}
 }
 \description{
-Imports data on House of Commons answered questions
+Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
 }
 \examples{
 \dontrun{
-x <- commons_answered_questions('all')
 
-x <- commons_answered_questions('date')
+x <- commons_answered_questions(date = '2017-02-23', department = 'health', answered_by = '4019')
 
-x <- commons_answered_questions('department')
-
-x <- commons_answered_questions('answered_by')
 }
 }
 \keyword{bills}

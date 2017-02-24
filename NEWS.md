@@ -8,7 +8,11 @@ Major re-write, breaks compatibility with previous versions, please check your c
 
 `bills`: Changed parameter name `stageTypes` to `stage_types`
 
-`commons_answered_questions`: `answeredBy` to `answered_by`
+`commons_answered_questions`: Changed parameter name `answeredBy` to `answered_by`; improved ability to search by date, dropped console inputs.
+
+`commons_divisions`: Removed console inputs, simplified options.
+
+`commons_oral_question_times`: Simplified function, removed need for console input.
 
 
 # hansard 0.3.4

@@ -4,17 +4,17 @@
 \alias{commons_division_date}
 \title{commons_division_date}
 \usage{
-commons_division_date(date)
+commons_division_date(date = NULL)
 }
 \arguments{
-\item{date}{The ID number of a member of the House of Commons.}
+\item{date}{Returns all divisions on a given date. Defaults to NULL.}
 }
 \description{
-Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
+Returns a data frames with
 }
 \examples{
 \dontrun{
-x <- commons_division_date(2016-10-10)
+x <- commons_division_date('2016-10-12')
 }
 
 }

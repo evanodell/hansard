@@ -4,8 +4,7 @@
 \alias{commons_committee_inquiries}
 \title{commons_committee_inquiries}
 \usage{
-commons_committee_inquiries(id = NULL, inquiries = FALSE, current = FALSE,
-  nameid = NULL)
+commons_committee_inquiries(id = NULL, recommendations = FALSE)
 }
 \arguments{
 \item{id}{Returns the committee report of a given ID. If no ID number is entered, returns all available committee reports.}

@@ -4,29 +4,25 @@
 \alias{mp_vote_record}
 \title{mp_vote_record}
 \usage{
-mp_vote_record(mp.id, voteRecord = c("all", "aye", "no"))
+mp_vote_record(mp_id = NULL, date = NULL, lobby = c("all", "aye", "no"))
 }
 \arguments{
-\item{mp.id}{The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.}
+\item{mp_id}{The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.}
 
-\item{voteRecord}{Accepts the arguments 'all', 'aye' and 'no'. Defaults to 'all'.}
+\item{date}{Returns all divisions on a given date. Defaults to NULL.}
 
-\item{all}{Returns a data frame with all recorded votes for a given member of the house of commons.}
-
-\item{aye}{Returns a data frame with all divisions where a given MP voted aye.}
-
-\item{no}{Returns a data frame with all divisions where a given MP voted no.}
+\item{lobby}{Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.}
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
 }
 \examples{
 \dontrun{
-x <- mp_vote_record(172, 'all')
+x <- mp_vote_record(172, lobby='all')
 
-x <- mp_vote_record(172, 'aye')
+x <- mp_vote_record(172, lobby='aye')
 
-x <- mp_vote_record(172, 'no')
+x <- mp_vote_record(172, lobby='no')
 }
 }
 \keyword{divisions}
