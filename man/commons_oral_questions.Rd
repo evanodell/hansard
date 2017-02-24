@@ -4,45 +4,27 @@
 \alias{commons_oral_questions}
 \title{commons_oral_questions}
 \usage{
-commons_oral_questions(comsOralType = c("all", "times", "daysTabled",
-  "daysAnswered", "askedBy", "session", "department"))
+commons_oral_questions(mp_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date())
 }
 \arguments{
-\item{comsOralType}{The type of data you want, allows the arguments 'all', 'times', 'daysTabled', 'daysAnswered', 'askedBy' and 'session'}
+\item{mp_id}{The ID of a given MP. Defaults to NULL.}
 
-\item{all}{Imports all available oral questions}
+\item{answering_department}{The department that answers a question}
 
-\item{times}{Imports the times of all available oral questions}
+\item{start_date}{The earliest date to include in the data frame. Defaults to "1900-01-01".}
 
-\item{daysTabled}{Requests two dates, and returns a data frame with all oral questions asked between those two dates}
-
-\item{daysAnswered}{Requests two dates, and returns a data frame with all oral questions answered between those two dates}
-
-\item{askedBy}{Requests a member ID and returns a data frame with all oral questions asked by that member}
-
-\item{session}{Requests a session ID and returns a data frame with all oral questions asked in that session}
-
-\item{department}{Requests a Requests a department name, and returns all oral questions answered by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 }
 \description{
 Imports data on House of Commons oral questions
 }
 \examples{
 \dontrun{
-x <- commons_oral_questions('all')
 
-x <- commons_oral_questions('times')
-
-x <- commons_oral_questions('daysTabled')
-
-x <- commons_oral_questions('daysAnswered')
-
-x <- commons_oral_questions('askedBy')
-
-x <- commons_oral_questions('session')
-
-x <- commons_oral_questions('department')
+x <- commons_oral_questions(mp_id=4019, answering_department = 'education',
+start_date="1900-01-01", end_date=Sys.Date())
 
 }
 }
-\keyword{bills}
+\keyword{questions}

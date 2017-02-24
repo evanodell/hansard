@@ -4,12 +4,17 @@
 \alias{commons_divisions}
 \title{commons_divisions}
 \usage{
-commons_divisions(division_id = NULL, summary = FALSE)
+commons_divisions(division_id = NULL, summary = FALSE,
+  start_date = "1900-01-01", end_date = Sys.Date())
 }
 \arguments{
 \item{division_id}{The id of a particular vote. If empty, returns a data frame with information on all commons divisions. Defaults to NULL.}
 
 \item{summary}{If TRUE, returns a small data frame summarising a division outcome. Has no effect if `division_id` is empty. Defaults to FALSE.}
+
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions. Defaults to "1900-01-01".}
+
+\item{end_date}{The latest date to include in the data frame, if calling all divisions. Defaults to current system date.}
 }
 \description{
 Imports data on House of Commons divisions.
@@ -17,7 +22,7 @@ Imports data on House of Commons divisions.
 \examples{
 \dontrun{
 
-x <- commons_divisions(division_id = 694163, summary = FALSE)
+x <- commons_divisions(division_id = 694163, summary = FALSE, start_date="1900-01-01", end_date=Sys.Date())
 
 }
 }

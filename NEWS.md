@@ -14,6 +14,8 @@ Major re-write, breaks compatibility with previous versions, please check your c
 
 `commons_oral_question_times`: Simplified function, removed need for console input.
 
+`commons_oral_questions`: Simpler process, same result, more flexibility in requests
+
 
 # hansard 0.3.4
 
