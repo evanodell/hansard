@@ -4,12 +4,12 @@
 \alias{mp_questions}
 \title{mp_questions}
 \usage{
-mp_questions(mp.id, questionType = c("all", "oral", "written"))
+mp_questions(mp.id, question_type = c("all", "oral", "written"))
 }
 \arguments{
 \item{mp.id}{The ID number of a member of the House of Commons.}
 
-\item{questionType}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
+\item{question_type}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
 
 \item{all}{Returns a data frame with all recorded questions for a given member of the house of commons.}
 

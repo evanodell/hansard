@@ -17,7 +17,6 @@
 
 commons_oral_questions <- function(mp_id = NULL, answering_department=NULL, start_date="1900-01-01", end_date=Sys.Date()) {
 
-
   if (is.null(mp_id)==FALSE){
     mp_id <- paste0("&tablingMember=http://data.parliament.uk/members/", mp_id)
   }

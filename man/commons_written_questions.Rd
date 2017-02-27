@@ -4,32 +4,24 @@
 \alias{commons_written_questions}
 \title{commons_written_questions}
 \usage{
-commons_written_questions(comsWritType = c("all", "department", "dates",
-  "askedBy"))
+commons_written_questions(mp_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date())
 }
 \arguments{
-\item{comsWritType}{The type of data you want, allows the arguments 'all', 'department', 'dates' and 'askedBy'}
+\item{mp_id}{Requests a member ID and returns a data frame with all written questions asked by that member.}
 
-\item{all}{Returns a data frame with all written questions}
+\item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.}
 
-\item{department}{Requests a department name, and returns all written questions by department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health}
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to "1900-01-01".}
 
-\item{dates}{Requests two dates and imports a data frame with all available written questions from between the two dates.}
-
-\item{askedBy}{Requests a member ID and returns a data frame with all written questions asked by that member}
+\item{end_date}{The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
 }
 \description{
-Imports data on House of Commons written questions
+Imports data on House of Commons written questions. If
 }
 \examples{
 \dontrun{
-x <- commons_written_questions('all')
-
-x <- commons_written_questions('department')
-
-x <- commons_written_questions('dates')
-
-x <- commons_written_questions('askedBy')
+x <- commons_written_questions(mp_id=410, "cabinet office")
 }
 }
 \keyword{Commons}

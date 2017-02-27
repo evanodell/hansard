@@ -7,9 +7,9 @@
 commons_answered_questions(answering_department = NULL, answered_by = NULL)
 }
 \arguments{
-\item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
+\item{answering_department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
 
-\item{department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
+\item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.

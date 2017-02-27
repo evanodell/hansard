@@ -5,7 +5,7 @@
 #' commons_answered_questions
 #'
 #' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
-#' @param department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
+#' @param answering_department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
 #' @param answered_by Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.
 #' @keywords bills
 #' @export

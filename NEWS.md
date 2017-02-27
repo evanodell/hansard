@@ -1,5 +1,3 @@
-
-
 # hansard 0.4.0
 
 Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed, or incorporated into the `hansard_console` function. These changes ensure greater consistency in syntax across the package, in both the body and formals. 
@@ -20,7 +18,15 @@ Changes have been made to the following functions:
 
 `commons_answered_questions`: Removed need for console input.
 
-`commons_terms`: Simplied formals.
+`commons_terms`: Simplified formals.
+
+`commons_written_questions`: Removed need for console input.
+
+`constituencies`: Simplified formals.
+
+
+
+`mp_questions`: Changed `questionType` to `question_type`
 
 
 # hansard 0.3.4
