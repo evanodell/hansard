@@ -21,9 +21,10 @@ Imports data on House of Lords written questions
 }
 \examples{
 \dontrun{
-x <- lords_written_questions(peer_id = NULL, answering_department = NULL, start_date = '1900-01-01', end_date = Sys.Date()
+# Returns all written questions ever
+x <- lords_written_questions()
 
-x <- lords_written_questions(3526, answering_department = 'cabinet')
+x <- lords_written_questions(peer_id = 3526, answering_department = 'cabinet')
 
 }
 }

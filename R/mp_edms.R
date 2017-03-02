@@ -18,6 +18,11 @@
 #' }
 
 
+#primary_sponsor = TRUE
+#sponsor = FALSE
+#signatory = FALSE
+#mp_id <- 3967
+
 mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data=FALSE) {
 
     if (is.null(mp_id) == TRUE) {
@@ -57,7 +62,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     df$dateSigned._value <- as.Date(df$dateSigned._value)
 
-    if(full_data==FALSE) {
+    if(full_data==TRUE) {
 
       names(df)[names(df)=="_about"] <- "about"
 
@@ -67,93 +72,47 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
       search_list <- as.list(df$about)
 
-      data <- matrix()
-
-      [1] "_about"                "creator"               "date"                  "dateTabled"            "ddpCreated"
-      [6] "ddpModified"           "edmNumber"             "edmStatus"             "externalLocation"      "humanIndexable"
-      [11] "identifier"            "isPrimaryTopicOf"      "legislature"           "motionText"            "numberOfSignatures"
-      [16] "primarySponsor"        "primarySponsorPrinted" "published"             "publisher"             "session"
-      [21] "sessionNumber"         "signature"             "sponsorPrinted"        "sponsors"              "title"
-      [26] "type"
-
-
-      data <- data.frame(about = NA,
-                         creator_label = NA,
-                         date = NA,
-                         dateTabled = NA,
-                         ddpCreated = NA,
-                         ddpModified = NA,
-                         edmNumber = NA,
-                         edmStatus = NA,
-                         externalLocation = NA,
-                         humanIndexable = NA,
-                         identifier = NA,
-                         isPrimaryTopicOf = NA,
-                         legislature = NA,
-                         motionText = NA,
-                         numberOfSignatures = NA,
-                         primarySponsor = NA,
-                         primarySponsorPrinted = NA,
-                         published = NA,
-                         publisher = NA,
-                         session = NA,
-                         sessionNumber = NA,
-                         title = NA)
-
-      data <- as.matrix(data)
-
       baseurl <- "http://lda.data.parliament.uk/resources/"
-
-      dat <- vector("list", length(search_list)+1)
 
       dat <- list()
 
-      for(i in search_list){
+      message("Retrieving EDM data")
 
-        search <- jsonlite::fromJSON(paste0(baseurl, search_list[[i]], ".json"),flatten=TRUE)
+      for (i in search_list){
+
+        search <- jsonlite::fromJSON(paste0(baseurl, i, ".json?"),flatten=TRUE)
 
         search_df <- data.frame(about = search$result$primaryTopic$`_about`,
-                           creator_label = search$result$primaryTopic$creator$`_about`,
-                           date = search$result$primaryTopic$date$`_value`,
-                           dateTabled = search$result$primaryTopic$dateTabled$`_value`,
-                           ddpCreated = search$result$primaryTopic$ddpCreated$`_value`,
-                           ddpModified = search$result$primaryTopic$ddpModified$`_value`,
-                           edmNumber = search$result$primaryTopic$edmNumber$`_value`,
-                           edmStatus = search$result$primaryTopic$edmStatus$`_value`,
-                           externalLocation = search$result$primaryTopic$externalLocation,
-                           humanIndexable = search$result$primaryTopic$humanIndexable$`_value`,
-                           identifier = search$result$primaryTopic$identifier$`_value`,
-                           isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf,
-                           legislature = search$result$primaryTopic$legislature$prefLabel._value,
-                           motionText = search$result$primaryTopic$motionText,
-                           numberOfSignatures = search$result$primaryTopic$numberOfSignatures,
-                           primarySponsor = search$result$primaryTopic$primarySponsor$`_about`,
-                           primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted,
-                           published = search$result$primaryTopic$published$`_value`,
-                           publisher = search$result$primaryTopic$publisher$prefLabel$`_value`,
-                           session = search$result$primaryTopic$session,
-                           sessionNumber = search$result$primaryTopic$sessionNumber$`_value`,
-                           title = search$result$primaryTopic$title)
+                                creator_label = search$result$primaryTopic$creator$`_about`,
+                                date = search$result$primaryTopic$date$`_value`,
+                                dateTabled = search$result$primaryTopic$dateTabled$`_value`,
+                                edmNumber = search$result$primaryTopic$edmNumber$`_value`,
+                                edmStatus = search$result$primaryTopic$edmStatus$`_value`,
+                                externalLocation = search$result$primaryTopic$externalLocation,
+                                humanIndexable = search$result$primaryTopic$humanIndexable$`_value`,
+                                identifier = search$result$primaryTopic$identifier$`_value`,
+                                isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf,
+                                legislature = search$result$primaryTopic$legislature$prefLabel._value,
+                                motionText = search$result$primaryTopic$motionText,
+                                numberOfSignatures = search$result$primaryTopic$numberOfSignatures,
+                                primarySponsor = search$result$primaryTopic$primarySponsor$`_about`,
+                                primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted,
+                                published = search$result$primaryTopic$published$`_value`,
+                                publisher = search$result$primaryTopic$publisher$prefLabel$`_value`,
+                                session = search$result$primaryTopic$session,
+                                sessionNumber = search$result$primaryTopic$sessionNumber$`_value`,
+                                title = search$result$primaryTopic$title)
 
-
-        dat[[length(dat)+1]] <-search_df
-
-        #dat[[i]] <- search_df
-
-        #rm(search_df)
-
-        #data <- rbind(data,search_df)
-
+        dat[[i]] <- search_df
       }
 
-      data <- do.call(rbind.data.frame, dat)
+      message("Joining data")
 
-    start_date= min(df$dateSigned._value)
+      df2 <- do.call(rbind, dat)
 
-    end_date = max(x$dateSigned._value)
+      df2$about <- as.character(df2$about)
 
-    df2 <- early_day_motions(start_date = start_date, end_date = end_date)
-
+      df <- dplyr::left_join(df,df2, by="about")
 
     }
 

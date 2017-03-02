@@ -4,17 +4,17 @@
 \alias{early_day_motions}
 \title{early_day_motions}
 \usage{
-early_day_motions(mp_id = NULL, edm_id = NULL, sponsor = NULL,
-  all_sponsors = NULL, signatures = FALSE)
+early_day_motions(edm_id = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), signatures = 1)
 }
 \arguments{
-\item{mp_id}{Accepts a given MP and returns a data frame with all early day motions signed by that MP. Defaults to NULL.}
+\item{edm_id}{Accepts a given MP and returns a data frame with all early day motions signed by that MP. Defaults to NULL.}
 
-\item{sponsor}{Returns a data frame with all EDMs sponsored by a given MP. Defaults to NULL.}
+\item{start_date}{The earliest date to include in the data frame, if calling all early day motions. Defaults to '1900-01-01'.}
 
-\item{signatures}{Returns a data frame of all early day motion signatures.}
+\item{end_date}{The latest date to include in the data frame, if calling all early day motions. Defaults to current system date.}
 
-\item{primary_sponsor}{Requests a member's ID, and returns a data frame of early day motions where the given member is the primary sponsor}
+\item{signatures}{The minimum number of signatures required for inclusion in the data frame. Defaults to 1.}
 }
 \description{
 Imports data on early day motions
