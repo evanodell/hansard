@@ -100,13 +100,17 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
                          sessionNumber = NA,
                          title = NA)
 
+      data <- as.matrix(data)
+
       baseurl <- "http://lda.data.parliament.uk/resources/"
 
-      for(i in 1:length(search_list)){
+      dat <- vector("list", length(search_list)+1)
+
+      dat <- list()
+
+      for(i in search_list){
 
         search <- jsonlite::fromJSON(paste0(baseurl, search_list[[i]], ".json"),flatten=TRUE)
-
-
 
         search_df <- data.frame(about = search$result$primaryTopic$`_about`,
                            creator_label = search$result$primaryTopic$creator$`_about`,
@@ -131,14 +135,18 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
                            sessionNumber = search$result$primaryTopic$sessionNumber$`_value`,
                            title = search$result$primaryTopic$title)
 
-        data <- rbind(data,search_df)
+
+        dat[[length(dat)+1]] <-search_df
+
+        #dat[[i]] <- search_df
+
+        #rm(search_df)
+
+        #data <- rbind(data,search_df)
 
       }
 
-
-
-
-
+      data <- do.call(rbind.data.frame, dat)
 
     start_date= min(df$dateSigned._value)
 
