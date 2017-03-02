@@ -4,23 +4,18 @@
 \alias{elections}
 \title{elections}
 \usage{
-elections(electType = c("all", "ID"))
+elections(ID = NULL)
 }
 \arguments{
-\item{electType}{Allows the arguments 'all' and 'ID'}
-
-\item{all}{Returns a data frame with the date and type of all general and by-elections since 1945.}
-
-\item{ID}{Requests an election ID, and returns a data frame with the date and type of that election.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
 }
 \description{
 Imports data on elections
 }
 \examples{
 \dontrun{
-x <- elections('all')
 
-x <- elections('ID')
+x <- elections(517994)
 }
 }
 \keyword{Elections}

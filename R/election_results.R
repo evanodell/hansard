@@ -2,64 +2,36 @@
 #' election_results
 #'
 #' Imports data on general election results
-#' @param resultType Accepts the arguments 'all' and 'ID'
-#' @param all Returns general and by-election resuls for each consituency from the 2010 general election onwards.
-#' @param ID Returns general and by-election resuls for each consituency from the 2010 general election onwards.
+#' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
 #' @keywords Election Results
 #' @export
 #' @examples \dontrun{
-#' x <- election_results('all')
-#'
-#' x <- election_results('ID')
+#' x <- election_results(ID=382037)
 #' }
 
-election_results <- function(resultType = c("all", "ID")) {
+election_results <- function(ID = NULL) {
     
-    match.arg(resultType)
+    baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
     
-    if (resultType == "all") {
+    message("Connecting to API")
+    
+    elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500"))
+    
+    if (elect$result$totalResults > elect$result$itemsPerPage) {
         
-        baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        electR <- jsonlite::fromJSON("http://lda.data.parliament.uk/electionresults.json?_pageSize=500")
-        
-        electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:electRJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_electR, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", electRJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resultType == "ID") {
-        
-        electID <- readline("Enter the election ID: ")
-        
-        baseurl_electR <- "http://lda.data.parliament.uk/electionresults.json?electionId="
-        
-        message("Connecting to API")
-        
-        electR <- jsonlite::fromJSON(paste0(baseurl_electR, electID, "&_pageSize=500"))
-        
-        if (electR$result$totalResults > electR$result$itemsPerPage) {
-            
-            electRJpage <- round(electR$result$totalResults/electR$result$itemsPerPage, digits = 0)
-        } else {
-            electRJpage <- 0
-        }
-        pages <- list()
-        
-        for (i in 0:electRJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_electR, electID, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", electRJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
+        jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
+    } else {
+        jpage <- 0
     }
+    
+    pages <- list()
+    
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+    }
+    
     
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
     if (nrow(df) == 0) {

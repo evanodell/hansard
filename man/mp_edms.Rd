@@ -4,12 +4,12 @@
 \alias{mp_edms}
 \title{mp_edms}
 \usage{
-mp_edms(mp.id, edmType = c("signed", "sponsor"))
+mp_edms(mp_id, edmType = c("signed", "sponsor"))
 }
 \arguments{
-\item{mp.id}{Required parameter. The ID number of an MP.}
-
 \item{edmType}{The type of data you want, allows the arguments 'signed' and 'sponsor'. Defaults to 'signed'.}
+
+\item{mp.id}{Required parameter. The ID number of an MP.}
 
 \item{signed}{Returns a data frame of all early day motions signed by the given MP.}
 

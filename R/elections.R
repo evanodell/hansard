@@ -3,55 +3,40 @@
 #' elections
 #'
 #' Imports data on elections
-#' @param electType Allows the arguments 'all' and 'ID'
-#' @param all Returns a data frame with the date and type of all general and by-elections since 1945.
-#' @param ID Requests an election ID, and returns a data frame with the date and type of that election.
+#' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.
 #' @keywords Elections
 #' @export
 #' @examples \dontrun{
-#' x <- elections('all')
 #'
-#' x <- elections('ID')
+#' x <- elections(517994)
 #' }
 
 
-elections <- function(electType = c("all", "ID")) {
+elections <- function(ID = NULL) {
     
-    match.arg(electType)
-    
-    if (electType == "all") {
+    if (is.null(ID) == FALSE) {
         
-        baseurl_elect <- "http://lda.data.parliament.uk/elections.json?_pageSize=500"
+        ID <- paste0("/", ID, ".json")
+        
+        baseurl <- "http://lda.data.parliament.uk/elections"
         
         message("Connecting to API")
         
-        elect <- jsonlite::fromJSON("http://lda.data.parliament.uk/elections.json?_pageSize=500")
+        elect <- jsonlite::fromJSON(paste0(baseurl, ID), flatten = TRUE)
         
-        pages <- list()
+        df <- as.data.frame(elect$result$primaryTopic)
         
-        for (i in 0:0) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_elect, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+    } else {
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        ID <- ".json?&_pageSize=500"
         
-    } else if (electType == "ID") {
-        
-        electID <- readline("Enter the election ID: ")
-        
-        baseurl_elect <- "http://lda.data.parliament.uk/elections/"
+        baseurl <- "http://lda.data.parliament.uk/elections"
         
         message("Connecting to API")
         
-        elect <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/elections/", electID, ".json"))
+        elect <- jsonlite::fromJSON(paste0(baseurl, ID), flatten = TRUE)
         
-        mydata <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/elections/", electID, ".json"), flatten = TRUE)
-        
-        df <- mydata$result$primaryTopic
-        
-        df <- as.data.frame(df)
+        df <- as.data.frame(elect$result$items)
         
     }
     

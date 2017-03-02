@@ -3,7 +3,7 @@
 #'
 #' Imports data on answered parliamentary questions
 #' @param mp_id Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.
-#' @param start_date The earliest date to include in the data frame. Defaults to "1900-01-01".
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @keywords Answered Questions
 #' @import httr plyr jsonlite
@@ -14,56 +14,56 @@
 #'
 #' }
 
-all_answered_questions <- function(mp_id = NULL, start_date="1900-01-01", end_date=Sys.Date()) {
-
-  dates <-paste0("&_properties=date&max-date=",end_date, "&min-date=",start_date)
-
+all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date()) {
+    
+    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    
     if (is.null(mp_id) == TRUE) {
-
+        
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
-
+        
         message("Connecting to API")
-
-        all <- jsonlite::fromJSON(paste0(baseurl,dates),flatten=TRUE)
-
+        
+        all <- jsonlite::fromJSON(paste0(baseurl, dates), flatten = TRUE)
+        
         jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-          mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, dates), flatten = TRUE)
-          message("Retrieving page ", i + 1, " of ", jpage + 1)
-          pages[[i + 1]] <- mydata$result$items
+            mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, dates), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
         }
-
+        
     } else {
-
-      mp_id <- as.character(mp_id)
-
+        
+        mp_id <- as.character(mp_id)
+        
         baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
-
+        
         message("Connecting to API")
-
+        
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates))
-
+        
         if (all$result$totalResults/all$result$itemsPerPage > 1) {
-
+            
             jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
-
+            
         } else {
-
+            
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_page=", i, dates), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
     }
-
+    
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

@@ -4,27 +4,27 @@
 \alias{lords_written_questions}
 \title{lords_written_questions}
 \usage{
-lords_written_questions(lordsWritType = c("all", "department", "dates"))
+lords_written_questions(peer_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date())
 }
 \arguments{
-\item{lordsWritType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
+\item{peer_id}{Requests a member ID and returns a data frame with all written questions asked by that member.}
 
-\item{all}{Returns a data frame all written questions from the house of lords}
+\item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.}
 
-\item{department}{Requests a department, and then returns a data frame with all written questions answered by that department}
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
 
-\item{dates}{Requests two dates, and returns a data frame with all available written questions from between the two given dates}
+\item{end_date}{The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
 }
 \description{
 Imports data on House of Lords written questions
 }
 \examples{
 \dontrun{
-x <- lords_written_questions('all')
+x <- lords_written_questions(peer_id = NULL, answering_department = NULL, start_date = '1900-01-01', end_date = Sys.Date()
 
-# x <- lords_written_questions('department')
+x <- lords_written_questions(3526, answering_department = 'cabinet')
 
-# x <- lords_written_questions('dates')
 }
 }
 \keyword{House}

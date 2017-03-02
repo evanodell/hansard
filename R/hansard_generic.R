@@ -12,6 +12,7 @@
 
 
 hansard_generic <- function(path) {
+    
     url <- modify_url("http://lda.data.parliament.uk/", path = path)
     
     message("Connecting to API")

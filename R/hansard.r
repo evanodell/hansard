@@ -41,7 +41,7 @@
 #'
 #' \code{\link{lords_divisions}}
 #'
-#' \code{\link{lords_vote_record}}
+#' \code{\link{lord_vote_record}}
 #'
 #' \code{\link{lords_written_questions}}
 #'

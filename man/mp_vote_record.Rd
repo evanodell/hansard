@@ -4,17 +4,20 @@
 \alias{mp_vote_record}
 \title{mp_vote_record}
 \usage{
-mp_vote_record(mp_id = NULL, date = NULL, lobby = c("all", "aye", "no"))
+mp_vote_record(mp_id = NULL, lobby = c("all", "aye", "no"),
+  start_date = "1900-01-01", end_date = Sys.Date())
 }
 \arguments{
-\item{mp_id}{The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.}
-
-\item{date}{Returns all divisions on a given date. Defaults to NULL.}
+\item{mp_id}{The ID number of a member of the House of Commons.}
 
 \item{lobby}{Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.}
+
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 }
 \description{
-Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
+Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
 }
 \examples{
 \dontrun{

@@ -1,10 +1,11 @@
 
 #' mp_vote_record
 #'
-#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
-#' @param mp_id The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.
+#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
+#' @param mp_id The ID number of a member of the House of Commons.
 #' @param lobby Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.
-#' @param date Returns all divisions on a given date. Defaults to NULL.
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -16,23 +17,24 @@
 #' }
 
 
-mp_vote_record <- function(mp_id = NULL, date = NULL, lobby = c("all", "aye", "no")) {
+mp_vote_record <- function(mp_id = NULL, lobby = c("all", "aye", "no"), start_date = "1900-01-01", end_date = Sys.Date()) {
     
     match.arg(lobby)
     
-    if (is.null(date) == FALSE) {
-        date <- as.character(date)
-        date <- paste0("date=", date)
+    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    
+    if (is.null(mp_id) == TRUE) {
+        stop("mp_id must not be empty", call. = FALSE)
     }
     
     if (lobby == "all") {
         
         message("Retrieving aye votes:")
-        df_aye <- mp_vote_record(mp_id = mp_id, date = date, lobby = "aye")
+        df_aye <- mp_vote_record(mp_id = mp_id, lobby = "aye", start_date = start_date, end_date = end_date)
         
         df_aye$vote <- "aye"
         message("Retrieving no votes:")
-        df_no <- mp_vote_record(mp_id = mp_id, date = date, lobby = "no")
+        df_no <- mp_vote_record(mp_id = mp_id, lobby = "no", start_date = start_date, end_date = end_date)
         
         df_no$divisionNumber <- NULL
         

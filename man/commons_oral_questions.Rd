@@ -12,7 +12,7 @@ commons_oral_questions(mp_id = NULL, answering_department = NULL,
 
 \item{answering_department}{The department that answers a question}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to "1900-01-01".}
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 }
@@ -23,7 +23,7 @@ Imports data on House of Commons oral questions
 \dontrun{
 
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education',
-start_date="1900-01-01", end_date=Sys.Date())
+start_date='1900-01-01', end_date=Sys.Date())
 
 }
 }

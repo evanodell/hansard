@@ -24,6 +24,18 @@ Changes have been made to the following functions:
 
 `constituencies`: Simplified formals.
 
+`early_day_motions`: Changed all camelCase to snake_case; STILL OUTSTANDING!
+
+`election_results`: Removed console input, simplified formals.
+
+`elections`: Removed console input, simplified formals.
+
+`lords_attendance`: Removed console input, simplified formals.
+
+`lord_vote_record`: Removed console input, simplified formals.
+ 
+`lords_divisions`: Removed console input, simplified formals.
+
 
 
 `mp_questions`: Changed `questionType` to `question_type`

@@ -12,7 +12,7 @@ commons_written_questions(mp_id = NULL, answering_department = NULL,
 
 \item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.}
 
-\item{start_date}{The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to "1900-01-01".}
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
 }
@@ -21,7 +21,7 @@ Imports data on House of Commons written questions. If
 }
 \examples{
 \dontrun{
-x <- commons_written_questions(mp_id=410, "cabinet office")
+x <- commons_written_questions(mp_id=410, 'cabinet office')
 }
 }
 \keyword{Commons}

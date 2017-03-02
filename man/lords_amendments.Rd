@@ -7,7 +7,7 @@
 lords_amendments(all = TRUE)
 }
 \arguments{
-\item{all}{Returns a data frame with all available House of Lords Amendments Defaults to TRUE.}
+\item{all}{Returns a data frame with all available House of Lords Amendments. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Lords Amendments

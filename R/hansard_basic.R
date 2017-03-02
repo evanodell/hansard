@@ -1,4 +1,4 @@
-
+## need to copy all the functions from the current, console based version of the package.
 
 #' hansard_basic
 #'
@@ -12,10 +12,10 @@
 
 hansard_basic <- function(call) {
     
-    hansard_list <- c("AV Live Logging", "Bills", "Commons Answered Questions", "Commons Divisions", "Commons Oral Question Times", 
-        "Commons Oral Questions", "Commons Written Questions", "Constituencies", "Early Day Motions", "Elections", "Election Results", 
-        "Lords Attendances", "Lords Bill Amendments", "Lords Divisions", "Lords Written Questions", "Members", "Papers Laid", 
-        "Publication Logs", "Research Briefings", "Sessions", "Thesaurus", "e-Petitions")
+    hansard_list <- c("AV Live Logging", "Bills", "Commons Answered Questions", "Commons Divisions", "Commons Oral Question Times", "Commons Oral Questions", 
+        "Commons Written Questions", "Constituencies", "Early Day Motions", "Elections", "Election Results", "Lords Attendances", "Lords Bill Amendments", 
+        "Lords Divisions", "Lords Written Questions", "Members", "Papers Laid", "Publication Logs", "Research Briefings", "Sessions", "Thesaurus", 
+        "e-Petitions")
     
     select1 <- select.list(hansard_list, title = "Please select a data set")
     
@@ -81,8 +81,7 @@ hansard_basic <- function(call) {
         
     } else if (select1 == hansard_list[4]) {
         
-        commons_divisions_list <- c("All", "Date", "Aye", "No", "Vote Summary", "Vote Full", "Session", "UIN Summary", 
-            "UIN Full")
+        commons_divisions_list <- c("All", "Date", "Aye", "No", "Vote Summary", "Vote Full", "Session", "UIN Summary", "UIN Full")
         
         select_commons_divisions <- select.list(commons_divisions_list)
         

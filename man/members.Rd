@@ -2,33 +2,41 @@
 % Please edit documentation in R/members.R
 \name{members}
 \alias{members}
+\alias{commons_members}
+\alias{lords_members}
+\alias{commons_interests}
+\alias{lords_interests}
 \title{members}
 \usage{
-members(house = c("all", "commons", "lords", "lordsInterests"))
+members(ID = NULL)
+
+commons_members()
+
+lords_members()
+
+commons_interests()
+
+lords_interests(peer_id = NULL)
 }
 \arguments{
-\item{house}{The type of data you want, allows the arguments 'all', 'commons', 'lords', 'lordsInterests'}
+\item{ID}{The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a data frame of all members. If not NULL, returns a data frame with basic information on that member.}
 
-\item{all}{Returns a data frame with information on all members of Parliament, including both the House of Lords and the House of Commons. The data frame includes both current and previous members, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.}
-
-\item{commons}{Returns a data frame with information on all members of the House of Commons. The data frame includes both current and previous members of the House of Commons, and the API currently does not have information on when a member first sat in the house, or to distinguish current from former members.}
-
-\item{lords}{Returns a data frame with all available members of the House of Lords.}
-
-\item{lordsInterests}{Requests a member ID, and returns a data frame of the registered interests of that member of the House of Lords.}
+\item{peer_id}{The ID of a member of the house of lords. If NULL, returns a data frame with all listed financial interests for all members. Defaults to NULL.}
 }
 \description{
 Imports data on All Members of Parliament including the Lords and the Commons
 }
 \examples{
 \dontrun{
-x <- members('all')
+x <- members(172)
 
-x <- members('commons')
+x <- commons_members()
 
-x <- members('lords')
+x <- lords_members()
 
-b <- members('lordsInterests')
+x <- commons_interests()
+
+x <- lords_interests(530)
 }
 }
 \keyword{All}

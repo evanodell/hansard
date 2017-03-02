@@ -2,12 +2,9 @@
 #' early_day_motions
 #'
 #' Imports data on early day motions
-#' @param edmType The type of data you want, allows the arguments 'all', 'allSponsors', 'primarySponsor', 'signatures' and 'ID'
-#' @param all Returns a data frame of all early day motions
-#' @param allSponsors Requests a member's ID, and returns a data frame of early day motions where the given member is a sponsor
-#' @param primarySponsor Requests a member's ID, and returns a data frame of early day motions where the given member is the primary sponsor
-#' @param signatures Returns a data frame of all early day motion signatures.
-#' @param ID Requests an Early Day Motion ID, and returns a data frame with information on that Motion.
+#' @param edm_id Accepts a given MP and returns a data frame with all early day motions signed by that MP. Defaults to NULL.
+#' @param start_date The earliest date to include in the data frame, if calling all early day motions. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame, if calling all early day motions. Defaults to current system date.
 #' @keywords EDM
 #' @export
 #' @examples \dontrun{
@@ -25,122 +22,27 @@
 #' }
 
 
-early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor", "signatures", "ID")) {
+early_day_motions <- function(edm_id = NULL, start_date = "1900-01-01", end_date = Sys.Date()) {
     
-    match.arg(edmType)
+    dates <- paste0("&_properties=dateTabled&max-dateTabled=", end_date, "&min-dateTabled=", start_date)
     
-    if (edmType == "all") {
-        
-        baseurl_edms <- "http://lda.data.parliament.uk/edms.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        edms <- jsonlite::fromJSON(baseurl_edms)
-        
-        edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:edmsJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_edms, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", edmsJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
-        
-    } else if (edmType == "allSponsors") {
-        
-        mp.id <- readline("Enter Member ID: ")
-        
-        baseurl_edms <- "http://lda.data.parliament.uk/edms.json?mnisId="
-        
-        message("Connecting to API")
-        
-        edms <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500"))
-        
-        if (edms$result$totalResults > edms$result$itemsPerPage) {
-            
-            edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
-            
-        } else {
-            edmsJpage <- 0
-        }
-        
-        pages <- list()
-        
-        for (i in 0:edmsJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", edmsJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
-        
-    } else if (edmType == "primarySponsor") {
-        
-        mp.id <- readline("Enter Member ID: ")
-        
-        baseurl_edms <- "http://lda.data.parliament.uk/edmbysponsor.json?mnisId="
-        
-        message("Connecting to API")
-        
-        edms <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500"))
-        
-        if (edms$result$totalResults > edms$result$itemsPerPage) {
-            
-            edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
-            
-        } else {
-            edmsJpage <- 0
-        }
-        
-        pages <- list()
-        
-        for (i in 0:edmsJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_edms, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", edmsJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
-        
-    } else if (edmType == "signatures") {
-        
-        baseurl_edms <- "http://lda.data.parliament.uk/edmsignatures.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        edms <- jsonlite::fromJSON(baseurl_edms)
-        
-        edmsJpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:edmsJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_edms, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", edmsJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-        
-        
-    } else if (edmType == "ID") {
-        
-        edmsID <- readline("Enter an Early Day Motion ID: ")
-        
-        baseurl_edms <- "http://lda.data.parliament.uk/edms/"
-        
-        message("Connecting to API")
-        
-        edms <- jsonlite::fromJSON(paste0(baseurl_edms, edmsID, ".json"))
-        
-        list <- edms$result$primaryTopic
-        
-        list
-        
+    baseurl <- "http://lda.data.parliament.uk/edms"
+    
+    message("Connecting to API")
+    
+    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates), flatten = TRUE)
+    
+    jpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
+    
+    pages <- list()
+    
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, "&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
     }
+    
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
     
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -148,7 +50,3 @@ early_day_motions <- function(edmType = c("all", "allSponsors", "primarySponsor"
         df
     }
 }
-
-
-
-

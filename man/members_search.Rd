@@ -4,10 +4,10 @@
 \alias{members_search}
 \title{members_search}
 \usage{
-members_search(Search = NULL)
+members_search(search = NULL)
 }
 \arguments{
-\item{Search}{Accepts any string. Defaults to NULL.}
+\item{search}{Accepts any string. Defaults to NULL.}
 }
 \description{
 Search for an MP or Lord by name and constituency

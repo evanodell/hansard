@@ -10,7 +10,7 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
 \arguments{
 \item{mp_id}{Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to "1900-01-01".}
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 }

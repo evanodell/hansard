@@ -21,8 +21,7 @@ commons_committee_inquiries <- function(id = NULL, recommendations = FALSE) {
         
         commons_committee_inquiries_page <- jsonlite::fromJSON(baseurl)
         
-        jpage <- round(commons_committee_inquiries_page$result$totalResults/commons_committee_inquiries_page$result$itemsPerPage, 
-            digits = 0)
+        jpage <- round(commons_committee_inquiries_page$result$totalResults/commons_committee_inquiries_page$result$itemsPerPage, digits = 0)
         
         pages <- list()
         

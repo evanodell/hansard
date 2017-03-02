@@ -179,8 +179,7 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         
         if (subTopic %in% yesList == TRUE) {
             
-            research <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", topic, 
-                ".json?_pageSize=500"))
+            research <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", topic, ".json?_pageSize=500"))
             
             print(research$result$items$prefLabel$`_value`)
             
@@ -200,8 +199,7 @@ research_briefings <- function(resType = c("all", "topics", "types", "byTopic", 
         pages <- list()
         
         for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=", 
-                i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", researchJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

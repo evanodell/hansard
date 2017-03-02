@@ -4,23 +4,17 @@
 \alias{election_results}
 \title{election_results}
 \usage{
-election_results(resultType = c("all", "ID"))
+election_results(ID = NULL)
 }
 \arguments{
-\item{resultType}{Accepts the arguments 'all' and 'ID'}
-
-\item{all}{Returns general and by-election resuls for each consituency from the 2010 general election onwards.}
-
-\item{ID}{Returns general and by-election resuls for each consituency from the 2010 general election onwards.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
 }
 \description{
 Imports data on general election results
 }
 \examples{
 \dontrun{
-x <- election_results('all')
-
-x <- election_results('ID')
+x <- election_results(ID=382037)
 }
 }
 \keyword{Election}
