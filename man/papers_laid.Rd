@@ -4,11 +4,9 @@
 \alias{papers_laid}
 \title{papers_laid}
 \usage{
-papers_laid(paperType = c("all"))
+papers_laid(all)
 }
 \arguments{
-\item{paperType}{The type of data you want, allows the arguments 'all', 'department' and 'dates'}
-
 \item{all}{Returns a data frame with all available papers laid.}
 }
 \description{

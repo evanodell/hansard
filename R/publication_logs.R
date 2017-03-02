@@ -3,32 +3,51 @@
 #' publication_logs
 #'
 #' Imports data on Publication Logs
-#' @param all Returns a data frame with all available Publication Logs. Defaults to TRUE.
+#' @param ID Publication ID. Defaults to NULL. If not null, requests a data frame with information on the given publication.
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @keywords Publication Logs
 #' @export
 #' @examples \dontrun{
-#' # x <- publication_logs()
+#' # x <- publication_logs(683267)
 #' }
 
-publication_logs <- function(all = TRUE) {
-    
-    baseurl_logs <- "http://lda.data.parliament.uk/publicationlogs.json?_pageSize=500"
-    
+publication_logs <- function(ID = NULL, start_date = "1900-01-01", end_date = Sys.Date()) {
+
+  if(is.null(ID)==FALSE){
+    query <- paste0("/",ID, ".json?")
+  } else {
+    query <-  ".json?&_pageSize=500"
+  }
+
+  dates <- paste0("&_properties=publicationDate&max-publicationDate=", end_date, "&min-publicationDate=", start_date)
+
+    baseurl <- "http://lda.data.parliament.uk/publicationlogs"
+
     message("Connecting to API")
-    
-    logs <- jsonlite::fromJSON(baseurl_logs)
-    
-    logsJpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)
-    
+
+    logs <- jsonlite::fromJSON(paste0(baseurl, query, dates),flatten = TRUE)
+
+    if(is.null(ID)==FALSE){
+
+      df <- as.data.frame(logs$result$primaryTopic)
+
+    } else {
+
+    jpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)
+
     pages <- list()
-    
-    for (i in 0:logsJpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_logs, "&_page=", i), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", logsJpage + 1)
+
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates,"&_page=", i), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+    }
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {

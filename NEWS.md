@@ -1,6 +1,6 @@
 # hansard 0.4.0
 
-Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed, or incorporated into the `hansard_console` function. These changes ensure greater consistency in syntax across the package, in both the body and formals. 
+Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all other functions and or incorporated into the `hansard_console` function. These changes ensure greater consistency in syntax across the package, in both the body and formals of the functions.
 
 Changes have been made to the following functions:
 
@@ -41,6 +41,10 @@ Changes have been made to the following functions:
 `mp_edms`: Improved functionality, can now call full text of early day motions.
 
 `mp_questions`: Changed `questionType` to `question_type`
+
+`mp_vote_record`: Minor re-write
+
+`publication_logs`: Minor re-write, now includes start and end dates.
 
 
 # hansard 0.3.4
