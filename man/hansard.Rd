@@ -59,6 +59,8 @@ Provides functions to download data from the data.parliament.uk APIs. Because of
 
 \code{\link{mp_vote_record}}
 
+\code{\link{mp_edms}}
+
 \code{\link{papers_laid}}
 
 \code{\link{publication_logs}}

@@ -41,14 +41,16 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
     
     message("Connecting to API")
     
-    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500"), flatten = TRUE)
+    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500"), 
+        flatten = TRUE)
     
     jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
     
     pages <- list()
     
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=", 
+            i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }

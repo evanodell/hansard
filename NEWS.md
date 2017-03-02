@@ -36,7 +36,9 @@ Changes have been made to the following functions:
  
 `lords_divisions`: Removed console input, simplified formals.
 
+`members`: Added additional `commons_members`, `commons_interests`, `lords_members` and `lords_interests` functions.
 
+`mp_edms`: Improved functionality, can now call full text of early day motions.
 
 `mp_questions`: Changed `questionType` to `question_type`
 

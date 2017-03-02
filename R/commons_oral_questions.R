@@ -39,14 +39,16 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
     
     message("Connecting to API")
     
-    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500"), flatten = TRUE)
+    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500"), 
+        flatten = TRUE)
     
     jpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
     
     pages <- list()
     
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=", 
+            i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }

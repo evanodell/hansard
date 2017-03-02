@@ -40,14 +40,16 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
     
     message("Connecting to API")
     
-    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500"), flatten = TRUE)
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500"), 
+        flatten = TRUE)
     
     jpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
     
     pages <- list()
     
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=", 
+            i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }

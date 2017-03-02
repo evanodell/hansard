@@ -4,8 +4,8 @@
 \alias{mp_vote_record}
 \title{mp_vote_record}
 \usage{
-mp_vote_record(mp_id = NULL, lobby = c("all", "aye", "no"),
-  start_date = "1900-01-01", end_date = Sys.Date())
+mp_vote_record(mp_id = NULL, lobby = "all", start_date = "1900-01-01",
+  end_date = Sys.Date())
 }
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}

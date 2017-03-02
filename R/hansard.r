@@ -53,6 +53,8 @@
 #'
 #' \code{\link{mp_vote_record}}
 #'
+#' \code{\link{mp_edms}}
+#'
 #' \code{\link{papers_laid}}
 #'
 #' \code{\link{publication_logs}}
@@ -68,5 +70,5 @@
 #' @import utils
 #' @import httr
 #' @import jsonlite
-#' @import plyr
+#' @import dplyr
 NULL

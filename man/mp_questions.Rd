@@ -4,10 +4,10 @@
 \alias{mp_questions}
 \title{mp_questions}
 \usage{
-mp_questions(mp.id, question_type = c("all", "oral", "written"))
+mp_questions(mp_id, question_type = c("all", "oral", "written"))
 }
 \arguments{
-\item{mp.id}{The ID number of a member of the House of Commons.}
+\item{mp_id}{The ID number of a member of the House of Commons.}
 
 \item{question_type}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
 

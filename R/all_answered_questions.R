@@ -6,7 +6,7 @@
 #' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @keywords Answered Questions
-#' @import httr plyr jsonlite
+#' @import httr jsonlite
 #' @export
 #' @examples \dontrun{
 #'
