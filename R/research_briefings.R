@@ -1,220 +1,168 @@
 
 #' research_briefings
 #'
-#' Imports data on  Parliamentary Research Briefings
-#' @param resType The type of data you want, allows the arguments 'all', 'topics', 'types',
-#' # 'byTopic','subTopic' and 'topicSubTopic'
-#' @param all Imports a data frame with all available Parliamentary Research Briefings.
-#' @param topics Imports a data frame with all Parliamentary Research Briefings topics.
-#' @param types Imports a data frame with all Parliamentary Research Briefings types.
-#' @param byTopic Requests a topic, and imports a data frame with all available Parliamentary Research Briefings on that topic
-#' @param subTopic Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.
-#' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with all available Parliamentary Research Briefings on that subtopic
+#' Imports data on  Parliamentary Research Briefings. To see a list of possible topics and subtopics, call \code{\link{research_topics}}. To see a list of briefing types, call \code{\link{research_types}}.
+#' @param topic The topic of the parliamentary briefing.
+#' @param sub_topic The subtopic of the parliamentary briefing.
+#' @param type The
 #' @keywords  Parliamentary Research Briefings
+#' @seealso research_topics
 #' @export
 #' @examples \dontrun{
-#' x <- research_briefings('all')
+#' x <- research_briefings("Housing and planning")
 #'
-#' x <- research_briefings('topics')
+#' #Requests can be made using research_topics_list data
+#' x <- research_briefings(topic = "Defence", sub_topic = research_topics_list[["Defence"]][10])
 #'
-#' x <- research_briefings('types')
 #'
-#' x <- research_briefings('byTopic')
-#'
-#' x <- research_briefings('subTopic')
-#'
-#' x <- research_briefings('topicSubTopic')
 #' }
 
-research_briefings <- function(resType = c("all", "topics", "types", "byTopic", "subTopic", "topicSubTopic")) {
-    
-    match.arg(resType)
-    
-    if (resType == "all") {
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefings.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(baseurl_research)
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resType == "topics") {
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(baseurl_research)
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resType == "types") {
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefingtypes.json?_pageSize=500"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(baseurl_research)
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resType == "byTopic") {
-        
-        message("Topics are case sensititve. To return list of topics, enter yes.")
-        topic <- readline("Enter topic:  ")
-        topic <- URLencode(topic)
-        
-        yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-        
-        if (topic %in% yesList == TRUE) {
-            
-            research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-            
-            print(research$result$items$prefLabel$`_value`)
-            
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
-            topic <- URLencode(topic)
-            
-        }
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resType == "subTopic") {
-        
-        topic <- readline("Enter topic:  ")
-        topic <- URLencode(topic)
-        
-        
-        yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-        
-        if (topic %in% yesList == TRUE) {
-            
-            research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-            
-            print(research$result$items$prefLabel$`_value`)
-            
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
-            topic <- URLencode(topic)
-        }
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefingsubtopics/"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500"))
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (resType == "topicSubTopic") {
-        
-        print("Topics are case sensititve. To return list of topics, enter yes.")
-        topic <- readline("Enter topic: ")
-        topic <- URLencode(topic)
-        
-        yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-        
-        if (topic %in% yesList == TRUE) {
-            
-            research <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?_pageSize=500")
-            
-            print(research$result$items$prefLabel$`_value`)
-            
-            topic <- readline("Enter Topic. For ease of use, copy and paste the topic (do not include quotes): ")
-            topic <- URLencode(topic)
-            
-        }
-        message("Sub-topics are case sensititve. To return list of sub-topics, enter yes.")
-        subTopic <- readline("Enter sub-topic:  ")
-        subTopic <- URLencode(subTopic)
-        
-        yesList <- c("yes", "Yes", "yEs", "yeS", "YES", "yES", "YEs", "YeS", "y", "ye", "Y", "YE", "Ye", "yE")
-        
-        if (subTopic %in% yesList == TRUE) {
-            
-            research <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", topic, 
-                ".json?_pageSize=500"))
-            
-            print(research$result$items$prefLabel$`_value`)
-            
-            subTopic <- readline("Enter sub-topic. For ease of use, copy and paste the sub-topic: ")
-            subTopic <- URLencode(subTopic)
-            
-        }
-        
-        baseurl_research <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
-        
-        message("Connecting to API")
-        
-        research <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500"))
-        
-        researchJpage <- 0
-        
-        pages <- list()
-        
-        for (i in 0:researchJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_research, topic, "/", subTopic, ".json?_pageSize=500", "&_page=", 
-                i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", researchJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
+research_briefings <- function(topic=NULL, sub_topic=NULL, type=NULL) {
+
+  if(is.null(topic)==TRUE & is.null(sub_topic)==FALSE){
+
+  g <- rep(seq_along(research_topics_list), sapply(research_topics_list, length))
+  dex <- g[match(sub_topic, unlist(research_topics_list))]
+  topic <- research_topics_list[dex]
+
+}
+
+  if(is.null(topic)==TRUE & is.null(sub_topic)==TRUE){
+
+    if(is.null(type)==FALSE){
+      type <- utils::URLencode(type)
+      query <- paste0("&subType.prefLabel=",type)
+    } else {
+      query <- NULL
     }
-    
+
+        baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
+
+        message("Connecting to API")
+
+        research <- jsonlite::fromJSON(paste0(baseurl, query),flatten=TRUE)
+
+        jpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
+
+        pages <- list()
+
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+  } else {
+
+    if(is.null(sub_topic)==FALSE){
+      sub_topic <- utils::URLencode(sub_topic)
+      sub_topic_query <- paste0("/", sub_topic)
+    }
+
+    if(is.null(topic)==FALSE){
+      topic_query <- utils::URLencode(topic)
+    }
+
+    if(is.null(type)==FALSE){
+      type <- utils::URLencode(type)
+      query <- paste0("&subType.prefLabel=",type)
+    } else {
+      query <- NULL
+    }
+
+    baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
+
+    research <- jsonlite::fromJSON(paste0(baseurl, topic_query, sub_topic_query, ".json?", query),flatten=TRUE)
+
+    jpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
+
+    pages <- list()
+
+    for (i in 0:jpage) {
+      mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, sub_topic_query, ".json?", query, "&_pageSize=500&_page=", i), flatten = TRUE)
+      message("Retrieving page ", i + 1, " of ", jpage + 1)
+      pages[[i + 1]] <- mydata$result$items
+    }
+
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+  }
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         df
     }
+
 }
+
+
+#' research_topics
+#'
+#' Prints or assigns to an object a list of topics and subtopics on  Parliamentary Research Briefings.
+#' @rdname research_briefings
+#' @export
+#' @keywords  Parliamentary Research Briefings
+#' @examples \dontrun{
+#'
+#' research_topics()
+#'
+#' }
+research_topics <- function(){
+
+  x <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?",flatten=TRUE)
+
+  y <- x$result$items$prefLabel._value
+
+  y <- as.list(y)
+
+  research_topics_list <- list()
+
+  for (i in y) {
+
+    i <- URLencode(i)
+
+    g <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", i, ".json?"), flatten = TRUE)
+
+
+    i <- URLdecode(i)
+
+    research_topics_list[[i]] <- g$result$items$prefLabel._value
+
+  }
+
+  research_topics_list
+
+}
+
+
+#' research_types
+#'
+#' Prints or assigns to an object a list of topics and subtopics on  Parliamentary Research Briefings.
+#' @rdname research_briefings
+#' @export
+#' @keywords  Parliamentary Research Briefings
+#' @examples \dontrun{
+#'
+#' research_types(){
+#'
+#' }
+#'
+#'
+research_types <- function(){
+
+  x <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtypes.json?")
+
+  y <- x$result$items$prefLabel
+
+  y
+
+}
+
+
+
 
 
 

@@ -19,7 +19,7 @@ papers_laid <- function(all) {
 
         papers <- jsonlite::fromJSON(baseurl_papers)
 
-        papersJpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
+        jpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
