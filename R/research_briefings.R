@@ -110,42 +110,22 @@ research_briefings <- function(topic=NULL, sub_topic=NULL, type=NULL) {
 #' research_topics()
 #'
 #' }
+
+
 research_topics <- function(){
 
-  x <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?",flatten=TRUE)
-
-  y <- x$result$items$prefLabel._value
-
-  y <- as.list(y)
-
-  research_topics_list <- list()
-
-  for (i in y) {
-
-    i <- URLencode(i)
-
-    g <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", i, ".json?"), flatten = TRUE)
-
-
-    i <- URLdecode(i)
-
-    research_topics_list[[i]] <- g$result$items$prefLabel._value
-
-  }
-
-  research_topics_list
+  hansard::research_topics_list
 
 }
 
 
-#' research_types
+#' research_topics
 #'
 #' Prints or assigns to an object a list of topics and subtopics on  Parliamentary Research Briefings.
 #' @rdname research_briefings
 #' @export
 #' @keywords  Parliamentary Research Briefings
 #' @examples \dontrun{
-#'
 #' research_types(){
 #'
 #' }
@@ -160,6 +140,7 @@ research_types <- function(){
   y
 
 }
+
 
 
 
