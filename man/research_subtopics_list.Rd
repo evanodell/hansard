@@ -5,6 +5,9 @@
 \alias{research_subtopics_list}
 \title{List of parliamentary research briefing topics and subtopics}
 \format{A nested list with twenty levels, one for each possible briefing topic. Each level contains a list with all subtopics for the parent topic.}
+\source{
+\url{http://explore.data.parliament.uk/}
+}
 \usage{
 research_subtopics_list
 }

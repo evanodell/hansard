@@ -5,6 +5,9 @@
 \alias{research_topics_list}
 \title{List of parliamentary research briefing topics}
 \format{A list with twenty levels, one for each possible briefing topic.}
+\source{
+\url{http://explore.data.parliament.uk/}
+}
 \usage{
 research_topics_list
 }

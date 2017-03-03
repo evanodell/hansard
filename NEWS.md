@@ -48,6 +48,8 @@ Changes have been made to the following functions:
 
 `publication_logs`: Minor re-write, now includes start and end dates.
 
+`sessions_info`: Added `start_date` and `end_date` parameters
+
 
 # hansard 0.3.4
 
