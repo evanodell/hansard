@@ -2,44 +2,59 @@
 % Please edit documentation in R/research_briefings.R
 \name{research_briefings}
 \alias{research_briefings}
+\alias{research_topics}
+\alias{research_types}
 \title{research_briefings}
 \usage{
-research_briefings(resType = c("all", "topics", "types", "byTopic",
-  "subTopic", "topicSubTopic"))
+research_briefings(topic = NULL, subtopic = NULL, type = NULL)
+
+research_topics(subtopics = TRUE)
+
+research_types()
 }
 \arguments{
-\item{resType}{The type of data you want, allows the arguments 'all', 'topics', 'types',
-# 'byTopic','subTopic' and 'topicSubTopic'}
+\item{topic}{The topic of the parliamentary briefing.}
 
-\item{all}{Imports a data frame with all available Parliamentary Research Briefings.}
+\item{subtopic}{The subtopic of the parliamentary briefing.}
 
-\item{topics}{Imports a data frame with all Parliamentary Research Briefings topics.}
+\item{type}{The type of research briefing.}
 
-\item{types}{Imports a data frame with all Parliamentary Research Briefings types.}
-
-\item{byTopic}{Requests a topic, and imports a data frame with all available Parliamentary Research Briefings on that topic}
-
-\item{subTopic}{Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.}
-
-\item{topicSubTopic}{Requests a topic and a subtopic, and imports a data frame with all available Parliamentary Research Briefings on that subtopic}
+\item{subtopics}{If TRUE, returns full list with all topics and subtopics. If FALSE, only returns list of topics. Defaults to TRUE.}
 }
 \description{
-Imports data on  Parliamentary Research Briefings
+Imports data on  Parliamentary Research Briefings. To see a list of possible topics and subtopics, call \code{\link{research_topics}}. To see a list of briefing types, call \code{\link{research_types_list}}.
+
+Prints or assigns to an object a list of topics and subtopics on  Parliamentary Research Briefings.
+
+Prints or assigns to an object a list types of Parliamentary Research Briefings.
 }
 \examples{
 \dontrun{
-x <- research_briefings('all')
+x <- research_briefings("Housing and planning")
 
-x <- research_briefings('topics')
+#Requests can be made using the `research_topics_list`
+# and `research_subtopics_list` included in the data
+x <- research_briefings(topic = hansard::research_topics_list[[7]])
 
-x <- research_briefings('types')
+x <- research_briefings(subtopic = hansard::research_subtopics_list[[7]][10])
 
-x <- research_briefings('byTopic')
+# Requests for certain briefing types can also be made using 'research_types_list'.
+x <- research_briefings(type = hansard::research_types_list[[3]])
 
-x <- research_briefings('subTopic')
 
-x <- research_briefings('topicSubTopic')
 }
+
+research_topics()
+
+
+research_types()
+
+
+
+
+}
+\seealso{
+research_topics
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

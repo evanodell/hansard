@@ -12,6 +12,10 @@ vignette: >
 `hansard` is an R package to pull data from the UK parliament through the <http://www.data.parliament.uk/> API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a single argument at a time, and functions that require additional information to retrieve the data you requested will ask for it after you execute the function. Functions retrieve data in json format and convert it to a data frame. The `hansard_generic` function supports the building of API requests in XML, csv or HTML format if required.
 
 
+
+Need to add a bunch more stuff on 
+
+
 ##Installing hansard
 
 ###From CRAN
