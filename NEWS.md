@@ -44,6 +44,8 @@ Changes have been made to the following functions:
 
 `mp_vote_record`: Minor re-write
 
+`papers_laid`: NEW FEATURES ADDED TO API, NEED TO INCOPORATE INTO FUNCTION
+
 `publication_logs`: Minor re-write, now includes start and end dates.
 
 
