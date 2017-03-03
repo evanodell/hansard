@@ -21,7 +21,6 @@ Imports data on TV broadcasts
 
 x <- tv_programmes('TV')
 
-
 x <- tv_programmes('clips')
 }
 }

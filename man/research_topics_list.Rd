@@ -3,7 +3,7 @@
 \docType{data}
 \name{research_topics_list}
 \alias{research_topics_list}
-\title{List of parliamentary research briefing topics}
+\title{A list of parliamentary research briefing topics. The list may be used to support calls to the \code{\link{research_briefings}} API.}
 \format{A list with twenty levels, one for each possible briefing topic.}
 \source{
 \url{http://explore.data.parliament.uk/}
@@ -12,6 +12,6 @@
 research_topics_list
 }
 \description{
-List of parliamentary research briefing topics
+A list of parliamentary research briefing topics. The list may be used to support calls to the \code{\link{research_briefings}} API.
 }
 \keyword{datasets}

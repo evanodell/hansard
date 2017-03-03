@@ -3,7 +3,7 @@
 \docType{data}
 \name{research_subtopics_list}
 \alias{research_subtopics_list}
-\title{List of parliamentary research briefing topics and subtopics}
+\title{A list of parliamentary research briefing topics and subtopics.  The list may be used to support calls to the \code{\link{research_briefings}} API.}
 \format{A nested list with twenty levels, one for each possible briefing topic. Each level contains a list with all subtopics for the parent topic.}
 \source{
 \url{http://explore.data.parliament.uk/}
@@ -12,6 +12,6 @@
 research_subtopics_list
 }
 \description{
-List of parliamentary research briefing topics and subtopics
+A list of parliamentary research briefing topics and subtopics.  The list may be used to support calls to the \code{\link{research_briefings}} API.
 }
 \keyword{datasets}
