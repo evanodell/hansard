@@ -50,6 +50,12 @@ Changes have been made to the following functions:
 
 `sessions_info`: Added `start_date` and `end_date` parameters
 
+`tv_channels` New function.
+
+`tv_clips`: New function, previously part of `tv_programmes`.
+
+`tv_programmes`: Minor re-write, now includes ability to select legislature.
+
 
 # hansard 0.3.4
 

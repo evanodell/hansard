@@ -30,7 +30,7 @@ Prints or assigns to an object a list types of Parliamentary Research Briefings.
 }
 \examples{
 \dontrun{
-x <- research_briefings("Housing and planning")
+x <- research_briefings('Housing and planning')
 
 #Requests can be made using the `research_topics_list`
 # and `research_subtopics_list` included in the data

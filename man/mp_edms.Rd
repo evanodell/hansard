@@ -14,18 +14,18 @@ mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 
 \item{sponsor}{Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor. Defaults to FALSE.}
 
-\item{signatory}{Returns a data frame of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the data frame return if signatory is TRUE. Defaults to FALSE.}
+\item{signatory}{Returns a data frame of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the data frame return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.}
 
-\item{full_data}{Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can take}
+\item{full_data}{Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process.}
 }
 \description{
 Imports data on early day motions
 }
 \examples{
 \dontrun{
-x <- mp_edms('signed')
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=FALSE)
 
-x <- mp_edms('sponsor')
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, full_data=TRUE)
 
 }
 }
