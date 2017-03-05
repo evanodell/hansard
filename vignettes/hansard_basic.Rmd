@@ -1,0 +1,55 @@
+---
+title: "Introduction to the `hansard_basic` function"
+author: "Evan Odell"
+date: "05/03/2017"
+output: html_document
+---
+
+## The `hansard_basic` function
+
+### Using `hansard_basic`
+
+The function `research_briefings` is unusual in that it requests names instead of codes. 
+
+```{r, eval=FALSE}
+#> x <- hanard_basic()
+#> Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#> Enter sub-topic: yes
+#
+#> Please select a data set 
+#>
+#> 1: AV Live Logging               2: Bills                         3: Commons Answered Questions 
+#> 4: Commons Divisions             5: Commons Oral Question Times   6: Commons Oral Questions     
+#> 7: Commons Written Questions     8: Constituencies                9: Early Day Motions          
+#>10: Elections                    11: Election Results             12: Lords Attendances          
+#>13: Lords Bill Amendments        14: Lords Divisions              15: Lords Written Questions    
+#>16: Members                      17: Papers Laid                  18: Publication Logs           
+#>19: Research Briefings           20: Sessions                     21: Thesaurus                  
+#>22: e-Petitions 
+#> 
+#> Selection: 19
+#> 
+#> 1: All
+#> 2: Topics
+#> 3: Types
+#> 4: By Topic
+#> 5: Sub-Topic
+#> 6: Topic Sub-Topic
+#> 
+#> Selection: 6
+
+#> [1] "Topics are case sensititve. To return list of topics, enter yes."
+#> Enter sub-topic: yes
+
+#>  [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"         
+#>   [3] "Business, industry and consumers"             "Communities and families"                    
+#>   [5] "Crime, civil law, justice and rights"         "Culture, media and sport"                    
+#>   [7] "Defence"                                      "Economy and finance"                         
+#>   [9] "Education"                                    "Employment and training"                     
+#>  [11] "Energy and environment"                       "European Union"                              
+#>  [13] "Health services and medicine"                 "Housing and planning"                        
+#>  [15] "International affairs"                        "Parliament, government and politics"         
+#>  [17] "Science and technology"                       "Social Security and pensions"                
+#> Enter sub-topic. For ease of use, copy and paste the sub-topic: Teachers
+```
+

@@ -196,37 +196,6 @@ x <- mp_vote_record(172, "all")
 ```
 
 
-###Using research_briefings
-
-The function `research_briefings` is unusual in that it requests names instead of codes. 
-
-```{r, eval=FALSE}
-#> x <- research_briefings('topicSubTopic')
-#> Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#> Enter sub-topic: yes
-#
-#> [1] 'Agriculture, animals, food and rural affairs' 'Asylum, immigration and nationality'
-#> [3] 'Business, industry and consumers'             'Communities and families'
-#> [5] 'Crime, civil law, justice and rights'         'Culture, media and sport'
-#> [7] 'Defence'                                      'Economy and finance'
-#> [9] 'Education'                                    'Employment and training'
-#> [11] 'Energy and environment'                       'European Union'
-#> [13] 'Health services and medicine'                 'Housing and planning'
-#> [15] 'International affairs'                        'Parliament, government and politics'
-#> [17] 'Science and technology'                       'Social Security and pensions'
-#> [19] 'Social services'                              'Transport'
-#> Enter Topic. For ease of use, copy and paste the topic: Education
-#> Sub-topics are case sensititve. To return list of sub-topics, enter yes.
-#> Enter sub-topic: yes
-
-#> [1] "Adult education"              "Further education"           
-#> [3] "Higher education"             "Local authorities: education"
-#> [5] "Ofsted"                       "Pre-school education"        
-#> [7] "Schools"                      "Special educational needs"   
-#> [9] "Students"                     "Teachers"   
-#> Enter sub-topic. For ease of use, copy and paste the sub-topic: Teachers
-```
-
 ###Using the hansard_basic function
 
 The `hansard_basic` function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the [DDP Explorer website](http://explore.data.parliament.uk/).
