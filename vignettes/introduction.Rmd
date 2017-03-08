@@ -112,11 +112,10 @@ The search function is not case sensitive, and searchs in the names and constitu
 
 ###Using commons_divisions and mp_vote_record
 
-The `commons_divisions` function returns divisions in the House of Commons and the divisions that a member votes no or aye in. The example below returns all Commons Divisions where Diane Abbott voted aye.
+The `commons_divisions` function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. `mp_vote_record` returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye.
 
 ```{r eval = FALSE}
-x <- commons_divisions("aye")
-#> Enter Member ID: 172
+x <- mp_vote_record(172, "aye")
 #> Retrieving page 1 of 4
 #> Retrieving page 2 of 4
 #> Retrieving page 3 of 4
@@ -139,39 +138,7 @@ x <- commons_divisions("aye")
 
 ```
 
-The voting record of MPs and Lords can also be retrieved using the `mp_vote_record` and `lords_vote_record` functions, respectively. This function has several advantages over the `commons_divisions` and `lords_divisions` functions. All the required parameters for the API call are included in the function parameters, rather than using console input, and they can return all divisions that an MP or Lord voted in.
-
-```{r eval = FALSE}
-x <- mp_vote_record(172, "all")
-#> Retrieving aye votes:
-#> Connecting to API
-#> Retrieving page 1 of 4
-#> Retrieving page 2 of 4
-#> Retrieving page 3 of 4
-#> Retrieving page 4 of 4
-#> Retrieving no votes:
-#> Connecting to API
-#> Retrieving page 1 of 3
-#> Retrieving page 2 of 3
-#> Retrieving page 3 of 3
-#> head(x)
-#>                                       _about                                                                       title
-#> 1 http://data.parliament.uk/resources/653644 Opposition Motion: The Government's plan for Brexit (Prime Minister's Amdt)
-#> 2 http://data.parliament.uk/resources/653645       Opposition motion: The Government's plan for Brexit motion as amended
-#> 3 http://data.parliament.uk/resources/646440                             Digital Economy Bill: Report Stage New Clause 8
-#> 4 http://data.parliament.uk/resources/641464                            Opposition Motion: Education and Social Mobility
-#> 5 http://data.parliament.uk/resources/641522                          Opposition Motion: National Health Service Funding
-#> 6 http://data.parliament.uk/resources/640531               Higher Education and Research Bill: Report Stage New Clause 2
-#>                 uin date._value date._datatype vote
-#> 1 CD:2016-12-07:169  2016-12-07       dateTime  aye
-#> 2 CD:2016-12-07:170  2016-12-07       dateTime  aye
-#> 3 CD:2016-11-28:165  2016-11-28       dateTime  aye
-#> 4 CD:2016-11-22:161  2016-11-22       dateTime  aye
-#> 5 CD:2016-11-22:162  2016-11-22       dateTime  aye
-#> 6 CD:2016-11-21:154  2016-11-21       dateTime  aye
-
-```
-
+The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions. 
 
 ###Using the hansard_basic function
 
