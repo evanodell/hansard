@@ -14,7 +14,7 @@
 
 commons_terms <- function(extra_args=NULL) {
 
-    baseurl <- "http://lda.data.parliament.uk/terms.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/terms.json?_pageSize=500&_view=description"
 
     message("Connecting to API")
 

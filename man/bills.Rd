@@ -28,11 +28,14 @@ Returns a data frames with all possible bill stage types.
 }
 \examples{
 \dontrun{
-x <- bills('all')
 
-x <- bills('ammended')
+x <- bills()
 
-x <- bills('stage_types')
+x <- bills(amendments=TRUE)
+
+x <- bills(1719)
+
+
 }
 \dontrun{
 x <- bill_stage_types()

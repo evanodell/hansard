@@ -2,6 +2,8 @@
 #' papers_laid
 #'
 #' Imports data on Papers Laid
+#' @param withdrawn If TRUE, only returns withdrawn papers. Defaults to FALSE.
+#' @param house The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. Defaults to NULL.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords Papers Laid
 #' @export
@@ -9,13 +11,23 @@
 #' x <- papers_laid('all') }
 #'
 
-papers_laid <- function(extra_args=NULL) {
+papers_laid <- function(withdrawn=FALSE, house=NULL, extra_args=NULL) {
+
+  if(house=="commons"){
+    house <- "?legislature.prefLabel=House of Commons"
+  } else if(house=="lords"){
+    house <- "?legislature.prefLabel=House of Lords"
+  }
+
+  if(withdrawn==TRUE) {
+    query <- "&withdrawn=true"
+  }
 
     baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 
     message("Connecting to API")
 
-    papers <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+    papers <- jsonlite::fromJSON(paste0(baseurl, query, house, extra_args), flatten = TRUE)
 
     jpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
 

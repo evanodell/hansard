@@ -4,9 +4,13 @@
 \alias{papers_laid}
 \title{papers_laid}
 \usage{
-papers_laid(extra_args = NULL)
+papers_laid(withdrawn = FALSE, house = NULL, extra_args = NULL)
 }
 \arguments{
+\item{withdrawn}{If TRUE, only returns withdrawn papers. Defaults to FALSE.}
+
+\item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. Defaults to NULL.}
+
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
