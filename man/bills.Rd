@@ -2,24 +2,29 @@
 % Please edit documentation in R/bills.R
 \name{bills}
 \alias{bills}
+\alias{bill_stage_types}
 \title{bills}
 \usage{
-bills(billType = c("ammended", "stage_types", "publications"))
+bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL)
+
+bill_stage_types()
 }
 \arguments{
-\item{billType}{The type of data you want, allows the arguments 'ammended', 'publications' and 'stage_types'}
+\item{ID}{The ID of a given bill to return data on. If NULL, returns all bills, subject to other parameters. Defaults to NULL.}
 
-\item{ammended}{Imports a data frame with all ammended bills}
+\item{amendments}{If TRUE, returns all bills with amendments. Defaults to FALSE.}
 
-\item{stage_types}{Imports a data frame with all bill stage types}
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
-\item{publications}{Imports a data frame with all bill publications}
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons and House of Lords bills
-}
-\note{
-There are problems with the Bills API, as the JSON data available for some queries, including the query to return all bills currently before the house, is inconsistently formatted and cannot be parsed into a data frame.
+
+Returns a data frames with all possible bill stage types.
 }
 \examples{
 \dontrun{
@@ -29,5 +34,9 @@ x <- bills('ammended')
 
 x <- bills('stage_types')
 }
+\dontrun{
+x <- bill_stage_types()
+}
+
 }
 \keyword{bills}

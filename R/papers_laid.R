@@ -2,30 +2,30 @@
 #' papers_laid
 #'
 #' Imports data on Papers Laid
-#' @param all Returns a data frame with all available papers laid.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords Papers Laid
 #' @export
 #' @examples \dontrun{
 #' x <- papers_laid('all') }
 #'
 
-papers_laid <- function(all) {
+papers_laid <- function(extra_args=NULL) {
 
-        baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 
-        message("Connecting to API")
+    message("Connecting to API")
 
-        papers <- jsonlite::fromJSON(baseurl)
+    papers <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-        jpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
+    jpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
 
-        pages <- list()
+    pages <- list()
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+    }
 
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
 

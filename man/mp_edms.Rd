@@ -5,7 +5,7 @@
 \title{mp_edms}
 \usage{
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
-  signatory = FALSE, full_data = FALSE)
+  signatory = FALSE, full_data = FALSE, extra_args = NULL)
 }
 \arguments{
 \item{mp_id}{The ID number of an MP. Required parameter.}
@@ -17,6 +17,8 @@ mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 \item{signatory}{Returns a data frame of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the data frame return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.}
 
 \item{full_data}{Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on early day motions

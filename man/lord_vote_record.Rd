@@ -5,7 +5,7 @@
 \title{lord_vote_record}
 \usage{
 lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
-  end_date = Sys.Date())
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{peer_id}{The ID number of a member of the House of Lords.}
@@ -15,6 +15,8 @@ lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
 \item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.

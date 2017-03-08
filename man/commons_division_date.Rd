@@ -4,13 +4,15 @@
 \alias{commons_division_date}
 \title{commons_division_date}
 \usage{
-commons_division_date(date = NULL)
+commons_division_date(date = NULL, extra_args = NULL)
 }
 \arguments{
 \item{date}{Returns all divisions on a given date. Defaults to NULL.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Returns a data frames with
+Returns a data frames with the dates of House of Commons divisions.
 }
 \examples{
 \dontrun{

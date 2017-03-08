@@ -145,7 +145,8 @@ hansard_basic <- function() {
         
     } else if (select1 == hansard_list[6]) {
         
-        commons_oral_questions_list <- c("All", "Times", "Days Tabled", "Days Answered", "Asked By", "Session", "Department")
+        commons_oral_questions_list <- c("All", "Times", "Days Tabled", "Days Answered", "Asked By", "Session", 
+            "Department")
         
         select_commons_oral_questions <- select.list(commons_oral_questions_list)
         

@@ -15,37 +15,37 @@
 #' }
 
 members_search <- function(search = NULL) {
-    
+
     if (is.null(search)) {
         members("all")
     } else {
-        
+
         search <- URLencode(search)
-        
+
         baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
-        
+
         message("Connecting to API")
-        
+
         mpidResults <- jsonlite::fromJSON(paste0(baseurl_MPID, search, "*"))
-        
+
         if (mpidResults$result$totalResults > mpidResults$result$itemsPerPage) {
             mpidJpage <- round(mpidResults$result$totalResults/mpidResults$result$itemsPerPage, digits = 0)
-            
+
             pages <- list()
-            
+
             for (i in 0:mpidJpage) {
                 mydata <- jsonlite::fromJSON(paste0(baseurl_MPID, search, "*", "&_page=", i), flatten = TRUE)
                 message("Retrieving page ", i + 1, " of ", mpidJpage + 1)
                 pages[[i + 1]] <- mydata$result$items
             }
-            
+
             df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-            
+
         } else {
             df <- mpidResults$result$items
-            
+
         }
-        
+
     }
 }
 

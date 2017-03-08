@@ -5,7 +5,7 @@
 \title{commons_oral_questions}
 \usage{
 commons_oral_questions(mp_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date())
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{mp_id}{The ID of a given MP. Defaults to NULL.}
@@ -15,6 +15,8 @@ commons_oral_questions(mp_id = NULL, answering_department = NULL,
 \item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons oral questions

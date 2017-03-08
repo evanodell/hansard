@@ -6,7 +6,7 @@
 \alias{research_types}
 \title{research_briefings}
 \usage{
-research_briefings(topic = NULL, subtopic = NULL, type = NULL)
+research_briefings(topic = NULL, subtopic = NULL, type = NULL, extra_args)
 
 research_topics(subtopics = TRUE)
 
@@ -18,6 +18,8 @@ research_types()
 \item{subtopic}{The subtopic of the parliamentary briefing.}
 
 \item{type}{The type of research briefing.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{subtopics}{If TRUE, returns full list with all topics and subtopics. If FALSE, only returns list of topics. Defaults to TRUE.}
 }

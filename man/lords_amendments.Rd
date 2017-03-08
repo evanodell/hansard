@@ -4,13 +4,13 @@
 \alias{lords_amendments}
 \title{lords_amendments}
 \usage{
-lords_amendments(all = TRUE)
+lords_amendments(extra_args = NULL)
 }
 \arguments{
-\item{all}{Returns a data frame with all available House of Lords Amendments. Defaults to TRUE.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports data on House of Lords Amendments
+Imports data on House of Lords Amendments. Returns a data frame with all available House of Lords Amendments. Defaults to TRUE.
 }
 \examples{
 \dontrun{

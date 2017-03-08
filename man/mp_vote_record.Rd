@@ -5,7 +5,7 @@
 \title{mp_vote_record}
 \usage{
 mp_vote_record(mp_id = NULL, lobby = "all", start_date = "1900-01-01",
-  end_date = Sys.Date())
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}
@@ -15,6 +15,8 @@ mp_vote_record(mp_id = NULL, lobby = "all", start_date = "1900-01-01",
 \item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
@@ -26,6 +28,12 @@ x <- mp_vote_record(172, lobby='all')
 x <- mp_vote_record(172, lobby='aye')
 
 x <- mp_vote_record(172, lobby='no')
+
+# the extra_args parameter allows the inclusion of additional arguments or
+# queries that are not available through the function's parameters
+x <- mp_vote_record(172, extra_args = "&session=2016/17")
+
+
 }
 }
 \keyword{divisions}

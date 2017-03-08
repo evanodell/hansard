@@ -5,7 +5,7 @@
 \title{early_day_motions}
 \usage{
 early_day_motions(edm_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), signatures = 1)
+  end_date = Sys.Date(), signatures = 1, extra_args = NULL)
 }
 \arguments{
 \item{edm_id}{Accepts a given MP and returns a data frame with all early day motions signed by that MP. Defaults to NULL.}
@@ -15,6 +15,8 @@ early_day_motions(edm_id = NULL, start_date = "1900-01-01",
 \item{end_date}{The latest date to include in the data frame, if calling all early day motions. Defaults to current system date.}
 
 \item{signatures}{The minimum number of signatures required for inclusion in the data frame. Defaults to 1.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on early day motions

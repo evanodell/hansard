@@ -4,10 +4,10 @@
 \alias{constituencies}
 \title{constituencies}
 \usage{
-constituencies(all = TRUE)
+constituencies(extra_args = NULL)
 }
 \arguments{
-\item{all}{Returns a data frame of all constituencies. Defaults to TRUE.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons constituencies

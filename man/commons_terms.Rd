@@ -4,13 +4,13 @@
 \alias{commons_terms}
 \title{commons_terms}
 \usage{
-commons_terms(all = TRUE)
+commons_terms(extra_args = NULL)
 }
 \arguments{
-\item{all}{Returns a data frame with all definitions in the parliamentary thesaurus}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports the parliamentary thesaurus
+Imports the parliamentary thesaurus.
 }
 \examples{
 \dontrun{

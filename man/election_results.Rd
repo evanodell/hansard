@@ -4,10 +4,12 @@
 \alias{election_results}
 \title{election_results}
 \usage{
-election_results(ID = NULL)
+election_results(ID = NULL, extra_args = NULL)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on general election results

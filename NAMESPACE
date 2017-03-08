@@ -2,6 +2,7 @@
 
 export(all_answered_questions)
 export(all_answered_questions_console)
+export(bill_stage_types)
 export(bills)
 export(committee_reports)
 export(commons_answered_questions)

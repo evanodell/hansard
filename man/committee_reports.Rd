@@ -4,12 +4,14 @@
 \alias{committee_reports}
 \title{committee_reports}
 \usage{
-committee_reports(id = NULL, recommendations = FALSE)
+committee_reports(id = NULL, recommendations = FALSE, extra_args = NULL)
 }
 \arguments{
 \item{id}{Returns the committee report of a given ID. If no ID number is entered, returns all available committee reports.}
 
 \item{recommendations}{If TRUE, returns all reccomendations for the given report ID. Defaults to FALSE.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Returns committee reports.

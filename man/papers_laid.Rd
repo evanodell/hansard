@@ -4,10 +4,10 @@
 \alias{papers_laid}
 \title{papers_laid}
 \usage{
-papers_laid(all)
+papers_laid(extra_args = NULL)
 }
 \arguments{
-\item{all}{Returns a data frame with all available papers laid.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on Papers Laid

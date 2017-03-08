@@ -7,6 +7,7 @@
 #' @param summary If TRUE, returns a small data frame summarising a division outcome. Otherwise returns a data frame with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to FALSE.
 #' @param start_date The earliest date to include in the data frame, if calling all divisions. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame, if calling all divisions. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords Lords Divisions
 #' @export
 #' @examples \dontrun{
@@ -19,54 +20,54 @@
 #'
 #' }
 
-lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date()) {
-    
+lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args=NULL) {
+
     dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
-    
+
     if (is.null(division_id) == TRUE) {
-        
+
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions"
-        
+
         message("Connecting to API")
-        
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates))
-        
+
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args))
+
         jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-        
+
         if (nrow(df) == 0) {
             message("The request did not return any data. Please check your search parameters.")
         } else {
-            
+
             df
-            
+
         }
-        
+
     } else if (is.null(division_id) == FALSE) {
-        
+
         division_id <- as.character(division_id)
-        
+
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/id/"
-        
+
         message("Connecting to API")
-        
-        divis <- jsonlite::fromJSON(paste0(baseurl, division_id, ".json?", dates), flatten = TRUE)
-        
+
+        divis <- jsonlite::fromJSON(paste0(baseurl, division_id, ".json?", dates, extra_args), flatten = TRUE)
+
         if (summary == TRUE) {
-            
+
             y <- divis$result$primaryTopic
-            
+
             df <- list()
-            
+
             df$about <- y$`_about`
             df$title <- y$title
             df$description <- y$description
@@ -77,17 +78,17 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
             df$date <- y$date
             df$session <- y$session
             df$uin <- y$uin
-            
+
             df <- as.data.frame(df)
-            
+
         } else {
-            
+
             df <- as.data.frame(divis$result$primaryTopic$vote)
-            
+
         }
-        
+
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
@@ -95,5 +96,3 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
     }
 }
 
-
-x <- jsonlite::fromJSON("http://lda.data.parliament.uk/lordsdivisions/id/705891.json", flatten = TRUE)

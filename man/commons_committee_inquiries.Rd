@@ -4,12 +4,14 @@
 \alias{commons_committee_inquiries}
 \title{commons_committee_inquiries}
 \usage{
-commons_committee_inquiries(id = NULL, recommendations = FALSE)
+commons_committee_inquiries(id = NULL, recommendations = FALSE, extra_args)
 }
 \arguments{
 \item{id}{Returns the committee report of a given ID. If no ID number is entered, returns all available committee reports.}
 
 \item{recommendations}{If TRUE, returns all reccomendations for the given report ID. Defaults to FALSE.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Returns commons committee inquiries

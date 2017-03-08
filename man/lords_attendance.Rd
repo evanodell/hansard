@@ -4,10 +4,12 @@
 \alias{lords_attendance}
 \title{lords_attendance}
 \usage{
-lords_attendance(session_id = NULL)
+lords_attendance(session_id = NULL, extra_args = NULL)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Lords attendance. Please note that the attendance data frames are not as tidy as some of the others that are accessible through this API.

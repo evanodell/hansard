@@ -6,7 +6,7 @@ Changes have been made to the following functions:
 
 `all_answered_questions`: Console interface is gone, now operates as a function with the ID for a given MP accepted as the only function parameter. Returns all answered questions if blank.
 
-`bills`: Changed parameter name `stageTypes` to `stage_types`
+`bills`: Rewritten, now with the ability to look up bills by ID, as well as bill amendments. Added `bill_stage_types` function.
 
 `commons_answered_questions`: Changed parameter name `answeredBy` to `answered_by`; improved ability to search by date, dropped console inputs.
 

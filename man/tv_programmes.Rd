@@ -6,14 +6,16 @@
 \alias{tv_channels}
 \title{tv_programmes}
 \usage{
-tv_programmes(legislature = NULL)
+tv_programmes(legislature = NULL, extra_args = NULL)
 
-tv_clips(mp_id = NULL)
+tv_clips(mp_id = NULL, extra_args = NULL)
 
 tv_channels()
 }
 \arguments{
 \item{legislature}{Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
 }

@@ -5,7 +5,7 @@
 \title{sessions_info}
 \usage{
 sessions_info(days = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date())
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{days}{If TRUE, returns data for all available days. If FALSE, returns data on each parliamentary session. Defaults to FALSE.}
@@ -13,6 +13,8 @@ sessions_info(days = FALSE, start_date = "1900-01-01",
 \item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the data frame between the two given dates.
