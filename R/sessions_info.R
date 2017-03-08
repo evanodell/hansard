@@ -14,8 +14,8 @@
 #'
 #' }
 
-sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args=NULL) {
-
+sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+    
     if (days == FALSE) {
         dates <- paste0("&_properties=startDate&max-startDate=", end_date, "&min-startDate=", start_date)
         query <- NULL
@@ -23,30 +23,31 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
         dates <- NULL
         query <- "/days"
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/sessions"
-
+    
     message("Connecting to API")
-
+    
     session <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500", dates, extra_args))
-
+    
     jpage <- round(session$result$totalResults/session$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500&_page=", i, dates, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500&_page=", i, dates, extra_args), 
+            flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+    
     if (days == TRUE) {
         df$date._value <- as.Date(df$date._value)
         df <- df[df$date._value <= end_date & df$date._value >= start_date, ]
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {

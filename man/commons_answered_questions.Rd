@@ -5,12 +5,16 @@
 \title{commons_answered_questions}
 \usage{
 commons_answered_questions(answering_department = NULL, answered_by = NULL,
-  extra_args = NULL)
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{answering_department}{Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.}
 
 \item{answered_by}{Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
+
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }

@@ -2,7 +2,6 @@
 #'
 #' Code that powers the `hansard_basic` function
 #' @keywords internal Hansard API
-#' @export
 #' @examples \dontrun{
 #' }
 
@@ -19,6 +18,7 @@
 #' x <- all_answered_questions('askedBy')
 #' }
 #' @rdname hansard_console
+#'
 all_answered_questions_console <- function(allAnsType = c("all", "askedBy")) {
 
     match.arg(allAnsType)

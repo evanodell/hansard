@@ -19,134 +19,139 @@
 #' }
 
 
-lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args=NULL) {
-
+lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), 
+    extra_args = NULL) {
+    
     if (is.null(peer_id) == TRUE) {
         stop("peer_id must not be empty", call. = FALSE)
     }
-
+    
     dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
-
+    
     if (lobby == "content") {
-
+        
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
-
+        
         message("Connecting to API")
-
+        
         content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
-
+        
         if (content$result$itemsPerPage < content$result$totalResults) {
             jpage <- round(content$result$totalResults/content$result$itemsPerPage, digits = 0)
         } else {
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
+                flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
-
-
+        
+        
     } else if (lobby == "notcontent") {
-
+        
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
-
+        
         message("Connecting to API")
-
+        
         notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
-
+        
         if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
             jpage <- round(notcontent$result$totalResults/notcontent$result$itemsPerPage, digits = 0)
         } else {
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
+                flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
-
+        
     } else {
-
+        
         message("Retrieving content votes:")
-
+        
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
-
+        
         message("Connecting to API")
-
+        
         content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
-
+        
         if (content$result$itemsPerPage < content$result$totalResults) {
             jpage <- round(content$result$totalResults/content$result$itemsPerPage, digits = 0)
         } else {
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
+                flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df_content <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+        
         df_content$vote <- "content"
-
+        
         message("Retrieving not content votes:")
-
+        
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
-
+        
         message("Connecting to API")
-
+        
         notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
-
+        
         if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
             jpage <- round(notcontent$result$totalResults/notcontent$result$itemsPerPage, digits = 0)
         } else {
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
+                flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df_notcontent <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
+        
         df_notcontent$vote <- "not-content"
-
+        
         df <- rbind(df_content, df_notcontent)
         df$vote <- as.factor(df$vote)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
-
+        
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         df
     }
-
+    
 }
 
 

@@ -12,67 +12,67 @@
 
 ### API NOT OPEN!!!  INCOMPLETE!
 
-committee_reports <- function(id = NULL, recommendations = FALSE, extra_args=NULL) {
-
+committee_reports <- function(id = NULL, recommendations = FALSE, extra_args = NULL) {
+    
     if (is.null(id) == TRUE) {
-
+        
         baseurl <- "http://lda.data.parliament.uk/committeereports.json?_pageSize=500"
-
+        
         message("Connecting to API")
-
-        committee_reports_page <- jsonlite::fromJSON(paste0(baseurl, extra_args),flatten = TRUE)
-
-        jpage <- round(committee_reports_page$result$totalResults/committee_reports_page$result$itemsPerPage,
+        
+        committee_reports_page <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+        
+        jpage <- round(committee_reports_page$result$totalResults/committee_reports_page$result$itemsPerPage, 
             digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_committee_reports, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
         if (nrow(df) == 0) {
             message("The request did not return any data. Please check your search parameters.")
         } else {
             df
         }
-
+        
     } else if (is.null(id) == TRUE) {
-
+        
         if (recommendations == TRUE) {
             recommendations <- "/recommendations"
         } else {
             recommendations <- NULL
         }
-
+        
         baseurl_committee_reports <- "http://lda.data.parliament.uk/committeereports/"
-
+        
         message("Connecting to API")
-
-        committee_reports_page <- jsonlite::fromJSON(paste0(baseurl_committee_reports, id, recommendations,
+        
+        committee_reports_page <- jsonlite::fromJSON(paste0(baseurl_committee_reports, id, recommendations, 
             ".json"))
-
-        jpage <- round(committee_reports_page$result$totalResults/committee_reports_page$result$itemsPerPage,
+        
+        jpage <- round(committee_reports_page$result$totalResults/committee_reports_page$result$itemsPerPage, 
             digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_committee_reports, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
         if (nrow(df) == 0) {
             message("The request did not return any data. Please check your search parameters.")
         } else {
             df
         }
-
+        
     }
-
+    
 }

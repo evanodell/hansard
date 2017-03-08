@@ -31,7 +31,7 @@ x <- mp_vote_record(172, lobby='no')
 
 # the extra_args parameter allows the inclusion of additional arguments or
 # queries that are not available through the function's parameters
-x <- mp_vote_record(172, extra_args = "&session=2016/17")
+x <- mp_vote_record(172, extra_args = '&session=2016/17')
 
 
 }
