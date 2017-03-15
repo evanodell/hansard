@@ -11,7 +11,7 @@
 #' @export
 #' @examples \dontrun{
 #'
-#'x <- all_answered_questions(4019)
+#' x <- all_answered_questions(4019)
 #'
 #' }
 
@@ -69,7 +69,7 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     }
-
+    df <- as.data.frame(df)
 
     df
 }

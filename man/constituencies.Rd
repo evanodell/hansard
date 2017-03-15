@@ -14,7 +14,9 @@ Imports data on House of Commons constituencies
 }
 \examples{
 \dontrun{
+
 x <- constituencies()
+
 }
 
 }
