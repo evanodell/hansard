@@ -1,0 +1,118 @@
+---
+title: "Introduction to the `hansard_basic` function"
+author: "Evan Odell"
+date: "05/03/2017"
+output: html_document
+---
+
+## Introducing `hansard_basic`
+
+The `hansard_basic` function walks the user through the steps of calling data from the API, using console inputs. It lacks the flexibility of the other API functions, where all search parameters are included in the function itself, and is primarily included as a legacy function from early versions of the `hansard` package.
+
+### Using `hansard_basic`
+
+```{r, eval=FALSE}
+#> x <- hansard_basic()
+#> Please select a data set 
+#> 
+#>  1: AV Live Logging               2: Bills                         3: Commons Answered Questions 
+#>  4: Commons Divisions             5: Commons Oral Question Times   6: Commons Oral Questions     
+#>  7: Commons Written Questions     8: Constituencies                9: Early Day Motions          
+#> 10: Elections                    11: Election Results             12: Lords Attendances          
+#> 13: Lords Bill Amendments        14: Lords Divisions              15: Lords Written Questions    
+#> 16: Members                      17: Papers Laid                  18: Publication Logs           
+#> 19: Research Briefings           20: Sessions                     21: Thesaurus                  
+#> 22: e-Petitions 
+#> 
+#> Selection: 22
+#>
+#> 1: All
+#> 2: By Constituency
+#> 3: Petition ID
+#> 4: Response
+#> 5: Constituency ID
+#> 
+#> Selection: 1
+#> Connecting to API
+#> Retrieving page 1 of 18
+#> Retrieving page 2 of 18
+#> Retrieving page 3 of 18
+#> Retrieving page 4 of 18
+#> Retrieving page 5 of 18
+#> Retrieving page 6 of 18
+#> Retrieving page 7 of 18
+#> Retrieving page 8 of 18
+#> Retrieving page 9 of 18
+#> Retrieving page 10 of 18
+#> Retrieving page 11 of 18
+#> Retrieving page 12 of 18
+#> Retrieving page 13 of 18
+#> Retrieving page 14 of 18
+#> Retrieving page 15 of 18
+#> Retrieving page 16 of 18
+#> Retrieving page 17 of 18
+#> Retrieving page 18 of 18
+
+```
+
+
+
+Selection 19, 'research_briefings', is unusual in that it requests names instead of codes. 
+
+```{r, eval=FALSE}
+#> x <- hansard_basic()
+#
+#> Please select a data set 
+#>
+#> 1: AV Live Logging               2: Bills                         3: Commons Answered Questions 
+#> 4: Commons Divisions             5: Commons Oral Question Times   6: Commons Oral Questions     
+#> 7: Commons Written Questions     8: Constituencies                9: Early Day Motions          
+#>10: Elections                    11: Election Results             12: Lords Attendances          
+#>13: Lords Bill Amendments        14: Lords Divisions              15: Lords Written Questions    
+#>16: Members                      17: Papers Laid                  18: Publication Logs           
+#>19: Research Briefings           20: Sessions                     21: Thesaurus                  
+#>22: e-Petitions 
+#> 
+#> Selection: 19
+#> 
+#> 1: All
+#> 2: Topics
+#> 3: Types
+#> 4: By Topic
+#> 5: Sub-Topic
+#> 6: Topic Sub-Topic
+#> 
+#> Selection: 6
+#>
+#> [1] "Topics are case sensititve. To return list of topics, enter yes."
+#> Enter sub-topic: yes
+#>
+#>   [1] "Agriculture, animals, food and rural affairs" "Asylum, immigration and nationality"         
+#>   [3] "Business, industry and consumers"             "Communities and families"                    
+#>   [5] "Crime, civil law, justice and rights"         "Culture, media and sport"                    
+#>   [7] "Defence"                                      "Economy and finance"                         
+#>   [9] "Education"                                    "Employment and training"                     
+#>  [11] "Energy and environment"                       "European Union"                              
+#>  [13] "Health services and medicine"                 "Housing and planning"                        
+#>  [15] "International affairs"                        "Parliament, government and politics"         
+#>  [17] "Science and technology"                       "Social Security and pensions"                
+#> Enter sub-topic. For ease of use, copy and paste the sub-topic: Defence
+#> Sub-topics are case sensititve. To return list of sub-topics, enter yes.
+#> Enter sub-topic: yes
+#>  [1] "Afghanistan"                       "Armed forces"                     
+#>  [3] "Armed forces welfare"              "Arms control"                     
+#>  [5] "Ballistic missile defence"         "Defence equipment and procurement"
+#>  [7] "Defence expenditure"               "Defence policy"                   
+#>  [9] "EU defence policy"                 "Falkland Islands"                 
+#> [11] "Iraq"                              "Military operations"              
+#> [13] "Veterans"   
+#> Enter sub-topic. For ease of use, copy and paste the sub-topic: Iraq
+#> Connecting to API
+#> Retrieving page 1 of 1
+```
+
+
+## Notes on `hansard_basic`
+
+As a legacy function, `hansard_basic` is not actively maintained
+

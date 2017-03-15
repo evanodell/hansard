@@ -4,38 +4,22 @@
 \alias{epetition}
 \title{epetition}
 \usage{
-epetition(petType = c("all", "byConstituency", "petitionID", "response",
-  "idConstituency"))
+epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL)
 }
 \arguments{
-\item{petType}{The type of data you want, allows the arguments 'all', 'byConstituency', 'petitionID', 'response', and 'idConstituency'}
+\item{ID}{The ID of a given constituency. If NULL, returns all petitions. Defaults to NULL.}
 
-\item{all}{Imports all available epetitions}
+\item{by_constituency}{Accepts either TRUE or FALSE. If TRUE, provides a data frame with a breakdown of signatures for each petition, by constituency. Defaults to FALSE.}
 
-\item{byConstituency}{Imports all available epetition signatures by constituency}
-
-\item{petitionID}{Requests a petition ID, and then returns information on that petition}
-
-\item{response}{Requests a petition ID, and then returns the governments response to that petition}
-
-\item{idConstituency}{Requests a petition ID, and then returns the signatures per constituency for that petition}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on Epetitions
 }
 \examples{
 \dontrun{
-x <- epetition('all')
-
-x <- epetition('byConstituency')
-
-x <- epetition('petitionID')
-
-# x <- epetition('response')
-
-# x <- epetition('idConstituency')
+x <- epetition(ID = 706964, by_constituency=TRUE)
 
 }
 }
 \keyword{ePetitions}
-

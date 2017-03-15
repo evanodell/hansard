@@ -4,18 +4,14 @@
 \alias{mp_questions}
 \title{mp_questions}
 \usage{
-mp_questions(mp.id, questionType = c("all", "oral", "written"))
+mp_questions(mp_id, question_type = "all", extra_args = NULL)
 }
 \arguments{
-\item{mp.id}{The ID number of a member of the House of Commons.}
+\item{mp_id}{The ID number of a member of the House of Commons.}
 
-\item{questionType}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
+\item{question_type}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
 
-\item{all}{Returns a data frame with all recorded questions for a given member of the house of commons.}
-
-\item{oral}{Returns a data frame with all oral questions asked by a given MP.}
-
-\item{written}{Returns a data frame with all written questions asked by a given MP.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a data frame of of all their oral and written questions.
@@ -27,4 +23,3 @@ x <- mp_questions(172, 'all')
 
 }
 \keyword{questions}
-

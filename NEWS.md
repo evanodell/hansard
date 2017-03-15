@@ -1,3 +1,62 @@
+# hansard 0.4.0
+
+Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all other functions and or incorporated into the `hansard_console` function. These changes ensure greater consistency in syntax across the package, in both the body and formals of the functions.
+
+Changes have been made to the following functions:
+
+`all_answered_questions`: Console interface is gone, now operates as a function with the ID for a given MP accepted as the only function parameter. Returns all answered questions if blank.
+
+`bills`: Rewritten, now with the ability to look up bills by ID, as well as bill amendments. Added `bill_stage_types` function.
+
+`commons_answered_questions`: Changed parameter name `answeredBy` to `answered_by`; improved ability to search by date, dropped console inputs.
+
+`commons_divisions`: Removed console inputs, simplified options.
+
+`commons_oral_question_times`: Simplified function, removed need for console input.
+
+`commons_oral_questions`: Simpler process, same result, more flexibility in requests
+
+`commons_answered_questions`: Removed need for console input.
+
+`commons_terms`: Simplified formals.
+
+`commons_written_questions`: Removed need for console input.
+
+`constituencies`: Simplified formals.
+
+`early_day_motions`: Changed all camelCase to snake_case; STILL OUTSTANDING!
+
+`election_results`: Removed console input, simplified formals.
+
+`elections`: Removed console input, simplified formals.
+
+`lords_attendance`: Removed console input, simplified formals.
+
+`lord_vote_record`: Removed console input, simplified formals.
+ 
+`lords_divisions`: Removed console input, simplified formals.
+
+`members`: Added additional `commons_members`, `commons_interests`, `lords_members` and `lords_interests` functions.
+
+`mp_edms`: Improved functionality, can now call full text of early day motions.
+
+`mp_questions`: Changed `questionType` to `question_type`
+
+`mp_vote_record`: Minor re-write
+
+`papers_laid`: NEW FEATURES ADDED TO API, NEED TO INCOPORATE INTO FUNCTION
+
+`publication_logs`: Minor re-write, now includes start and end dates.
+
+`sessions_info`: Added `start_date` and `end_date` parameters
+
+`tv_channels` New function.
+
+`tv_clips`: New function, previously part of `tv_programmes`.
+
+`tv_programmes`: Minor re-write, now includes ability to select legislature.
+
+
 # hansard 0.3.4
 
 ## Bug fixes

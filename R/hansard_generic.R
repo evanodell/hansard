@@ -8,10 +8,13 @@
 #' @export
 #' @examples \dontrun{
 #' x <- hansard_generic('elections.json')
+#'
+#' x <- hansard_generic()
 #' }
 
 
 hansard_generic <- function(path) {
+
     url <- modify_url("http://lda.data.parliament.uk/", path = path)
 
     message("Connecting to API")
@@ -29,4 +32,7 @@ hansard_generic <- function(path) {
     }
 
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+
+    df
+
 }

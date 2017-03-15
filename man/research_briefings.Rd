@@ -4,44 +4,41 @@
 \alias{research_briefings}
 \title{research_briefings}
 \usage{
-research_briefings(resType = c("all", "topics", "types", "byTopic",
-  "subTopic", "topicSubTopic"))
+research_briefings(topic = NULL, subtopic = NULL, type = NULL,
+  extra_args = NULL)
 }
 \arguments{
-\item{resType}{The type of data you want, allows the arguments 'all', 'topics', 'types',
-# 'byTopic','subTopic' and 'topicSubTopic'}
+\item{topic}{The topic of the parliamentary briefing.}
 
-\item{all}{Imports a data frame with all available Parliamentary Research Briefings.}
+\item{subtopic}{The subtopic of the parliamentary briefing.}
 
-\item{topics}{Imports a data frame with all Parliamentary Research Briefings topics.}
+\item{type}{The type of research briefing.}
 
-\item{types}{Imports a data frame with all Parliamentary Research Briefings types.}
-
-\item{byTopic}{Requests a topic, and imports a data frame with all available Parliamentary Research Briefings on that topic}
-
-\item{subTopic}{Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.}
-
-\item{topicSubTopic}{Requests a topic and a subtopic, and imports a data frame with all available Parliamentary Research Briefings on that subtopic}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports data on  Parliamentary Research Briefings
+Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.
 }
 \examples{
 \dontrun{
-x <- research_briefings('all')
+x <- research_briefings('Housing and planning')
 
-x <- research_briefings('topics')
+# Requests can be made using lists created using `research_topics_list`
+# and `research_subtopics_list`
+x <- research_briefings(topic = research_topics_list[[7]])
 
-x <- research_briefings('types')
+x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 
-x <- research_briefings('byTopic')
+# Requests for certain briefing types can also be made using lists
+# created with 'research_types_list'.
+x <- research_briefings(type = research_types_list[[3]])
 
-x <- research_briefings('subTopic')
 
-x <- research_briefings('topicSubTopic')
 }
+}
+\seealso{
+research_topics
 }
 \keyword{Briefings}
 \keyword{Parliamentary}
 \keyword{Research}
-

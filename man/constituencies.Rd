@@ -4,21 +4,18 @@
 \alias{constituencies}
 \title{constituencies}
 \usage{
-constituencies(contType = c("all"))
+constituencies(extra_args = NULL)
 }
 \arguments{
-\item{contType}{The type of data you want, allows the arguments 'all'}
-
-\item{all}{Returns a data frame of all constituencies. Defaults to TRUE.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Commons constituencies
 }
 \examples{
 \dontrun{
-x <- constituencies('all')
+x <- constituencies()
 }
 
 }
 \keyword{Constituencies}
-

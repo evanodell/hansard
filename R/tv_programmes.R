@@ -2,60 +2,47 @@
 
 #' tv_programmes
 #'
-#' Imports data on TV broadcasts
-#' @param AVtype The type of data you want, allows the arguments 'TV' and 'clips'
-#' @param TV Returns a data frame with details on all TV broadcasts produced by the Westminster Parliament.
-#' @param clips Returns a data frame with details on all video clips produced by the Westminster Parliament.
+#' Imports data on TV broadcasts. To import information on TV channel options,
+#' @param legislature Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords TV
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- tv_programmes('TV')
+#' x <- tv_programmes('commons')
 #'
-#'
-#' x <- tv_programmes('clips')
 #' }
 
-tv_programmes <- function(AVtype = c("TV", "clips")) {
+tv_programmes <- function(legislature = NULL, extra_args = NULL) {
     
-    match.arg(AVtype)
+    if (is.null(legislature) == FALSE) {
+        legislature <- tolower(legislature)
+    }
     
-    if (AVtype == "TV") {
-        
-        baseurl_tv <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
-        
-        tv <- jsonlite::fromJSON(baseurl_tv)
-        
-        message("Connecting to API")
-        
-        tvJpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:tvJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_tv, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", tvJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (AVtype == "clips") {
-        
-        baseurl_tv <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
-        
-        tv <- jsonlite::fromJSON(baseurl_tv)
-        
-        message("Connecting to API")
-        
-        tvJpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:tvJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_tv, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", tvJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
+    if (legislature == "commons") {
+        query <- "legislature.prefLabel=House of Commons"
+        query <- utils::URLencode(query)
+    } else if (legislature == "lords") {
+        query <- "legislature.prefLabel=House of Lords"
+        query <- utils::URLencode(query)
+    } else {
+        query <- NULL
+    }
+    
+    baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
+    
+    tv <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    
+    message("Connecting to API")
+    
+    jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
+    
+    pages <- list()
+    
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
     }
     
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
@@ -65,3 +52,67 @@ tv_programmes <- function(AVtype = c("TV", "clips")) {
         df
     }
 }
+
+
+
+#' tv_clips
+#'
+#' Imports data on TV broadcasts. To import information on TV channel options,
+#' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
+#' @keywords TV
+#' @export
+#' @rdname tv_programmes
+#' @examples \dontrun{
+#' x <- tv_clips(4335)
+#' }
+
+tv_clips <- function(mp_id = NULL, extra_args = NULL) {
+    
+    if (is.null(mp_id) == TRUE) {
+        query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
+    } else {
+        query <- NULL
+    }
+    
+    baseurl <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
+    
+    tv <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    
+    jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
+    
+    pages <- list()
+    
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+    }
+    
+    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+    }
+}
+
+
+#' tv_channels
+#'
+#' Imports data on TV broadcasts
+#' @rdname tv_programmes
+#' @keywords TV
+#' @export
+
+tv_channels <- function() {
+    
+    x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
+    
+    df <- x$result$items
+    
+    df
+    
+}
+
+
+

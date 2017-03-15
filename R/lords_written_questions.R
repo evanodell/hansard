@@ -2,88 +2,72 @@
 #' lords_written_questions
 #'
 #' Imports data on House of Lords written questions
-#' @param lordsWritType The type of data you want, allows the arguments 'all', 'department' and 'dates'
-#' @param all Returns a data frame all written questions from the house of lords
-#' @param department Requests a department, and then returns a data frame with all written questions answered by that department
-#' @param dates Requests two dates, and returns a data frame with all available written questions from between the two given dates
+#' @param peer_id Requests a member ID and returns a data frame with all written questions asked by that member.
+#' @param answering_department Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.
+#' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords House of Lords Written Questions
 #' @export
 #' @examples \dontrun{
-#' x <- lords_written_questions('all')
+#' # Returns all written questions ever
+#' x <- lords_written_questions()
 #'
-#' # x <- lords_written_questions('department')
+#' x <- lords_written_questions(peer_id = 3526, answering_department = 'cabinet')
 #'
-#' # x <- lords_written_questions('dates')
 #' }
 
-lords_written_questions <- function(lordsWritType = c("all", "department", "dates")) {
+lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", 
+    end_date = Sys.Date(), extra_args = NULL) {
     
-    match.arg(lordsWritType)
+    dates <- paste0("&_properties=dateTabled&max-dateTabled=", end_date, "&min-dateTabled=", start_date)
     
-    if (lordsWritType == "all") {
+    if (is.null(peer_id) == FALSE) {
+        peer_id <- paste0("&tablingMember=http://data.parliament.uk/members/", peer_id)
         
-        baseurl_writ <- "http://lda.data.parliament.uk/lordswrittenquestions.json"
+        peer_id <- utils::URLencode(peer_id)
+    }
+    
+    if (is.null(answering_department) == FALSE) {
         
-        writ <- jsonlite::fromJSON(baseurl_writ)
+        query <- "/answeringdepartment"
         
-        writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
+        answering_department <- paste0("q=", answering_department)
         
-        pages <- list()
+        answering_department <- utils::URLencode(answering_department)
         
-        for (i in 0:writJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, "?_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", writJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+    } else {
         
-    } else if (lordsWritType == "department") {
-        
-        answering.department <- readline("Enter the name of the answering department: ")
-        
-        answering.department <- URLencode(answering.department)
-        
-        baseurl_writ <- "http://lda.data.parliament.uk/lordswrittenquestions/answeringdepartment.json?q="
-        
-        writ <- jsonlite::fromJSON(paste0(baseurl_writ, answering.department, "&pageSize=500"))
-        
-        writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:writJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", writJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-        
-    } else if (lordsWritType == "dates") {
-        
-        start.date <- readline("Enter start date(yyyy-mm-dd): ")
-        
-        end.date <- readline("Enter end date (yyyy-mm-dd): ")
-        
-        start.date <- URLencode(start.date)
-        
-        end.date <- URLencode(end.date)
-        
-        baseurl_writ <- "http://lda.data.parliament.uk/lordswrittenquestions/tabled.json?startDate="
-        
-        writ <- jsonlite::fromJSON(paste0(baseurl_writ, start.date, "&endDate=", end.date, "&_pageSize=500"))
-        
-        writJpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
-        
-        pages <- list()
-        
-        for (i in 0:writJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_writ, start.date, "&endDate=", end.date, "&_pageSize=500", "&_page=", 
-                i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", writJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+        query <- NULL
         
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    baseurl <- "http://lda.data.parliament.uk/lordswrittenquestions"
+    
+    message("Connecting to API")
+    
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", 
+        extra_args), flatten = TRUE)
+    
+    jpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
+    
+    pages <- list()
+    
+    if (jpage == 0) {
+        df <- as.data.frame(writ$result$items)
+    } else {
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, 
+                "&_pageSize=500", i, extra_args), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        
+    }
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {

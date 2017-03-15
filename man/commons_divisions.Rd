@@ -4,53 +4,28 @@
 \alias{commons_divisions}
 \title{commons_divisions}
 \usage{
-commons_divisions(comsDivType = c("all", "date", "aye", "no", "voteSummary",
-  "voteFull", "session", "uinSummary", "uinFull"))
+commons_divisions(division_id = NULL, summary = FALSE,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
-\item{comsDivType}{The type of data you want, allows the arguments 'all', 'date', 'aye', 'no', 'voteSummary', 'voteFull', 'uinSummary', 'uinFull' and 'session'. Defaults to 'all'.}
+\item{division_id}{The id of a particular vote. If empty, returns a data frame with information on all commons divisions. Defaults to NULL.}
 
-\item{all}{Returns a data frame with all available divisions.}
+\item{summary}{If TRUE, returns a small data frame summarising a division outcome. Otherwise returns a data frame with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.}
 
-\item{date}{Requests a date in yyyy-mm-dd format and returns a data frame with all available divisions on that date.}
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions. Defaults to '1900-01-01'.}
 
-\item{aye}{Returns a data frame with all divisions where a given MP voted aye.}
+\item{end_date}{The latest date to include in the data frame, if calling all divisions. Defaults to current system date.}
 
-\item{no}{Returns a data frame with all divisions where a given MP voted no.}
-
-\item{voteSummary}{Requests a division ID, and returns a summary of results of that division in a data frame.}
-
-\item{voteFull}{Requests a division ID, and returns a data frame with details on how each individual member voted.}
-
-\item{uinSummary}{Requests a division UIN and returns a data frame with a summary of results of that division.}
-
-\item{uinFull}{Requests a division UIN and returns a data frame with the full results of that division.}
-
-\item{session}{Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all divisions in that session.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports data on House of Commons divisions
+Imports data on House of Commons divisions.
 }
 \examples{
 \dontrun{
-x <- commons_divisions('all')
 
-x <- commons_divisions('date')
+x <- commons_divisions(division_id = 694163, summary = FALSE)
 
-x <- commons_divisions('no')
-
-x <- commons_divisions('aye')
-
-x <- commons_divisions('voteSummary')
-
-x <- commons_divisions('voteFull')
-
-x <- commons_divisions('session')
-
-x <- commons_divisions('uinSummary')
-
-x <- commons_divisions('uinFull')
 }
 }
 \keyword{divisions}
-

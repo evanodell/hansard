@@ -2,300 +2,139 @@
 
 #' commons_divisions
 #'
-#' Imports data on House of Commons divisions
-#' @param comsDivType The type of data you want, allows the arguments 'all', 'date', 'aye', 'no', 'voteSummary', 'voteFull', 'uinSummary', 'uinFull' and 'session'. Defaults to 'all'.
-#' @param all Returns a data frame with all available divisions.
-#' @param date Requests a date in yyyy-mm-dd format and returns a data frame with all available divisions on that date.
-#' @param aye Returns a data frame with all divisions where a given MP voted aye.
-#' @param no Returns a data frame with all divisions where a given MP voted no.
-#' @param voteSummary Requests a division ID, and returns a summary of results of that division in a data frame.
-#' @param voteFull Requests a division ID, and returns a data frame with details on how each individual member voted.
-#' @param uinSummary Requests a division UIN and returns a data frame with a summary of results of that division.
-#' @param uinFull Requests a division UIN and returns a data frame with the full results of that division.
-#' @param session Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all divisions in that session.
+#' Imports data on House of Commons divisions.
+#' @param division_id The id of a particular vote. If empty, returns a data frame with information on all commons divisions. Defaults to NULL.
+#' @param summary If TRUE, returns a small data frame summarising a division outcome. Otherwise returns a data frame with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.
+#' @param start_date The earliest date to include in the data frame, if calling all divisions. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame, if calling all divisions. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- commons_divisions('all')
 #'
-#' x <- commons_divisions('date')
+#' x <- commons_divisions(division_id = 694163, summary = FALSE)
 #'
-#' x <- commons_divisions('no')
-#'
-#' x <- commons_divisions('aye')
-#'
-#' x <- commons_divisions('voteSummary')
-#'
-#' x <- commons_divisions('voteFull')
-#'
-#' x <- commons_divisions('session')
-#'
-#' x <- commons_divisions('uinSummary')
-#'
-#' x <- commons_divisions('uinFull')
 #' }
 
-commons_divisions <- function(comsDivType = c("all", "date", "aye", "no", "voteSummary", "voteFull", "session", "uinSummary",
-    "uinFull")) {
-
-    match.arg(comsDivType)
-
-    if (comsDivType == "all") {
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500"
-
+commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), 
+    extra_args = NULL) {
+    
+    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    
+    if (is.null(division_id) == TRUE) {
+        
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
+        
         message("Connecting to API")
-
-        divis <- jsonlite::fromJSON("http://lda.data.parliament.uk/commonsdivisions.json?_pageSize=500")
-
-        divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
-
+        
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args))
+        
+        jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        
         pages <- list()
-
-        for (i in 0:divisJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i, extra_args), 
+                flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    } else if (comsDivType == "date") {
-
-        divis_date <- readline("Enter division date (yyyy-mm-dd): ")
-        divis_date <- URLencode(divis_date)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/date/"
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/date/", divis_date, ".json?_pageSize=500"))
-
-        if (divis$result$itemsPerPage < divis$result$totalResults) {
-            divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        
+        if (nrow(df) == 0) {
+            message("The request did not return any data. Please check your search parameters.")
         } else {
-            divisJpage <- 0
+            
+            df
+            
         }
-
-        pages <- list()
-
-        for (i in 0:divisJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, divis_date, ".json?_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    } else if (comsDivType == "no") {
-
-        mp.id <- readline("Enter Member ID: ")
-        mp.id <- URLencode(mp.id)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
-
+        
+    } else if (is.null(division_id) == FALSE) {
+        
+        division_id <- as.character(division_id)
+        
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/id/"
+        
         message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId=", mp.id, "&_pageSize=500"))
-
-        divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
-
-        pages <- list()
-
-        for (i in 0:divisJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    } else if (comsDivType == "aye") {
-
-        mp.id <- readline("Enter Member ID: ")
-        mp.id <- URLencode(mp.id)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId=", mp.id, "&_pageSize=500"))
-
-        divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
-
-        pages <- list()
-
-        for (i in 0:divisJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, mp.id, "&_pageSize=500", "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    } else if (comsDivType == "voteSummary") {
-
-        vote.ID <- readline("Enter vote ID: ")
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
-
-        df <- divis$result$primaryTopic
-
-        df$AbstainCount <- df$AbstainCount$`_value`
-        df$AyesCount <- df$AyesCount$`_value`
-        df$Didnotvotecount <- df$Didnotvotecount$`_value`
-        df$Errorvotecount <- df$Errorvotecount$`_value`
-        df$Noesvotecount <- df$Noesvotecount$`_value`
-        df$Noneligiblecount <- df$Noneligiblecount$`_value`
-        df$vote <- NULL
-        df$Margin <- df$Margin$`_value`
-        df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
-        df$date <- df$date$`_value`
-
-        df <- as.data.frame(df)
-
-    } else if (comsDivType == "voteFull") {
-
-        vote.ID <- readline("Enter vote ID: ")
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions/id/"
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0(baseurl_divis, vote.ID, ".json"))
-
-        df <- divis$result$primaryTopic$vote
-
-        df
-
-    } else if (comsDivType == "session") {
-
-        divis_session <- readline("Enter session (yyyy/yy): ")
-        divis_session <- URLencode(divis_session)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?session="
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_session, "&_pageSize=500"))
-
-        if (divis$result$itemsPerPage < divis$result$totalResults) {
-            divisJpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        
+        divis <- jsonlite::fromJSON(paste0(baseurl, division_id, ".json?", dates, extra_args), flatten = TRUE)
+        
+        if (summary == TRUE) {
+            
+            df <- divis$result$primaryTopic
+            
+            df$AbstainCount <- df$AbstainCount$`_value`
+            df$AyesCount <- df$AyesCount$`_value`
+            df$Didnotvotecount <- df$Didnotvotecount$`_value`
+            df$Errorvotecount <- df$Errorvotecount$`_value`
+            df$Noesvotecount <- df$Noesvotecount$`_value`
+            df$Noneligiblecount <- df$Noneligiblecount$`_value`
+            df$vote <- NULL
+            df$Margin <- df$Margin$`_value`
+            df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
+            df$date <- df$date$`_value`
+            
+            df <- as.data.frame(df)
+            
         } else {
-            divisJpage <- 0
+            df <- as.data.frame(divis$result$primaryTopic$vote)
+            
+            df
         }
-
-        pages <- list()
-
-        for (i in 0:divisJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_divis, divis_session, "&_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", divisJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    } else if (comsDivType == "uinSummary") {
-
-        divis_uin <- readline("Enter division UIN (format: CD:yyyy-mm-dd:uin): ")
-        divis_uin <- URLencode(divis_uin)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin))
-
-        df <- divis$result$items
-        # Cleaning up the Data Frame
-        df$AbstainCount <- df$AbstainCount$`_value`
-        df$AyesCount <- df$AyesCount$`_value`
-        df$Didnotvotecount <- df$Didnotvotecount$`_value`
-        df$Errorvotecount <- df$Errorvotecount$`_value`
-        df$Noesvotecount <- df$Noesvotecount$`_value`
-        df$Noneligiblecount <- df$Noneligiblecount$`_value`
-        df$vote <- NULL
-        df$Margin <- df$Margin$`_value`
-        df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
-        df$date <- df$date$`_value`
-
-        df <- as.data.frame(df)
-
-        df
-
-    } else if (comsDivType == "uinFull") {
-
-        divis_uin <- readline("Enter division UIN: ")
-        divis_uin <- URLencode(divis_uin)
-
-        baseurl_divis <- "http://lda.data.parliament.uk/commonsdivisions.json?uin="
-
-        message("Connecting to API")
-
-        divis <- jsonlite::fromJSON(paste0(baseurl_divis, divis_uin, "&_pageSize=500"))
-
-        df <- divis$result$items$vote
-
-        df
-
+        
     }
-
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-        df
-    }
-
+    
 }
 
 
 #' commons_division_date
 #'
-#' Accepts an ID number for a member of the house of commons, and returns a data frame of all divisions where they voted aye.
-#' @param date The ID number of a member of the House of Commons.
+#' Returns a data frames with the dates of House of Commons divisions.
+#' @param date Returns all divisions on a given date. Defaults to NULL.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- commons_division_date(2016-10-10)
+#' x <- commons_division_date('2016-10-12')
 #' }
 #'
 
-
-commons_division_date <- function(date) {
-
-    baseurl_date <- "http://lda.data.parliament.uk/commonsdivisions/date/"
-
-    message("Connecting to API")
-
-    url_date <- jsonlite::fromJSON(paste0(baseurl_date, date, ".json?_pageSize=500"), flatten = TRUE)
-
-    if (url_date$result$itemsPerPage < url_date$result$totalResults) {
-        dateJPage <- round(url_date$result$totalResults/url_date$result$itemsPerPage, digits = 0)
+commons_division_date <- function(date = NULL, extra_args = NULL) {
+    
+    if (is.null(date) == TRUE) {
+        df <- commons_divisions()
     } else {
-        dateJPage <- 0
+        date <- as.character(date)
+        date <- paste0("&date=", date)
+        
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
+        
+        message("Connecting to API")
+        
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", date, extra_args))
+        
+        jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", date, "&_page=", i, extra_args), 
+                flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        
+        if (nrow(df) == 0) {
+            message("The request did not return any data. Please check your search parameters.")
+        } else {
+            
+            df
+            
+        }
     }
-
-    pages <- list()
-
-    for (i in 0:dateJPage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl_date, date, "&_pageSize=500&_page=", i), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", dateJPage + 1)
-        pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-        df
-    }
-
+    
 }
-
-
 

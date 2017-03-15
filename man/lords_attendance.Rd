@@ -4,23 +4,20 @@
 \alias{lords_attendance}
 \title{lords_attendance}
 \usage{
-lords_attendance(lordsAttendType = c("all", "date"))
+lords_attendance(session_id = NULL, extra_args = NULL)
 }
 \arguments{
-\item{lordsAttendType}{Accepts arguments 'all' and 'date'.}
+\item{session_id}{The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.}
 
-\item{all}{Returns a data frame with all available House of Lords attendance records.}
-
-\item{date}{Requests a date and returns a data frame with all available House of Lords attendance records for that date.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Lords attendance. Please note that the attendance data frames are not as tidy as some of the others that are accessible through this API.
 }
 \examples{
 \dontrun{
-x <- lords_attendance('all')
 
-x <- lords_attendance('date')
+x <- lords_attendance(session_id = 706178)
 }
 
 }
@@ -28,4 +25,3 @@ x <- lords_attendance('date')
 \keyword{House}
 \keyword{Lords}
 \keyword{of}
-

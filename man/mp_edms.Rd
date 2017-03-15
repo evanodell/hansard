@@ -4,29 +4,33 @@
 \alias{mp_edms}
 \title{mp_edms}
 \usage{
-mp_edms(mp.id, edmType = c("signed", "sponsor"))
+mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
+  signatory = FALSE, full_data = FALSE, extra_args = NULL)
 }
 \arguments{
-\item{mp.id}{Required parameter. The ID number of an MP.}
+\item{mp_id}{The ID number of an MP. Required parameter.}
 
-\item{edmType}{The type of data you want, allows the arguments 'signed' and 'sponsor'. Defaults to 'signed'.}
+\item{primary_sponsor}{Returns a data frame of all early day motions where the given member is the primary sponsor. Defaults to TRUE.}
 
-\item{signed}{Returns a data frame of all early day motions signed by the given MP.}
+\item{sponsor}{Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor. Defaults to FALSE.}
 
-\item{sponsor}{Returns a data frame of early day motions where the given member is the primary sponsor or a sponsor.}
+\item{signatory}{Returns a data frame of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the data frame return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.}
+
+\item{full_data}{Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process.}
+
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on early day motions
 }
 \examples{
 \dontrun{
-x <- mp_edms('signed')
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=FALSE)
 
-x <- mp_edms('sponsor')
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, full_data=TRUE)
 
 }
 }
 \keyword{Day}
 \keyword{Early}
 \keyword{Motion}
-

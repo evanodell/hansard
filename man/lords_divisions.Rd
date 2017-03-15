@@ -4,39 +4,33 @@
 \alias{lords_divisions}
 \title{lords_divisions}
 \usage{
-lords_divisions(lordsDivType = c("all", "date", "notContent", "content",
-  "session"))
+lords_divisions(division_id = NULL, summary = FALSE,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
-\item{lordsDivType}{Accepts arguments 'all', 'date', 'notContent' and 'content'}
+\item{division_id}{The id of a particular vote. If empty, returns a data frame with information on all lords divisions. Defaults to NULL.}
 
-\item{all}{Returns a data frame with all available divisions in the House of Lords.}
+\item{summary}{If TRUE, returns a small data frame summarising a division outcome. Otherwise returns a data frame with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to FALSE.}
 
-\item{date}{Requests a date, and then returns a data frame with all divisions on that date.}
+\item{start_date}{The earliest date to include in the data frame, if calling all divisions. Defaults to '1900-01-01'.}
 
-\item{notContent}{Requests a member ID, and then returns a data frame with all divisions in which they have voted not content.}
+\item{end_date}{The latest date to include in the data frame, if calling all divisions. Defaults to current system date.}
 
-\item{content}{Requests a member ID, and then returns a data frame with all divisions in which they have voted content.}
-
-\item{session}{Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all House of Lords divisions in that session.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
 Imports data on House of Lords divisions
-#' @param type The type of data you want, allows the arguments 'all', 'date', 'notContent', 'content' and 'session'
 }
 \examples{
 \dontrun{
-x <- lords_divisions('all')
+x <- lords_divisions(division_id = 705891, summary = TRUE)
 
-x <- lords_divisions('date')
+x <- lords_divisions(division_id = 705891, summary = FALSE)
 
-x <- lords_divisions('notContent')
+# Return all lords divisions in 2016
+x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01', end_date = '2016-12-31')
 
-x <- lords_divisions('content')
-
-x <- lords_divisions('session')
 }
 }
 \keyword{Divisions}
 \keyword{Lords}
-

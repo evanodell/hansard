@@ -4,10 +4,7 @@
 \alias{hansard_basic}
 \title{hansard_basic}
 \usage{
-hansard_basic(call)
-}
-\arguments{
-\item{call}{Begins the process of calling to the API. Defaults to TRUE.}
+hansard_basic()
 }
 \description{
 Walks the user through the various steps of calling data from the parliamentary API.
@@ -19,4 +16,3 @@ x <- hansard_basic()
 }
 \keyword{API}
 \keyword{Hansard}
-

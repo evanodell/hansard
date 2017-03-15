@@ -1,103 +1,164 @@
 
 #' mp_vote_record
 #'
-#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes. Provides similar functionality to the commons_divisions() function, but accepts member IDs as function parameters rather than requesting them from the console.
-#' @param mp.id The ID number of a member of the House of Commons. To look up the ID number of a member of the House of Commons use the members_search() function.
-#' @param voteRecord Accepts the arguments 'all', 'aye' and 'no'. Defaults to 'all'.
-#' @param all Returns a data frame with all recorded votes for a given member of the house of commons.
-#' @param aye Returns a data frame with all divisions where a given MP voted aye.
-#' @param no Returns a data frame with all divisions where a given MP voted no.
+#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
+#' @param mp_id The ID number of a member of the House of Commons.
+#' @param lobby Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
-#' x <- mp_vote_record(172, 'all')
+#' x <- mp_vote_record(172, lobby='all')
 #'
-#' x <- mp_vote_record(172, 'aye')
+#' x <- mp_vote_record(172, lobby='aye')
 #'
-#' x <- mp_vote_record(172, 'no')
+#' x <- mp_vote_record(172, lobby='no')
+#'
+#' # the extra_args parameter allows the inclusion of additional arguments or
+#' # queries that are not available through the function's parameters
+#' x <- mp_vote_record(172, extra_args = '&session=2016/17')
+#'
+#'
 #' }
 
 
-mp_vote_record <- function(mp.id, voteRecord = c("all", "aye", "no")) {
-
-    match.arg(voteRecord)
-
-    if (voteRecord == "all") {
+mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+    
+    if (is.null(extra_args) == FALSE) {
+        extra_args <- utils::URLencode(extra_args)
+    }
+    
+    if (is.null(mp_id) == TRUE) {
+        stop("mp_id must not be empty", call. = FALSE)
+    }
+    
+    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    
+    if (lobby == "aye") {
+        
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
+        
+        message("Connecting to API")
+        
+        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        
+        if (url_aye$result$itemsPerPage < url_aye$result$totalResults) {
+            jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        } else {
+            jpage <- 0
+        }
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", 
+                i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df$date._datatype <- as.factor(df$date._datatype)
+        df$date._value <- as.Date(df$date._value)
+        
+    } else if (lobby == "no") {
+        
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
+        
+        message("Connecting to API")
+        
+        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        
+        if (url_no$result$itemsPerPage < url_no$result$totalResults) {
+            jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
+        } else {
+            jpage <- 0
+        }
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", 
+                i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df$date._datatype <- as.factor(df$date._datatype)
+        df$date._value <- as.Date(df$date._value)
+        
+    } else {
+        
         message("Retrieving aye votes:")
-        df_aye <- mp_vote_record(mp.id, "aye")
-
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
+        
+        message("Connecting to API")
+        
+        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        
+        if (url_aye$result$itemsPerPage < url_aye$result$totalResults) {
+            jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        } else {
+            jpage <- 0
+        }
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", 
+                i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df_aye <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        
+        
         df_aye$vote <- "aye"
+        
         message("Retrieving no votes:")
-        df_no <- mp_vote_record(mp.id, "no")
-
+        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
+        
+        message("Connecting to API")
+        
+        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        
+        if (url_no$result$itemsPerPage < url_no$result$totalResults) {
+            jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
+        } else {
+            jpage <- 0
+        }
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", 
+                i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
+        }
+        
+        df_no <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        
         df_no$divisionNumber <- NULL
-
+        
         df_no$vote <- "no"
-
+        
         df <- rbind(df_aye, df_no)
         df$vote <- as.factor(df$vote)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
-
+        
         df
-
-    } else if (voteRecord == "aye") {
-        baseurl_aye <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
-
-        message("Connecting to API")
-
-        url_aye <- jsonlite::fromJSON(paste0(baseurl_aye, mp.id, "&_pageSize=500"), flatten = TRUE)
-
-        if (url_aye$result$itemsPerPage < url_aye$result$totalResults) {
-            ayeJPage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
-        } else {
-            ayeJPage <- 0
-        }
-
-        pages <- list()
-
-        for (i in 0:ayeJPage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_aye, mp.id, "&_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", ayeJPage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.Date(df$date._value)
-
-
-    } else if (voteRecord == "no") {
-        baseurl_no <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
-
-        message("Connecting to API")
-
-        url_no <- jsonlite::fromJSON(paste0(baseurl_no, mp.id, "&_pageSize=500"), flatten = TRUE)
-
-        if (url_no$result$itemsPerPage < url_no$result$totalResults) {
-            noJPage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
-        } else {
-            noJPage <- 0
-        }
-
-        pages <- list()
-
-        for (i in 0:noJPage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_no, mp.id, "&_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", noJPage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.Date(df$date._value)
-
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         df
     }
-
+    
 }

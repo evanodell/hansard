@@ -4,22 +4,20 @@
 \alias{commons_terms}
 \title{commons_terms}
 \usage{
-commons_terms(termsType = c("all"))
+commons_terms(extra_args = NULL)
 }
 \arguments{
-\item{termsType}{The type of data you want, allows the argument 'all'}
-
-\item{all}{Returns a data frame with all definitions in the parliamentary thesaurus}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports the parliamentary thesaurus
+Imports the parliamentary thesaurus.
 }
 \examples{
 \dontrun{
-x <- commons_terms('all')
-head(x)
- }
+
+x <- commons_terms(all)
+
+}
 }
 \keyword{parliamentary}
 \keyword{thesaurus}
-

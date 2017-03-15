@@ -1,119 +1,62 @@
 
-
 #' commons_answered_questions
 #'
-#' Imports data on House of Commons answered questions
-#' @param comsAnsType The type of data you want, allows the arguments 'all', 'date', 'department', 'answeredBy', 'recent'
-#' @param all Returns a data frame with all answered questions in the House of Commons
-#' @param date Returns a data frame with all answered questions in the House of Commons on the given date
-#' @param department Returns a data frame with all answered questions in the House of Commons from the given department
-#' @param answeredBy Returns a data frame with all answered questions in the House of Commons by the given MP
+#' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
+#' @param answering_department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
+#' @param answered_by Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords bills
 #' @export
 #' @examples \dontrun{
-#' x <- commons_answered_questions('all')
 #'
-#' x <- commons_answered_questions('date')
+#' x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
 #'
-#' x <- commons_answered_questions('department')
-#'
-#' x <- commons_answered_questions('answeredBy')
 #' }
 
-commons_answered_questions <- function(comsAnsType = c("all", "date", "department", "answeredBy")) {
 
-    match.arg(comsAnsType)
+commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01",  end_date = Sys.Date(), extra_args = NULL) {
 
-    if (comsAnsType == "all") {
+    dates <- paste0("&max-dateOfAnswer=", end_date, "&min-dateOfAnswer=", start_date)
 
-        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json?_pageSize=500"
-
-        message("Connecting to API")
-
-        comAnswered <- jsonlite::fromJSON(baseurl_comAnswered)
-
-        comAnsweredJpage <- round(comAnswered$result$totalResults/comAnswered$result$itemsPerPage, digits = 0)
-
-        pages <- list()
-
-        for (i in 0:comAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, "&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-    } else if (comsAnsType == "date") {
-
-        qDate <- readline("Enter date (yyyy-mm-dd): ")
-        qDate <- URLencode(qDate)
-
-        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions.json?date="
-
-        message("Connecting to API")
-
-        comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDate, "&_pageSize=500"))
-
-        comAnsweredJpage <- round(comAnswered$result$totalResults/comAnswered$result$itemsPerPage, digits = 0)
-
-        pages <- list()
-
-        for (i in 0:comAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDate, "&_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-    } else if (comsAnsType == "department") {
-
-        qDepartment <- readline("Enter department: ")
-        qDepartment <- URLencode(qDepartment)
-
-        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions/answeringdepartment.json?q="
-
-        message("Connecting to API")
-
-        comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDepartment, "&_pageSize=500"))
-
-        comAnsweredJpage <- round(comAnswered$result$totalResults/comAnswered$result$itemsPerPage, digits = 0)
-
-        pages <- list()
-
-        for (i in 0:comAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qDepartment, "&_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
-    } else if (comsAnsType == "answeredBy") {
-
-        qAnsweredBy <- readline("Enter MP ID: ")
-        qAnsweredBy <- URLencode(qAnsweredBy)
-
-        baseurl_comAnswered <- "http://lda.data.parliament.uk/commonsansweredquestions/answeredby/"
-
-        message("Connecting to API")
-
-        comAnswered <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qAnsweredBy, ".json?_pageSize=500"))
-
-        if (comAnswered$result$totalResults > comAnswered$result$itemsPerPage) {
-
-            comAnsweredJpage <- round(comAnswered$result$totalResults/comAnswered$result$itemsPerPage, digits = 0)
-
-        } else {
-            comAnsweredJpage <- 0
-        }
-
-        pages <- list()
-
-        for (i in 0:comAnsweredJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_comAnswered, qAnsweredBy, ".json?_pageSize=500&_page=", i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", comAnsweredJpage + 1)
-            pages[[i + 1]] <- mydata$result$items
-        }
+    if (is.null(answered_by) == FALSE) {
+        answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/", answered_by)
     }
+
+    if (is.null(answering_department) == FALSE) {
+        query <- "/answeringdepartment"
+        answering_department <- paste0("q=", answering_department)
+    } else {
+        query <- NULL
+    }
+
+    baseurl <- "http://lda.data.parliament.uk/commonsansweredquestions"
+
+    message("Connecting to API")
+
+    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500",
+        dates, extra_args), flatten = TRUE)
+
+    jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
+
+    pages <- list()
+
+    for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=",
+            i, dates, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+    }
+
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         df
     }
+
 }
+
+

@@ -2,28 +2,38 @@
 % Please edit documentation in R/tv_programmes.R
 \name{tv_programmes}
 \alias{tv_programmes}
+\alias{tv_clips}
+\alias{tv_channels}
 \title{tv_programmes}
 \usage{
-tv_programmes(AVtype = c("TV", "clips"))
+tv_programmes(legislature = NULL, extra_args = NULL)
+
+tv_clips(mp_id = NULL, extra_args = NULL)
+
+tv_channels()
 }
 \arguments{
-\item{AVtype}{The type of data you want, allows the arguments 'TV' and 'clips'}
+\item{legislature}{Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.}
 
-\item{TV}{Returns a data frame with details on all TV broadcasts produced by the Westminster Parliament.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{clips}{Returns a data frame with details on all video clips produced by the Westminster Parliament.}
+\item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
 }
 \description{
+Imports data on TV broadcasts. To import information on TV channel options,
+
+Imports data on TV broadcasts. To import information on TV channel options,
+
 Imports data on TV broadcasts
 }
 \examples{
 \dontrun{
 
-x <- tv_programmes('TV')
+x <- tv_programmes('commons')
 
-
-x <- tv_programmes('clips')
+}
+\dontrun{
+x <- tv_clips(4335)
 }
 }
 \keyword{TV}
-
