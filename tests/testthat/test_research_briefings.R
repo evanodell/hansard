@@ -27,7 +27,7 @@ test_that("research_briefings return expected format", {
   skip_on_cran()
 
 
-  rb_df <- research_briefings(subtopic = research_subtopics_list[[7]][10])
+  rb_df <- research_briefings(subtopic = "Falkland Islands")
 
   expect_is(rb_df, "data.frame")
 
