@@ -1,6 +1,4 @@
-library(hansard)
 context("research_briefings")
-
 
 test_that("research_briefings list calls work", {
   skip_on_cran()
@@ -25,7 +23,6 @@ test_that("research_briefings list calls work", {
 
 test_that("research_briefings return expected format", {
   skip_on_cran()
-
 
   rb_df <- research_briefings(subtopic = "Falkland Islands")
 
