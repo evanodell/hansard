@@ -1,6 +1,6 @@
 context("research_briefings")
 
-test_that("research_briefings list calls work", {
+test_that("research_briefings return expected format", {
   skip_on_cran()
 
   rtl <- research_topics_list()
@@ -18,14 +18,9 @@ test_that("research_briefings list calls work", {
   expect_is(rtyl, "list")
   expect_length(rtyl, 6)
 
-})
+  #rbdf <- research_briefings(subtopic = "Falkland Islands")
 
-
-test_that("research_briefings return expected format", {
-  skip_on_cran()
-
-  rb_df <- research_briefings(subtopic = "Falkland Islands")
-
-  expect_true(is.data.frame(rb_df))
+  #expect_is(rbdf, "data.frame")
 
 })
+
