@@ -17,8 +17,8 @@ test_that("research_briefings list calls work", {
 
   rtyl <- research_types_list()
 
-  expect_is(rtl, "list")
-  expect_length(rtl, 6)
+  expect_is(rtyl, "list")
+  expect_length(rtyl, 6)
 
 })
 
