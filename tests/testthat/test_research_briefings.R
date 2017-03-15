@@ -1,4 +1,4 @@
-
+library(hansard)
 context("research_briefings")
 
 
