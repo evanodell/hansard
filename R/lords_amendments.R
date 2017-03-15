@@ -8,10 +8,17 @@
 #' x <- lords_amendments()
 #' }
 
+<<<<<<< HEAD
 lords_amendments <- function(extra_args = NULL) {
     
     baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
     
+=======
+lords_amendments <- function(all = TRUE) {
+
+    baseurl_lordsAmmend <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
+
+>>>>>>> master
     message("Connecting to API")
     
     ammend <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)

@@ -29,6 +29,6 @@ test_that("research_briefings return expected format", {
 
   rb_df <- research_briefings(subtopic = "Falkland Islands")
 
-  expect_is(rb_df, "data.frame")
+  expect_true(is.data.frame(rb_df))
 
 })
