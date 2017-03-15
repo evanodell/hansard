@@ -21,43 +21,45 @@
 #' }
 
 bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
-    
+
     dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
-    
+
     if (is.null(ID) == FALSE) {
         id_query <- paste0("&identifier=", ID)
+    } else {
+      id_query <- NULL
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/bills"
-    
+
     if (is.null(amendments) == FALSE) {
         query <- "withamendments.json?_pageSize=500"
     }
-    
+
     query <- ".json?_pageSize=500"
-    
+
     message("Connecting to API")
-    
+
     bills <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args), flatten = TRUE)
-    
+
     if (bills$result$totalResults > bills$result$itemsPerPage) {
-        
+
         jpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
-        
+
     } else {
         jpage <- 0
     }
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
@@ -80,11 +82,11 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
 
 bill_stage_types <- function() {
-    
+
     stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500", flatten = TRUE)
-    
+
     df <- stages$result$items
-    
+
     df
-    
+
 }

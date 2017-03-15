@@ -2,15 +2,10 @@
 % Please edit documentation in R/research_briefings.R
 \name{research_briefings}
 \alias{research_briefings}
-\alias{research_topics}
-\alias{research_types}
 \title{research_briefings}
 \usage{
-research_briefings(topic = NULL, subtopic = NULL, type = NULL, extra_args)
-
-research_topics(subtopics = TRUE)
-
-research_types()
+research_briefings(topic = NULL, subtopic = NULL, type = NULL,
+  extra_args = NULL)
 }
 \arguments{
 \item{topic}{The topic of the parliamentary briefing.}
@@ -20,40 +15,26 @@ research_types()
 \item{type}{The type of research briefing.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
-
-\item{subtopics}{If TRUE, returns full list with all topics and subtopics. If FALSE, only returns list of topics. Defaults to TRUE.}
 }
 \description{
-Imports data on  Parliamentary Research Briefings. To see a list of possible topics and subtopics, call \code{\link{research_topics}}. To see a list of briefing types, call \code{\link{research_types_list}}.
-
-Prints or assigns to an object a list of topics and subtopics on  Parliamentary Research Briefings.
-
-Prints or assigns to an object a list types of Parliamentary Research Briefings.
+Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.
 }
 \examples{
 \dontrun{
 x <- research_briefings('Housing and planning')
 
-#Requests can be made using the `research_topics_list`
-# and `research_subtopics_list` included in the data
-x <- research_briefings(topic = hansard::research_topics_list[[7]])
+# Requests can be made using lists created using `research_topics_list`
+# and `research_subtopics_list`
+x <- research_briefings(topic = research_topics_list[[7]])
 
-x <- research_briefings(subtopic = hansard::research_subtopics_list[[7]][10])
+x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 
-# Requests for certain briefing types can also be made using 'research_types_list'.
-x <- research_briefings(type = hansard::research_types_list[[3]])
+# Requests for certain briefing types can also be made using lists
+# created with 'research_types_list'.
+x <- research_briefings(type = research_types_list[[3]])
 
 
 }
-
-research_topics()
-
-
-research_types()
-
-
-
-
 }
 \seealso{
 research_topics

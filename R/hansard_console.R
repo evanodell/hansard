@@ -2,7 +2,8 @@
 #'
 #' Code that powers the `hansard_basic` function
 #' @keywords internal Hansard API
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' }
 
 #' all_answered_questions
@@ -11,13 +12,14 @@
 #' @param all Returns a data frame with all available answered questions.
 #' @param askedBy Requests a member ID, and returns a data frame with all available questions asked by that member.
 #' @keywords internal Answered Questions
+#' @noRd
 #' @examples \dontrun{
 #'
 #'x <- all_answered_questions('all')
 #'
 #' x <- all_answered_questions('askedBy')
 #' }
-#' @rdname hansard_console
+
 #'
 all_answered_questions_console <- function(allAnsType = c("all", "askedBy")) {
 
@@ -87,7 +89,7 @@ all_answered_questions_console <- function(allAnsType = c("all", "askedBy")) {
 
 
 #' @keywords internal parliamentary thesaurus
-#' @rdname hansard_console
+#' @noRd
 #' @examples \dontrun{
 #' x <- commons_terms_console('all')
 #' head(x)
@@ -132,10 +134,9 @@ commons_terms_console <- function(termsType = c("all")) {
 #' @param ammended Imports a data frame with all ammended bills
 #' @param stageTypes Imports a data frame with all bill stage types
 #' @param publications Imports a data frame with all bill publications
-
-
 #' @keywords internal bills
-#' @rdname hansard_console
+
+#' @noRd
 #' @examples \dontrun{
 #' x <- bills('all')
 #'
@@ -234,7 +235,7 @@ bills_console <- function(billType = c("ammended", "stageTypes", "publications")
 #' @param department Returns a data frame with all answered questions in the House of Commons from the given department
 #' @param answeredBy Returns a data frame with all answered questions in the House of Commons by the given MP
 #' @keywords internal bills
-#' @rdname hansard_console
+#' @noRd
 #' @examples \dontrun{
 #' x <- commons_answered_questions('all')
 #'
@@ -346,10 +347,6 @@ commons_answered_questions_console <- function(comsAnsType = c("all", "date", "d
 }
 
 
-
-
-
-
 #' commons_divisions_console
 #'
 #' Requests data on House of Commons divisions
@@ -363,10 +360,8 @@ commons_answered_questions_console <- function(comsAnsType = c("all", "date", "d
 #' @param uinSummary Requests a division UIN and returns a data frame with a summary of results of that division.
 #' @param uinFull Requests a division UIN and returns a data frame with the full results of that division.
 #' @param session Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all divisions in that session.
-
-
 #' @keywords internal divisions
-#' @rdname hansard_console
+#' @noRd
 #' @examples \dontrun{
 #' x <- commons_divisions_console('all')
 #'
@@ -616,7 +611,8 @@ commons_divisions_console <- function(comsDivType = c("all", "date", "aye", "no"
 
 
 #' @keywords internal divisions
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- commons_division_date(2016-10-10)
 #' }
 #'
@@ -664,11 +660,12 @@ commons_division_date_console <- function(date) {
 #' @param all Returns a data frame with all of the oral question times.
 #' @param ID Requests a requestion time ID, and returns a data frame of that question time.
 #' @param session Requests a session in format yyyy/yy (e.g. 2016/17) and returns a data frame of all oral question times from that session
-#' @rdname hansard_console
+
 
 
 #' @keywords internal Oral Questions Time
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- commons_oral_question_times_console('all')
 #'
 #' x <- commons_oral_question_times_console('ID')
@@ -770,11 +767,12 @@ commons_oral_question_times_console <- function(cOralTimeType = c("all", "ID", "
 #' @param askedBy Requests a member ID and returns a data frame with all oral questions asked by that member
 #' @param session Requests a session ID and returns a data frame with all oral questions asked in that session
 #' @param department Requests a Requests a department name, and returns all oral questions answered by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health
-#' @rdname hansard_console
+
 
 
 #' @keywords internal bills
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- commons_oral_questions_console('all')
 #'
 #' x <- commons_oral_questions_console('times')
@@ -984,8 +982,9 @@ commons_oral_questions_console <- function(comsOralType = c("all", "times", "day
 
 
 #' @keywords internal House of Commons Written Questions
-#' #' @rdname hansard_console
-#' @examples \dontrun{
+#'
+#' @noRd
+ #' @examples \dontrun{
 #' x <- commons_written_questions_console('all')
 #'
 #' x <- commons_written_questions_console('department')
@@ -1112,8 +1111,9 @@ commons_written_questions_console <- function(comsWritType = c("all", "departmen
 
 
 #' @keywords internal Constituencies
-#' @rdname hansard_console
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- constituencies_console('all')
 #' }
 #'
@@ -1176,13 +1176,14 @@ constituencies_console <- function(contType = c("all")) {
 #' @param primarySponsor Requests a member's ID, and returns a data frame of early day motions where the given member is the primary sponsor
 #' @param signatures Returns a data frame of all early day motion signatures.
 #' @param ID Requests an Early Day Motion ID, and returns a data frame with information on that Motion.
-#' @rdname hansard_console
+
 
 
 
 #' @keywords internal EDM
 
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- early_day_motions_console('all')
 #'
 #' x <- early_day_motions_console('allSponsors')
@@ -1333,9 +1334,10 @@ early_day_motions_console <- function(edmType = c("all", "allSponsors", "primary
 
 
 #' @keywords internal Election Results
-#' @rdname hansard_console
 
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- election_results_console('all')
 #'
 #' x <- election_results_console('ID')
@@ -1409,9 +1411,10 @@ election_results_console <- function(resultType = c("all", "ID")) {
 
 
 #' @keywords internal Elections
-#' @rdname hansard_console
 
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- elections_console('all')
 #'
 #' x <- elections_console('ID')
@@ -1479,9 +1482,10 @@ elections_console <- function(electType = c("all", "ID")) {
 
 
 #' @keywords internal ePetitions
-#' @rdname hansard_console
 
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- epetition_console('all')
 #'
 #' x <- epetition_console('byConstituency')
@@ -1620,9 +1624,10 @@ epetition_console <- function(petType = c("all", "byConstituency", "petitionID",
 
 
 #' @keywords internal House of Lords Amendments
-#' @rdname hansard_console
 
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- lords_amendments_console()
 #' }
 
@@ -1663,9 +1668,10 @@ lords_amendments_console <- function(all = TRUE) {
 
 
 #' @keywords internal House of Lords Attendance
-#' @rdname hansard_console
 
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- lords_attendance_console('all')
 #'
 #' x <- lords_attendance_console('date')
@@ -1749,11 +1755,12 @@ lords_attendance_console <- function(lordsAttendType = c("all", "date")) {
 #' @param notContent Requests a member ID, and then returns a data frame with all divisions in which they have voted not content.
 #' @param content Requests a member ID, and then returns a data frame with all divisions in which they have voted content.
 #' @param session Requests a session in yyyy/yy format (e.g. 2016/17) and returns a data frame with all House of Lords divisions in that session.
-#' @rdname hansard_console
+
 
 
 #' @keywords internal Lords Divisions
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- lords_divisions_console('all')
 #'
 #' x <- lords_divisions_console('date')
@@ -1996,11 +2003,12 @@ lords_divisions_console <- function(lordsDivType = c("all", "date", "notContent"
 #' @param all Returns a data frame with all recorded votes for a given member of the house of lords.
 #' @param content Returns a data frame with all divisions where a given lord voted aye.
 #' @param notContent Returns a data frame with all divisions where a given lord voted no.
-#' @rdname hansard_console
+
 
 
 #' @keywords internal divisions
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- lords_vote_record_console(172, 'all')
 #' }
 #'
@@ -2103,8 +2111,9 @@ lords_vote_record_console <- function(lord.id, lordsRecord = c("all", "content",
 
 
 #' @keywords internal House of Lords Written Questions
-#' @rdname hansard_console
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- lords_written_questions_console('all')
 #'
 #' # x <- lords_written_questions_console('department')
@@ -2199,8 +2208,9 @@ lords_written_questions_console <- function(lordsWritType = c("all", "department
 
 
 #' @keywords internal All Members of Parliament
-#' @rdname hansard_console
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- members_console'all')
 #'
 #' x <- members_console'commons')
@@ -2402,8 +2412,9 @@ members_console <- function(house = c("all", "commons", "lords", "lordsInterests
 
 
 #' @keywords internal Papers Laid
-#' @rdname hansard_console
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #' x <- papers_laid_console('all') }
 #'
 
@@ -2446,11 +2457,12 @@ papers_laid_console <- function(paperType = c("all")) {
 #'
 #' Requests data on Publication Logs
 #' @param all Returns a data frame with all available Publication Logs. Defaults to TRUE.
-#' @rdname hansard_console
+
 
 
 #' @keywords internal Publication Logs
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' # x <- publication_logs_console()
 #' }
 
@@ -2493,11 +2505,12 @@ publication_logs_console <- function(all = TRUE) {
 #' @param byTopic Requests a topic, and imports a data frame with all available Parliamentary Research Briefings on that topic
 #' @param subTopic Requests a topic, and imports a data frame with all of the possible sub-topics for that topic.
 #' @param topicSubTopic Requests a topic and a subtopic, and imports a data frame with all available Parliamentary Research Briefings on that subtopic
-#' @rdname hansard_console
+
 
 
 #' @keywords internal  Parliamentary Research Briefings
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #' x <- research_briefings_console('all')
 #'
 #' x <- research_briefings_console('topics')
@@ -2711,9 +2724,10 @@ research_briefings_console <- function(resType = c("all", "topics", "types", "by
 #' @param sesType The type of data being requested, allows the arguments 'all' and 'days'
 #' @param all Imports information on all available parliamentary sessions
 #' @param days Imports information on the days in all available parliamentary sessions
-#' @rdname hansard_console
+
 #' @keywords internal Parliamentary Sessions
-#' @examples \dontrun{
+#' @noRd
+ #' @examples \dontrun{
 #'
 #' x <- sessions_info_console('all')
 #'
@@ -2779,8 +2793,9 @@ sessions_info_console <- function(sesType = c("all", "days")) {
 #' @param TV Returns a data frame with details on all TV broadcasts produced by the Westminster Parliament.
 #' @param clips Returns a data frame with details on all video clips produced by the Westminster Parliament.
 #' @keywords internal TV
-#' @rdname hansard_console
-#' @examples \dontrun{
+
+#' @noRd
+ #' @examples \dontrun{
 #'
 #' x <- tv_programmes_console('TV')
 #'
