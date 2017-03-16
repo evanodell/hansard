@@ -15,7 +15,6 @@ Depends: R(>= 2.10.0)
 Imports:
     httr,
     jsonlite,
-    plyr,
     dplyr,
     utils
 RoxygenNote: 6.0.1
