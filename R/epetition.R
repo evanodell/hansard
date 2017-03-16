@@ -50,7 +50,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL) {
             pages[[i + 1]] <- mydata$result$items
         }
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
         
         df$member <- NULL  # Removes superfluous member column
         

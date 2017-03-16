@@ -52,7 +52,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
 
     } else {
 
@@ -98,7 +98,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
 
     }
 

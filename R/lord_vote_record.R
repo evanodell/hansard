@@ -51,7 +51,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
         
@@ -79,7 +79,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
         

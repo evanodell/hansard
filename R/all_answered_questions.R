@@ -57,14 +57,14 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
 
         pages <- list()
 
-        for (i in 0:jpage) {
+        for (i in 0:10) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_page=", i, dates, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
     }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     }

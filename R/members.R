@@ -44,7 +44,7 @@ members <- function(ID = NULL, extra_args = NULL) {
             pages[[i + 1]] <- mydata$result$items
         }
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
         
     } else {
         
@@ -80,7 +80,7 @@ commons_members <- function(extra_args = NULL) {
         pages[[i + 1]] <- mydata$result$items
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -111,7 +111,7 @@ lords_members <- function(extra_args = NULL) {
         pages[[i + 1]] <- mydata$result$items
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -142,7 +142,7 @@ commons_interests <- function(extra_args = NULL) {
         pages[[i + 1]] <- mydata$result$items
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -181,7 +181,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL) {
         pages[[i + 1]] <- mydata$result$items
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

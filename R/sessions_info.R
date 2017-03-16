@@ -41,7 +41,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
         pages[[i + 1]] <- mydata$result$items
     }
     
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
     
     if (days == TRUE) {
         df$date._value <- as.Date(df$date._value)
