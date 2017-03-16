@@ -4,18 +4,24 @@
 \alias{commons_terms}
 \title{commons_terms}
 \usage{
-commons_terms(extra_args = NULL)
+commons_terms(search = NULL, class = NULL, extra_args = NULL)
 }
 \arguments{
+\item{search}{A string to search the parliamentary thesaurus for.}
+
+\item{class}{The class of definition to be returned Accepts one of "ID", "ORG", "SIT", "NAME", "LEG","CTP", "PBT" and "TPG".  Defaults to NULL}
+
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports the parliamentary thesaurus.
+Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
 }
 \examples{
 \dontrun{
 
-x <- commons_terms(all)
+x <- commons_terms(search="estate")
+
+x <- commons_terms(search="estate", class="ORG")
 
 }
 }

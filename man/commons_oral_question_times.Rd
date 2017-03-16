@@ -20,7 +20,7 @@ Imports data on House of Commons oral question times
 \examples{
 \dontrun{
 
-commons_oral_question_times <- function(session='2016/17', question_id='685697')
+ x <- commons_oral_question_times(session='2016/17', question_id='685697')
 
 }
 }

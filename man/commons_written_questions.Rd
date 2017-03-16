@@ -19,11 +19,13 @@ commons_written_questions(mp_id = NULL, answering_department = NULL,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
-Imports data on House of Commons written questions. If
+Imports data on House of Commons written questions.
 }
 \examples{
 \dontrun{
+
 x <- commons_written_questions(mp_id=410, 'cabinet office')
+
 }
 }
 \keyword{Commons}

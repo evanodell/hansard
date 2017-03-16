@@ -24,6 +24,8 @@ Imports data on House of Commons divisions.
 \examples{
 \dontrun{
 
+x <- commons_divisions()
+
 x <- commons_divisions(division_id = 694163, summary = FALSE)
 
 }

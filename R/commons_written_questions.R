@@ -1,7 +1,7 @@
 
 #' commons_written_questions
 #'
-#' Imports data on House of Commons written questions. If
+#' Imports data on House of Commons written questions.
 #' @param mp_id Requests a member ID and returns a data frame with all written questions asked by that member.
 #' @param answering_department Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.
 #' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
@@ -10,7 +10,9 @@
 #' @keywords House of Commons Written Questions
 #' @export
 #' @examples \dontrun{
+#'
 #' x <- commons_written_questions(mp_id=410, 'cabinet office')
+#'
 #' }
 
 commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {

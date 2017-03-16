@@ -2,7 +2,7 @@
 
 #' commons_terms
 #'
-#' Imports the parliamentary thesaurus.
+#' Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
 #' @param search A string to search the parliamentary thesaurus for.
 #' @param class The class of definition to be returned Accepts one of "ID", "ORG", "SIT", "NAME", "LEG","CTP", "PBT" and "TPG".  Defaults to NULL
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
@@ -10,7 +10,9 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- commons_terms()
+#' x <- commons_terms(search="estate")
+#'
+#' x <- commons_terms(search="estate", class="ORG")
 #'
 #'}
 
@@ -46,7 +48,7 @@ commons_terms <- function(search=NULL, class=NULL, extra_args = NULL) {
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, search_query,class_query, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }

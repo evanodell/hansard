@@ -24,8 +24,7 @@ Imports data on House of Commons oral questions
 \examples{
 \dontrun{
 
-x <- commons_oral_questions(mp_id=4019, answering_department = 'education',
-start_date='1900-01-01', end_date=Sys.Date())
+x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 
 }
 }

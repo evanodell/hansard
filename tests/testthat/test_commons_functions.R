@@ -1,8 +1,8 @@
 
 library(hansard)
-context("all_answered_questions")
+context("commons functions")
 
-test_that("all_answered_questions return expected format", {
+test_that("commons fucntions return expected format", {
   skip_on_cran()
 
   xcaq <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
@@ -41,7 +41,19 @@ test_that("all_answered_questions return expected format", {
   expect_type(xct, "list")
   expect_is(xct, "data.frame")
 
+  xcwq <- commons_written_questions(mp_id=410, 'cabinet office')
+  expect_length(xcwq, 12)
+  expect_type(xcwq, "list")
+  expect_is(xcwq, "data.frame")
 
+  xcte <- commons_terms(search="estate")
+  expect_length(xcte, 20)
+  expect_type(xcte, "list")
+  expect_is(xcte, "data.frame")
 
+  xctec <- commons_terms(search="estate", class="ORG")
+  expect_length(xctec, 19)
+  expect_type(xctec, "list")
+  expect_is(xctec, "data.frame")
 
 })
