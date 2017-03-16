@@ -20,9 +20,9 @@ test_that("research_briefings return expected format", {
   expect_is(rtyl, "list")
   expect_length(rtyl, 6)
 
-  #rbdf <- research_briefings(subtopic = "Falkland Islands")
+  rbdf <- research_briefings(subtopic = "Falkland Islands")
 
-  #expect_is(rbdf, "data.frame")
+  expect_is(rbdf, "data.frame")
 
 })
 
