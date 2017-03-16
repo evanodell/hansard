@@ -9,12 +9,6 @@ cache: packages
 
 r_packages:
   - covr
-  - testthat
-  - httr
-  - jsonlite
-  - plyr
-  - dplyr
-  - utils
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
