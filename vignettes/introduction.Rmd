@@ -28,15 +28,13 @@ library(hansard)
 
 ##Using hansard
 
-`hansard` contains 40 functions for calling data. Most of the functions are designed to call data from a specific <http://www.data.parliament.uk/> API, but several functions have special or experimental features.
+`hansard` contains functions for calling data for the UK Parliament API. Most of the functions are designed to call data from a specific <http://www.data.parliament.uk/> API, but several functions have special or experimental features:
 
 * `research_briefings_lists` An experimental feature that creates lists of possible parameters, and allows the user to call to the API based on the content of the list. Currently only available with the `research_briefings_lists` function.
 
 * `hansard_generic` A basic wrapper function for any of the available APIs. Users must specify the exact path they want the function to call from, and must also specify JSON formatting.
 
 * `members_search` A search function for members of the House of Commons and House of Lords.
-
-
 
 ### The `members_search` function
 Looking up information on an individual MP or Lord through the Parliamentary API requires knowing their parliamentary ID number. This can be hard to find on the web, but luckily you can look it up through the API. We want information on the voting record of the Labour MP for Hackney North and Stoke Newington Diane Abbott, but we don't know her ID number, so we search for her:

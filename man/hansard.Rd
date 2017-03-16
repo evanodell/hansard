@@ -42,7 +42,7 @@ For more details please see the vignette.
 
 \code{\link{hansard_generic}}
 
-\code{\link{hansard_basic}}
+\code{\link{lord_vote_record}}
 
 \code{\link{lords_amendments}}
 
@@ -50,19 +50,17 @@ For more details please see the vignette.
 
 \code{\link{lords_divisions}}
 
-\code{\link{lord_vote_record}}
-
 \code{\link{lords_written_questions}}
 
 \code{\link{members}}
 
 \code{\link{members_search}}
 
+\code{\link{mp_edms}}
+
 \code{\link{mp_questions}}
 
 \code{\link{mp_vote_record}}
-
-\code{\link{mp_edms}}
 
 \code{\link{papers_laid}}
 
