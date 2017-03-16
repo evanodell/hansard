@@ -36,5 +36,12 @@ test_that("all_answered_questions return expected format", {
   expect_type(xcoqe, "list")
   expect_is(xcoqe, "data.frame")
 
+  xct <- commons_terms(search="estate")
+  expect_length(xct, 20)
+  expect_type(xct, "list")
+  expect_is(xct, "data.frame")
+
+
+
 
 })

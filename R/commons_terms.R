@@ -10,7 +10,7 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- commons_terms(all)
+#' x <- commons_terms()
 #'
 #'}
 
@@ -27,7 +27,7 @@ commons_terms <- function(search=NULL, class=NULL, extra_args = NULL) {
 
   if(is.null(search)==FALSE){
     search <- utils::URLencode(search)
-    search_query <- paste0("&_search=", search_query)
+    search_query <- paste0("&_search=", search)
   } else {
     search_query <- NULL
   }
@@ -48,7 +48,7 @@ commons_terms <- function(search=NULL, class=NULL, extra_args = NULL) {
 
     pages <- list()
 
-    for (i in 0:10) {
+    for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, search_query,class_query, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
