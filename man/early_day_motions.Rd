@@ -4,11 +4,14 @@
 \alias{early_day_motions}
 \title{early_day_motions}
 \usage{
-early_day_motions(edm_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), signatures = 1, extra_args = NULL)
+early_day_motions(edm_id = NULL, session = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
+  extra_args = NULL)
 }
 \arguments{
-\item{edm_id}{Accepts a given MP and returns a data frame with all early day motions signed by that MP. Defaults to NULL.}
+\item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.}
+
+\item{session}{Accepts a parliamentary session, in yyyy/yy format. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the data frame, if calling all early day motions. Defaults to '1900-01-01'.}
 
@@ -23,17 +26,11 @@ Imports data on early day motions
 }
 \examples{
 \dontrun{
-x <- early_day_motions('all')
 
-x <- early_day_motions('allSponsors')
+x <- early_day_motions(edm_id = 1073)
 
-x <- early_day_motions('all')
+x <- early_day_motions(edm_id = 1073, session="2015/16")
 
-x <- early_day_motions('primarySponsor')
-
-x <- early_day_motions('signatures')
-
-x <- early_day_motions('ID')
 }
 }
 \keyword{EDM}

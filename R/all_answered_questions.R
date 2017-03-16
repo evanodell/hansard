@@ -7,7 +7,7 @@
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords Answered Questions
-#' @import httr jsonlite
+#' @import httr jsonlite plyr
 #' @export
 #' @examples \dontrun{
 #'

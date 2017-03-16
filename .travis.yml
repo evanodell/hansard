@@ -12,6 +12,7 @@ r_packages:
   - testthat
   - httr
   - jsonlite
+  - plyr
   - dplyr
   - utils
 
