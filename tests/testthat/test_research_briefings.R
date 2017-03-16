@@ -1,4 +1,6 @@
+library(hansard)
 context("research_briefings")
+
 
 test_that("research_briefings return expected format", {
   skip_on_cran()

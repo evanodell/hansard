@@ -23,3 +23,7 @@ Using hansard
 -------------
 
 For an introduction to `hansard`, the vignette `vignette("introduction", package = "hansard")` is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this%20introductory%20course) is a helpful introduction.
+
+#### API calls with console input
+
+Previous versions (&lt;=0.3.4) of `hansard` included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the [https://github.com/EvanOdell/hansard-console](%60hansardconsole%60%20package). There are no plans to submit this to CRAN, and it is not being actively maintained.

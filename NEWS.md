@@ -1,6 +1,8 @@
 # hansard 0.4.0
 
-Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all other functions and or incorporated into the `hansard_console` function. These changes ensure greater consistency in syntax across the package, in both the body and formals of the functions.
+Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all functions. These changes ensure greater consistency in syntax across the package, in both the body and formals of the functions.
+
+If you need the old console based functions, they can be accessed through the `hansardconsole` package at <https://github.com/EvanOdell/hansard-console>.
 
 Changes have been made to the following functions:
 

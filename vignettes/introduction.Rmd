@@ -28,9 +28,7 @@ library(hansard)
 
 ##Using hansard
 
-`hansard` contains are 42 functions for calling data. Most of the functions are designed to call data from a specific <http://www.data.parliament.uk/> API, but several functions have special or experimental features.
-
-*`hansard_basic` There is a introduction to the [`hansard_basic`](hansard_basic.html) function in the [accompanying vignette](hansard_basic.html)
+`hansard` contains 40 functions for calling data. Most of the functions are designed to call data from a specific <http://www.data.parliament.uk/> API, but several functions have special or experimental features.
 
 * `research_briefings_lists` An experimental feature that creates lists of possible parameters, and allows the user to call to the API based on the content of the list. Currently only available with the `research_briefings_lists` function.
 
