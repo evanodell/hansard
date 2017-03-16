@@ -20,7 +20,7 @@ members_search <- function(search = NULL) {
         df <- members("all")
     } else {
 
-        search <- URLencode(search)
+        search <- utils::URLencode(search)
 
         baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
 
