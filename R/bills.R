@@ -32,11 +32,11 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
     baseurl <- "http://lda.data.parliament.uk/bills"
 
-    if (is.null(amendments) == FALSE) {
+    if (amendments == TRUE) {
         query <- "withamendments.json?_pageSize=500"
+    } else {
+      query <- ".json?_pageSize=500"
     }
-
-    query <- ".json?_pageSize=500"
 
     message("Connecting to API")
 
