@@ -1,4 +1,4 @@
-
+library(hansard)
 context("constituencies")
 
 test_that("constituencies return expected format", {
