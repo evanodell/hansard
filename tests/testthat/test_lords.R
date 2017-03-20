@@ -50,5 +50,16 @@ test_that("lords functions return expected format", {
   expect_type(lwq, "list")
   expect_is(lwq, "data.frame")
 
+  # Attendance
+  la <- lords_attendance(session_id = 706178)
+  expect_length(la, 17)
+  expect_type(la, "list")
+  expect_is(la, "data.frame")
+
+  lanull <- lords_attendance(start_date="2016-03-01")
+  expect_length(lanull, 4)
+  expect_type(lanull, "list")
+  expect_is(lanull, "data.frame")
+
 })
 

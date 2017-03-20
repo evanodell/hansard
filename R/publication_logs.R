@@ -21,8 +21,7 @@ publication_logs <- function(ID = NULL, start_date = "1900-01-01", end_date = Sy
         query <- ".json?&_pageSize=500"
     }
     
-    dates <- paste0("&_properties=publicationDate&max-publicationDate=", end_date, "&min-publicationDate=", 
-        start_date)
+    dates <- paste0("&_properties=publicationDate&max-publicationDate=", end_date, "&min-publicationDate=", start_date)
     
     baseurl <- "http://lda.data.parliament.uk/publicationlogs"
     

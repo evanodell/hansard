@@ -3,6 +3,8 @@
 #'
 #' Imports data on House of Lords attendance. Please note that the attendance data frames are not as tidy as some of the others that are accessible through this API.
 #' @param session_id The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.
+#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords House of Lords Attendance
 #' @export
@@ -11,19 +13,21 @@
 #' x <- lords_attendance(session_id = 706178)
 #' }
 #'
-lords_attendance <- function(session_id = NULL, extra_args = NULL) {
+lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
     
     if (is.null(session_id) == FALSE) {
-        query <- paste0("resources/", session_id, ".json")
+        query <- paste0("/", session_id, ".json?")
     } else {
-        query <- "lordsattendances.json?_pageSize=500"
+        query <- ".json?_pageSize=500"
     }
     
-    baseurl <- "http://lda.data.parliament.uk/"
+    dates <- paste0("&max-date=", end_date, "&min-date=", start_date)
+    
+    baseurl <- "http://lda.data.parliament.uk/lordsattendances"
     
     message("Connecting to API")
     
-    attend <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    attend <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
     
     if (is.null(session_id) == FALSE) {
         
@@ -36,7 +40,7 @@ lords_attendance <- function(session_id = NULL, extra_args = NULL) {
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

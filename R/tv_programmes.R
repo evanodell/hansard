@@ -16,13 +16,13 @@
 #' }
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
-
-  dates <- paste0("&max-endDate=", end_date,"T23:59:59Z", "&min-startDate=", start_date,"T00:00:00Z")
-
+    
+    dates <- paste0("&max-endDate=", end_date, "T23:59:59Z", "&min-startDate=", start_date, "T00:00:00Z")
+    
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)
     }
-
+    
     if (legislature == "commons") {
         query <- "&legislature.prefLabel=House of Commons"
         query <- utils::URLencode(query)
@@ -32,23 +32,23 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
     } else {
         query <- NULL
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
-
+    
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
-
+    
     message("Connecting to API")
-
+    
     jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -71,29 +71,29 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 #' }
 
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
-
-  dates <- paste0("&max-startDate=", end_date,"T00:00:00Z", "&min-startDate=", start_date,"T00:00:00Z")
-
+    
+    dates <- paste0("&max-startDate=", end_date, "T00:00:00Z", "&min-startDate=", start_date, "T00:00:00Z")
+    
     if (is.null(mp_id) == FALSE) {
         query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
     } else {
         query <- NULL
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
-
+    
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
-
+    
     jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -111,13 +111,13 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 #' @export
 
 tv_channels <- function() {
-
+    
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
-
+    
     df <- x$result$items
-
+    
     df
-
+    
 }
 
 

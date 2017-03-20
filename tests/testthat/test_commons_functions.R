@@ -10,15 +10,30 @@ test_that("commons fucntions return expected format", {
   expect_type(xcaq, "list")
   expect_is(xcaq, "data.frame")
 
+  #Divisions
+
   xcd <- commons_divisions(division_id = 694163, summary = FALSE)
   expect_length(xcd, 5)
   expect_type(xcd, "list")
   expect_is(xcd, "data.frame")
 
+  xcds <- commons_divisions(division_id = 694163, summary = TRUE)
+  expect_length(xcds, 17)
+  expect_type(xcds, "list")
+  expect_is(xcds, "data.frame")
+
   xcdall <- commons_divisions(start_date='2017-02-01', end_date='2017-03-01')
   expect_length(xcdall, 5)
   expect_type(xcdall, "list")
   expect_is(xcdall, "data.frame")
+
+  # Divisions by Date
+  cdd <- commons_division_date("2017-02-24")
+  expect_length(cdd, 5)
+  expect_type(cdd, "list")
+  expect_is(cdd, "data.frame")
+  expect_equal(nrow(cdd),5)
+
 
   xcoqt <- commons_oral_question_times(session='2016/17', question_id='685697')
   expect_length(xcoqt, 14)

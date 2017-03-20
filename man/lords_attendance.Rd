@@ -4,10 +4,15 @@
 \alias{lords_attendance}
 \title{lords_attendance}
 \usage{
-lords_attendance(session_id = NULL, extra_args = NULL)
+lords_attendance(session_id = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.}
+
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }

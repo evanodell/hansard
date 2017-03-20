@@ -29,7 +29,7 @@ Imports data on early day motions
 
 x <- early_day_motions(edm_id = 1073)
 
-x <- early_day_motions(edm_id = 1073, session="2015/16")
+x <- early_day_motions(edm_id = 1073, session='2015/16')
 
 }
 }

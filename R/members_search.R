@@ -15,40 +15,38 @@
 #' }
 
 members_search <- function(search = NULL) {
-
+    
     if (is.null(search)) {
         df <- members("all")
     } else {
-
+        
         search <- utils::URLencode(search)
-
-        baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
-
+        
+        baseurl <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
+        
         message("Connecting to API")
-
-        mpidResults <- jsonlite::fromJSON(paste0(baseurl_MPID, search, "*"))
-
-        if (mpidResults$result$totalResults > mpidResults$result$itemsPerPage) {
-            mpidJpage <- round(mpidResults$result$totalResults/mpidResults$result$itemsPerPage, digits = 0)
-
-            pages <- list()
-
-            for (i in 0:mpidJpage) {
-                mydata <- jsonlite::fromJSON(paste0(baseurl_MPID, search, "*", "&_page=", i), flatten = TRUE)
-                message("Retrieving page ", i + 1, " of ", mpidJpage + 1)
-                pages[[i + 1]] <- mydata$result$items
-            }
-
-            df <- dplyr::bind_rows(pages)
-
-        } else {
-            df <- mpidResults$result$items
-
+        
+        results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
+        
+        jpage <- round(results$result$totalResults/results$result$itemsPerPage, digits = 0)
+        
+        pages <- list()
+        
+        for (i in 0:jpage) {
+            mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_page=", i), flatten = TRUE)
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            pages[[i + 1]] <- mydata$result$items
         }
-
+        
+        df <- dplyr::bind_rows(pages)
+        
     }
-
-  df
-
+    
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
+    } else {
+        df
+    }
+    
 }
 
