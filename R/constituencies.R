@@ -37,7 +37,7 @@ constituencies <- function(current=TRUE, extra_args = NULL) {
     df$startedDate._value <- as.Date(df$startedDate._value)
 
     if(current==TRUE){
-      df <- subset(df, is.na(endedDate._value)==TRUE)
+      df <- df[is.na(df$endedDate._value)==FALSE]
     }
 
     if (nrow(df) == 0) {

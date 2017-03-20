@@ -12,7 +12,7 @@ test_that("members vote record and questions functions return expected format", 
 
   mpoqs <- mp_questions(172, 'oral')
 
-  expect_length(mpoqs)
+  expect_length(mpoqs, 7)
   expect_type(mpoqs, "list")
   expect_is(mpoqs, "data.frame")
 
