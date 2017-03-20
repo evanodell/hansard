@@ -3,7 +3,7 @@
 #'
 #' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
 #' @param mp_id The ID number of a member of the House of Commons.
-#' @param lobby Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.
+#' @param lobby Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.
 #' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.

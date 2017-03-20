@@ -10,7 +10,7 @@ mp_vote_record(mp_id = NULL, lobby = "all", start_date = "1900-01-01",
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}
 
-\item{lobby}{Accepts one of 'all', 'aye', 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.}
+\item{lobby}{Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.}
 
 \item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
 
