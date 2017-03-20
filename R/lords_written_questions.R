@@ -72,4 +72,5 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
     } else {
         df
     }
+
 }

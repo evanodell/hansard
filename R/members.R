@@ -13,8 +13,6 @@
 #'
 #' x <- lords_members()
 #'
-#' x <- commons_interests()
-#'
 #' x <- lords_interests(530)
 #'}
 
@@ -94,6 +92,7 @@ commons_members <- function(extra_args = NULL) {
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL) {
+<<<<<<< HEAD
 
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
 
@@ -119,6 +118,7 @@ lords_members <- function(extra_args = NULL) {
         df
     }
 }
+
 
 
 # lords_interests
