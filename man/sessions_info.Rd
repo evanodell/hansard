@@ -24,6 +24,8 @@ Imports data on Parliamentary Sessions. Note that due to the date format used by
 
 x <- sessions_info(days=TRUE)
 
+x <- sessions_info(days=FALSE)
+
 }
 }
 \keyword{Parliamentary}

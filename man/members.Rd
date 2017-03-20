@@ -35,8 +35,6 @@ x <- commons_members()
 
 x <- lords_members()
 
-x <- commons_interests()
-
 x <- lords_interests(530)
 }
 }
