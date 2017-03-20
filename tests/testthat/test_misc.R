@@ -37,7 +37,7 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_type(sess, "list")
   expect_is(sess, "data.frame")
 
-  tvcoms <- tv_programmes('commons', start_date='2016-11-11')
+  tvcoms <- tv_programmes('commons', start_date='2017-03-11')
   expect_length(tvcoms, 8)
   expect_type(tvcoms, "list")
   expect_is(tvcoms, "data.frame")
@@ -46,7 +46,5 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_length(tvclips, 6)
   expect_type(tvclips, "list")
   expect_is(tvclips, "data.frame")
-
-
 
 })

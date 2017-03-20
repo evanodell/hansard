@@ -21,14 +21,14 @@ members <- function(ID = NULL, extra_args = NULL) {
     if (is.null(ID) == TRUE) {
         query <- ".json?_pageSize=500"
     } else {
-        query <- ".json?"
+        query <- paste0("/",ID, ".json?")
     }
 
-    baseurl <- "http://lda.data.parliament.uk/members/"
+    baseurl <- "http://lda.data.parliament.uk/members"
 
     message("Connecting to API")
 
-    members <- jsonlite::fromJSON(paste0(baseurl, ID, query, extra_args), flatten = TRUE)
+    members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
     if (is.null(ID) == TRUE) {
 

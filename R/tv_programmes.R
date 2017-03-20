@@ -17,8 +17,7 @@
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
 
-  dates <- paste0("&_properties=dateTabled&max-startDate==", end_date, "&min-startDate=", start_date)
-
+  dates <- paste0("&max-endDate=", end_date,"T00:00:00Z", "&min-endDate=", start_date,"T00:00:00Z")
 
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)
@@ -64,9 +63,6 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 #'
 #' Imports data on TV broadcasts. To import information on TV channel options,
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
-#' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords TV
 #' @export
 #' @rdname tv_programmes
@@ -76,7 +72,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
 
-  dates <- paste0("&_properties=dateTabled&max-startDate==", end_date, "&min-startDate=", start_date)
+  dates <- paste0("&max-startDate=", end_date,"T00:00:00Z", "&min-startDate=", start_date,"T00:00:00Z")
 
     if (is.null(mp_id) == FALSE) {
         query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
