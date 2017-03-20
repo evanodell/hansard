@@ -43,8 +43,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args),
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -107,7 +106,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_content <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df_content <- dplyr::bind_rows(pages)
 
         df_content$vote <- "content"
 
@@ -134,7 +133,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_notcontent <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df_notcontent <- dplyr::bind_rows(pages)
 
         df_notcontent$vote <- "not-content"
 

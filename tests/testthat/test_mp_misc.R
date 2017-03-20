@@ -12,9 +12,9 @@ test_that("members vote record and questions functions return expected format", 
 
   mpoqs <- mp_questions(172, 'oral')
 
-  expect_length(mpqs, 7)
-  expect_type(mpqs, "list")
-  expect_is(mpqs, "data.frame")
+  expect_length(mpoqs)
+  expect_type(mpoqs, "list")
+  expect_is(mpoqs, "data.frame")
 
   mpvrall <- mp_vote_record(172, lobby='all', start_date="2017-01-01")
 
