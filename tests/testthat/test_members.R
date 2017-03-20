@@ -8,7 +8,7 @@ test_that("members functions return expected format", {
 
   mschris <- members_search('chris')
 
-  expect_length(mschris, 11)
+  expect_length(mschris, 12)
   expect_type(mschris, "list")
   expect_is(mschris, "data.frame")
 

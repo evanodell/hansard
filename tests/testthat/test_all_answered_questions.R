@@ -13,7 +13,7 @@ test_that("all_answered_questions return expected format", {
 
   aaq <- all_answered_questions(start_date = "2017-03-01", end_date = "2017-03-02")
 
-  expect_length(aaq, 17)
+  expect_length(aaq, 37)
   expect_type(aaq, "list")
   expect_is(aaq, "data.frame")
 

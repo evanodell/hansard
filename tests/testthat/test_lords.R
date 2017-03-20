@@ -52,7 +52,7 @@ test_that("lords functions return expected format", {
 
   # Attendance
   la <- lords_attendance(session_id = 706178)
-  expect_length(la, 17)
+  expect_length(la, 8)
   expect_type(la, "list")
   expect_is(la, "data.frame")
 
