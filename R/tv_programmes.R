@@ -4,6 +4,8 @@
 #'
 #' Imports data on TV broadcasts. To import information on TV channel options,
 #' @param legislature Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.
+#' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords TV
 #' @export
@@ -13,7 +15,10 @@
 #'
 #' }
 
-tv_programmes <- function(legislature = NULL, extra_args = NULL) {
+tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+
+  dates <- paste0("&_properties=dateTabled&max-startDate==", end_date, "&min-startDate=", start_date)
+
 
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)
@@ -31,7 +36,7 @@ tv_programmes <- function(legislature = NULL, extra_args = NULL) {
 
     baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
 
-    tv <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
     message("Connecting to API")
 
@@ -40,7 +45,7 @@ tv_programmes <- function(legislature = NULL, extra_args = NULL) {
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
@@ -59,6 +64,9 @@ tv_programmes <- function(legislature = NULL, extra_args = NULL) {
 #'
 #' Imports data on TV broadcasts. To import information on TV channel options,
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
+#' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords TV
 #' @export
 #' @rdname tv_programmes
@@ -66,7 +74,9 @@ tv_programmes <- function(legislature = NULL, extra_args = NULL) {
 #' x <- tv_clips(4591)
 #' }
 
-tv_clips <- function(mp_id = NULL, extra_args = NULL) {
+tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+
+  dates <- paste0("&_properties=dateTabled&max-startDate==", end_date, "&min-startDate=", start_date)
 
     if (is.null(mp_id) == FALSE) {
         query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
@@ -76,14 +86,14 @@ tv_clips <- function(mp_id = NULL, extra_args = NULL) {
 
     baseurl <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
 
-    tv <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
     jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
