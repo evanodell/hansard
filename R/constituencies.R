@@ -32,6 +32,7 @@ constituencies <- function(current=TRUE, extra_args = NULL) {
     }
 
     df <- dplyr::bind_rows(pages)
+
     df$endedDate._value <- as.Date(df$endedDate._value)
     df$startedDate._value <- as.Date(df$startedDate._value)
 
