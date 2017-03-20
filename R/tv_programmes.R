@@ -17,7 +17,7 @@
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
 
-  dates <- paste0("&max-endDate=", end_date,"T00:00:00Z", "&min-endDate=", start_date,"T00:00:00Z")
+  dates <- paste0("&max-endDate=", end_date,"T23:59:59Z", "&min-startDate=", start_date,"T00:00:00Z")
 
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)

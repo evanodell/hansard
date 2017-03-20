@@ -1,3 +1,5 @@
+
+
 #Resubmission 
 This is the first update of this package. The previous version, 0.2.5, was accepted and published on cran on 2016-11-12. 
 
@@ -11,9 +13,10 @@ Fixed an issue with `lords_written_questions` and `commons_written_questions` re
 
 ## Test environments
 
-* ubuntu 14.04 (on Digital Ocean), R 3.3.2
-* Ubuntu 12.04 (on Travis-CI): R 3.3.1
-* local MacOS 10.11.6 installation, R 3.3.2
+* ubuntu 14.04 (on Digital Ocean), R 3.3.3
+* Ubuntu 12.04.5 (on Travis-CI): R 3.3.2
+* local MacOS 10.11.6 installation, R 3.3.3
+* local Windows 7 installation, R 3.3.3
 * win-builder (devel and release)
  
 

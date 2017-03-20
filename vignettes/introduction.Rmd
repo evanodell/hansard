@@ -178,4 +178,4 @@ The `hansard_generic` function allows you to put in your own paths to the API. I
 x <- hansard_generic("commonsansweredquestions.json")
 ```
 
-Note that the API defaults to returning 10 items per page, but allows up to 500 items per page. All `hansard` functions, with the exception of `hansard_generic`, return 500 items per page, and bind pages together if more than 500 items are retrieved.
+Note that the API defaults to returning 10 items per page, but allows up to 500 items per page.
