@@ -10,6 +10,12 @@ test_that("election functions return expected format", {
   expect_type(elect, "list")
   expect_is(elect, "data.frame")
 
+  electid <- elections(517994)
+  expect_length(electid, 6)
+  expect_type(electid, "list")
+  expect_is(electid, "data.frame")
+  expect_equal(nrow(electid),1)
+
   elre <- election_results()
   expect_length(elre, 9)
   expect_type(elre, "list")
