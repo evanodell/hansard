@@ -4,7 +4,7 @@ Major re-write, breaks compatibility with previous versions, please check your c
 
 If you need the old console based functions, they can be accessed through the `hansardconsole` package at <https://github.com/EvanOdell/hansard-console>.
 
-Changes have been made to the following functions:
+Changes have been made to most functions, including:
 
 `all_answered_questions`: Console interface is gone, now operates as a function with the ID for a given MP accepted as the only function parameter. Returns all answered questions if blank.
 
@@ -46,7 +46,7 @@ Changes have been made to the following functions:
 
 `mp_vote_record`: Minor re-write
 
-`papers_laid`: NEW FEATURES ADDED TO API, NEED TO INCOPORATE INTO FUNCTION
+`papers_laid`: Incorporates new features in the API
 
 `publication_logs`: Minor re-write, now includes start and end dates.
 
@@ -57,6 +57,8 @@ Changes have been made to the following functions:
 `tv_clips`: New function, previously part of `tv_programmes`.
 
 `tv_programmes`: Minor re-write, now includes ability to select legislature.
+
+Adding of `research_briefings_lists` functions.
 
 
 # hansard 0.3.4
