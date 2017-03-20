@@ -4,10 +4,15 @@
 \alias{lords_amendments}
 \title{lords_amendments}
 \usage{
-lords_amendments(decision = NULL, extra_args = NULL)
+lords_amendments(decision = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{decision}{The decision on the amendements. Accepts one of "Withdrawn", "Agreed", "Disagreed", "Pending", "NotMoved", "Disposed".}
+
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }

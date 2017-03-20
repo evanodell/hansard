@@ -1,7 +1,7 @@
 
 #' members
 #'
-#' Imports data on All Members of Parliament including the Lords and the Commons
+#' Imports data on all current and former Members of Parliament including the Lords and the Commons
 #' @param ID The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a data frame of all members. If not NULL, returns a data frame with basic information on that member.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @keywords All Members of Parliament
@@ -58,6 +58,8 @@ members <- function(ID = NULL, extra_args = NULL) {
 }
 
 #' commons_members
+#'
+#' Imports data on all current and former MPs
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL) {
@@ -89,6 +91,8 @@ commons_members <- function(extra_args = NULL) {
 
 
 # lords_members
+#'
+#' Imports data on all current and former peers
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL) {

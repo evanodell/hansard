@@ -5,7 +5,7 @@ context("commons functions")
 test_that("commons fucntions return expected format", {
   skip_on_cran()
 
-  xcaq <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
+  xcaq <- commons_answered_questions(answering_department = 'health', answered_by = '4019', start_date='2017-02-01')
   expect_length(xcaq, 10)
   expect_type(xcaq, "list")
   expect_is(xcaq, "data.frame")
@@ -15,7 +15,7 @@ test_that("commons fucntions return expected format", {
   expect_type(xcd, "list")
   expect_is(xcd, "data.frame")
 
-  xcdall <- commons_divisions()
+  xcdall <- commons_divisions(start_date='2017-02-01', end_date='2017-03-01')
   expect_length(xcdall, 5)
   expect_type(xcdall, "list")
   expect_is(xcdall, "data.frame")
@@ -35,11 +35,6 @@ test_that("commons fucntions return expected format", {
   expect_length(xcoqe, 24)
   expect_type(xcoqe, "list")
   expect_is(xcoqe, "data.frame")
-
-  xct <- commons_terms(search="estate")
-  expect_length(xct, 20)
-  expect_type(xct, "list")
-  expect_is(xct, "data.frame")
 
   xcwq <- commons_written_questions(mp_id=410, 'cabinet office')
   expect_length(xcwq, 12)

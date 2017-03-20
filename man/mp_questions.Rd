@@ -4,12 +4,17 @@
 \alias{mp_questions}
 \title{mp_questions}
 \usage{
-mp_questions(mp_id, question_type = "all", extra_args = NULL)
+mp_questions(mp_id, question_type = "all", start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL)
 }
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}
 
 \item{question_type}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
+
+\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+
+\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }

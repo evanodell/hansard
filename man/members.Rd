@@ -23,9 +23,11 @@ lords_interests(peer_id = NULL, extra_args = NULL)
 \item{peer_id}{The ID of a member of the house of lords. If NULL, returns a data frame with all listed financial interests for all members. Defaults to NULL.}
 }
 \description{
-Imports data on All Members of Parliament including the Lords and the Commons
+Imports data on all current and former Members of Parliament including the Lords and the Commons
 
-commons_members
+Imports data on all current and former MPs
+
+Imports data on all current and former peers
 }
 \examples{
 \dontrun{

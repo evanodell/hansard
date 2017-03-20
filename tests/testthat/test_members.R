@@ -38,7 +38,4 @@ test_that("members functions return expected format", {
   expect_type(lint, "list")
   expect_is(lint, "data.frame")
 
-
-
-
 })

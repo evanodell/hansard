@@ -4,7 +4,7 @@ context("papers, publications, sessions, tv")
 test_that("papers laid, publications, sessions, tv  functions return expected format", {
   skip_on_cran()
 
-  papl <- papers_laid(withdrawn = FALSE, house = 'commons', start_date='2016-12-01')
+  papl <- papers_laid(withdrawn = FALSE, house = 'commons', start_date='2016-12-01', end_date="2017-02-02")
   expect_length(papl, 16)
   expect_type(papl, "list")
   expect_is(papl, "data.frame")
@@ -27,7 +27,7 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_is(publjan, "data.frame")
   expect_equal(nrow(publjan),172)
 
-  sessdays <- sessions_info(days=TRUE, start_date='2017-01-01')
+  sessdays <- sessions_info(days=TRUE, start_date='2017-01-01', end_date='2017-02-28')
   expect_length(sessdays, 7)
   expect_type(sessdays, "list")
   expect_is(sessdays, "data.frame")
@@ -37,7 +37,7 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_type(sess, "list")
   expect_is(sess, "data.frame")
 
-  tvcoms <- tv_programmes('commons', start_date='2017-03-11')
+  tvcoms <- tv_programmes('commons', start_date='2017-03-01', end_date = '2017-03-14')
   expect_length(tvcoms, 8)
   expect_type(tvcoms, "list")
   expect_is(tvcoms, "data.frame")

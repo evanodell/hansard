@@ -46,18 +46,11 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
 
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
 
-        if (all$result$totalResults/all$result$itemsPerPage > 1) {
-
-            jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
-
-        } else {
-
-            jpage <- 0
-        }
+        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
-        for (i in 0:10) {
+        for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_page=", i, dates, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items

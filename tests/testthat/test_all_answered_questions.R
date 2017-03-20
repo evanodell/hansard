@@ -5,7 +5,7 @@ test_that("all_answered_questions return expected format", {
 
     skip_on_cran()
 
-  aaqx <- all_answered_questions(4019)
+  aaqx <- all_answered_questions(4019, start_date = "2017-01-01")
 
   expect_length(aaqx, 17)
   expect_type(aaqx, "list")
