@@ -16,4 +16,8 @@ test_that("bills return expected format", {
   expect_length(xbid, 10)
   expect_is(xbid, "data.frame")
 
+  bst <- bill_stage_types()
+  expect_length(bst, 7)
+  expect_is(bst, "data.frame")
+
 })

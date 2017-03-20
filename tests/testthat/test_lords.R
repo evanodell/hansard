@@ -28,6 +28,11 @@ test_that("lords functions return expected format", {
   expect_type(lamend, "list")
   expect_is(lamend, "data.frame")
 
+  lamendnu <- lords_amendments(decision = NULL, start_date="2017-03-17", end_date = "2017-03-20")
+  expect_length(lamendnu, 31)
+  expect_type(lamendnu, "list")
+  expect_is(lamendnu, "data.frame")
+
   # Divisions
   ldivsum <- lords_divisions(division_id = 705891, summary = TRUE)
   expect_length(ldivsum, 11)

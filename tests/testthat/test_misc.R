@@ -9,7 +9,7 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_type(papl, "list")
   expect_is(papl, "data.frame")
 
-  pldec <- papers_laid(withdrawn = FALSE, house = 'commons', start_date='2015-12-01', end_date="2015-12-31")
+  pldec <- papers_laid(withdrawn = TRUE, house = 'lords', start_date='2015-12-01', end_date="2015-12-31")
   expect_length(pldec, 16)
   expect_type(pldec, "list")
   expect_is(pldec, "data.frame")
@@ -58,5 +58,11 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_length(chan, 3)
   expect_type(chan, "list")
   expect_is(chan, "data.frame")
+
+  gen <- hansard_generic('elections.json')
+  expect_length(chan, 5)
+  expect_type(chan, "list")
+  expect_is(chan, "data.frame")
+
 
 })
