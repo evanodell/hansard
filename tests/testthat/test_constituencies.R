@@ -8,5 +8,6 @@ test_that("constituencies return expected format", {
 
   expect_length(ctx, 9)
   expect_is(ctx, "data.frame")
+  expect_equal(nrow(ctx), 650)
 
 })

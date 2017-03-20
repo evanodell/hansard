@@ -44,11 +44,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-        if (url_aye$result$itemsPerPage < url_aye$result$totalResults) {
-            jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
-        } else {
-            jpage <- 0
-        }
+        jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
@@ -70,11 +66,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-        if (url_no$result$itemsPerPage < url_no$result$totalResults) {
-            jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
-        } else {
-            jpage <- 0
-        }
+        jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
@@ -106,8 +98,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=",
-                i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -132,13 +123,12 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=",
-                i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args, "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_no <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df_no <- dplyr::bind_rows(pages)
 
         df_no$divisionNumber <- NULL
 
