@@ -9,20 +9,29 @@
 #' }
 
 
-lords_amendments <- function(extra_args = NULL) {
+lords_amendments <- function(withdrawn=NULL, extra_args = NULL) {
+
+  if(withdrawn==TRUE){
+    withdrawn_query <- "&withdrawn=true"
+  } else if(withdrawn==FALSE){
+    withdrawn_query <- "&withdrawn=false"
+  } else {
+    withdrawn_query <- NULL
+  }
+
 
     baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
 
     message("Connecting to API")
 
-    ammend <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+    ammend <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query, extra_args), flatten = TRUE)
 
     jpage <- round(ammend$result$totalResults/ammend$result$itemsPerPage, digits = 0)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }

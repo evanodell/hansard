@@ -68,6 +68,5 @@
 #' @name hansard
 #' @import httr
 #' @import jsonlite
-#' @import plyr
 #' @import dplyr
 NULL

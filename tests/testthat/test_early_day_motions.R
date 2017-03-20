@@ -15,4 +15,15 @@ test_that("edm functions return expected format", {
   expect_is(xedmids, "data.frame")
   expect_equal(nrow(xedmids),1)
 
+  xedmid_full <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, full_data=TRUE)
+
+  expect_length(xedmid_full, 30)
+  expect_type(xedmid_full, "list")
+  expect_is(xedmid_full, "data.frame")
+
 })
+
+
+
+
+
