@@ -28,4 +28,10 @@ test_that("members vote record and questions functions return expected format", 
   expect_type(mpvraye, "list")
   expect_is(mpvraye, "data.frame")
 
+  mpvno <- mp_vote_record(172, lobby='no', start_date="2017-01-01")
+
+  expect_length(mpvno, 6)
+  expect_type(mpvno, "list")
+  expect_is(mpvno, "data.frame")
+
 })

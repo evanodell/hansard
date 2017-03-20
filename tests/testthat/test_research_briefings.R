@@ -21,16 +21,19 @@ test_that("research_briefings return expected format", {
   expect_length(rtyl, 6)
 
   rbdf <- research_briefings(subtopic = "Falkland Islands")
-
   expect_is(rbdf, "data.frame")
   expect_length(rbdf, 14)
   expect_type(rbdf, "list")
 
   rbtsb <- research_briefings(topic = "Defence", subtopic = "Falkland Islands")
-
   expect_is(rbtsb, "data.frame")
   expect_length(rbtsb, 14)
   expect_type(rbtsb, "list")
+
+  rbnu <- research_briefings()
+  expect_is(rbnu, "data.frame")
+  expect_length(rbnu, 14)
+  expect_type(rbnu, "list")
 
 
 })

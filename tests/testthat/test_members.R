@@ -20,6 +20,11 @@ test_that("members functions return expected format", {
   expect_type(mabbot, "list")
   expect_is(mabbot, "data.frame")
 
+  memempt <- members()
+  expect_length(camem, 12)
+  expect_type(camem, "list")
+  expect_is(camem, "data.frame")
+
   camem <- commons_members()
 
   expect_length(camem, 12)
