@@ -20,7 +20,7 @@ members_search <- function(search = NULL) {
         df <- members("all")
     } else {
 
-        search <- URLencode(search)
+        search <- utils::URLencode(search)
 
         baseurl_MPID <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
 
@@ -39,7 +39,7 @@ members_search <- function(search = NULL) {
                 pages[[i + 1]] <- mydata$result$items
             }
 
-            df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+            df <- dplyr::bind_rows(pages)
 
         } else {
             df <- mpidResults$result$items

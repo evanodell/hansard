@@ -53,7 +53,7 @@ early_day_motions <- function(edm_id = NULL, session=NULL,  start_date = "1900-0
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
+    df <- dplyr::bind_rows(pages)
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

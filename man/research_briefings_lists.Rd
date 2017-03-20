@@ -20,20 +20,21 @@ Prints or assigns to an object a list of Parliamentary Research Briefings subtop
 Prints or assigns to an object a list of types of Parliamentary Research Briefings.
 }
 \examples{
+ \dontrun{
 
 research_topics_list <- research_topics_list()
+}
 
-
+ \dontrun{
 
 research_subtopics_list <- research_subtopics_list()
 
-
+}
+ \dontrun{
 
 research_types_list <- research_types_list()
 
-
-
-
+}
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

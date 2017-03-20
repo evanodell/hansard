@@ -49,7 +49,7 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
+    df <- dplyr::bind_rows(pages)
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

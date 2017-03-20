@@ -19,8 +19,6 @@
 #' }
 
 
-
-
 mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL) {
 
     if (is.null(mp_id) == TRUE) {
@@ -58,7 +56,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])
+    df <- dplyr::bind_rows(pages)
 
     df$dateSigned._value <- as.Date(df$dateSigned._value)
 

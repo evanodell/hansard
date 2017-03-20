@@ -52,7 +52,7 @@ mp_questions <- function(mp_id, question_type = "all", extra_args = NULL) {
             pages[[i + 1]] <- mydata$result$items
         }
         
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
         
     } else if (question_type == "written") {
         
@@ -73,7 +73,7 @@ mp_questions <- function(mp_id, question_type = "all", extra_args = NULL) {
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+        df <- dplyr::bind_rows(pages)
     }
     
     if (nrow(df) == 0) {

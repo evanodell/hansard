@@ -48,7 +48,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
+    df <- dplyr::bind_rows(pages)
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

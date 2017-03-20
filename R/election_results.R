@@ -33,8 +33,8 @@ election_results <- function(ID = NULL, extra_args = NULL) {
         pages[[i + 1]] <- mydata$result$items
     }
 
+    df <- dplyr::bind_rows(pages)
 
-    df <- jsonlite::rbind.pages(pages[sapply(pages, length) > 0])  #The data frame that is returned
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
@@ -42,6 +42,3 @@ election_results <- function(ID = NULL, extra_args = NULL) {
     }
 
 }
-
-
-x <- elections()

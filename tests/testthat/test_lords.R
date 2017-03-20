@@ -22,5 +22,33 @@ test_that("lords functions return expected format", {
   expect_type(lvotescont, "list")
   expect_is(lvotescont, "data.frame")
 
+  # Amendments
+  lamend <- lords_amendments(decision = "Agreed")
+  expect_length(lamend, 31)
+  expect_type(lamend, "list")
+  expect_is(lamend, "data.frame")
+
+  # Divisions
+  ldivsum <- lords_divisions(division_id = 705891, summary = TRUE)
+  expect_length(ldivsum, 11)
+  expect_type(ldivsum, "list")
+  expect_is(ldivsum, "data.frame")
+
+  ldiv <- lords_divisions(division_id = 705891, summary = FALSE)
+  expect_length(ldiv, 6)
+  expect_type(ldiv, "list")
+  expect_is(ldiv, "data.frame")
+
+  ldiv16 <- lords_divisions(NULL, FALSE, start_date = '2016-01-01', end_date = '2016-12-31')
+  expect_length(ldiv16, 5)
+  expect_type(ldiv16, "list")
+  expect_is(ldiv16, "data.frame")
+
+  # Written Questions
+  lwq <- lords_written_questions(peer_id = 3526, answering_department = 'cabinet')
+  expect_length(lwq, 12)
+  expect_type(lwq, "list")
+  expect_is(lwq, "data.frame")
+
 })
 
