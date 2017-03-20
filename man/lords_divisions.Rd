@@ -23,6 +23,7 @@ Imports data on House of Lords divisions
 }
 \examples{
 \dontrun{
+
 x <- lords_divisions(division_id = 705891, summary = TRUE)
 
 x <- lords_divisions(division_id = 705891, summary = FALSE)

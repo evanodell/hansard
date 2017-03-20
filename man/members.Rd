@@ -4,7 +4,6 @@
 \alias{members}
 \alias{commons_members}
 \alias{lords_members}
-\alias{commons_interests}
 \alias{lords_interests}
 \title{members}
 \usage{
@@ -13,8 +12,6 @@ members(ID = NULL, extra_args = NULL)
 commons_members(extra_args = NULL)
 
 lords_members(extra_args = NULL)
-
-commons_interests(extra_args = NULL)
 
 lords_interests(peer_id = NULL, extra_args = NULL)
 }

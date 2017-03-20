@@ -4,9 +4,11 @@
 \alias{lords_amendments}
 \title{lords_amendments}
 \usage{
-lords_amendments(extra_args = NULL)
+lords_amendments(decision = NULL, extra_args = NULL)
 }
 \arguments{
+\item{decision}{The decision on the amendements. Accepts one of "Withdrawn", "Agreed", "Disagreed", "Pending", "NotMoved", "Disposed".}
+
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 }
 \description{
