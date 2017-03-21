@@ -13,7 +13,7 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_length(pldec, 16)
   expect_type(pldec, "list")
   expect_is(pldec, "data.frame")
-  expect_equal(nrow(pldec),123)
+  expect_equal(nrow(pldec),11)
 
   publ <- publication_logs(683267)
   expect_length(publ, 11)
@@ -60,9 +60,9 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
   expect_is(chan, "data.frame")
 
   gen <- hansard_generic('elections.json')
-  expect_length(chan, 5)
-  expect_type(chan, "list")
-  expect_is(chan, "data.frame")
+  expect_length(gen, 5)
+  expect_type(gen, "list")
+  expect_is(gen, "data.frame")
 
 
 })
