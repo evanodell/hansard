@@ -10,36 +10,38 @@
 #'
 #' x <- constituencies()
 #'
+#' x <- constituencies(current = FALSE)
+#'
 #' }
 #'
 
 constituencies <- function(current = TRUE, extra_args = NULL) {
-    
+
     baseurl <- "http://lda.data.parliament.uk/constituencies.json?_pageSize=500"
-    
+
     message("Connecting to API")
-    
+
     conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-    
+
     jpage <- round(conts$result$totalResults/conts$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df$endedDate._value <- as.Date(df$endedDate._value)
     df$startedDate._value <- as.Date(df$startedDate._value)
-    
+
     if (current == TRUE) {
         df <- df[is.na(df$endedDate._value) == TRUE, ]
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {

@@ -19,6 +19,8 @@ Imports data on House of Commons constituencies, returning a data frame of all c
 
 x <- constituencies()
 
+x <- constituencies(current = FALSE)
+
 }
 
 }
