@@ -22,7 +22,7 @@ test_that("members vote record and questions functions return expected format", 
   expect_type(mpvrall, "list")
   expect_is(mpvrall, "data.frame")
 
-  mpvraye <- mp_vote_record(172, lobby='aye', start_date="2017-01-01")
+  mpvraye <- mp_vote_record(172, lobby='aye', start_date="2017-01-01", tidy = FALSE)
 
   expect_length(mpvraye, 5)
   expect_type(mpvraye, "list")

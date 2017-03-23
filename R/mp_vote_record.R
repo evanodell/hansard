@@ -7,6 +7,7 @@
 #' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
+#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -24,7 +25,7 @@
 #' }
 
 
-mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
     if (is.null(extra_args) == FALSE) {
         extra_args <- utils::URLencode(extra_args)
@@ -91,7 +92,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-            jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
 
         pages <- list()
 
@@ -131,17 +132,28 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
         df_no$vote <- "no"
 
         df <- rbind(df_aye, df_no)
-        df$vote <- as.factor(df$vote)
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.Date(df$date._value)
 
-        df
     }
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
+
+    if (tidy == TRUE) {
+
+      df$vote <- as.factor(df$vote)
+      df$date._datatype <- as.factor(df$date._datatype)
+      df$date._value <- as.Date(df$date._value)
+
+      df <- hansard_tidy(df)
+
+      } else {
+
         df
+
+      }
+
     }
+
 
 }
