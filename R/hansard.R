@@ -69,5 +69,4 @@
 #' @import httr
 #' @import jsonlite
 #' @import dplyr
-#' @import readr
 NULL
