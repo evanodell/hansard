@@ -87,6 +87,8 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
@@ -144,6 +146,8 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE) {
             if (tidy == TRUE) {
                 
                 df <- hansard_tidy(df)
+                
+                df
                 
             } else {
                 

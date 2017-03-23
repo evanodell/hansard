@@ -64,6 +64,8 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

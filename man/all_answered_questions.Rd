@@ -5,7 +5,7 @@
 \title{all_answered_questions}
 \usage{
 all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, CSV = FALSE)
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{mp_id}{Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.}
@@ -17,8 +17,6 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
-
-\item{CSV}{If TRUE, saves the output as a .csv file in current working directory.}
 }
 \description{
 Imports data on answered parliamentary questions

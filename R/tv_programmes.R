@@ -59,6 +59,8 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
@@ -113,6 +115,8 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
@@ -138,6 +142,8 @@ tv_channels <- function(tidy = TRUE) {
     if (tidy == TRUE) {
         
         df <- hansard_tidy(df)
+        
+        df
         
     } else {
         

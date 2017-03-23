@@ -71,6 +71,8 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

@@ -98,6 +98,8 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

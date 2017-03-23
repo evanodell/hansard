@@ -64,6 +64,8 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
@@ -100,6 +102,8 @@ bill_stage_types <- function(tidy = TRUE) {
         if (tidy == TRUE) {
             
             df <- hansard_tidy(df)
+            
+            df
             
         } else {
             

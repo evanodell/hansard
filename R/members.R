@@ -59,6 +59,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
@@ -100,6 +102,8 @@ commons_members <- function(extra_args = NULL, tidy = TRUE) {
         if (tidy == TRUE) {
             
             df <- hansard_tidy(df)
+            
+            df
             
         } else {
             
@@ -143,6 +147,8 @@ lords_members <- function(extra_args = NULL, tidy = TRUE) {
         if (tidy == TRUE) {
             
             df <- hansard_tidy(df)
+            
+            df
             
         } else {
             
@@ -191,6 +197,8 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE) {
         if (tidy == TRUE) {
             
             df <- hansard_tidy(df)
+            
+            df
             
         } else {
             

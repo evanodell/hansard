@@ -51,6 +51,8 @@ members_search <- function(search = NULL, tidy = TRUE) {
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

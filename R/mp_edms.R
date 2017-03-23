@@ -114,6 +114,8 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

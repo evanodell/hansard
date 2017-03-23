@@ -155,6 +155,8 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

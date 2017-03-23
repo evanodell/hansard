@@ -65,6 +65,8 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

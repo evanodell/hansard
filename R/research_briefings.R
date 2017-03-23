@@ -111,6 +111,8 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

@@ -67,6 +67,8 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

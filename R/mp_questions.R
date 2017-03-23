@@ -99,6 +99,8 @@ mp_questions <- function(mp_id, question_type = "all", start_date = "1900-01-01"
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

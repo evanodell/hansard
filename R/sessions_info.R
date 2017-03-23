@@ -58,6 +58,8 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

@@ -61,6 +61,8 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

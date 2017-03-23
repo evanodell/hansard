@@ -66,6 +66,8 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

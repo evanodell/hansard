@@ -73,6 +73,8 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

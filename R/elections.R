@@ -50,6 +50,8 @@ elections <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

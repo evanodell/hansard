@@ -68,6 +68,8 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df

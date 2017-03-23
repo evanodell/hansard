@@ -58,6 +58,8 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
             
             df <- hansard_tidy(df)
             
+            df
+            
         } else {
             
             df
