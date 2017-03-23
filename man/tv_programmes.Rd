@@ -37,7 +37,7 @@ Imports data on TV broadcasts
 \examples{
 \dontrun{
 
-x <- tv_programmes('commons', start_date="2016-11-01")
+x <- tv_programmes('commons', start_date='2016-11-01')
 
 }
 \dontrun{

@@ -12,18 +12,18 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- tv_programmes('commons', start_date="2016-11-01")
+#' x <- tv_programmes('commons', start_date='2016-11-01')
 #'
 #' }
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
-
+    
     dates <- paste0("&max-endDate=", end_date, "T23:59:59Z", "&min-startDate=", start_date, "T00:00:00Z")
-
+    
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)
     }
-
+    
     if (legislature == "commons") {
         query <- "&legislature.prefLabel=House of Commons"
         query <- utils::URLencode(query)
@@ -33,38 +33,40 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
     } else {
         query <- NULL
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
-
+    
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
-
+    
     message("Connecting to API")
-
+    
     jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
-    if (tidy == TRUE) {
-
-      df <- hansard_tidy(df)
-
-    } else {
-
-      df
-
-    }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+            df
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
 }
 
@@ -81,43 +83,45 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 #' x <- tv_clips(4591)
 #' }
 
-tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy=TRUE) {
-
+tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+    
     dates <- paste0("&max-startDate=", end_date, "T00:00:00Z", "&min-startDate=", start_date, "T00:00:00Z")
-
+    
     if (is.null(mp_id) == FALSE) {
         query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
     } else {
         query <- NULL
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
-
+    
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
-
+    
     jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+            df
+            
+        } else {
+            
+            df
+            
+        }
     }
 }
 
@@ -129,23 +133,25 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 #' @keywords TV
 #' @export
 
-tv_channels <- function(tidy=TRUE) {
-
+tv_channels <- function(tidy = TRUE) {
+    
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
-
+    
     df <- x$result$items
-
+    
     if (tidy == TRUE) {
-
-      df <- hansard_tidy(df)
-
+        
+        df <- hansard_tidy(df)
+        
+        df
+        
     } else {
-
-      df
-
+        
+        df
+        
     }
-
-
+    
+    
 }
 
 

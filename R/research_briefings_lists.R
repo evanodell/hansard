@@ -51,8 +51,7 @@ research_subtopics_list <- function() {
         
         i <- utils::URLencode(i)
         
-        g <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", i, ".json?"), 
-            flatten = TRUE)
+        g <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/researchbriefingsubtopics/", i, ".json?"), flatten = TRUE)
         
         i <- utils::URLdecode(i)
         
