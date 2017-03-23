@@ -18,53 +18,53 @@
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
-
+    
     if (is.null(ID) == TRUE) {
         query <- ".json?_pageSize=500"
     } else {
         query <- paste0("/", ID, ".json?")
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/members"
-
+    
     message("Connecting to API")
-
+    
     members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
-
+    
     if (is.null(ID) == TRUE) {
-
+        
         jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, ID, query, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- dplyr::bind_rows(pages)
-
+        
     } else {
-
+        
         df <- as.data.frame(members$result$primaryTopic)
-
+        
     }
-
+    
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
 }
 
@@ -74,39 +74,39 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE) {
-
+    
     baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
-
+    
     message("Connecting to API")
-
+    
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-
+    
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
-
+    
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
 }
 
@@ -117,39 +117,39 @@ commons_members <- function(extra_args = NULL, tidy = TRUE) {
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE) {
-
+    
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
-
+    
     message("Connecting to API")
-
+    
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-
+    
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
-
+    
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
 }
 
@@ -159,45 +159,45 @@ lords_members <- function(extra_args = NULL, tidy = TRUE) {
 #' @rdname members
 #' @export
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE) {
-
+    
     if (is.null(peer_id) == TRUE) {
         query <- ".json?_pageSize=500"
     } else {
         query <- paste0(".json?member=", peer_id, "&_pageSize=500")
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
-
+    
     message("Connecting to API")
-
+    
     members <- jsonlite::fromJSON(paste0(paste0(baseurl, extra_args), query), flatten = TRUE)
-
+    
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
-
+    
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
 }
 

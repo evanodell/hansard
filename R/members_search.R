@@ -16,48 +16,48 @@
 #' }
 
 members_search <- function(search = NULL, tidy = TRUE) {
-
+    
     if (is.null(search)) {
         df <- members("all")
     } else {
-
+        
         search <- utils::URLencode(search)
-
+        
         baseurl <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
-
+        
         message("Connecting to API")
-
+        
         results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
-
+        
         jpage <- round(results$result$totalResults/results$result$itemsPerPage, digits = 0)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- dplyr::bind_rows(pages)
-
+        
     }
-
-  if (nrow(df) == 0) {
-    message("The request did not return any data. Please check your search parameters.")
-  } else {
-
-    if (tidy == TRUE) {
-
-      df <- hansard_tidy(df)
-
+    
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      df
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
-
-  }
-
+    
 }
 

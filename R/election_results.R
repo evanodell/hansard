@@ -12,44 +12,44 @@
 #' }
 
 election_results <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
-
+    
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
-
+    
     message("Connecting to API")
-
+    
     elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500", extra_args))
-
+    
     if (elect$result$totalResults > elect$result$itemsPerPage) {
-
+        
         jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
     } else {
         jpage <- 0
     }
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
-
+    
     if (nrow(df) == 0) {
-      message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (tidy == TRUE) {
-
-        df <- hansard_tidy(df)
-
-      } else {
-
-        df
-
-      }
-
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df)
+            
+        } else {
+            
+            df
+            
+        }
+        
     }
-
+    
 }
