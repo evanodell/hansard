@@ -46,7 +46,7 @@ test_that("commons fucntions return expected format", {
   expect_is(xcoqs, "data.frame")
   expect_equal(nrow(xcoqs), 313)
 
-  xcoqe <- commons_oral_questions(mp_id=4019, answering_department = 'education')
+  xcoqe <- commons_oral_questions(mp_id=4019, answering_department = 'education', tidy=FALSE)
   expect_length(xcoqe, 24)
   expect_type(xcoqe, "list")
   expect_is(xcoqe, "data.frame")

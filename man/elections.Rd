@@ -4,12 +4,14 @@
 \alias{elections}
 \title{elections}
 \usage{
-elections(ID = NULL, extra_args = NULL)
+elections(ID = NULL, extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on elections

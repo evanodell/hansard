@@ -7,6 +7,7 @@
 #' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
+#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords bills
 #' @export
 #' @examples \dontrun{
@@ -16,48 +17,56 @@
 #' }
 
 
-commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", 
-    end_date = Sys.Date(), extra_args = NULL) {
-    
+commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01",
+    end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+
     dates <- paste0("&max-dateOfAnswer=", end_date, "&min-dateOfAnswer=", start_date)
-    
+
     if (is.null(answered_by) == FALSE) {
         answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/", answered_by)
     }
-    
+
     if (is.null(answering_department) == FALSE) {
         query <- "/answeringdepartment"
         answering_department <- paste0("q=", answering_department)
     } else {
         query <- NULL
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/commonsansweredquestions"
-    
+
     message("Connecting to API")
-    
-    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", 
+
+    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500",
         dates, extra_args), flatten = TRUE)
-    
+
     jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=", 
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=",
             i, dates, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
+      message("The request did not return any data. Please check your search parameters.")
     } else {
+
+      if (tidy == TRUE) {
+
+        df <- hansard_tidy(df)
+
+      } else {
+
         df
+
+      }
+
     }
-    
+
 }
-
-

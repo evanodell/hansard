@@ -6,6 +6,7 @@
 #' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the data frame. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
+#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords House of Lords Attendance
 #' @export
 #' @examples \dontrun{
@@ -13,7 +14,7 @@
 #' x <- lords_attendance(session_id = 706178)
 #' }
 #'
-lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL) {
+lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
     if (is.null(session_id) == FALSE) {
         query <- paste0("/", session_id, ".json?")
@@ -49,9 +50,19 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
     }
 
     if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
+      message("The request did not return any data. Please check your search parameters.")
     } else {
+
+      if (tidy == TRUE) {
+
+        df <- hansard_tidy(df)
+
+      } else {
+
         df
+
+      }
+
     }
 }
 

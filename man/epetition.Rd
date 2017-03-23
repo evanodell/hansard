@@ -4,7 +4,8 @@
 \alias{epetition}
 \title{epetition}
 \usage{
-epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL)
+epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
+  tidy = TRUE)
 }
 \arguments{
 \item{ID}{The ID of a given constituency. If NULL, returns all petitions. Defaults to NULL.}
@@ -12,6 +13,8 @@ epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL)
 \item{by_constituency}{Accepts either TRUE or FALSE. If TRUE, provides a data frame with a breakdown of signatures for each petition, by constituency. Defaults to FALSE.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on Epetitions

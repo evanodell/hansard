@@ -4,10 +4,12 @@
 \alias{members_search}
 \title{members_search}
 \usage{
-members_search(search = NULL)
+members_search(search = NULL, tidy = TRUE)
 }
 \arguments{
 \item{search}{Accepts any string. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Search for an MP or Lord by name and constituency

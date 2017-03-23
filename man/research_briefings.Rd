@@ -5,7 +5,7 @@
 \title{research_briefings}
 \usage{
 research_briefings(topic = NULL, subtopic = NULL, type = NULL,
-  extra_args = NULL)
+  extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{topic}{The topic of the parliamentary briefing.}
@@ -15,6 +15,8 @@ research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 \item{type}{The type of research briefing.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.

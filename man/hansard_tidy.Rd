@@ -4,13 +4,13 @@
 \alias{hansard_tidy}
 \title{hansard_tidy}
 \usage{
-hansard_tidy(x)
+hansard_tidy(df)
 }
 \arguments{
-\item{x}{The data frame to tidy}
+\item{df}{The data frame to tidy}
 }
 \value{
-
+A tidied data frame
 }
 \description{
 hansard_tidy

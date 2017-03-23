@@ -6,7 +6,7 @@
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL)
+  extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.}
@@ -20,6 +20,8 @@ early_day_motions(edm_id = NULL, session = NULL,
 \item{signatures}{The minimum number of signatures required for inclusion in the data frame. Defaults to 1.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on early day motions

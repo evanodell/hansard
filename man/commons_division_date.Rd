@@ -4,12 +4,14 @@
 \alias{commons_division_date}
 \title{commons_division_date}
 \usage{
-commons_division_date(date = NULL, extra_args = NULL)
+commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{date}{Returns all divisions on a given date. Defaults to NULL.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Returns a data frames with the dates of House of Commons divisions.

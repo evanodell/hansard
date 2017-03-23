@@ -7,18 +7,20 @@
 \alias{lords_interests}
 \title{members}
 \usage{
-members(ID = NULL, extra_args = NULL)
+members(ID = NULL, extra_args = NULL, tidy = TRUE)
 
-commons_members(extra_args = NULL)
+commons_members(extra_args = NULL, tidy = TRUE)
 
-lords_members(extra_args = NULL)
+lords_members(extra_args = NULL, tidy = TRUE)
 
-lords_interests(peer_id = NULL, extra_args = NULL)
+lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{ID}{The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a data frame of all members. If not NULL, returns a data frame with basic information on that member.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 
 \item{peer_id}{The ID of a member of the house of lords. If NULL, returns a data frame with all listed financial interests for all members. Defaults to NULL.}
 }

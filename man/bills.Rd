@@ -6,9 +6,9 @@
 \title{bills}
 \usage{
 bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL)
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 
-bill_stage_types()
+bill_stage_types(tidy = TRUE)
 }
 \arguments{
 \item{ID}{The ID of a given bill to return data on. If NULL, returns all bills, subject to other parameters. Defaults to NULL.}
@@ -20,6 +20,8 @@ bill_stage_types()
 \item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons and House of Lords bills

@@ -132,6 +132,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
         df_no$vote <- "no"
 
         df <- rbind(df_aye, df_no)
+        df$vote <- as.factor(df$vote)
 
     }
 
@@ -141,7 +142,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
 
     if (tidy == TRUE) {
 
-      df$vote <- as.factor(df$vote)
+
       df$date._datatype <- as.factor(df$date._datatype)
       df$date._value <- as.Date(df$date._value)
 

@@ -5,7 +5,8 @@
 \title{commons_written_questions}
 \usage{
 commons_written_questions(mp_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE)
 }
 \arguments{
 \item{mp_id}{Requests a member ID and returns a data frame with all written questions asked by that member.}
@@ -17,6 +18,8 @@ commons_written_questions(mp_id = NULL, answering_department = NULL,
 \item{end_date}{The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons written questions.

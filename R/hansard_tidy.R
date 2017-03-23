@@ -4,12 +4,7 @@
 #' hansard_tidy
 #'
 #' @param df The data frame to tidy
-#' @edfport
-#' @return
-#'
-#'
-#'
-#'
+#' @return A tidied data frame
 
 
 hansard_tidy <- function(df) {

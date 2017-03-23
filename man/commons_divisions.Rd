@@ -5,7 +5,8 @@
 \title{commons_divisions}
 \usage{
 commons_divisions(division_id = NULL, summary = FALSE,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL)
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE)
 }
 \arguments{
 \item{division_id}{The id of a particular vote. If empty, returns a data frame with information on all commons divisions. Defaults to NULL.}
@@ -17,6 +18,8 @@ commons_divisions(division_id = NULL, summary = FALSE,
 \item{end_date}{The latest date to include in the data frame, if calling all divisions. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons divisions.
