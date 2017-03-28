@@ -22,7 +22,7 @@ Function searches for the string and returns a data frame with all matches from 
 
 x <- members_search('chris')
 
-x <- members_search(Search='chris')
+x <- members_search(search='chris')
 }
 }
 \keyword{All}
