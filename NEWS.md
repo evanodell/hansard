@@ -1,3 +1,11 @@
+
+# hansard 0.4.1
+
+Fixes discrepency between output displayed and vignette and actual package output (#7, @pssguy)
+
+tidy parameter in `members_search` now does some additional tidying up.
+
+
 # hansard 0.4.0
 
 Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all functions. These changes ensure greater consistency in syntax across the package, in both the body and formals of the functions.
