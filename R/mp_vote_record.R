@@ -25,8 +25,7 @@
 #' }
 
 
-mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
-    tidy = TRUE) {
+mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
     
     if (is.null(extra_args) == FALSE) {
         extra_args <- utils::URLencode(extra_args)

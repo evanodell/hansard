@@ -24,7 +24,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
         legislature <- tolower(legislature)
     }
     
-    if (legislature == "commons") {
+    if (is.null(legislature) == TRUE) {
+        query <- NULL
+    } else if (legislature == "commons") {
         query <- "&legislature.prefLabel=House of Commons"
         query <- utils::URLencode(query)
     } else if (legislature == "lords") {

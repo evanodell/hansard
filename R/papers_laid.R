@@ -17,8 +17,7 @@
 #' }
 #'
 
-papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
-    tidy = TRUE) {
+papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
     
     house <- tolower(house)
     

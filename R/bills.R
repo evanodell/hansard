@@ -21,8 +21,7 @@
 #'
 #' }
 
-bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
-    tidy = TRUE) {
+bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
     
     dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
     

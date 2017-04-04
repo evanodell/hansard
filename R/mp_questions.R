@@ -16,19 +16,16 @@
 #'
 
 
-mp_questions <- function(mp_id, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
-    tidy = TRUE) {
+mp_questions <- function(mp_id, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
     
     question_type <- tolower(question_type)
     
     if (question_type == "all") {
         message("Retrieving oral questions:")
-        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = start_date, end_date = end_date, 
-            extra_args = extra_args)
+        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = start_date, end_date = end_date, extra_args = extra_args)
         
         message("Retrieving written questions:")
-        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = start_date, end_date = end_date, 
-            extra_args = extra_args)
+        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = start_date, end_date = end_date, extra_args = extra_args)
         
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
@@ -59,8 +56,7 @@ mp_questions <- function(mp_id, question_type = "all", start_date = "1900-01-01"
         pages <- list()
         
         for (i in 0:oralJpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

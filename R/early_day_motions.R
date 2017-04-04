@@ -20,8 +20,8 @@
 #' }
 
 
-early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, 
-    extra_args = NULL, tidy = TRUE) {
+early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, 
+    tidy = TRUE) {
     
     if (is.null(edm_id) == FALSE) {
         edm_query <- paste0("&edmNumber=", edm_id)
@@ -43,8 +43,8 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
     
     message("Connecting to API")
     
-    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, "&_pageSize=500", sig_min, 
-        extra_args), flatten = TRUE)
+    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, "&_pageSize=500", sig_min, extra_args), 
+        flatten = TRUE)
     
     jpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
     

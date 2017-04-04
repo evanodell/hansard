@@ -37,8 +37,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
     
     message("Connecting to API")
     
-    edms <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500", extra_args), 
-        flatten = TRUE)
+    edms <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500", extra_args), flatten = TRUE)
     
     if (edms$result$totalResults > edms$result$itemsPerPage) {
         
@@ -52,8 +51,8 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
     pages <- list()
     
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500&_page=", 
-            i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500&_page=", i, extra_args), 
+            flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
@@ -83,15 +82,15 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
             search <- jsonlite::fromJSON(paste0(baseurl, i, ".json?"), flatten = TRUE)
             
             search_df <- data.frame(about = search$result$primaryTopic$`_about`, creator_label = search$result$primaryTopic$creator$`_about`, 
-                date = search$result$primaryTopic$date$`_value`, dateTabled = search$result$primaryTopic$dateTabled$`_value`, 
-                edmNumber = search$result$primaryTopic$edmNumber$`_value`, edmStatus = search$result$primaryTopic$edmStatus$`_value`, 
-                externalLocation = search$result$primaryTopic$externalLocation, humanIndexable = search$result$primaryTopic$humanIndexable$`_value`, 
-                identifier = search$result$primaryTopic$identifier$`_value`, isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf, 
-                legislature = search$result$primaryTopic$legislature$prefLabel._value, motionText = search$result$primaryTopic$motionText, 
-                numberOfSignatures = search$result$primaryTopic$numberOfSignatures, primarySponsor = search$result$primaryTopic$primarySponsor$`_about`, 
-                primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted, published = search$result$primaryTopic$published$`_value`, 
-                publisher = search$result$primaryTopic$publisher$prefLabel$`_value`, session = search$result$primaryTopic$session, 
-                sessionNumber = search$result$primaryTopic$sessionNumber$`_value`, title = search$result$primaryTopic$title)
+                date = search$result$primaryTopic$date$`_value`, dateTabled = search$result$primaryTopic$dateTabled$`_value`, edmNumber = search$result$primaryTopic$edmNumber$`_value`, 
+                edmStatus = search$result$primaryTopic$edmStatus$`_value`, externalLocation = search$result$primaryTopic$externalLocation, 
+                humanIndexable = search$result$primaryTopic$humanIndexable$`_value`, identifier = search$result$primaryTopic$identifier$`_value`, 
+                isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf, legislature = search$result$primaryTopic$legislature$prefLabel._value, 
+                motionText = search$result$primaryTopic$motionText, numberOfSignatures = search$result$primaryTopic$numberOfSignatures, 
+                primarySponsor = search$result$primaryTopic$primarySponsor$`_about`, primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted, 
+                published = search$result$primaryTopic$published$`_value`, publisher = search$result$primaryTopic$publisher$prefLabel$`_value`, 
+                session = search$result$primaryTopic$session, sessionNumber = search$result$primaryTopic$sessionNumber$`_value`, 
+                title = search$result$primaryTopic$title)
             
             dat[[i]] <- search_df
         }

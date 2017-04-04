@@ -45,8 +45,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -73,8 +72,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -103,8 +101,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
@@ -130,8 +127,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

@@ -60,9 +60,3 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
         
     }
 }
-
-
-lords_ammendments <- function(all = TRUE) {
-    .Deprecated("lords_amendments")
-    lords_amendments()
-}

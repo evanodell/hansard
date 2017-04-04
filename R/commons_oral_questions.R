@@ -44,8 +44,8 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
     
     message("Connecting to API")
     
-    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", 
-        extra_args), flatten = TRUE)
+    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", extra_args), 
+        flatten = TRUE)
     
     jpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
     

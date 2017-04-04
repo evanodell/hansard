@@ -55,8 +55,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, question_id, ".json", session, page_size, "&_page=", i, extra_args), 
-                flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, question_id, ".json", session, page_size, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
