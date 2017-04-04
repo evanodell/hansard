@@ -7,9 +7,9 @@
 members_search(search = NULL, tidy = TRUE)
 }
 \arguments{
-\item{search}{Accepts any string. Defaults to NULL.}
+\item{search}{Accepts any string. Defaults to NULL. If NULL, returns a data frame with all members of both houses of parliament.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the 'about' column name to 'mnis_id', and removes the URL to preserve only the numerical ID. Defaults to TRUE.}
 }
 \description{
 Search for an MP or Lord by name and constituency
