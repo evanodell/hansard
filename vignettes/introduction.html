@@ -126,6 +126,31 @@ devtools::install_github(&quot;EvanOdell/hansard&quot;)</code></pre>
 <span class="co">#&gt; 2                              &lt;NA&gt;</span>
 <span class="co">#&gt; 3    https://twitter.com/AMMorrisMP</span>
 <span class="co">#&gt; 4                              &lt;NA&gt;</span></code></pre></div>
+<p>The same function, without the use of the tidy parameter, illustrating the differences in the variable names and the presentation of information in the first column:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(hansard)
+<span class="kw">members_search</span>(<span class="st">&quot;abbot&quot;</span>, <span class="dt">tidy =</span> <span class="ot">FALSE</span>)
+<span class="co">#&gt; Connecting to API</span>
+<span class="co">#&gt; Retrieving page 1 of 1</span>
+<span class="co">#&gt;                                   _about                          homePage additionalName._value</span>
+<span class="co">#&gt; 1  http://data.parliament.uk/members/172     http://www.dianeabbott.org.uk                 Julie</span>
+<span class="co">#&gt; 2 http://data.parliament.uk/members/1651                              &lt;NA&gt;             Granville</span>
+<span class="co">#&gt; 3 http://data.parliament.uk/members/4249 http://www.annemariemorris.co.uk/                  &lt;NA&gt;</span>
+<span class="co">#&gt; 4 http://data.parliament.uk/members/3827       http://www.judiciary.gov.uk                Edmond</span>
+<span class="co">#&gt;                          constituency._about         constituency.label._value familyName._value                fullName._value</span>
+<span class="co">#&gt; 1 http://data.parliament.uk/resources/146966 Hackney North and Stoke Newington            Abbott                Ms Diane Abbott</span>
+<span class="co">#&gt; 2                                       &lt;NA&gt;                              &lt;NA&gt;           Hodgson Lord Hodgson of Astley Abbotts</span>
+<span class="co">#&gt; 3 http://data.parliament.uk/resources/147092                      Newton Abbot            Morris              Anne Marie Morris</span>
+<span class="co">#&gt; 4                                       &lt;NA&gt;                              &lt;NA&gt;         Neuberger   Lord Neuberger of Abbotsbury</span>
+<span class="co">#&gt;   gender._value givenName._value                                             label._value party._value</span>
+<span class="co">#&gt; 1        Female            Diane                Biography information for Ms Diane Abbott       Labour</span>
+<span class="co">#&gt; 2          Male            Robin Biography information for Lord Hodgson of Astley Abbotts         &lt;NA&gt;</span>
+<span class="co">#&gt; 3        Female       Anne Marie              Biography information for Anne Marie Morris Conservative</span>
+<span class="co">#&gt; 4          Male            David   Biography information for Lord Neuberger of Abbotsbury         &lt;NA&gt;</span>
+<span class="co">#&gt;                      twitter._value</span>
+<span class="co">#&gt; 1 https://twitter.com/HackneyAbbott</span>
+<span class="co">#&gt; 2                              &lt;NA&gt;</span>
+<span class="co">#&gt; 3    https://twitter.com/AMMorrisMP</span>
+<span class="co">#&gt; 4                              &lt;NA&gt;</span></code></pre></div>
 <p>The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the related <a href="https://cran.r-project.org/package=mnis"><code>mnis</code></a> package to retrives data from the Members’ Names Information Service.</p>
 </div>
 <div id="the-commons_divisions-and-mp_vote_record-functions" class="section level3">

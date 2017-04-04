@@ -24,6 +24,32 @@
 #  #> 3    https://twitter.com/AMMorrisMP
 #  #> 4                              <NA>
 
+## ----eval=FALSE----------------------------------------------------------
+#  library(hansard)
+#  members_search("abbot", tidy = FALSE)
+#  #> Connecting to API
+#  #> Retrieving page 1 of 1
+#  #>                                   _about                          homePage additionalName._value
+#  #> 1  http://data.parliament.uk/members/172     http://www.dianeabbott.org.uk                 Julie
+#  #> 2 http://data.parliament.uk/members/1651                              <NA>             Granville
+#  #> 3 http://data.parliament.uk/members/4249 http://www.annemariemorris.co.uk/                  <NA>
+#  #> 4 http://data.parliament.uk/members/3827       http://www.judiciary.gov.uk                Edmond
+#  #>                          constituency._about         constituency.label._value familyName._value                fullName._value
+#  #> 1 http://data.parliament.uk/resources/146966 Hackney North and Stoke Newington            Abbott                Ms Diane Abbott
+#  #> 2                                       <NA>                              <NA>           Hodgson Lord Hodgson of Astley Abbotts
+#  #> 3 http://data.parliament.uk/resources/147092                      Newton Abbot            Morris              Anne Marie Morris
+#  #> 4                                       <NA>                              <NA>         Neuberger   Lord Neuberger of Abbotsbury
+#  #>   gender._value givenName._value                                             label._value party._value
+#  #> 1        Female            Diane                Biography information for Ms Diane Abbott       Labour
+#  #> 2          Male            Robin Biography information for Lord Hodgson of Astley Abbotts         <NA>
+#  #> 3        Female       Anne Marie              Biography information for Anne Marie Morris Conservative
+#  #> 4          Male            David   Biography information for Lord Neuberger of Abbotsbury         <NA>
+#  #>                      twitter._value
+#  #> 1 https://twitter.com/HackneyAbbott
+#  #> 2                              <NA>
+#  #> 3    https://twitter.com/AMMorrisMP
+#  #> 4                              <NA>
+
 ## ----eval = FALSE--------------------------------------------------------
 #  x <- mp_vote_record(172, "aye")
 #  #> Retrieving page 1 of 4
