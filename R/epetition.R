@@ -33,7 +33,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
         
         petition <- jsonlite::fromJSON(paste0(baseurl, ID, by_constituency, ".json?", extra_args), flatten = TRUE)
         
-        df <- as.data.frame(petition$result$primaryTopic)
+        df <- tibble::as_tibble(petition$result$primaryTopic)
         
     } else {
         

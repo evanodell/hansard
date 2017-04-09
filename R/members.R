@@ -47,7 +47,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
         
     } else {
         
-        df <- as.data.frame(members$result$primaryTopic)
+        df <- tibble::as_tibble(members$result$primaryTopic)
         
     }
     

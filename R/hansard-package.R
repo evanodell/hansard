@@ -69,4 +69,5 @@
 #' @import httr
 #' @import jsonlite
 #' @import dplyr
+#' @import tibble
 NULL

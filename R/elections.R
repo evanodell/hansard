@@ -26,7 +26,7 @@ elections <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
         
         elect <- jsonlite::fromJSON(paste0(baseurl, ID, extra_args), flatten = TRUE)
         
-        df <- as.data.frame(elect$result$primaryTopic)
+        df <- tibble::as_tibble(elect$result$primaryTopic)
         
     } else {
         
@@ -38,7 +38,7 @@ elections <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
         
         elect <- jsonlite::fromJSON(paste0(baseurl, ID, extra_args), flatten = TRUE)
         
-        df <- as.data.frame(elect$result$items)
+        df <- tibble::as_tibble(elect$result$items)
         
     }
     

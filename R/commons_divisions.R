@@ -70,10 +70,10 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
             df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
             df$date <- df$date$`_value`
             
-            df <- as.data.frame(df)
+            df <- tibble::as_tibble(df)
             
         } else {
-            df <- as.data.frame(divis$result$primaryTopic$vote)
+            df <- tibble::as_tibble(divis$result$primaryTopic$vote)
             
         }
         

@@ -32,7 +32,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
     
     if (is.null(session_id) == FALSE) {
         
-        df <- as.data.frame(attend$result$primaryTopic)
+        df <- tibble::as_tibble(attend$result$primaryTopic)
         
     } else {
         
