@@ -17,13 +17,13 @@ tv_channels(tidy = TRUE)
 \arguments{
 \item{legislature}{Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.}
 
-\item{start_date}{The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
 }

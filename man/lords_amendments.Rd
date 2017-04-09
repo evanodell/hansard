@@ -10,16 +10,16 @@ lords_amendments(decision = NULL, start_date = "1900-01-01",
 \arguments{
 \item{decision}{The decision on the amendements. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'.}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Imports data on House of Lords Amendments. Returns a data frame with all available House of Lords Amendments. Defaults to TRUE.
+Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords Amendments. Defaults to TRUE.
 }
 \examples{
 \dontrun{

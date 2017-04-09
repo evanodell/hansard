@@ -11,10 +11,10 @@ commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE)
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Returns a data frames with the dates of House of Commons divisions.
+Returns a tibble with the dates of House of Commons divisions.
 }
 \examples{
 \dontrun{

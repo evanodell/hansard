@@ -12,13 +12,13 @@ papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
 
 \item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. Defaults to NULL.}
 
-\item{start_date}{The earliest paper laying date to include in the data frame. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest paper laying date to include in the tibble. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest paper laying date to include in the data frame. Defaults to current system date.}
+\item{end_date}{The latest paper laying date to include in the tibble. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on Papers Laid

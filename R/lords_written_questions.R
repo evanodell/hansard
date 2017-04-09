@@ -2,12 +2,12 @@
 #' lords_written_questions
 #'
 #' Imports data on House of Lords written questions
-#' @param peer_id Requests a member ID and returns a data frame with all written questions asked by that member.
+#' @param peer_id Requests a member ID and returns a tibble with all written questions asked by that member.
 #' @param answering_department Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.
-#' @param start_date The earliest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame, if calling all divisions, using the date the question was tabled. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords House of Lords Written Questions
 #' @export
 #' @examples \dontrun{

@@ -1,13 +1,13 @@
 
 #' commons_answered_questions
 #'
-#' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a data frame.
-#' @param answering_department Returns a data frame with all answered questions in the House of Commons from the given department. Defaults to NULL.
-#' @param answered_by Returns a data frame with all answered questions in the House of Commons by the given MP. Defaults to NULL.
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.
+#' @param answering_department Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to NULL.
+#' @param answered_by Returns a tibble with all answered questions in the House of Commons by the given MP. Defaults to NULL.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords bills
 #' @export
 #' @examples \dontrun{

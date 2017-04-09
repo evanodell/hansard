@@ -1,13 +1,13 @@
 
 #' mp_vote_record
 #'
-#' Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
+#' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
 #' @param mp_id The ID number of a member of the House of Commons.
 #' @param lobby Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{

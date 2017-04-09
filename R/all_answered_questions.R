@@ -2,11 +2,11 @@
 #' all_answered_questions
 #'
 #' Imports data on answered parliamentary questions
-#' @param mp_id Accepts a member ID, and returns a data frame with all available questions asked by that member. If NULL, returns  a data frame with all available answered questions.
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns  a tibble with all available answered questions.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords Answered Questions
 #' @export
 #' @examples \dontrun{

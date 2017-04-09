@@ -1,12 +1,12 @@
 
 #' sessions_info
 #'
-#' Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the data frame between the two given dates.
+#' Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
 #' @param days If TRUE, returns data for all available days. If FALSE, returns data on each parliamentary session. Defaults to FALSE.
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords Parliamentary Sessions
 #' @export
 #' @examples \dontrun{

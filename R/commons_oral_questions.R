@@ -4,10 +4,10 @@
 #' Imports data on House of Commons oral questions
 #' @param mp_id The ID of a given MP. Defaults to NULL.
 #' @param answering_department The department that answers a question
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 
 
 

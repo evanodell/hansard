@@ -1,13 +1,13 @@
 
 #' mp_questions
 #'
-#' Accepts an ID number for a member of the House of Commons, and returns a data frame of of all their oral and written questions.
+#' Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
 #' @param mp_id The ID number of a member of the House of Commons.
 #' @param question_type Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.
-#' @param start_date The earliest date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords questions
 #' @export
 #' @examples \dontrun{

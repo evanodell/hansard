@@ -12,16 +12,16 @@ mp_vote_record(mp_id = NULL, lobby = "all", start_date = "1900-01-01",
 
 \item{lobby}{Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Accepts an ID number for a member of the House of Commons, and returns a data frame of their votes.
+Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
 }
 \examples{
 \dontrun{

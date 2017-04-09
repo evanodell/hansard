@@ -2,10 +2,10 @@
 #' commons_oral_question_times
 #'
 #' Imports data on House of Commons oral question times
-#' @param session Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a data frame of all oral question times from that session
-#' @param question_id Accepts a question time ID, and returns a data frame of that question time.
+#' @param session Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a tibble of all oral question times from that session
+#' @param question_id Accepts a question time ID, and returns a tibble of that question time.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords Oral Questions Time
 #' @export
 #' @examples \dontrun{

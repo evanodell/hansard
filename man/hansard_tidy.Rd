@@ -7,10 +7,10 @@
 hansard_tidy(df)
 }
 \arguments{
-\item{df}{The data frame to tidy}
+\item{df}{The tibble to tidy}
 }
 \value{
-A tidied data frame
+A tidied tibble
 }
 \description{
 hansard_tidy

@@ -8,13 +8,13 @@ commons_oral_question_times(session = NULL, question_id = NULL,
   extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{session}{Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a data frame of all oral question times from that session}
+\item{session}{Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a tibble of all oral question times from that session}
 
-\item{question_id}{Accepts a question time ID, and returns a data frame of that question time.}
+\item{question_id}{Accepts a question time ID, and returns a tibble of that question time.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons oral question times

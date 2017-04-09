@@ -10,16 +10,16 @@ sessions_info(days = FALSE, start_date = "1900-01-01",
 \arguments{
 \item{days}{If TRUE, returns data for all available days. If FALSE, returns data on each parliamentary session. Defaults to FALSE.}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the data frame between the two given dates.
+Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
 }
 \examples{
 \dontrun{

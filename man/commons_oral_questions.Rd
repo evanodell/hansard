@@ -13,13 +13,13 @@ commons_oral_questions(mp_id = NULL, answering_department = NULL,
 
 \item{answering_department}{The department that answers a question}
 
-\item{start_date}{The earliest date to include in the data frame. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on House of Commons oral questions

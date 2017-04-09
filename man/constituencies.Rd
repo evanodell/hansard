@@ -11,10 +11,10 @@ constituencies(current = TRUE, extra_args = NULL, tidy = TRUE)
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Imports data on House of Commons constituencies, returning a data frame of all current and former Westminster constituencies.
+Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.
 }
 \examples{
 \dontrun{

@@ -4,11 +4,11 @@
 #' Imports data on early day motions
 #' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.
 #' @param session Accepts a parliamentary session, in yyyy/yy format. Defaults to NULL.
-#' @param start_date The earliest date to include in the data frame, if calling all early day motions. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the data frame, if calling all early day motions. Defaults to current system date.
-#' @param signatures The minimum number of signatures required for inclusion in the data frame. Defaults to 1.
+#' @param start_date The earliest date to include in the tibble, if calling all early day motions. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble, if calling all early day motions. Defaults to current system date.
+#' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords EDM
 #' @export
 #' @examples \dontrun{

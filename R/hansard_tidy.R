@@ -3,8 +3,8 @@
 
 #' hansard_tidy
 #'
-#' @param df The data frame to tidy
-#' @return A tidied data frame
+#' @param df The tibble to tidy
+#' @return A tidied tibble
 
 
 hansard_tidy <- function(df) {

@@ -4,10 +4,10 @@
 #' Imports data on Papers Laid
 #' @param withdrawn If TRUE, only returns withdrawn papers. Defaults to FALSE.
 #' @param house The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. Defaults to NULL.
-#' @param start_date The earliest paper laying date to include in the data frame. Defaults to '1900-01-01'.
-#' @param end_date The latest paper laying date to include in the data frame. Defaults to current system date.
+#' @param start_date The earliest paper laying date to include in the tibble. Defaults to '1900-01-01'.
+#' @param end_date The latest paper laying date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords Papers Laid
 #' @export
 #' @examples \dontrun{

@@ -6,7 +6,7 @@
 #' @param subtopic The subtopic of the parliamentary briefing.
 #' @param type The type of research briefing.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @keywords  Parliamentary Research Briefings
 #' @seealso research_topics
 #' @export

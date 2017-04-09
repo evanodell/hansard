@@ -13,15 +13,15 @@ early_day_motions(edm_id = NULL, session = NULL,
 
 \item{session}{Accepts a parliamentary session, in yyyy/yy format. Defaults to NULL.}
 
-\item{start_date}{The earliest date to include in the data frame, if calling all early day motions. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble, if calling all early day motions. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the data frame, if calling all early day motions. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble, if calling all early day motions. Defaults to current system date.}
 
-\item{signatures}{The minimum number of signatures required for inclusion in the data frame. Defaults to 1.}
+\item{signatures}{The minimum number of signatures required for inclusion in the tibble. Defaults to 1.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the data frame to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
 Imports data on early day motions
