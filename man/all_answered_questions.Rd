@@ -8,7 +8,7 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns  a tibble with all available answered questions.}
+\item{mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
@@ -19,7 +19,7 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Imports data on answered parliamentary questions
+Imports data on all answered parliamentary questions.
 }
 \examples{
 \dontrun{

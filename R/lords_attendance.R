@@ -47,6 +47,8 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         }
 
         df <- dplyr::bind_rows(pages)
+
+        df <- tibble::as_tibble(df)
     }
 
     if (nrow(df) == 0) {
@@ -56,7 +58,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
-
+          
             df
 
         } else {

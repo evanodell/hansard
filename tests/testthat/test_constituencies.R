@@ -7,7 +7,7 @@ test_that("constituencies return expected format", {
     ctx <- constituencies(current = TRUE)
     
     expect_length(ctx, 9)
-    expect_is(ctx, "data.frame")
+    expect_true(tibble::is_tibble(ctx))
     expect_equal(nrow(ctx), 650)
     
 })

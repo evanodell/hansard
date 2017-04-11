@@ -12,7 +12,7 @@
 
 <meta name="author" content="Evan Odell" />
 
-<meta name="date" content="2017-04-04" />
+<meta name="date" content="2017-04-10" />
 
 <title>Introduction to hansard</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Introduction to hansard</h1>
 <h4 class="author"><em>Evan Odell</em></h4>
-<h4 class="date"><em>2017-04-04</em></h4>
+<h4 class="date"><em>2017-04-10</em></h4>
 
 
 
@@ -162,20 +162,17 @@ devtools::install_github(&quot;EvanOdell/hansard&quot;)</code></pre>
 <span class="co">#&gt; Retrieving page 3 of 4</span>
 <span class="co">#&gt; Retrieving page 4 of 4</span>
 <span class="co">#&gt; head(x)</span>
-<span class="co">#&gt;                                       about                                                             title</span>
-<span class="co">#&gt; 1 http://data.parliament.uk/resources/713962              Bus Services Bill [Lords]: Report Stage New Clause 1</span>
-<span class="co">#&gt; 2 http://data.parliament.uk/resources/713963              Bus Services Bill [Lords]: Report Stage New Clause 2</span>
-<span class="co">#&gt; 3 http://data.parliament.uk/resources/714005               Bus Services Bill [Lords]: Report Stage Amendment 1</span>
-<span class="co">#&gt; 4 http://data.parliament.uk/resources/710264                      Reproductive Health (Access to Terminations)</span>
-<span class="co">#&gt; 5 http://data.parliament.uk/resources/708770 Children and Social Work Bill (Lords): Report Stage New Clause 14</span>
-<span class="co">#&gt; 6 http://data.parliament.uk/resources/708773  Children and Social Work Bill (Lords): Report Stage Amendment 12</span>
-<span class="co">#&gt;                 uin date_value date_datatype</span>
-<span class="co">#&gt; 1 CD:2017-03-27:255 2017-03-27      dateTime</span>
-<span class="co">#&gt; 2 CD:2017-03-27:256 2017-03-27      dateTime</span>
-<span class="co">#&gt; 3 CD:2017-03-27:257 2017-03-27      dateTime</span>
-<span class="co">#&gt; 4 CD:2017-03-13:243 2017-03-13      dateTime</span>
-<span class="co">#&gt; 5 CD:2017-03-07:240 2017-03-07      dateTime</span>
-<span class="co">#&gt; 6 CD:2017-03-07:241 2017-03-07      dateTime</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 × 5</span>
+<span class="co">#&gt;                                         about                                                   title               uin</span>
+<span class="co">#&gt;                                       &lt;chr&gt;                                                   &lt;chr&gt;             &lt;chr&gt;</span>
+<span class="co">#&gt; 1 http://data.parliament.uk/resources/714865 Pension Schemes Bill [Lords]: Report Stage New Clause 2 CD:2017-03-29:260</span>
+<span class="co">#&gt; 2 http://data.parliament.uk/resources/714866 Pension Schemes Bill [Lords]: Report Stage New Clause 1 CD:2017-03-29:259</span>
+<span class="co">#&gt; 3 http://data.parliament.uk/resources/714868  Pension Schemes Bill [Lords]: Report Stage Amendment 1 CD:2017-03-29:261</span>
+<span class="co">#&gt; 4 http://data.parliament.uk/resources/713962    Bus Services Bill [Lords]: Report Stage New Clause 1 CD:2017-03-27:255</span>
+<span class="co">#&gt; 5 http://data.parliament.uk/resources/713963    Bus Services Bill [Lords]: Report Stage New Clause 2 CD:2017-03-27:256</span>
+<span class="co">#&gt; 6 http://data.parliament.uk/resources/714005     Bus Services Bill [Lords]: Report Stage Amendment 1 CD:2017-03-27:257</span>
+<span class="co">#&gt; # ... with 2 more variables: date_value &lt;date&gt;, date_datatype &lt;fctr&gt;</span>
+<span class="op">&gt;</span><span class="st"> </span></code></pre></div>
 <p>The results of votes in the House of Lords can be retrieved with the <code>lords_divisions</code> function. The voting record of individual Lords can be retrieved using the <code>lords_vote_record</code> functions.</p>
 </div>
 <div id="the-research_briefings-function" class="section level3">

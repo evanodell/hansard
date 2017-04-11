@@ -55,6 +55,8 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
     df <- dplyr::bind_rows(pages)
 
+    df <- tibble::as_tibble(df)
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
@@ -101,6 +103,9 @@ bill_stage_types <- function(tidy = TRUE) {
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
+
+
+
 
             df
 

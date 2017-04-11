@@ -1,8 +1,8 @@
 
 #' all_answered_questions
 #'
-#' Imports data on answered parliamentary questions
-#' @param mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns  a tibble with all available answered questions.
+#' Imports data on all answered parliamentary questions.
+#' @param mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
@@ -59,7 +59,9 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
     }
 
     df <- dplyr::bind_rows(pages)
+
     df <- tibble::as_tibble(df)
+
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

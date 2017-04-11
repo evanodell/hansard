@@ -120,20 +120,17 @@ x <- mp_vote_record(172, "aye")
 #> Retrieving page 3 of 4
 #> Retrieving page 4 of 4
 #> head(x)
-#>                                       about                                                             title
-#> 1 http://data.parliament.uk/resources/713962              Bus Services Bill [Lords]: Report Stage New Clause 1
-#> 2 http://data.parliament.uk/resources/713963              Bus Services Bill [Lords]: Report Stage New Clause 2
-#> 3 http://data.parliament.uk/resources/714005               Bus Services Bill [Lords]: Report Stage Amendment 1
-#> 4 http://data.parliament.uk/resources/710264                      Reproductive Health (Access to Terminations)
-#> 5 http://data.parliament.uk/resources/708770 Children and Social Work Bill (Lords): Report Stage New Clause 14
-#> 6 http://data.parliament.uk/resources/708773  Children and Social Work Bill (Lords): Report Stage Amendment 12
-#>                 uin date_value date_datatype
-#> 1 CD:2017-03-27:255 2017-03-27      dateTime
-#> 2 CD:2017-03-27:256 2017-03-27      dateTime
-#> 3 CD:2017-03-27:257 2017-03-27      dateTime
-#> 4 CD:2017-03-13:243 2017-03-13      dateTime
-#> 5 CD:2017-03-07:240 2017-03-07      dateTime
-#> 6 CD:2017-03-07:241 2017-03-07      dateTime
+#> # A tibble: 6 × 5
+#>                                         about                                                   title               uin
+#>                                       <chr>                                                   <chr>             <chr>
+#> 1 http://data.parliament.uk/resources/714865 Pension Schemes Bill [Lords]: Report Stage New Clause 2 CD:2017-03-29:260
+#> 2 http://data.parliament.uk/resources/714866 Pension Schemes Bill [Lords]: Report Stage New Clause 1 CD:2017-03-29:259
+#> 3 http://data.parliament.uk/resources/714868  Pension Schemes Bill [Lords]: Report Stage Amendment 1 CD:2017-03-29:261
+#> 4 http://data.parliament.uk/resources/713962    Bus Services Bill [Lords]: Report Stage New Clause 1 CD:2017-03-27:255
+#> 5 http://data.parliament.uk/resources/713963    Bus Services Bill [Lords]: Report Stage New Clause 2 CD:2017-03-27:256
+#> 6 http://data.parliament.uk/resources/714005     Bus Services Bill [Lords]: Report Stage Amendment 1 CD:2017-03-27:257
+#> # ... with 2 more variables: date_value <date>, date_datatype <fctr>
+> 
 
 ```
 

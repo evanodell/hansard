@@ -1,5 +1,4 @@
 
-
 #' commons_divisions
 #'
 #' Imports data on House of Commons divisions.
@@ -18,7 +17,6 @@
 #' x <- commons_divisions(division_id = 694163, summary = FALSE)
 #'
 #' }
-
 commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
     tidy = TRUE) {
 
@@ -43,6 +41,8 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
         }
 
         df <- dplyr::bind_rows(pages)
+
+        df <- tibble::as_tibble(df)
 
 
     } else if (is.null(division_id) == FALSE) {
@@ -70,8 +70,6 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
             df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
             df$date <- df$date$`_value`
 
-            df <- tibble::as_tibble(df)
-
         } else {
             df <- tibble::as_tibble(divis$result$primaryTopic$vote)
 
@@ -87,6 +85,8 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
             df <- hansard_tidy(df)
 
+
+
             df
 
         } else {
@@ -98,7 +98,6 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
     }
 
 }
-
 
 #' commons_division_date
 #'
@@ -112,7 +111,6 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 #' x <- commons_division_date('2016-10-12')
 #' }
 #'
-
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE) {
 
     if (is.null(date) == TRUE) {
@@ -138,6 +136,8 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE) {
         }
 
         df <- dplyr::bind_rows(pages)
+
+        df <- tibble::as_tibble(df)
 
         if (nrow(df) == 0) {
             message("The request did not return any data. Please check your search parameters.")

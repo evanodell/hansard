@@ -15,49 +15,49 @@
 
 
 elections <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
-    
+
     if (is.null(ID) == FALSE) {
-        
+
         ID <- paste0("/", ID, ".json?")
-        
+
         baseurl <- "http://lda.data.parliament.uk/elections"
-        
+
         message("Connecting to API")
-        
+
         elect <- jsonlite::fromJSON(paste0(baseurl, ID, extra_args), flatten = TRUE)
-        
+
         df <- tibble::as_tibble(elect$result$primaryTopic)
-        
+
     } else {
-        
+
         ID <- ".json?&_pageSize=500"
-        
+
         baseurl <- "http://lda.data.parliament.uk/elections"
-        
+
         message("Connecting to API")
-        
+
         elect <- jsonlite::fromJSON(paste0(baseurl, ID, extra_args), flatten = TRUE)
-        
+
         df <- tibble::as_tibble(elect$result$items)
-        
+
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard_tidy(df)
             
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
-    
+
 }
