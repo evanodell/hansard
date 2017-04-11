@@ -1,4 +1,11 @@
 
+# hansard 0.4.2
+
+## tibbling
+
+`hansard` now uses tibbles instead of data frames as the data class returned from API calls.
+
+
 # hansard 0.4.1
 
 Fixes discrepency between output displayed and vignette and actual package output (#7, @pssguy)
@@ -43,7 +50,7 @@ Changes have been made to most functions, including:
 `lords_attendance`: Removed console input, simplified formals.
 
 `lord_vote_record`: Removed console input, simplified formals.
- 
+
 `lords_divisions`: Removed console input, simplified formals.
 
 `members`: Added additional `commons_members`, `commons_interests`, `lords_members` and `lords_interests` functions.
@@ -81,7 +88,7 @@ Fixed spelling of amendments, so that `lords_ammendments` is now `lords_amendmen
 
 ## hansard_basic()
 
-As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API. 
+As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API.
 
 # hansard 0.3.2
 
@@ -102,7 +109,7 @@ In response to a request, I've added three new functions that allow you to reque
 
 `mp_edms`
 
-The option to use console input has been preserved in `commons_divisions`, `lords_divisions`, `commons_written_questions` and `commons_oral_questions`, along with other features not available in the new functions. 
+The option to use console input has been preserved in `commons_divisions`, `lords_divisions`, `commons_written_questions` and `commons_oral_questions`, along with other features not available in the new functions.
 
 ## Bug fixes
 

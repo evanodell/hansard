@@ -50,12 +50,8 @@ election_results <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
 
         } else {
 
-
-
             df
 
         }
-
     }
-
 }
