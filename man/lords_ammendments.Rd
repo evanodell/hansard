@@ -6,15 +6,6 @@
 \usage{
 lords_ammendments(all = TRUE)
 }
-\arguments{
-\item{all}{}
-}
-\value{
-
-}
 \description{
 Defunct parameters for hansard package
-}
-\examples{
-
 }

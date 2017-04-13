@@ -70,6 +70,8 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
             df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
             df$date <- df$date$`_value`
 
+            df <- tibble::as_tibble(df)
+
         } else {
             df <- tibble::as_tibble(divis$result$primaryTopic$vote)
 
@@ -84,8 +86,6 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
-
-
 
             df
 

@@ -148,9 +148,13 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", start_date = "1900-01-01
 
             df <- hansard_tidy(df)
 
+            df <- tibble::as_tibble(df)
+
             df
 
         } else {
+
+            df <- tibble::as_tibble(df)
 
             df
 

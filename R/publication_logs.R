@@ -32,7 +32,7 @@ publication_logs <- function(ID = NULL, start_date = "1900-01-01", end_date = Sy
 
     if (is.null(ID) == FALSE) {
 
-        df <- tibble::as_tibble(logs$result$primaryTopic)
+        df <- tibble::as_tibble(as.data.frame(logs$result$primaryTopic))
 
     } else {
 
@@ -63,7 +63,7 @@ publication_logs <- function(ID = NULL, start_date = "1900-01-01", end_date = Sy
             df
 
         } else {
-            
+
             df
 
         }

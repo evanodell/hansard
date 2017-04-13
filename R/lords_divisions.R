@@ -27,7 +27,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
     dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
 
-    if (is.null(division_id) == TRUE) {
+    if (missing(division_id)) {
 
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions"
 
@@ -47,15 +47,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         df <- dplyr::bind_rows(pages)
 
-        df <- tibble::as_tibble(df)
-
-        if (nrow(df) == 0) {
-            message("The request did not return any data. Please check your search parameters.")
-        } else {
-            df
-        }
-
-    } else if (is.null(division_id) == FALSE) {
+    } else  {
 
         division_id <- as.character(division_id)
 
@@ -84,7 +76,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         } else {
 
-            df <- tibble::as_tibble(divis$result$primaryTopic$vote)
+            df <- divis$result$primaryTopic$vote
 
         }
 
@@ -97,10 +89,14 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
-            
+
+            df <- tibble::as_tibble(df)
+
             df
 
         } else {
+
+            df <- tibble::as_tibble(df)
 
             df
 

@@ -4,33 +4,30 @@ context("research_briefings")
 
 test_that("research_briefings return expected format", {
     skip_on_cran()
-    
+
     rtl <- research_topics_list()
     expect_is(rtl, "list")
     expect_length(rtl, 20)
-    
+
     rsl <- research_subtopics_list()
     expect_is(rsl, "list")
     expect_length(rsl, 20)
-    
+
     rtyl <- research_types_list()
     expect_is(rtyl, "list")
     expect_length(rtyl, 6)
-    
+
     rbdf <- research_briefings(subtopic = "Falkland Islands")
-    expect_is(rbdf, "list")
     expect_length(rbdf, 14)
-    expect_type(rbdf, "list")
-    
+    expect_true(tibble::is_tibble(rbdf))
+
     rbtsb <- research_briefings(topic = "Defence", subtopic = "Falkland Islands")
-    expect_is(rbtsb, "list")
     expect_length(rbtsb, 14)
-    expect_type(rbtsb, "list")
-    
+    expect_true(tibble::is_tibble(rbtsb))
+
     rbnu <- research_briefings()
-    expect_is(rbnu, "list")
     expect_length(rbnu, 14)
-    expect_type(rbnu, "list")
-    
-    
+    expect_true(tibble::is_tibble(rbnu))
+
+
 })

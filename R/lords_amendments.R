@@ -1,7 +1,7 @@
 #' lords_amendments
 #'
 #' Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords Amendments. Defaults to TRUE.
-#' @param decision The decision on the amendements. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'.
+#' @param decision The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to NULL.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
@@ -11,7 +11,6 @@
 #' @examples \dontrun{
 #' x <- lords_amendments()
 #' }
-
 
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
@@ -50,7 +49,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
-  
+
             df
 
         } else {

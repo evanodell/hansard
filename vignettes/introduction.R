@@ -57,7 +57,7 @@
 #  #> Retrieving page 3 of 4
 #  #> Retrieving page 4 of 4
 #  #> head(x)
-#  #> # A tibble: 6 Ã— 5
+#  #> # A tibble: 6 × 5
 #  #>                                         about                                                   title               uin
 #  #>                                       <chr>                                                   <chr>             <chr>
 #  #> 1 http://data.parliament.uk/resources/714865 Pension Schemes Bill [Lords]: Report Stage New Clause 2 CD:2017-03-29:260

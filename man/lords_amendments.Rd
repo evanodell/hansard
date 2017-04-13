@@ -8,7 +8,7 @@ lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{decision}{The decision on the amendements. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'.}
+\item{decision}{The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 

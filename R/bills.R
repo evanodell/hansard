@@ -94,7 +94,7 @@ bill_stage_types <- function(tidy = TRUE) {
 
     stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500", flatten = TRUE)
 
-    df <- stages$result$items
+    df <- tibble::as_tibble(stages$result$items)
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
@@ -103,9 +103,6 @@ bill_stage_types <- function(tidy = TRUE) {
         if (tidy == TRUE) {
 
             df <- hansard_tidy(df)
-
-
-
 
             df
 
