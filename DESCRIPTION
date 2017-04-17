@@ -1,7 +1,7 @@
 Package: hansard
 Type: Package
 Title: Provides Easy Downloading Capabilities for the UK Parliament API
-Version: 0.4.1
+Version: 0.4.2
 Date: 2017-03-29
 Authors@R: person("Evan Odell", email="evanodell91@gmail.com", role=c("aut", "cre"))
 Author: Evan Odell [aut, cre]
