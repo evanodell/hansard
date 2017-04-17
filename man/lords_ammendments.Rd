@@ -4,7 +4,7 @@
 \alias{lords_ammendments}
 \title{Defunct parameters for hansard package}
 \usage{
-lords_ammendments(all = TRUE)
+lords_ammendments()
 }
 \description{
 Defunct parameters for hansard package
