@@ -2,15 +2,15 @@ navbar:
   title: ~
   type: default
   left:
-  - text: Home
+  - text: "Home"
     href: http://evanodell.com
-  - text: Packages
+  - text: "Packages"
     href: http://evanodell.com/packages
-  - text: Reference
+  - text: "Reference"
     href: reference/index.html
-  - text: Articles
+  - text: "Articles"
     href: articles/index.html
-  - text: News
+  - text: "News"
     href: news/index.html
   right:
   - icon: fa-github fa-lg
