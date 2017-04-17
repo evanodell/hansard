@@ -1,0 +1,13 @@
+template:
+  params:
+    bootswatch: cerulean
+    ganalytics: UA-90706059-1
+
+reference:
+
+navbar:
+  left:
+  - text: Intro
+    href: articles/pkgdown.html
+  - text: Reference
+    href: reference/index.html
