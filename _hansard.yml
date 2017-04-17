@@ -1,0 +1,23 @@
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: Home
+    href: http://evanodell.com
+  - text: Packages
+    href: http://evanodell.com/packages
+  - text: Reference
+    href: reference/index.html
+  - text: Articles
+    href: articles/index.html
+  - text: News
+    href: news/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/EvanOdell/hansard
+
+template:
+  params:
+    bootswatch: cerulean
+    ganalytics: UA-90706059-1
+
