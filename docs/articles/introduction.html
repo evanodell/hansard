@@ -25,7 +25,7 @@
 </head>
 <body>
     <div class="container template-vignette">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -33,15 +33,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <a class="navbar-brand" href="../index.html">My Website</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
   <a href="http://evanodell.com">Home</a>
-</li>
-<li>
-  <a href="http://evanodell.com/packages">Packages</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -51,6 +48,25 @@
 </li>
 <li>
   <a href="../news/index.html">News</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Packages
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="http://evanodell.com/packages">Package Home</a>
+    </li>
+    <li>
+      <a href="http://evanodell.com/hansard">hansard</a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="http://evanodell.com/mnis">mnis</a>
+    </li>
+  </ul>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -75,7 +91,7 @@
       <h1>Introduction to hansard</h1>
                         <h4 class="author">Evan Odell</h4>
             
-            <h4 class="date">2017-04-17</h4>
+            <h4 class="date">2017-04-18</h4>
           </div>
 
     
@@ -186,7 +202,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <span class="co">#&gt; 5 http://data.parliament.uk/resources/713963    Bus Services Bill [Lords]: Report Stage New Clause 2 CD:2017-03-27:256</span>
 <span class="co">#&gt; 6 http://data.parliament.uk/resources/714005     Bus Services Bill [Lords]: Report Stage Amendment 1 CD:2017-03-27:257</span>
 <span class="co">#&gt; # ... with 2 more variables: date_value &lt;date&gt;, date_datatype &lt;fctr&gt;</span>
-<span class="op">&gt;</span><span class="st"> </span></code></pre></div>
+&gt;<span class="st"> </span></code></pre></div>
 <p>The results of votes in the House of Lords can be retrieved with the <code>lords_divisions</code> function. The voting record of individual Lords can be retrieved using the <code>lords_vote_record</code> functions.</p>
 </div>
 <div id="the-research_briefings-function" class="section level3">
