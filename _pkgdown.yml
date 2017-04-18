@@ -3,11 +3,8 @@ template:
    bootswatch: yeti
    ganalytics: UA-90706059-1
 
-
-name: "my-website"
+name:
 navbar:
-  title: "My Website"
-  type: inverse
   left:
     - text: "Home"
       href: http://evanodell.com
@@ -20,8 +17,8 @@ navbar:
     - text: "Packages"
       menu:
         - text: "Packages Home"
-        - text: "---------"
           href: http://evanodell.com/packages
+        - text: "---------"
         - text: "hansard"
           href: http://evanodell.com/hansard
         - text: "mnis"

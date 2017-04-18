@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>mp_edms — mp_edms • hansard</title>
+<title>Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP. — mp_edms • hansard</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -58,7 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">My Website</a>
+      <a class="navbar-brand" href="../index.html">hansard</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -82,12 +82,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="http://evanodell.com/packages">Package Home</a>
+      <a href="http://evanodell.com/packages">Packages Home</a>
     </li>
+    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/hansard">hansard</a>
     </li>
-    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/mnis">mnis</a>
     </li>
@@ -113,11 +113,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>mp_edms</h1>
+    <h1>Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.</h1>
     </div>
 
     
-    <p>Imports data on early day motions</p>
+    <p>Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.</p>
     
 
     <pre class="usage"><span class='fu'>mp_edms</span>(<span class='kw'>mp_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>primary_sponsor</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sponsor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -128,7 +128,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mp_id</th>
-      <td><p>The ID number of an MP. Required parameter.</p></td>
+      <td><p>The ID number of an MP. Required parameter, defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>primary_sponsor</th>
@@ -144,7 +144,7 @@
     </tr>
     <tr>
       <th>full_data</th>
-      <td><p>Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process.</p></td>
+      <td><p>If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other <code>hansard</code> functions.</p></td>
     </tr>
     <tr>
       <th>extra_args</th>
@@ -155,6 +155,10 @@
       <td><p>Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -169,7 +173,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

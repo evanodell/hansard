@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>mp_vote_record — mp_vote_record • hansard</title>
+<title>Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes. — mp_vote_record • hansard</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -58,7 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">My Website</a>
+      <a class="navbar-brand" href="../index.html">hansard</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -82,12 +82,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="http://evanodell.com/packages">Package Home</a>
+      <a href="http://evanodell.com/packages">Packages Home</a>
     </li>
+    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/hansard">hansard</a>
     </li>
-    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/mnis">mnis</a>
     </li>
@@ -113,15 +113,16 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>mp_vote_record</h1>
+    <h1>Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.</h1>
     </div>
 
     
     <p>Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.</p>
     
 
-    <pre class="usage"><span class='fu'>mp_vote_record</span>(<span class='kw'>mp_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lobby</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>,
-  <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>mp_vote_record</span>(<span class='kw'>mp_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lobby</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +134,10 @@
     <tr>
       <th>lobby</th>
       <td><p>Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.</p></td>
+    </tr>
+    <tr>
+      <th>session</th>
+      <td><p>The parliamentary session to return votes from, in 'YYYY/YY' format. Defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>start_date</th>
@@ -152,6 +157,10 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble with details on the voting record of the given MP.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
@@ -161,9 +170,7 @@
 
   <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>mp_vote_record</span>(<span class='fl'>172</span>, <span class='kw'>lobby</span><span class='kw'>=</span><span class='st'>'no'</span>)
 
-  <span class='co'># the extra_args parameter allows the inclusion of additional arguments or</span>
-  <span class='co'># queries that are not available through the function's parameters</span>
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>mp_vote_record</span>(<span class='fl'>172</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='st'>'&amp;session=2016/17'</span>)
+  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>mp_vote_record</span>(<span class='fl'>172</span>, <span class='kw'>session</span> <span class='kw'>=</span> <span class='st'>'2016/17'</span>)
 
 
 })</div></pre>
@@ -172,7 +179,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

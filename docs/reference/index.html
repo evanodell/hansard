@@ -50,7 +50,7 @@
   <body>
     <div class="container template-reference-index">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -58,7 +58,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">My Website</a>
+      <a class="navbar-brand" href="../index.html">hansard</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -82,12 +82,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="http://evanodell.com/packages">Package Home</a>
+      <a href="http://evanodell.com/packages">Packages Home</a>
     </li>
+    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/hansard">hansard</a>
     </li>
-    <li class="divider"></li>
     <li>
       <a href="http://evanodell.com/mnis">mnis</a>
     </li>
@@ -139,85 +139,85 @@
           <td>
             <p><code><a href="all_answered_questions.html">all_answered_questions</a></code> </p>
           </td>
-          <td><p>all_answered_questions</p></td>
+          <td><p>Imports data on all answered parliamentary questions.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="bills.html">bills</a></code> <code><a href="bills.html">bill_stage_types</a></code> </p>
           </td>
-          <td><p>bills</p></td>
+          <td><p>Imports data on House of Commons and House of Lords bills</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_answered_questions.html">commons_answered_questions</a></code> </p>
           </td>
-          <td><p>commons_answered_questions</p></td>
+          <td><p>Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_division_date.html">commons_division_date</a></code> </p>
           </td>
-          <td><p>commons_division_date</p></td>
+          <td><p>Returns a tibble with the dates of House of Commons divisions.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_divisions.html">commons_divisions</a></code> </p>
           </td>
-          <td><p>commons_divisions</p></td>
+          <td><p>Imports data on House of Commons divisions.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_oral_questions.html">commons_oral_questions</a></code> </p>
           </td>
-          <td><p>commons_oral_questions</p></td>
+          <td><p>Imports data on House of Commons oral questions</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_oral_question_times.html">commons_oral_question_times</a></code> </p>
           </td>
-          <td><p>commons_oral_question_times</p></td>
+          <td><p>Imports data on House of Commons oral question times</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_terms.html">commons_terms</a></code> </p>
           </td>
-          <td><p>commons_terms</p></td>
+          <td><p>Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="commons_written_questions.html">commons_written_questions</a></code> </p>
           </td>
-          <td><p>commons_written_questions</p></td>
+          <td><p>Imports data in a tibble on House of Commons written questions.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="constituencies.html">constituencies</a></code> </p>
           </td>
-          <td><p>constituencies</p></td>
+          <td><p>Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="early_day_motions.html">early_day_motions</a></code> </p>
           </td>
-          <td><p>early_day_motions</p></td>
+          <td><p>Imports data on early day motions</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="election_results.html">election_results</a></code> </p>
           </td>
-          <td><p>election_results</p></td>
+          <td><p>Imports data on general election and by-election results</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="elections.html">elections</a></code> </p>
           </td>
-          <td><p>elections</p></td>
+          <td><p>Imports data on elections</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="epetition.html">epetition</a></code> </p>
           </td>
-          <td><p>epetition</p></td>
+          <td><p>Imports data on Epetitions</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -241,7 +241,7 @@
           <td>
             <p><code><a href="lords_amendments.html">lords_amendments</a></code> </p>
           </td>
-          <td><p>lords_amendments</p></td>
+          <td><p>Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -253,67 +253,67 @@
           <td>
             <p><code><a href="lords_attendance.html">lords_attendance</a></code> </p>
           </td>
-          <td><p>lords_attendance</p></td>
+          <td><p>Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="lords_divisions.html">lords_divisions</a></code> </p>
           </td>
-          <td><p>lords_divisions</p></td>
+          <td><p>Imports data on House of Lords divisions</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="lords_written_questions.html">lords_written_questions</a></code> </p>
           </td>
-          <td><p>lords_written_questions</p></td>
+          <td><p>Imports data on House of Lords written questions</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="lord_vote_record.html">lord_vote_record</a></code> </p>
           </td>
-          <td><p>lord_vote_record</p></td>
+          <td><p>Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="members.html">members</a></code> <code><a href="members.html">commons_members</a></code> <code><a href="members.html">lords_members</a></code> <code><a href="members.html">lords_interests</a></code> </p>
           </td>
-          <td><p>members</p></td>
+          <td><p>Imports data on all current and former Members of Parliament including the Lords and the Commons</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="members_search.html">members_search</a></code> </p>
           </td>
-          <td><p>members_search</p></td>
+          <td><p>Search for an MP or Lord by name and constituency</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="mp_edms.html">mp_edms</a></code> </p>
           </td>
-          <td><p>mp_edms</p></td>
+          <td><p>Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="mp_questions.html">mp_questions</a></code> </p>
           </td>
-          <td><p>mp_questions</p></td>
+          <td><p>Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="mp_vote_record.html">mp_vote_record</a></code> </p>
           </td>
-          <td><p>mp_vote_record</p></td>
+          <td><p>Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="papers_laid.html">papers_laid</a></code> </p>
           </td>
-          <td><p>papers_laid</p></td>
+          <td><p>Imports data on papers laid before the House.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="publication_logs.html">publication_logs</a></code> </p>
           </td>
-          <td><p>publication_logs</p></td>
+          <td><p>Imports data on House of Commons and House of Lords publications.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -325,19 +325,19 @@
           <td>
             <p><code><a href="research_briefings.html">research_briefings</a></code> </p>
           </td>
-          <td><p>research_briefings</p></td>
+          <td><p>Imports data on  Parliamentary Research Briefings. To see a list of possible topics call <code>research_topics_list</code> or <code>research_subtopics_list</code> for both topics and subtopics. To see a list of briefing types, call <code>research_types_list</code>.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="sessions_info.html">sessions_info</a></code> </p>
           </td>
-          <td><p>sessions_info</p></td>
+          <td><p>Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if <code>days</code>==TRUE and the <code>end_date</code> and <code>start_date</code> parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="tv_programmes.html">tv_programmes</a></code> <code><a href="tv_programmes.html">tv_clips</a></code> <code><a href="tv_programmes.html">tv_channels</a></code> </p>
           </td>
-          <td><p>tv_programmes</p></td>
+          <td><p>Imports data on TV broadcasts. To import information on TV channel options,</p></td>
         </tr>
       </tbody>
       </table>
