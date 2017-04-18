@@ -2,7 +2,7 @@
 % Please edit documentation in R/elections.R
 \name{elections}
 \alias{elections}
-\title{elections}
+\title{Imports data on elections}
 \usage{
 elections(ID = NULL, extra_args = NULL, tidy = TRUE)
 }
@@ -12,6 +12,9 @@ elections(ID = NULL, extra_args = NULL, tidy = TRUE)
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on all elections from the 2010 general election onwards, subject to function parameters.
 }
 \description{
 Imports data on elections

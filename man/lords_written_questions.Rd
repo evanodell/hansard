@@ -2,16 +2,16 @@
 % Please edit documentation in R/lords_written_questions.R
 \name{lords_written_questions}
 \alias{lords_written_questions}
-\title{lords_written_questions}
+\title{Imports data on House of Lords written questions}
 \usage{
 lords_written_questions(peer_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE)
 }
 \arguments{
-\item{peer_id}{Requests a member ID and returns a tibble with all written questions asked by that member.}
+\item{peer_id}{Requests a member ID and returns a tibble with all written questions asked by that member. If NULL, peer_id is not included in the query to the API. Defaults to NULL.}
 
-\item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health.}
+\item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health. If NULL, answering_department is not included as a query parameter. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
 
@@ -20,6 +20,9 @@ lords_written_questions(peer_id = NULL, answering_department = NULL,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on written questions in the House of Lords.
 }
 \description{
 Imports data on House of Lords written questions

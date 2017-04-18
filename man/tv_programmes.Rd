@@ -4,7 +4,7 @@
 \alias{tv_programmes}
 \alias{tv_clips}
 \alias{tv_channels}
-\title{tv_programmes}
+\title{Imports data on TV broadcasts. To import information on TV channel options,}
 \usage{
 tv_programmes(legislature = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
@@ -26,6 +26,13 @@ tv_channels(tidy = TRUE)
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
+}
+\value{
+A tibble with details on TV broadcasts.
+
+A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+
+A tibble with details on the different broadcasting channels.
 }
 \description{
 Imports data on TV broadcasts. To import information on TV channel options,

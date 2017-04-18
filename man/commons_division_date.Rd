@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_divisions.R
 \name{commons_division_date}
 \alias{commons_division_date}
-\title{commons_division_date}
+\title{Returns a tibble with the dates of House of Commons divisions.}
 \usage{
 commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE)
 }
@@ -12,6 +12,9 @@ commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE)
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with the dates of divisions in the House of Commons.
 }
 \description{
 Returns a tibble with the dates of House of Commons divisions.

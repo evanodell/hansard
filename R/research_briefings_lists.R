@@ -5,6 +5,7 @@
 #'
 #' Prints or assigns to an object a list of Parliamentary Research Briefings topics.
 #' @rdname research_briefings_lists
+#' @return A list with the different research topics available.
 #' @export
 #' @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{
@@ -28,6 +29,7 @@ research_topics_list <- function() {
 #'
 #' Prints or assigns to an object a list of Parliamentary Research Briefings subtopics, grouped by topic.
 #' @rdname research_briefings_lists
+#' @return A list with the different research subtopics available.
 #' @export
 #' @keywords Parliamentary Research Briefings
 #' @examples  \dontrun{
@@ -69,6 +71,7 @@ research_subtopics_list <- function() {
 #'
 #' Prints or assigns to an object a list of types of Parliamentary Research Briefings.
 #' @rdname research_briefings_lists
+#' @return A list with the different types of research briefings.
 #' @export
 #' @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{

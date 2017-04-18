@@ -1,15 +1,15 @@
 
 
-#' mp_edms
-#'
-#' Imports data on early day motions
-#' @param mp_id The ID number of an MP. Required parameter.
+
+#' Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.
+#' @param mp_id The ID number of an MP. Required parameter, defaults to NULL.
 #' @param primary_sponsor Returns a tibble of all early day motions where the given member is the primary sponsor. Defaults to TRUE.
 #' @param sponsor Returns a tibble of early day motions where the given member is the primary sponsor or a sponsor. Defaults to FALSE.
 #' @param signatory Returns a tibble of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the tibble return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.
-#' @param full_data Requests all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process.
+#' @param full_data If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @return A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.
 #' @keywords Early Day Motion
 #' @export
 #' @examples \dontrun{
@@ -20,8 +20,7 @@
 #' }
 
 
-mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL,
-    tidy = TRUE) {
+mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE) {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
@@ -51,8 +50,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500&_page=", i, extra_args),
-            flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
@@ -83,24 +81,26 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
             search <- jsonlite::fromJSON(paste0(baseurl, i, ".json?"), flatten = TRUE)
 
-            search_df <- data.frame(about = search$result$primaryTopic$`_about`, creator_label = search$result$primaryTopic$creator$`_about`,
-                date = search$result$primaryTopic$date$`_value`,
-                dateTabled = search$result$primaryTopic$dateTabled$`_value`,
-                 edmNumber = search$result$primaryTopic$edmNumber$`_value`,
-                edmStatus = search$result$primaryTopic$edmStatus$`_value`,
-                externalLocation = search$result$primaryTopic$externalLocation,
-                humanIndexable = search$result$primaryTopic$humanIndexable$`_value`,
-                identifier = search$result$primaryTopic$identifier$`_value`,
-                isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf,
-                legislature = search$result$primaryTopic$legislature$prefLabel._value,
-                motionText = search$result$primaryTopic$motionText,
-                numberOfSignatures = search$result$primaryTopic$numberOfSignatures,
-                primarySponsor = search$result$primaryTopic$primarySponsor$`_about`, primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted,
-                published = search$result$primaryTopic$published$`_value`,
-                publisher = search$result$primaryTopic$publisher$prefLabel$`_value`,
-                session = search$result$primaryTopic$session,
-                sessionNumber = search$result$primaryTopic$sessionNumber$`_value`,
-                title = search$result$primaryTopic$title)
+            search_df <- data.frame(about = search$result$primaryTopic$`_about`,
+                                    creator_label = search$result$primaryTopic$creator$`_about`,
+                                    date = search$result$primaryTopic$date$`_value`,
+                                    dateTabled = search$result$primaryTopic$dateTabled$`_value`,
+                                    edmNumber = search$result$primaryTopic$edmNumber$`_value`,
+                                    edmStatus = search$result$primaryTopic$edmStatus$`_value`,
+                                    externalLocation = search$result$primaryTopic$externalLocation,
+                                    humanIndexable = search$result$primaryTopic$humanIndexable$`_value`,
+                                    identifier = search$result$primaryTopic$identifier$`_value`,
+                                    isPrimaryTopicOf = search$result$primaryTopic$isPrimaryTopicOf,
+                                    legislature = search$result$primaryTopic$legislature$prefLabel._value,
+                                    motionText = search$result$primaryTopic$motionText,
+                                    numberOfSignatures = search$result$primaryTopic$numberOfSignatures,
+                                    primarySponsor = search$result$primaryTopic$primarySponsor$`_about`,
+                                    primarySponsorPrinted = search$result$primaryTopic$primarySponsorPrinted,
+                                    published = search$result$primaryTopic$published$`_value`,
+                                    publisher = search$result$primaryTopic$publisher$prefLabel$`_value`,
+                                    session = search$result$primaryTopic$session,
+                                    sessionNumber = search$result$primaryTopic$sessionNumber$`_value`,
+                                    title = search$result$primaryTopic$title)
 
             dat[[i]] <- search_df
         }

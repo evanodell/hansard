@@ -12,6 +12,13 @@ research_subtopics_list()
 
 research_types_list()
 }
+\value{
+A list with the different research topics available.
+
+A list with the different research subtopics available.
+
+A list with the different types of research briefings.
+}
 \description{
 Prints or assigns to an object a list of Parliamentary Research Briefings topics.
 

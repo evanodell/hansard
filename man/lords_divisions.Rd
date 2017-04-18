@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_divisions.R
 \name{lords_divisions}
 \alias{lords_divisions}
-\title{lords_divisions}
+\title{Imports data on House of Lords divisions}
 \usage{
 lords_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -20,6 +20,9 @@ lords_divisions(division_id = NULL, summary = FALSE,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with the results of divisions in the House of Lords.
 }
 \description{
 Imports data on House of Lords divisions

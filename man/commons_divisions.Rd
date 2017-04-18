@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_divisions.R
 \name{commons_divisions}
 \alias{commons_divisions}
-\title{commons_divisions}
+\title{Imports data on House of Commons divisions.}
 \usage{
 commons_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -20,6 +20,9 @@ commons_divisions(division_id = NULL, summary = FALSE,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with the results of divisions in the House of Commons.
 }
 \description{
 Imports data on House of Commons divisions.

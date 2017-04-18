@@ -2,7 +2,7 @@
 % Please edit documentation in R/commons_oral_question_times.R
 \name{commons_oral_question_times}
 \alias{commons_oral_question_times}
-\title{commons_oral_question_times}
+\title{Imports data on House of Commons oral question times}
 \usage{
 commons_oral_question_times(session = NULL, question_id = NULL,
   extra_args = NULL, tidy = TRUE)
@@ -15,6 +15,9 @@ commons_oral_question_times(session = NULL, question_id = NULL,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with information on oral question times in the House of Commons.
 }
 \description{
 Imports data on House of Commons oral question times

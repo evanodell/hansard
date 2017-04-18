@@ -1,4 +1,12 @@
 
+
+# hansard 0.4.3
+
+## Voting margins
+
+Added optional 'calculate_percent' parameter to `election_result` function. If TRUE, 'calculate_percent' calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled 'turnout_percentage' and 'majortity_percentage'. Defaults to FALSE.
+
+
 # hansard 0.4.2
 
 ## tibbling
@@ -41,7 +49,7 @@ Changes have been made to most functions, including:
 
 `constituencies`: Simplified formals.
 
-`early_day_motions`: Changed all camelCase to snake_case; STILL OUTSTANDING!
+`early_day_motions`: Changed all camelCase to snake_case.
 
 `election_results`: Removed console input, simplified formals.
 

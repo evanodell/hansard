@@ -2,7 +2,7 @@
 % Please edit documentation in R/papers_laid.R
 \name{papers_laid}
 \alias{papers_laid}
-\title{papers_laid}
+\title{Imports data on papers laid before the House.}
 \usage{
 papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
@@ -10,7 +10,7 @@ papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
 \arguments{
 \item{withdrawn}{If TRUE, only returns withdrawn papers. Defaults to FALSE.}
 
-\item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. Defaults to NULL.}
+\item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.}
 
 \item{start_date}{The earliest paper laying date to include in the tibble. Defaults to '1900-01-01'.}
 
@@ -20,8 +20,11 @@ papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
+\value{
+A tibble with details on papers laid before the given House.
+}
 \description{
-Imports data on Papers Laid
+Imports data on papers laid before the House.
 }
 \examples{
 \dontrun{

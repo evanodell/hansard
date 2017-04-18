@@ -2,9 +2,10 @@
 % Please edit documentation in R/election_results.R
 \name{election_results}
 \alias{election_results}
-\title{election_results}
+\title{Imports data on general election and by-election results}
 \usage{
-election_results(ID = NULL, extra_args = NULL, tidy = TRUE)
+election_results(ID = NULL, extra_args = NULL, tidy = TRUE,
+  calculate_percent = FALSE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
@@ -12,9 +13,14 @@ election_results(ID = NULL, extra_args = NULL, tidy = TRUE)
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+
+\item{calculate_percent}{If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled 'turnout_percentage' and 'majortity_percentage'. Defaults to FALSE.}
+}
+\value{
+A tibble with the results of general and by-elections.
 }
 \description{
-Imports data on general election results
+Imports data on general election and by-election results
 }
 \examples{
 \dontrun{

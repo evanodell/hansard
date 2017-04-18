@@ -5,7 +5,7 @@
 \alias{commons_members}
 \alias{lords_members}
 \alias{lords_interests}
-\title{members}
+\title{Imports data on all current and former Members of Parliament including the Lords and the Commons}
 \usage{
 members(ID = NULL, extra_args = NULL, tidy = TRUE)
 
@@ -22,7 +22,12 @@ lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE)
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 
-\item{peer_id}{The ID of a member of the house of lords. If NULL, returns a tibble with all listed financial interests for all members. Defaults to NULL.}
+\item{peer_id}{The ID of a member of the House of lords. If NULL, returns a tibble with all listed financial interests for all members. Defaults to NULL.}
+}
+\value{
+A tibble with data on members of the House of Commons and/or the House of Lords.
+
+A tibble with details on the interests of peers in the House of Lords.
 }
 \description{
 Imports data on all current and former Members of Parliament including the Lords and the Commons
