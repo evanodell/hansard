@@ -14,7 +14,7 @@ election_results(ID = NULL, extra_args = NULL, tidy = TRUE,
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 
-\item{calculate_percent}{If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled 'turnout_percentage' and 'majortity_percentage'. Defaults to FALSE.}
+\item{calculate_percent}{If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.}
 }
 \value{
 A tibble with the results of general and by-elections.
