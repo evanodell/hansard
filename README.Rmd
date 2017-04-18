@@ -13,7 +13,9 @@ knitr::opts_chunk$set(
 ```
 
 # hansard: Accessing Westminster Parliament Data
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
+[![GitHub tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
 [![Build Status](https://travis-ci.org/EvanOdell/hansard.png?branch=master)](https://travis-ci.org/EvanOdell/hansard) 
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
