@@ -24,7 +24,7 @@ An R package to automatically fetch data from the UK Parliament API. Ironically,
 
 Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <http://evanodell.com/hansard/>.
 
-To install from CRAN (version 0.4.0) run:
+To install from CRAN run:
 
 ```
 install.packages("hansard")
