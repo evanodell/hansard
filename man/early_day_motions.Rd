@@ -2,7 +2,7 @@
 % Please edit documentation in R/early_day_motions.R
 \name{early_day_motions}
 \alias{early_day_motions}
-\title{early_day_motions}
+\title{Imports data on early day motions}
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
@@ -22,6 +22,9 @@ early_day_motions(edm_id = NULL, session = NULL,
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on the content, signatories and sponsors of early day motions.
 }
 \description{
 Imports data on early day motions

@@ -2,7 +2,7 @@
 % Please edit documentation in R/members_search.R
 \name{members_search}
 \alias{members_search}
-\title{members_search}
+\title{Search for an MP or Lord by name and constituency}
 \usage{
 members_search(search = NULL, tidy = TRUE)
 }
@@ -11,10 +11,10 @@ members_search(search = NULL, tidy = TRUE)
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the 'about' column name to 'mnis_id', and removes the URL to preserve only the numerical ID. Defaults to TRUE.}
 }
-\description{
-Search for an MP or Lord by name and constituency
+\value{
+A tibble with the results of the search.
 }
-\details{
+\description{
 Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as members('all').
 }
 \examples{

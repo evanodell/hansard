@@ -2,7 +2,7 @@
 % Please edit documentation in R/sessions_info.R
 \name{sessions_info}
 \alias{sessions_info}
-\title{sessions_info}
+\title{Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.}
 \usage{
 sessions_info(days = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
@@ -17,6 +17,9 @@ sessions_info(days = FALSE, start_date = "1900-01-01",
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on parliamentary sessions.
 }
 \description{
 Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.

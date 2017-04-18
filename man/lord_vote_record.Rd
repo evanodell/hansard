@@ -2,13 +2,13 @@
 % Please edit documentation in R/lord_vote_record.R
 \name{lord_vote_record}
 \alias{lord_vote_record}
-\title{lord_vote_record}
+\title{Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.}
 \usage{
 lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{peer_id}{The ID number of a member of the House of Lords.}
+\item{peer_id}{The ID number of a member of the House of Lords. Defaults to NULL, but cannot be empty.}
 
 \item{lobby}{Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'notcontent', 'all' returns all available votes by the peer. Defaults to 'all'.}
 
@@ -19,6 +19,9 @@ lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on the voting record of a member of the House of Lords
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.

@@ -2,13 +2,15 @@
 % Please edit documentation in R/publication_logs.R
 \name{publication_logs}
 \alias{publication_logs}
-\title{publication_logs}
+\title{Imports data on House of Commons and House of Lords publications.}
 \usage{
-publication_logs(ID = NULL, start_date = "1900-01-01",
+publication_logs(ID = NULL, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{ID}{Publication ID. Defaults to NULL. If not null, requests a tibble with information on the given publication.}
+\item{ID}{Publication ID. Defaults to NULL. If not NULL, requests a tibble with information on the given publication.}
+
+\item{house}{The house that produced the particular publication. Accepts 'commons' and 'lords'. If NULL or not 'commons' or 'lords', returns publications from both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
@@ -19,11 +21,14 @@ publication_logs(ID = NULL, start_date = "1900-01-01",
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \description{
-Imports data on Publication Logs
+Imports data on House of Commons and House of Lords publications.
 }
 \examples{
 \dontrun{
-# x <- publication_logs(683267)
+
+x <- publication_logs(house='commons')
+
+x <- publication_logs(683267)
 }
 }
 \keyword{Logs}

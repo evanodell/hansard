@@ -2,7 +2,7 @@
 % Please edit documentation in R/lords_amendments.R
 \name{lords_amendments}
 \alias{lords_amendments}
-\title{lords_amendments}
+\title{Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.}
 \usage{
 lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
@@ -18,12 +18,17 @@ lords_amendments(decision = NULL, start_date = "1900-01-01",
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
+\value{
+A tibble with details on amendments proposed by the House of Lords.
+}
 \description{
-Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords Amendments. Defaults to TRUE.
+Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.
 }
 \examples{
 \dontrun{
+
 x <- lords_amendments()
+
 }
 }
 \keyword{Amendments}

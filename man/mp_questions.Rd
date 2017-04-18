@@ -2,13 +2,14 @@
 % Please edit documentation in R/mp_questions.R
 \name{mp_questions}
 \alias{mp_questions}
-\title{mp_questions}
+\title{Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.}
 \usage{
-mp_questions(mp_id, question_type = "all", start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
+mp_questions(mp_id = NULL, question_type = "all",
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE)
 }
 \arguments{
-\item{mp_id}{The ID number of a member of the House of Commons.}
+\item{mp_id}{The ID number of a member of the House of Commons. Defaults to NULL.}
 
 \item{question_type}{Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.}
 
@@ -19,6 +20,9 @@ mp_questions(mp_id, question_type = "all", start_date = "1900-01-01",
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+}
+\value{
+A tibble with details on all questions asked by a member of the House of Commons.
 }
 \description{
 Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
