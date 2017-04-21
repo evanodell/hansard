@@ -26,3 +26,11 @@ For an introduction to `hansard`, the vignette `vignette("introduction", package
 #### API calls with console input
 
 Previous versions (&lt;=0.3.4) of `hansard` included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the [https://github.com/EvanOdell/hansard-console](%60hansardconsole%60) package. There are no plans to submit this to CRAN, and it is not being actively maintained.
+
+### Disclaimer
+
+This package is in no way officially related to or endorsed by the UK Parliamentary Data Service.
+
+### Acknowledgements
+
+This package is part of [rOpenGov](http://ropengov.github.io). It was written by [Evan Odell](http://evanodell.com).
