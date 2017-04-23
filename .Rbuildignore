@@ -10,3 +10,4 @@
 ^codecov\.yml$
 ^docs$
 ^mp_edms_cleanbit\.txt$
+^_pkgdown\.yml$

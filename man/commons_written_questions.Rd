@@ -30,7 +30,9 @@ Imports data in a tibble on House of Commons written questions.
 \examples{
 \dontrun{
 
-x <- commons_written_questions(mp_id=410, 'cabinet office') #Returns a tibble with all written questions submitted by Jon Trickett and answered by the Cabinet Office.
+#Returns a tibble with all written questions submitted by Jon Trickett and answered by the Cabinet Office.
+x <- commons_written_questions(mp_id=410, 'cabinet office')
+
 
 }
 }
