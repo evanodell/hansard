@@ -1,10 +1,9 @@
 
-
 #' Imports data in a tibble on House of Commons written questions.
 #' @param mp_id Requests a member ID and returns a tibble with all written questions asked by that member. If NULL, mp_id is not included as a query parameter. Defaults to NULL.
 #' @param answering_department Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health. If NULL, answering_department is not included as a query parameter. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble, using the date the question was tabled. Defaults to '1900-01-01'.
+#' @param end_date The latest date to include in the tibble, using the date the question was tabled. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on written questions in the House of Commons.
@@ -12,9 +11,8 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' #Returns a tibble with all written questions submitted by Jon Trickett and answered by the Cabinet Office.
 #' x <- commons_written_questions(mp_id=410, 'cabinet office')
-#'
+#' #Returns a tibble with written questions from Jon Trickett, answered by the Cabinet Office.
 #'
 #' }
 

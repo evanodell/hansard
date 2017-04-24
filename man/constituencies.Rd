@@ -7,7 +7,7 @@
 constituencies(current = TRUE, extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Due to the structure of the API, this function has to request all available data, and then subset that data.}
+\item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Due to the structure of the API, this function has to request all available data, and then subset that data. Defaults to TRUE.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 

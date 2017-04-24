@@ -1,5 +1,4 @@
 
-
 #' Imports data on House of Commons oral question times
 #' @param session Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a tibble of all oral question times from that session
 #' @param question_id Accepts a question time ID, and returns a tibble of that question time.
@@ -62,6 +61,8 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
         df <- dplyr::bind_rows(pages)
 
+        df <- tibble::as_tibble(df)
+
     }
 
     if (nrow(df) == 0) {
@@ -72,13 +73,9 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
             df <- hansard_tidy(df)
 
-            df <- tibble::as_tibble(df)
-
             df
 
         } else {
-
-            df <- tibble::as_tibble(df)
 
             df
 

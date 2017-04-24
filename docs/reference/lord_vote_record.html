@@ -131,11 +131,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>peer_id</th>
-      <td><p>The ID number of a member of the House of Lords. Defaults to NULL, but cannot be empty.</p></td>
+      <td><p>The ID number of a member of the House of Lords. A value must be included for this parameter. Use the <code><a href='members.html'>lords_members</a></code> to find IDs for members of the House of Lords. Defaults to NULL.</p></td>
     </tr>
     <tr>
       <th>lobby</th>
-      <td><p>Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'notcontent', 'all' returns all available votes by the peer. Defaults to 'all'.</p></td>
+      <td><p>Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'not content' and 'all' returns all available votes by the peer. Defaults to 'all'.</p></td>
     </tr>
     <tr>
       <th>start_date</th>

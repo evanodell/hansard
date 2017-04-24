@@ -140,11 +140,11 @@
     </tr>
     <tr>
       <th>start_date</th>
-      <td><p>The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.</p></td>
+      <td><p>The earliest date to include in the tibble, using the date the question was tabled. Defaults to '1900-01-01'.</p></td>
     </tr>
     <tr>
       <th>end_date</th>
-      <td><p>The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.</p></td>
+      <td><p>The latest date to include in the tibble, using the date the question was tabled. Defaults to current system date.</p></td>
     </tr>
     <tr>
       <th>extra_args</th>
@@ -164,7 +164,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
 
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>commons_written_questions</span>(<span class='kw'>mp_id</span><span class='kw'>=</span><span class='fl'>410</span>, <span class='st'>'cabinet office'</span>) <span class='co'>#Returns a tibble with all written questions submitted by Jon Trickett and answered by the Cabinet Office.</span>
+  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>commons_written_questions</span>(<span class='kw'>mp_id</span><span class='kw'>=</span><span class='fl'>410</span>, <span class='st'>'cabinet office'</span>)
+  <span class='co'>#Returns a tibble with written questions from Jon Trickett, answered by the Cabinet Office.</span>
 
 })</div></pre>
   </div>

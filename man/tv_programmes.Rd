@@ -17,9 +17,9 @@ tv_channels(tidy = TRUE)
 \arguments{
 \item{legislature}{Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.}
 
-\item{start_date}{The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble, using the date the question was tabled. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble, using the date the question was tabled. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 

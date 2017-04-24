@@ -11,7 +11,7 @@ early_day_motions(edm_id = NULL, session = NULL,
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.}
 
-\item{session}{Accepts a parliamentary session, in yyyy/yy format. Defaults to NULL.}
+\item{session}{Accepts a parliamentary session, in "yyyy/yy" format. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble, if calling all early day motions. Defaults to '1900-01-01'.}
 
@@ -24,7 +24,7 @@ early_day_motions(edm_id = NULL, session = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \value{
-A tibble with details on the content, signatories and sponsors of early day motions.
+A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 }
 \description{
 Imports data on early day motions
@@ -37,5 +37,8 @@ x <- early_day_motions(edm_id = 1073)
 x <- early_day_motions(edm_id = 1073, session='2015/16')
 
 }
+}
+\seealso{
+\code{\link{mp_edms}}
 }
 \keyword{EDM}

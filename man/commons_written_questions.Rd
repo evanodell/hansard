@@ -13,9 +13,9 @@ commons_written_questions(mp_id = NULL, answering_department = NULL,
 
 \item{answering_department}{Accepts a string with a department name or partial name, and returns all written questions by that department. The query acts as a search, so entering <health> will return all questions answered by the Department of Health. If NULL, answering_department is not included as a query parameter. Defaults to NULL.}
 
-\item{start_date}{The earliest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble, using the date the question was tabled. Defaults to '1900-01-01'.}
 
-\item{end_date}{The latest date to include in the tibble, if calling all divisions, using the date the question was tabled. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble, using the date the question was tabled. Defaults to current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
@@ -30,9 +30,8 @@ Imports data in a tibble on House of Commons written questions.
 \examples{
 \dontrun{
 
-#Returns a tibble with all written questions submitted by Jon Trickett and answered by the Cabinet Office.
 x <- commons_written_questions(mp_id=410, 'cabinet office')
-
+#Returns a tibble with written questions from Jon Trickett, answered by the Cabinet Office.
 
 }
 }

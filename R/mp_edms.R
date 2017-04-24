@@ -11,6 +11,7 @@
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.
 #' @keywords Early Day Motion
+#' @seealso \code{\link{early_day_motions}}
 #' @export
 #' @examples \dontrun{
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=FALSE)

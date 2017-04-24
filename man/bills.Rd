@@ -40,11 +40,9 @@ x <- bills(amendments=TRUE)
 
 x <- bills(1719)
 
-
 }
 \dontrun{
 x <- bill_stage_types()
 }
-
 }
 \keyword{bills}

@@ -9,9 +9,9 @@ commons_answered_questions(answering_department = NULL, answered_by = NULL,
   tidy = TRUE)
 }
 \arguments{
-\item{answering_department}{Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to NULL.}
+\item{answering_department}{Returns a tibble with all answered questions in the House of Commons from the given department. If NULL, the answering department is not included in the API query. Defaults to NULL.}
 
-\item{answered_by}{Returns a tibble with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
+\item{answered_by}{Returns a tibble with all questions in the House of Commons answered by the given MP. If NULL, the answering MP is not included in the API query. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 
@@ -22,7 +22,7 @@ commons_answered_questions(answering_department = NULL, answered_by = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \value{
-A tibble with details on all answered questions in the House of Commons.
+A tibble with details on all answered questions in the House of Commons, subject to function parameters.
 }
 \description{
 Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.

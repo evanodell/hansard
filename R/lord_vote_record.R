@@ -1,8 +1,8 @@
 
 
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
-#' @param peer_id The ID number of a member of the House of Lords. Defaults to NULL, but cannot be empty.
-#' @param lobby Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'notcontent', 'all' returns all available votes by the peer. Defaults to 'all'.
+#' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to NULL.
+#' @param lobby Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'not content' and 'all' returns all available votes by the peer. Defaults to 'all'.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.

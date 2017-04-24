@@ -8,7 +8,7 @@ epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
   tidy = TRUE)
 }
 \arguments{
-\item{ID}{The ID of a given constituency. If NULL, returns all petitions. Defaults to NULL.}
+\item{ID}{The ID of a given petition. If NULL, returns all petitions. Defaults to NULL.}
 
 \item{by_constituency}{Accepts either TRUE or FALSE. If TRUE, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to FALSE.}
 
@@ -24,6 +24,7 @@ Imports data on Epetitions
 }
 \examples{
 \dontrun{
+
 x <- epetition(ID = 706964, by_constituency=TRUE)
 
 }

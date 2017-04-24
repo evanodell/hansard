@@ -8,9 +8,9 @@ lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
 }
 \arguments{
-\item{peer_id}{The ID number of a member of the House of Lords. Defaults to NULL, but cannot be empty.}
+\item{peer_id}{The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to NULL.}
 
-\item{lobby}{Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'notcontent', 'all' returns all available votes by the peer. Defaults to 'all'.}
+\item{lobby}{Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'not content' and 'all' returns all available votes by the peer. Defaults to 'all'.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
 

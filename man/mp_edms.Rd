@@ -36,6 +36,9 @@ x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, 
 
 }
 }
+\seealso{
+\code{\link{early_day_motions}}
+}
 \keyword{Day}
 \keyword{Early}
 \keyword{Motion}
