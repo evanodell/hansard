@@ -6,6 +6,8 @@
 
 Added optional 'calculate_percent' parameter to `election_result` function. If TRUE, 'calculate_percent' calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
 
+Added optional 'constit_details' parameter to `election_result` function. If TRUE, 'constit_details' retrieves additional constituency details from `constituencies`, most notably including GSS code.
+
 
 # hansard 0.4.2
 
