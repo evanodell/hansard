@@ -86,14 +86,16 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         
         baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
         
-        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args), flatten = TRUE)
+        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args), 
+            flatten = TRUE)
         
         jpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
         
         pages <- list()
         
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=", 
+                i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }

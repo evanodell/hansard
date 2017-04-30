@@ -3,11 +3,12 @@ context("constituencies")
 
 test_that("constituencies functions return expected format", {
     skip_on_cran()
-
+    
     ctx <- constituencies(current = TRUE)
-
+    
     expect_length(ctx, 9)
     expect_true(tibble::is_tibble(ctx))
+    Sys.sleep(45)
     expect_equal(nrow(ctx), 650)
-
+    
 })
