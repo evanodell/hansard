@@ -5,6 +5,8 @@ r:
   - release
 sudo: false
 
+install: travis_wait 30 testthat.R install
+
 cache: packages
 
 r_packages:
