@@ -12,66 +12,68 @@
 #' @keywords Election Results
 #' @export
 #' @examples \dontrun{
+#'
 #' x <- election_results(ID=382037)
+#'
 #' }
 
 
 election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE) {
-    
+
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
-    
+
     message("Connecting to API")
-    
+
     elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500", extra_args))
-    
+
     if (elect$result$totalResults > elect$result$itemsPerPage) {
-        
+
         jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
     } else {
         jpage <- 0
     }
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df <- tibble::as_tibble(df)
-    
+
     if (constit_details == TRUE) {
-        
+
         constits <- constituencies(current = FALSE)  ### combine with elect 2015 to get gss code
-        
+
         df <- left_join(constits, df, by = c(about = "constituency_about"))  ## Join
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard_tidy(df)
-            
+
         }
-        
+
         if (calculate_percent == TRUE) {
-            
+
             df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
-            
+
             df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
     }
 }

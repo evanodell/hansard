@@ -26,7 +26,9 @@ Imports data on general election and by-election results
 }
 \examples{
 \dontrun{
+
 x <- election_results(ID=382037)
+
 }
 }
 \keyword{Election}
