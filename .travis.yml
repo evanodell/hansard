@@ -7,8 +7,11 @@ sudo: false
 
 cache: packages
 
+install: travis_wait 30 mvn install
+
 r_packages:
   - covr
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
+
