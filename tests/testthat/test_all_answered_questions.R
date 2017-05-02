@@ -4,7 +4,7 @@ context("all_answered_questions")
 test_that("all_answered_questions return expected format", {
 
     skip_on_cran()
- skip_on_travis()
+    skip_on_travis()
 
     aaqx <- all_answered_questions(4019, start_date = "2017-01-01")
 
@@ -12,10 +12,16 @@ test_that("all_answered_questions return expected format", {
     expect_type(aaqx, "list")
     expect_true(tibble::is_tibble(aaqx))
 
+    Sys.sleep(45)
+
+
     aaq <- all_answered_questions(start_date = "2017-03-01", end_date = "2017-03-02")
 
     expect_length(aaq, 37)
     expect_type(aaq, "list")
     expect_true(tibble::is_tibble(aaq))
+
+    Sys.sleep(45)
+
 
 })
