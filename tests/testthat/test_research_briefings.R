@@ -4,6 +4,7 @@ context("research_briefings")
 
 test_that("research_briefings return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     rtl <- research_topics_list()
     expect_is(rtl, "list")

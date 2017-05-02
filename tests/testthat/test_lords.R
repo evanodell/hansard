@@ -4,6 +4,7 @@ context("lords functions")
 
 test_that("lords functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     # Voting Records
 

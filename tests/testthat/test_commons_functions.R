@@ -4,6 +4,7 @@ context("commons functions")
 
 test_that("commons functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     xcaq <- commons_answered_questions(answering_department = "health", answered_by = "4019", start_date = "2017-02-01")
     expect_length(xcaq, 10)

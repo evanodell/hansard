@@ -3,6 +3,7 @@ context("misc MP functions")
 
 test_that("members vote record and questions functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
     
     mpqs <- mp_questions(172, "all", start_date = "2015-02-01")
     

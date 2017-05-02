@@ -3,6 +3,7 @@ context("papers, publications, sessions, tv")
 
 test_that("papers laid, publications, sessions, tv  functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     papl <- papers_laid(withdrawn = FALSE, house = "commons", start_date = "2016-12-01", end_date = "2017-02-02")
     expect_length(papl, 16)
