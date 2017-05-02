@@ -129,6 +129,12 @@
 <a href="#constituency-details" class="anchor"></a>Constituency details</h2>
 <p>Added optional ‘constit_details’ parameter to <code>election_result</code> function. If TRUE, ‘constit_details’ retrieves additional constituency details from <code>constituencies</code>, most notably including GSS code.</p>
 </div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<p>Fixed bug on <code>commons_oral_question_times</code> where some calls did not return tibbles.</p>
+<p>Fixed bug in <code>lords_divisons</code> that did prevented vote summary queries from being returned.</p>
+</div>
 </div>
     <div id="hansard-0-4-3" class="section level1">
 <h1 class="hasAnchor">
@@ -191,9 +197,9 @@
     <div id="hansard-0-3-4" class="section level1">
 <h1 class="hasAnchor">
 <a href="#hansard-0-3-4" class="anchor"></a>hansard 0.3.4</h1>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <p>The <code>lords_attendance</code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, @meenaparam)</p>
 <p>Fixed spelling of amendments, so that <code>lords_ammendments</code> is now <code>lords_amendments</code>. The <code>lords_ammendments</code> function has been deprecated, and will be removed in a future release.</p>
 </div>
@@ -210,9 +216,9 @@
     <div id="hansard-0-3-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#hansard-0-3-2" class="anchor"></a>hansard 0.3.2</h1>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug Fixes</h2>
 </div>
 </div>
     <div id="hansard-0-3-0" class="section level1">
@@ -228,9 +234,9 @@
 <p><code>mp_edms</code></p>
 <p>The option to use console input has been preserved in <code>commons_divisions</code>, <code>lords_divisions</code>, <code>commons_written_questions</code> and <code>commons_oral_questions</code>, along with other features not available in the new functions.</p>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <p>This update fixes an issue with <code>lords_written_questions</code> and <code>commons_written_questions</code> where the functions returned a 404 error on some requests.</p>
 </div>
 </div>
