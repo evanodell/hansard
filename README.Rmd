@@ -40,12 +40,15 @@ devtools::install_github("EvanOdell/hansard")
 
 ## Using hansard
 
-For an introduction to `hansard`, the vignette `vignette("introduction", package = "hansard")` is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is a helpful introduction.
+For an introduction to `hansard`, the [vignette](http://ropengov.github.io/hansard/articles/introduction.html) is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is a helpful introduction.
+
+## Tests and test coverage
+
+
 
 #### API calls with console input
 
 Previous versions (<=0.3.4) of `hansard` included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the [https://github.com/EvanOdell/hansard-console](`hansardconsole`) package. There are no plans to submit this to CRAN, and it is not being actively maintained.
-
 
 ### Disclaimer
 

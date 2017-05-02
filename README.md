@@ -21,7 +21,10 @@ To install the development version run:
 Using hansard
 -------------
 
-For an introduction to `hansard`, the vignette `vignette("introduction", package = "hansard")` is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this%20introductory%20course) is a helpful introduction.
+For an introduction to `hansard`, the [vignette](http://ropengov.github.io/hansard/articles/introduction.html) is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this%20introductory%20course) is a helpful introduction.
+
+Tests and test coverage
+-----------------------
 
 #### API calls with console input
 
