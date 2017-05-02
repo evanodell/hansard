@@ -4,6 +4,7 @@ context("lords functions")
 
 test_that("lords functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     # Voting Records
 
@@ -43,7 +44,7 @@ test_that("lords functions return expected format", {
     expect_null(lamendempty)
 
     # Divisions
-    ldivsum <- lords_divisions(division_id = 705891, summary = TRUE)### Is returning empty
+    ldivsum <- lords_divisions(division_id = 705891, summary = TRUE)
     expect_length(ldivsum, 11)
     expect_type(ldivsum, "list")
     expect_true(tibble::is_tibble(ldivsum))

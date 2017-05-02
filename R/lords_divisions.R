@@ -71,9 +71,13 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
             df$session <- y$session
             df$uin <- y$uin
 
+            df <- as.data.frame(df)
+
         } else {
 
             df <- divis$result$primaryTopic$vote
+
+            df <- as.data.frame(df)
 
         }
 

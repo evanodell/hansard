@@ -4,6 +4,7 @@ context("commons functions")
 
 test_that("commons functions return expected format", {
     skip_on_cran()
+ skip_on_travis()
 
     xcaq <- commons_answered_questions(answering_department = "health", answered_by = "4019", start_date = "2017-02-01")
     expect_length(xcaq, 10)
@@ -39,7 +40,7 @@ test_that("commons functions return expected format", {
     Sys.sleep(45)
     expect_equal(nrow(cdd), 5)
 
-    xcoqt <- commons_oral_question_times(session = "2016/17", question_id = "685697")### Function isn't returning tibble
+    xcoqt <- commons_oral_question_times(session = "2016/17", question_id = "685697")
     expect_length(xcoqt, 14)
     expect_type(xcoqt, "list")
     expect_true(tibble::is_tibble(xcoqt))

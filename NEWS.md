@@ -4,6 +4,12 @@
 
 Added optional 'constit_details' parameter to `election_result` function. If TRUE, 'constit_details' retrieves additional constituency details from `constituencies`, most notably including GSS code.
 
+## Bug fixes
+
+Fixed bug on `commons_oral_question_times` where some calls did not return tibbles.
+
+Fixed bug in `lords_divisons` that did prevented vote summary queries from being returned.
+
 # hansard 0.4.3
 
 ## Voting margins
