@@ -26,7 +26,8 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
     if (is.null(class) == FALSE) {
         class_list <- list("ID", "ORG", "SIT", "NAME", "LEG", "CTP", "PBT", "TPG")
         if (!(class %in% class_list)) {
-            stop("Please check your class parameter. It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", call. = FALSE)
+            stop("Please check your class parameter. It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", 
+                call. = FALSE)
         } else {
             class_query <- paste0("&class=", class)
         }
