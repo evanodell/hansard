@@ -22,17 +22,17 @@ test_that("research_briefings return expected format", {
     rbdf <- research_briefings(subtopic = "Falkland Islands")
     expect_length(rbdf, 14)
     expect_true(tibble::is_tibble(rbdf))
-    Sys.sleep(45)
+    
 
     rbtsb <- research_briefings(topic = "Defence", subtopic = "Falkland Islands")
     expect_length(rbtsb, 14)
     expect_true(tibble::is_tibble(rbtsb))
-    Sys.sleep(45)
+    
 
     rbnu <- research_briefings()
     expect_length(rbnu, 14)
     expect_true(tibble::is_tibble(rbnu))
-    Sys.sleep(45)
+    
 
 
 })
