@@ -33,9 +33,6 @@ test_that("lords functions return expected format", {
     expect_type(lamendnu, "list")
     expect_true(tibble::is_tibble(lamendnu))
 
-    lamendempty <- lords_amendments(end_date = "1900-12-01")
-    expect_null(lamendempty)
-
     # Divisions
     ldivsum <- lords_divisions(division_id = 705891, summary = TRUE)
     expect_length(ldivsum, 11)
