@@ -44,8 +44,6 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         df <- dplyr::bind_rows(pages)
 
-        df <- tibble::as_tibble(df)
-
     } else {
 
         division_id <- as.character(division_id)
@@ -81,8 +79,6 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
             df <- as.data.frame(df)
 
-            df <- tibble::as_tibble(df)
-
         }
 
     }
@@ -95,9 +91,13 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
             df <- hansard_tidy(df)
 
+            df <- tibble::as_tibble(df)
+
             df
 
         } else {
+
+            df <- tibble::as_tibble(df)
 
             df
 
