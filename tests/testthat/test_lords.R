@@ -47,7 +47,7 @@ test_that("lords functions return expected format", {
     expect_type(ldiv, "list")
     expect_true(tibble::is_tibble(ldiv))
 
-    ldivdec <- lords_divisions(NULL, FALSE, start_date = "2016-12-01", end_date = "2016-12-31")
+    ldivdec <- lords_divisions(division_id =  NULL, FALSE, start_date = "2016-12-01", end_date = "2016-12-31")
     expect_length(ldivdec, 5)
     expect_type(ldivdec, "list")
     expect_true(tibble::is_tibble(ldivdec))
