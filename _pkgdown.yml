@@ -17,14 +17,14 @@ navbar:
     - text: "Packages"
       menu:
         - text: "Packages Home"
-          href: http://evanodell.com/packages
+          href: http://evanodell.com/#r-packages
         - text: "---------"
         - text: "hansard"
-          href: http://evanodell.com/hansard
+          href: http://docs.evanodell.com/hansard
         - text: "mnis"
-          href: http://evanodell.com/mnis
+          href: http://docs.evanodell.com/mnis
         - text: "parlitools"
-          href: http://evanodell.com/parlitools
+          href: http://docs.evanodell.com/parlitools
 
   right:
     - icon: fa-github fa-lg
