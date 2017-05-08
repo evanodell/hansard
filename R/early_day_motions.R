@@ -57,9 +57,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

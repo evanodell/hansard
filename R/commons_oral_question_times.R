@@ -6,6 +6,7 @@
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with information on oral question times in the House of Commons.
 #' @keywords Oral Questions Time
+#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -62,9 +63,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     }
 

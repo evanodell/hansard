@@ -33,4 +33,7 @@ x <- mp_questions(172, 'all')
 }
 
 }
+\seealso{
+\code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}}
+}
 \keyword{questions}

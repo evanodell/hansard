@@ -8,6 +8,7 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all questions asked by a member of the House of Commons.
+#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}}
 #' @keywords questions
 #' @export
 #' @examples \dontrun{
@@ -64,9 +65,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     } else if (question_type == "written") {
 
@@ -89,9 +88,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
     }
 
     if (nrow(df) == 0) {

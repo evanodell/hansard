@@ -20,11 +20,11 @@ A list with the different research subtopics available.
 A list with the different types of research briefings.
 }
 \description{
-Prints or assigns to an object a list of Parliamentary Research Briefings topics.
+A list of Parliamentary Research Briefings topics.
 
-Prints or assigns to an object a list of Parliamentary Research Briefings subtopics, grouped by topic.
+A list of Parliamentary Research Briefings subtopics, grouped by topic.
 
-Prints or assigns to an object a list of types of Parliamentary Research Briefings.
+A list of types of Parliamentary Research Briefings.
 }
 \examples{
  \dontrun{

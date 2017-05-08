@@ -49,9 +49,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
@@ -78,9 +76,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
@@ -109,7 +105,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_content <- dplyr::bind_rows(pages)
+        df_content <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df_content$vote <- "content"
 
@@ -135,7 +131,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_notcontent <- dplyr::bind_rows(pages)
+        df_notcontent <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df_notcontent$vote <- "not-content"
 
@@ -154,13 +150,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
             df <- hansard_tidy(df)
 
-            df <- tibble::as_tibble(df)
-
             df
 
         } else {
-
-            df <- tibble::as_tibble(df)
 
             df
 

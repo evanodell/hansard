@@ -62,9 +62,8 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-        df <- tibble::as_tibble(df)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
 
@@ -87,9 +86,8 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-        df <- tibble::as_tibble(df)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.Date(df$date._value)
 
@@ -113,7 +111,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_aye <- dplyr::bind_rows(pages)
+        df_aye <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df_aye$vote <- "aye"
 
@@ -135,7 +133,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_no <- dplyr::bind_rows(pages)
+        df_no <- tibble::as_tibble(dplyr::bind_rows(pages))
 
         df_no$divisionNumber <- NULL
 
@@ -158,13 +156,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
             df <- hansard_tidy(df)
 
-            df <- tibble::as_tibble(df)
-
             df
 
         } else {
-
-            df <- tibble::as_tibble(df)
 
             df
 

@@ -15,64 +15,62 @@
 #' }
 #'
 lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
-    
+
     if (is.null(session_id) == FALSE) {
         query <- paste0("/", session_id, ".json?")
     } else {
         query <- ".json?_pageSize=500"
     }
-    
+
     dates <- paste0("&max-date=", end_date, "&min-date=", start_date)
-    
+
     baseurl <- "http://lda.data.parliament.uk/lordsattendances"
-    
+
     message("Connecting to API")
-    
+
     attend <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
-    
+
     if (is.null(session_id) == FALSE) {
-        
-        df <- as.data.frame(attend$result$primaryTopic)
-        
-        df <- tibble::as_tibble(df)
-        
+
+        df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+
     } else {
-        
+
         jpage <- round(attend$result$totalResults/attend$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
         df <- dplyr::bind_rows(pages)
-        
+
         df <- tibble::as_tibble(df)
-        
+
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard_tidy(df)
-            
+
             names(df)[names(df) == "x_about"] <- "about"
-            
+
             names(df)[names(df) == "x_value"] <- "value"
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }

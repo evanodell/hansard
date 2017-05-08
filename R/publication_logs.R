@@ -63,9 +63,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     }
 

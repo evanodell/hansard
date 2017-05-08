@@ -17,7 +17,6 @@
 #'
 #' }
 
-
 election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE) {
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
@@ -41,9 +40,7 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (constit_details == TRUE) {
 

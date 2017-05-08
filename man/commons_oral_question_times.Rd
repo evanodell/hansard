@@ -29,6 +29,9 @@ Imports data on House of Commons oral question times
 
 }
 }
+\seealso{
+\code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+}
 \keyword{Oral}
 \keyword{Questions}
 \keyword{Time}

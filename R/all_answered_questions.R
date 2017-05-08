@@ -7,7 +7,7 @@
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
 #' @keywords Answered Questions
-#' @seealso \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+#' @seealso \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -58,9 +58,7 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
         }
     }
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

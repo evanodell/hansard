@@ -39,10 +39,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
-
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     } else if (is.null(division_id) == FALSE) {
 

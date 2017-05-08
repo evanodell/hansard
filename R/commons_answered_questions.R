@@ -9,6 +9,7 @@
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all answered questions in the House of Commons, subject to function parameters.
 #' @keywords bills
+#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -35,8 +36,7 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
     message("Connecting to API")
 
-    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates,
-        extra_args), flatten = TRUE)
+    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
     jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
 
@@ -49,9 +49,7 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
