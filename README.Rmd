@@ -40,7 +40,7 @@ devtools::install_github("EvanOdell/hansard")
 
 ## Using hansard
 
-For an introduction to `hansard`, the [vignette](http://ropengov.github.io/hansard/articles/introduction.html) is the best place to start. If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is a helpful introduction.
+For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is useful.
 
 ### Tests and test coverage
 
