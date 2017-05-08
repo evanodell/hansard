@@ -1,6 +1,6 @@
 template:
   params:
-   bootswatch: yeti
+   bootswatch: readable
    ganalytics: UA-90706059-1
 
 name:
