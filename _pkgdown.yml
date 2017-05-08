@@ -8,16 +8,18 @@ navbar:
   left:
     - text: "Home"
       href: http://evanodell.com
+    - text: "Documentation Home"
+      href: http://docs.evanodell.com
+    - text: "News"
+      href: news/index.html
     - text: "Reference"
       href: reference/index.html
     - text: "Articles"
       href: articles/index.html
-    - text: "News"
-      href: news/index.html
     - text: "Packages"
       menu:
-        - text: "Packages Home"
-          href: http://evanodell.com/#r-packages
+        - text: "Documentation Home"
+          href: http://docs.evanodell.com
         - text: "---------"
         - text: "hansard"
           href: http://docs.evanodell.com/hansard
