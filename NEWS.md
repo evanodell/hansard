@@ -1,5 +1,9 @@
 # hansard 0.4.4
 
+## Election types
+
+Added a 'type' parameter to `elections`, to return all elections of a particular type.
+
 ## Constituency details
 
 Added optional 'constit_details' parameter to `election_result` function. If TRUE, 'constit_details' retrieves additional constituency details from `constituencies`, most notably including GSS code.

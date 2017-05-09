@@ -4,10 +4,13 @@
 \alias{elections}
 \title{Imports data on elections}
 \usage{
-elections(ID = NULL, extra_args = NULL, tidy = TRUE)
+elections(ID = NULL, type = c(NULL, "General Election", "By-election"),
+  extra_args = NULL, tidy = TRUE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
+
+\item{type}{Accepts "General Election" or "By-election" as arguments if ID is NULL. Returns all General Elections or all By-elections.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
