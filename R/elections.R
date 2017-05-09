@@ -51,6 +51,10 @@ elections <- function(ID = NULL, extra_args = NULL, tidy = TRUE) {
 
             df <- hansard_tidy(df)
 
+            names(df)[names(df)=="x_about"] <- "about"
+
+            names(df)[names(df)=="x_value"] <- "value"
+
             df
 
         } else {

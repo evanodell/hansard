@@ -10,6 +10,8 @@ Fixed bug on `commons_oral_question_times` where some calls did not return tibbl
 
 Fixed bug in `lords_divisons` that did prevented vote summary queries from being returned.
 
+Removed superfluous 'x' from names in `elections` when tidy=TRUE.
+
 # hansard 0.4.3
 
 ## Voting margins

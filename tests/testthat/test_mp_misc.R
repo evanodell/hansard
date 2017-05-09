@@ -31,4 +31,6 @@ test_that("members vote record and questions functions return expected format", 
     expect_type(mpvno, "list")
     expect_true(tibble::is_tibble(mpvno))
 
+
+
 })
