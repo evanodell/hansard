@@ -9,20 +9,20 @@ commons_answered_questions(answering_department = NULL, answered_by = NULL,
   tidy = TRUE)
 }
 \arguments{
-\item{answering_department}{Returns a tibble with all answered questions in the House of Commons from the given department. If NULL, the answering department is not included in the API query. Defaults to NULL.}
+\item{answering_department}{Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to NULL.}
 
-\item{answered_by}{Returns a tibble with all questions in the House of Commons answered by the given MP. If NULL, the answering MP is not included in the API query. Defaults to NULL.}
+\item{answered_by}{Returns a tibble with all answered questions in the House of Commons by the given MP. Defaults to NULL.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
 }
 \value{
-A tibble with details on all answered questions in the House of Commons, subject to function parameters.
+A tibble with details on all answered questions in the House of Commons.
 }
 \description{
 Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.
@@ -33,8 +33,5 @@ Imports data on House of Commons answered questions. If all parameters are left 
 x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
 
 }
-}
-\seealso{
-\code{\link{all_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 }
 \keyword{bills}

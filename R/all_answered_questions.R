@@ -1,8 +1,8 @@
 
 #' Imports data on all answered parliamentary questions.
 #' @param mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions. Includes both oral and written questions.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
@@ -17,7 +17,7 @@
 
 all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
-    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
     if (is.null(mp_id) == TRUE) {
 

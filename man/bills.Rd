@@ -15,9 +15,9 @@ bill_stage_types(tidy = TRUE)
 
 \item{amendments}{If TRUE, returns all bills with amendments. Defaults to FALSE.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 

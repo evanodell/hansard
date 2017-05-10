@@ -3,8 +3,8 @@
 #' Imports data on papers laid before the House.
 #' @param withdrawn If TRUE, only returns withdrawn papers. Defaults to FALSE.
 #' @param house The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.
-#' @param start_date The earliest paper laying date to include in the tibble. Defaults to '1900-01-01'.
-#' @param end_date The latest paper laying date to include in the tibble. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on papers laid before the given House.
@@ -37,7 +37,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
         query <- "&withdrawn=false"
     }
 
-    dates <- paste0("&max-ddpModified=", end_date, "&min-ddpModified=", start_date)
+    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=",as.Date(start_date))
 
     baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
 

@@ -3,8 +3,8 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
 #' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to NULL.
 #' @param lobby Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'not content' and 'all' returns all available votes by the peer. Defaults to 'all'.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on the voting record of a member of the House of Lords
@@ -25,7 +25,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         stop("peer_id must not be empty", call. = FALSE)
     }
 
-    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=",as.Date(start_date))
 
     if (lobby == "content") {
 

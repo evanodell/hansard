@@ -1,8 +1,8 @@
 
 #' Imports data on TV broadcasts. To import information on TV channel options,
 #' @param legislature Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.
-#' @param start_date The earliest date to include in the tibble, using the date the question was tabled. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble, using the date the question was tabled. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on TV broadcasts.
@@ -16,7 +16,7 @@
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
-    dates <- paste0("&max-endDate=", end_date, "T23:59:59Z", "&min-startDate=", start_date, "T00:00:00Z")
+    dates <- paste0("&max-endDate=", as.Date(end_date), "T23:59:59Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
     if (is.null(legislature) == FALSE) {
         legislature <- tolower(legislature)
@@ -51,7 +51,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
@@ -87,7 +87,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
-    dates <- paste0("&max-startDate=", end_date, "T00:00:00Z", "&min-startDate=", start_date, "T00:00:00Z")
+    dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
     if (is.null(mp_id) == FALSE) {
         query <- paste0("&member=http://data.parliament.uk/members/", mp_id)

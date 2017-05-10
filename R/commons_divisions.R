@@ -2,8 +2,8 @@
 #' Imports data on House of Commons divisions.
 #' @param division_id The id of a particular vote. If empty, returns a tibble with information on all commons divisions. Defaults to NULL.
 #' @param summary If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.
-#' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with the results of divisions in the House of Commons.
@@ -19,7 +19,7 @@
 
 commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
 
-    dates <- paste0("&_properties=date&max-date=", end_date, "&min-date=", start_date)
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=",as.Date(start_date))
 
     if (is.null(division_id) == TRUE) {
 

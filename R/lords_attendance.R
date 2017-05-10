@@ -2,8 +2,8 @@
 
 #' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
 #' @param session_id The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return Returns a tibble with details on the lords who attended a given session.
@@ -22,7 +22,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         query <- ".json?_pageSize=500"
     }
 
-    dates <- paste0("&max-date=", end_date, "&min-date=", start_date)
+    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
     baseurl <- "http://lda.data.parliament.uk/lordsattendances"
 
@@ -32,7 +32,9 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
 
     if (is.null(session_id) == FALSE) {
 
-        df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+        df <- as.data.frame(attend$result$primaryTopic)
+
+        df <- tibble::as_tibble(df)
 
     } else {
 

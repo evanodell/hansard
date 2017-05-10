@@ -3,8 +3,8 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
 #' @param mp_id The ID number of a member of the House of Commons. Defaults to NULL.
 #' @param question_type Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all questions asked by a member of the House of Commons.
@@ -26,10 +26,10 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     if (question_type == "all") {
         message("Retrieving oral questions:")
-        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = start_date, end_date = end_date, extra_args = extra_args)
+        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args)
 
         message("Retrieving written questions:")
-        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = start_date, end_date = end_date, extra_args = extra_args)
+        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args)
 
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
@@ -45,7 +45,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     } else if (question_type == "oral") {
 
-        dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", end_date, "&min-AnswerDate=", start_date)
+        dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=",as.Date(start_date))
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
 
@@ -71,7 +71,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions.json?mnisId="
 
-        dates <- paste0("&_properties=dateTabled&max-dateTabled=", end_date, "&min-dateTabled=", start_date)
+        dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=",as.Date(start_date))
 
         writ <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500", extra_args))
 
