@@ -3,7 +3,8 @@
 #' @param division_id The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to NULL.
 #' @param summary If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to FALSE.
 #' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
+#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with the results of divisions in the House of Lords.
 #' @keywords Lords Divisions

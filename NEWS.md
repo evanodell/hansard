@@ -1,3 +1,9 @@
+# hansard 0.4.5
+
+## Date Classes
+
+`hansard` functions with 'start_date' and 'end_date' parameters now accept any input that can be coerced to a date with the `as.Date()` function.
+
 # hansard 0.4.4
 
 ## Election types

@@ -34,4 +34,7 @@ x <- commons_answered_questions(answering_department = 'health', answered_by = '
 
 }
 }
+\seealso{
+\code{\link{all_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+}
 \keyword{bills}

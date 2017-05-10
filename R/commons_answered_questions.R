@@ -8,6 +8,7 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
 #' @return A tibble with details on all answered questions in the House of Commons.
+#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 #' @keywords bills
 #' @export
 #' @examples \dontrun{
