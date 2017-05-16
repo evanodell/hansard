@@ -8,7 +8,8 @@
 #' @param signatory Returns a tibble of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the tibble return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.
 #' @param full_data If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.
 #' @keywords Early Day Motion
 #' @seealso \code{\link{early_day_motions}}
@@ -21,7 +22,7 @@
 #' }
 
 
-mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE) {
+mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
@@ -122,7 +123,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

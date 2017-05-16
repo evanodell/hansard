@@ -6,7 +6,7 @@
 \usage{
 commons_written_questions(mp_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE)
+  tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{mp_id}{Requests a member ID and returns a tibble with all written questions asked by that member. If NULL, mp_id is not included as a query parameter. Defaults to NULL.}
@@ -19,7 +19,9 @@ commons_written_questions(mp_id = NULL, answering_department = NULL,
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on written questions in the House of Commons.

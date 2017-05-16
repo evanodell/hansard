@@ -4,14 +4,17 @@
 \alias{commons_division_date}
 \title{Returns a tibble with the dates of House of Commons divisions.}
 \usage{
-commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE)
+commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{date}{Returns all divisions on a given date. Defaults to NULL.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with the dates of divisions in the House of Commons.

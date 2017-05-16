@@ -5,7 +5,8 @@
 \title{Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.}
 \usage{
 lords_amendments(decision = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{decision}{The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to NULL.}
@@ -16,7 +17,9 @@ lords_amendments(decision = NULL, start_date = "1900-01-01",
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on amendments proposed by the House of Lords.

@@ -5,7 +5,8 @@
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with the results of divisions in the House of Commons.
 #' @keywords divisions
 #' @export
@@ -17,7 +18,7 @@
 #'
 #' }
 
-commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=",as.Date(start_date))
 
@@ -82,7 +83,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
@@ -100,7 +101,8 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 #' Returns a tibble with the dates of House of Commons divisions.
 #' @param date Returns all divisions on a given date. Defaults to NULL.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with the dates of divisions in the House of Commons.
 #' @keywords divisions
 #' @export
@@ -108,7 +110,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 #' x <- commons_division_date('2016-10-12')
 #' }
 #'
-commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE) {
+commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(date) == TRUE) {
         df <- commons_divisions()
@@ -142,7 +144,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE) {
 
             if (tidy == TRUE) {
 
-                df <- hansard_tidy(df)
+                df <- hansard_tidy(df, tidy_style)
 
                 df
 

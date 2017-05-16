@@ -4,7 +4,8 @@
 #' @param ID The ID of a given petition. If NULL, returns all petitions. Defaults to NULL.
 #' @param by_constituency Accepts either TRUE or FALSE. If TRUE, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on electronic petitions submitted to parliament.
 #' @keywords ePetitions
 #' @export
@@ -14,7 +15,7 @@
 #'
 #'}
 
-epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tidy = TRUE) {
+epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(ID) == FALSE) {
         ID <- paste0("/", ID)
@@ -63,7 +64,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

@@ -7,12 +7,13 @@
 \title{Imports data on TV broadcasts. To import information on TV channel options,}
 \usage{
 tv_programmes(legislature = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 
 tv_clips(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE)
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 
-tv_channels(tidy = TRUE)
+tv_channels(tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{legislature}{Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.}
@@ -23,7 +24,9 @@ tv_channels(tidy = TRUE)
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
 }

@@ -4,7 +4,7 @@
 \alias{hansard_tidy}
 \title{hansard_tidy}
 \usage{
-hansard_tidy(df)
+hansard_tidy(df, tidy_style)
 }
 \arguments{
 \item{df}{The tibble to tidy}

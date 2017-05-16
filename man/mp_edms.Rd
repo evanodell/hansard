@@ -5,7 +5,8 @@
 \title{Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.}
 \usage{
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
-  signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE)
+  signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{mp_id}{The ID number of an MP. Required parameter, defaults to NULL.}
@@ -20,7 +21,9 @@ mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.

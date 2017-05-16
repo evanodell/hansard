@@ -4,14 +4,17 @@
 \alias{constituencies}
 \title{Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.}
 \usage{
-constituencies(current = TRUE, extra_args = NULL, tidy = TRUE)
+constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Due to the structure of the API, this function has to request all available data, and then subset that data. Defaults to TRUE.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details of Westminster constituencies.

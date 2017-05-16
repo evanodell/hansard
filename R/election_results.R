@@ -6,7 +6,8 @@
 #' @param calculate_percent If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #'
 #' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #' @keywords Election Results
@@ -17,7 +18,7 @@
 #'
 #' }
 
-election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE) {
+election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
 
@@ -55,7 +56,7 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
         }
 

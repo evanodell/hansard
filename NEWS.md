@@ -1,3 +1,8 @@
+
+# hansard 0.4.6
+
+Added optional 'tidy_style' parameter, allowing users to decide which style snake_case, camelCase and period.case they want variable names to be in, if 'tidy'==TRUE.
+
 # hansard 0.4.5
 
 ## Date Classes

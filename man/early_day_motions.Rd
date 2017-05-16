@@ -6,7 +6,7 @@
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL, tidy = TRUE)
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.}
@@ -21,7 +21,9 @@ early_day_motions(edm_id = NULL, session = NULL,
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on the content, signatories and sponsors of all or a specified early day motions.

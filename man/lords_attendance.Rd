@@ -5,7 +5,8 @@
 \title{Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.}
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE)
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.}
@@ -16,7 +17,9 @@ lords_attendance(session_id = NULL, start_date = "1900-01-01",
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 Returns a tibble with details on the lords who attended a given session.

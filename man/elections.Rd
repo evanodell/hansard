@@ -5,7 +5,7 @@
 \title{Imports data on elections}
 \usage{
 elections(ID = NULL, type = c(NULL, "General Election", "By-election"),
-  extra_args = NULL, tidy = TRUE)
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
@@ -14,7 +14,9 @@ elections(ID = NULL, type = c(NULL, "General Election", "By-election"),
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on all elections from the 2010 general election onwards, subject to function parameters.

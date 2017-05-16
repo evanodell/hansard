@@ -3,7 +3,8 @@
 #' @param session Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a tibble of all oral question times from that session
 #' @param question_id Accepts a question time ID, and returns a tibble of that question time.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with information on oral question times in the House of Commons.
 #' @keywords Oral Questions Time
 #' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
@@ -14,7 +15,7 @@
 #'
 #' }
 
-commons_oral_question_times <- function(session = NULL, question_id = NULL, extra_args = NULL, tidy = TRUE) {
+commons_oral_question_times <- function(session = NULL, question_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(session) == FALSE) {
 
@@ -73,7 +74,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

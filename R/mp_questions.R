@@ -6,7 +6,8 @@
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on all questions asked by a member of the House of Commons.
 #' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}}
 #' @keywords questions
@@ -16,7 +17,7 @@
 #' }
 #'
 
-mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
@@ -97,7 +98,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

@@ -4,7 +4,8 @@
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on TV broadcasts.
 #' @keywords TV
 #' @export
@@ -14,7 +15,7 @@
 #'
 #' }
 
-tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     dates <- paste0("&max-endDate=", as.Date(end_date), "T23:59:59Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
@@ -58,7 +59,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
@@ -85,7 +86,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 #' x <- tv_clips(4591)
 #' }
 
-tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE) {
+tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
@@ -116,7 +117,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
     } else {
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
@@ -137,7 +138,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 #' @keywords TV
 #' @export
 
-tv_channels <- function(tidy = TRUE) {
+tv_channels <- function(tidy = TRUE, tidy_style="snake_case") {
 
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
 
@@ -145,7 +146,7 @@ tv_channels <- function(tidy = TRUE) {
 
     if (tidy == TRUE) {
 
-        df <- hansard_tidy(df)
+        df <- hansard_tidy(df, tidy_style)
 
         df
 

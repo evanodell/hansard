@@ -7,7 +7,8 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. Defaults to TRUE.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 #' @keywords EDM early day motion
 #' @seealso \code{\link{mp_edms}}
@@ -21,7 +22,7 @@
 #' }
 
 
-early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE) {
+early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
 
     if (is.null(edm_id) == FALSE) {
         edm_query <- paste0("&edmNumber=", edm_id)
@@ -65,7 +66,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
         if (tidy == TRUE) {
 
-            df <- hansard_tidy(df)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
