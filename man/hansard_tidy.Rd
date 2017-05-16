@@ -8,6 +8,8 @@ hansard_tidy(df, tidy_style)
 }
 \arguments{
 \item{df}{The tibble to tidy}
+
+\item{tidy_style}{The style to tidy variable names to.}
 }
 \value{
 A tidied tibble

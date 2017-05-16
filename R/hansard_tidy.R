@@ -4,6 +4,7 @@
 #' hansard_tidy
 #'
 #' @param df The tibble to tidy
+#' @param tidy_style The style to tidy variable names to.
 #' @return A tidied tibble
 
 
