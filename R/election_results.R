@@ -7,7 +7,7 @@
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #'
 #' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #' @keywords Election Results
@@ -54,19 +54,19 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
-        if (tidy == TRUE) {
+      if (calculate_percent == TRUE) {
+
+        df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
+
+        df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
+
+        df
+
+      }
+
+      if (tidy == TRUE) {
 
             df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        if (calculate_percent == TRUE) {
-
-            df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
-
-            df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
-
-            df
 
         } else {
 

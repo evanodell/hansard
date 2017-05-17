@@ -4,19 +4,24 @@
 \alias{elections}
 \title{Imports data on elections}
 \usage{
-elections(ID = NULL, type = c(NULL, "General Election", "By-election"),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+elections(ID = NULL, type = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), label = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
 
-\item{type}{Accepts "General Election" or "By-election" as arguments if ID is NULL. Returns all General Elections or all By-elections.}
+\item{type}{Accepts "General Election" or "By-election" as arguments if ID is NULL, and returns all General Elections or all By-elections, as specified.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+
+\item{label}{Label of the election. By-elections are in "dd-mmm-yyyy By-election" format; e.g. "23-Feb-2017 By-election", and general elections use "YYYY General Election" format. The parameter cannot search, so check your format, spelling and make sure there were actually elections with the label specified. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on all elections from the 2010 general election onwards, subject to function parameters.

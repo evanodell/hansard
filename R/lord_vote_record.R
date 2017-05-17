@@ -7,7 +7,7 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on the voting record of a member of the House of Lords
 #' @keywords divisions
 #' @export
@@ -52,9 +52,6 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.Date(df$date._value)
-
     } else if (lobby == "notcontent") {
 
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
@@ -78,9 +75,6 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         }
 
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.Date(df$date._value)
 
     } else {
 
@@ -148,6 +142,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
     } else {
 
         if (tidy == TRUE) {
+
+            df$date._datatype <- "Date"
+            df$date._value <- as.Date(df$date._value)
 
             df <- hansard_tidy(df, tidy_style)
 

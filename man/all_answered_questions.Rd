@@ -19,7 +19,7 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
 }
 \value{
 A tibble with details on all answered questions in the House of Commons and the House of Lords.
@@ -30,7 +30,7 @@ Imports data on all answered parliamentary questions.
 \examples{
 \dontrun{
 
-x <- all_answered_questions(4019)
+x <- all_answered_questions(4019, start_date="2017-01-01")
 
 }
 }

@@ -4,7 +4,7 @@
 #' @param ID The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with data on members of the House of Commons and/or the House of Lords.
 #' @keywords All Members of Parliament
 #' @export

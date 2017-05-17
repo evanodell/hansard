@@ -9,7 +9,7 @@
 #' @param full_data If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.
 #' @keywords Early Day Motion
 #' @seealso \code{\link{early_day_motions}}
@@ -122,6 +122,10 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
     } else {
 
         if (tidy == TRUE) {
+
+            df$dateSigned._value <- as.Date(df$dateSigned._value)
+
+            df$dateSigned._datatype <- "Date"
 
             df <- hansard_tidy(df, tidy_style)
 

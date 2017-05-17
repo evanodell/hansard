@@ -8,7 +8,7 @@
 #' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 #' @keywords EDM early day motion
 #' @seealso \code{\link{mp_edms}}
@@ -65,6 +65,10 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
     } else {
 
         if (tidy == TRUE) {
+
+            df$dateTabled._value <- as.Date(df$dateTabled._value)
+
+            df$dateTabled._datatype <- "Date"
 
             df <- hansard_tidy(df, tidy_style)
 

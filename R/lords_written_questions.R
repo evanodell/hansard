@@ -7,7 +7,7 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on written questions in the House of Lords.
 #' @keywords House of Lords Written Questions
 #' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{mp_questions}}
@@ -69,6 +69,14 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
     } else {
 
         if (tidy == TRUE) {
+
+            df$dateTabled._value <- as.Date(df$dateTabled._value)
+
+            df$AnswerDate._value <- as.Date(df$AnswerDate._value)
+
+            df$dateTabled._datatype <- "Date"
+
+            df$AnswerDate._value <- "Date"
 
             df <- hansard_tidy(df, tidy_style)
 

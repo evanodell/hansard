@@ -15,3 +15,4 @@ lords_vote_record <- function(lord.id, lordsRecord = c("all", "content", "notCon
     .Deprecated("lord_vote_record")
     lord_vote_record(peer_id = lord.id, lobby = tolower(lordsRecord))
 }
+

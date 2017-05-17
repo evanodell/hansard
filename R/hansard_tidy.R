@@ -20,6 +20,10 @@ hansard_tidy <- function(df, tidy_style) {
 
     names(df) <- tolower(names(df))
 
+    names(df)[names(df)=="x_about"] <- "about"
+
+    names(df)[names(df)=="x_value"] <- "value"
+
     if(tidy_style=="camelCase") {
 
       names(df) <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", names(df), perl = TRUE)

@@ -7,7 +7,7 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE, tidy_style="snake_case". Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
 #' @return A tibble with details on all questions asked by a member of the House of Commons.
 #' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}}
 #' @keywords questions
@@ -27,10 +27,10 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     if (question_type == "all") {
         message("Retrieving oral questions:")
-        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args)
+        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
         message("Retrieving written questions:")
-        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args)
+        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
@@ -97,6 +97,14 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
     } else {
 
         if (tidy == TRUE) {
+
+            df$dateTabled._value <- as.Date(df$dateTabled._value)
+
+            df$AnswerDate._value <- as.Date(df$AnswerDate._value)
+
+            df$AnswerDate._datatype <- "Date"
+
+            df$dateTabled._datatype <- "Date"
 
             df <- hansard_tidy(df, tidy_style)
 

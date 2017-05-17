@@ -16,7 +16,8 @@ Imports:
     httr,
     jsonlite,
     dplyr,
-    tibble
+    tibble,
+    lubridate
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
