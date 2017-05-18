@@ -86,9 +86,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
           if(summary==TRUE){
 
-            df$date._value <- as.Date(df$date._value)
-
-            df$date._datatype <- "Date"
+            df$date <- as.Date(df$date)
 
           }
 
