@@ -11,15 +11,15 @@ all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
 \arguments{
 \item{mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions. Includes both oral and written questions.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
 A tibble with details on all answered questions in the House of Commons and the House of Lords.
@@ -30,7 +30,7 @@ Imports data on all answered parliamentary questions.
 \examples{
 \dontrun{
 
-x <- all_answered_questions(4019, start_date="2017-01-01")
+x <- all_answered_questions(4019, start_date='2017-01-01')
 
 }
 }

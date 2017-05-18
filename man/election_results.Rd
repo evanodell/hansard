@@ -19,7 +19,7 @@ election_results(ID = NULL, calculate_percent = FALSE,
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
 A tibble with the results of all general and by-elections, or of a specified general election or by-election.

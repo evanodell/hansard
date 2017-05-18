@@ -7,7 +7,7 @@
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #'
 #' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #' @keywords Election Results
@@ -18,60 +18,60 @@
 #'
 #' }
 
-election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style="snake_case") {
-
+election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+    
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
-
+    
     message("Connecting to API")
-
+    
     elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500", extra_args))
-
+    
     if (elect$result$totalResults > elect$result$itemsPerPage) {
-
+        
         jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
     } else {
         jpage <- 0
     }
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
+    
     if (constit_details == TRUE) {
-
+        
         constits <- constituencies(current = FALSE)  ### combine with elect 2015 to get gss code
-
+        
         df <- left_join(constits, df, by = c(about = "constituency_about"))  ## Join
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
-      if (calculate_percent == TRUE) {
-
-        df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
-
-        df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
-
-        df
-
-      }
-
-      if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-        } else {
-
+        
+        if (calculate_percent == TRUE) {
+            
+            df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
+            
+            df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
+            
             df
-
+            
+        }
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df, tidy_style)
+            
+        } else {
+            
+            df
+            
         }
     }
 }

@@ -9,9 +9,9 @@ members_search(search = NULL, tidy = TRUE, tidy_style = "snake_case")
 \arguments{
 \item{search}{Accepts any string. Defaults to NULL. If NULL, returns a tibble with all members of both houses of parliament.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or "mnisId" or "mnis.id", depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or 'mnisId' or 'mnis.id', depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
 A tibble with the results of the search.

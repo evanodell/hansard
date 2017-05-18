@@ -11,15 +11,15 @@ sessions_info(days = FALSE, start_date = "1900-01-01",
 \arguments{
 \item{days}{If TRUE, returns data for all available days. If FALSE, returns data on each parliamentary session. Defaults to FALSE.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".}
+\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
 A tibble with details on parliamentary sessions.
@@ -32,7 +32,7 @@ Imports data on Parliamentary Sessions. Note that due to the date format used by
 
 x <- sessions_info(days=TRUE)
 
-x <- sessions_info(days=FALSE)
+y <- sessions_info(days=FALSE)
 
 }
 }

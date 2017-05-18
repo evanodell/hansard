@@ -2,12 +2,12 @@
 
 #' Imports data on elections
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.
-#' @param type Accepts "General Election" or "By-election" as arguments if ID is NULL, and returns all General Elections or all By-elections, as specified.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in "YYYY-MM-DD" format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param label Label of the election. By-elections are in "dd-mmm-yyyy By-election" format; e.g. "23-Feb-2017 By-election", and general elections use "YYYY General Election" format. The parameter cannot search, so check your format, spelling and make sure there were actually elections with the label specified. Defaults to NULL.
+#' @param type Accepts 'General Election' or 'By-election' as arguments if ID is NULL, and returns all General Elections or all By-elections, as specified.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param label Label of the election. By-elections are in 'dd-mmm-yyyy By-election' format; e.g. '23-Feb-2017 By-election', and general elections use 'YYYY General Election' format. The parameter cannot search, so check your format, spelling and make sure there were actually elections with the label specified. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of "snake_case", "camelCase" and "period.case". Defaults to "snake_case".
+#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on all elections from the 2010 general election onwards, subject to function parameters.
 #' @keywords Elections
 #' @export
@@ -17,70 +17,70 @@
 #' }
 
 
-elections <- function(ID = NULL, type=NULL, start_date = "1900-01-01", end_date = Sys.Date(), label = NULL, tidy = TRUE, tidy_style="snake_case") {
-
-  dates <- paste0("&max-date=", as.Date(end_date), "&min-date=",as.Date(start_date))
-
-  if (is.null(label)==FALSE){
-  label <- utils::URLencode(paste0("&label=", label))
-  }
-
-    if (is.null(ID) == FALSE) {
-
-        ID <- paste0("/", ID, ".json?")
-
-        baseurl <- "http://lda.data.parliament.uk/elections"
-
-        message("Connecting to API")
-
-        elect <- jsonlite::fromJSON(paste0(baseurl, ID, dates, label), flatten = TRUE)
-
-        df <- elect$result$items
-
-        df <- tibble::as_tibble(as.data.frame(df))
-
-    } else {
-
-      if(is.null(type)==FALSE){
-
-        type_query <- paste0("&electionType=", type)
-        type_query <- utils::URLencode(type_query)
-      } else {
-        type_query <- NULL
-      }
-
-        ID <- ".json?&_pageSize=500"
-
-        baseurl <- "http://lda.data.parliament.uk/elections"
-
-        message("Connecting to API")
-
-        elect <- jsonlite::fromJSON(paste0(baseurl, ID, type_query, dates, label), flatten = TRUE)
-
-        df <- tibble::as_tibble(elect$result$items)
-
+elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01", end_date = Sys.Date(), label = NULL, tidy = TRUE, tidy_style = "snake_case") {
+    
+    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    
+    if (is.null(label) == FALSE) {
+        label <- utils::URLencode(paste0("&label=", label))
     }
-
+    
+    if (is.null(ID) == FALSE) {
+        
+        ID <- paste0("/", ID, ".json?")
+        
+        baseurl <- "http://lda.data.parliament.uk/elections"
+        
+        message("Connecting to API")
+        
+        elect <- jsonlite::fromJSON(paste0(baseurl, ID, dates, label), flatten = TRUE)
+        
+        df <- elect$result$primaryTopic
+        
+        df <- tibble::as_tibble(as.data.frame(df))
+        
+    } else {
+        
+        if (is.null(type) == FALSE) {
+            
+            type_query <- paste0("&electionType=", type)
+            type_query <- utils::URLencode(type_query)
+        } else {
+            type_query <- NULL
+        }
+        
+        ID <- ".json?&_pageSize=500"
+        
+        baseurl <- "http://lda.data.parliament.uk/elections"
+        
+        message("Connecting to API")
+        
+        elect <- jsonlite::fromJSON(paste0(baseurl, ID, type_query, dates, label), flatten = TRUE)
+        
+        df <- tibble::as_tibble(elect$result$items)
+        
+    }
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
+        
         if (tidy == TRUE) {
-
+            
             df$date._value <- as.Date(df$date._value)
-
+            
             df$date._datatype <- "Date"
-
+            
             df <- hansard_tidy(df, tidy_style)
-
+            
             df
-
+            
         } else {
-
+            
             df
-
+            
         }
-
+        
     }
-
+    
 }
