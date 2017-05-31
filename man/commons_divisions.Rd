@@ -9,7 +9,7 @@ commons_divisions(division_id = NULL, summary = FALSE,
   tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions. Defaults to NULL.}
+\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to NULL.}
 
 \item{summary}{If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.}
 
@@ -35,6 +35,7 @@ Imports data on House of Commons divisions.
 x <- commons_divisions()
 
 x <- commons_divisions(division_id = 694163, summary = FALSE)
+
 
 }
 }

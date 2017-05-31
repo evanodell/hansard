@@ -34,15 +34,119 @@ library(hansard)
 
 ##Using hansard
 
-`hansard` contains functions for calling data for the UK Parliament API. Most of the functions are designed to call data from a specific <http://www.data.parliament.uk/> API, but several functions have special or experimental features:
+`hansard` contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <http://www.data.parliament.uk/> API. The parameter options for each function vary, depending on the specific information available from each API, but there are two constant parameters in every function (with the exception of the `hansard_generic()` and `research_topics_list()` functions [described below](#special-functions)): `tidy` and `tidy_style`.
 
-* `research_briefings_lists` An experimental feature that creates lists of possible parameters, and allows the user to call to the API based on the content of the list. Currently only available with the `research_briefings_lists` function.
+`tidy` is a logical parameter accepting either TRUE or FALSE, defaulting to TRUE. If TRUE, `hansard` will fix variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates are converted to Date class, and datetimes to POSIXct class. Some extra URL data included in the API is also stripped out.
 
-* `hansard_generic` A basic wrapper function for any of the available APIs. Users must specify the exact path they want the function to call from, and must also specify JSON formatting.
+The naming convention for variables used if `tidy`==TRUE is indicated by `tidy_style`. `tidy_style` accepts one of `"snake_case"`, `"camelCase"` and `"period.case"`, defaulting to `"snake_case"`. All variable names will be converted to match the given naming convention.
 
-* `members_search` A search function for members of the House of Commons and House of Lords.
+### Example using the `commons_divisions()` and `mp_vote_record()` functions
 
-### The `members_search` function
+The `commons_divisions()` function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. `mp_vote_record()` returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the [`members_search()` function described below](#special-functions).
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+library(hansard)
+library(tibble)##for the `glimpse()` function
+z <- mp_vote_record(172, "aye", start_date = "2017-01-01", end_date = "2017-05-03")
+glimpse(z)
+
+```
+
+
+Using `commons_divisions()`, we can see the result of one of those votes, ID 722300, the Early Parliamentary General Election bill that dissolved parliament for the 2017 General Election. The function default is to return a list of every MP and how they voted:
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+x <- commons_divisions(722300)
+glimpse(x)
+```
+
+
+With the `summary` parameter, we can return a brief summary table of votes:
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+y <- commons_divisions(722300, summary=TRUE)
+glimpse(y)
+```
+
+The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions.
+
+##Special functions
+
+Several functions have special or experimental features:
+
+* `research_briefings_lists()` An experimental feature that creates lists of possible parameters, and allows the user to call to the API based on the content of the list. Currently only available with the `research_briefings_lists` function.
+
+* `hansard_generic()` A basic wrapper function for any of the available APIs. Users must specify the exact path they want the function to call from, and must also specify JSON formatting.
+
+* `members_search()` A search function for members of the House of Commons and House of Lords.
+
+
+### The `research_briefings()` function
+
+The `research_briefings()` function includes the experimental feature of requesting data using lists created using the `research_briefings_lists` functions:
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+research_topics_list <- research_topics_list()
+
+research_subtopics_list <- research_subtopics_list()
+
+research_types_list <- research_types_list()
+
+research_topics_list[[7]]
+
+
+research_subtopics_list[[7]][10]
+
+research_types_list[[1]]
+
+
+```
+
+In this case I have given them the same name as their function, but you can assign any name you wish to them.
+
+Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used.
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+a <- research_briefings(topic = research_topics_list[[7]])
+
+b <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])
+
+c <- research_briefings(topic = "Defence")
+
+```
+
+If a specific subtopic is called, but the topic is not specified, the function will still return all data within that specific subtopic. Note that this is slower than specifying the topic and subtopic.
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+
+research_topics_list <- research_topics_list()
+
+research_subtopics_list <- research_subtopics_list()
+
+system.time(without_topic <- research_briefings(subtopic = research_subtopics_list[[7]][10]))
+
+system.time(with_topic <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10]))
+
+identical(with_topic, without_topic)
+
+```
+
+
+If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.
+
+
+### The `hansard_generic()` function
+
+The `hansard_generic()` function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the [DDP Explorer website](http://explore.data.parliament.uk/).
+
+```{r, eval=FALSE}
+x <- hansard_generic("commonsansweredquestions.json")
+```
+
+Note that the API defaults to returning 10 items per page, but allows up to 500 items per page.
+
+
+### The `members_search()` function
 
 Looking up information on an individual MP or Lord through the Parliamentary API requires knowing their parliamentary ID number. This can be hard to find on the web, but luckily you can look it up through the API. We want information on the voting record of the Labour MP for Hackney North and Stoke Newington Diane Abbott, but we don't know her ID number, so we search for her:
 
@@ -70,102 +174,6 @@ members_search("abbot", tidy = TRUE, tidy_style = "period.case")
 ```
 
 
-The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the related [`mnis`](https://cran.r-project.org/package=mnis) package to retrives data from the Members' Names Information Service.
+The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the [`mnis`](https://cran.r-project.org/package=mnis) package to retrives data from the Members' Names Information Service.
 
 
-### The `commons_divisions` and `mp_vote_record` functions
-
-The `commons_divisions` function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. `mp_vote_record` returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye.
-
-```{r eval = FALSE}
-x <- mp_vote_record(172, "aye")
-#> Retrieving page 1 of 4
-#> Retrieving page 2 of 4
-#> Retrieving page 3 of 4
-#> Retrieving page 4 of 4
-#> head(x)
-#> # A tibble: 6 × 5
-#>                                         about                                                   title               uin
-#>                                       <chr>                                                   <chr>             <chr>
-#> 1 http://data.parliament.uk/resources/714865 Pension Schemes Bill [Lords]: Report Stage New Clause 2 CD:2017-03-29:260
-#> 2 http://data.parliament.uk/resources/714866 Pension Schemes Bill [Lords]: Report Stage New Clause 1 CD:2017-03-29:259
-#> 3 http://data.parliament.uk/resources/714868  Pension Schemes Bill [Lords]: Report Stage Amendment 1 CD:2017-03-29:261
-#> 4 http://data.parliament.uk/resources/713962    Bus Services Bill [Lords]: Report Stage New Clause 1 CD:2017-03-27:255
-#> 5 http://data.parliament.uk/resources/713963    Bus Services Bill [Lords]: Report Stage New Clause 2 CD:2017-03-27:256
-#> 6 http://data.parliament.uk/resources/714005     Bus Services Bill [Lords]: Report Stage Amendment 1 CD:2017-03-27:257
-#> # ... with 2 more variables: date_value <date>, date_datatype <fctr>
-> 
-
-```
-
-The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions. 
-
-
-### The `research_briefings` function
-
-The `research_briefings` function includes the experimental feature of requesting data using lists created using the `research_briefings_lists` functions:
-
-```{r eval = FALSE}
-#> research_topics_list <- research_topics_list()
-#> 
-#> research_subtopics_list <- research_subtopics_list()
-#> 
-#> research_types_list <- research_types_list()
-#>
-#> research_topics_list[[7]]
-#> [1] "Defence"
-#>
-#> research_subtopics_list[[7]][10]
-#> [1] "Falkland Islands"
-#>
-#> research_types_list[[1]]
-#> [1] "Lords Library notes"
-
-```
-
-In this case I have given them the same name as their function, but you can assign any name you wish to them.
-
-Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used.
-
-```{r eval = FALSE}
-#> x <- research_briefings(topic = research_topics_list[[7]])
-#>
-#> x <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])
-#>
-#> x <- research_briefings(topic = "Defence")
-
-```
-
-If a specific subtopic is called, but the topic is not specified, the function will still return all data within that specific subtopic. Note that this is slower than specifying the topic and subtopic.
-
-```{r eval = FALSE}
-#> x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
-#> 
-#> x <- research_briefings(subtopic = "Falkland Islands")
-#>
-#> system.time(without_topic <- research_briefings(subtopic = research_subtopics_list[[7]][10]))
-#> Retrieving page 1 of 1
-#>   user  system elapsed 
-#>   1.12    2.59    4.71 
-#>
-#> system.time(with_topic <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10]))
-#> Retrieving page 1 of 1
-#>    user  system elapsed 
-#>    0.47    1.31    1.89 
-#>
-#> all.equal(with_topic, without_topic)
-#> [1] TRUE
-```
-
-
-If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.
-
-### The `hansard_generic` function
-
-The `hansard_generic` function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the [DDP Explorer website](http://explore.data.parliament.uk/).
-
-```{r, eval=FALSE}
-x <- hansard_generic("commonsansweredquestions.json")
-```
-
-Note that the API defaults to returning 10 items per page, but allows up to 500 items per page.

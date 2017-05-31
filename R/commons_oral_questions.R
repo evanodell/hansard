@@ -36,7 +36,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
         
     }
     
-    dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date))
+    dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date ))
     
     baseurl <- "http://lda.data.parliament.uk/commonsoralquestions"
     

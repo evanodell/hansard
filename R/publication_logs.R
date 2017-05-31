@@ -40,7 +40,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
         house_query <- NULL
     }
     
-    dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.Date(end_date), "&min-publicationDate=", as.Date(start_date))
+    dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.Date(end_date), "&min-publicationDate=", as.Date(start_date ))
     
     baseurl <- "http://lda.data.parliament.uk/publicationlogs"
     

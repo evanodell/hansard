@@ -27,10 +27,10 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     if (question_type == "all") {
         message("Retrieving oral questions:")
-        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date ), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
 
         message("Retrieving written questions:")
-        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date ), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
 
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
@@ -46,7 +46,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     } else if (question_type == "oral") {
 
-        dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date))
+        dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date ))
 
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
 
@@ -72,7 +72,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions.json?mnisId="
 
-        dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
+        dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date ))
 
         writ <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500", extra_args))
 

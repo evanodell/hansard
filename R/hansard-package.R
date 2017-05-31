@@ -70,5 +70,6 @@
 #' @import jsonlite
 #' @import dplyr
 #' @import tibble
+#' @import tidyr
 #' @importFrom lubridate parse_date_time
 NULL

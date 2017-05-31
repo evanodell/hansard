@@ -2,7 +2,7 @@
 % Please edit documentation in R/sessions_info.R
 \name{sessions_info}
 \alias{sessions_info}
-\title{Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.}
+\title{Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date } parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.}
 \usage{
 sessions_info(days = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -25,7 +25,7 @@ sessions_info(days = FALSE, start_date = "1900-01-01",
 A tibble with details on parliamentary sessions.
 }
 \description{
-Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
+Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date } parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
 }
 \examples{
 \dontrun{

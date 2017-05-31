@@ -34,6 +34,8 @@ Imports data on House of Commons answered questions. If all parameters are left 
 
 x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
 
+x <- commons_answered_questions(start_date = "2017-03-26", end_date="2017-04-01")
+
 }
 }
 \seealso{

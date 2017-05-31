@@ -13,7 +13,7 @@ test_that("commons functions return expected format", {
     # Divisions
 
     xcd <- commons_divisions(division_id = 694163, summary = FALSE)
-    expect_length(xcd, 5)
+    expect_length(xcd, 6)
     expect_type(xcd, "list")
     expect_true(tibble::is_tibble(xcd))
 

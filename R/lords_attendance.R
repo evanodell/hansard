@@ -23,7 +23,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         query <- ".json?_pageSize=500"
     }
     
-    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
     
     baseurl <- "http://lda.data.parliament.uk/lordsattendances"
     

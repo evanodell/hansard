@@ -41,7 +41,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
         query <- "&withdrawn=false"
     }
     
-    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=", as.Date(start_date))
+    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=", as.Date(start_date ))
     
     baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
     

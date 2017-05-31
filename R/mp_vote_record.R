@@ -42,7 +42,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         session_query <- NULL
     }
     
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
     
     if (lobby == "aye") {
         

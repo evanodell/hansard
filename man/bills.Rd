@@ -43,6 +43,8 @@ x <- bills(amendments=TRUE)
 
 x <- bills(1719)
 
+x <- bills(start_date ="2016-01-01")
+
 }
 \dontrun{
 x <- bill_stage_types()

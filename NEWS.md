@@ -3,11 +3,11 @@
 
 ## New features
 
-Added optional `tidy_style` parameter, allowing users to decide which style of snake_case, camelCase and period.case they want variable names to be in, if `tidy`==TRUE.
+Added optional `tidy_style` parameter, allowing users to decide which style of "snake_case", "camelCase" and "period.case" they want variable names to be in, if `tidy`==TRUE.
 
 The `elections()` function now accepts `start_date` and `end_date` parameters. As the API called by the `elections()` function only accepts one additional argument not included in the package (the label of the election), changed the `extra_args` parameter to `label` to query that argument. 
 
-The `tidy` parameter now changes date values to Date class with `as.Date()`, or to POSIXct with the `parse_date_time` from the `lubridate` package where applicable.
+The `tidy` parameter now changes date values to Date class with `as.Date()` when the API returns date information, or to POSIXct with the `parse_date_time` from the `lubridate` package where the API returns both date and time information.
 
 ## Bug fixes
 
@@ -43,13 +43,11 @@ Removed superfluous `x` from names in `elections()` when tidy=TRUE.
 
 Added optional `calculate_percent` parameter to `election_result()` function. If TRUE, `calculate_percent` calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in columns labelled `turnout_percentage` and `majority_percentage`. Defaults to FALSE.
 
-
 # hansard 0.4.2
 
 ## tibbling
 
 `hansard()` now uses tibbles instead of data frames as the data class returned from API calls.
-
 
 # hansard 0.4.1
 

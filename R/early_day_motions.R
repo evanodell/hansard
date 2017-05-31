@@ -36,7 +36,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
         session_query <- NULL
     }
     
-    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
+    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date ))
     
     sig_min <- paste0("&min-numberOfSignatures=", signatures)
     

@@ -26,7 +26,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         stop("peer_id must not be empty", call. = FALSE)
     }
     
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
     
     if (lobby == "content") {
         

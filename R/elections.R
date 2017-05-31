@@ -19,7 +19,7 @@
 
 elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01", end_date = Sys.Date(), label = NULL, tidy = TRUE, tidy_style = "snake_case") {
     
-    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
     
     if (is.null(label) == FALSE) {
         label <- utils::URLencode(paste0("&label=", label))

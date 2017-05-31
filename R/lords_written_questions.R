@@ -22,7 +22,7 @@
 
 lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
     
-    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
+    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date ))
     
     if (is.null(peer_id) == FALSE) {
         peer_id <- paste0("&tablingMember=http://data.parliament.uk/members/", peer_id)

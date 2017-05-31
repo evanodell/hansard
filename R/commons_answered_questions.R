@@ -16,64 +16,66 @@
 #'
 #' x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
 #'
+#' x <- commons_answered_questions(start_date = "2017-03-26", end_date="2017-04-01")
+#'
 #' }
 
 
 commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
-    dates <- paste0("&max-dateOfAnswer=", as.Date(end_date), "&min-dateOfAnswer=", as.Date(start_date))
-    
+
+    dates <- paste0("&max-dateOfAnswer=", as.Date(end_date), "&min-dateOfAnswer=", as.Date(start_date ))
+
     if (is.null(answered_by) == FALSE) {
         answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/", answered_by)
     }
-    
+
     if (is.null(answering_department) == FALSE) {
         query <- "/answeringdepartment"
         answering_department <- paste0("q=", answering_department)
     } else {
         query <- NULL
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/commonsansweredquestions"
-    
+
     message("Connecting to API")
-    
+
     answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates, extra_args), flatten = TRUE)
-    
+
     jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=", i, dates, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df <- tibble::as_tibble(df)
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df$dateOfAnswer._value <- as.Date(df$dateOfAnswer._value)
-            
+
             df$dateOfAnswer._datatype <- "Date"
-            
+
             df <- hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
-    
+
 }
