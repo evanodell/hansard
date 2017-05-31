@@ -101,7 +101,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
           names(df)[names(df) == "_about"] <- "voteId"
 
-          df <- tidyr::unnest(df, member)
+          df <- tidyr::unnest(df)
 
           df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
 

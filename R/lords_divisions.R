@@ -90,6 +90,14 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         if (tidy == TRUE) {
 
+          if (is.null(division_id) == TRUE) {
+
+            df$date._datatype <- "Date"
+
+            df$date._value <- as.Date(df$date._value)
+
+          } else {
+
             if (summary == FALSE) {
 
                 df$date._value <- as.Date(df$date._value)
@@ -117,7 +125,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
                   df$vote.type <- tolower(df$vote.type)
 
                 }
-
+            }
             }
 
             df <- hansard_tidy(df, tidy_style)
