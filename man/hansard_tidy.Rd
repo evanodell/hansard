@@ -2,7 +2,7 @@
 % Please edit documentation in R/hansard_tidy.R
 \name{hansard_tidy}
 \alias{hansard_tidy}
-\title{hansard::hansard_tidy}
+\title{hansard_tidy}
 \usage{
 hansard_tidy(df, tidy_style)
 }
@@ -15,5 +15,5 @@ hansard_tidy(df, tidy_style)
 A tidied tibble
 }
 \description{
-hansard::hansard_tidy
+hansard_tidy
 }
