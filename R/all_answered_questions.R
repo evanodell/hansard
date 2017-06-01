@@ -69,6 +69,10 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
 
         if (tidy == TRUE) {
 
+            df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+
+            df
+
             df <- hansard_tidy(df, tidy_style)
 
             names(df) <- gsub("answer_answering_member_full_name_value", "answering_member_full_name_value", names(df))
