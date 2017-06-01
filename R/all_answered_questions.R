@@ -14,7 +14,7 @@
 #'
 #' x <- all_answered_questions(4019, start_date ='2017-01-01')
 #'
-#' x <- all_answered_questions(4019, start_date ='2017-01-01', tidy="camelCase")
+#' x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style="camelCase")
 #'
 #' }
 
@@ -69,21 +69,19 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
 
         if (tidy == TRUE) {
 
-            df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+            names(df) <- gsub("answer.answeringMember.fullName._value", "answeringMember.fullName._value", names(df))
 
-            df
+            names(df) <- gsub("answer.answeringMember._about", "answeringMember._about", names(df))
+
+            names(df) <- gsub("answer.answerText._value", "answerText._value", names(df))
+
+            names(df) <- gsub("answer.dateOfAnswer._datatype", "dateOfAnswer._datatype", names(df))
+
+            names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
+
+            df$dateOfAnswer._value <- as.Date(df$dateOfAnswer._value)
 
             df <- hansard_tidy(df, tidy_style)
-
-            names(df) <- gsub("answer_answering_member_full_name_value", "answering_member_full_name_value", names(df))
-
-            names(df) <- gsub("answer_answering_member_about", "answering_member_about", names(df))
-
-            names(df) <- gsub("answer_answer_text_value", "answer_text_value", names(df))
-
-            names(df) <- gsub("answer_date_of_answer_datatype", "date_of_answer_datatype", names(df))
-
-            names(df) <- gsub("answer_date_of_answer_value", "date_of_answer_value", names(df))
 
             df
 
