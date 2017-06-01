@@ -53,7 +53,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

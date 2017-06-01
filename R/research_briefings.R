@@ -113,7 +113,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
             df$date._datatype <- "POSIXct"
 
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
 
         } else {
 

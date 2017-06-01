@@ -3,8 +3,8 @@
 #' Imports data on House of Commons and House of Lords publications.
 #' @param ID Publication ID. Defaults to NULL. If not NULL, requests a tibble with information on the given publication.
 #' @param house The house that produced the particular publication. Accepts 'commons' and 'lords'. If NULL or not 'commons' or 'lords', returns publications from both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
@@ -40,7 +40,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
         house_query <- NULL
     }
     
-    dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.Date(end_date), "&min-publicationDate=", as.Date(start_date ))
+    dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.POSIXct(end_date), "&min-publicationDate=", as.POSIXct(start_date ))
     
     baseurl <- "http://lda.data.parliament.uk/publicationlogs"
     
@@ -74,11 +74,11 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
         
         if (tidy == TRUE) {
             
-            df$publicationDate._value <- as.Date(df$publicationDate._value)
+            df$publicationDate._value <- as.POSIXct(df$publicationDate._value)
             
-            df$publicationDate._datatype <- "Date"
+            df$publicationDate._datatype <- "POSIXct"
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

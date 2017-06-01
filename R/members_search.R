@@ -54,7 +54,7 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
             
             df$mnis_id <- gsub("http://data.parliament.uk/members/", "", df$mnis_id)
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

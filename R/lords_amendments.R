@@ -1,8 +1,8 @@
 
 #' Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.
 #' @param decision The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
@@ -17,7 +17,7 @@
 
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
     
-    dates <- paste0("&min-bill.date=", as.Date(start_date ), "&max-bill.date=", as.Date(end_date))
+    dates <- paste0("&min-bill.date=", as.POSIXct(start_date ), "&max-bill.date=", as.POSIXct(end_date))
     
     if (is.null(decision) == FALSE) {
         decision_query <- paste0("&decision=", decision)
@@ -49,11 +49,11 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
         
         if (tidy == TRUE) {
             
-            df$bill.date._value <- as.Date(df$bill.date._value)
+            df$bill.date._value <- as.POSIXct(df$bill.date._value)
             
-            df$bill.date._datatype <- "Date"
+            df$bill.date._datatype <- "POSIXct"
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

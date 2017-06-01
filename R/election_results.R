@@ -66,7 +66,7 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
         } else {
             

@@ -1,8 +1,8 @@
 
 #' Imports data on all answered parliamentary questions.
 #' @param mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions. Includes both oral and written questions.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
@@ -20,7 +20,7 @@
 
 all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
+    dates <- paste0("&_properties=date&max-date=", as.POSIXct(end_date), "&min-date=", as.POSIXct(start_date ))
 
     if (is.null(mp_id) == TRUE) {
 
@@ -79,9 +79,9 @@ all_answered_questions <- function(mp_id = NULL, start_date = "1900-01-01", end_
 
             names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
 
-            df$dateOfAnswer._value <- as.Date(df$dateOfAnswer._value)
+            df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
 
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
 
             df
 

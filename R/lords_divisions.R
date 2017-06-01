@@ -2,8 +2,8 @@
 #' Imports data on House of Lords divisions
 #' @param division_id The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to NULL.
 #' @param summary If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to FALSE.
-#' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
+#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns.  Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
@@ -23,7 +23,7 @@
 
 lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date ))
+    dates <- paste0("&_properties=date&max-date=", as.POSIXct(end_date), "&min-date=", as.POSIXct(start_date ))
 
     if (is.null(division_id) == TRUE) {
 
@@ -92,17 +92,17 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
           if (is.null(division_id) == TRUE) {
 
-            df$date._datatype <- "Date"
+            df$date._datatype <- "POSIXct"
 
-            df$date._value <- as.Date(df$date._value)
+            df$date._value <- as.POSIXct(df$date._value)
 
           } else {
 
             if (summary == FALSE) {
 
-                df$date._value <- as.Date(df$date._value)
+                df$date._value <- as.POSIXct(df$date._value)
 
-                df$date._datatype <- "Date"
+                df$date._datatype <- "POSIXct"
 
                 df$vote.type  <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type )
 
@@ -128,7 +128,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
             }
             }
 
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
 
             df
 

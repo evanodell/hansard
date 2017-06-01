@@ -58,7 +58,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             
@@ -102,7 +102,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             
@@ -149,7 +149,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             
@@ -202,7 +202,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
         
         if (tidy == TRUE) {
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

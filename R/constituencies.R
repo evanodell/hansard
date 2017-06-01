@@ -36,8 +36,8 @@ constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_
     
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
     
-    df$endedDate._value <- as.Date(df$endedDate._value)
-    df$startedDate._value <- as.Date(df$startedDate._value)
+    df$endedDate._value <- as.POSIXct(df$endedDate._value)
+    df$startedDate._value <- as.POSIXct(df$startedDate._value)
     
     if (current == TRUE) {
         df <- df[is.na(df$endedDate._value) == TRUE, ]
@@ -49,15 +49,15 @@ constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_
         
         if (tidy == TRUE) {
             
-            df$endedDate._value <- as.Date(df$endedDate._value)
+            df$endedDate._value <- as.POSIXct(df$endedDate._value)
             
-            df$startedDate._value <- as.Date(df$startedDate._value)
+            df$startedDate._value <- as.POSIXct(df$startedDate._value)
             
-            df$endedDate._datatype <- "Date"
+            df$endedDate._datatype <- "POSIXct"
             
-            df$startedDate._datatype <- "Date"
+            df$startedDate._datatype <- "POSIXct"
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

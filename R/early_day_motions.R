@@ -3,8 +3,8 @@
 #' Imports data on early day motions
 #' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.
 #' @param session Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.POSIXct()}.
 #' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
@@ -36,7 +36,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
         session_query <- NULL
     }
     
-    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date ))
+    dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.POSIXct(end_date), "&min-dateTabled=", as.POSIXct(start_date ))
     
     sig_min <- paste0("&min-numberOfSignatures=", signatures)
     
@@ -64,11 +64,11 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
         
         if (tidy == TRUE) {
             
-            df$dateTabled._value <- as.Date(df$dateTabled._value)
+            df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
             
-            df$dateTabled._datatype <- "Date"
+            df$dateTabled._datatype <- "POSIXct"
             
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
             
             df
             

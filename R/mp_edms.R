@@ -59,7 +59,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-    df$dateSigned._value <- as.Date(df$dateSigned._value)
+    df$dateSigned._value <- as.POSIXct(df$dateSigned._value)
 
     if (full_data == TRUE) {
 
@@ -121,11 +121,11 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
         if (tidy == TRUE) {
 
-            df$dateSigned._value <- as.Date(df$dateSigned._value)
+            df$dateSigned._value <- as.POSIXct(df$dateSigned._value)
 
-            df$dateSigned._datatype <- "Date"
+            df$dateSigned._datatype <- "POSIXct"
 
-            df <- hansard_tidy(df, tidy_style)
+            df <- hansard::hansard_tidy(df, tidy_style)
 
             df
 
