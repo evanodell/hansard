@@ -1,47 +1,68 @@
-## ----eval=FALSE---------------------------------------------------------- library(hansard) members_search('abbot') #>
-## Connecting to API #> Retrieving page 1 of 1 #> mnis_id home_page additional_name_value constituency_about #> 1 172
-## http://www.dianeabbott.org.uk Julie http://data.parliament.uk/resources/146966 #> 2 1651 <NA> Granville <NA> #> 3 4249
-## http://www.annemariemorris.co.uk/ <NA> http://data.parliament.uk/resources/147092 #> 4 3827 http://www.judiciary.gov.uk
-## Edmond <NA> #> constituency_label_value family_name_value full_name_value gender_value #> 1 Hackney North and Stoke
-## Newington Abbott Ms Diane Abbott Female #> 2 <NA> Hodgson Lord Hodgson of Astley Abbotts Male #> 3 Newton Abbot Morris
-## Anne Marie Morris Female #> 4 <NA> Neuberger Lord Neuberger of Abbotsbury Male #> given_name_value label_value
-## party_value #> 1 Diane Biography information for Ms Diane Abbott Labour #> 2 Robin Biography information for Lord Hodgson
-## of Astley Abbotts <NA> #> 3 Anne Marie Biography information for Anne Marie Morris Conservative #> 4 David Biography
-## information for Lord Neuberger of Abbotsbury <NA> #> twitter_value #> 1 https://twitter.com/HackneyAbbott #> 2 <NA> #> 3
-## https://twitter.com/AMMorrisMP #> 4 <NA>
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+library(hansard)
+library(tibble)##for the `glimpse()` function
+z <- mp_vote_record(172, "aye", start_date = "2017-01-01", end_date = "2017-05-03")
+glimpse(z)
 
-## ----eval=FALSE---------------------------------------------------------- library(hansard) members_search('abbot', tidy =
-## FALSE) #> Connecting to API #> Retrieving page 1 of 1 #> _about homePage additionalName._value #> 1
-## http://data.parliament.uk/members/172 http://www.dianeabbott.org.uk Julie #> 2 http://data.parliament.uk/members/1651
-## <NA> Granville #> 3 http://data.parliament.uk/members/4249 http://www.annemariemorris.co.uk/ <NA> #> 4
-## http://data.parliament.uk/members/3827 http://www.judiciary.gov.uk Edmond #> constituency._about
-## constituency.label._value familyName._value fullName._value #> 1 http://data.parliament.uk/resources/146966 Hackney North
-## and Stoke Newington Abbott Ms Diane Abbott #> 2 <NA> <NA> Hodgson Lord Hodgson of Astley Abbotts #> 3
-## http://data.parliament.uk/resources/147092 Newton Abbot Morris Anne Marie Morris #> 4 <NA> <NA> Neuberger Lord Neuberger
-## of Abbotsbury #> gender._value givenName._value label._value party._value #> 1 Female Diane Biography information for Ms
-## Diane Abbott Labour #> 2 Male Robin Biography information for Lord Hodgson of Astley Abbotts <NA> #> 3 Female Anne Marie
-## Biography information for Anne Marie Morris Conservative #> 4 Male David Biography information for Lord Neuberger of
-## Abbotsbury <NA> #> twitter._value #> 1 https://twitter.com/HackneyAbbott #> 2 <NA> #> 3 https://twitter.com/AMMorrisMP #>
-## 4 <NA>
 
-## NA
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+x <- commons_divisions(722300)
+glimpse(x)
 
-## ----eval = FALSE-------------------------------------------------------- #> research_topics_list <-
-## research_topics_list() #> #> research_subtopics_list <- research_subtopics_list() #> #> research_types_list <-
-## research_types_list() #> #> research_topics_list[[7]] #> [1] 'Defence' #> #> research_subtopics_list[[7]][10] #> [1]
-## 'Falkland Islands' #> #> research_types_list[[1]] #> [1] 'Lords Library notes'
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+y <- commons_divisions(722300, summary=TRUE)
+glimpse(y)
 
-## ----eval = FALSE-------------------------------------------------------- #> x <- research_briefings(topic =
-## research_topics_list[[7]]) #> #> x <- research_briefings(topic = research_topics_list[[7]],
-## subtopic=research_subtopics_list[[7]][10]) #> #> x <- research_briefings(topic = 'Defence')
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+research_topics_list <- research_topics_list()
 
-## ----eval = FALSE-------------------------------------------------------- #> x <- research_briefings(subtopic =
-## research_subtopics_list[[7]][10]) #> #> x <- research_briefings(subtopic = 'Falkland Islands') #> #>
-## system.time(without_topic <- research_briefings(subtopic = research_subtopics_list[[7]][10])) #> Retrieving page 1 of 1
-## #> user system elapsed #> 1.12 2.59 4.71 #> #> system.time(with_topic <- research_briefings(topic =
-## research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])) #> Retrieving page 1 of 1 #> user system elapsed
-## #> 0.47 1.31 1.89 #> #> all.equal(with_topic, without_topic) #> [1] TRUE
+research_subtopics_list <- research_subtopics_list()
 
-## ---- eval=FALSE--------------------------------------------------------- x <-
-## hansard_generic('commonsansweredquestions.json')
+research_types_list <- research_types_list()
+
+research_topics_list[[7]]
+
+
+research_subtopics_list[[7]][10]
+
+research_types_list[[1]]
+
+
+
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+a <- research_briefings(topic = research_topics_list[[7]])
+
+b <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])
+
+c <- research_briefings(topic = "Defence")
+
+
+## ---- echo=TRUE, message=TRUE, warning=FALSE-----------------------------
+
+research_topics_list <- research_topics_list()
+
+research_subtopics_list <- research_subtopics_list()
+
+system.time(without_topic <- research_briefings(subtopic = research_subtopics_list[[7]][10]))
+
+system.time(with_topic <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10]))
+
+identical(with_topic, without_topic)
+
+
+## ---- eval=FALSE---------------------------------------------------------
+#  x <- hansard_generic("commonsansweredquestions.json")
+
+## ----echo=TRUE-----------------------------------------------------------
+library(hansard)
+members_search("abbot")
+
+
+## ---- echo=TRUE----------------------------------------------------------
+library(hansard)
+members_search("abbot", tidy = FALSE)
+
+## ---- echo=TRUE----------------------------------------------------------
+library(hansard)
+members_search("abbot", tidy = TRUE, tidy_style = "period.case")
 
