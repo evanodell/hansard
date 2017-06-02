@@ -15,8 +15,6 @@ hansard_tidy <- function(df, tidy_style) {
 
     names(df) <- gsub("__", "_", names(df))
 
-    names(df) <- gsub("__", "_", names(df))
-
     names(df) <- gsub("^_", "", names(df))
 
     names(df) <- tolower(names(df))
