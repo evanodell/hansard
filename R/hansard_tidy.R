@@ -7,11 +7,9 @@
 #'
 #' @param df The tibble to tidy
 #' @param tidy_style The style to tidy variable names to.
-#' @export
 #' @noRd
 #' @return A tidied tibble
-
-
+#'
 hansard_tidy <- function(df, tidy_style) {
 
     names(df) <- gsub("\\.", "_", names(df))
