@@ -7,7 +7,6 @@
 #'
 #' @param df The tibble to tidy
 #' @param tidy_style The style to tidy variable names to.
-#' @noRd
 #' @export
 #' @return A tidied tibble
 #'
