@@ -8,9 +8,8 @@ There is one note from R CMD check, reproduced below, which believes the words '
 
 ## Test environments
 
-* Ubuntu 12.04.5 (on Travis-CI): R 3.3.2
-* local MacOS 10.12.3 installation, R 3.4.0
-* local Windows 7 installation, R 3.4.0
+* Ubuntu 14.04.5 (on Travis-CI): R 3.4.0
+* local MacOS 10.12.5 installation, R 3.4.0
 * win-builder (devel and release)
  
 
