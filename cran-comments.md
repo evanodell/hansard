@@ -22,5 +22,5 @@ There is one note from R CMD check, reproduced below, which believes the words '
 Maintainer: 'Evan Odell <evanodell91@gmail.com>'
 
 Possibly mis-spelled words in DESCRIPTION:
-  API (3:69, 9:143, 9:332)
-  APIs (9:105)
+  API (3:69, 9:130, 9:319)
+  APIs (9:92)

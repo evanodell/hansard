@@ -7,7 +7,9 @@ Added optional `tidy_style` parameter, allowing users to decide which style of "
 
 The `elections()` function now accepts `start_date` and `end_date` parameters. As the API called by the `elections()` function only accepts one additional argument not included in the package (the label of the election), changed the `extra_args` parameter to `label` to query that argument. 
 
-The `tidy` parameter now changes date values to Date class with `as.Date()` when the API returns date information, or to POSIXct with the `parse_date_time` from the `lubridate` package where the API returns both date and time information.
+The `tidy` parameter now changes date values to POSIXct class with `as.POSIXct()` when the API returns date information, or to POSIXct with the `parse_date_time` from the `lubridate` package where the API returns both date and time information.
+
+`tidy` parameter now strips out more unneeded character strings from API response.
 
 ## Bug fixes
 
