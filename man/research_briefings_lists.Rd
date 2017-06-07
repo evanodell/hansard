@@ -4,7 +4,7 @@
 \alias{research_topics_list}
 \alias{research_subtopics_list}
 \alias{research_types_list}
-\title{research_topics_list}
+\title{A list of Parliamentary Research Briefings topics.}
 \usage{
 research_topics_list()
 
@@ -42,6 +42,9 @@ research_subtopics_list <- research_subtopics_list()
 research_types_list <- research_types_list()
 
 }
+}
+\seealso{
+\code{\link{research_briefings}}
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

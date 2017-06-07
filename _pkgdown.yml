@@ -6,9 +6,9 @@ template:
 name:
 navbar:
   left:
-    - text: "Home"
+    - text: "evanodell.com"
       href: http://evanodell.com
-    - text: "Documentation"
+    - text: "docs.evanodell.com"
       href: http://docs.evanodell.com
     - text: "News"
       href: news/index.html
