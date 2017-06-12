@@ -4,12 +4,14 @@
 \alias{all_answered_questions}
 \title{Imports data on all answered parliamentary questions.}
 \usage{
-all_answered_questions(mp_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member. If NULL, returns a tibble with all available answered questions. Includes both oral and written questions.}
+\item{mp_id}{Accepts a member ID, and returns a tibble with all available questions answered by that member. If NULL, returns a tibble with all available answered questions. Includes both oral and written questions.}
+
+\item{tabling_mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member, subject to all other parameters.. Defaults to NULL.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
 
@@ -37,7 +39,7 @@ x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style="camelCas
 }
 }
 \seealso{
-\code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+\code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}} \code{\link{mp_questions}}
 }
 \keyword{Answered}
 \keyword{Questions}

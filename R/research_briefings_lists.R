@@ -23,8 +23,7 @@ research_topics_list <- function() {
 
 }
 
-#' research_subtopics_list
-#'
+
 #' A list of Parliamentary Research Briefings subtopics, grouped by topic.
 #' @rdname research_briefings_lists
 #' @return A list with the different research subtopics available.
@@ -65,8 +64,7 @@ research_subtopics_list <- function() {
 
 
 
-#' research_types_list
-#'
+
 #' A list of types of Parliamentary Research Briefings.
 #' @rdname research_briefings_lists
 #' @return A list with the different types of research briefings.

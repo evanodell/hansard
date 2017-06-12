@@ -1,4 +1,13 @@
 
+
+# hansard 0.4.6.9000
+
+## New features
+
+Additional URL stripping from variable values if `tidy`==TRUE.
+
+
+
 # hansard 0.4.6
 
 ## New features

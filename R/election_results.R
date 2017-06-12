@@ -1,6 +1,6 @@
 
 
-#' Imports data on general election and by-election results
+#' Imports data on general election and by-election results from the 2010 general election onwards.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
 #' @param calculate_percent If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
@@ -19,59 +19,61 @@
 #' }
 
 election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
-    
+
     message("Connecting to API")
-    
+
     elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500", extra_args))
-    
+
     if (elect$result$totalResults > elect$result$itemsPerPage) {
-        
+
         jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
     } else {
         jpage <- 0
     }
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (constit_details == TRUE) {
-        
-        constits <- constituencies(current = FALSE)  ### combine with elect 2015 to get gss code
-        
-        df <- left_join(constits, df, by = c(about = "constituency_about"))  ## Join
+
+        constits <- constituencies(current = FALSE)
+
+        df <- left_join(constits, df, by = c(about = "constituency_about"))
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (calculate_percent == TRUE) {
-            
+
             df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
-            
+
             df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
-            
-            df
-            
+
         }
-        
+
         if (tidy == TRUE) {
-            
+
+            #df$election_about <- gsub("http://data.parliament.uk/resources/", "", df$election_about)
+
+            #df$constituency_about <- gsub("http://data.parliament.uk/resources/", "", df$constituency_about)
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
         } else {
-            
+
             df
-            
+
         }
     }
 }

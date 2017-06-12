@@ -2,7 +2,7 @@
 % Please edit documentation in R/election_results.R
 \name{election_results}
 \alias{election_results}
-\title{Imports data on general election and by-election results}
+\title{Imports data on general election and by-election results from the 2010 general election onwards.}
 \usage{
 election_results(ID = NULL, calculate_percent = FALSE,
   constit_details = FALSE, extra_args = NULL, tidy = TRUE,
@@ -25,7 +25,7 @@ election_results(ID = NULL, calculate_percent = FALSE,
 A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 }
 \description{
-Imports data on general election and by-election results
+Imports data on general election and by-election results from the 2010 general election onwards.
 }
 \examples{
 \dontrun{

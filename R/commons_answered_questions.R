@@ -66,6 +66,10 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
             df$dateOfAnswer._datatype <- "POSIXct"
 
+            df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
+
+            df$AnsweringBody <- unlist(df$AnsweringBody)
+
             df <- hansard::hansard_tidy(df, tidy_style)
 
             df
