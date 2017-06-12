@@ -49,6 +49,10 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id=NULL, start_date 
 
         tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
 
+      } else {
+
+        tabler <- NULL
+
       }
 
         mp_id <- as.character(mp_id)
