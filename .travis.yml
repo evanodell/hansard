@@ -2,7 +2,7 @@
 
 language: r
 r:
-  - oldrel
+  - 3.3.2
   - release
   - devel
 sudo: false
