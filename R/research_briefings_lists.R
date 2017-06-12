@@ -63,8 +63,6 @@ research_subtopics_list <- function() {
 }
 
 
-
-
 #' A list of types of Parliamentary Research Briefings.
 #' @rdname research_briefings_lists
 #' @return A list with the different types of research briefings.
