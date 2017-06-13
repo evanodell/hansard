@@ -19,55 +19,73 @@
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (is.null(ID) == TRUE) {
         query <- ".json?_pageSize=500"
     } else {
         query <- paste0("/", ID, ".json?")
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/members"
-    
+
     message("Connecting to API")
-    
+
     members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
-    
+
     if (is.null(ID) == TRUE) {
-        
+
         jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, ID, query, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-        
+
     } else {
-        
-        df <- tibble::as_tibble(members$result$primaryTopic)
-        
+
+        df <- list()
+
+        df$`_about` <- members$result$primaryTopic$`_about`
+        df$additionalName <- members$result$primaryTopic$additionalName$`_value`
+        df$constituency_about <- members$result$primaryTopic$constituency$`_about`
+        df$constituency_label <- members$result$primaryTopic$constituency$label
+        df$familyName <- members$result$primaryTopic$familyName$`_value`
+        df$fullName <- members$result$primaryTopic$fullName$`_value`
+        df$gender <- members$result$primaryTopic$gender$`_value`
+        df$givenName <- members$result$primaryTopic$givenName$`_value`
+        df$homePage <- members$result$primaryTopic$homePage
+        df$isPrimaryTopicOf <- members$result$primaryTopic$isPrimaryTopicOf
+        df$label <- members$result$primaryTopic$label$`_value`
+        df$party <- members$result$primaryTopic$party$`_value`
+        df$twitter <- members$result$primaryTopic$twitter$`_value`
+
+        df <- tibble::as.tibble(df)
+
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
+            df$`_about` <- gsub("http://data.parliament.uk/members/", "", df$`_about`)
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }
 
@@ -77,41 +95,41 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
-    
+
     message("Connecting to API")
-    
+
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-    
+
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }
 
@@ -122,43 +140,43 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
-    
+
     message("Connecting to API")
-    
+
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-    
+
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df <- tibble::as_tibble(df)
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }
 
@@ -169,48 +187,48 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 #' @rdname members
 #' @export
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (is.null(peer_id) == TRUE) {
         query <- ".json?_pageSize=500"
     } else {
         query <- paste0(".json?member=", peer_id, "&_pageSize=500")
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
-    
+
     message("Connecting to API")
-    
+
     members <- jsonlite::fromJSON(paste0(paste0(baseurl, extra_args), query), flatten = TRUE)
-    
+
     jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df <- tibble::as_tibble(df)
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }

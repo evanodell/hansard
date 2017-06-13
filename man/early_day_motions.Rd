@@ -9,7 +9,7 @@ early_day_motions(edm_id = NULL, session = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions. Defaults to NULL.}
+\item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. Defaults to NULL.}
 
 \item{session}{Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to NULL.}
 

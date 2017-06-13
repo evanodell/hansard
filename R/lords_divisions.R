@@ -108,6 +108,10 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
                 df$vote.type  <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type )
 
+                df$vote.member <- unlist(df$vote.member)
+
+                df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
+
                 if (tidy_style == "camelCase") {
 
                   df$vote.type   <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type , perl = TRUE)

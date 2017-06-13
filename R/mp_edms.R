@@ -111,6 +111,10 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
         df2$about <- as.character(df2$about)
 
+        df2$about <- gsub("http://data.parliament.uk/resources/", "", df2$about)
+
+        df2$about <- gsub("/signatures/.*", "", df2$about)
+
         df <- dplyr::left_join(df, df2, by = "about")
 
     }
@@ -124,6 +128,14 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
             df$dateSigned._value <- as.POSIXct(df$dateSigned._value)
 
             df$dateSigned._datatype <- "POSIXct"
+
+            df$member <- unlist(df$member)
+
+            df$member <- gsub("http://data.parliament.uk/members/", "", df$member)
+
+            df$primarySponsor <- gsub("http://data.parliament.uk/members/", "", df$primarySponsor)
+
+            df$creator_label <- gsub("http://data.parliament.uk/members/", "", df$creator_label)
 
             df <- hansard::hansard_tidy(df, tidy_style)
 

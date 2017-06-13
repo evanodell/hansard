@@ -6,6 +6,12 @@
 
 Additional URL stripping from variable values if `tidy`==TRUE.
 
+## Bug Fixes
+
+Fixed bug in `members()` where looking up a single member returned a tibble with two rows.
+
+Fixed bug in `mp_edms()` where additional data was not being returned if `full_data`==TRUE.
+
 # hansard 0.4.6
 
 ## New features
