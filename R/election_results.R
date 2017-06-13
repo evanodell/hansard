@@ -68,11 +68,11 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
             df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- tibble::as.tibble(hansard::hansard_tidy(df, tidy_style))
 
         } else {
 
-            df
+            df <- tibble::as.tibble(df)
 
         }
     }
