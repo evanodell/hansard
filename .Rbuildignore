@@ -13,3 +13,4 @@
 ^_pkgdown\.yml$
 ^README\.html$
 ^README\.md$
+^appveyor\.yml$
