@@ -12,6 +12,8 @@ Fixed bug in `members()` where looking up a single member returned a tibble with
 
 Fixed bug in `mp_edms()` where additional data was not being returned if `full_data`==TRUE.
 
+Fixed bug in `election_results()` where it did not return data if `constit_details`==TRUE.
+
 # hansard 0.4.6
 
 ## New features

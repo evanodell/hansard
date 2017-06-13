@@ -41,13 +41,13 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
+    df <- dplyr::bind_rows(pages)
 
     if (constit_details == TRUE) {
 
         constits <- constituencies(current = FALSE)
 
-        df <- left_join(constits, df, by = c(about = "constituency_about"))
+        df <- dplyr::left_join(df, constits, by = c("constituency._about" = "about"))
     }
 
     if (nrow(df) == 0) {
@@ -64,9 +64,9 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
         if (tidy == TRUE) {
 
-            #df$election_about <- gsub("http://data.parliament.uk/resources/", "", df$election_about)
+            df$election._about <- gsub("http://data.parliament.uk/resources/", "", df$election._about)
 
-            #df$constituency_about <- gsub("http://data.parliament.uk/resources/", "", df$constituency_about)
+            df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
 
             df <- hansard::hansard_tidy(df, tidy_style)
 
