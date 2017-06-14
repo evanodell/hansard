@@ -2,7 +2,7 @@
 % Please edit documentation in R/research_briefings.R
 \name{research_briefings}
 \alias{research_briefings}
-\title{Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.}
+\title{Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.}
 \usage{
 research_briefings(topic = NULL, subtopic = NULL, type = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
@@ -24,7 +24,7 @@ research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 A tibble with details on parliamentary research briefings on the given topic.
 }
 \description{
-Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.
+Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.
 }
 \examples{
 \dontrun{
@@ -32,19 +32,27 @@ x <- research_briefings('Housing and planning')
 
 # Requests can be made using lists created using `research_topics_list`
 # and `research_subtopics_list`
+
+research_topics_list <- research_topics_list()
+
 x <- research_briefings(topic = research_topics_list[[7]])
+
+research_subtopics_list <- research_subtopics_list()
 
 x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 
 # Requests for certain briefing types can also be made using lists
 # created with 'research_types_list'.
+
+research_types_list <- research_types_list()
+
 x <- research_briefings(type = research_types_list[[3]])
 
 
 }
 }
 \seealso{
-research_topics
+\code{\link{research_subtopics_list}} \code{\link{research_types_list}} \code{\link{research_topics_list}}
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

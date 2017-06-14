@@ -1,4 +1,3 @@
-##Here and below not updated with additional tidying for 0.4.6.9000
 
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
 #' @param mp_id The ID number of a member of the House of Commons. Defaults to NULL.
@@ -105,6 +104,12 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
             df$AnswerDate._datatype <- "POSIXct"
 
             df$dateTabled._datatype <- "POSIXct"
+
+            df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
+
+            df$AnsweringBody <- unlist(df$AnsweringBody)
+
+            df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
 
             df <- hansard::hansard_tidy(df, tidy_style)
 

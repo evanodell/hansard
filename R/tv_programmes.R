@@ -71,6 +71,16 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
             df$endDate._datatype <- "POSIXct"
 
+            df$legislature <- dplyr::bind_rows(df$legislature)
+
+            df$legislature.prefLabel._value <- df$legislature$prefLabel._value
+
+            df$legislature_about <- df$legislature$`_about`
+
+            df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
+
+            df$legislature <- NULL
+
             df <- hansard::hansard_tidy(df, tidy_style)
 
             df
@@ -128,6 +138,16 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
         message("The request did not return any data. Please check your search parameters.")
     } else {
         if (tidy == TRUE) {
+
+            df$member <- dplyr::bind_rows(df$member)
+
+            df$member.prefLabel._value <- df$member$prefLabel._value
+
+            df$member_about <- df$member$`_about`
+
+            df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
+
+            df$member <- NULL
 
             df <- hansard::hansard_tidy(df, tidy_style)
 

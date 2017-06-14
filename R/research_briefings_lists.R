@@ -1,5 +1,7 @@
 
 
+#' Functions to retrieve lists of research briefing topics, subtopics and types. These functions do not accept any arguments.
+#'
 #' A list of Parliamentary Research Briefings topics.
 #' @rdname research_briefings_lists
 #' @return A list with the different research topics available.
@@ -34,7 +36,6 @@ research_topics_list <- function() {
 #' research_subtopics_list <- research_subtopics_list()
 #'
 #' }
-
 
 research_subtopics_list <- function() {
 

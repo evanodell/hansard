@@ -1,5 +1,5 @@
 
-#' Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}.
+#' Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.
 #' @param topic The topic of the parliamentary briefing.
 #' @param subtopic The subtopic of the parliamentary briefing.
 #' @param type The type of research briefing.
@@ -8,19 +8,27 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on parliamentary research briefings on the given topic.
 #' @keywords Parliamentary Research Briefings
-#' @seealso research_topics
+#' @seealso \code{\link{research_subtopics_list}} \code{\link{research_types_list}} \code{\link{research_topics_list}}
 #' @export
 #' @examples \dontrun{
 #' x <- research_briefings('Housing and planning')
 #'
 #' # Requests can be made using lists created using `research_topics_list`
 #' # and `research_subtopics_list`
+#'
+#' research_topics_list <- research_topics_list()
+#'
 #' x <- research_briefings(topic = research_topics_list[[7]])
+#'
+#' research_subtopics_list <- research_subtopics_list()
 #'
 #' x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 #'
 #' # Requests for certain briefing types can also be made using lists
 #' # created with 'research_types_list'.
+#'
+#' research_types_list <- research_types_list()
+#'
 #' x <- research_briefings(type = research_types_list[[3]])
 #'
 #'
@@ -112,6 +120,19 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
             df$date._value <- lubridate::parse_date_time(df$date._value, "Y-m-d H:M:Sz!*")
 
             df$date._datatype <- "POSIXct"
+
+            df$description <- as.character(df$description)
+
+            df$description[df$description=="NULL"] <- NA
+
+            for(i in 1:nrow(df)){
+
+              if(is.null(df$section[[i]])==FALSE){
+
+                df$section[[i]] <- hansard_tidy(df$section[[i]], tidy_style)
+
+              }
+            }
 
             df <- hansard::hansard_tidy(df, tidy_style)
 
