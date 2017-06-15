@@ -33,7 +33,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
 
     session <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500", dates, extra_args))
 
-    jpage <- round(session$result$totalResults/session$result$itemsPerPage, digits = 0)
+    jpage <- floor(session$result$totalResults/session$result$itemsPerPage)
 
     pages <- list()
 

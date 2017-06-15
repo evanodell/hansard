@@ -33,7 +33,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args))
 
-        jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+        jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
 
         pages <- list()
 

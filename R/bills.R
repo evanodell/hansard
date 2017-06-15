@@ -45,7 +45,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
     bills <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args), flatten = TRUE)
 
-    jpage <- round(bills$result$totalResults/bills$result$itemsPerPage, digits = 0)
+    jpage <- floor(bills$result$totalResults/bills$result$itemsPerPage)
 
     pages <- list()
 

@@ -39,7 +39,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         
     } else {
         
-        jpage <- round(attend$result$totalResults/attend$result$itemsPerPage, digits = 0)
+        jpage <- floor(attend$result$totalResults/attend$result$itemsPerPage)
         
         pages <- list()
         

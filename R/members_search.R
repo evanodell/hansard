@@ -30,7 +30,7 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
         
         results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
         
-        jpage <- round(results$result$totalResults/results$result$itemsPerPage, digits = 0)
+        jpage <- floor(results$result$totalResults/results$result$itemsPerPage)
         
         pages <- list()
         

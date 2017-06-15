@@ -52,7 +52,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500", extra_args))
 
         if (oral$result$totalResults > oral$result$itemsPerPage) {
-            oralJpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
+            oraljpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
         } else {
             oralJpage <- 0
         }
@@ -76,7 +76,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
         writ <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500", extra_args))
 
         if (writ$result$totalResults > writ$result$itemsPerPage) {
-            jpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
+            jpage <- floor(writ$result$totalResults/writ$result$itemsPerPage)
         } else {
             jpage <- 0
         }

@@ -1,7 +1,7 @@
 
 
 #' Imports data on House of Commons oral questions
-#' @param mp_id The ID of a given MP. Defaults to NULL.
+#' @param mp_id The ID of a given MP asking an oral question. Defaults to NULL.
 #' @param answering_department The department that answers a question
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
@@ -44,7 +44,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
 
     oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", extra_args), flatten = TRUE)
 
-    jpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
+    jpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
 
     pages <- list()
 

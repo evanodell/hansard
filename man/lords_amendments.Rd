@@ -32,6 +32,8 @@ Imports data on House of Lords Amendments. Returns a tibble with all available H
 
 x <- lords_amendments()
 
+x <- lords_amendments(decision="Withdrawn")
+
 }
 }
 \keyword{Amendments}

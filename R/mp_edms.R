@@ -42,7 +42,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     if (edms$result$totalResults > edms$result$itemsPerPage) {
 
-        jpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
+        jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
 
     } else {
 

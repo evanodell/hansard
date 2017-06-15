@@ -32,7 +32,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
     divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args), flatten = TRUE)
 
-    jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+    jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
 
     pages <- list()
 
@@ -167,7 +167,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
     divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", date, extra_args))
 
-    jpage <- round(divis$result$totalResults/divis$result$itemsPerPage, digits = 0)
+    jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
 
     pages <- list()
 

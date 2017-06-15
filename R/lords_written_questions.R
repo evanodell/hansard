@@ -50,7 +50,7 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
     writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", extra_args), flatten = TRUE)
 
-    jpage <- round(writ$result$totalResults/writ$result$itemsPerPage, digits = 0)
+    jpage <- floor(writ$result$totalResults/writ$result$itemsPerPage)
 
     pages <- list()
 

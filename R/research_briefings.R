@@ -51,7 +51,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
         research <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
-        jpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
+        jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
 
         pages <- list()
 
@@ -95,7 +95,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
         research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args), flatten = TRUE)
 
-        jpage <- round(research$result$totalResults/research$result$itemsPerPage, digits = 0)
+        jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
 
         pages <- list()
 

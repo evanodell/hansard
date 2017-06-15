@@ -24,7 +24,7 @@ constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_
     
     conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
     
-    jpage <- round(conts$result$totalResults/conts$result$itemsPerPage, digits = 0)
+    jpage <- floor(conts$result$totalResults/conts$result$itemsPerPage)
     
     pages <- list()
     

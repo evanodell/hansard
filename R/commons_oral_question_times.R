@@ -53,7 +53,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
         
         oral <- jsonlite::fromJSON(paste0(baseurl, question_id, ".json", session, page_size, extra_args))
         
-        jpage <- round(oral$result$totalResults/oral$result$itemsPerPage, digits = 0)
+        jpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
         
         pages <- list()
         

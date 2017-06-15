@@ -51,7 +51,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        jpage <- floor(url_aye$result$totalResults/url_aye$result$itemsPerPage)
 
         pages <- list()
 
@@ -74,7 +74,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
+        jpage <- floor(url_no$result$totalResults/url_no$result$itemsPerPage)
 
         pages <- list()
 
@@ -98,7 +98,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- round(url_aye$result$totalResults/url_aye$result$itemsPerPage, digits = 0)
+        jpage <- floor(url_aye$result$totalResults/url_aye$result$itemsPerPage)
 
         pages <- list()
 
@@ -119,7 +119,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- round(url_no$result$totalResults/url_no$result$itemsPerPage, digits = 0)
+        jpage <- floor(url_no$result$totalResults/url_no$result$itemsPerPage)
 
         pages <- list()
 

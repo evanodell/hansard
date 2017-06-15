@@ -9,7 +9,7 @@ commons_oral_questions(mp_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{mp_id}{The ID of a given MP. Defaults to NULL.}
+\item{mp_id}{The ID of a given MP asking an oral question. Defaults to NULL.}
 
 \item{answering_department}{The department that answers a question}
 

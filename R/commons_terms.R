@@ -37,7 +37,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
     baseurl <- "http://lda.data.parliament.uk/terms.json?_pageSize=500&_view=description"
     message("Connecting to API")
     terms <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, extra_args), flatten = TRUE)
-    jpage <- round(terms$result$totalResults/terms$result$itemsPerPage, digits = 0)
+    jpage <- floor(terms$result$totalResults/terms$result$itemsPerPage)
     pages <- list()
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, "&_page=", i, extra_args), flatten = TRUE)

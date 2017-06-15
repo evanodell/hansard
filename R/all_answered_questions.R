@@ -31,7 +31,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id=NULL, start_date 
 
         all <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args), flatten = TRUE)
 
-        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)-1
+        jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
 
         pages <- list()
 
@@ -55,15 +55,15 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id=NULL, start_date 
 
       }
 
-        mp_id <- as.character(mp_id)
-
         baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
 
         message("Connecting to API")
 
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, dates, extra_args))
 
-        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
+        jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+
+        jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits=0)
 
         pages <- list()
 

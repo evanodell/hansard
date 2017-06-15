@@ -34,6 +34,8 @@ x <- election_results(ID=382037)
 
 y <- election_results()
 
+z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
+
 }
 }
 \keyword{Election}

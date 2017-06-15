@@ -41,7 +41,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
         
         petition <- jsonlite::fromJSON(paste0(baseurl, ID, by_constituency, ".json?&_pageSize=500", extra_args), flatten = TRUE)
         
-        jpage <- round(petition$result$totalResults/petition$result$itemsPerPage, digits = 0)
+        jpage <- floor(petition$result$totalResults/petition$result$itemsPerPage)
         
         pages <- list()
         

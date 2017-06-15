@@ -1,10 +1,12 @@
 
 
-# hansard 0.4.6.9000
+# hansard 0.4.7
 
 ## New features
 
 Additional URL stripping from variable values if `tidy`==TRUE.
+
+Added `tabling_mp_id` parameter to `all_answered_questions()`
 
 ## Bug Fixes
 
@@ -13,6 +15,8 @@ Fixed bug in `members()` where looking up a single member returned a tibble with
 Fixed bug in `mp_edms()` where additional data was not being returned if `full_data`==TRUE.
 
 Fixed bug in `election_results()` where it did not return data if `constit_details`==TRUE.
+
+Fixed bugs where empty queries in `election_results()`, `members()` and possibly other functions were returning incorrect errors in some environments or circumstances.
 
 # hansard 0.4.6
 

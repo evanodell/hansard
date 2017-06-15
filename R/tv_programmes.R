@@ -41,7 +41,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
     message("Connecting to API")
 
-    jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
+    jpage <- floor(tv$result$totalResults/tv$result$itemsPerPage)
 
     pages <- list()
 
@@ -122,7 +122,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
-    jpage <- round(tv$result$totalResults/tv$result$itemsPerPage, digits = 0)
+    jpage <- floor(tv$result$totalResults/tv$result$itemsPerPage)
 
     pages <- list()
 

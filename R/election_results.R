@@ -18,19 +18,28 @@
 #'
 #' y <- election_results()
 #'
+#' z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
+#'
 #' }
 
 election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-    baseurl <- "http://lda.data.parliament.uk/electionresults.json?electionId="
+    if(is.null(ID)==TRUE){
+      id_query <- NULL
+    } else {
+      id_query <- paste0("electionId=", ID)
+    }
+
+    baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
 
     message("Connecting to API")
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500", extra_args))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
 
     if (elect$result$totalResults > elect$result$itemsPerPage) {
 
-        jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)-1
+        jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
+
     } else {
         jpage <- 0
     }
@@ -38,16 +47,18 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, ID, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
 
     df <- dplyr::bind_rows(pages)
 
-    if (constit_details == TRUE) {
+    if (constit_details == TRUE & (nrow(df) > 0)) {
 
-        constits <- constituencies(current = FALSE)
+        message("Retrieving constituency information")
+
+        constits <- suppressMessages(constituencies(current = FALSE))
 
         df <- dplyr::left_join(df, constits, by = c("constituency._about" = "about"))
     }

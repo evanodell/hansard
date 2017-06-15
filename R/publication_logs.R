@@ -54,7 +54,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
         
     } else {
         
-        jpage <- round(logs$result$totalResults/logs$result$itemsPerPage, digits = 0)
+        jpage <- floor(logs$result$totalResults/logs$result$itemsPerPage)
         
         pages <- list()
         

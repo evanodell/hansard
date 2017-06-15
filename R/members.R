@@ -34,7 +34,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
     if (is.null(ID) == TRUE) {
 
-        jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
+        jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
         pages <- list()
 
@@ -102,7 +102,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
+    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
     pages <- list()
 
@@ -147,7 +147,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
+    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
     pages <- list()
 
@@ -200,7 +200,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
     members <- jsonlite::fromJSON(paste0(paste0(baseurl, extra_args), query), flatten = TRUE)
 
-    jpage <- round(members$result$totalResults/members$result$itemsPerPage, digits = 0)
+    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
     pages <- list()
 

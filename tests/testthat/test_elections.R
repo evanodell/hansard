@@ -27,6 +27,12 @@ test_that("election functions return expected format", {
     expect_type(electall, "list")
     expect_true(tibble::is_tibble(electall))
 
+    electcons <- election_results(ID=730039, calculate_percent = TRUE)
+    expect_length(electcons, 19)
+    expect_type(electcons, "list")
+    expect_true(tibble::is_tibble(electcons))
+    expect_true(nrow(electcons)==650)
+
 
 })
 

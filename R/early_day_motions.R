@@ -1,7 +1,7 @@
 
 
-#' Imports data on early day motions
-#' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. Defaults to NULL.
+#' Imports data on early day motions, including the content, signatories, and sponsors of early day motions.
+#' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If NULL, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to NULL.
 #' @param session Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to NULL.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
@@ -46,7 +46,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
     edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, "&_pageSize=500", sig_min, extra_args), flatten = TRUE)
 
-    jpage <- round(edms$result$totalResults/edms$result$itemsPerPage, digits = 0)
+    jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
 
     pages <- list()
 
@@ -80,3 +80,4 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
     }
 }
+

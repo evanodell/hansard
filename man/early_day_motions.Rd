@@ -2,14 +2,14 @@
 % Please edit documentation in R/early_day_motions.R
 \name{early_day_motions}
 \alias{early_day_motions}
-\title{Imports data on early day motions}
+\title{Imports data on early day motions, including the content, signatories, and sponsors of early day motions.}
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. Defaults to NULL.}
+\item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If NULL, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to NULL.}
 
 \item{session}{Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to NULL.}
 
@@ -29,7 +29,7 @@ early_day_motions(edm_id = NULL, session = NULL,
 A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 }
 \description{
-Imports data on early day motions
+Imports data on early day motions, including the content, signatories, and sponsors of early day motions.
 }
 \examples{
 \dontrun{

@@ -14,27 +14,27 @@
 
 
 hansard_generic <- function(path) {
-    
+
     url <- modify_url("http://lda.data.parliament.uk/", path = path)
-    
+
     message("Connecting to API")
-    
+
     mydata <- jsonlite::fromJSON(url)
-    
-    genericJPages <- round(mydata$result$totalResults/mydata$result$itemsPerPage, digits = 0)
-    
+
+    genericJPages <- floor(mydata$result$totalResults/mydata$result$itemsPerPage)
+
     pages <- list()
-    
+
     for (i in 0:genericJPages) {
         mydata <- jsonlite::fromJSON(paste0(url, "?_page=", i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", genericJPages + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- dplyr::bind_rows(pages)
-    
+
     df <- tibble::as_tibble(df)
-    
+
     df
-    
+
 }

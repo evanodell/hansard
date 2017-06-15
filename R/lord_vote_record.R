@@ -37,7 +37,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
         
         if (content$result$itemsPerPage < content$result$totalResults) {
-            jpage <- round(content$result$totalResults/content$result$itemsPerPage, digits = 0)
+            jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
         } else {
             jpage <- 0
         }
@@ -61,7 +61,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
         
         if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
-            jpage <- round(notcontent$result$totalResults/notcontent$result$itemsPerPage, digits = 0)
+            jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
         } else {
             jpage <- 0
         }
@@ -87,7 +87,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
         
         if (content$result$itemsPerPage < content$result$totalResults) {
-            jpage <- round(content$result$totalResults/content$result$itemsPerPage, digits = 0)
+            jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
         } else {
             jpage <- 0
         }
@@ -113,7 +113,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
         
         if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
-            jpage <- round(notcontent$result$totalResults/notcontent$result$itemsPerPage, digits = 0)
+            jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
         } else {
             jpage <- 0
         }

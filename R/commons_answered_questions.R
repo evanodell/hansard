@@ -42,7 +42,7 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
     answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-    jpage <- round(answered$result$totalResults/answered$result$itemsPerPage, digits = 0)
+    jpage <- floor(answered$result$totalResults/answered$result$itemsPerPage)
 
     pages <- list()
 

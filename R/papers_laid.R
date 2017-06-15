@@ -49,7 +49,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
     papers <- jsonlite::fromJSON(paste0(baseurl, query, house, dates, extra_args), flatten = TRUE)
 
-    jpage <- round(papers$result$totalResults/papers$result$itemsPerPage, digits = 0)
+    jpage <- floor(papers$result$totalResults/papers$result$itemsPerPage)
 
     pages <- list()
 
