@@ -6,13 +6,13 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
     skip_on_cran()
 
     tvclipsempty <- tv_clips(start_date = "2016-01-11", end_date = "2016-01-12")
-    expect_length(tvclipsempty, 6)
+    expect_length(tvclipsempty, 7)
     expect_type(tvclipsempty, "list")
     expect_true(tibble::is_tibble(tvclipsempty))
     expect_equal(nrow(tvclipsempty), 378)
 
     tvclipsmp <- tv_clips(4591)
-    expect_length(tvclipsmp, 6)
+    expect_length(tvclipsmp, 7)
     expect_type(tvclipsmp, "list")
     expect_true(tibble::is_tibble(tvclipsmp))
 
