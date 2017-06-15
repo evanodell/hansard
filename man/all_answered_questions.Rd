@@ -34,7 +34,7 @@ Imports data on all answered parliamentary questions.
 
 x <- all_answered_questions(4019, start_date ='2017-01-01')
 
-x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style="camelCase")
+x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
 
 }
 }

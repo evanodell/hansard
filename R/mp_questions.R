@@ -16,21 +16,24 @@
 #' }
 #'
 
-mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-
+mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
+    tidy = TRUE, tidy_style = "snake_case") {
+    
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
     }
-
+    
     question_type <- tolower(question_type)
-
+    
     if (question_type == "all") {
         message("Retrieving oral questions:")
-        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
-
+        df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), 
+            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+        
         message("Retrieving written questions:")
-        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
-
+        df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), 
+            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+        
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
             df <- df_writ
@@ -40,49 +43,49 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
             common <- intersect(colnames(df_writ), colnames(df_oral))
             df <- rbind(subset(df_writ, select = common), subset(df_oral, select = common))
         }
-
+        
         df
-
+        
     } else if (question_type == "oral") {
-
+        
         dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date))
-
+        
         baseurl_oral <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
-
+        
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500", extra_args))
-
+        
         if (oral$result$totalResults > oral$result$itemsPerPage) {
             oraljpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
         } else {
             oralJpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:oralJpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", oralJpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
+        
     } else if (question_type == "written") {
-
+        
         baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions.json?mnisId="
-
+        
         dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
-
+        
         writ <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500", extra_args))
-
+        
         if (writ$result$totalResults > writ$result$itemsPerPage) {
             jpage <- floor(writ$result$totalResults/writ$result$itemsPerPage)
         } else {
             jpage <- 0
         }
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
@@ -90,36 +93,36 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
         }
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
+        
         if (tidy == TRUE) {
-
+            
             df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
-
+            
             df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
-
+            
             df$AnswerDate._datatype <- "POSIXct"
-
+            
             df$dateTabled._datatype <- "POSIXct"
-
+            
             df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
-
+            
             df$AnsweringBody <- unlist(df$AnsweringBody)
-
+            
             df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
-
+            
             df <- hansard::hansard_tidy(df, tidy_style)
-
+            
             df
-
+            
         } else {
-
+            
             df
-
+            
         }
-
+        
     }
 }

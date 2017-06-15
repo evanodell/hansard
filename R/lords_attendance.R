@@ -15,7 +15,8 @@
 #' x <- lords_attendance(session_id = 706178)
 #' }
 #'
-lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, 
+    tidy_style = "snake_case") {
     
     if (is.null(session_id) == FALSE) {
         query <- paste0("/", session_id, ".json?")

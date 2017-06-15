@@ -17,7 +17,8 @@
 #' x <- publication_logs(683267)
 #' }
 
-publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, 
+    tidy_style = "snake_case") {
     
     if (is.null(ID) == FALSE) {
         query <- paste0("/", ID, ".json?")

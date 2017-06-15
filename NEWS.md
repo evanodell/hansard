@@ -1,4 +1,8 @@
+# hansard 0.4.7.90000
 
+## New features
+
+New `all_data` parameter in `election_results()` to return the number of votes cast for each party in each constituency.
 
 # hansard 0.4.7
 

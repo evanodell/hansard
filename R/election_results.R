@@ -1,8 +1,8 @@
 
-
 #' Imports data on general election and by-election results from the 2010 general election onwards.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
+#' @param all_data If TRUE, returns vote share for all parties standing in the election.
 #' @param calculate_percent If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
@@ -20,14 +20,17 @@
 #'
 #' z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 #'
+#' df <- election_results(ID=730039, all_data=TRUE)
+#'
 #' }
 
-election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL,
+    tidy = TRUE, tidy_style = "snake_case") {
 
-    if(is.null(ID)==TRUE){
-      id_query <- NULL
+    if (is.null(ID) == TRUE) {
+        id_query <- NULL
     } else {
-      id_query <- paste0("electionId=", ID)
+        id_query <- paste0("electionId=", ID)
     }
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
@@ -60,7 +63,47 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
         constits <- suppressMessages(constituencies(current = FALSE))
 
-        df <- dplyr::left_join(df, constits, by = c("constituency._about" = "about"))
+        df <- dplyr::left_join(df, constits, by = c(constituency._about = "about"))
+    }
+
+    if (all_data == TRUE) {
+
+        names(df)[names(df) == "_about"] <- "about"
+
+        dat <- vector("list", nrow(df))
+
+        df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+
+        for (i in 1:nrow(df)) {
+
+            x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/", df$about[[i]], ".json"), flatten = TRUE)
+
+            dat[[i]] <- x$result$primaryTopic$candidate
+
+            message("Retrieving data for ", df$constituency.label._value[[i]])
+
+        }
+
+        df2 <- dplyr::bind_rows(dat)
+
+        df2$fullName._value <- NULL
+        df2$order <- NULL
+        # df2$`_about` <- gsub('http://data.parliament.uk/resources/', '' ,df2$`_about`) df2$`_about` <- gsub('/.*', '', df2$`_about`)
+        names(df2)[names(df2) == "_about"] <- "about"
+
+        # df2 <- dplyr::group_by(df2, about, add = FALSE)
+
+        df3 <- tidyr::spread(df2, party._value, numberOfVotes)
+
+        df3$about <- gsub("http://data.parliament.uk/resources/", "", df3$about)
+        df3$about <- gsub("/.*", "", df3$about)
+
+        df3 <- dplyr::group_by(df3, about)
+
+        df4 <- dplyr::summarise_all(df3, sum, na.rm = TRUE)
+
+        df4[df4 == 0] <- NA
+
     }
 
     if (nrow(df) == 0) {
@@ -83,9 +126,25 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
             df <- tibble::as.tibble(hansard::hansard_tidy(df, tidy_style))
 
+            if (all_data == TRUE) {
+
+                df <- dplyr::left_join(df, df4, by = "about")
+
+            }
+
+            df
+
         } else {
 
             df <- tibble::as.tibble(df)
+
+            if (all_data == TRUE) {
+
+                df <- dplyr::left_join(df, df4, by = "about")
+
+            }
+
+            df
 
         }
     }

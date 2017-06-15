@@ -13,57 +13,58 @@
 #'
 #' x <- lords_amendments()
 #'
-#' x <- lords_amendments(decision="Withdrawn")
+#' x <- lords_amendments(decision='Withdrawn')
 #'
 #' }
 
-lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-
+lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, 
+    tidy_style = "snake_case") {
+    
     dates <- paste0("&min-bill.date=", as.Date(start_date), "&max-bill.date=", as.Date(end_date))
-
+    
     if (is.null(decision) == FALSE) {
         decision_query <- paste0("&decision=", decision)
     } else {
         decision_query <- NULL
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
-
+    
     message("Connecting to API")
-
+    
     ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, extra_args), flatten = TRUE)
-
+    
     jpage <- floor(ammend$result$totalResults/ammend$result$itemsPerPage)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
+        
         if (tidy == TRUE) {
-
+            
             df$bill.date._value <- as.POSIXct(df$bill.date._value)
-
+            
             df$bill.date._datatype <- "POSIXct"
-
+            
             df <- hansard::hansard_tidy(df, tidy_style)
-
+            
             df
-
+            
         } else {
-
+            
             df
-
+            
         }
-
+        
     }
 }

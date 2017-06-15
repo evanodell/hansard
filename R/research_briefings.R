@@ -35,113 +35,115 @@
 #' }
 
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-
+    
     if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
-
+        
         if (is.null(type) == FALSE) {
             type <- utils::URLencode(type)
             query <- paste0("&subType.prefLabel=", type)
         } else {
             query <- NULL
         }
-
+        
         baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?&_pageSize=500"
-
+        
         message("Connecting to API")
-
+        
         research <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
-
+        
         jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
+        
     } else {
-
+        
         if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
-
+            
             g <- rep(seq_along(hansard::research_subtopics_list()), sapply(hansard::research_subtopics_list(), length))
             dex <- g[match(subtopic, unlist(hansard::research_subtopics_list()))]
             topic <- names(hansard::research_subtopics_list())[dex]
-
+            
         }
-
+        
         if (is.null(subtopic) == FALSE) {
             subtopic <- utils::URLencode(subtopic)
             subtopic_query <- paste0("/", subtopic)
         } else {
             subtopic_query <- NULL
         }
-
+        
         if (is.null(topic) == FALSE) {
             topic_query <- utils::URLencode(topic)
         }
-
+        
         if (is.null(type) == FALSE) {
             type <- utils::URLencode(type)
             query <- paste0("&subType.prefLabel=", type)
         } else {
             query <- NULL
         }
-
+        
         baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
-
-        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args), flatten = TRUE)
-
+        
+        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args), 
+            flatten = TRUE)
+        
         jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
-
+        
         pages <- list()
-
+        
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=", 
+                i, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-
+        
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
+        
     }
-
+    
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-
+        
         if (tidy == TRUE) {
-
+            
             df$date._value <- gsub("T", " ", df$date._value)
-
+            
             df$date._value <- lubridate::parse_date_time(df$date._value, "Y-m-d H:M:Sz!*")
-
+            
             df$date._datatype <- "POSIXct"
-
+            
             df$description <- as.character(df$description)
-
-            df$description[df$description=="NULL"] <- NA
-
-            for(i in 1:nrow(df)){
-
-              if(is.null(df$section[[i]])==FALSE){
-
-                df$section[[i]] <- hansard_tidy(df$section[[i]], tidy_style)
-
-              }
+            
+            df$description[df$description == "NULL"] <- NA
+            
+            for (i in 1:nrow(df)) {
+                
+                if (is.null(df$section[[i]]) == FALSE) {
+                  
+                  df$section[[i]] <- hansard_tidy(df$section[[i]], tidy_style)
+                  
+                }
             }
-
+            
             df <- hansard::hansard_tidy(df, tidy_style)
-
+            
         } else {
-
+            
             df
-
+            
         }
-
+        
     }
-
+    
 }

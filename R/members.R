@@ -44,8 +44,6 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
     } else {
 
         df <- list()
@@ -64,8 +62,6 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
         df$party <- members$result$primaryTopic$party$`_value`
         df$twitter <- members$result$primaryTopic$twitter$`_value`
 
-        df <- tibble::as.tibble(df)
-
     }
 
     if (nrow(df) == 0) {
@@ -78,9 +74,13 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
             df <- hansard::hansard_tidy(df, tidy_style)
 
+            df <- tibble::as.tibble(df)
+
             df
 
         } else {
+
+            df <- tibble::as.tibble(df)
 
             df
 

@@ -4,12 +4,14 @@
 \alias{election_results}
 \title{Imports data on general election and by-election results from the 2010 general election onwards.}
 \usage{
-election_results(ID = NULL, calculate_percent = FALSE,
+election_results(ID = NULL, all_data = FALSE, calculate_percent = FALSE,
   constit_details = FALSE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
+
+\item{all_data}{If TRUE, returns vote share for all parties standing in the election.}
 
 \item{calculate_percent}{If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.}
 
@@ -35,6 +37,8 @@ x <- election_results(ID=382037)
 y <- election_results()
 
 z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
+
+df <- election_results(ID=730039, full_data=TRUE)
 
 }
 }
