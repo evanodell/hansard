@@ -16,6 +16,8 @@
 #'
 #' x <- election_results(ID=382037)
 #'
+#' y <- election_results()
+#'
 #' }
 
 election_results <- function(ID = NULL, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
@@ -28,7 +30,7 @@ election_results <- function(ID = NULL, calculate_percent = FALSE, constit_detai
 
     if (elect$result$totalResults > elect$result$itemsPerPage) {
 
-        jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)
+        jpage <- round(elect$result$totalResults/elect$result$itemsPerPage, digits = 0)-1
     } else {
         jpage <- 0
     }

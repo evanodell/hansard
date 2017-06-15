@@ -32,6 +32,8 @@ Imports data on general election and by-election results from the 2010 general e
 
 x <- election_results(ID=382037)
 
+y <- election_results()
+
 }
 }
 \keyword{Election}

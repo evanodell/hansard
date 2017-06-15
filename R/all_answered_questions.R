@@ -31,7 +31,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id=NULL, start_date 
 
         all <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args), flatten = TRUE)
 
-        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
+        jpage <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)-1
 
         pages <- list()
 
