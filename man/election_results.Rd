@@ -38,7 +38,7 @@ y <- election_results()
 
 z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 
-df <- election_results(ID=730039, full_data=TRUE)
+df <- election_results(ID=730039, all_data=TRUE)
 
 }
 }

@@ -44,6 +44,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
             pages[[i + 1]] <- mydata$result$items
         }
 
+        df <- dplyr::bind_rows(pages)
+
     } else {
 
         df <- list()
@@ -61,6 +63,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
         df$label <- members$result$primaryTopic$label$`_value`
         df$party <- members$result$primaryTopic$party$`_value`
         df$twitter <- members$result$primaryTopic$twitter$`_value`
+
+        df <- tibble::as.tibble(df)
 
     }
 

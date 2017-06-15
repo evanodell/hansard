@@ -14,7 +14,6 @@ test_that("members functions return expected format", {
     # Lookup by member id
 
     mabbot <- members(172)
-
     expect_length(mabbot, 13)
     expect_type(mabbot, "list")
     expect_true(tibble::is_tibble(mabbot))
