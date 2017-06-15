@@ -132,28 +132,40 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
         pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
+    df <- as.data.frame(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         if (tidy == TRUE) {
 
-            df$member <- dplyr::bind_rows(df$member)
+          for(i in 1:nrow(df)){
 
-            df$member.prefLabel._value <- df$member$prefLabel._value
+            if(is.null(df$member[[i]])==FALSE){
 
-            df$member_about <- df$member$`_about`
+              df$member[[i]] <- hansard_tidy(df$member[[i]], tidy_style)
 
-            df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
+              df$member_about <- NA
+              df$member_label_value <- NA
 
-            df$member <- NULL
+              df$member_about <- df$member[[i]]$about
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+              df$member_label_value <- df$member[[i]]$label_value
+
+              df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
+
+              df$member <- NULL
+
+            }
+          }
+
+            df <- tibble::as.tibble(hansard::hansard_tidy(df, tidy_style))
 
             df
 
         } else {
+
+            df <- tibble::as.tibble(df)
 
             df
 
