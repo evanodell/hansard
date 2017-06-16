@@ -2,7 +2,7 @@
 #' Imports data on general election and by-election results from the 2010 general election onwards.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
-#' @param all_data If TRUE, returns vote share for all parties standing in the election.
+#' @param all_data If TRUE, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to FALSE. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA.
 #' @param calculate_percent If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
@@ -20,7 +20,7 @@
 #'
 #' z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 #'
-#' df <- election_results(ID=730039, all_data=TRUE)
+#' w <- election_results(ID=730039, all_data=TRUE)
 #'
 #' }
 
@@ -39,13 +39,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
 
-    if (elect$result$totalResults > elect$result$itemsPerPage) {
-
-        jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
-
-    } else {
-        jpage <- 0
-    }
+    jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
 
     pages <- list()
 
@@ -88,10 +82,8 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
         df2$fullName._value <- NULL
         df2$order <- NULL
-        # df2$`_about` <- gsub('http://data.parliament.uk/resources/', '' ,df2$`_about`) df2$`_about` <- gsub('/.*', '', df2$`_about`)
-        names(df2)[names(df2) == "_about"] <- "about"
 
-        # df2 <- dplyr::group_by(df2, about, add = FALSE)
+        names(df2)[names(df2) == "_about"] <- "about"
 
         df3 <- tidyr::spread(df2, party._value, numberOfVotes)
 
@@ -103,6 +95,11 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
         df4 <- dplyr::summarise_all(df3, sum, na.rm = TRUE)
 
         df4[df4 == 0] <- NA
+
+        names(df4)[names(df4)=="Con"] <- "Conservative"
+        names(df4)[names(df4)=="Lab"] <- "Labour"
+        names(df4)[names(df4)=="Lib"] <- "Liberal Democrat"
+        names(df4)[names(df4)=="Ind"] <- "Independent"
 
     }
 
