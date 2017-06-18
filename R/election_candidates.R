@@ -77,7 +77,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df2$about <- gsub("/.*", "", df2$about)
 
     df2 <- aggregate(fullName._value ~ party._value + about, data = df2, c)
-    #df2$fullName._value <- as.character(df2$fullName._value)
+    df2$fullName._value <- as.list(df2$fullName._value)
 
     dat[[i]] <- tidyr::spread(df2, party._value, fullName._value)
 

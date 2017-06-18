@@ -4,7 +4,7 @@
 \alias{tv_programmes}
 \alias{tv_clips}
 \alias{tv_channels}
-\title{Imports data on TV broadcasts. To import information on TV channel options,}
+\title{Imports data on TV broadcasts.}
 \usage{
 tv_programmes(legislature = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -38,11 +38,11 @@ A tibble with details on TV broadcasts featuring the given MP, or all available 
 A tibble with details on the different broadcasting channels.
 }
 \description{
-Imports data on TV broadcasts. To import information on TV channel options,
-
-Imports data on TV broadcasts. To import information on TV channel options,
+Imports data on TV broadcasts.
 
 Imports data on TV broadcasts
+
+Returns data on the different parliamentary broadcasting channels.
 }
 \examples{
 \dontrun{
