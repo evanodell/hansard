@@ -2,7 +2,7 @@
 % Please edit documentation in R/election_candidates.R
 \name{election_candidates}
 \alias{election_candidates}
-\title{Returns the name of all candidates standing in an election}
+\title{Returns the name of all candidates standing in an election.}
 \usage{
 election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
@@ -19,10 +19,10 @@ election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
-A tibble with the names of each candidate standing in each constituency in an election or elections.
+A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
 }
 \description{
-Returns the name of all candidates standing in an election
+Returns the name of all candidates standing in an election.
 }
 \examples{
 \dontrun{
@@ -36,4 +36,7 @@ z <- election_candidates(constit_details = TRUE)
 
 }
 
+}
+\seealso{
+\code{\link{elections}} \code{\link{election_results}}
 }

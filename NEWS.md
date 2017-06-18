@@ -4,6 +4,8 @@
 
 New `all_data` parameter in `election_results()` to return the number of votes cast for each party in each constituency.
 
+New `election_candidates()` function, which returns the name of all candidates standing in an election.
+
 # hansard 0.4.7
 
 ## New features

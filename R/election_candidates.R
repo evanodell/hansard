@@ -1,7 +1,7 @@
 
 
 
-#' Returns the name of all candidates standing in an election
+#' Returns the name of all candidates standing in an election.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
@@ -9,8 +9,9 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #'
-#' @return A tibble with the names of each candidate standing in each constituency in an election or elections.
+#' @return A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
 #' @export
+#' @seealso \code{\link{elections}} \code{\link{election_results}}
 #'
 #' @examples \dontrun{
 #'
@@ -59,7 +60,6 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df <- dplyr::left_join(df, constits, by = c(constituency._about = "about"))
   }
 
-
   names(df)[names(df) == "_about"] <- "about"
 
   dat <- vector("list", nrow(df))
@@ -77,12 +77,11 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df2$about <- gsub("/.*", "", df2$about)
 
     df2 <- aggregate(fullName._value ~ party._value + about, data = df2, c)
-    df2$fullName._value <- as.character(df2$fullName._value)
-
+    #df2$fullName._value <- as.character(df2$fullName._value)
 
     dat[[i]] <- tidyr::spread(df2, party._value, fullName._value)
 
-    message("Retrieving data for ", df$constituency.label._value[[i]])
+    message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
 
   }
 
@@ -112,7 +111,6 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df <- dplyr::left_join(df, df4, by = "about")
 
     df
-
 
   }
 }

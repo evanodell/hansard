@@ -2,14 +2,14 @@
 % Please edit documentation in R/elections.R
 \name{elections}
 \alias{elections}
-\title{Imports data on elections}
+\title{Imports data on general and by-elections from the 2010 General Election onwards.}
 \usage{
 elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), label = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
-\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 General Election onwards, and returns the date and type of the elction. If NULL, returns the date and type of all available elections. Defaults to NULL.}
 
 \item{type}{Accepts 'General Election' or 'By-election' as arguments if ID is NULL, and returns all General Elections or all By-elections, as specified.}
 
@@ -24,15 +24,18 @@ elections(ID = NULL, type = NULL, start_date = "1900-01-01",
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
-A tibble with details on all elections from the 2010 general election onwards, subject to function parameters.
+A tibble with details on all elections from the 2010 general election onwards, subject to function parameters. Includes the election ID, the date, and the type of election(s).
 }
 \description{
-Imports data on elections
+Imports data on general and by-elections from the 2010 General Election onwards.
 }
 \examples{
 \dontrun{
 
 x <- elections(517994)
 }
+}
+\seealso{
+\code{\link{election_results}} \code{\link{election_candidates}}
 }
 \keyword{Elections}
