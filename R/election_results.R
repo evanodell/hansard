@@ -39,13 +39,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
 
-    if (elect$result$totalResults > elect$result$itemsPerPage) {
-
-        jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
-
-    } else {
-        jpage <- 0
-    }
+    jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
 
     pages <- list()
 
@@ -80,7 +74,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
             dat[[i]] <- x$result$primaryTopic$candidate
 
-            message("Retrieving data for ", df$constituency.label._value[[i]])
+            message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
 
         }
 
@@ -88,10 +82,8 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
         df2$fullName._value <- NULL
         df2$order <- NULL
-        # df2$`_about` <- gsub('http://data.parliament.uk/resources/', '' ,df2$`_about`) df2$`_about` <- gsub('/.*', '', df2$`_about`)
-        names(df2)[names(df2) == "_about"] <- "about"
 
-        # df2 <- dplyr::group_by(df2, about, add = FALSE)
+        names(df2)[names(df2) == "_about"] <- "about"
 
         df3 <- tidyr::spread(df2, party._value, numberOfVotes)
 
