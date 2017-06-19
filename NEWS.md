@@ -6,6 +6,8 @@ New `all_data` parameter in `election_results()` to return the number of votes c
 
 New `election_candidates()` function, which returns the name of all candidates standing in an election.
 
+New `epetition_tibble()` function, which returns a tibble with all epetitions submitted to parliament, subject to parameters. This function offers more flexibility for returning basic details about a group of epetitions than the existing `epetition()` function, which is designed to provide more detailed information on a single epetition.
+
 # hansard 0.4.7
 
 ## New features

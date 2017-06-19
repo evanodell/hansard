@@ -16,7 +16,7 @@ vignette: >
 ###From CRAN
 
 ```
-install.packages("hansard")`
+install.packages("hansard")
 ```
 
 ###From GitHub (Development Version)

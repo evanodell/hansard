@@ -76,10 +76,10 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df2$about <- gsub("http://data.parliament.uk/resources/", "", df2$about)
     df2$about <- gsub("/.*", "", df2$about)
 
-    df2 <- stats::aggregate(df2$fullName._value ~ df2$party._value + df2$about, data = df2, c)
+    df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2, c)
     df2$fullName._value <- as.list(df2$fullName._value)
 
-    dat[[i]] <- tidyr::spread(df2, df2$party._value, df2$fullName._value)
+    dat[[i]] <- tidyr::spread(df2, party._value, fullName._value)
 
     message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
 

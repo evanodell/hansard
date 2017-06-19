@@ -14,8 +14,9 @@ navbar:
       href: news/index.html
     - text: "Reference"
       href: reference/index.html
+      menu:
     - text: "Articles"
-      href: articles/index.html
+      href: articles/introduction.html
     - text: "Packages"
       menu:
         - text: "Documentation Home"

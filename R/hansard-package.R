@@ -28,9 +28,13 @@
 #'
 #' \code{\link{election_results}}
 #'
+#' \code{\link{election_candidates}}
+#'
 #' \code{\link{elections}}
 #'
 #' \code{\link{epetition}}
+#'
+#' \code{\link{epetition_tibble}}
 #'
 #' \code{\link{hansard_generic}}
 #'

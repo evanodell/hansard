@@ -1,8 +1,8 @@
 library(hansard)
-context("elections")
+context("election_candidates")
 
 
-test_that("election functions return expected format", {
+test_that("election_candidates return expected format", {
 
     skip_on_cran()
 
