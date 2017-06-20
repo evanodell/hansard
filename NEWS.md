@@ -12,17 +12,17 @@ New `epetition_tibble()` function, which returns a tibble with all epetitions su
 
 ## New features
 
-Additional URL stripping from variable values if `tidy`==TRUE.
+Additional URL stripping from variable values if `tidy`=TRUE.
 
-Added `tabling_mp_id` parameter to `all_answered_questions()`
+Added `tabling_mp_id` parameter to `all_answered_questions()`.
 
 ## Bug Fixes
 
 Fixed bug in `members()` where looking up a single member returned a tibble with two rows.
 
-Fixed bug in `mp_edms()` where additional data was not being returned if `full_data`==TRUE.
+Fixed bug in `mp_edms()` where additional data was not being returned if `full_data`=TRUE.
 
-Fixed bug in `election_results()` where it did not return data if `constit_details`==TRUE.
+Fixed bug in `election_results()` where it did not return data if `constit_details`=TRUE.
 
 Fixed bugs where empty queries in `election_results()`, `members()` and possibly other functions were returning incorrect errors in some environments or circumstances.
 
@@ -30,7 +30,7 @@ Fixed bugs where empty queries in `election_results()`, `members()` and possibly
 
 ## New features
 
-Added optional `tidy_style` parameter, allowing users to decide which style of "snake_case", "camelCase" and "period.case" they want variable names to be in, if `tidy`==TRUE.
+Added optional `tidy_style` parameter, allowing users to decide which style of "snake_case", "camelCase" and "period.case" they want variable names to be in, if `tidy`=TRUE.
 
 The `elections()` function now accepts `start_date` and `end_date` parameters. As the API called by the `elections()` function only accepts one additional argument not included in the package (the label of the election), changed the `extra_args` parameter to `label` to query that argument. 
 
@@ -83,7 +83,6 @@ Added optional `calculate_percent` parameter to `election_result()` function. If
 Fixes discrepency between output displayed and vignette and actual package output (#7, @pssguy)
 
 tidy parameter in `members_search()` now does some additional tidying up.
-
 
 # hansard 0.4.0
 
