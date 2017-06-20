@@ -33,6 +33,12 @@ To install from CRAN run:
 install.packages("hansard")
 ```
 
+Or, if using the [`pacman`](https://CRAN.R-project.org/package=pacman) package:
+
+```
+pacman::p_load(hansard)
+```
+
 To install the development version run:
 
 ```
