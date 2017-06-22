@@ -37,6 +37,16 @@ x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 }
 }
 \seealso{
-\code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+\code{\link{all_answered_questions}}
+
+\code{\link{commons_answered_questions}}
+
+\code{\link{commons_oral_question_times}}
+
+\code{\link{commons_written_questions}}
+
+\code{\link{lords_written_questions}}
+
+\code{\link{mp_questions}}
 }
 \keyword{questions}

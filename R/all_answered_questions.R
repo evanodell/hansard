@@ -9,7 +9,12 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
 #' @keywords Answered Questions
-#' @seealso \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+#' @seealso \code{\link{commons_answered_questions}}
+#' @seealso \code{\link{commons_oral_questions}}
+#' @seealso \code{\link{commons_oral_question_times}}
+#' @seealso \code{\link{commons_written_questions}}
+#' @seealso \code{\link{lords_written_questions}}
+#' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -19,107 +24,107 @@
 #'
 #' }
 
-all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, 
+all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
     tidy = TRUE, tidy_style = "snake_case") {
-    
+
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
-    
+
     if (is.null(mp_id) == TRUE) {
-        
+
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
-        
+
         message("Connecting to API")
-        
+
         all <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args), flatten = TRUE)
-        
+
         jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, dates, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
     } else {
-        
+
         if (is.null(tabling_mp_id) == FALSE) {
-            
+
             mem <- members(tabling_mp_id)
-            
+
             tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
-            
+
         } else {
-            
+
             tabler <- NULL
-            
+
         }
-        
+
         baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
-        
+
         message("Connecting to API")
-        
+
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, dates, extra_args))
-        
+
         jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
-        
+
         jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             names(df) <- gsub("answer.answeringMember.fullName._value", "answeringMember.fullName._value", names(df))
-            
+
             names(df) <- gsub("answer.answeringMember._about", "answeringMember._about", names(df))
-            
+
             names(df) <- gsub("answer.answerText._value", "answerText._value", names(df))
-            
+
             names(df) <- gsub("answer.dateOfAnswer._datatype", "dateOfAnswer._datatype", names(df))
-            
+
             names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
-            
+
             df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
-            
+
             df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
-            
+
             df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
-            
+
             df$AnsweringBody <- unlist(df$AnsweringBody)
-            
+
             df$legislature <- do.call("rbind", df$legislature)
-            
+
             df$legislature.prefLabel._value <- df$legislature$prefLabel._value
-            
+
             df$legislature_about <- df$legislature$`_about`
-            
+
             df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
-            
+
             df$legislature <- NULL
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }

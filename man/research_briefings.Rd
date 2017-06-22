@@ -52,7 +52,11 @@ x <- research_briefings(type = research_types_list[[3]])
 }
 }
 \seealso{
-\code{\link{research_subtopics_list}} \code{\link{research_types_list}} \code{\link{research_topics_list}}
+\code{\link{research_subtopics_list}}
+
+\code{\link{research_types_list}}
+
+\code{\link{research_topics_list}}
 }
 \keyword{Briefings}
 \keyword{Parliamentary}

@@ -10,7 +10,12 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on all oral questions in the House of Commons.
 #' @keywords questions
-#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+#' @seealso \code{\link{all_answered_questions}}
+#' @seealso \code{\link{commons_answered_questions}}
+#' @seealso \code{\link{commons_oral_question_times}}
+#' @seealso \code{\link{commons_written_questions}}
+#' @seealso \code{\link{lords_written_questions}}
+#' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -18,84 +23,84 @@
 #'
 #' }
 
-commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), 
+commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
     extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (is.null(mp_id) == FALSE) {
         mp_id <- paste0("&tablingMember=http://data.parliament.uk/members/", mp_id)
     }
-    
+
     if (is.null(answering_department) == FALSE) {
-        
+
         query <- "/answeringdepartment"
-        
+
         answering_department <- paste0("q=", answering_department)
-        
+
     } else {
-        
+
         query <- NULL
-        
+
     }
-    
+
     dates <- paste0("&_properties=AnswerDate&max-AnswerDate=", as.Date(end_date), "&min-AnswerDate=", as.Date(start_date))
-    
+
     baseurl <- "http://lda.data.parliament.uk/commonsoralquestions"
-    
+
     message("Connecting to API")
-    
-    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", extra_args), 
+
+    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", extra_args),
         flatten = TRUE)
-    
+
     jpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=", 
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500&_page=",
             i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
-            
+
             df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value, "Y-m-d H:M:S")
-            
+
             df$AnswerDateTime._datatype <- "POSIXct"
-            
+
             df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
-            
+
             df$AnswerDate._datatype <- "POSIXct"
-            
+
             # df$modified._value <- gsub('T', ' ', df$modified._value)
-            
+
             # df$modified._value <- lubridate::parse_date_time(df$modified._value, 'Y-m-d H:M:S')
-            
+
             # df$modified._datatype <- 'POSIXct'
-            
+
             df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
-            
+
             df$AnsweringBody <- unlist(df$AnsweringBody)
-            
+
             df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }

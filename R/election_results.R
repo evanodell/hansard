@@ -11,7 +11,8 @@
 #'
 #' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #' @keywords Election Results
-#' @seealso \code{\link{elections}} \code{\link{election_candidates}}
+#' @seealso \code{\link{elections}}
+#' @seealso \code{\link{election_candidates}}
 #' @export
 #' @examples \dontrun{
 #'

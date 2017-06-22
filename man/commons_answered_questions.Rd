@@ -39,6 +39,16 @@ x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01'
 }
 }
 \seealso{
-\code{\link{all_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}}  \code{\link{lords_written_questions}} \code{\link{mp_questions}}
+\code{\link{all_answered_questions}}
+
+\code{\link{commons_oral_questions}}
+
+\code{\link{commons_oral_question_times}}
+
+\code{\link{commons_written_questions}}
+
+\code{\link{lords_written_questions}}
+
+\code{\link{mp_questions}}
 }
 \keyword{bills}

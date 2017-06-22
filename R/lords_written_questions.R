@@ -10,7 +10,12 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on written questions in the House of Lords.
 #' @keywords House of Lords Written Questions
-#' @seealso \code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{mp_questions}}
+#' @seealso \code{\link{all_answered_questions}}
+#' @seealso \code{\link{commons_answered_questions}}
+#' @seealso \code{\link{commons_oral_questions}}
+#' @seealso \code{\link{commons_oral_question_times}}
+#' @seealso \code{\link{commons_written_questions}} 
+#' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
 #' # Returns all written questions ever
@@ -20,81 +25,81 @@
 #'
 #' }
 
-lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), 
+lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
     extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
-    
+
     if (is.null(peer_id) == FALSE) {
         peer_id <- paste0("&tablingMember=http://data.parliament.uk/members/", peer_id)
-        
+
         peer_id <- utils::URLencode(peer_id)
     }
-    
+
     if (is.null(answering_department) == FALSE) {
-        
+
         query <- "/answeringdepartment"
-        
+
         answering_department <- paste0("q=", answering_department)
-        
+
         answering_department <- utils::URLencode(answering_department)
-        
+
     } else {
-        
+
         query <- NULL
-        
+
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/lordswrittenquestions"
-    
+
     message("Connecting to API")
-    
-    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", extra_args), 
+
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", extra_args),
         flatten = TRUE)
-    
+
     jpage <- floor(writ$result$totalResults/writ$result$itemsPerPage)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", i, 
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", i,
             extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
-            
+
             df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
-            
+
             df$dateTabled._datatype <- "POSIXct"
-            
+
             df$AnswerDate._value <- "POSIXct"
-            
+
             df$AnsweringBody <- unlist(df$AnsweringBody)
-            
+
             df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
-            
+
             df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
-    
+
 }

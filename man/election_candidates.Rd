@@ -38,5 +38,7 @@ z <- election_candidates(constit_details = TRUE)
 
 }
 \seealso{
-\code{\link{elections}} \code{\link{election_results}}
+\code{\link{elections}}
+
+\code{\link{election_results}}
 }

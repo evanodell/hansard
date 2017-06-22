@@ -43,7 +43,9 @@ w <- election_results(ID=730039, all_data=TRUE)
 }
 }
 \seealso{
-\code{\link{elections}} \code{\link{election_candidates}}
+\code{\link{elections}}
+
+\code{\link{election_candidates}}
 }
 \keyword{Election}
 \keyword{Results}

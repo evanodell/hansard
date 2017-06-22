@@ -11,7 +11,8 @@
 #'
 #' @return A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
 #' @export
-#' @seealso \code{\link{elections}} \code{\link{election_results}}
+#' @seealso \code{\link{elections}}
+#' @seealso \code{\link{election_results}}
 #'
 #' @examples \dontrun{
 #'
@@ -114,4 +115,3 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
   }
 }
-

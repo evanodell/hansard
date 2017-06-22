@@ -36,6 +36,8 @@ x <- elections(517994)
 }
 }
 \seealso{
-\code{\link{election_results}} \code{\link{election_candidates}}
+\code{\link{election_results}}
+
+\code{\link{election_candidates}}
 }
 \keyword{Elections}

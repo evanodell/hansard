@@ -10,7 +10,8 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on all elections from the 2010 general election onwards, subject to function parameters. Includes the election ID, the date, and the type of election(s).
 #' @keywords Elections
-#' @seealso \code{\link{election_results}} \code{\link{election_candidates}}
+#' @seealso \code{\link{election_results}}
+#' @seealso \code{\link{election_candidates}}
 #' @export
 #' @examples \dontrun{
 #'

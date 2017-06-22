@@ -39,7 +39,17 @@ x <- lords_written_questions(peer_id = 3526, answering_department = 'cabinet')
 }
 }
 \seealso{
-\code{\link{all_answered_questions}} \code{\link{commons_answered_questions}} \code{\link{commons_oral_questions}} \code{\link{commons_oral_question_times}} \code{\link{commons_written_questions}} \code{\link{mp_questions}}
+\code{\link{all_answered_questions}}
+
+\code{\link{commons_answered_questions}}
+
+\code{\link{commons_oral_questions}}
+
+\code{\link{commons_oral_question_times}}
+
+\code{\link{commons_written_questions}}
+
+\code{\link{mp_questions}}
 }
 \keyword{House}
 \keyword{Lords}
