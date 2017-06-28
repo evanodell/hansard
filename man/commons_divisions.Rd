@@ -36,7 +36,6 @@ x <- commons_divisions()
 
 x <- commons_divisions(division_id = 694163, summary = FALSE)
 
-
 }
 }
 \keyword{divisions}
