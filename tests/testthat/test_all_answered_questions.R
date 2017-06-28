@@ -16,6 +16,12 @@ test_that("all_answered_questions return expected format", {
     expect_true(tibble::is_tibble(aaq))
 
 
+    zhaaqtbling <- hansard_all_answered_questions(tabling_mp_id=172, start_date ='2016-01-01', end_date="2017-03-02")
+    expect_length(zhaaqtbling, 32)
+    expect_type(zhaaqtbling, "list")
+    expect_true(tibble::is_tibble(zhaaqtbling))
+    expect_true(nrow(zhaaqtbling)==86)
+
 
 
 })
