@@ -48,19 +48,11 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
             pages[[i + 1]] <- mydata$result$items
         }
 
-    } else {
+    } else if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == FALSE) {
 
-        if (is.null(tabling_mp_id) == FALSE) {
+        mem <- suppressMessages(members(tabling_mp_id))
 
-            mem <- suppressMessages(members(tabling_mp_id))
-
-            tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
-
-        } else {
-
-            tabler <- NULL
-
-        }
+        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500&mnisId="
 
@@ -79,6 +71,39 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
+
+    } else {
+
+      if (is.null(tabling_mp_id) == FALSE) {
+
+        mem <- suppressMessages(members(tabling_mp_id))
+
+        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
+
+      } else {
+
+        tabler <- NULL
+
+      }
+
+      baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+
+      message("Connecting to API")
+
+      all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, dates, extra_args))
+
+      jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+
+      jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
+
+      pages <- list()
+
+      for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+      }
+
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
