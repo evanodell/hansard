@@ -9,7 +9,8 @@
 #' @examples \dontrun{
 #' x <- commons_division_date('2017-04-19')
 #' }
-#'
+
+
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
   if (is.null(date) == TRUE) {
@@ -59,4 +60,14 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
       }
     }
   }
+}
+
+#' @rdname commons_division_date
+#' @export
+hansard_commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- commons_division_date(date=date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
 }
