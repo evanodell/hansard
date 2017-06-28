@@ -1,3 +1,13 @@
+# hansard 0.4.8.9000
+
+## New features
+
+All functions have a wrapper function with the same name, but with `hansard_` prefixed.
+
+## Bug Fixes
+
+Fixed bug in `all_answered_questions()` that wasn't returning results when `tabling_mp_id` is a parameter.
+
 # hansard 0.4.8
 
 ## New features

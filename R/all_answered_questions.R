@@ -62,7 +62,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
 
         }
 
-        baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500&mnisId="
 
         message("Connecting to API")
 
