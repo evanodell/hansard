@@ -2,9 +2,14 @@
 % Please edit documentation in R/commons_written_questions.R
 \name{commons_written_questions}
 \alias{commons_written_questions}
+\alias{hansard_commons_written_questions}
 \title{Imports data in a tibble on House of Commons written questions.}
 \usage{
 commons_written_questions(mp_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_commons_written_questions(mp_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }

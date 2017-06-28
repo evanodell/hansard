@@ -2,9 +2,14 @@
 % Please edit documentation in R/commons_oral_questions.R
 \name{commons_oral_questions}
 \alias{commons_oral_questions}
+\alias{hansard_commons_oral_questions}
 \title{Imports data on House of Commons oral questions}
 \usage{
 commons_oral_questions(mp_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }

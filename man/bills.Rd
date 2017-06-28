@@ -2,14 +2,16 @@
 % Please edit documentation in R/bills.R
 \name{bills}
 \alias{bills}
-\alias{bill_stage_types}
+\alias{hansard_bills}
 \title{Imports data on House of Commons and House of Lords bills}
 \usage{
 bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 
-bill_stage_types(tidy = TRUE, tidy_style = "snake_case")
+hansard_bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{The ID of a given bill to return data on. If NULL, returns all bills, subject to other parameters. Defaults to NULL.}
@@ -31,8 +33,6 @@ A tibble with details on bills before the House of Lords and the House of Common
 }
 \description{
 Imports data on House of Commons and House of Lords bills
-
-Returns a tibble with all possible bill stage types.
 }
 \examples{
 \dontrun{
@@ -46,8 +46,8 @@ x <- bills(1719)
 x <- bills(start_date ='2016-01-01')
 
 }
-\dontrun{
-x <- bill_stage_types()
 }
+\seealso{
+\code{\link{bill_stage_types}}
 }
 \keyword{bills}

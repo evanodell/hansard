@@ -26,8 +26,7 @@
 #' }
 
 
-commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-    extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
     dates <- paste0("&max-dateOfAnswer=", as.Date(end_date), "&min-dateOfAnswer=", as.Date(start_date))
 
@@ -89,5 +88,20 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
         }
 
     }
+
+}
+
+
+
+#' @rdname commons_answered_questions
+#' @export
+
+hansard_commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- commons_answered_questions(answering_department = NULL, answered_by = NULL, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+
 
 }

@@ -23,8 +23,7 @@
 #'
 #' }
 
-commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-    extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
     if (is.null(mp_id) == FALSE) {
         mp_id <- paste0("&tablingMember=http://data.parliament.uk/members/", mp_id)
@@ -104,3 +103,18 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
 
     }
 }
+
+
+
+
+#' @rdname commons_oral_questions
+#' @export
+
+hansard_commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- commons_oral_questions(mp_id = mp_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
+

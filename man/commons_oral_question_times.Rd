@@ -2,9 +2,13 @@
 % Please edit documentation in R/commons_oral_question_times.R
 \name{commons_oral_question_times}
 \alias{commons_oral_question_times}
+\alias{hansard_commons_oral_question_times}
 \title{Imports data on House of Commons oral question times}
 \usage{
 commons_oral_question_times(session = NULL, question_id = NULL,
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+
+hansard_commons_oral_question_times(session = NULL, question_id = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
