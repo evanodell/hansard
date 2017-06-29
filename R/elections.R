@@ -91,7 +91,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01", end_dat
 #' @export
 hansard_elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01", end_date = Sys.Date(), label = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-  df <- elections(ID = ID, type = type, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- elections(ID = ID, type = type, start_date = start_date, end_date = end_date, label = label, tidy = tidy, tidy_style = tidy_style)
 
   df
 

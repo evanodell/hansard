@@ -8,7 +8,7 @@
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 
-hansard_lords_interests(extra_args = NULL, tidy = TRUE,
+hansard_lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
