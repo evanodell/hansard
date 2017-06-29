@@ -6,12 +6,6 @@ output: github_document
 <!-- rmarkdown v1 -->
 
 
-```
-## Error: <text>:5:3: unexpected symbol
-## 4:   fig.path = "README-"
-## 5:   badgecreatr
-##      ^
-```
 
 # hansard: Accessing Westminster Parliament Data
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/hansard/blob/master/LICENSE)

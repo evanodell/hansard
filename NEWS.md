@@ -8,6 +8,11 @@ All functions have a wrapper function with the same name, but with `hansard_` pr
 
 Fixed bug in `all_answered_questions()` that wasn't returning results when `tabling_mp_id` is a parameter.
 
+## Documentation changes
+
+`lords_interests()` and `bill_stage_types()` seperated from `members` and `bills`, respectively, into their own distinct functions.
+
+
 # hansard 0.4.8
 
 ## New features
