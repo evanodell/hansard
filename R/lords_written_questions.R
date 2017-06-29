@@ -14,7 +14,7 @@
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
-#' @seealso \code{\link{commons_written_questions}} 
+#' @seealso \code{\link{commons_written_questions}}
 #' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
@@ -25,8 +25,7 @@
 #'
 #' }
 
-lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-    extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
     dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date), "&min-dateTabled=", as.Date(start_date))
 
@@ -101,5 +100,15 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
         }
 
     }
+
+}
+
+#' @rdname lords_written_questions
+#' @export
+hansard_lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- lords_written_questions(peer_id = peer_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
 
 }

@@ -2,9 +2,14 @@
 % Please edit documentation in R/all_answered_questions.R
 \name{all_answered_questions}
 \alias{all_answered_questions}
+\alias{hansard_all_answered_questions}
 \title{Imports data on all answered parliamentary questions.}
 \usage{
 all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }
@@ -34,7 +39,9 @@ Imports data on all answered parliamentary questions.
 
 x <- all_answered_questions(4019, start_date ='2017-01-01')
 
-x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
+y <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
+
+z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-04-01')
 
 }
 }

@@ -2,9 +2,14 @@
 % Please edit documentation in R/lords_attendance.R
 \name{lords_attendance}
 \alias{lords_attendance}
+\alias{hansard_lords_attendance}
 \title{Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.}
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
@@ -32,7 +37,6 @@ Imports data on House of Lords attendance. Please note that the attendance data 
 
 x <- lords_attendance(session_id = 706178)
 }
-
 }
 \keyword{Attendance}
 \keyword{House}

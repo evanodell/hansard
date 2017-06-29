@@ -2,9 +2,14 @@
 % Please edit documentation in R/elections.R
 \name{elections}
 \alias{elections}
+\alias{hansard_elections}
 \title{Imports data on general and by-elections from the 2010 General Election onwards.}
 \usage{
 elections(ID = NULL, type = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), label = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), label = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }

@@ -2,11 +2,16 @@
 % Please edit documentation in R/epetition_tibble.R
 \name{epetition_tibble}
 \alias{epetition_tibble}
+\alias{hansard_epetition_tibble}
 \title{Get data on epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID.}
 \usage{
 epetition_tibble(min_signatures = 1, max_signatures = NULL, status = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
+
+hansard_epetition_tibble(min_signatures = 1, max_signatures = NULL,
+  status = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{min_signatures}{The minimum number of signatures required for inclusion in the tibble. Defaults to 1.}

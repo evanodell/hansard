@@ -22,8 +22,7 @@
 #' }
 
 
-mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL,
-    tidy = TRUE, tidy_style = "snake_case") {
+mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
@@ -150,4 +149,16 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
         }
 
     }
+}
+
+
+#' @export
+#' @rdname mp_edms
+
+hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
 }

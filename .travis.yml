@@ -3,10 +3,9 @@
 language: r
 sudo: required
 cache: packages
-dist: trusty
 
 r_packages:
   - covr
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'covr::codecov()'

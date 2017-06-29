@@ -2,9 +2,14 @@
 % Please edit documentation in R/lords_amendments.R
 \name{lords_amendments}
 \alias{lords_amendments}
+\alias{hansard_lords_amendments}
 \title{Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.}
 \usage{
 lords_amendments(decision = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }

@@ -17,7 +17,7 @@
 #'
 #'}
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (is.null(search) == FALSE) {
         search <- utils::URLencode(search)
         search_query <- paste0("&_search=", search)
@@ -27,7 +27,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
     if (is.null(class) == FALSE) {
         class_list <- list("ID", "ORG", "SIT", "NAME", "LEG", "CTP", "PBT", "TPG")
         if (!(class %in% class_list)) {
-            stop("Please check your class parameter. It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", 
+            stop("Please check your class parameter. It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"",
                 call. = FALSE)
         } else {
             class_query <- paste0("&class=", class)
@@ -45,23 +45,37 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
     }
 }
+
+
+#' @rdname commons_terms
+#' @export
+hansard_commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- commons_terms(search = search, class = class, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
+
+
+

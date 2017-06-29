@@ -2,15 +2,24 @@
 % Please edit documentation in R/research_briefings_lists.R
 \name{research_topics_list}
 \alias{research_topics_list}
+\alias{hansard_research_topics_list}
 \alias{research_subtopics_list}
+\alias{hansard_research_subtopics_list}
 \alias{research_types_list}
+\alias{hansard_research_types_list}
 \title{Functions to retrieve lists of research briefing topics, subtopics and types. These functions do not accept any arguments.}
 \usage{
 research_topics_list()
 
+hansard_research_topics_list()
+
 research_subtopics_list()
 
+hansard_research_subtopics_list()
+
 research_types_list()
+
+hansard_research_types_list()
 }
 \value{
 A list with the different research topics available.

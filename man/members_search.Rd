@@ -2,9 +2,13 @@
 % Please edit documentation in R/members_search.R
 \name{members_search}
 \alias{members_search}
+\alias{hansard_members_search}
 \title{Search for an MP or Lord by name and constituency}
 \usage{
 members_search(search = NULL, tidy = TRUE, tidy_style = "snake_case")
+
+hansard_members_search(search = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 }
 \arguments{
 \item{search}{Accepts any string. Defaults to NULL. If NULL, returns a tibble with all members of both houses of parliament.}
@@ -26,6 +30,9 @@ x <- members_search('chris')
 
 x <- members_search(search='chris')
 }
+}
+\seealso{
+\code{\link{members}}
 }
 \keyword{All}
 \keyword{Members}

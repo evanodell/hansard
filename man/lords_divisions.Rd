@@ -2,9 +2,14 @@
 % Please edit documentation in R/lords_divisions.R
 \name{lords_divisions}
 \alias{lords_divisions}
+\alias{hansard_lords_divisions}
 \title{Imports data on House of Lords divisions}
 \usage{
 lords_divisions(division_id = NULL, summary = FALSE,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_lords_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }

@@ -2,19 +2,27 @@
 % Please edit documentation in R/members.R
 \name{members}
 \alias{members}
+\alias{hansard_members}
 \alias{commons_members}
+\alias{hansard_commons_members}
 \alias{lords_members}
-\alias{lords_interests}
+\alias{hansard_lords_members}
 \title{Imports data on all current and former Members of Parliament including the Lords and the Commons}
 \usage{
 members(ID = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 
+hansard_members(ID = NULL, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
 commons_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+
+hansard_commons_members(extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
 
 lords_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 
-lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
+hansard_lords_members(extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
@@ -25,13 +33,9 @@ lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
-
-\item{peer_id}{The ID of a member of the House of lords. If NULL, returns a tibble with all listed financial interests for all members. Defaults to NULL.}
 }
 \value{
 A tibble with data on members of the House of Commons and/or the House of Lords.
-
-A tibble with details on the interests of peers in the House of Lords.
 }
 \description{
 Imports data on all current and former Members of Parliament including the Lords and the Commons
@@ -50,6 +54,9 @@ x <- lords_members()
 
 x <- lords_interests(530)
 }
+}
+\seealso{
+\code{\link{members_search}}
 }
 \keyword{All}
 \keyword{Members}

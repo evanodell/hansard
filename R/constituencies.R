@@ -17,55 +17,66 @@
 #'
 
 constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     baseurl <- "http://lda.data.parliament.uk/constituencies.json?_pageSize=500"
-    
+
     message("Connecting to API")
-    
+
     conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-    
+
     jpage <- floor(conts$result$totalResults/conts$result$itemsPerPage)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     df$endedDate._value <- as.POSIXct(df$endedDate._value)
     df$startedDate._value <- as.POSIXct(df$startedDate._value)
-    
+
     if (current == TRUE) {
         df <- df[is.na(df$endedDate._value) == TRUE, ]
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df$endedDate._value <- as.POSIXct(df$endedDate._value)
-            
+
             df$startedDate._value <- as.POSIXct(df$startedDate._value)
-            
+
             df$endedDate._datatype <- "POSIXct"
-            
+
             df$startedDate._datatype <- "POSIXct"
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }
+
+
+#' @rdname constituencies
+#' @export
+hansard_constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- constituencies(current=current, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+}
+

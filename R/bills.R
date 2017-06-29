@@ -10,6 +10,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with details on bills before the House of Lords and the House of Commons.
 #' @keywords bills
+#' @seealso \code{\link{bill_stage_types}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -23,98 +24,76 @@
 #'
 #' }
 
-bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, 
-    tidy_style = "snake_case") {
-    
+bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
-    
+
     if (is.null(ID) == FALSE) {
         id_query <- paste0("&identifier=", ID)
     } else {
         id_query <- NULL
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/bills"
-    
+
     if (amendments == TRUE) {
         query <- "withamendments.json?_pageSize=500"
     } else {
         query <- ".json?_pageSize=500"
     }
-    
+
     message("Connecting to API")
-    
+
     bills <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args), flatten = TRUE)
-    
+
     jpage <- floor(bills$result$totalResults/bills$result$itemsPerPage)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args, "&_page=", i), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             df$date._value <- as.POSIXct(df$date._value)
-            
+
             df$date._datatype <- "POSIXct"
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
 }
 
 
 
-#' bill_stage_types
-#'
-#' Returns a tibble with all possible bill stage types.
-#' @keywords bills
+
+
+
 #' @rdname bills
 #' @export
-#' @examples \dontrun{
-#' x <- bill_stage_types()
-#' }
 
-bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case") {
-    
-    stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500", flatten = TRUE)
-    
-    df <- tibble::as_tibble(stages$result$items)
-    
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-        
-        if (tidy == TRUE) {
-            
-            df <- hansard::hansard_tidy(df, tidy_style)
-            
-            df
-            
-        } else {
-            
-            df
-            
-        }
-        
-    }
-    
+hansard_bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- bills(ID = ID, amendments = amendments, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+
 }

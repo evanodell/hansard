@@ -2,11 +2,16 @@
 % Please edit documentation in R/publication_logs.R
 \name{publication_logs}
 \alias{publication_logs}
+\alias{hansard_publication_logs}
 \title{Imports data on House of Commons and House of Lords publications.}
 \usage{
 publication_logs(ID = NULL, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
+
+hansard_publication_logs(ID = NULL, house = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{Publication ID. Defaults to NULL. If not NULL, requests a tibble with information on the given publication.}

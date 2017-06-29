@@ -6,10 +6,10 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{hansard}
   %\VignetteEngine{knitr::rmarkdown}
-    \usepackage[utf8]{inputenc}  
+    \usepackage[utf8]{inputenc}
 ---
 
-`hansard` is an R package to pull data from the UK parliament through the <http://www.data.parliament.uk/> API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a single argument at a time, and functions that require additional information to retrieve the data you requested will ask for it after you execute the function. Functions retrieve data in json format and convert it to a data frame. The `hansard_generic` function supports the building of API requests for XML, csv or HTML formats if required. Note that the API is rate limited to returning 5500 rows per request in some circumstances.
+`hansard` is an R package to pull data from the UK parliament through the <http://www.data.parliament.uk/> API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a single argument at a time, and functions that require additional information to retrieve the data you requested will ask for it after you execute the function. Functions retrieve data in json format and convert it to a tibble. The `hansard_generic` function supports the building of API requests for XML, csv or HTML formats if required. Note that the API is rate limited to returning 5500 rows per request in some circumstances.
 
 ##Installing hansard
 
@@ -39,6 +39,8 @@ library(hansard)
 `tidy` is a logical parameter accepting either TRUE or FALSE, defaulting to TRUE. If TRUE, `hansard` will fix variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates and datetimes are converted to POSIXct class. Some extra URL data included in the API is also stripped out.
 
 The naming convention for variables used if `tidy`==TRUE is indicated by `tidy_style`. `tidy_style` accepts one of `"snake_case"`, `"camelCase"` and `"period.case"`, defaulting to `"snake_case"`. All variable names will be converted to match the given naming convention.
+
+In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with 'hansard_'. For example, both `bills()` and `hansard_bills()` will return the same result.
 
 ### Example using the `commons_divisions()` and `mp_vote_record()` functions
 

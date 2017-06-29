@@ -2,9 +2,14 @@
 % Please edit documentation in R/lords_written_questions.R
 \name{lords_written_questions}
 \alias{lords_written_questions}
+\alias{hansard_lords_written_questions}
 \title{Imports data on House of Lords written questions}
 \usage{
 lords_written_questions(peer_id = NULL, answering_department = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_lords_written_questions(peer_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }

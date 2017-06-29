@@ -80,7 +80,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2, c)
     df2$fullName._value <- as.list(df2$fullName._value)
 
-    dat[[i]] <- tidyr::spread(df2, party._value, fullName._value)
+    dat[[i]] <- tidyr::spread_(df2, key_col="party._value", value_col="fullName._value")
 
     message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
 
@@ -114,4 +114,15 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df
 
   }
+}
+
+
+#' @rdname election_candidates
+#' @export
+hansard_election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- election_candidates(ID = ID, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
 }

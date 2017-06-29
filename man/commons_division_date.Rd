@@ -2,9 +2,13 @@
 % Please edit documentation in R/commons_division_date.R
 \name{commons_division_date}
 \alias{commons_division_date}
+\alias{hansard_commons_division_date}
 \title{Returns a tibble with the dates of House of Commons divisions.}
 \usage{
 commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
@@ -26,6 +30,5 @@ Returns a tibble with the dates of House of Commons divisions.
 \dontrun{
 x <- commons_division_date('2017-04-19')
 }
-
 }
 \keyword{divisions}

@@ -2,9 +2,14 @@
 % Please edit documentation in R/mp_questions.R
 \name{mp_questions}
 \alias{mp_questions}
+\alias{hansard_mp_questions}
 \title{Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.}
 \usage{
 mp_questions(mp_id = NULL, question_type = "all",
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_mp_questions(mp_id = NULL, question_type = "all",
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }

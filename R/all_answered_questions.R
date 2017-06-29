@@ -20,16 +20,17 @@
 #'
 #' x <- all_answered_questions(4019, start_date ='2017-01-01')
 #'
-#' x <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
+#' y <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
+#'
+#' z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-04-01')
 #'
 #' }
 
-all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-    tidy = TRUE, tidy_style = "snake_case") {
+all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
-    if (is.null(mp_id) == TRUE) {
+    if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == TRUE) {
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
 
@@ -47,21 +48,13 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
             pages[[i + 1]] <- mydata$result$items
         }
 
-    } else {
+    } else if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == FALSE) {
 
-        if (is.null(tabling_mp_id) == FALSE) {
+        mem <- suppressMessages(members(tabling_mp_id))
 
-            mem <- members(tabling_mp_id)
+        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
 
-            tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
-
-        } else {
-
-            tabler <- NULL
-
-        }
-
-        baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500&mnisId="
 
         message("Connecting to API")
 
@@ -78,6 +71,39 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
+
+    } else {
+
+      if (is.null(tabling_mp_id) == FALSE) {
+
+        mem <- suppressMessages(members(tabling_mp_id))
+
+        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
+
+      } else {
+
+        tabler <- NULL
+
+      }
+
+      baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+
+      message("Connecting to API")
+
+      all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, dates, extra_args))
+
+      jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+
+      jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
+
+      pages <- list()
+
+      for (i in 0:jpage) {
+        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        pages[[i + 1]] <- mydata$result$items
+      }
+
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
@@ -128,3 +154,19 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_dat
 
     }
 }
+
+
+
+
+
+#' @rdname all_answered_questions
+#' @export
+
+hansard_all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- all_answered_questions(mp_id = mp_id, tabling_mp_id = tabling_mp_id, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
+

@@ -2,9 +2,13 @@
 % Please edit documentation in R/commons_terms.R
 \name{commons_terms}
 \alias{commons_terms}
+\alias{hansard_commons_terms}
 \title{Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.}
 \usage{
 commons_terms(search = NULL, class = NULL, extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_commons_terms(search = NULL, class = NULL, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{

@@ -2,10 +2,14 @@
 % Please edit documentation in R/election_candidates.R
 \name{election_candidates}
 \alias{election_candidates}
+\alias{hansard_election_candidates}
 \title{Returns the name of all candidates standing in an election.}
 \usage{
 election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
+
+hansard_election_candidates(ID = NULL, constit_details = FALSE,
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}

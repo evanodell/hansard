@@ -2,9 +2,13 @@
 % Please edit documentation in R/constituencies.R
 \name{constituencies}
 \alias{constituencies}
+\alias{hansard_constituencies}
 \title{Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.}
 \usage{
 constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{
