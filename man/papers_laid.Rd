@@ -2,11 +2,16 @@
 % Please edit documentation in R/papers_laid.R
 \name{papers_laid}
 \alias{papers_laid}
+\alias{hansard_papers_laid}
 \title{Imports data on papers laid before the House.}
 \usage{
 papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
+
+hansard_papers_laid(withdrawn = FALSE, house = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{withdrawn}{If TRUE, only returns withdrawn papers. Defaults to FALSE.}

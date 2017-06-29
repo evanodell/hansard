@@ -18,7 +18,7 @@
 #' }
 
 sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (days == FALSE) {
         dates <- paste0("&_properties=startDate&max-startDate=", as.Date(end_date), "&min-startDate=", as.Date(start_date))
         query <- NULL
@@ -26,62 +26,73 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
         dates <- NULL
         query <- "/days"
     }
-    
+
     baseurl <- "http://lda.data.parliament.uk/sessions"
-    
+
     message("Connecting to API")
-    
+
     session <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500", dates, extra_args))
-    
+
     jpage <- floor(session$result$totalResults/session$result$itemsPerPage)
-    
+
     pages <- list()
-    
+
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500&_page=", i, dates, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
     }
-    
+
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
-    
+
     if (days == TRUE) {
         df$date._value <- as.POSIXct(df$date._value)
         df <- df[df$date._value <= as.Date(end_date) & df$date._value >= as.Date(start_date), ]
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             if (days == FALSE) {
-                
+
                 df$endDate._value <- as.POSIXct(df$endDate._value)
-                
+
                 df$startDate._value <- as.POSIXct(df$startDate._value)
-                
+
                 df$endDate._datatype <- "POSIXct"
-                
+
                 df$startDate._datatype <- "POSIXct"
-                
+
             } else {
-                
+
                 df$date._value <- as.POSIXct(df$date._value)
-                
+
                 df$date._datatype <- "POSIXct"
             }
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
+}
+
+
+#' @rdname sessions_info
+#' @export
+hansard_sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- sessions_info(days=days, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
 }
