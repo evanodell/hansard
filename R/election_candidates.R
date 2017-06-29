@@ -93,6 +93,8 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
   names(df4)[names(df4) == "Lib"] <- "Liberal Democrat"
   names(df4)[names(df4) == "Ind"] <- "Independent"
 
+  df4 <- df4[,order(colnames(df4))]
+
   if (nrow(df) == 0) {
     message("The request did not return any data. Please check your search parameters.")
   } else {
