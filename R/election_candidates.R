@@ -80,7 +80,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
     df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2, c)
     df2$fullName._value <- as.list(df2$fullName._value)
 
-    dat[[i]] <- tidyr::spread(df2, party._value, fullName._value)
+    dat[[i]] <- tidyr::spread_(df2, key_col="party._value", value_col="fullName._value")
 
     message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
 
