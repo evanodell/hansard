@@ -5,6 +5,8 @@ context("elections")
 test_that("election functions return expected format", {
 
     skip_on_cran()
+    skip_on_travis()
+
 
     elect <- hansard_elections()
     expect_length(elect, 5)
@@ -35,4 +37,3 @@ test_that("election functions return expected format", {
 
 
 })
-

@@ -4,6 +4,7 @@ context("all_answered_questions")
 test_that("all_answered_questions return expected format", {
 
     skip_on_cran()
+    skip_on_travis()
 
     aaqx <- hansard_all_answered_questions(4019, start_date = "2017-01-01")
     expect_length(aaqx, 18)

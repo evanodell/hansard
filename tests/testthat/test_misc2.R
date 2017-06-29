@@ -4,6 +4,7 @@ context("papers, publications, sessions, tv")
 test_that("papers laid, publications, sessions, tv  functions return expected format", {
 
     skip_on_cran()
+    skip_on_travis()
 
     tvclipsempty <- hansard_tv_clips(start_date = "2016-01-11", end_date = "2016-01-12")
     expect_length(tvclipsempty, 7)

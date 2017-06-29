@@ -3,7 +3,9 @@ context("lords functions")
 
 
 test_that("lords functions return expected format", {
+
   skip_on_cran()
+  skip_on_travis()
 
   # Divisions
   ldivsum <- hansard_lords_divisions(division_id = 705891,
