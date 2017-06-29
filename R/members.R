@@ -8,6 +8,7 @@
 #' @return A tibble with data on members of the House of Commons and/or the House of Lords.
 #' @keywords All Members of Parliament
 #' @export
+#' @seealso \code{\link{members_search}}
 #' @examples \dontrun{
 #' x <- members(172)
 #'
@@ -93,6 +94,16 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
     }
 }
 
+#' @export
+#' @rdname members
+hansard_members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- members(ID=ID, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
+
 #' commons_members
 #'
 #' Imports data on all current and former MPs
@@ -137,6 +148,16 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
     }
 }
 
+
+#' @export
+#' @rdname members
+hansard_commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- commons_members(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
 
 # lords_members
 #'
@@ -184,55 +205,14 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
     }
 }
 
-
-# lords_interests
-#' @param peer_id The ID of a member of the House of lords. If NULL, returns a tibble with all listed financial interests for all members. Defaults to NULL.
-#' @return A tibble with details on the interests of peers in the House of Lords.
-#' @rdname members
 #' @export
-lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+#' @rdname members
+hansard_lords_members<- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-    if (is.null(peer_id) == TRUE) {
-        query <- ".json?_pageSize=500"
-    } else {
-        query <- paste0(".json?member=", peer_id, "&_pageSize=500")
-    }
+  df <- lords_members(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
-    baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
+  df
 
-    message("Connecting to API")
-
-    members <- jsonlite::fromJSON(paste0(paste0(baseurl, extra_args), query), flatten = TRUE)
-
-    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
-
-    pages <- list()
-
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
-        pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
-
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard::hansard_tidy(df, tidy_style)
-
-            df
-
-        } else {
-
-            df
-
-        }
-
-    }
 }
+
+

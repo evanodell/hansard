@@ -8,6 +8,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @return A tibble with the results of the search.
 #' @keywords All Members of Parliament
+#' @seealso \code{\link{members}}
 #' @export
 #' @examples \dontrun{
 #'
@@ -17,53 +18,63 @@
 #' }
 
 members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case") {
-    
+
     if (is.null(search)) {
         df <- members("all")
     } else {
-        
+
         search <- utils::URLencode(search)
-        
+
         baseurl <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
-        
+
         message("Connecting to API")
-        
+
         results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
-        
+
         jpage <- floor(results$result$totalResults/results$result$itemsPerPage)
-        
+
         pages <- list()
-        
+
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_page=", i), flatten = TRUE)
             message("Retrieving page ", i + 1, " of ", jpage + 1)
             pages[[i + 1]] <- mydata$result$items
         }
-        
+
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
-        
+
     }
-    
+
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
-        
+
         if (tidy == TRUE) {
-            
+
             names(df)[names(df) == "_about"] <- "mnis_id"
-            
+
             df$mnis_id <- gsub("http://data.parliament.uk/members/", "", df$mnis_id)
-            
+
             df <- hansard::hansard_tidy(df, tidy_style)
-            
+
             df
-            
+
         } else {
-            
+
             df
-            
+
         }
-        
+
     }
-    
+
+}
+
+#' @rdname members_search
+#' @export
+hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"){
+
+  df <- members_search(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
 }

@@ -2,9 +2,14 @@
 % Please edit documentation in R/mp_edms.R
 \name{mp_edms}
 \alias{mp_edms}
+\alias{hansard_mp_edms}
 \title{Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.}
 \usage{
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
+  signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case")
+
+hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
   signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 }
