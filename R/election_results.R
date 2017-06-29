@@ -87,12 +87,12 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
         names(df2)[names(df2) == "_about"] <- "about"
 
-        df3 <- tidyr::spread(df2, party._value, numberOfVotes)
+        df3 <- tidyr::spread_(df2, "party._value", "numberOfVotes")
 
         df3$about <- gsub("http://data.parliament.uk/resources/", "", df3$about)
         df3$about <- gsub("/.*", "", df3$about)
 
-        df3 <- dplyr::group_by(df3, about)
+        df3 <- dplyr::group_by(df3, "about")
 
         df4 <- dplyr::summarise_all(df3, sum, na.rm = TRUE)
 
