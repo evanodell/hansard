@@ -2,11 +2,16 @@
 % Please edit documentation in R/lord_vote_record.R
 \name{lord_vote_record}
 \alias{lord_vote_record}
+\alias{hansard_lord_vote_record}
 \title{Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.}
 \usage{
 lord_vote_record(peer_id = NULL, lobby = "all", start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
+
+hansard_lord_vote_record(peer_id = NULL, lobby = "all",
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
 \item{peer_id}{The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to NULL.}

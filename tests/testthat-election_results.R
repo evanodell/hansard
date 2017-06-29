@@ -1,4 +1,4 @@
 library(testthat)
 library(hansard)
 
-test_check("hansard", filter="el")
+test_check("hansard", filter="elelection_results")

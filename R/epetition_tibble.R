@@ -82,3 +82,15 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
 
   }
 }
+
+
+#' @rdname epetition_tibble
+#' @export
+
+hansard_epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL, start_date="1900-01-01", end_date=Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  df <- epetition_tibble(min_signatures=min_signatures, max_signatures=max_signatures, status=status, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+
+  df
+
+}
