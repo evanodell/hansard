@@ -23,7 +23,6 @@ test_that("research_briefings return expected format", {
     expect_length(rbdf, 14)
     expect_true(tibble::is_tibble(rbdf))
 
-
     rbtsb <- hansard_research_briefings(topic = "Defence", subtopic = "Falkland Islands")
     expect_length(rbtsb, 14)
     expect_true(tibble::is_tibble(rbtsb))
@@ -32,7 +31,5 @@ test_that("research_briefings return expected format", {
     rbnu <- hansard_research_briefings()
     expect_length(rbnu, 14)
     expect_true(tibble::is_tibble(rbnu))
-
-
 
 })
