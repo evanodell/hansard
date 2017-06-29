@@ -91,7 +91,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
         df3$about <- gsub("http://data.parliament.uk/resources/", "", df3$about)
         df3$about <- gsub("/.*", "", df3$about)
 
-        df3 <- dplyr::group_by(df3, "about")
+        df3 <- dplyr::group_by(df3, df3$about)
 
         df4 <- dplyr::summarise_all(df3, sum, na.rm = TRUE)
 
