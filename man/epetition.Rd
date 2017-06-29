@@ -2,9 +2,13 @@
 % Please edit documentation in R/epetition.R
 \name{epetition}
 \alias{epetition}
+\alias{hansard_epetition}
 \title{Imports data on a given epetition.}
 \usage{
 epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case")
+
+hansard_epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
