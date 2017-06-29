@@ -73,7 +73,7 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 #' @export
 hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"){
 
-  df <- members_search(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- members_search(search = search, tidy = tidy, tidy_style = tidy_style)
 
   df
 

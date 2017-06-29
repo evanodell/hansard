@@ -83,7 +83,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
 #' @export
 hansard_lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-  df <- lords_attendance(session_id=session_id, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- lords_attendance(session_id = session_id, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
   df
 
