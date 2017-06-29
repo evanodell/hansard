@@ -4,7 +4,7 @@ context("bills")
 test_that("bills return expected format", {
 
     skip_on_cran()
-    skip_on_travis()
+    
 
     xb <- hansard_bills(start_date = "2017-01-01")
     expect_length(xb, 10)

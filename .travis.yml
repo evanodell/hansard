@@ -8,5 +8,6 @@ r_packages:
   - covr
 
 after_success:
+  - travis_wait 40
   - Rscript -e 'library(covr); codecov()'
 
