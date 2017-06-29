@@ -7,10 +7,7 @@ cache: packages
 r_packages:
   - covr
 
-before_install:
-  - Rscript -e 'require(methods)'
-
 after_success:
   - Rscript -e 'CODECOV_TOKEN="31ebd220-3f2e-461b-93b0-456acd7537a8"'
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'require(methods);library(covr); codecov()'
 
