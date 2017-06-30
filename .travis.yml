@@ -4,9 +4,9 @@ language: r
 sudo: required
 cache: packages
 
-#r_packages:
-#  - covr
+r_github_packages:
+   - jimhester/robustr
+   - jimhester/covr
 
-#after_success:
-#  - travis_wait 40
-#  - Rscript -e 'library(covr); codecov()'
+after_success:
+  - Rscript -e 'library(covr); codecov()'
