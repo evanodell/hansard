@@ -13,9 +13,7 @@ install:
 cache:
   - C:\RLibrary
 
-# Adapt as necessary starting from here
-
-  matrix:
+matrix:
   - R_VERSION: devel
     GCC_PATH: mingw_32
 
