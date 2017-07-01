@@ -20,7 +20,6 @@ test_that("members vote record and questions functions return expected format", 
     expect_type(mpvrall, "list")
     expect_true(tibble::is_tibble(mpvrall))
 
-
     mpvraye <- hansard_mp_vote_record(172, lobby = "aye", start_date = "2017-01-01", tidy = FALSE)
     expect_length(mpvraye, 5)
     expect_type(mpvraye, "list")
@@ -30,7 +29,5 @@ test_that("members vote record and questions functions return expected format", 
     expect_length(mpvno, 6)
     expect_type(mpvno, "list")
     expect_true(tibble::is_tibble(mpvno))
-
-
 
 })

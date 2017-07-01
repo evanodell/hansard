@@ -5,7 +5,6 @@ context("election_results")
 test_that("election_results return expected format", {
 
     skip_on_cran()
-    
 
     elect_all_data <- hansard_election_results(ID=382037, all_data = TRUE)
     expect_length(elect_all_data, 127)

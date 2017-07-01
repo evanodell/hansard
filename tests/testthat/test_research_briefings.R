@@ -6,7 +6,6 @@ test_that("research_briefings return expected format", {
 
     skip_on_cran()
 
-
     rtl <- hansard_research_topics_list()
     expect_is(rtl, "list")
     expect_length(rtl, 20)

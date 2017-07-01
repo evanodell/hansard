@@ -3,10 +3,10 @@ context("lords functions")
 
 
 test_that("lords functions return expected format", {
+
     skip_on_cran()
 
     # Voting Records
-
     lvotesall <- hansard_lord_vote_record(530, lobby = "all", start_date = "2017-01-01")
     expect_length(lvotesall, 11)
     expect_type(lvotesall, "list")

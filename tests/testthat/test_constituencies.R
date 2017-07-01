@@ -4,7 +4,6 @@ context("constituencies")
 test_that("constituencies functions return expected format", {
 
     skip_on_cran()
-    
 
     ctx <- hansard_constituencies(current = TRUE)
     expect_length(ctx, 9)
