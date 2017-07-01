@@ -4,10 +4,10 @@
 \alias{hansard_tidy}
 \title{A function to make the results of calls to the API easier to work with, mostly though fixing variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates and datetimes are converted to POSIXct class. Some extra URL data included in the API is also stripped out.}
 \usage{
-hansard_tidy(df, tidy_style)
+hansard_tidy(df, tidy_style = c("snake_case", "camelCase", "period.case"))
 }
 \arguments{
-\item{df}{The tibble to tidy}
+\item{df}{The tibble to tidy.}
 
 \item{tidy_style}{The style to tidy variable names to.}
 }
