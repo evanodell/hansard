@@ -50,12 +50,12 @@ test_that("commons functions return expected format", {
     expect_type(xcoqe, "list")
     expect_true(tibble::is_tibble(xcoqe))
 
-    xcoqtidy <- hansard_commons_oral_questions(mp_id = 4019, answering_department = "education", tidy = TRUE)
+    xcoqtidy <- hansard_commons_oral_questions(mp_id = 4019, answering_department = "education", tidy = TRUE, tidy_style = "period.case")
     expect_length(xcoqtidy, 24)
     expect_type(xcoqtidy, "list")
     expect_true(tibble::is_tibble(xcoqtidy))
 
-    xcoqe <- hansard_tidy(xcoqe)
+    xcoqe <- hansard_tidy(xcoqe, tidy_style = "period.case")
     expect_true(xcoqe[[1]][[1]]==xcoqtidy[[1]][[1]])
 
     xcwq <- hansard_commons_written_questions(mp_id = 410, "cabinet office")
