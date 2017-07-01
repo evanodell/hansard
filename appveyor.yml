@@ -13,28 +13,13 @@ install:
 cache:
   - C:\RLibrary
 
-matrix:
-  - R_VERSION: devel
-    GCC_PATH: mingw_32
-
-  - R_VERSION: devel
-    R_ARCH: x64
-    GCC_PATH: mingw_64
-
-  - R_VERSION: release
-    R_ARCH: x64
-
-  - R_VERSION: stable
-
-  - R_VERSION: patched
-
+# Adapt as necessary starting from here
 
 build_script:
   - travis-tool.sh install_deps
 
 test_script:
   - travis-tool.sh run_tests
-
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
@@ -58,14 +43,3 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
-
-
-notifications:
- - provider: Email
-   to:
-     - evanodell91@gmail.com
-   subject: 'r-appveyor build {{status}}'                  # optional
-   message: "https://ci.appveyor.com/project/evanodell/hansard"    # optional
-   on_build_success: false
-   on_build_failure: true
-   on_build_status_changed: true
