@@ -7,7 +7,7 @@ test_that("lords functions return expected format", {
   skip_on_cran()
 
   # Divisions
-  ldivsum <- hansard_lords_divisions(division_id = 705891, summary = TRUE, tidy = FALSE)
+  ldivsum <- hansard_lords_divisions(division_id = 705891, summary = TRUE, tidy = TRUE)
   expect_length(ldivsum, 11)
   expect_type(ldivsum, "list")
   expect_true(tibble::is_tibble(ldivsum))

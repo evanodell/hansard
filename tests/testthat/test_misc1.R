@@ -28,6 +28,12 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
     expect_true(tibble::is_tibble(publjan))
     expect_equal(nrow(publjan), 2)
 
+    publcommons <- hansard_publication_logs(house="commons", start_date = "2016-01-01", end_date = "2016-01-15", tidy=FALSE)
+    expect_length(publcommons, 5)
+    expect_type(publcommons, "list")
+    expect_true(tibble::is_tibble(publcommons))
+    expect_equal(nrow(publcommons), 22)
+
     # TV Programmes
 
     tvcoms <- hansard_tv_programmes("commons", start_date = "2016-12-10", end_date = "2017-02-14")
