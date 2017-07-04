@@ -163,7 +163,6 @@ Changes have been made to most functions, including:
 
 Adding of `research_briefings_lists()` functions.
 
-
 # hansard 0.3.4
 
 ## Bug fixes
@@ -174,20 +173,17 @@ Fixed spelling of amendments, so that `lords_ammendments()` is now `lords_amendm
 
 # hansard 0.3.3
 
-## hansard_basic()
-
-As part of a move towards calling the api through function parameters rather than console input for most functions, I have introduced `hansard_basic()` which uses console input to walk through the various steps of calling to the API.
+## Bug Fixes
 
 # hansard 0.3.2
 
 ## Bug Fixes
 
-
 # hansard 0.3.0
 
 ## Requesting data through function parameters
 
-In response to a request, I`ve added three new functions that allow you to request the voting record of both MPs and members of the House of Lords by using their ID as a function parameter, rather than as a console input. They are:
+In response to a request, I've added three new functions that allow you to request the voting record of both MPs and members of the House of Lords by using their ID as a function parameter, rather than as a console input. They are:
 
 `lords_vote_record()`
 
