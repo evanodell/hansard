@@ -14,14 +14,14 @@ knitr::opts_chunk$set(
 ```
 
 # hansard: Accessing Westminster Parliament Data
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EvanOdell/hansard/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/evanodell/hansard/blob/master/LICENSE)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
-[![Build Status](https://travis-ci.org/EvanOdell/hansard.png?branch=master)](https://travis-ci.org/EvanOdell/hansard) 
+[![Build Status](https://travis-ci.org/evanodell/hansard.png?branch=master)](https://travis-ci.org/evanodell/hansard) 
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
-[![Coverage Status](https://img.shields.io/codecov/c/github/EvanOdell/hansard/master.svg)](https://codecov.io/github/EvanOdell/hansard?branch=master)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/EvanOdell/hansard?branch=master&svg=true)](https://ci.appveyor.com/project/EvanOdell/hansard)
+[![Coverage Status](https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg)](https://codecov.io/github/evanodell/hansard?branch=master)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/evanodell/hansard?branch=master&svg=true)](https://ci.appveyor.com/project/evanodell/hansard)
 
 An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <http://www.data.parliament.uk/>. Help on the API itself is here: <http://api.data.parliament.uk/help/>. 
 
@@ -43,7 +43,7 @@ To install the development version run:
 
 ```
 install.packages("devtools")
-devtools::install_github("EvanOdell/hansard")
+devtools::install_github("evanodell/hansard")
 ```
 
 ## Using hansard
@@ -56,7 +56,7 @@ The `hansard` package includes extensive tests of the different API functions. H
 
 #### API calls with console input
 
-Previous versions (<=0.3.4) of `hansard` included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the [https://github.com/EvanOdell/hansard-console](`hansardconsole`) package. There are no plans to submit this to CRAN, and it is not being actively maintained.
+Previous versions (<=0.3.4) of `hansard` included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the [https://github.com/evanodell/hansard-console](`hansardconsole`) package. There are no plans to submit this to CRAN, and it is not being actively maintained.
 
 ### Disclaimer
 
@@ -64,4 +64,4 @@ This package is in no way officially related to or endorsed by the UK Parliament
 
 ### Acknowledgements
 
-This package is part of [rOpenGov](http://ropengov.github.io). It was written by [Evan Odell](http://evanodell.com).
+This package is part of [rOpenGov](http://ropengov.github.io). It was written by [Evan Odell](https://evanodell.com).
