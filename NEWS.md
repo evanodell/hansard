@@ -8,6 +8,10 @@ All functions have a wrapper function with the same name, but with `hansard_` pr
 
 Addition of `house` and `answering_body` parameters to `all_answered_questions()` function.
 
+## Bug Fixes
+
+Fixed bug in `lord_vote_record()` which produced an error if requesting both lobbies, but a peer had only voted in one of the lobbies.
+
 # hansard 0.4.9
 
 ## New features

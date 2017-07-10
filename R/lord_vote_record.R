@@ -86,11 +86,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-        if (content$result$itemsPerPage < content$result$totalResults) {
-            jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
-        } else {
-            jpage <- 0
-        }
+        jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
 
         pages <- list()
 
@@ -102,7 +98,11 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         df_content <- tibble::as_tibble(dplyr::bind_rows(pages))
 
+        if (nrow(df_content) > 0) {
+
         df_content$vote <- "content"
+
+        }
 
         message("Retrieving not content votes:")
 
@@ -112,11 +112,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
-        if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
-            jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
-        } else {
-            jpage <- 0
-        }
+        jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
 
         pages <- list()
 
@@ -128,12 +124,18 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         df_notcontent <- tibble::as_tibble(dplyr::bind_rows(pages))
 
+        if (nrow(df_notcontent) > 0) {
+
         df_notcontent$vote <- "not-content"
+
+        }
 
         df <- rbind(df_content, df_notcontent)
         df$vote <- as.factor(df$vote)
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.POSIXct(df$date._value)
+
+
 
     }
 

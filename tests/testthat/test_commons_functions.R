@@ -5,7 +5,7 @@ context("commons functions")
 test_that("commons functions return expected format", {
     skip_on_cran()
 
-    xcaq <- hansard_commons_answered_questions(answering_department = "health", answered_by = "4019", start_date = "2017-02-01")
+    xcaq <- hansard_commons_answered_questions(answering_department = "health", answered_by = "4019", start_date = "2017-02-01", end_date = "2017-02-02")
     expect_length(xcaq, 10)
     expect_type(xcaq, "list")
     expect_true(tibble::is_tibble(xcaq))
