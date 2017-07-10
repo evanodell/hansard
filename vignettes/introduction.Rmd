@@ -40,7 +40,7 @@ library(hansard)
 
 The naming convention for variables used if `tidy`==TRUE is indicated by `tidy_style`. `tidy_style` accepts one of `"snake_case"`, `"camelCase"` and `"period.case"`, defaulting to `"snake_case"`. All variable names will be converted to match the given naming convention.
 
-In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with 'hansard_'. For example, both `bills()` and `hansard_bills()` will return the same result.
+In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with `hansard_`. For example, both `bills()` and `hansard_bills()` will return the same result.
 
 ### Example using the `commons_divisions()` and `mp_vote_record()` functions
 
@@ -61,7 +61,6 @@ Using `commons_divisions()`, we can see the result of one of those votes, ID 722
 x <- commons_divisions(722300)
 glimpse(x)
 ```
-
 
 With the `summary` parameter, we can return a brief summary table of votes:
 
@@ -96,12 +95,9 @@ research_types_list <- research_types_list()
 
 research_topics_list[[7]]
 
-
 research_subtopics_list[[7]][10]
 
 research_types_list[[1]]
-
-
 ```
 
 In this case I have given them the same name as their function, but you can assign any name you wish to them.
@@ -114,7 +110,6 @@ a <- research_briefings(topic = research_topics_list[[7]])
 b <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])
 
 c <- research_briefings(topic = "Defence")
-
 ```
 
 If a specific subtopic is called, but the topic is not specified, the function will still return all data within that specific subtopic. Note that this is slower than specifying the topic and subtopic.
@@ -130,7 +125,6 @@ system.time(without_topic <- research_briefings(subtopic = research_subtopics_li
 system.time(with_topic <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10]))
 
 identical(with_topic, without_topic)
-
 ```
 
 
@@ -155,18 +149,14 @@ Looking up information on an individual MP or Lord through the Parliamentary API
 ```{r echo=TRUE}
 library(hansard)
 members_search("abbot")
-
 ```
 
-
 The same function, without the use of the tidy parameter, illustrating the differences in the variable names and the presentation of information in the first column:
-
 
 ```{r, echo=TRUE}
 library(hansard)
 members_search("abbot", tidy = FALSE)
 ```
-
 
 The same function as above, but with `tidy_style = "period.case"`, so it returns a different 
 
@@ -175,7 +165,4 @@ library(hansard)
 members_search("abbot", tidy = TRUE, tidy_style = "period.case")
 ```
 
-
-The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the [`mnis`](https://cran.r-project.org/package=mnis) package to retrives data from the Members' Names Information Service.
-
-
+The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the [`mnis`](https://cran.r-project.org/package=mnis) package to retrive data from the Members' Names Information Service.

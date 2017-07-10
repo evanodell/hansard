@@ -1,5 +1,7 @@
 
 
+#' Imports data on House of Lords attendance.
+#'
 #' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
 #' @param session_id The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.

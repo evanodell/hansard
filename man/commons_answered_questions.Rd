@@ -3,7 +3,7 @@
 \name{commons_answered_questions}
 \alias{commons_answered_questions}
 \alias{hansard_commons_answered_questions}
-\title{Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.}
+\title{Imports data on House of Commons answered questions.}
 \usage{
 commons_answered_questions(answering_department = NULL, answered_by = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
