@@ -12,7 +12,7 @@ test_that("lords functions return expected format", {
     expect_type(lvotesall, "list")
     expect_true(tibble::is_tibble(lvotesall))
 
-    lvotesnot <- hansard_lord_vote_record(530, lobby = "notcontent", start_date = "2017-03-01")
+    lvotesnot <- hansard_lord_vote_record(530, lobby = "notcontent", start_date = "2017-02-01")
     expect_length(lvotesnot, 10)
     expect_type(lvotesnot, "list")
     expect_true(tibble::is_tibble(lvotesnot))
