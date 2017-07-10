@@ -1,8 +1,16 @@
-# hansard 0.4.9
+
+
+# hansard 0.5.0
 
 ## New features
 
-All functions have a wrapper function with the same name, but with `hansard_` prefixed.
+All functions have a wrapper function with the same name, but with `hansard_` prefixed. Existing names have remained untouched.
+
+Addition of `house` and `answering_body` parameters to `all_answered_questions()` function.
+
+# hansard 0.4.9
+
+## New features
 
 Party name columns in `election_candidates()` and `election_results(all_data=TRUE)` are now in alphabetical order.
 
