@@ -7,17 +7,17 @@ test_that("lords functions return expected format", {
     skip_on_cran()
 
     # Voting Records
-    lvotesall <- hansard_lord_vote_record(530, lobby = "all", start_date = "2017-01-01")
+    lvotesall <- hansard_lord_vote_record(530, lobby = "all", start_date = "2017-03-01")
     expect_length(lvotesall, 11)
     expect_type(lvotesall, "list")
     expect_true(tibble::is_tibble(lvotesall))
 
-    lvotesnot <- hansard_lord_vote_record(530, lobby = "notcontent", start_date = "2017-01-01")
+    lvotesnot <- hansard_lord_vote_record(530, lobby = "notcontent", start_date = "2017-03-01")
     expect_length(lvotesnot, 10)
     expect_type(lvotesnot, "list")
     expect_true(tibble::is_tibble(lvotesnot))
 
-    lvotescont <- hansard_lord_vote_record(530, lobby = "content", start_date = "2017-01-01")
+    lvotescont <- hansard_lord_vote_record(530, lobby = "content", start_date = "2017-03-01")
     expect_length(lvotescont, 10)
     expect_type(lvotescont, "list")
     expect_true(tibble::is_tibble(lvotescont))
