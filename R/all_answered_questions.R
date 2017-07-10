@@ -45,23 +45,27 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       house_query <- NULL
 
-    } else if(is.numeric(house)==FALSE) {
+    } else {
+
+    if(is.numeric(house)==FALSE) {
 
       house <- tolower(house)
 
     }
 
-    if (house == "commons" || house==1) {
+    if (house == "commons" | house==1) {
 
       house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
 
-    } else if (house == "lords" || house==2) {
+    } else if (house == "lords" | house==2) {
 
       house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
 
     } else {
 
       house_query <- NULL
+
+    }
 
     }
 
