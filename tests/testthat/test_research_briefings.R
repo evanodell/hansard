@@ -27,8 +27,4 @@ test_that("research_briefings return expected format", {
     expect_true(tibble::is_tibble(rbtsb))
     expect_true(rbdf[[1]][[1]]==rbtsb[[1]][[1]])
 
-    rbnu <- hansard_research_briefings()
-    expect_length(rbnu, 14)
-    expect_true(tibble::is_tibble(rbnu))
-
 })
