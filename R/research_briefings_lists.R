@@ -1,6 +1,8 @@
 
 
-#' Functions to retrieve lists of research briefing topics, subtopics and types. These functions do not accept any arguments.
+#' Functions to retrieve lists of research briefing topics, subtopics and types.
+#'
+#' These functions do not accept any arguments.
 #'
 #' A list of Parliamentary Research Briefings topics.
 #' @rdname research_briefings_lists

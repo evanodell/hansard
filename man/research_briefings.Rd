@@ -3,7 +3,7 @@
 \name{research_briefings}
 \alias{research_briefings}
 \alias{hansard_research_briefings}
-\title{Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.}
+\title{Imports data on  Parliamentary Research Briefings.}
 \usage{
 research_briefings(topic = NULL, subtopic = NULL, type = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")

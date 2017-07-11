@@ -7,7 +7,7 @@
 \alias{hansard_research_subtopics_list}
 \alias{research_types_list}
 \alias{hansard_research_types_list}
-\title{Functions to retrieve lists of research briefing topics, subtopics and types. These functions do not accept any arguments.}
+\title{Functions to retrieve lists of research briefing topics, subtopics and types.}
 \usage{
 research_topics_list()
 
@@ -29,11 +29,14 @@ A list with the different research subtopics available.
 A list with the different types of research briefings.
 }
 \description{
-A list of Parliamentary Research Briefings topics.
+These functions do not accept any arguments.
 
 A list of Parliamentary Research Briefings subtopics, grouped by topic.
 
 A list of types of Parliamentary Research Briefings.
+}
+\details{
+A list of Parliamentary Research Briefings topics.
 }
 \examples{
  \dontrun{
