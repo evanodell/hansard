@@ -158,7 +158,7 @@ library(hansard)
 members_search("abbot", tidy = FALSE)
 ```
 
-The same function as above, but with `tidy_style = "period.case"`, so it returns a different 
+The same function as above, but with `tidy_style = "period.case"`, so it returns variables with a different naming convention.
 
 ```{r, echo=TRUE}
 library(hansard)
