@@ -5,8 +5,8 @@
 \alias{hansard_mp_edms}
 \title{Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.}
 \usage{
-mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
-  signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
+mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
+  signatory = TRUE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
 
 hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
@@ -14,13 +14,13 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
   tidy_style = "snake_case")
 }
 \arguments{
-\item{mp_id}{The ID number of an MP. Required parameter, defaults to NULL.}
+\item{mp_id}{The ID number of an MP. Required parameter, defaults to NULL. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.}
 
-\item{primary_sponsor}{Returns a tibble of all early day motions where the given member is the primary sponsor. Defaults to TRUE.}
+\item{primary_sponsor}{Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to TRUE.}
 
-\item{sponsor}{Returns a tibble of early day motions where the given member is the primary sponsor or a sponsor. Defaults to FALSE.}
+\item{sponsor}{Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to TRUE.}
 
-\item{signatory}{Returns a tibble of all early day motions signed by the given member. Because of the structure of the API, there is less information contained in the tibble return if signatory is TRUE, unless full_data is also TRUE. Defaults to FALSE.}
+\item{signatory}{Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to TRUE.}
 
 \item{full_data}{If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.}
 
@@ -31,7 +31,7 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 }
 \value{
-A tibble with information on the tibbles signed, sponsored or primarily sponsored by the given MP.
+A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.
 }
 \description{
 Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
@@ -40,7 +40,7 @@ Imports data on early day motions signed, sponsored or primarily sponsored by a 
 \dontrun{
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=FALSE)
 
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, full_data=TRUE)
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE, full_data=TRUE)
 
 }
 }
@@ -48,5 +48,6 @@ x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=TRUE, 
 \code{\link{early_day_motions}}
 }
 \keyword{Day}
+\keyword{EDM}
 \keyword{Early}
 \keyword{Motion}

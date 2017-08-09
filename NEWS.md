@@ -1,4 +1,17 @@
 
+
+# hansard 0.5.2
+
+## New features
+
+`mp_edms()` now accepts
+
+
+## Bug Fixes
+
+Fixed `mp_edms()` to return more useful error if the requested MP does not have any Early Day Motions that meet the search parameters.
+
+
 # hansard 0.5.1
 
 ## Bug Fixes
