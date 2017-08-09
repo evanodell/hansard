@@ -1,7 +1,7 @@
 
 
 #Resubmission 
-This is the fourth update of this package. The previous version, 0.4.6, was accepted and published on CRAN on 2017-06-05. 
+This is the fifth update of this package. The previous version, 0.5.0, was accepted and published on CRAN on 2017-06-05. 
 
 There is one note from R CMD check, reproduced below, which believes the words 'API' and 'APIs' are spelling mistakes.
 

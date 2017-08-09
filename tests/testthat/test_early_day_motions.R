@@ -4,7 +4,7 @@ context("early day motions")
 test_that("edm functions return expected format", {
 
     skip_on_cran()
-    
+
 
     xedmid <- hansard_early_day_motions(edm_id = 1073)
     expect_length(xedmid, 11)
@@ -21,5 +21,7 @@ test_that("edm functions return expected format", {
     expect_length(xedmid_full, 30)
     expect_type(xedmid_full, "list")
     expect_true(tibble::is_tibble(xedmid_full))
+
+
 
 })

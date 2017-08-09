@@ -4,7 +4,7 @@ author: "Evan Odell"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{hansard}
+  %\VignetteIndexEntry{Introduction to hansard}
   %\VignetteEngine{knitr::rmarkdown}
     \usepackage[utf8]{inputenc}
 ---

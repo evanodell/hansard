@@ -1,7 +1,7 @@
 
 
 
-#' Imports data on early day motions in signed, sponsored or primarily sponsored by a given MP.
+#' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
 #' @param mp_id The ID number of an MP. Required parameter, defaults to NULL.
 #' @param primary_sponsor Returns a tibble of all early day motions where the given member is the primary sponsor. Defaults to TRUE.
 #' @param sponsor Returns a tibble of early day motions where the given member is the primary sponsor or a sponsor. Defaults to FALSE.
@@ -40,14 +40,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     edms <- jsonlite::fromJSON(paste0(baseurl, query, query_primary_sponsor, query_sponsor, "&_pageSize=500", extra_args), flatten = TRUE)
 
-    if (edms$result$totalResults > edms$result$itemsPerPage) {
-
-        jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
-
-    } else {
-
-        jpage <- 0
-    }
+    jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
 
     pages <- list()
 
@@ -60,9 +53,11 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-    df$dateSigned._value <- as.POSIXct(df$dateSigned._value)
+    if (nrow(df) == 0) {
+      message("The request did not return any data. Please check your search parameters.")
+    } else {
 
-    if (full_data == TRUE) {
+      if (full_data == TRUE) {
 
         names(df)[names(df) == "_about"] <- "about"
 
@@ -120,10 +115,6 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signa
 
     }
 
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
-
         if (tidy == TRUE) {
 
             df$dateSigned._value <- as.POSIXct(df$dateSigned._value)
@@ -162,3 +153,4 @@ hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALS
   df
 
 }
+
