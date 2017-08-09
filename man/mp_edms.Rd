@@ -38,9 +38,9 @@ Imports data on early day motions signed, sponsored or primarily sponsored by a 
 }
 \examples{
 \dontrun{
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = FALSE, signatory=FALSE)
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
 
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE, full_data=TRUE)
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)
 
 }
 }
