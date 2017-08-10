@@ -140,7 +140,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
                 }
             }
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
         } else {
 

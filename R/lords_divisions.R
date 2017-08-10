@@ -132,7 +132,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
                 }
             }
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

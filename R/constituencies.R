@@ -57,7 +57,7 @@ constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_
 
             df$startedDate._datatype <- "POSIXct"
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

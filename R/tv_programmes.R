@@ -81,7 +81,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
             df$legislature <- NULL
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
@@ -167,7 +167,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
                 }
             }
 
-            df <- tibble::as.tibble(hansard::hansard_tidy(df, tidy_style))
+            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
 
             df
 
@@ -206,7 +206,7 @@ tv_channels <- function(tidy = TRUE, tidy_style = "snake_case") {
 
     if (tidy == TRUE) {
 
-        df <- hansard::hansard_tidy(df, tidy_style)
+        df <- hansard_tidy(df, tidy_style)
 
         df
 

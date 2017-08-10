@@ -77,7 +77,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
             df$`_about` <- gsub("http://data.parliament.uk/members/", "", df$`_about`)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df <- tibble::as.tibble(df)
 
@@ -135,7 +135,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
         if (tidy == TRUE) {
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
@@ -192,7 +192,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
         if (tidy == TRUE) {
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

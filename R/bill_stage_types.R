@@ -22,7 +22,7 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case") {
 
     if (tidy == TRUE) {
 
-      df <- hansard::hansard_tidy(df, tidy_style)
+      df <- hansard_tidy(df, tidy_style)
 
       df
 

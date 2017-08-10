@@ -105,7 +105,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
       df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
 
-      df <- hansard::hansard_tidy(df, tidy_style)
+      df <- hansard_tidy(df, tidy_style)
 
     }
 

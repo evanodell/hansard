@@ -79,7 +79,7 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
             df$AnsweringBody <- unlist(df$AnsweringBody)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

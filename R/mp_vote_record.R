@@ -154,7 +154,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
             df$date._value <- as.POSIXct(df$date._value)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 
