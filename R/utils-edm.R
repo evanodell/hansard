@@ -1,10 +1,5 @@
 
-
-
 # Retrieving EDM data -----------------------------------------------------
-
-
-
 
 edm_search <- function(df){
 
@@ -45,8 +40,6 @@ edm_search <- function(df){
                             signingMemberPrinted._value = list(search$result$primaryTopic$signature$memberPrinted._value),
                             memberParty._value = list(search$result$primaryTopic$signature$party._value))
 
-    #dat3[[i]] <- search_df
-
   }
 
   df2 <- dplyr::bind_rows(dat3)
@@ -55,15 +48,9 @@ edm_search <- function(df){
 
   df2$about <- gsub("/signatures/.*", "", df2$about)
 
-  facs <- c("session")
-
   df2$session <- as.factor(unlist(df2$session))
 
-  #df2$dateTabled._value <- lapply(df2$dateTabled._value,as.POSIXct)
-
   df2$dateTabled._datatype <- as.factor(unlist(df2$dateTabled._datatype))
-
-  #df2$dateSigned._value <- lapply(df2$dateSigned._value,as.POSIXct)
 
   df2$memberDateSigned._datatype <- as.factor(unlist(df2$memberDateSigned._datatype))
 
@@ -101,7 +88,7 @@ multi_mp_edms <- function(mp_id=mp_id, extra_args=extra_args, primary_sponsor = 
 
 # Formula for multiple relationships to EDMS ------------------------------------------------
 
-sig_type <- function(mp_id=mp_id, ex_ar =extra_args, prim_spon = primary_sponsor, spon = sponsor, sig = signatory, end_date=end_date, start_date=start_date){
+sig_type <- function(mp_id=mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, end_date=end_date, start_date=start_date, extra_args =extra_args){
 
   sig1 <- NULL
   sig2 <- NULL
@@ -109,7 +96,7 @@ sig_type <- function(mp_id=mp_id, ex_ar =extra_args, prim_spon = primary_sponsor
 
   if(prim_spon==TRUE){
 
-   sig1 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = ex_ar, tidy = FALSE)
+   sig1 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
     if(nrow(sig1)>0){
 
@@ -121,7 +108,7 @@ sig_type <- function(mp_id=mp_id, ex_ar =extra_args, prim_spon = primary_sponsor
 
   if(spon==TRUE){
 
-    sig2 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = TRUE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = ex_ar, tidy = FALSE)
+    sig2 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = TRUE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
     if(nrow(sig2)>0){
 
@@ -133,7 +120,7 @@ sig_type <- function(mp_id=mp_id, ex_ar =extra_args, prim_spon = primary_sponsor
 
   if(sig==TRUE){
 
-    sig3 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = FALSE, signatory = TRUE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = ex_ar, tidy = FALSE)
+    sig3 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = FALSE, signatory = TRUE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
     if(nrow(sig3)>0){
 

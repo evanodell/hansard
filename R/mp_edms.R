@@ -70,6 +70,12 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     df <- tibble::as.tibble(dplyr::bind_rows(pages))
 
+    if(nrow(df)>0){
+
+      names(df)[names(df)=="_about"] <- "about"
+
+    }
+
     }
 
       if (full_data == TRUE) {
