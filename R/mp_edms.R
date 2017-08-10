@@ -7,6 +7,8 @@
 #' @param sponsor Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to TRUE.
 #' @param signatory Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to TRUE.
 #' @param full_data If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.
+#' @param start_date The earliest date to include in the tibble, based on the date the MP signed the EDM. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble, based on the date the MP signed the EDM. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
@@ -22,7 +24,9 @@
 #' }
 
 
-mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signatory = TRUE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signatory = TRUE, full_data = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+
+  dates <- paste0("&max-dateSigned=", as.Date(end_date), "&min-dateSigned=", as.Date(start_date))
 
   if (is.null(mp_id) == TRUE) {
     stop("mp_id must not be empty", call. = FALSE)
@@ -30,7 +34,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
   if (length(mp_id) > 1) {
 
-    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory)
+    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory,end_date, start_date)
 
   }
 
@@ -38,15 +42,15 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     if(length(z[z==TRUE])>1){
 
-      df <- sig_type(mp_id, extra_args, primary_sponsor, sponsor, signatory)
+      df <- sig_type(mp_id, extra_args, primary_sponsor, sponsor, signatory,end_date, start_date)
 
     } else {
 
-    query <- paste0("&member=http://data.parliament.uk/members/", mp_id, "&isPrimarySponsor=", tolower(primary_sponsor), "&isSponsor=", tolower(sponsor))
+    query <- paste0("member=http://data.parliament.uk/members/", mp_id, "&isPrimarySponsor=", tolower(primary_sponsor), "&isSponsor=", tolower(sponsor))
 
     baseurl <- "http://lda.data.parliament.uk/edmsignatures.json?"
 
-    edms <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500", extra_args), flatten = TRUE)
+    edms <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500", extra_args), flatten = TRUE)
 
     jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
 
@@ -57,7 +61,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
       message("Connecting to API")
 
       for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         message("Retrieving page ", i + 1, " of ", jpage + 1)
         pages[[i + 1]] <- mydata$result$items
       }
@@ -102,7 +106,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
 hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
 
-  df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
   df
 

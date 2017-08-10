@@ -6,6 +6,8 @@
 
 `mp_edms()` now accepts lists and character vectors of MP IDs, and returns them all in one tibble.
 
+`mp_edms()` now includes `start_date` and `end_date` parameters
+
 ## Bug Fixes
 
 Fixed `mp_edms()` to return more useful error if the requested MP does not have any Early Day Motions that meet the search parameters.
