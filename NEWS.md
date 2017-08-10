@@ -14,6 +14,9 @@ Fixed `mp_edms()` to return more useful error if the requested MP does not have 
 
 The `signatory` parameter in `mp_edms()` is now behaving properly.
 
+## Documentation updates
+
+General improvement to documentation
 
 # hansard 0.5.0
 

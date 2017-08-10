@@ -1,6 +1,8 @@
 
 
-#' Functions to retrieve lists of research briefing topics, subtopics and types.
+#'
+#'
+#' Lists of research briefing topics, subtopics and types.
 #'
 #' These functions do not accept any arguments.
 #'

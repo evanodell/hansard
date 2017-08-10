@@ -7,7 +7,7 @@
 \alias{hansard_research_subtopics_list}
 \alias{research_types_list}
 \alias{hansard_research_types_list}
-\title{Functions to retrieve lists of research briefing topics, subtopics and types.}
+\title{Lists of research briefing topics, subtopics and types.}
 \usage{
 research_topics_list()
 

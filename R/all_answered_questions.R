@@ -1,7 +1,7 @@
 
-#' Imports data on all answered parliamentary questions.
+#' All answered parliamentary questions.
 #'
-#' Imports data on all answered parliamentary questions in the House of Commons and in the House of Lords.
+#' Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
 #' @param mp_id Accepts a member ID, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions. Defaults to NULL.
 #' @param tabling_mp_id Accepts a member ID, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions. Defaults to NULL.
 #' @param house The house to return questions from. Accepts either the short name of the legislature (e.g. 'commons' or 'lords') or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If NULL, returns answers from both houses, subject to other parameters. Defaults to NULL.

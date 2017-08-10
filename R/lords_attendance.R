@@ -1,6 +1,6 @@
 
 
-#' Imports data on House of Lords attendance.
+#' House of Lords attendance.
 #'
 #' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
 #' @param session_id The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.

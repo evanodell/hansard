@@ -1,4 +1,6 @@
 
+#' Peers' interests
+#'
 #' Registered interests of members of the House of Lords
 #' @param peer_id The ID of a member of the House of lords. If NULL, returns a tibble with all listed financial interests for all members. Defaults to NULL.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.

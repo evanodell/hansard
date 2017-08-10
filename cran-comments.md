@@ -9,7 +9,7 @@ There is one note from R CMD check, reproduced below, which believes the words '
 ## Test environments
 
 * Ubuntu 12.04.5 (on Travis-CI): R devel
-* local MacOS 10.12.5 installation: R 3.4.1
+* local MacOS 10.12.6 installation: R 3.4.1
 * local Windows 7 installation: R 3.4.1
 * win-builder (devel and release)
  

@@ -1,5 +1,7 @@
 
-#' Get data on epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID.
+#' Bulk Epetitions
+#'
+#' Get data on all epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID. For greater detail on indidivual epetitions, see \code{\link{epetition}}.
 #'
 #' @param min_signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param max_signatures The maximum number of signatures required for inclusion in the tibble. If NULL, there no maximum number of signatures. Defaults to NULL.

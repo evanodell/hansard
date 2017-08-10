@@ -1,5 +1,7 @@
 
 
+#' Individual MP voting records
+#'
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
 #' @param mp_id The ID number of a member of the House of Commons.
 #' @param lobby Accepts one of 'all', 'aye' or 'no'. 'aye' returns votes where the MP voted 'aye', 'no' returns votes where the MP voted 'no', 'all' returns all available votes by the MP. Defaults to 'all'.

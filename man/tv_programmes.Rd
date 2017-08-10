@@ -7,7 +7,7 @@
 \alias{hansard_tv_clips}
 \alias{tv_channels}
 \alias{hansard_tv_channels}
-\title{Imports data on TV broadcasts.}
+\title{TV broadcast data}
 \usage{
 tv_programmes(legislature = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -53,7 +53,7 @@ A tibble with details on the different broadcasting channels.
 \description{
 Imports data on TV broadcasts.
 
-Imports data on TV broadcasts
+Clips of individual members
 
 Returns data on the different parliamentary broadcasting channels.
 }

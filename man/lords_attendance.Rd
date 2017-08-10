@@ -3,7 +3,7 @@
 \name{lords_attendance}
 \alias{lords_attendance}
 \alias{hansard_lords_attendance}
-\title{Imports data on House of Lords attendance.}
+\title{House of Lords attendance.}
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,

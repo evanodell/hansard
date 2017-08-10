@@ -1,5 +1,7 @@
 
 
+#' Papers laid
+#'
 #' Imports data on papers laid before the House.
 #' @param withdrawn If TRUE, only returns withdrawn papers. Defaults to FALSE.
 #' @param house The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.

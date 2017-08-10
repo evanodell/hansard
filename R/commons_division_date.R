@@ -1,4 +1,6 @@
-#' Returns a tibble with the dates of House of Commons divisions.
+#' House of Commons Division Dates
+#'
+#' Returns a tibble with the divisions of the House of Commons on a given date
 #' @param date Returns all divisions on a given date. Defaults to NULL.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.

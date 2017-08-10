@@ -1,5 +1,7 @@
 
 
+#' Current and former members of both houses
+#'
 #' Imports data on all current and former Members of Parliament including the Lords and the Commons
 #' @param ID The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.

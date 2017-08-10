@@ -3,7 +3,7 @@
 \name{epetition_tibble}
 \alias{epetition_tibble}
 \alias{hansard_epetition_tibble}
-\title{Get data on epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID.}
+\title{Bulk Epetitions}
 \usage{
 epetition_tibble(min_signatures = 1, max_signatures = NULL, status = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -34,7 +34,7 @@ hansard_epetition_tibble(min_signatures = 1, max_signatures = NULL,
 A tibble with details on electronic petitions submitted to parliament.
 }
 \description{
-Get data on epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID.
+Get data on all epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID. For greater detail on indidivual epetitions, see \code{\link{epetition}}.
 }
 \examples{
 \dontrun{

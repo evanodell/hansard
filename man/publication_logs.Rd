@@ -3,7 +3,7 @@
 \name{publication_logs}
 \alias{publication_logs}
 \alias{hansard_publication_logs}
-\title{Imports data on House of Commons and House of Lords publications.}
+\title{House publications}
 \usage{
 publication_logs(ID = NULL, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,

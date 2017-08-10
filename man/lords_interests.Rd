@@ -3,7 +3,7 @@
 \name{lords_interests}
 \alias{lords_interests}
 \alias{hansard_lords_interests}
-\title{Registered interests of members of the House of Lords}
+\title{Peers' interests}
 \usage{
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")

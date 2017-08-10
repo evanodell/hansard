@@ -3,7 +3,7 @@
 \name{election_candidates}
 \alias{election_candidates}
 \alias{hansard_election_candidates}
-\title{Returns the name of all candidates standing in an election.}
+\title{Access election candidate details}
 \usage{
 election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
@@ -26,7 +26,7 @@ hansard_election_candidates(ID = NULL, constit_details = FALSE,
 A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
 }
 \description{
-Returns the name of all candidates standing in an election.
+Returns the name and party of all candidates standing in an election, by constituency.
 }
 \examples{
 \dontrun{

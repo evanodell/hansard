@@ -1,7 +1,9 @@
 
 
 
-#' Returns the name of all candidates standing in an election.
+#' Access election candidate details
+#'
+#' Returns the name and party of all candidates standing in an election, by constituency.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
 #' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.

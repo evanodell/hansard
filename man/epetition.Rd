@@ -3,7 +3,7 @@
 \name{epetition}
 \alias{epetition}
 \alias{hansard_epetition}
-\title{Imports data on a given epetition.}
+\title{Individual epititions}
 \usage{
 epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case")
@@ -26,7 +26,7 @@ hansard_epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 A tibble with details on electronic petitions submitted to parliament.
 }
 \description{
-Imports data on a given epetition.
+Imports data on a given epetition. For bulk details on epitions, see \code{\link{epetition_tibble}}.
 }
 \examples{
 \dontrun{

@@ -1,4 +1,6 @@
 
+#' Parliamentary Session data
+#'
 #' Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days}==TRUE and the \code{end_date} and \code{start_date } parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
 #' @param days If TRUE, returns data for all available days. If FALSE, returns data on each parliamentary session. Defaults to FALSE.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.

@@ -3,7 +3,7 @@
 \name{lords_amendments}
 \alias{lords_amendments}
 \alias{hansard_lords_amendments}
-\title{Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.}
+\title{House of Lords Amendments.}
 \usage{
 lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -30,7 +30,7 @@ hansard_lords_amendments(decision = NULL, start_date = "1900-01-01",
 A tibble with details on amendments proposed by the House of Lords.
 }
 \description{
-Imports data on House of Lords Amendments. Returns a tibble with all available House of Lords amendments.
+Returns a tibble with all available House of Lords amendments.
 }
 \examples{
 \dontrun{

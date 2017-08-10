@@ -1,4 +1,4 @@
-#' bill_stage_types
+#' Bill Stage Types
 #'
 #' Returns a tibble with all possible bill stage types.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.

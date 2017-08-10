@@ -3,7 +3,7 @@
 \name{commons_division_date}
 \alias{commons_division_date}
 \alias{hansard_commons_division_date}
-\title{Returns a tibble with the dates of House of Commons divisions.}
+\title{House of Commons Division Dates}
 \usage{
 commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")
@@ -24,7 +24,7 @@ hansard_commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
 A tibble with the dates of divisions in the House of Commons.
 }
 \description{
-Returns a tibble with the dates of House of Commons divisions.
+Returns a tibble with the divisions of the House of Commons on a given date
 }
 \examples{
 \dontrun{

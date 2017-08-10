@@ -7,7 +7,7 @@
 \alias{hansard_commons_members}
 \alias{lords_members}
 \alias{hansard_lords_members}
-\title{Imports data on all current and former Members of Parliament including the Lords and the Commons}
+\title{Current and former members of both houses}
 \usage{
 members(ID = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case")

@@ -3,7 +3,7 @@
 \name{mp_vote_record}
 \alias{mp_vote_record}
 \alias{hansard_mp_vote_record}
-\title{Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.}
+\title{Individual MP voting records}
 \usage{
 mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,

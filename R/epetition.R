@@ -1,6 +1,8 @@
 
 
-#' Imports data on a given epetition.
+#' Individual epititions
+#'
+#' Imports data on a given epetition. For bulk details on epitions, see \code{\link{epetition_tibble}}.
 #' @param ID The ID of a given petition. If NULL, returns all petitions. Defaults to NULL. See \code{\link{epetition_tibble}} for a greater degree of flexibility when querying all petitions.
 #' @param by_constituency Accepts either TRUE or FALSE. If TRUE, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to FALSE.
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.

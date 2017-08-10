@@ -3,7 +3,7 @@
 \name{early_day_motions}
 \alias{early_day_motions}
 \alias{hansard_early_day_motions}
-\title{Imports data on early day motions, including the content, signatories, and sponsors of early day motions.}
+\title{Imports data on early day motions}
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
@@ -34,7 +34,7 @@ hansard_early_day_motions(edm_id = NULL, session = NULL,
 A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 }
 \description{
-Imports data on early day motions, including the content, signatories, and sponsors of early day motions.
+Includes the content, signatories, and sponsors of early day motions.
 }
 \examples{
 \dontrun{

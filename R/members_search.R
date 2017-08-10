@@ -2,7 +2,7 @@
 
 #' Search for an MP or Lord by name and constituency
 #'
-#'Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as members('all').
+#' Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members('all')}.
 #' @param search Accepts any string. Defaults to NULL. If NULL, returns a tibble with all members of both houses of parliament.
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or 'mnisId' or 'mnis.id', depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.

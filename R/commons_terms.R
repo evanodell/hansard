@@ -1,5 +1,7 @@
 
 
+#' Access the Parliamentary Thesaurus
+#'
 #' Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
 #' @param search A string to search the parliamentary thesaurus for.
 #' @param class The class of definition to be returned Accepts one of 'ID', 'ORG', 'SIT', 'NAME', 'LEG','CTP', 'PBT' and 'TPG'.  Defaults to NULL

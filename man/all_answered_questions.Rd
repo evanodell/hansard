@@ -3,7 +3,7 @@
 \name{all_answered_questions}
 \alias{all_answered_questions}
 \alias{hansard_all_answered_questions}
-\title{Imports data on all answered parliamentary questions.}
+\title{All answered parliamentary questions.}
 \usage{
 all_answered_questions(mp_id = NULL, tabling_mp_id = NULL, house = NULL,
   answering_body = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
@@ -37,7 +37,7 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
 A tibble with details on all answered questions in the House of Commons and the House of Lords.
 }
 \description{
-Imports data on all answered parliamentary questions in the House of Commons and in the House of Lords.
+Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
 }
 \examples{
 \dontrun{

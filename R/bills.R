@@ -1,6 +1,7 @@
 
 
 #' Imports data on House of Commons and House of Lords bills
+#'
 #' @param ID The ID of a given bill to return data on. If NULL, returns all bills, subject to other parameters. Defaults to NULL.
 #' @param amendments If TRUE, returns all bills with amendments. Defaults to FALSE.
 #' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.

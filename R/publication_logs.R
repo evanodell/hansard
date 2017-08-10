@@ -1,5 +1,7 @@
 
 
+#' House publications
+#'
 #' Imports data on House of Commons and House of Lords publications.
 #' @param ID Publication ID. Defaults to NULL. If not NULL, requests a tibble with information on the given publication.
 #' @param house The house that produced the particular publication. Accepts 'commons' and 'lords'. If NULL or not 'commons' or 'lords', returns publications from both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.

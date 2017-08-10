@@ -3,7 +3,7 @@
 \name{research_briefings}
 \alias{research_briefings}
 \alias{hansard_research_briefings}
-\title{Imports data on  Parliamentary Research Briefings.}
+\title{Parliamentary Research Briefings.}
 \usage{
 research_briefings(topic = NULL, subtopic = NULL, type = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
