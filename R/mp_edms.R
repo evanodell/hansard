@@ -1,6 +1,4 @@
 
-
-
 #' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
 #' @param mp_id The ID number of an MP. Required parameter, defaults to NULL. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
 #' @param primary_sponsor Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to TRUE.
@@ -116,3 +114,4 @@ hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALS
   df
 
 }
+
