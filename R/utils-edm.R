@@ -94,7 +94,7 @@ sig_type <- function(mp_id=mp_id, primary_sponsor = primary_sponsor, sponsor = s
   sig2 <- NULL
   sig3 <- NULL
 
-  if(prim_spon==TRUE){
+  if(primary_sponsor==TRUE){
 
    sig1 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
@@ -106,7 +106,7 @@ sig_type <- function(mp_id=mp_id, primary_sponsor = primary_sponsor, sponsor = s
 
   }
 
-  if(spon==TRUE){
+  if(sponsor==TRUE){
 
     sig2 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = TRUE, signatory = FALSE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
@@ -118,7 +118,7 @@ sig_type <- function(mp_id=mp_id, primary_sponsor = primary_sponsor, sponsor = s
 
   }
 
-  if(sig==TRUE){
+  if(signatory==TRUE){
 
     sig3 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = FALSE, signatory = TRUE, full_data = FALSE, end_date=end_date, start_date=start_date, extra_args = extra_args, tidy = FALSE)
 
