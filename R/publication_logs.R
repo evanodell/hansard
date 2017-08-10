@@ -78,7 +78,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
             df$publicationDate._datatype <- "POSIXct"
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

@@ -196,7 +196,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
             df$legislature <- NULL
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

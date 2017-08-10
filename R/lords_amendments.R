@@ -55,7 +55,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
 
             df$bill.date._datatype <- "POSIXct"
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

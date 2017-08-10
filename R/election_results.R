@@ -124,7 +124,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
             df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
 
-            df <- tibble::as.tibble(hansard::hansard_tidy(df, tidy_style))
+            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
 
             if (all_data == TRUE) {
 

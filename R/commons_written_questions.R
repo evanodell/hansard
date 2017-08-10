@@ -81,7 +81,7 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
             df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

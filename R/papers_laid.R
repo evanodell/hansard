@@ -81,7 +81,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
             }
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

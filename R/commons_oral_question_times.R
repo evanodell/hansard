@@ -90,7 +90,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
             df$date._datatype <- "POSIXct"
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

@@ -74,7 +74,7 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
 
       df$status <- as.factor(df$status)
 
-      df <- hansard::hansard_tidy(df, tidy_style)
+      df <- hansard_tidy(df, tidy_style)
 
     }
 

@@ -70,7 +70,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
             df$dateTabled._datatype <- "POSIXct"
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

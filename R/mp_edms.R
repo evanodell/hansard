@@ -34,17 +34,17 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
   if (length(mp_id) > 1) {
 
-    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory,end_date, start_date)
+    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory, end_date, start_date)
 
   }
 
-    z <- c(sponsor, primary_sponsor, signatory)
+  z <- c(sponsor, primary_sponsor, signatory)
 
-    if(length(z[z==TRUE])>1){
+  if (length(z[z == TRUE]) > 1) {
 
-      df <- sig_type(mp_id, extra_args, primary_sponsor, sponsor, signatory,end_date, start_date)
+    df <- sig_type(mp_id, extra_args, primary_sponsor, sponsor, signatory, end_date, start_date)
 
-    } else {
+  } else {
 
     query <- paste0("member=http://data.parliament.uk/members/", mp_id, "&isPrimarySponsor=", tolower(primary_sponsor), "&isSponsor=", tolower(sponsor))
 
@@ -56,7 +56,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     pages <- list()
 
-    if(edms$result$totalResults>0){
+    if (edms$result$totalResults > 0) {
 
       message("Connecting to API")
 
@@ -70,40 +70,40 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     df <- tibble::as.tibble(dplyr::bind_rows(pages))
 
-    if(nrow(df)>0){
+    if (nrow(df) > 0) {
 
-      names(df)[names(df)=="_about"] <- "about"
-
-    }
+      names(df)[names(df) == "_about"] <- "about"
 
     }
 
-      if (full_data == TRUE) {
+  }
 
-        df2 <- edm_search(df)
+  if (full_data == TRUE) {
 
-        df <- dplyr::left_join(df, df2)
+    df2 <- edm_search(df)
 
-      }
+    df <- dplyr::left_join(df, df2)
 
-      if (tidy == TRUE) {
+  }
 
-        if (full_data == FALSE) {
+  if (tidy == TRUE) {
 
-        df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+    if (full_data == FALSE) {
 
-        df$about <- gsub("/signatures/.*", "", df$about)
+      df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
 
-        }
+      df$about <- gsub("/signatures/.*", "", df$about)
 
-        df <- hansard::hansard_tidy(df, tidy_style)
+    }
 
-      }
+    df <- hansard_tidy(df, tidy_style)
 
-        df
+  }
 
-      }
-  #}
+  df
+
+}
+
 
 
 
@@ -116,4 +116,3 @@ hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALS
   df
 
 }
-

@@ -148,7 +148,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
             df$date._datatype <- "POSIXct"
             df$date._value <- as.POSIXct(df$date._value)
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df
 

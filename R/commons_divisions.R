@@ -126,7 +126,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
                 }
             }
 
-            df <- hansard::hansard_tidy(df, tidy_style)
+            df <- hansard_tidy(df, tidy_style)
 
             df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
 
