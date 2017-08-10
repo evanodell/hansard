@@ -11,7 +11,8 @@ mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   tidy_style = "snake_case")
 
 hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
-  signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE,
+  signatory = FALSE, full_data = FALSE, extra_args = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE,
   tidy_style = "snake_case")
 }
 \arguments{

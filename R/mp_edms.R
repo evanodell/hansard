@@ -103,8 +103,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
 #' @export
 #' @rdname mp_edms
-
-hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake_case") {
 
   df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
 
