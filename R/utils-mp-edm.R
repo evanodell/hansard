@@ -1,7 +1,7 @@
 
 # Retrieving EDM data -----------------------------------------------------
 
-edm_search <- function(df) {
+edm_search <- function(df, verbose) {
 
   names(df)[names(df) == "_about"] <- "about"
 

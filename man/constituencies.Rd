@@ -3,7 +3,7 @@
 \name{constituencies}
 \alias{constituencies}
 \alias{hansard_constituencies}
-\title{Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.}
+\title{House of Commons constituencies}
 \usage{
 constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
@@ -12,7 +12,7 @@ hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Due to the structure of the API, this function has to request all available data, and then subset that data. Defaults to TRUE.}
+\item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Defaults to TRUE.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
 

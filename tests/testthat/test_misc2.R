@@ -1,12 +1,12 @@
 library(hansard)
-context("papers, publications, sessions, tv")
+context("papers, publications, sessions, tv part 2")
 
-test_that("papers laid, publications, sessions, tv  functions return expected format", {
+test_that("papers laid, publications, sessions, tv part 2, functions return expected format", {
 
     skip_on_cran()
 
     tvclipsempty <- hansard_tv_clips(start_date = "2016-01-11", end_date = "2016-01-12")
-    expect_length(tvclipsempty, 7)
+    expect_length(tvclipsempty, 6)
     expect_type(tvclipsempty, "list")
     expect_true(tibble::is_tibble(tvclipsempty))
     expect_equal(nrow(tvclipsempty), 378)

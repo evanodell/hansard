@@ -16,10 +16,10 @@ test_that("edm functions return expected format", {
     expect_true(tibble::is_tibble(xedmids))
     expect_equal(nrow(xedmids), 1)
 
-    xedmid_full <- hansard_mp_edms(mp_id = 3967, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = TRUE)
-    #expect_length(xedmid_full, 30)
-    expect_type(xedmid_full, "list")
+    xedmid_full <- hansard_mp_edms(mp_id = 3967, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = TRUE, end_date = "2015-02-11", start_date = "2015-02-10")
+    expect_length(xedmid_full, 28)
     expect_true(tibble::is_tibble(xedmid_full))
+    expect_equal(nrow(xedmid_full),2)
 
 
 

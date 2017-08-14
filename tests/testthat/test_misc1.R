@@ -1,7 +1,7 @@
 library(hansard)
-context("papers, publications, sessions, tv")
+context("papers, publications, sessions, tv part 1")
 
-test_that("papers laid, publications, sessions, tv  functions return expected format", {
+test_that("papers laid, publications, sessions, tv functions return expected format", {
 
     skip_on_cran()
 
@@ -35,7 +35,6 @@ test_that("papers laid, publications, sessions, tv  functions return expected fo
     expect_equal(nrow(publcommons), 22)
 
     # TV Programmes
-
     tvcoms <- hansard_tv_programmes("commons", start_date = "2016-12-10", end_date = "2017-02-14")
     expect_length(tvcoms, 9)
     expect_type(tvcoms, "list")

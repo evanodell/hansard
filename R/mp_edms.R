@@ -82,7 +82,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
   if (full_data == TRUE) {
 
-    df2 <- edm_search(df)
+    df2 <- edm_search(df, verbose)
 
     df <- dplyr::left_join(df, df2)
 

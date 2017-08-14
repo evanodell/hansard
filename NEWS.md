@@ -5,17 +5,21 @@
 
 `commons_answered_questions()`, `all_answered_questions()` now accept arrays for MP IDs.
 
-Added `verbose` parameter to all functions.
+Added `verbose` parameter to all functions. If `verbose`==TRUE, messages displaying the progress of the API call are sent to the console.
 
 ## General improvements
 
 Sped up edm details retrieval in `mp_edms()` where `full_data`==TRUE and there are multiple MP IDs.
 
+Major increase in speed for `constituencies(current=TRUE)`.
+
+`all_answered_questions()` can now handle departmental ID numbers passed as characters.
+
 ## Bug Fixes
 
 Fixed bug that prevented `lords_written_questions()` from retrieving more than 500 results at a time.
 
-`all_answered_questions()` can now handle departmental ID numbers passed as characters.
+
 
 
 # hansard 0.5.2

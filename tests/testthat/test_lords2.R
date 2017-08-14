@@ -1,5 +1,5 @@
 library(hansard)
-context("lords functions")
+context("lords part 2 functions")
 
 
 test_that("lords functions return expected format", {

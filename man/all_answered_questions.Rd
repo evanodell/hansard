@@ -16,9 +16,9 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{Accepts a member ID, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions. Defaults to NULL.}
+\item{mp_id}{Accepts a member ID or array of member IDs, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions, subject to other parameters. Defaults to NULL.}
 
-\item{tabling_mp_id}{Accepts a member ID, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions. Defaults to NULL.}
+\item{tabling_mp_id}{Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions, subject to other parameters. Defaults to NULL.}
 
 \item{house}{The house to return questions from. Accepts either the short name of the legislature (e.g. 'commons' or 'lords') or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If NULL, returns answers from both houses, subject to other parameters. Defaults to NULL.}
 
