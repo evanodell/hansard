@@ -22,12 +22,12 @@ test_that("all_answered_questions return expected format", {
     #expect_true(nrow(zhaaqtbling)==86)
 
     anameid <- hansard_all_answered_questions(house="lords", answering_body=60, start_date ='2017-03-01', end_date='2017-03-20')
-    expect_length(anameid, 30)
+    expect_length(anameid, 32)
     expect_type(anameid, "list")
     expect_true(tibble::is_tibble(anameid))
 
     bidname <- hansard_all_answered_questions(house=2, answering_body="Education", start_date ='2017-03-01', end_date='2017-03-20')
-    expect_length(bidname, 30)
+    expect_length(bidname, 32)
     expect_type(bidname, "list")
     expect_true(tibble::is_tibble(bidname))
     expect_true(names(bidname[1])==names(anameid[1]))
