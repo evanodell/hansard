@@ -5,14 +5,14 @@
 
 using namespace Rcpp;
 
-// hansard_bom
-std::string hansard_bom(std::string x);
-RcppExport SEXP _hansard_hansard_bom(SEXP xSEXP) {
+// tidy_bom
+std::string tidy_bom(std::string df);
+RcppExport SEXP _hansard_tidy_bom(SEXP dfSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(hansard_bom(x));
+    Rcpp::traits::input_parameter< std::string >::type df(dfSEXP);
+    rcpp_result_gen = Rcpp::wrap(tidy_bom(df));
     return rcpp_result_gen;
 END_RCPP
 }

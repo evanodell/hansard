@@ -21,7 +21,7 @@ edm_search <- function(df) {
 
     got <- httr::GET(paste0(baseurl, i, ".json?"), httr::accept_json())
 
-    search <- hansard_bom(got)
+    search <- tidy_bom(got)
 
     search <- jsonlite::fromJSON(search, flatten = TRUE)
 

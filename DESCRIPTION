@@ -27,3 +27,4 @@ Suggests: knitr,
     covr,
     methods
 VignetteBuilder: knitr
+LinkingTo: Rcpp
