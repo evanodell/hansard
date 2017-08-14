@@ -11,11 +11,19 @@
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on TV broadcasts.
 #'
+#' @section TV Programme functions:
+#' \describe{
+#' \item{tv_programmes}{TV programmse broadcast, per legislature and date}
+#' \item{tv_clips}{Clips of a given MP or Peer}
+#' \item{tv_channels}{Details on the different parliamentary TV channels}
+#' }
+#'
+#'
 #' @keywords TV
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- tv_programmes('commons', start_date ='2016-11-01')
+#' x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
 #'
 #' }
 
@@ -28,7 +36,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
     }
 
     if (is.null(legislature) == TRUE) {
-        query <- NULL
+      query <- NULL
     } else if (legislature == "commons") {
         query <- "&legislature.prefLabel=House of Commons"
         query <- utils::URLencode(query)
@@ -63,27 +71,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
         if (tidy == TRUE) {
 
-            df$startDate._value <- gsub("T", " ", df$startDate._value)
-
-            df$startDate._value <- lubridate::parse_date_time(df$startDate._value, "Y-m-d H:M:Sz!*")
-
-            df$startDate._datatype <- "POSIXct"
-
-            df$endDate._value <- gsub("T", " ", df$endDate._value)
-
-            df$endDate._value <- lubridate::parse_date_time(df$endDate._value, "Y-m-d H:M:Sz!*")
-
-            df$endDate._datatype <- "POSIXct"
-
-            df$legislature <- dplyr::bind_rows(df$legislature)
-
-            df$legislature.prefLabel._value <- df$legislature$prefLabel._value
-
-            df$legislature_about <- df$legislature$`_about`
-
-            df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
-
-            df$legislature <- NULL
+            df <- tv_tidy(df)
 
             df <- hansard_tidy(df, tidy_style)
 
@@ -106,9 +94,8 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
 
 
-#' Clips of individual members
+
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on TV broadcasts featuring the given MP, or all available clips.
 #'
 #' @keywords TV
@@ -149,38 +136,18 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
     } else {
         if (tidy == TRUE) {
 
-            for (i in 1:nrow(df)) {
+            df <- tv_tidy2(df)
 
-                if (is.null(df$member[[i]]) == FALSE) {
+            df <- hansard_tidy(df, tidy_style)
 
-                  df$member[[i]] <- hansard_tidy(df$member[[i]], tidy_style)
-
-                  df$member_about <- NA
-                  df$member_label_value <- NA
-
-                  df$member_about <- df$member[[i]]$about
-
-                  df$member_label_value <- df$member[[i]]$label_value
-
-                  df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
-
-                  df$member <- NULL
-
-                }
-            }
-
-            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
-
-            df
-
-        } else {
+        }
 
             df <- tibble::as.tibble(df)
 
             df
 
         }
-    }
+
 }
 
 
@@ -194,11 +161,8 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 
 }
 
-#' TV Channels
-#'
-#' Returns data on the different parliamentary broadcasting channels.
+
 #' @rdname tv_programmes
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on the different broadcasting channels.
 #'
 #' @keywords TV

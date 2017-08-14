@@ -48,7 +48,7 @@ Imports data on all current and former Members of Parliament including the Lords
 
 \describe{
 \item{members}{Basic details on a given member}
-\item{commons_members}{MPs in the House of COmmons}
+\item{commons_members}{MPs in the House of Commons}
 \item{lords_members}{Peers in the House of Lords}
 }
 }

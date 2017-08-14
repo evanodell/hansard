@@ -15,7 +15,7 @@
 #' @section Member details functions:
 #' \describe{
 #' \item{members}{Basic details on a given member}
-#' \item{commons_members}{MPs in the House of COmmons}
+#' \item{commons_members}{MPs in the House of Commons}
 #' \item{lords_members}{Peers in the House of Lords}
 #' }
 #' @seealso \code{\link{members_search}}

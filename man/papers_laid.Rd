@@ -7,7 +7,7 @@
 \usage{
 papers_laid(withdrawn = FALSE, house = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
 hansard_papers_laid(withdrawn = FALSE, house = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,

@@ -46,10 +46,6 @@ hansard_tv_channels(tidy = TRUE, tidy_style = "snake_case",
 \item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.}
-
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
-
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on TV broadcasts.
@@ -60,15 +56,20 @@ A tibble with details on the different broadcasting channels.
 }
 \description{
 Imports data on TV broadcasts.
-
-Clips of individual members
-
-Returns data on the different parliamentary broadcasting channels.
 }
+\section{TV Programme functions}{
+
+\describe{
+\item{tv_programmes}{TV programmse broadcast, per legislature and date}
+\item{tv_clips}{Clips of a given MP or Peer}
+\item{tv_channels}{Details on the different parliamentary TV channels}
+}
+}
+
 \examples{
 \dontrun{
 
-x <- tv_programmes('commons', start_date ='2016-11-01')
+x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
 
 }
 \dontrun{
