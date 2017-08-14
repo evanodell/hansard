@@ -40,6 +40,12 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
+    if (length(mp_id) > 1) {
+
+      df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args)
+
+    } else {
+
     # House query
     if (is.null(house) == TRUE) {
 
@@ -161,6 +167,8 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
+
+    }
 
     if (nrow(df) == 0) {
         message("The request did not return any data. Please check your search parameters.")

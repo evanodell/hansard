@@ -78,4 +78,6 @@
 #' @import tibble
 #' @import tidyr
 #' @importFrom lubridate parse_date_time
+#' @useDynLib hansard
+#' @importFrom Rcpp sourceCpp
 NULL
