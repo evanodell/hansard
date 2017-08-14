@@ -8,7 +8,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with the results of the search.
-#' 
+#'
 #' @keywords All Members of Parliament
 #' @seealso \code{\link{members}}
 #' @export
@@ -59,13 +59,9 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 
@@ -73,7 +69,7 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
 #' @rdname members_search
 #' @export
-hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"){
+hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE){
 
   df <- members_search(search = search, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 

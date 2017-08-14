@@ -45,13 +45,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
       df <- hansard_tidy(df, tidy_style)
 
-      df
-
-    } else {
-
-      df
-
     }
+
+      df
 
   }
 }

@@ -11,6 +11,10 @@ Added `verbose` parameter to all functions.
 
 Sped up edm details retrieval in `mp_edms()` where `full_data`==TRUE and there are multiple MP IDs.
 
+## Bug Fixes
+
+Fixed bug that prevented `lords_written_questions()` from retrieving more than 500 results at a time.
+
 
 # hansard 0.5.2
 

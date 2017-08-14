@@ -131,12 +131,10 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
             df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
 
-            df
-
-
-        } else {
-            df
         }
+
+            df
+
     }
 }
 

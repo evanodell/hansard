@@ -7,7 +7,7 @@
 \alias{hansard_commons_members}
 \alias{lords_members}
 \alias{hansard_lords_members}
-\title{Current and former members of both houses}
+\title{Members of Both Houses}
 \usage{
 members(ID = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
@@ -43,11 +43,16 @@ A tibble with data on members of the House of Commons and/or the House of Lords.
 }
 \description{
 Imports data on all current and former Members of Parliament including the Lords and the Commons
-
-Imports data on all current and former MPs
-
-Imports data on all current and former peers
 }
+\section{Member details functions}{
+
+\describe{
+\item{members}{Basic details on a given member}
+\item{commons_members}{MPs in the House of COmmons}
+\item{lords_members}{Peers in the House of Lords}
+}
+}
+
 \examples{
 \dontrun{
 x <- members(172)
@@ -56,7 +61,6 @@ x <- commons_members()
 
 x <- lords_members()
 
-x <- lords_interests(530)
 }
 }
 \seealso{

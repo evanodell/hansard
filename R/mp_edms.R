@@ -42,7 +42,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
   if (length(z[z == TRUE]) > 1) {
 
-    df <- sig_type(mp_id, primary_sponsor, sponsor, signatory, end_date, start_date, extra_args)
+    df <- sig_type(mp_id, primary_sponsor, sponsor, signatory, end_date, start_date, extra_args, verbose)
 
   } else {
 
@@ -58,7 +58,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     if (edms$result$totalResults > 0) {
 
-      #if(verbose==TRUE){message("Connecting to API")}
+      if(verbose==TRUE){message("Connecting to API")}
 
       for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)

@@ -10,7 +10,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on TV broadcasts.
-#' 
+#'
 #' @keywords TV
 #' @export
 #' @examples \dontrun{
@@ -87,13 +87,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }
@@ -114,7 +110,7 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on TV broadcasts featuring the given MP, or all available clips.
-#' 
+#'
 #' @keywords TV
 #' @export
 #' @rdname tv_programmes
@@ -204,7 +200,7 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 #' @rdname tv_programmes
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on the different broadcasting channels.
-#' 
+#'
 #' @keywords TV
 #' @export
 

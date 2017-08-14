@@ -84,13 +84,9 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

@@ -102,47 +102,16 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
                 if (summary == FALSE) {
 
-                  df$date._value <- as.POSIXct(df$date._value)
+                  df <- ldsum_tidy(df)
 
-                  df$date._datatype <- "POSIXct"
-
-                  df$vote.type <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type)
-
-                  df$vote.type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type)
-
-                  df$vote.member <- unlist(df$vote.member)
-
-                  df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
-
-                  if (tidy_style == "camelCase") {
-
-                    df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
-
-                    substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
-
-                  } else if (tidy_style == "period.case") {
-
-                    df$vote.type <- gsub("_", ".", df$vote.type)
-
-                    df$vote.type <- tolower(df$vote.type)
-
-                  } else {
-
-                    df$vote.type <- tolower(df$vote.type)
-
-                  }
                 }
             }
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

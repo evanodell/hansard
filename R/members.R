@@ -1,6 +1,6 @@
 
 
-#' Current and former members of both houses
+#' Members of Both Houses
 #'
 #' Imports data on all current and former Members of Parliament including the Lords and the Commons
 #' @param ID The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.
@@ -12,6 +12,12 @@
 #'
 #' @keywords All Members of Parliament
 #' @export
+#' @section Member details functions:
+#' \describe{
+#' \item{members}{Basic details on a given member}
+#' \item{commons_members}{MPs in the House of COmmons}
+#' \item{lords_members}{Peers in the House of Lords}
+#' }
 #' @seealso \code{\link{members_search}}
 #' @examples \dontrun{
 #' x <- members(172)
@@ -20,7 +26,6 @@
 #'
 #' x <- lords_members()
 #'
-#' x <- lords_interests(530)
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
@@ -83,17 +88,12 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
             df <- hansard_tidy(df, tidy_style)
 
-            df <- tibble::as.tibble(df)
-
-            df
-
-        } else {
-
-            df <- tibble::as.tibble(df)
-
-            df
 
         }
+
+            df <- tibble::as.tibble(df)
+
+            df
 
     }
 }
@@ -108,9 +108,7 @@ hansard_members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_styl
 
 }
 
-#' commons_members
-#'
-#' Imports data on all current and former MPs
+
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
@@ -141,13 +139,9 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }
@@ -163,9 +157,7 @@ hansard_commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style =
 
 }
 
-# lords_members
-#'
-#' Imports data on all current and former peers
+
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
@@ -198,13 +190,9 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

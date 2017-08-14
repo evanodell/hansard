@@ -25,13 +25,9 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FAL
 
       df <- hansard_tidy(df, tidy_style)
 
-      df
-
-    } else {
-
-      df
-
     }
+
+      df
 
   }
 

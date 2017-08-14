@@ -13,7 +13,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on the voting record of the given MP.
-#' 
+#'
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -160,13 +160,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 

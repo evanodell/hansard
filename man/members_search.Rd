@@ -9,7 +9,7 @@ members_search(search = NULL, tidy = TRUE, tidy_style = "snake_case",
   verbose = FALSE)
 
 hansard_members_search(search = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{search}{Accepts any string. Defaults to NULL. If NULL, returns a tibble with all members of both houses of parliament.}

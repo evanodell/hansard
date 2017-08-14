@@ -61,13 +61,9 @@ constituencies <- function(current = TRUE, extra_args = NULL, tidy = TRUE, tidy_
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

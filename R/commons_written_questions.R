@@ -86,13 +86,9 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

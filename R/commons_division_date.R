@@ -54,13 +54,10 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
         df <- hansard_tidy(df, tidy_style)
 
-        df
-
-      } else {
-
-        df
-
       }
+
+        df
+
     }
   }
 }

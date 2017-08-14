@@ -55,16 +55,14 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", extra_args),
-        flatten = TRUE)
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", extra_args), flatten = TRUE)
 
     jpage <- floor(writ$result$totalResults/writ$result$itemsPerPage)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500", i,
-            extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -77,29 +75,13 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
         if (tidy == TRUE) {
 
-            df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
-
-            df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
-
-            df$dateTabled._datatype <- "POSIXct"
-
-            df$AnswerDate._value <- "POSIXct"
-
-            df$AnsweringBody <- unlist(df$AnsweringBody)
-
-            df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
-
-            df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
+            df <- lwq_tidy(df)
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+      df
 
     }
 

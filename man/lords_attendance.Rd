@@ -38,6 +38,7 @@ Imports data on House of Lords attendance. Please note that the attendance data 
 \dontrun{
 
 x <- lords_attendance(session_id = 706178)
+
 }
 }
 \keyword{Attendance}

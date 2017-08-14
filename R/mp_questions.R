@@ -15,7 +15,7 @@
 #' @seealso \code{\link{commons_oral_question_times}}
 #' @seealso \code{\link{commons_written_questions}}
 #' @seealso \code{\link{lords_written_questions}}
-#' 
+#'
 #' @keywords questions
 #' @export
 #' @examples \dontrun{
@@ -122,13 +122,9 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

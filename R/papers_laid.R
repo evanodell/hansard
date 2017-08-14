@@ -12,7 +12,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return  A tibble with details on papers laid before the given House.
-#' 
+#'
 #' @keywords Papers Laid
 #' @export
 #' @examples \dontrun{
@@ -87,13 +87,9 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

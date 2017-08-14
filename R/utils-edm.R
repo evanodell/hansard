@@ -9,7 +9,7 @@ edm_search <- function(df) {
 
   df$about <- gsub("/signatures/.*", "", df$about)
 
-  search_list <- as.list(distinct(df[,"about"])[['about']])
+  search_list <- as.list(dplyr::distinct(df[,"about"])[['about']])
 
   dat3 <- list()
 
@@ -41,10 +41,7 @@ edm_search <- function(df) {
                                     memberParty._value = list(search$result$primaryTopic$signature$party._value))
 
     if(verbose==TRUE){
-
-      message("Retrieving page ", x, " of ", length(search_list))
-
-
+      message("Retrieving motion ", match(i,search_list), " of ", length(search_list))
     }
 
   }
@@ -97,7 +94,7 @@ multi_mp_edms <- function(mp_id = mp_id, extra_args = extra_args, primary_sponso
 
 # Formula for multiple relationships to EDMS ------------------------------------------------
 
-sig_type <- function(mp_id, primary_sponsor, sponsor, signatory, end_date, start_date, extra_args) {
+sig_type <- function(mp_id, primary_sponsor, sponsor, signatory, end_date, start_date, extra_args, verbose) {
 
   sig1 <- NULL
   sig2 <- NULL
@@ -105,7 +102,7 @@ sig_type <- function(mp_id, primary_sponsor, sponsor, signatory, end_date, start
 
   if (primary_sponsor == TRUE) {
 
-    message("Retrieving Primary Sponsored EDMs")
+    if(verbose==TRUE){message("Retrieving Primary Sponsored EDMs")}
 
     sig1 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
 
@@ -119,7 +116,7 @@ sig_type <- function(mp_id, primary_sponsor, sponsor, signatory, end_date, start
 
   if (sponsor == TRUE) {
 
-    message("Retrieving Sponsored EDMs")
+    if(verbose==TRUE){message("Retrieving Sponsored EDMs")}
 
     sig2 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = TRUE, signatory = FALSE, full_data = FALSE, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
 
@@ -133,7 +130,7 @@ sig_type <- function(mp_id, primary_sponsor, sponsor, signatory, end_date, start
 
   if (signatory == TRUE) {
 
-    message("Retrieving Signed EDMs")
+    if(verbose==TRUE){message("Retrieving Signed EDMs")}
 
     sig3 <- hansard::mp_edms(mp_id = mp_id, primary_sponsor = FALSE, sponsor = FALSE, signatory = TRUE, full_data = FALSE, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
 

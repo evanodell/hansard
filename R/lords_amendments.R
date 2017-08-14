@@ -61,13 +61,9 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }
