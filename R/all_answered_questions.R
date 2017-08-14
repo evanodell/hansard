@@ -80,7 +80,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
       answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
 
     # Department query
-    if (is.null(answering_body_check) == TRUE) {
+    if (is.null(answering_body) == TRUE) {
 
       dept_query <- NULL
 

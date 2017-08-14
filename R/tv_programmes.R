@@ -136,7 +136,11 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
     } else {
         if (tidy == TRUE) {
 
+          if(is.null(mp_id)==FALSE){
+
             df <- tv_tidy2(df)
+
+          }
 
             df <- hansard_tidy(df, tidy_style)
 
