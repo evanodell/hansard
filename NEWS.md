@@ -1,6 +1,12 @@
 
 # hansard 0.5.2.90000
 
+## New features
+
+`commons_answered_questions()`, `all_answered_questions()` now accept arrays for MP IDs.
+
+Added `verbose` parameter to all functions.
+
 ## General improvements
 
 Sped up edm details retrieval in `mp_edms()` where `full_data`==TRUE and there are multiple MP IDs.

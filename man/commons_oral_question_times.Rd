@@ -6,10 +6,12 @@
 \title{Imports data on House of Commons oral question times}
 \usage{
 commons_oral_question_times(session = NULL, question_id = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 
 hansard_commons_oral_question_times(session = NULL, question_id = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 }
 \arguments{
 \item{session}{Accepts a session in format yyyy/yy (e.g. 2016/17) and returns a tibble of all oral question times from that session}
@@ -21,6 +23,8 @@ hansard_commons_oral_question_times(session = NULL, question_id = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with information on oral question times in the House of Commons.

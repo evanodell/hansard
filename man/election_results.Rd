@@ -7,11 +7,11 @@
 \usage{
 election_results(ID = NULL, all_data = FALSE, calculate_percent = FALSE,
   constit_details = FALSE, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
 hansard_election_results(ID = NULL, all_data = FALSE,
   calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
@@ -27,6 +27,8 @@ hansard_election_results(ID = NULL, all_data = FALSE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with the results of all general and by-elections, or of a specified general election or by-election.

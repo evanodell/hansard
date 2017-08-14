@@ -26,3 +26,45 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
   df
 
 }
+
+
+
+# all_answered_questions tidying -----------------------------------------
+
+aaq_tidy <- function(df){
+
+  if(nrow(df)>0){
+
+    names(df) <- gsub("answer.answeringMember.fullName._value", "answeringMember.fullName._value", names(df))
+
+    names(df) <- gsub("answer.answeringMember._about", "answeringMember._about", names(df))
+
+    names(df) <- gsub("answer.answerText._value", "answerText._value", names(df))
+
+    names(df) <- gsub("answer.dateOfAnswer._datatype", "dateOfAnswer._datatype", names(df))
+
+    names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
+
+    df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
+
+    df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
+
+    df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
+
+    df$AnsweringBody <- unlist(df$AnsweringBody)
+
+    df$legislature <- do.call("rbind", df$legislature)
+
+    df$legislature.prefLabel._value <- df$legislature$prefLabel._value
+
+    df$legislature_about <- df$legislature$`_about`
+
+    df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
+
+    df$legislature <- NULL
+
+  }
+
+  df
+
+}

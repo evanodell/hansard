@@ -8,9 +8,10 @@
 #'
 #' A list of Parliamentary Research Briefings topics.
 #' @rdname research_briefings_lists
-#' @return A list with the different research topics available.
+#' @return  A list with the different research topics available.
 #' @export
 #' @seealso \code{\link{research_briefings}}
+#'
 #' @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'
@@ -42,8 +43,9 @@ hansard_research_topics_list <- function(){
 
 #' A list of Parliamentary Research Briefings subtopics, grouped by topic.
 #' @rdname research_briefings_lists
-#' @return A list with the different research subtopics available.
+#' @return  A list with the different research subtopics available.
 #' @export
+#'
 #' @keywords Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'
@@ -89,8 +91,9 @@ hansard_research_subtopics_list <- function(){
 
 #' A list of types of Parliamentary Research Briefings.
 #' @rdname research_briefings_lists
-#' @return A list with the different types of research briefings.
+#' @return  A list with the different types of research briefings.
 #' @export
+#'
 #' @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'

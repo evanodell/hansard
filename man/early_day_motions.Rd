@@ -7,11 +7,13 @@
 \usage{
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 
 hansard_early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 }
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If NULL, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to NULL.}
@@ -29,6 +31,8 @@ hansard_early_day_motions(edm_id = NULL, session = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on the content, signatories and sponsors of all or a specified early day motions.

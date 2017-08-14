@@ -6,10 +6,10 @@
 \title{Access the Parliamentary Thesaurus}
 \usage{
 commons_terms(search = NULL, class = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_commons_terms(search = NULL, class = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{search}{A string to search the parliamentary thesaurus for.}
@@ -21,6 +21,8 @@ hansard_commons_terms(search = NULL, class = NULL, extra_args = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with results from the parliamentary thesaurus.

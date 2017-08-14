@@ -10,20 +10,22 @@
 \title{Current and former members of both houses}
 \usage{
 members(ID = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
 hansard_members(ID = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
-commons_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+commons_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 
 hansard_commons_members(extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
-lords_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+lords_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 
 hansard_lords_members(extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{ID}{The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.}
@@ -33,6 +35,8 @@ hansard_lords_members(extra_args = NULL, tidy = TRUE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with data on members of the House of Commons and/or the House of Lords.

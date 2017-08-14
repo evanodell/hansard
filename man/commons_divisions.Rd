@@ -7,11 +7,11 @@
 \usage{
 commons_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_commons_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to NULL.}
@@ -27,6 +27,8 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with the results of divisions in the House of Commons.

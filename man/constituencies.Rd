@@ -6,10 +6,10 @@
 \title{Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.}
 \usage{
 constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
 hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{current}{If TRUE, returns only current constituencies. If FALSE, returns all current and former constituencies. Due to the structure of the API, this function has to request all available data, and then subset that data. Defaults to TRUE.}
@@ -19,6 +19,8 @@ hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details of Westminster constituencies.

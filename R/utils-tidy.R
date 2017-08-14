@@ -3,6 +3,8 @@
 
 hansard_tidy <- function(df, tidy_style=c("snake_case", "camelCase", "period.case")) {
 
+  if(nrow(df)>0){
+
     names(df) <- gsub("\\.", "_", names(df))
 
     names(df) <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", names(df))
@@ -28,6 +30,8 @@ hansard_tidy <- function(df, tidy_style=c("snake_case", "camelCase", "period.cas
         names(df) <- gsub("_", ".", names(df))
 
     }
+
+  }
 
     df
 

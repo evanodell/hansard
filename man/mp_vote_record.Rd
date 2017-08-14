@@ -7,11 +7,11 @@
 \usage{
 mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}
@@ -29,6 +29,8 @@ hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on the voting record of the given MP.

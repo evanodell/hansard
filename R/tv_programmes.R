@@ -8,7 +8,9 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on TV broadcasts.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on TV broadcasts.
+#' 
 #' @keywords TV
 #' @export
 #' @examples \dontrun{
@@ -17,7 +19,7 @@
 #'
 #' }
 
-tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     dates <- paste0("&max-endDate=", as.Date(end_date), "T23:59:59Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
@@ -41,7 +43,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
-    message("Connecting to API")
+    if(verbose==TRUE){message("Connecting to API")}
 
     jpage <- floor(tv$result$totalResults/tv$result$itemsPerPage)
 
@@ -49,13 +51,13 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -98,9 +100,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- tv_programmes(legislature = legislature,start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- tv_programmes(legislature = legislature,start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 
@@ -110,7 +112,9 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
 #' Clips of individual members
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
-#' @return A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+#' 
 #' @keywords TV
 #' @export
 #' @rdname tv_programmes
@@ -118,7 +122,7 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 #' x <- tv_clips(4591)
 #' }
 
-tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z", "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
@@ -138,13 +142,13 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
 
     df <- as.data.frame(dplyr::bind_rows(pages))
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
         if (tidy == TRUE) {
@@ -186,9 +190,9 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- tv_clips(mp_id = mp_id,start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- tv_clips(mp_id = mp_id,start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 
@@ -198,11 +202,13 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 #'
 #' Returns data on the different parliamentary broadcasting channels.
 #' @rdname tv_programmes
-#' @return A tibble with details on the different broadcasting channels.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on the different broadcasting channels.
+#' 
 #' @keywords TV
 #' @export
 
-tv_channels <- function(tidy = TRUE, tidy_style = "snake_case") {
+tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
 
@@ -224,9 +230,9 @@ tv_channels <- function(tidy = TRUE, tidy_style = "snake_case") {
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_channels <- function(tidy = TRUE, tidy_style = "snake_case") {
+hansard_tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- tv_channels(tidy = tidy, tidy_style = tidy_style)
+  df <- tv_channels(tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 }

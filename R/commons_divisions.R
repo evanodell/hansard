@@ -8,7 +8,8 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with the results of divisions in the House of Commons.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with the results of divisions in the House of Commons.
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -19,7 +20,7 @@
 #'
 #' }
 
-commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
@@ -27,7 +28,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args), flatten = TRUE)
 
@@ -37,7 +38,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -47,7 +48,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/id/"
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         divis <- jsonlite::fromJSON(paste0(baseurl, division_id, ".json?", dates, extra_args), flatten = TRUE)
 
@@ -76,7 +77,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
     }
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -144,9 +145,9 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 #' @rdname commons_divisions
 #' @export
 
-hansard_commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- commons_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- commons_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

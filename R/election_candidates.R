@@ -10,7 +10,7 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#'
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
 #' @export
 #' @seealso \code{\link{elections}}
@@ -28,7 +28,7 @@
 #' }
 #'
 
-election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
   if (is.null(ID) == TRUE) {
     id_query <- NULL
@@ -38,7 +38,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
   baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
 
-  message("Connecting to API")
+  if(verbose==TRUE){message("Connecting to API")}
 
   elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
 
@@ -48,7 +48,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
   for (i in 0:jpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-    message("Retrieving page ", i + 1, " of ", jpage + 1)
+    if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
     pages[[i + 1]] <- mydata$result$items
   }
 
@@ -97,7 +97,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
   df4 <- df4[,order(colnames(df4))]
 
-  if (nrow(df) == 0) {
+  if (nrow(df) == 0 && verbose==TRUE) {
     message("The request did not return any data. Please check your search parameters.")
   } else {
 
@@ -123,9 +123,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
 #' @rdname election_candidates
 #' @export
-hansard_election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- election_candidates(ID = ID, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- election_candidates(ID = ID, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

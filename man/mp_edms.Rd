@@ -8,12 +8,12 @@
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 
 hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
   signatory = FALSE, full_data = FALSE, extra_args = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE,
-  tidy_style = "snake_case")
+  tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{mp_id}{The ID number of an MP. Required parameter, defaults to NULL. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.}
@@ -35,6 +35,8 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.

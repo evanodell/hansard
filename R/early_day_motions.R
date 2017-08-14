@@ -11,7 +11,9 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
+#'
 #' @keywords EDM early day motion
 #' @seealso \code{\link{mp_edms}}
 #' @export
@@ -24,7 +26,7 @@
 #' }
 
 
-early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     if (is.null(edm_id) == FALSE) {
         edm_query <- paste0("&edmNumber=", edm_id)
@@ -44,7 +46,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
     baseurl <- "http://lda.data.parliament.uk/edms"
 
-    message("Connecting to API")
+    if(verbose==TRUE){message("Connecting to API")}
 
     edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, "&_pageSize=500", sig_min, extra_args),
         flatten = TRUE)
@@ -56,13 +58,13 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min, "&_pageSize=500&_page=",
             i, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -88,9 +90,9 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
 #' @rdname early_day_motions
 #' @export
-hansard_early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- early_day_motions(edm_id = edm_id,session=session, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- early_day_motions(edm_id = edm_id,session=session, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

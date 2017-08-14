@@ -3,15 +3,16 @@
 \name{commons_answered_questions}
 \alias{commons_answered_questions}
 \alias{hansard_commons_answered_questions}
-\title{Imports data on House of Commons answered questions.}
+\title{House of Commons answered questions}
 \usage{
 commons_answered_questions(answering_department = NULL, answered_by = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_commons_answered_questions(answering_department = NULL,
   answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 }
 \arguments{
 \item{answering_department}{Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to NULL.}
@@ -27,6 +28,8 @@ hansard_commons_answered_questions(answering_department = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on all answered questions in the House of Commons.
@@ -37,7 +40,7 @@ Imports data on House of Commons answered questions. If all parameters are left 
 \examples{
 \dontrun{
 
-x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
+x <- commons_answered_questions(answering_department = c('health','education'), answered_by = c('4019', '1542', '111'))
 
 x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
 

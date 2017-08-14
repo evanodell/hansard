@@ -7,11 +7,12 @@
 \usage{
 epetition_tibble(min_signatures = 1, max_signatures = NULL, status = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_epetition_tibble(min_signatures = 1, max_signatures = NULL,
   status = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 }
 \arguments{
 \item{min_signatures}{The minimum number of signatures required for inclusion in the tibble. Defaults to 1.}
@@ -29,6 +30,8 @@ hansard_epetition_tibble(min_signatures = 1, max_signatures = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on electronic petitions submitted to parliament.

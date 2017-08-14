@@ -11,6 +11,7 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
 #' @keywords Answered Questions
 #' @seealso \code{\link{commons_answered_questions}}
@@ -36,7 +37,7 @@
 #'
 #' }
 
-all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
@@ -47,15 +48,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
     } else {
 
     # House query
-    if (is.null(house) == TRUE) {
-
-      house_query <- NULL
-
-    } else {
-
     if(is.numeric(house)==FALSE) {
 
-      house <- tolower(house)
+      house <- tolower(trimws(house))
 
     }
 
@@ -73,7 +68,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     }
 
-    }
+
 
     # Department query
     if (is.null(answering_body) == TRUE) {
@@ -94,7 +89,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         all <- jsonlite::fromJSON(paste0(baseurl, house_query, dept_query, dates, extra_args), flatten = TRUE)
 
@@ -104,7 +99,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -116,7 +111,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500&mnisId="
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
 
@@ -128,7 +123,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, house_query, dept_query, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -148,7 +143,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
 
-      message("Connecting to API")
+      if(verbose==TRUE){message("Connecting to API")}
 
       all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
 
@@ -160,7 +155,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
       }
 
@@ -170,39 +165,13 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     }
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
         if (tidy == TRUE) {
 
-            names(df) <- gsub("answer.answeringMember.fullName._value", "answeringMember.fullName._value", names(df))
-
-            names(df) <- gsub("answer.answeringMember._about", "answeringMember._about", names(df))
-
-            names(df) <- gsub("answer.answerText._value", "answerText._value", names(df))
-
-            names(df) <- gsub("answer.dateOfAnswer._datatype", "dateOfAnswer._datatype", names(df))
-
-            names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
-
-            df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
-
-            df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
-
-            df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
-
-            df$AnsweringBody <- unlist(df$AnsweringBody)
-
-            df$legislature <- do.call("rbind", df$legislature)
-
-            df$legislature.prefLabel._value <- df$legislature$prefLabel._value
-
-            df$legislature_about <- df$legislature$`_about`
-
-            df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
-
-            df$legislature <- NULL
+            df <- aaq_tidy(df)
 
             df <- hansard_tidy(df, tidy_style)
 
@@ -220,11 +189,10 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 #' @rdname all_answered_questions
 #' @export
 
-hansard_all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house=NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house=NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- all_answered_questions(mp_id = mp_id, tabling_mp_id = tabling_mp_id, house=house, answering_body=answering_body, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- all_answered_questions(mp_id = mp_id, tabling_mp_id = tabling_mp_id, house=house, answering_body=answering_body, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 
 }
-

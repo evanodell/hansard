@@ -11,7 +11,9 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on the voting record of the given MP.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on the voting record of the given MP.
+#' 
 #' @keywords divisions
 #' @export
 #' @examples \dontrun{
@@ -26,7 +28,7 @@
 #' }
 
 
-mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     if (is.null(extra_args) == FALSE) {
         extra_args <- utils::URLencode(extra_args)
@@ -49,7 +51,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
@@ -60,7 +62,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args, "&_page=",
                 i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -73,7 +75,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
@@ -84,7 +86,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args, "&_page=",
                 i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -98,7 +100,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         message("Retrieving aye votes:")
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
@@ -109,7 +111,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args, "&_page=",
                 i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -120,7 +122,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         message("Retrieving no votes:")
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
 
-        message("Connecting to API")
+        if(verbose==TRUE){message("Connecting to API")}
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
 
@@ -131,7 +133,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args, "&_page=",
                 i), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
@@ -146,7 +148,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
     }
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -173,9 +175,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
 #' @rdname mp_vote_record
 #' @export
-hansard_mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- mp_vote_record(mp_id = mp_id, lobby = lobby, session = session, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- mp_vote_record(mp_id = mp_id, lobby = lobby, session = session, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

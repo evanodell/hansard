@@ -6,10 +6,12 @@
 \title{Parliamentary Research Briefings.}
 \usage{
 research_briefings(topic = NULL, subtopic = NULL, type = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 
 hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case")
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = FALSE)
 }
 \arguments{
 \item{topic}{The topic of the parliamentary briefing.}
@@ -23,6 +25,8 @@ hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on parliamentary research briefings on the given topic.

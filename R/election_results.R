@@ -8,8 +8,9 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #'
-#' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #' @keywords Election Results
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_candidates}}
@@ -26,7 +27,7 @@
 #'
 #' }
 
-election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     if (is.null(ID) == TRUE) {
         id_query <- NULL
@@ -36,7 +37,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
 
-    message("Connecting to API")
+    if(verbose==TRUE){message("Connecting to API")}
 
     elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
 
@@ -46,7 +47,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     for (i in 0:jpage) {
         mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
 
@@ -106,7 +107,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     }
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -154,9 +155,9 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
 #' @rdname election_results
 #' @export
-hansard_election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- election_results(ID = ID, all_data = all_data, calculate_percent = calculate_percent, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- election_results(ID = ID, all_data = all_data, calculate_percent = calculate_percent, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

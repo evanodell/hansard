@@ -7,11 +7,11 @@
 \usage{
 lords_written_questions(peer_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 hansard_lords_written_questions(peer_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case")
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{peer_id}{Requests a member ID and returns a tibble with all written questions asked by that member. If NULL, peer_id is not included in the query to the API. Defaults to NULL.}
@@ -27,6 +27,8 @@ hansard_lords_written_questions(peer_id = NULL, answering_department = NULL,
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+
+\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
 }
 \value{
 A tibble with details on written questions in the House of Lords.

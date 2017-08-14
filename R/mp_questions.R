@@ -7,13 +7,15 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on all questions asked by a member of the House of Commons.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on all questions asked by a member of the House of Commons.
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
 #' @seealso \code{\link{commons_written_questions}}
 #' @seealso \code{\link{lords_written_questions}}
+#' 
 #' @keywords questions
 #' @export
 #' @examples \dontrun{
@@ -21,7 +23,7 @@
 #' }
 #'
 
-mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)
@@ -32,11 +34,11 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
     if (question_type == "all") {
         message("Retrieving oral questions:")
         df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date),
-            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose=verbose)
 
         message("Retrieving written questions:")
         df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date),
-            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
+            extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose=verbose)
 
         message("Combining oral and written questions")
         if (is.null(df_oral)) {
@@ -92,13 +94,13 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
     }
 
-    if (nrow(df) == 0) {
+    if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -134,9 +136,9 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
 #' @rdname mp_questions
 #' @export
-hansard_mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- mp_questions(mp_id = mp_id, question_type = question_type, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- mp_questions(mp_id = mp_id, question_type = question_type, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 

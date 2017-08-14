@@ -1,6 +1,6 @@
 
 
-#' Imports data on House of Commons answered questions.
+#' House of Commons answered questions
 #'
 #' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.
 #' @param answering_department Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to NULL.
@@ -10,7 +10,8 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on all answered questions in the House of Commons.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @return  A tibble with details on all answered questions in the House of Commons.
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
@@ -21,16 +22,22 @@
 #' @export
 #' @examples \dontrun{
 #'
-#' x <- commons_answered_questions(answering_department = 'health', answered_by = '4019')
+#' x <- commons_answered_questions(answering_department = c('health','education'), answered_by = c('4019', '1542', '111'))
 #'
 #' x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
 #'
 #' }
 
 
-commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-    dates <- paste0("&max-dateOfAnswer=", as.Date(end_date), "&min-dateOfAnswer=", as.Date(start_date))
+    if (length(answered_by) > 1 || length(answering_department) > 1) {
+
+      df <- caq_multi(answering_department, answered_by, start_date, end_date, extra_args, verbose)
+
+    } else {
+
+      dates <- paste0("&max-dateOfAnswer=", as.Date(end_date), "&min-dateOfAnswer=", as.Date(start_date))
 
     if (is.null(answered_by) == FALSE) {
         answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/", answered_by)
@@ -45,51 +52,43 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 
     baseurl <- "http://lda.data.parliament.uk/commonsansweredquestions"
 
-    message("Connecting to API")
+    if(verbose==TRUE){message("Connecting to API")}
 
-    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates,
-        extra_args), flatten = TRUE)
+    answered <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500", dates, extra_args), flatten = TRUE)
 
     jpage <- floor(answered$result$totalResults/answered$result$itemsPerPage)
 
     pages <- list()
 
+    if(answered$result$totalResults>0){
+
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=",
-            i, dates, extra_args), flatten = TRUE)
-        message("Retrieving page ", i + 1, " of ", jpage + 1)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, answered_by, "&_pageSize=500&_page=", i, dates, extra_args), flatten = TRUE)
+        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
+    }
+
     }
 
     df <- dplyr::bind_rows(pages)
 
     df <- tibble::as_tibble(df)
 
-    if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your search parameters.")
-    } else {
+    }
+
+  if (nrow(df) == 0 && verbose==TRUE) {
+    message("The request did not return any data. Please check your search parameters.")
+  }
 
         if (tidy == TRUE) {
 
-            df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
+          df <- caq_tidy(df)
 
-            df$dateOfAnswer._datatype <- "POSIXct"
-
-            df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
-
-            df$AnsweringBody <- unlist(df$AnsweringBody)
-
-            df <- hansard_tidy(df, tidy_style)
-
-            df
-
-        } else {
-
-            df
+          df <- hansard_tidy(df, tidy_style)
 
         }
 
-    }
+          df
 
 }
 
@@ -98,12 +97,12 @@ commons_answered_questions <- function(answering_department = NULL, answered_by 
 #' @rdname commons_answered_questions
 #' @export
 
-hansard_commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_commons_answered_questions <- function(answering_department = NULL, answered_by = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- commons_answered_questions(answering_department = NULL, answered_by = NULL, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- commons_answered_questions(answering_department = NULL, answered_by = NULL, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 
-
-
 }
+
+

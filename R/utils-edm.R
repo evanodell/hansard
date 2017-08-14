@@ -40,6 +40,13 @@ edm_search <- function(df) {
                                     signingMemberPrinted._value = list(search$result$primaryTopic$signature$memberPrinted._value),
                                     memberParty._value = list(search$result$primaryTopic$signature$party._value))
 
+    if(verbose==TRUE){
+
+      message("Retrieving page ", x, " of ", length(search_list))
+
+
+    }
+
   }
 
   df2 <- dplyr::bind_rows(dat3)

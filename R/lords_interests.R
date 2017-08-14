@@ -6,9 +6,10 @@
 #' @param extra_args Additional parameters to pass to API. Defaults to NULL.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @return A tibble with details on the interests of peers in the House of Lords.
+#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE..
+#' @return  A tibble with details on the interests of peers in the House of Lords.
 #' @export
-lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
   if (is.null(peer_id) == TRUE) {
     query <- ".json?_pageSize=500"
@@ -18,7 +19,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
   baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
 
-  message("Connecting to API")
+  if(verbose==TRUE){message("Connecting to API")}
 
   members <- jsonlite::fromJSON(paste0(paste0(baseurl, extra_args), query), flatten = TRUE)
 
@@ -28,7 +29,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
   for (i in 0:jpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-    message("Retrieving page ", i + 1, " of ", jpage + 1)
+    if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
     pages[[i + 1]] <- mydata$result$items
   }
 
@@ -36,7 +37,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
   df <- tibble::as_tibble(df)
 
-  if (nrow(df) == 0) {
+  if (nrow(df) == 0 && verbose==TRUE) {
     message("The request did not return any data. Please check your search parameters.")
   } else {
 
@@ -58,9 +59,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
 #' @export
 #' @rdname lords_interests
-hansard_lords_interests<- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case") {
+hansard_lords_interests<- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-  df <- lords_interests(peer_id=peer_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style)
+  df <- lords_interests(peer_id=peer_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
 
   df
 
