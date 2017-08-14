@@ -9,11 +9,18 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
 
   mp_id_list <- as.list(mp_id)
 
-  dat <- vector("list", length(mp_id_list))
+  tabling_mp_id_list <- as.list(tabling_mp_id)
+
+  search_grid <- expand.grid(mp_id_list, tabling_mp_id_list, stringsAsFactors = FALSE)
+
+  names(search_grid)[names(search_grid)=="Var1"] <-"answering_mp"
+  names(search_grid)[names(search_grid)=="Var2"] <-"tabling_mp"
+
+  dat <- vector("list", length(search_grid))
 
   for (i in 1:length(mp_id_list)) {
 
-    dat[[i]] <- hansard::all_answered_questions(mp_id = mp_id_list[[i]], tabling_mp_id=tabling_mp_id, house=house, answering_body=answering_body, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
+    dat[[i]] <- hansard::all_answered_questions(mp_id = search_grid$answering_mp[[i]], tabling_mp_id=search_grid$tabling_mp[[i]], house=house, answering_body=answering_body, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
 
   }
 

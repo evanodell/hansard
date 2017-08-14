@@ -1,33 +1,37 @@
 
 ldsum_tidy <- function(df){
 
-  df$date._value <- as.POSIXct(df$date._value)
+  if(nrow(df)>0){
 
-  df$date._datatype <- "POSIXct"
+    df$date._value <- as.POSIXct(df$date._value)
 
-  df$vote.type <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type)
+    df$date._datatype <- "POSIXct"
 
-  df$vote.type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type)
+    df$vote.type <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type)
 
-  df$vote.member <- unlist(df$vote.member)
+    df$vote.type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type)
 
-  df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
+    df$vote.member <- unlist(df$vote.member)
 
-  if (tidy_style == "camelCase") {
+    df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
 
-    df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
+    if (tidy_style == "camelCase") {
 
-    substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
+      df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
 
-  } else if (tidy_style == "period.case") {
+      substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
 
-    df$vote.type <- gsub("_", ".", df$vote.type)
+    } else if (tidy_style == "period.case") {
 
-    df$vote.type <- tolower(df$vote.type)
+      df$vote.type <- gsub("_", ".", df$vote.type)
 
-  } else {
+      df$vote.type <- tolower(df$vote.type)
 
-    df$vote.type <- tolower(df$vote.type)
+    } else {
+
+      df$vote.type <- tolower(df$vote.type)
+
+    }
 
   }
 

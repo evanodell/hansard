@@ -17,10 +17,12 @@
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
   if (is.null(date) == TRUE) {
-    df <- commons_divisions()
+
+    stop("Please include a date.", call. = FALSE)
+
   } else {
-    date <- as.character(date)
-    date <- paste0("&date=", date)
+
+    date <- paste0("&date=", as.character(date))
 
     baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
 
@@ -48,9 +50,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
       if (tidy == TRUE) {
 
-        df$date._value <- as.POSIXct(df$date._value)
-
-        df$date._datatype <- "POSIXct"
+        df <- cdd_tidy(df)
 
         df <- hansard_tidy(df, tidy_style)
 

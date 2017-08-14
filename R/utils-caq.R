@@ -37,13 +37,13 @@ caq_tidy <- function(df){
 
   if(nrow(df)>0){
 
-  df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
+    df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
 
-  df$dateOfAnswer._datatype <- "POSIXct"
+    df$dateOfAnswer._datatype <- "POSIXct"
 
-  df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
+    df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
 
-  df$AnsweringBody <- unlist(df$AnsweringBody)
+    df$AnsweringBody <- unlist(df$AnsweringBody)
 
   }
 

@@ -27,7 +27,7 @@
 #'
 #' y <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
 #'
-#' z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-04-01')
+#' z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-01-01')
 #'
 #' a <- hansard_all_answered_questions(house="lords", answering_body=60)
 #' # Returns all questions asked in the House of Lords answered by the Department for Education.
@@ -47,35 +47,44 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     } else {
 
-    # House query
-    if(is.numeric(house)==FALSE) {
+      # House query
+      if (is.null(house) == TRUE) {
 
-      house <- tolower(trimws(house))
+        house_query <- NULL
 
-    }
+      } else {
 
-    if (house == "commons" | house==1) {
+        if(is.numeric(house)==FALSE) {
 
-      house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
+          house <- tolower(house)
 
-    } else if (house == "lords" | house==2) {
+        }
 
-      house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
+        if (house == "commons" | house==1) {
 
-    } else {
+          house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
 
-      house_query <- NULL
+        } else if (house == "lords" | house==2) {
 
-    }
+          house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
 
+        } else {
 
+          house_query <- NULL
+
+        }
+
+      }
+
+      ## In case departmental IDs are passed as strings.
+      answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
 
     # Department query
-    if (is.null(answering_body) == TRUE) {
+    if (is.null(answering_body_check) == TRUE) {
 
       dept_query <- NULL
 
-    } else if (is.numeric(answering_body)) {
+    } else if (is.na(answering_body_check)==FALSE) {
 
       dept_query <- paste0("&answeringDeptId=", answering_body)
 
@@ -117,8 +126,6 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
 
-        jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
-
         pages <- list()
 
         for (i in 0:jpage) {
@@ -148,8 +155,6 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
       all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
 
       jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
-
-      jpage2 <- round(all$result$totalResults/all$result$itemsPerPage, digits = 0)
 
       pages <- list()
 

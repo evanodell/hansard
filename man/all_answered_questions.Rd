@@ -49,7 +49,7 @@ x <- all_answered_questions(4019, start_date ='2017-01-01')
 
 y <- all_answered_questions(4019, start_date ='2017-01-01', tidy_style='camelCase')
 
-z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-04-01')
+z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-01-01')
 
 a <- hansard_all_answered_questions(house="lords", answering_body=60)
 # Returns all questions asked in the House of Lords answered by the Department for Education.

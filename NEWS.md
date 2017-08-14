@@ -15,6 +15,8 @@ Sped up edm details retrieval in `mp_edms()` where `full_data`==TRUE and there a
 
 Fixed bug that prevented `lords_written_questions()` from retrieving more than 500 results at a time.
 
+`all_answered_questions()` can now handle departmental ID numbers passed as characters.
+
 
 # hansard 0.5.2
 
