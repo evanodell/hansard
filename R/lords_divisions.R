@@ -102,7 +102,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
                 if (summary == FALSE) {
 
-                  df <- ldsum_tidy(df)
+                  df <- ldsum_tidy(df, tidy_style)
 
                 }
             }

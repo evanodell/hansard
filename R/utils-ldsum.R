@@ -1,5 +1,5 @@
 
-ldsum_tidy <- function(df){
+ldsum_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
