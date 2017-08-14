@@ -206,13 +206,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
             df <- hansard_tidy(df, tidy_style)
 
-            df
-
-        } else {
-
-            df
-
         }
+
+            df
 
     }
 }

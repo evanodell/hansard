@@ -9,7 +9,13 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
 
   mp_id_list <- as.list(mp_id)
 
-  dat <- lapply(mp_id_list, all_answered_questions)
+  dat <- vector("list", length(mp_id_list))
+
+  for (i in 1:length(mp_id_list)) {
+
+    dat[[i]] <- hansard::all_answered_questions(mp_id = mp_id_list[[i]], tabling_mp_id=tabling_mp_id, house=house, answering_body=answering_body, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE)
+
+  }
 
   dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 

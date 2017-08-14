@@ -1,4 +1,10 @@
 
+# hansard 0.5.2.90000
+
+## General improvements
+
+Sped up edm details retrieval in `mp_edms()` where `full_data`==TRUE and there are multiple MP IDs.
+
 
 # hansard 0.5.2
 

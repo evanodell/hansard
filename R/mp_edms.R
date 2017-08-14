@@ -34,7 +34,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory, end_date, start_date)
 
-  }
+  } else {
 
   z <- c(sponsor, primary_sponsor, signatory)
 
@@ -73,6 +73,8 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
       names(df)[names(df) == "_about"] <- "about"
 
     }
+
+  }
 
   }
 

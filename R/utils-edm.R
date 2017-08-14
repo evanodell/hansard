@@ -9,7 +9,7 @@ edm_search <- function(df) {
 
   df$about <- gsub("/signatures/.*", "", df$about)
 
-  search_list <- as.list(df$about)
+  search_list <- as.list(distinct(df[,"about"])[['about']])
 
   dat3 <- list()
 
@@ -19,11 +19,7 @@ edm_search <- function(df) {
 
   for (i in search_list) {
 
-    got <- httr::GET(paste0(baseurl, i, ".json?"), httr::accept_json())
-
-    search <- tidy_bom(got)
-
-    search <- jsonlite::fromJSON(search, flatten = TRUE)
+    search <- jsonlite::fromJSON(paste0(baseurl, i, ".json?"), flatten = TRUE)
 
     dat3[[i]] <- tibble::data_frame(about = list(search$result$primaryTopic$`_about`),
                                     title = list(search$result$primaryTopic$title),
@@ -47,6 +43,8 @@ edm_search <- function(df) {
   }
 
   df2 <- dplyr::bind_rows(dat3)
+
+  duplicated(df2)
 
   df2$about <- gsub("http://data.parliament.uk/resources/", "", df2$about)
 
