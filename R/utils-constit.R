@@ -1,23 +1,25 @@
 
-cons_tidy <- function(df, current, tidy_style){
+## Tidy function for constituency calls
 
-  if(nrow(df)>0){
+cons_tidy <- function(df, current, tidy_style) {
 
-  if(current==FALSE){
+  if (nrow(df) > 0) {
 
-    df$endedDate._value <- as.POSIXct(df$endedDate._value)
+    if (current == FALSE) {
 
-    df$endedDate._datatype <- "POSIXct"
+      df$endedDate._value <- as.POSIXct(df$endedDate._value)
+
+      df$endedDate._datatype <- "POSIXct"
+
+    }
+
+    df$startedDate._value <- as.POSIXct(df$startedDate._value)
+
+    df$startedDate._datatype <- "POSIXct"
+
+    df <- hansard_tidy(df, tidy_style)
 
   }
-
-  df$startedDate._value <- as.POSIXct(df$startedDate._value)
-
-  df$startedDate._datatype <- "POSIXct"
-
-  }
-
-  df <- hansard_tidy(df, tidy_style)
 
   df
 

@@ -38,7 +38,7 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
 
 # all_answered_questions tidying -----------------------------------------
 
-aaq_tidy <- function(df){
+aaq_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -69,6 +69,8 @@ aaq_tidy <- function(df){
     df$legislature_about <- gsub("http://data.parliament.uk/terms/", "", df$legislature_about)
 
     df$legislature <- NULL
+
+    df <- hansard_tidy(df, tidy_style)
 
   }
 

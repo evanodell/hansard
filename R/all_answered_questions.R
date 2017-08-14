@@ -12,6 +12,7 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#'
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
 #' @keywords Answered Questions
 #' @seealso \code{\link{commons_answered_questions}}
@@ -176,9 +177,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         if (tidy == TRUE) {
 
-            df <- aaq_tidy(df)
-
-            df <- hansard_tidy(df, tidy_style)
+            df <- aaq_tidy(df, tidy_style)
 
         }
 
