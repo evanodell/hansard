@@ -85,7 +85,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         if (tidy == TRUE) {
 
-            df <- cdd_tidy2(df, tidy_style, division_id, summary) ## in utils-cd.R
+            df <- cd_tidy(df, tidy_style, division_id, summary) ## in utils-cd.R
 
         }
 
