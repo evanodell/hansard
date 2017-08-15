@@ -12,13 +12,13 @@ hansard_members_search(search = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{search}{Accepts any string. Defaults to NULL. If NULL, returns a tibble with all members of both houses of parliament.}
+\item{search}{Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament.}
 
-\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or 'mnisId' or 'mnis.id', depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or 'mnisId' or 'mnis.id', depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with the results of the search.
@@ -37,7 +37,3 @@ x <- members_search(search='chris')
 \seealso{
 \code{\link{members}}
 }
-\keyword{All}
-\keyword{Members}
-\keyword{Parliament}
-\keyword{of}

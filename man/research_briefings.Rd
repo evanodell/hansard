@@ -20,13 +20,13 @@ hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 
 \item{type}{The type of research briefing.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with details on parliamentary research briefings on the given topic.
@@ -66,6 +66,3 @@ x <- research_briefings(type = research_types_list[[3]])
 
 \code{\link{research_topics_list}}
 }
-\keyword{Briefings}
-\keyword{Parliamentary}
-\keyword{Research}

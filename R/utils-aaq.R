@@ -70,9 +70,9 @@ aaq_tidy <- function(df, tidy_style){
 
     df$legislature <- NULL
 
-    df <- hansard_tidy(df, tidy_style)
-
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

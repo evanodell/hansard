@@ -19,5 +19,3 @@ A semi-generic function for the parliamentary API. Provides greater flexibility,
 
 }
 }
-\keyword{API}
-\keyword{Hansard}

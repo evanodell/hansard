@@ -14,21 +14,21 @@ hansard_papers_laid(withdrawn = FALSE, house = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{withdrawn}{If TRUE, only returns withdrawn papers. Defaults to FALSE.}
+\item{withdrawn}{If \code{TRUE}, only returns withdrawn papers. Defaults to \code{FALSE}.}
 
-\item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If NULL, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to NULL.}
+\item{house}{The house the paper was laid in. Accepts 'commons' and 'lords'. If \code{NULL}, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with details on papers laid before the given House.
@@ -44,5 +44,3 @@ x <- papers_laid(withdrawn = TRUE, house = NULL)
 }
 
 }
-\keyword{Laid}
-\keyword{Papers}

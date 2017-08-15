@@ -1,17 +1,19 @@
 
 
+#' Bill data
+#'
 #' Imports data on House of Commons and House of Lords bills
 #'
-#' @param ID The ID of a given bill to return data on. If NULL, returns all bills, subject to other parameters. Defaults to NULL.
-#' @param amendments If TRUE, returns all bills with amendments. Defaults to FALSE.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param ID The ID of a given bill to return data on. If \code{NULL}, returns all bills, subject to other parameters. Defaults to \code{NULL}.
+#' @param amendments If \code{TRUE}, returns all bills with amendments. Defaults to \code{FALSE}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on bills before the House of Lords and the House of Commons.
-#' @keywords bills
+### @keywords bills
 #' @seealso \code{\link{bill_stage_types}}
 #' @export
 #' @examples \dontrun{
@@ -39,7 +41,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
     baseurl <- "http://lda.data.parliament.uk/bills"
 
     if (amendments == TRUE) {
-        query <- "withamendments.json?_pageSize=500"
+        query <- "withamendments.json?"
     } else {
         query <- ".json?_pageSize=500"
     }
@@ -48,12 +50,12 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
     bills <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args), flatten = TRUE)
 
-    jpage <- floor(bills$result$totalResults/bills$result$itemsPerPage)
+    jpage <- floor(bills$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args, "&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, id_query, extra_args, "&_page=", i,"&_pageSize=500"), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -66,11 +68,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_
 
         if (tidy == TRUE) {
 
-            df$date._value <- as.POSIXct(df$date._value)
-
-            df$date._datatype <- "POSIXct"
-
-            df <- hansard_tidy(df, tidy_style)
+            df <- bills_tidy(df, tidy_style)### in utils-bills.R
 
         }
 

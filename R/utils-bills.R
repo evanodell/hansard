@@ -1,6 +1,6 @@
 
 
-cdd_tidy <- function(df){
+bills_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -9,6 +9,8 @@ cdd_tidy <- function(df){
     df$date._datatype <- "POSIXct"
 
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

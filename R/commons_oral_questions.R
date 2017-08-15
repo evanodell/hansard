@@ -1,16 +1,16 @@
 
 
 #' Imports data on House of Commons oral questions
-#' @param mp_id The ID of a given MP asking an oral question. Defaults to NULL.
+#' @param mp_id The ID of a given MP asking an oral question. Defaults to \code{NULL}.
 #' @param answering_department The department that answers a question
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on all oral questions in the House of Commons.
-#' @keywords questions
+### @keywords questions
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
@@ -48,9 +48,9 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, "&_pageSize=500", extra_args), flatten = TRUE)
+    oral <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, extra_args), flatten = TRUE)
 
-    jpage <- floor(oral$result$totalResults/oral$result$itemsPerPage)
+    jpage <- floor(oral$result$totalResults/500)
 
     pages <- list()
 
@@ -68,9 +68,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL, st
 
         if (tidy == TRUE) {
 
-            df <- coq_tidy(df)
-
-            df <- hansard_tidy(df, tidy_style)
+            df <- coq_tidy(df, tidy_style)
 
         }
 

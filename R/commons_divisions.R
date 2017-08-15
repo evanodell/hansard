@@ -1,16 +1,18 @@
 
-#' Imports data on House of Commons divisions.
+#' House of Commons votes
 #'
-#' @param division_id The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to NULL.
-#' @param summary If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to current system date. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to TRUE.
+#' Imports data on House of Commons divisions, either full details on how each member voted, or a summary.
+#'
+#' @param division_id The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to \code{NULL}.
+#' @param summary If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to current system date. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with the results of divisions in the House of Commons.
-#' @keywords divisions
+### @keywords divisions
 #' @export
 #' @examples \dontrun{
 #'
@@ -30,9 +32,9 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args), flatten = TRUE)
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args), flatten = TRUE)
 
-        jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
+        jpage <- floor(divis$result$totalResults/500)
 
         pages <- list()
 
@@ -83,53 +85,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         if (tidy == TRUE) {
 
-            if (is.null(division_id) == TRUE) {
-
-                df$date._datatype <- "POSIXct"
-
-                df$date._value <- as.POSIXct(df$date._value)
-
-            } else {
-
-                if (summary == TRUE) {
-
-                  df$date <- as.POSIXct(df$date)
-
-                } else {
-
-                  df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
-
-                  names(df)[names(df) == "_about"] <- "voteId"
-
-                  df <- tidyr::unnest(df)
-
-                  df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
-
-                  df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)
-
-                  if (tidy_style == "camelCase") {
-
-                    df$type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$type, perl = TRUE)
-
-                    substr(df$type, 1, 1) <- tolower(substr(df$type, 1, 1))
-
-                  } else if (tidy_style == "period.case") {
-
-                    df$type <- gsub("_", ".", df$type)
-
-                    df$type <- tolower(df$type)
-
-                  } else {
-
-                    df$type <- tolower(df$type)
-
-                  }
-                }
-            }
-
-            df <- hansard_tidy(df, tidy_style)
-
-            df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
+            df <- cdd_tidy2(df, tidy_style, division_id, summary) ## in utils-cd.R
 
         }
 

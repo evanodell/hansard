@@ -10,11 +10,11 @@ bill_stage_types(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 hansard_bill_stage_types(tidy = TRUE, tidy_style = "snake_case")
 }
 \arguments{
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \description{
 Returns a tibble with all possible bill stage types.
@@ -27,4 +27,3 @@ x <- bill_stage_types()
 \seealso{
 \code{\link{bills}}
 }
-\keyword{bills}

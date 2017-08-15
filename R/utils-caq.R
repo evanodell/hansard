@@ -5,9 +5,26 @@
 
 caq_multi <- function(answering_department, answered_by, start_date, end_date, extra_args, verbose) {
 
-  mp_id_list <- as.list(answered_by)
 
-  dep_list <- as.list(answering_department)
+  if(is.null(answered_by)==TRUE){
+
+    mp_id_list <- NA
+
+  } else {
+
+    mp_id_list <- as.list(answered_by)
+
+  }
+
+  if(is.null(answering_department)==TRUE){
+
+    dep_list <- NA
+
+  } else {
+
+    dep_list <- as.list(answering_department)
+
+  }
 
   search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
@@ -33,7 +50,7 @@ caq_multi <- function(answering_department, answered_by, start_date, end_date, e
 }
 
 
-caq_tidy <- function(df){
+caq_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -46,6 +63,8 @@ caq_tidy <- function(df){
     df$AnsweringBody <- unlist(df$AnsweringBody)
 
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

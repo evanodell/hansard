@@ -1,18 +1,18 @@
 
 
-#' House of Lords attendance.
+#' House of Lords attendance
 #'
 #' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
-#' @param session_id The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions. Defaults to \code{NULL}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  Returns a tibble with details on the lords who attended a given session.
 #'
-#' @keywords House of Lords Attendance
+### @keywords House of Lords Attendance
 #' @export
 #' @examples \dontrun{
 #'
@@ -25,7 +25,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
     if (is.null(session_id) == FALSE) {
         query <- paste0("/", session_id, ".json?")
     } else {
-        query <- ".json?_pageSize=500"
+        query <- ".json?"
     }
 
     dates <- paste0("&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
@@ -38,25 +38,21 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
 
     if (is.null(session_id) == FALSE) {
 
-        df <- as.data.frame(attend$result$primaryTopic)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
 
     } else {
 
-        jpage <- floor(attend$result$totalResults/attend$result$itemsPerPage)
+        jpage <- floor(attend$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df <- dplyr::bind_rows(pages)
-
-        df <- tibble::as_tibble(df)
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     }
 
@@ -66,11 +62,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
 
         if (tidy == TRUE) {
 
-            df$date._value <- as.POSIXct(df$date._value)
-
-            df$date._datatype <- "POSIXct"
-
-            df <- hansard_tidy(df, tidy_style)
+          df <- lords_attendance_tidy(df, tidy_style)
 
         }
 

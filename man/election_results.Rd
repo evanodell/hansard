@@ -3,7 +3,7 @@
 \name{election_results}
 \alias{election_results}
 \alias{hansard_election_results}
-\title{Imports data on general election and by-election results from the 2010 general election onwards.}
+\title{General and By-Election Results}
 \usage{
 election_results(ID = NULL, all_data = FALSE, calculate_percent = FALSE,
   constit_details = FALSE, extra_args = NULL, tidy = TRUE,
@@ -14,21 +14,21 @@ hansard_election_results(ID = NULL, all_data = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.}
 
-\item{all_data}{If TRUE, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to FALSE. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.}
+\item{all_data}{If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.}
 
-\item{calculate_percent}{If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.}
+\item{calculate_percent}{If \code{TRUE}, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to \code{FALSE}.}
 
-\item{constit_details}{If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.}
+\item{constit_details}{If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with the results of all general and by-elections, or of a specified general election or by-election.
@@ -54,5 +54,3 @@ w <- election_results(ID=730039, all_data=TRUE)
 
 \code{\link{election_candidates}}
 }
-\keyword{Election}
-\keyword{Results}

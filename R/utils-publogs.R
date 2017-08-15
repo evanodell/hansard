@@ -1,6 +1,6 @@
 
 
-pub_tidy <- function(df){
+pub_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -9,6 +9,8 @@ pub_tidy <- function(df){
     df$publicationDate._datatype <- "POSIXct"
 
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

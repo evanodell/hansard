@@ -1,7 +1,7 @@
 
-##Tidy up Lords Written Questions
+## MP question tidying
 
-lwq_tidy <- function(df){
+mp_question_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -9,17 +9,19 @@ lwq_tidy <- function(df){
 
     df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
 
+    df$AnswerDate._datatype <- "POSIXct"
+
     df$dateTabled._datatype <- "POSIXct"
 
-    df$AnswerDate._value <- "POSIXct"
+    df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
 
     df$AnsweringBody <- unlist(df$AnsweringBody)
-
-    df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
 
     df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
 
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

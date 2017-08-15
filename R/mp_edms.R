@@ -1,19 +1,19 @@
 
 #' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
-#' @param mp_id The ID number of an MP. Required parameter, defaults to NULL. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
-#' @param primary_sponsor Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to TRUE.
-#' @param sponsor Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to TRUE.
-#' @param signatory Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to TRUE.
-#' @param full_data If TRUE, returns all available data on the EDMs signed or sponsored by a member. Defaults to FALSE. Note that this can be a very slow process compared to other \code{hansard} functions.
-#' @param start_date The earliest date to include in the tibble, based on the date the MP signed the EDM. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble, based on the date the MP signed the EDM. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param mp_id The ID number of an MP. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
+#' @param primary_sponsor Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to \code{TRUE}.
+#' @param sponsor Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to \code{TRUE}.
+#' @param signatory Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to \code{TRUE}.
+#' @param full_data If \code{TRUE}, returns all available data on the EDMs signed or sponsored by a member. Defaults to \code{FALSE}. Note that this can be a very slow process compared to other \code{hansard} functions.
+#' @param start_date The earliest date to include in the tibble, based on the date the MP signed the EDM. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble, based on the date the MP signed the EDM. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.
 #'
-#' @keywords Early Day Motion EDM
+### @keywords Early Day Motion EDM
 #' @seealso \code{\link{early_day_motions}}
 #' @export
 #' @examples \dontrun{
@@ -50,9 +50,9 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
     baseurl <- "http://lda.data.parliament.uk/edmsignatures.json?"
 
-    edms <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500", extra_args), flatten = TRUE)
+    edms <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
-    jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
+    jpage <- floor(edms$result$totalResults/500)
 
     pages <- list()
 

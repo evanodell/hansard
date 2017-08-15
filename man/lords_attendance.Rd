@@ -3,7 +3,7 @@
 \name{lords_attendance}
 \alias{lords_attendance}
 \alias{hansard_lords_attendance}
-\title{House of Lords attendance.}
+\title{House of Lords attendance}
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -14,19 +14,19 @@ hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{session_id}{The ID of the House of Lords session. If NULL, returns a list of all sessions. Defaults to NULL.}
+\item{session_id}{The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 Returns a tibble with details on the lords who attended a given session.
@@ -41,7 +41,3 @@ x <- lords_attendance(session_id = 706178)
 
 }
 }
-\keyword{Attendance}
-\keyword{House}
-\keyword{Lords}
-\keyword{of}

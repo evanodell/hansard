@@ -1,16 +1,16 @@
 
 #' Imports data on House of Lords divisions
-#' @param division_id The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to NULL.
-#' @param summary If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to FALSE.
-#' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns.  Defaults to TRUE.
+#' @param division_id The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to \code{NULL}.
+#' @param summary If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.
+#' @param start_date The earliest date to include in the tibble, if calling all divisions. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble, if calling all divisions. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns.  Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with the results of divisions in the House of Lords.
 #'
-#' @keywords Lords Divisions
+### @keywords Lords Divisions
 #' @export
 #' @examples \dontrun{
 #'
@@ -33,9 +33,9 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, extra_args))
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args))
 
-        jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
+        jpage <- floor(divis$result$totalResults/500)
 
         pages <- list()
 
@@ -66,23 +66,21 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
             df$about <- y$`_about`
             df$title <- y$title
             df$description <- y$description
-            df$contents_count <- y$officialContentsCount
-            df$not_contents_ount <- y$officialNotContentsCount
-            df$division_number <- y$divisionNumber
-            df$division_result <- y$divisionResult
+            df$officialContentsCount <- y$officialContentsCount
+            df$officialNotContentsCount <- y$officialNotContentsCount
+            df$divisionNumber <- y$divisionNumber
+            df$divisionResult <- y$divisionResult
             df$date <- y$date
             df$session <- y$session
             df$uin <- y$uin
-
-            df <- tibble::as_tibble(as.data.frame(df))
 
         } else {
 
             df <- divis$result$primaryTopic
 
-            df <- tibble::as_tibble(as.data.frame(df))
-
         }
+
+            df <- tibble::as_tibble(as.data.frame(df))
 
     }
 
@@ -92,22 +90,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         if (tidy == TRUE) {
 
-            if (is.null(division_id) == TRUE) {
-
-                df$date._datatype <- "POSIXct"
-
-                df$date._value <- as.POSIXct(df$date._value)
-
-            } else {
-
-                if (summary == FALSE) {
-
-                  df <- ldsum_tidy(df, tidy_style)
-
-                }
-            }
-
-            df <- hansard_tidy(df, tidy_style)
+          df <- lords_division_tidy(df, tidy_style)
 
         }
 

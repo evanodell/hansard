@@ -1,17 +1,19 @@
 
 
+#' Voting record of members of the House of Lords
+#'
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
-#' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to NULL.
+#' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to \code{NULL}.
 #' @param lobby Accepts one of 'all', 'content', 'notcontent'. 'content' returns votes where the peer voted 'content', 'notcontent' returns votes where the peer voted 'not content' and 'all' returns all available votes by the peer. Defaults to 'all'.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on the voting record of a member of the House of Lords
 #'
-#' @keywords divisions
+### @keywords divisions
 #' @export
 #' @examples \dontrun{
 #' x <- lord_vote_record(530, lobby='all')
@@ -36,13 +38,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        content <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
 
-        if (content$result$itemsPerPage < content$result$totalResults) {
-            jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
-        } else {
-            jpage <- 0
-        }
+        jpage <- floor(content$result$totalResults/500)
 
         pages <- list()
 
@@ -60,13 +58,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
 
-        if (notcontent$result$itemsPerPage < notcontent$result$totalResults) {
-            jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
-        } else {
-            jpage <- 0
-        }
+        jpage <- floor(notcontent$result$totalResults/500)
 
         pages <- list()
 
@@ -86,9 +80,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        content <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        content <- jsonlite::fromJSON(paste0(baseurl, peer_id,  dates, extra_args), flatten = TRUE)
 
-        jpage <- floor(content$result$totalResults/content$result$itemsPerPage)
+        jpage <- floor(content$result$totalResults/500)
 
         pages <- list()
 
@@ -112,9 +106,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, "&_pageSize=500", dates, extra_args), flatten = TRUE)
+        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
 
-        jpage <- floor(notcontent$result$totalResults/notcontent$result$itemsPerPage)
+        jpage <- floor(notcontent$result$totalResults/500)
 
         pages <- list()
 
@@ -137,8 +131,6 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         df$date._datatype <- as.factor(df$date._datatype)
         df$date._value <- as.POSIXct(df$date._value)
 
-
-
     }
 
     if (nrow(df) == 0 && verbose==TRUE) {
@@ -147,14 +139,11 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if (tidy == TRUE) {
 
-            df$date._datatype <- "POSIXct"
-            df$date._value <- as.POSIXct(df$date._value)
-
-            df <- hansard_tidy(df, tidy_style)
+          df <- lord_vote_record_tidy(df, tidy_style)
 
         }
 
-            df
+          df
 
     }
 

@@ -28,15 +28,15 @@ hansard_lords_members(extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{ID}{The ID of a member of the House of Commons or the House of Lords. Defaults to NULL. If NULL, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.}
+\item{ID}{The ID of a member of the House of Commons or the House of Lords. Defaults to \code{NULL}. If \code{NULL}, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with data on members of the House of Commons and/or the House of Lords.
@@ -66,7 +66,3 @@ x <- lords_members()
 \seealso{
 \code{\link{members_search}}
 }
-\keyword{All}
-\keyword{Members}
-\keyword{Parliament}
-\keyword{of}

@@ -1,17 +1,18 @@
 
+#' General and By-Election Results
+#'
 #' Imports data on general election and by-election results from the 2010 general election onwards.
 #'
-#' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If NULL, returns all available election results. Defaults to NULL.
-#' @param all_data If TRUE, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to FALSE. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.
-#' @param calculate_percent If TRUE, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to FALSE.
-#' @param constit_details If TRUE, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to FALSE.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.
+#' @param all_data If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.
+#' @param calculate_percent If \code{TRUE}, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to \code{FALSE}.
+#' @param constit_details If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #'
-#' @keywords Election Results
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_candidates}}
 #' @export
@@ -39,9 +40,9 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500", extra_args))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args))
 
-    jpage <- floor(elect$result$totalResults/elect$result$itemsPerPage)
+    jpage <- floor(elect$result$totalResults/500)
 
     pages <- list()
 
@@ -76,7 +77,9 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
             dat[[i]] <- x$result$primaryTopic$candidate
 
-            message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
+            if(verbose==TRUE) {
+              message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
+            }
 
         }
 

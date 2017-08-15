@@ -1,5 +1,5 @@
 
-tv_tidy <- function(df){
+tv_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -26,6 +26,8 @@ tv_tidy <- function(df){
     df$legislature <- NULL
 
   }
+
+    df <- hansard_tidy(df, tidy_style)
 
     df
 

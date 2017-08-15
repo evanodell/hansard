@@ -1,21 +1,21 @@
 
-#' Bulk Epetitions
+#' Bulk Epetition data
 #'
 #' Get data on all epetitions submitted to parliament, with the label, sponsor, number of signatures, date created and epetition ID. For greater detail on indidivual epetitions, see \code{\link{epetition}}.
 #'
 #' @param min_signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
-#' @param max_signatures The maximum number of signatures required for inclusion in the tibble. If NULL, there no maximum number of signatures. Defaults to NULL.
-#' @param status The status of the petition, either 'open' or 'closed'. If NULL, returns all petitions both open and closed. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param max_signatures The maximum number of signatures required for inclusion in the tibble. If \code{NULL}, there no maximum number of signatures. Defaults to \code{NULL}.
+#' @param status The status of the petition, either 'open' or 'closed'. If \code{NULL}, returns all petitions both open and closed. Defaults to \code{NULL}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on electronic petitions submitted to parliament.
 #' @seealso \code{\link{epetition}}
 #'
-#' @keywords ePetitions
+### @keywords ePetitions
 #' @export
 #' @examples \dontrun{
 #'
@@ -38,26 +38,24 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
     status_query <- paste0("&status=", status)
   }
 
-  min_sig_query <- paste0("&min-numberOfSignatures=", min_signatures)
-
   if(is.null(max_signatures)==TRUE){
-    max_sig_query <- NULL
+    sig_query <- paste0("&min-numberOfSignatures=", min_signatures)
   } else {
-    max_sig_query <- paste0("&max-numberOfSignatures=", max_signatures)
+    sig_query <- paste0("&min-numberOfSignatures=", min_signatures, "&max-numberOfSignatures=", max_signatures)
   }
 
-  baseurl <- "http://lda.data.parliament.uk/epetitions.json?_pageSize=500"
+  baseurl <- "http://lda.data.parliament.uk/epetitions.json?"
 
   if(verbose==TRUE){message("Connecting to API")}
 
-  petition <- jsonlite::fromJSON(paste0(baseurl, status_query,min_sig_query, max_sig_query, dates, extra_args), flatten = TRUE)
+  petition <- jsonlite::fromJSON(paste0(baseurl, status_query, sig_query, dates, extra_args), flatten = TRUE)
 
   jpage <- floor(petition$result$totalResults/petition$result$itemsPerPage)
 
   pages <- list()
 
   for (i in 0:jpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl, status_query,min_sig_query, max_sig_query, dates, extra_args, "&_page=", i),flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(baseurl, status_query, sig_query, dates, extra_args, "&_pageSize=500&_page=", i),flatten = TRUE)
     if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
     pages[[i + 1]] <- mydata$result$items
   }
@@ -70,15 +68,7 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
 
     if (tidy == TRUE) {
 
-      df$created._value <- gsub("T", " ", df$created._value)
-
-      df$created._value <- lubridate::parse_date_time(df$created._value, "Y-m-d H:M:S")
-
-      df$created._datatype <- "POSIXct"
-
-      df$status <- as.factor(df$status)
-
-      df <- hansard_tidy(df, tidy_style)
+      df <- epetition_tibble_tidy(df, tidy_style)
 
     }
 

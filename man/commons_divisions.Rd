@@ -3,7 +3,7 @@
 \name{commons_divisions}
 \alias{commons_divisions}
 \alias{hansard_commons_divisions}
-\title{Imports data on House of Commons divisions.}
+\title{House of Commons votes}
 \usage{
 commons_divisions(division_id = NULL, summary = FALSE,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -14,27 +14,27 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to NULL.}
+\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to \code{NULL}.}
 
-\item{summary}{If TRUE, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to FALSE.}
+\item{summary}{If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to current system date. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to current system date. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to NULL.}
+\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to TRUE.}
+\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Removes extra URL data from voting type columns. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
-\item{verbose}{If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with the results of divisions in the House of Commons.
 }
 \description{
-Imports data on House of Commons divisions.
+Imports data on House of Commons divisions, either full details on how each member voted, or a summary.
 }
 \examples{
 \dontrun{
@@ -45,4 +45,3 @@ x <- commons_divisions(division_id = 694163, summary = FALSE)
 
 }
 }
-\keyword{divisions}

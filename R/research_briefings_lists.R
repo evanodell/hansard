@@ -12,7 +12,7 @@
 #' @export
 #' @seealso \code{\link{research_briefings}}
 #'
-#' @keywords  Parliamentary Research Briefings
+### @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'
 #' research_topics_list <- research_topics_list()
@@ -46,7 +46,7 @@ hansard_research_topics_list <- function(){
 #' @return  A list with the different research subtopics available.
 #' @export
 #'
-#' @keywords Parliamentary Research Briefings
+### @keywords Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'
 #' research_subtopics_list <- research_subtopics_list()
@@ -94,7 +94,7 @@ hansard_research_subtopics_list <- function(){
 #' @return  A list with the different types of research briefings.
 #' @export
 #'
-#' @keywords  Parliamentary Research Briefings
+### @keywords  Parliamentary Research Briefings
 #' @examples  \dontrun{
 #'
 #' research_types_list <- research_types_list()

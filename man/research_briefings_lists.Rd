@@ -58,6 +58,3 @@ research_types_list <- research_types_list()
 \seealso{
 \code{\link{research_briefings}}
 }
-\keyword{Briefings}
-\keyword{Parliamentary}
-\keyword{Research}

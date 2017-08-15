@@ -2,16 +2,16 @@
 #' House of Lords Amendments.
 #'
 #' Returns a tibble with all available House of Lords amendments.
-#' @param decision The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param decision The decision on the amendments. Accepts one of 'Withdrawn', 'Agreed', 'Disagreed', 'Pending', 'NotMoved', 'Disposed'. Defaults to \code{NULL}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on amendments proposed by the House of Lords.
 #'
-#' @keywords House of Lords Amendments
+### @keywords House of Lords Amendments
 #' @export
 #' @examples \dontrun{
 #'
@@ -31,18 +31,18 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
         decision_query <- NULL
     }
 
-    baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?"
 
     if(verbose==TRUE){message("Connecting to API")}
 
     ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, extra_args), flatten = TRUE)
 
-    jpage <- floor(ammend$result$totalResults/ammend$result$itemsPerPage)
+    jpage <- floor(ammend$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -55,11 +55,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
 
         if (tidy == TRUE) {
 
-            df$bill.date._value <- as.POSIXct(df$bill.date._value)
-
-            df$bill.date._datatype <- "POSIXct"
-
-            df <- hansard_tidy(df, tidy_style)
+          df <- lords_amendments_tidy(df, tidy_style)
 
         }
 

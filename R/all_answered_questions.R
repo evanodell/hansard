@@ -2,19 +2,19 @@
 #' All answered parliamentary questions.
 #'
 #' Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
-#' @param mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions, subject to other parameters. Defaults to NULL.
-#' @param tabling_mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If NULL, returns a tibble with all available answered questions, subject to other parameters. Defaults to NULL.
-#' @param house The house to return questions from. Accepts either the short name of the legislature (e.g. 'commons' or 'lords') or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If NULL, returns answers from both houses, subject to other parameters. Defaults to NULL.
-#' @param answering_body The government department that answers the question. Accepts either the short name name of a department (e.g. 'Education' for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so 'Education' will work but 'education' will not return any data. If NULL, returns answers from all departments, subject to other parameters. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.
+#' @param tabling_mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.
+#' @param house The house to return questions from. Accepts either the short name of the legislature (e.g. 'commons' or 'lords') or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If \code{NULL}, returns answers from both houses, subject to other parameters. Defaults to \code{NULL}.
+#' @param answering_body The government department that answers the question. Accepts either the short name name of a department (e.g. 'Education' for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so 'Education' will work but 'education' will not return any data. If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #'
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
-#' @keywords Answered Questions
+### @keywords Answered Questions
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
@@ -61,11 +61,11 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         }
 
-        if (house == "commons" | house==1) {
+        if (house == "commons" | house==1 | house=="1") {
 
           house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
 
-        } else if (house == "lords" | house==2) {
+        } else if (house == "lords" | house==2 | house=="2") {
 
           house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
 
@@ -97,18 +97,18 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == TRUE) {
 
-        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500"
+        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
 
         if(verbose==TRUE){message("Connecting to API")}
 
         all <- jsonlite::fromJSON(paste0(baseurl, house_query, dept_query, dates, extra_args), flatten = TRUE)
 
-        jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+        jpage <- floor(all$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, "&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, "_pageSize=500&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -119,18 +119,18 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
 
-        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?_pageSize=500&mnisId="
+        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?&mnisId="
 
         if(verbose==TRUE){message("Connecting to API")}
 
         all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
 
-        jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+        jpage <- floor(all$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, house_query, dept_query, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "_pageSize=500", house_query, dept_query, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -149,18 +149,18 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       }
 
-      baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?_pageSize=500&mnisId="
+      baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?&mnisId="
 
       if(verbose==TRUE){message("Connecting to API")}
 
       all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
 
-      jpage <- floor(all$result$totalResults/all$result$itemsPerPage)
+      jpage <- floor(all$result$totalResults/500)
 
       pages <- list()
 
       for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "_pageSize=500&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
       }
@@ -177,7 +177,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         if (tidy == TRUE) {
 
-            df <- aaq_tidy(df, tidy_style)
+            df <- aaq_tidy(df, tidy_style) ### in utils-aaq.R
 
         }
 

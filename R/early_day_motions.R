@@ -3,18 +3,18 @@
 #' Imports data on early day motions
 #'
 #' Includes the content, signatories, and sponsors of early day motions.
-#' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If NULL, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to NULL.
-#' @param session Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to NULL.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If \code{NULL}, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to \code{NULL}.
+#' @param session Accepts a parliamentary session, in 'yyyy/yy' format. Defaults to \code{NULL}.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 #'
-#' @keywords EDM early day motion
+### @keywords EDM early day motion
 #' @seealso \code{\link{mp_edms}}
 #' @export
 #' @examples \dontrun{
@@ -48,16 +48,15 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, "&_pageSize=500", sig_min, extra_args),
+    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min, extra_args),
         flatten = TRUE)
 
-    jpage <- floor(edms$result$totalResults/edms$result$itemsPerPage)
+    jpage <- floor(edms$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min, "&_pageSize=500&_page=",
-            i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -70,11 +69,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL, start_date = "1900-
 
         if (tidy == TRUE) {
 
-            df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
-
-            df$dateTabled._datatype <- "POSIXct"
-
-            df <- hansard_tidy(df, tidy_style)
+            df <- edm_tidy(df, tidy_style)
 
         }
 

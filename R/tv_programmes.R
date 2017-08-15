@@ -2,13 +2,13 @@
 #' TV broadcast data
 #'
 #' Imports data on TV broadcasts.
-#' @param legislature Accepts one of either 'commons' or 'lords'. If NULL, returns all TV programmes for all chambers.
-#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class Date, POSIXt, POSIXct, POSIXlt or anything else than can be coerced to a date with \code{as.Date()}.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param legislature Accepts one of either 'commons' or 'lords'. If \code{NULL}, returns all TV programmes for all chambers.
+#' @param start_date The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on TV broadcasts.
 #'
 #' @section TV Programme functions:
@@ -19,7 +19,7 @@
 #' }
 #'
 #'
-#' @keywords TV
+### @keywords TV
 #' @export
 #' @examples \dontrun{
 #'
@@ -71,9 +71,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
         if (tidy == TRUE) {
 
-            df <- tv_tidy(df)
-
-            df <- hansard_tidy(df, tidy_style)
+            df <- tv_tidy(df, tidy_style) ### in utils-tv.R
 
         }
 
@@ -95,10 +93,10 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
 
 
-#' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If NULL, returns data on all available clips. Defaults to NULL.
+#' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.
 #' @return  A tibble with details on TV broadcasts featuring the given MP, or all available clips.
 #'
-#' @keywords TV
+### @keywords TV
 #' @export
 #' @rdname tv_programmes
 #' @examples \dontrun{
@@ -169,7 +167,7 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 #' @rdname tv_programmes
 #' @return  A tibble with details on the different broadcasting channels.
 #'
-#' @keywords TV
+### @keywords TV
 #' @export
 
 tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

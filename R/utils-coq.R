@@ -1,5 +1,5 @@
 
-coq_tidy <- function(df){
+coq_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
@@ -26,6 +26,8 @@ coq_tidy <- function(df){
     df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "", df$tablingMember._about)
 
   }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

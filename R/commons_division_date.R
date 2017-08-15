@@ -1,13 +1,13 @@
 #' House of Commons Division Dates
 #'
 #' Returns a tibble with the divisions of the House of Commons on a given date
-#' @param date Returns all divisions on a given date. Defaults to NULL.
-#' @param extra_args Additional parameters to pass to API. Defaults to NULL.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to TRUE.
+#' @param date Returns all divisions on a given date. Defaults to \code{NULL}.
+#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
+#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
-#' @param verbose If TRUE, returns data to console on the progress of the API request. Defaults to FALSE.
+#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with the dates of divisions in the House of Commons.
-#' @keywords divisions
+### @keywords divisions
 #' @export
 #' @examples \dontrun{
 #' x <- commons_division_date('2017-04-19')
@@ -28,9 +28,9 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    divis <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", date, extra_args))
+    divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", date, extra_args))
 
-    jpage <- floor(divis$result$totalResults/divis$result$itemsPerPage)
+    jpage <- floor(divis$result$totalResults/500)
 
     pages <- list()
 
@@ -40,9 +40,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0 && verbose==TRUE) {
       message("The request did not return any data. Please check your search parameters.")
@@ -50,9 +48,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
       if (tidy == TRUE) {
 
-        df <- cdd_tidy(df)
-
-        df <- hansard_tidy(df, tidy_style)
+        df <- cdd_tidy(df, tidy_style)
 
       }
 
