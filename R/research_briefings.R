@@ -10,7 +10,7 @@
 #' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on parliamentary research briefings on the given topic.
-#' 
+#'
 ### @keywords Parliamentary Research Briefings
 #' @seealso \code{\link{research_subtopics_list}}
 #' @seealso \code{\link{research_types_list}}
@@ -51,13 +51,13 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
             query <- NULL
         }
 
-        baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?&_pageSize=500"
+        baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
 
         if(verbose==TRUE){message("Connecting to API")}
 
         research <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
-        jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
+        jpage <- floor(research$result$totalResults/500)
 
         pages <- list()
 
@@ -99,16 +99,14 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
         baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
 
-        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?&_pageSize=500", query, extra_args),
-            flatten = TRUE)
+        research <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, extra_args), flatten = TRUE)
 
-        jpage <- floor(research$result$totalResults/research$result$itemsPerPage)
+        jpage <- floor(research$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=",
-                i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, topic_query, subtopic_query, ".json?", query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }

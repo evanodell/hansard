@@ -47,18 +47,18 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
         query <- NULL
     }
 
-    baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?"
 
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    jpage <- floor(tv$result$totalResults/tv$result$itemsPerPage)
+    jpage <- floor(tv$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -113,16 +113,16 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
         query <- NULL
     }
 
-    baseurl <- "http://lda.data.parliament.uk/tvclips.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/tvclips.json?"
 
     tv <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args), flatten = TRUE)
 
-    jpage <- floor(tv$result$totalResults/tv$result$itemsPerPage)
+    jpage <- floor(tv$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -172,7 +172,7 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 
 tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
-    x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500", flatten = TRUE)
+    x <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=50", flatten = TRUE)
 
     df <- tibble::as_tibble(x$result$items)
 
@@ -180,13 +180,9 @@ tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
         df <- hansard_tidy(df, tidy_style)
 
-        df
-
-    } else {
-
-        df
-
     }
+
+        df
 
 }
 

@@ -47,18 +47,18 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
     dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=", as.Date(start_date))
 
-    baseurl <- "http://lda.data.parliament.uk/paperslaid.json?_pageSize=500"
+    baseurl <- "http://lda.data.parliament.uk/paperslaid.json?"
 
     if(verbose==TRUE){message("Connecting to API")}
 
     papers <- jsonlite::fromJSON(paste0(baseurl, query, house, dates, extra_args), flatten = TRUE)
 
-    jpage <- floor(papers$result$totalResults/papers$result$itemsPerPage)
+    jpage <- floor(papers$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, house, dates, "&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, house, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }

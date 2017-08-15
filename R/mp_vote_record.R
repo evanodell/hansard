@@ -53,9 +53,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
+        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- floor(url_aye$result$totalResults/url_aye$result$itemsPerPage)
+        jpage <- floor(url_aye$result$totalResults/500)
 
         pages <- list()
 
@@ -77,9 +77,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
+        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- floor(url_no$result$totalResults/url_no$result$itemsPerPage)
+        jpage <- floor(url_no$result$totalResults/500)
 
         pages <- list()
 
@@ -102,9 +102,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
+        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- floor(url_aye$result$totalResults/url_aye$result$itemsPerPage)
+        jpage <- floor(url_aye$result$totalResults/500)
 
         pages <- list()
 
@@ -124,9 +124,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, "&_pageSize=500", dates, session_query, extra_args), flatten = TRUE)
+        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, session_query, extra_args), flatten = TRUE)
 
-        jpage <- floor(url_no$result$totalResults/url_no$result$itemsPerPage)
+        jpage <- floor(url_no$result$totalResults/500)
 
         pages <- list()
 

@@ -26,22 +26,30 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
     if (is.null(ID) == FALSE) {
         query <- paste0("/", ID, ".json?")
     } else {
-        query <- ".json?&_pageSize=500"
+        query <- ".json?"
     }
 
     if (is.null(house) == FALSE) {
+
         house <- tolower(house)
+
         if (house == "commons") {
-            house_query <- "&legislature.prefLabel=House of Commons"
-            house_query <- utils::URLencode(house_query)
+
+            house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
+
         } else if (house == "lords") {
-            house_query <- "&legislature.prefLabel=House of Lords"
-            house_query <- utils::URLencode(house_query)
+
+            house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
+
         } else {
+
             house_query <- NULL
+
         }
     } else {
+
         house_query <- NULL
+
     }
 
     dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.Date(end_date), "&min-publicationDate=", as.Date(start_date))
@@ -58,12 +66,12 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
     } else {
 
-        jpage <- floor(logs$result$totalResults/logs$result$itemsPerPage)
+        jpage <- floor(logs$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, house_query, dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, house_query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }

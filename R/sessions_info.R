@@ -35,9 +35,9 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    session <- jsonlite::fromJSON(paste0(baseurl, query, ".json?_pageSize=500", dates, extra_args))
+    session <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", dates, extra_args))
 
-    jpage <- floor(session$result$totalResults/session$result$itemsPerPage)
+    jpage <- floor(session$result$totalResults/500)
 
     pages <- list()
 
