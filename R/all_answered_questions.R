@@ -108,7 +108,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, "_pageSize=500&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, house_query, dept_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -130,7 +130,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, "_pageSize=500", house_query, dept_query, tabler, "&_page=", i, dates, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, house_query, dept_query, tabler, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -160,7 +160,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
       pages <- list()
 
       for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, "_pageSize=500&_page=", i, house_query, dept_query, dates, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
       }
