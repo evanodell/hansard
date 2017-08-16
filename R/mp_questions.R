@@ -82,7 +82,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", oralJpage + 1)}
+            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
 
