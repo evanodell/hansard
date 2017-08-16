@@ -7,11 +7,11 @@
 
 aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args, verbose) {
 
-  mp_id_list <- as.list(mp_id)
+  #mp_id_list <- as.list(mp_id)
 
-  tabling_mp_id_list <- as.list(tabling_mp_id)
+  #tabling_mp_id_list <- as.list(tabling_mp_id)
 
-  answering_body_list <- as.list(answering_body)
+  #answering_body_list <- as.list(answering_body)
 
 
   if(is.null(mp_id)==TRUE){
@@ -52,9 +52,9 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
   names(search_grid)[names(search_grid)=="Var2"] <-"tabling_mp"
   names(search_grid)[names(search_grid)=="Var2"] <-"department"
 
-  dat <- vector("list", length(search_grid))
+  dat <- vector("list", nrow(search_grid))
 
-  for (i in 1:length(mp_id_list)) {
+  for (i in 1:nrow(search_grid)) {
 
     dat[[i]] <- hansard::all_answered_questions(mp_id = search_grid$answering_mp[[i]], tabling_mp_id=search_grid$tabling_mp[[i]], house=house, answering_body=search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
 

@@ -38,7 +38,7 @@
 #'
 #' }
 
-all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
@@ -78,21 +78,26 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
       }
 
 
-      if(is.null(mp_id)==FALSE){
-        if(is.na(mp_id)==TRUE){
+      if(is.null(mp_id)==TRUE || is.na(mp_id)==TRUE){
 
-        mp_id <- NULL
+        mp_query <- NULL
 
-        }
+      } else {
+
+        mp_query <- paste0("&mnisId=",mp_id)
 
       }
 
-      if(is.null(tabling_mp_id)==FALSE){
-        if(is.na(tabling_mp_id)==TRUE){
+      if(is.null(tabling_mp_id)==TRUE || is.na(tabling_mp_id)==TRUE){
 
-          tabling_mp_id <- NULL
+        tabling_mp_query <- NULL
 
-        }
+      } else {
+
+        mem <- suppressMessages(members(tabling_mp_id))
+
+        tabling_mp_query <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
+
 
       }
 
@@ -114,83 +119,27 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     }
 
-    if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == TRUE) {
-
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        all <- jsonlite::fromJSON(paste0(baseurl, house_query, dept_query, dates, extra_args), flatten = TRUE)
+        all <- jsonlite::fromJSON(paste0(baseurl, mp_query, tabling_mp_query, house_query, dept_query,  dates, extra_args), flatten = TRUE)
 
         jpage <- floor(all$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, house_query, dept_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_query, tabling_mp_query, house_query, dept_query,  dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
-
-    } else if (is.null(mp_id) == TRUE & is.null(tabling_mp_id) == FALSE) {
-
-        mem <- suppressMessages(members(tabling_mp_id))
-
-        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
-
-        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?&mnisId="
-
-        if(verbose==TRUE){message("Connecting to API")}
-
-        all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
-
-        jpage <- floor(all$result$totalResults/500)
-
-        pages <- list()
-
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, house_query, dept_query, tabler, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-    } else {
-
-      if (is.null(tabling_mp_id) == FALSE) {
-
-        mem <- suppressMessages(members(tabling_mp_id))
-
-        tabler <- paste0("&tablingMemberPrinted=", utils::URLencode(as.character(mem$full_name[[1]])))
-
-      } else {
-
-        tabler <- NULL
-
-      }
-
-      baseurl <- "http://lda.data.parliament.uk/questionsanswers.json?&mnisId="
-
-      if(verbose==TRUE){message("Connecting to API")}
-
-      all <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args))
-
-      jpage <- floor(all$result$totalResults/500)
-
-      pages <- list()
-
-      for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, mp_id, tabler, house_query, dept_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-        pages[[i + 1]] <- mydata$result$items
-      }
-
-    }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     }
 
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 & verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
@@ -203,9 +152,8 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
             df
 
     }
+
 }
-
-
 
 
 
