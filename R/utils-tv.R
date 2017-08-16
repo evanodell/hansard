@@ -41,7 +41,7 @@ tv_tidy <- function(df, tidy_style){
 
 # 2nd tv tidying function -------------------------------------------------
 
-tv_tidy2 <- function(df){
+tv_tidy2 <- function(df, mp_id, tidy_style) {
 
   if(nrow(df)>0){
 

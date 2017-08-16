@@ -137,7 +137,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
     } else {
         if (tidy == TRUE) {
 
-            df <- tv_tidy2(df, tidy_style)
+            df <- tv_tidy2(df, mp_id, tidy_style)
 
         }
 

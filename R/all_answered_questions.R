@@ -42,9 +42,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
-    if (length(mp_id) > 1) {
+    if (length(mp_id) > 1 || length(tabling_mp_id) > 1  || length(answering_body) > 1) {
 
-      df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args)
+      df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args, verbose)
 
     } else {
 
@@ -77,11 +77,30 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       }
 
+
+      if(is.null(mp_id)==FALSE){
+        if(is.na(mp_id)==TRUE){
+
+        mp_id <- NULL
+
+        }
+
+      }
+
+      if(is.null(tabling_mp_id)==FALSE){
+        if(is.na(tabling_mp_id)==TRUE){
+
+          tabling_mp_id <- NULL
+
+        }
+
+      }
+
       ## In case departmental IDs are passed as strings.
       answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
 
     # Department query
-    if (is.null(answering_body) == TRUE) {
+    if (is.null(answering_body) == TRUE || is.na(answering_body)==TRUE) {
 
       dept_query <- NULL
 

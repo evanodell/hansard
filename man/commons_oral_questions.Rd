@@ -41,7 +41,8 @@ Imports data on House of Commons oral questions, based on the asking MP, the ans
 
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 
-x <- commons_oral_questions(mp_id=c(4019,4051,4588), answering_department = c('education', 'health'))
+x <- commons_oral_questions(mp_id=c(4019,4051,4588),
+                            answering_department = c('education', 'health'))
 
 }
 }
