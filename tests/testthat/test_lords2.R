@@ -16,6 +16,7 @@ test_that("lords functions return expected format", {
   expect_length(ldiv, 19)
   expect_type(ldiv, "list")
   expect_true(tibble::is_tibble(ldiv))
+  expect_equal(nrow(ldiv),466)
 
   ldivdec <- hansard_lords_divisions(division_id = NULL, FALSE, start_date = "2016-12-01", end_date = "2016-12-31")
   expect_length(ldivdec, 5)

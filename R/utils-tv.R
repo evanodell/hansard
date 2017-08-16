@@ -1,4 +1,8 @@
 
+
+
+# 1st tv tidying function -------------------------------------------------
+
 tv_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
@@ -34,9 +38,14 @@ tv_tidy <- function(df, tidy_style){
 }
 
 
+
+# 2nd tv tidying function -------------------------------------------------
+
 tv_tidy2 <- function(df){
 
   if(nrow(df)>0){
+
+    if(is.null(mp_id)==FALSE){
 
     df <- tidyr::unnest_(df, "member")
 
@@ -51,6 +60,10 @@ tv_tidy2 <- function(df){
     df <- tibble::as.tibble(df)
 
     }
+
+  }
+
+  df <- hansard_tidy(df, tidy_style)
 
   df
 

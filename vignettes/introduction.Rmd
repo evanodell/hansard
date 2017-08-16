@@ -71,7 +71,27 @@ glimpse(y)
 
 The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions.
 
-##Special functions
+### Multiple Parameter Functions
+
+The following functions accept arrays for member ID parameters and departmental parameters (where applicable):
+
+
+* `all_answered_questions()`
+
+* `commons_answered_questions()`
+
+* `commons_oral_questions()`
+
+* `commons_written_questions()`
+
+* `lords_written_questions()`
+
+* `mp_edms()`
+
+* `mp_questions()`
+
+
+### Special functions
 
 Several functions have special or experimental features:
 

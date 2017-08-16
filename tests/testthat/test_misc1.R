@@ -35,10 +35,11 @@ test_that("papers laid, publications, sessions, tv functions return expected for
     expect_equal(nrow(publcommons), 22)
 
     # TV Programmes
-    tvcoms <- hansard_tv_programmes("commons", start_date = "2016-12-10", end_date = "2017-02-14")
+    tvcoms <- hansard_tv_programmes("commons", start_date = "2016-12-19", end_date = "2017-01-01")
     expect_length(tvcoms, 9)
     expect_type(tvcoms, "list")
     expect_true(tibble::is_tibble(tvcoms))
+    expect_equal(nrow(tvcoms), 16)
 
 
 })

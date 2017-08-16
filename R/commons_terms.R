@@ -1,13 +1,13 @@
 
 
-#' Access the Parliamentary Thesaurus
+#' Parliamentary Thesaurus
 #'
 #' Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
 #' @param search A string to search the parliamentary thesaurus for.
 #' @param class The class of definition to be returned Accepts one of 'ID', 'ORG', 'SIT', 'NAME', 'LEG','CTP', 'PBT' and 'TPG'.  Defaults to NULL
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with results from the parliamentary thesaurus.
 ### @keywords parliamentary thesaurus
@@ -19,6 +19,7 @@
 #' x <- commons_terms(search='estate', class='ORG')
 #'
 #'}
+
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
     if (is.null(search) == FALSE) {
@@ -45,9 +46,13 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
             class_query <- paste0("&class=", class)
 
         }
+
     } else {
+
         class_query <- NULL
+
     }
+
     baseurl <- "http://lda.data.parliament.uk/terms.json?&_view=description"
 
     if(verbose==TRUE){message("Connecting to API")}

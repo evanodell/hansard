@@ -3,7 +3,7 @@
 \name{commons_oral_questions}
 \alias{commons_oral_questions}
 \alias{hansard_commons_oral_questions}
-\title{Imports data on House of Commons oral questions}
+\title{House of Commons Oral Questions}
 \usage{
 commons_oral_questions(mp_id = NULL, answering_department = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -14,9 +14,9 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID of a given MP asking an oral question. Defaults to \code{NULL}.}
+\item{mp_id}{The ID of a given MP asking an oral question, or an array of MP Ids. Defaults to \code{NULL}.}
 
-\item{answering_department}{The department that answers a question}
+\item{answering_department}{The name of a department, or an array of departments.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
@@ -26,7 +26,7 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
@@ -34,12 +34,14 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 A tibble with details on all oral questions in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral questions
+Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date.
 }
 \examples{
 \dontrun{
 
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
+
+x <- commons_oral_questions(mp_id=c(4019,4051,4588), answering_department = c('education', 'health'))
 
 }
 }

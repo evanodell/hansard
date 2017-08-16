@@ -1,5 +1,8 @@
 
 
+
+# publication logs tidying ------------------------------------------------
+
 pub_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){

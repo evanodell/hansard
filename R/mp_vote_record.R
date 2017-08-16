@@ -10,7 +10,7 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on the voting record of the given MP.
 #'
@@ -39,10 +39,13 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
     }
 
     if (is.null(session) == FALSE) {
-        session <- as.character(session)
+
         session_query <- paste0("&session=", session)
+
     } else {
+
         session_query <- NULL
+
     }
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))

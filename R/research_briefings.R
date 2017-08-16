@@ -1,5 +1,5 @@
 
-#' Parliamentary Research Briefings.
+#' Parliamentary Research Briefings
 #'
 #' Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.
 #' @param topic The topic of the parliamentary briefing.
@@ -7,7 +7,7 @@
 #' @param type The type of research briefing.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on parliamentary research briefings on the given topic.
 #'

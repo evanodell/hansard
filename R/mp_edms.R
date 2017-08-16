@@ -1,4 +1,6 @@
 
+#' Early Day Motions by MP
+#'
 #' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
 #' @param mp_id The ID number of an MP. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
 #' @param primary_sponsor Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to \code{TRUE}.
@@ -9,14 +11,14 @@
 #' @param end_date The latest date to include in the tibble, based on the date the MP signed the EDM. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.
 #'
-### @keywords Early Day Motion EDM
 #' @seealso \code{\link{early_day_motions}}
 #' @export
 #' @examples \dontrun{
+#'
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
 #'
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)
@@ -34,7 +36,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
   if (length(mp_id) > 1) {
 
-    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory, end_date, start_date)
+    df <- multi_mp_edms(mp_id, extra_args, primary_sponsor, sponsor, signatory, end_date, start_date, verbose)
 
   } else {
 

@@ -41,7 +41,7 @@ hansard_tv_channels(tidy = TRUE, tidy_style = "snake_case",
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 
@@ -55,7 +55,7 @@ A tibble with details on TV broadcasts featuring the given MP, or all available 
 A tibble with details on the different broadcasting channels.
 }
 \description{
-Imports data on TV broadcasts.
+Imports data on TV broadcasts, clips of individual members and parliamentary TV channels.
 }
 \section{TV Programme functions}{
 

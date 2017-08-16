@@ -3,7 +3,7 @@
 \name{mp_edms}
 \alias{mp_edms}
 \alias{hansard_mp_edms}
-\title{Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.}
+\title{Early Day Motions by MP}
 \usage{
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
@@ -34,7 +34,7 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
@@ -46,6 +46,7 @@ Imports data on early day motions signed, sponsored or primarily sponsored by a 
 }
 \examples{
 \dontrun{
+
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
 
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)

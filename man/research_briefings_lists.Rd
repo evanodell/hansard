@@ -22,38 +22,31 @@ research_types_list()
 hansard_research_types_list()
 }
 \value{
-A list with the different research topics available.
-
-A list with the different research subtopics available.
-
-A list with the different types of research briefings.
+A list with the different research topics/subtopics/types available.
 }
 \description{
-These functions do not accept any arguments.
-
-A list of Parliamentary Research Briefings subtopics, grouped by topic.
-
-A list of types of Parliamentary Research Briefings.
+Returns lists of research briefing topics, subtopics and types. These functions do not accept any arguments.
 }
-\details{
-A list of Parliamentary Research Briefings topics.
+\section{Member details functions}{
+
+\describe{
+\item{research_topics_list}{A list with the different research topics available}
+\item{research_subtopics_list}{A list of Parliamentary Research Briefings topics}
+\item{research_types_list}{A list of types of Parliamentary Research Briefings}
 }
+}
+
 \examples{
  \dontrun{
 
 research_topics_list <- research_topics_list()
-}
-
- \dontrun{
 
 research_subtopics_list <- research_subtopics_list()
-
-}
- \dontrun{
 
 research_types_list <- research_types_list()
 
 }
+
 }
 \seealso{
 \code{\link{research_briefings}}

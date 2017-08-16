@@ -1,6 +1,6 @@
 
 
-#' Imports data on early day motions
+#' Early day motion data
 #'
 #' Includes the content, signatories, and sponsors of early day motions.
 #' @param edm_id Accepts the ID number of an early day motion, and returns data on that motion. Note that EDM numbers reset each parliamentary session, so using this as the only parameter will return multiple early day motions with the same ID code. If \code{NULL}, returns all available Early Day Motions. Note that there, are as of 2017-06-15, 43330 early day motions on listed in the API, so requesting all early day motions without other parameters is slow and very demanding on the API itself. Defaults to \code{NULL}.
@@ -10,7 +10,7 @@
 #' @param signatures The minimum number of signatures required for inclusion in the tibble. Defaults to 1.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on the content, signatories and sponsors of all or a specified early day motions.
 #'

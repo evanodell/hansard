@@ -18,7 +18,7 @@ hansard_commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
@@ -26,7 +26,7 @@ hansard_commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
 A tibble with the dates of divisions in the House of Commons.
 }
 \description{
-Returns a tibble with the divisions of the House of Commons on a given date
+Returns a tibble with the divisions (votes) in the House of Commons on a given date.
 }
 \examples{
 \dontrun{

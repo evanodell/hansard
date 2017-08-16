@@ -1,4 +1,6 @@
 
+#' Oral and written questions asked by MPs
+#'
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
 #' @param mp_id The ID number of a member of the House of Commons. Defaults to \code{NULL}.
 #' @param question_type Accepts the arguments 'all', 'oral' and 'written'. Defaults to 'all'.
@@ -6,9 +8,10 @@
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  A tibble with details on all questions asked by a member of the House of Commons.
+#'
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
@@ -29,13 +32,20 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
         stop("mp_id must not be empty", call. = FALSE)
     }
 
+  if (length(mp_id) > 1) {
+
+    df <- mp_question_multi(mp_id, question_type, start_date, end_date, extra_args, verbose)
+
+  } else {
+
+
     question_type <- tolower(question_type)
 
     if (question_type == "all") {
-        if(verbose==TRUE){message("Retrieving oral questions:")}
+        if(verbose==TRUE){message("Retrieving oral questions")}
         df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose=verbose)
 
-        message("Retrieving written questions:")
+        if(verbose==TRUE){message("Retrieving written questions")}
         df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose=verbose)
 
         if(verbose==TRUE){message("Combining oral and written questions")}
@@ -66,11 +76,11 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
         oral <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, extra_args))
 
-        oraljpage <- floor(oral$result$totalResults/500)
+        jpage <- floor(oral$result$totalResults/500)
 
         pages <- list()
 
-        for (i in 0:oralJpage) {
+        for (i in 0:jpage) {
             mydata <- jsonlite::fromJSON(paste0(baseurl_oral, mp_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", oralJpage + 1)}
             pages[[i + 1]] <- mydata$result$items
@@ -95,8 +105,11 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
+
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
     }
+
+  }
 
     if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")

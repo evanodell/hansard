@@ -1,11 +1,11 @@
 
 #' Peers' interests
 #'
-#' Registered interests of members of the House of Lords
+#' Registered interests of members of the House of Lords.
 #' @param peer_id The ID of a member of the House of lords. If \code{NULL}, returns a tibble with all listed financial interests for all members. Defaults to \code{NULL}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if tidy = TRUE. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
+#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}..
 #' @return  A tibble with details on the interests of peers in the House of Lords.
 #' @export
