@@ -14,13 +14,13 @@ hansard_epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 \arguments{
 \item{ID}{The ID of a given petition. If \code{NULL}, returns all petitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}} for a greater degree of flexibility when querying all petitions.}
 
-\item{by_constituency}{Accepts either TRUE or FALSE. If \code{TRUE}, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to \code{FALSE}.}
+\item{by_constituency}{Accepts either \code{TRUE} or \code{FALSE}. If \code{TRUE}, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to \code{FALSE}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }

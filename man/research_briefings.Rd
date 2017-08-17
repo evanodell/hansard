@@ -14,17 +14,17 @@ hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
   verbose = FALSE)
 }
 \arguments{
-\item{topic}{The topic of the parliamentary briefing.}
+\item{topic}{The topic of the parliamentary briefing. Defaults to \code{NULL}.}
 
-\item{subtopic}{The subtopic of the parliamentary briefing.}
+\item{subtopic}{The subtopic of the parliamentary briefing. Defaults to \code{NULL}.}
 
-\item{type}{The type of research briefing.}
+\item{type}{The type of research briefing. Defaults to \code{NULL}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
@@ -32,7 +32,7 @@ hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 A tibble with details on parliamentary research briefings on the given topic.
 }
 \description{
-Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as '\\n'.
+Imports data on  Parliamentary Research Briefings. To see a list of possible topics call \code{\link{research_topics_list}} or \code{\link{research_subtopics_list}} for both topics and subtopics. To see a list of briefing types, call \code{\link{research_types_list}}. This function can return results with newlines in the text of the abstract or description of the research briefing, represented as \code{'\\n'}.
 }
 \examples{
 \dontrun{

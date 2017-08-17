@@ -3,16 +3,7 @@
 
 # all_answered_questions_multiple -----------------------------------------
 
-
-
 aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args, verbose) {
-
-  #mp_id_list <- as.list(mp_id)
-
-  #tabling_mp_id_list <- as.list(tabling_mp_id)
-
-  #answering_body_list <- as.list(answering_body)
-
 
   if(is.null(mp_id)==TRUE){
 
@@ -45,12 +36,13 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
 
   }
 
-
   search_grid <- expand.grid(mp_id_list, tabling_mp_id_list, answering_body_list, stringsAsFactors = FALSE)
 
   names(search_grid)[names(search_grid)=="Var1"] <-"answering_mp"
   names(search_grid)[names(search_grid)=="Var2"] <-"tabling_mp"
-  names(search_grid)[names(search_grid)=="Var2"] <-"department"
+  names(search_grid)[names(search_grid)=="Var3"] <-"department"
+
+  search_grid
 
   dat <- vector("list", nrow(search_grid))
 
@@ -78,17 +70,21 @@ aaq_tidy <- function(df, tidy_style){
 
   if(nrow(df)>0){
 
-    names(df) <- gsub("answer.answeringMember.fullName._value", "answeringMember.fullName._value", names(df))
+    names(df)[names(df)=="_about"] <- "about"
 
-    names(df) <- gsub("answer.answeringMember._about", "answeringMember._about", names(df))
+    names(df) <- gsub("^answer.", "", names(df), perl=TRUE)
 
-    names(df) <- gsub("answer.answerText._value", "answerText._value", names(df))
+    if("groupedQuestionUIN" %in% colnames(df)){
 
-    names(df) <- gsub("answer.dateOfAnswer._datatype", "dateOfAnswer._datatype", names(df))
+      df$groupedQuestionUIN <- ifelse(df$groupedQuestionUIN=="NULL", df$groupedQuestionUIN._value, df$groupedQuestionUIN)
 
-    names(df) <- gsub("answer.dateOfAnswer._value", "dateOfAnswer._value", names(df))
+      df$groupedQuestionUIN._value <- NULL
 
-    df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
+      df$groupedQuestionUIN <- gsub("`_value` = ", "", df$groupedQuestionUIN)
+
+      df$groupedQuestionUIN <- as.list(df$groupedQuestionUIN)
+
+    }
 
     df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "", df$answeringMember._about)
 
@@ -96,7 +92,41 @@ aaq_tidy <- function(df, tidy_style){
 
     df$AnsweringBody <- unlist(df$AnsweringBody)
 
-    df$legislature <- do.call("rbind", df$legislature)
+    df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
+
+    df$questionFirstAnswered <- df$questionFirstAnswered
+
+    df <- tidyr::unnest_(df, "questionFirstAnswered")
+
+    names(df)[names(df)=="_value"] <- "answerDateTime"
+
+    df$`_datatype` <- NULL
+
+    df <- move_me(df, c("answerDateTime"), "after", "dateOfAnswer._value")
+
+    df$answerDateTime <- gsub("T", " ", df$answerDateTime)
+
+    df$answerDateTime <- as.POSIXct(lubridate::parse_date_time(df$answerDateTime, "Y-m-d H:M:S"))
+
+    df$dateOfAnswer._datatype <- "POXIXct"
+
+    if("attachment" %in% colnames(df)){
+
+      for (i in 1:nrow(df)){
+
+        if (is.null(names(df$attachment[[i]]))==FALSE){
+
+          names(df$attachment[[i]])[names(df$attachment[[i]])=="_about"] <- "about"
+
+          names(df$attachment[[i]])[names(df$attachment[[i]])=="fileName._value"] <- "fileName"
+
+        }
+
+      }
+
+    }
+
+    df$legislature <- dplyr::bind_rows(df$legislature)
 
     df$legislature.prefLabel._value <- df$legislature$prefLabel._value
 
@@ -113,3 +143,31 @@ aaq_tidy <- function(df, tidy_style){
   df
 
 }
+
+
+
+# Function to rearrange columns -------------------------------------------
+
+## Courtesy of A5C1D2H2I1M1N2O1R2T1 on StackOverflow, question 18339370
+
+move_me <- function(data, tomove, where = "last", ba = NULL) {
+  temp <- setdiff(names(data), tomove)
+  x <- switch(
+    where,
+    first = data[c(tomove, temp)],
+    last = data[c(temp, tomove)],
+    before = {
+      if (is.null(ba)) stop("must specify ba column")
+      if (length(ba) > 1) stop("ba must be a single character string")
+      data[append(temp, values = tomove, after = (match(ba, temp)-1))]
+    },
+    after = {
+      if (is.null(ba)) stop("must specify ba column")
+      if (length(ba) > 1) stop("ba must be a single character string")
+      data[append(temp, values = tomove, after = (match(ba, temp)))]
+    })
+  x
+}
+
+
+

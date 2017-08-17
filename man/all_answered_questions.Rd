@@ -20,19 +20,19 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
 
 \item{tabling_mp_id}{Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{house}{The house to return questions from. Accepts either the short name of the legislature (e.g. 'commons' or 'lords') or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If \code{NULL}, returns answers from both houses, subject to other parameters. Defaults to \code{NULL}.}
+\item{house}{The house to return questions from. Accepts either the short name of the legislature (e.g. \code{'commons'} or \code{'lords'}) or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If \code{NULL}, returns answers from both houses, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{answering_body}{The government department that answers the question. Accepts either the short name name of a department (e.g. 'Education' for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so 'Education' will work but 'education' will not return any data. If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.}
+\item{answering_body}{The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so \code{'Education'} will work but \code{'education'} will not return any data. If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to '1900-01-01'. Accepts character values in 'YYYY-MM-DD' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
 \item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of 'snake_case', 'camelCase' and 'period.case'. Defaults to 'snake_case'.}
+\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
@@ -41,6 +41,9 @@ A tibble with details on all answered questions in the House of Commons and the 
 }
 \description{
 Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
+}
+\details{
+This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters.
 }
 \examples{
 \dontrun{
@@ -56,6 +59,12 @@ a <- hansard_all_answered_questions(house="lords", answering_body=60)
 
 b <- hansard_all_answered_questions(house=2, answering_body="Education")
 # Returns all questions asked in the House of Lords answered by the Department for Education.
+
+w <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
+                                    answering_body = c("health", "justice"),
+                                     start_date = "2016-12-18", end_date = "2017-03-12")
+
+## Accepts multiple inputs for mp_id, tabling_mp_id and answering_body
 
 }
 }

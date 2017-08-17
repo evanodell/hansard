@@ -5,10 +5,11 @@ test_that("all_answered_questions return expected format", {
 
     skip_on_cran()
 
-    aaqx <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172), start_date = "2016-12-18", end_date = "2017-03-12")
-    expect_length(aaqx, 18)
+    aaqx <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172), answering_body = c("health", "justice"), start_date = "2016-12-18", end_date = "2017-03-12")
+    expect_length(aaqx, 32)
     expect_type(aaqx, "list")
     expect_true(tibble::is_tibble(aaqx))
+    expect_equal(nrow(aaqx), 22)
 
     aaq <- hansard_all_answered_questions(start_date = "2017-03-01", end_date = "2017-03-01")
     expect_length(aaq, 38)
@@ -19,7 +20,7 @@ test_that("all_answered_questions return expected format", {
     expect_length(xaaqda, 30)
     expect_type(xaaqda, "list")
     expect_true(tibble::is_tibble(xaaqda))
-    #expect_true(nrow(zhaaqtbling)==86)
+    expect_equal(nrow(xaaqda),6)
 
     anameid <- hansard_all_answered_questions(house="lords", answering_body=60, start_date ='2017-03-01', end_date='2017-03-20')
     expect_length(anameid, 32)
