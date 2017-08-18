@@ -3,7 +3,7 @@
 
 ## New features
 
-`commons_answered_questions()`, `all_answered_questions()` now accept arrays for MP IDs.
+`all_answered_questions()`, `commons_answered_questions()`, `commons_oral_questions()`, `commons_written_questions()`, `lords_written_questions()` now accept arrays of member IDs and department names.
 
 Added `verbose` parameter to all functions. If `verbose`=TRUE, messages displaying the progress of the API call are sent to the console.
 

@@ -3,6 +3,9 @@
 #' House of Commons Oral Questions
 #'
 #' Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date.
+#'
+#'
+#'
 #' @param mp_id The ID of a given MP asking an oral question, or an array of MP Ids. Defaults to \code{NULL}.
 #' @param answering_department The name of a department, or an array of departments.
 #' @param start_date The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.

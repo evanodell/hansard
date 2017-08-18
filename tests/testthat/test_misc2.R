@@ -11,10 +11,10 @@ test_that("papers laid, publications, sessions, tv part 2, functions return expe
     # expect_true(tibble::is_tibble(tvclipsempty))
     # expect_equal(nrow(tvclipsempty), 378)
     #
-    # tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11", end_date = "2017-01-12")
-    # expect_length(tvclipsmp, 7)
-    # expect_type(tvclipsmp, "list")
-    # expect_true(tibble::is_tibble(tvclipsmp))
+     tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11", end_date = "2017-01-12")
+     expect_length(tvclipsmp, 7)
+     expect_type(tvclipsmp, "list")
+     expect_true(tibble::is_tibble(tvclipsmp))
 
     chan <- hansard_tv_channels()
     expect_length(chan, 3)

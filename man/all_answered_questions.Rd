@@ -43,7 +43,7 @@ A tibble with details on all answered questions in the House of Commons and the 
 Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
 }
 \details{
-This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters.
+This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters. The member who asks the question, the member who answers it and the relevant department can all be used to query the API.
 }
 \examples{
 \dontrun{

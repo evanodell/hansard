@@ -88,8 +88,6 @@ The following functions accept arrays for member ID parameters and departmental 
 
 * `mp_edms()`
 
-* `mp_questions()`
-
 
 ### Special functions
 

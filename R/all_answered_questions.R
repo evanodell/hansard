@@ -3,7 +3,7 @@
 #'
 #' Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
 #'
-#' This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters.
+#' This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters. The member who asks the question, the member who answers it and the relevant department can all be used to query the API.
 #'
 #' @param mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.
 #' @param tabling_mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.

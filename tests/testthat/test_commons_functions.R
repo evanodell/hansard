@@ -5,10 +5,11 @@ context("commons functions")
 test_that("commons functions return expected format", {
     skip_on_cran()
 
-    xcaq <- hansard_commons_answered_questions(answering_department = "health", answered_by = "4019", start_date = "2017-02-01", end_date = "2017-02-02", verbose=TRUE)
+    xcaq <- hansard_commons_answered_questions(answering_department = c('health','education'), answered_by = c('4019', '1542', '111'), verbose=TRUE, start_date = '2017-02-01', end_date= '2017-08-18')
     expect_length(xcaq, 10)
     expect_type(xcaq, "list")
     expect_true(tibble::is_tibble(xcaq))
+    expect_equal(nrow(xcaq), 1900)
 
     # Divisions
 
@@ -46,26 +47,20 @@ test_that("commons functions return expected format", {
     expect_true(tibble::is_tibble(xcoqs))
     expect_equal(nrow(xcoqs), 313)
 
-    xcoqe <- hansard_commons_oral_questions(mp_id = 4019, answering_department = "education", tidy = FALSE)
+    xcoqe <- hansard_commons_oral_questions(mp_id=c(4019,4051,4588),answering_department = c('education', 'health'), verbose=TRUE, tidy_style = "period.case")
     expect_length(xcoqe, 24)
     expect_type(xcoqe, "list")
     expect_true(tibble::is_tibble(xcoqe))
 
-    xcoqtidy <- hansard_commons_oral_questions(mp_id = 4019, answering_department = "education", tidy = TRUE, tidy_style = "period.case", verbose=TRUE)
-    expect_length(xcoqtidy, 24)
-    expect_type(xcoqtidy, "list")
-    expect_true(tibble::is_tibble(xcoqtidy))
-
-    xcoqe <- hansard_tidy(xcoqe, tidy_style = "period.case")
-    expect_true(xcoqe[[1]][[1]]==xcoqtidy[[1]][[1]])
-
-    xcwq <- hansard_commons_written_questions(mp_id = 410, "cabinet office", verbose=TRUE)
+    xcwq <- hansard_commons_written_questions(mp_id=c(410,172), c('cabinet','home'), verbose=TRUE, start_date = '2017-02-01', end_date= '2017-03-18')
     expect_length(xcwq, 12)
     expect_type(xcwq, "list")
     expect_true(tibble::is_tibble(xcwq))
+    expect_equal(nrow(xcwq), 61)
 
     # Commons Terms
-    xcte <- hansard_commons_terms(search = "estate")
+
+    xcte <- hansard_commons_terms(search = "estate", verbose=TRUE)
     expect_length(xcte, 20)
     expect_type(xcte, "list")
     expect_true(tibble::is_tibble(xcte))

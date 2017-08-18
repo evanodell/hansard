@@ -1,35 +1,4 @@
 
-
-# lords_votes -----------------------------------------
-
-multi_mp_edms <- function(mp_id = mp_id, extra_args = extra_args, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, end_date = end_date, start_date = start_date, verbose=verbose) {
-
-  mp_id_list <- as.list(mp_id)
-
-  dat <- vector("list", length(mp_id_list))
-
-  for (i in 1:length(mp_id_list)) {
-
-    dat[[i]] <- hansard::mp_edms(mp_id = mp_id_list[[i]], primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = FALSE, end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
-
-  }
-
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
-
-  df <- dplyr::bind_rows(dat)
-
-  names(df)[names(df) == "_about"] <- "about"
-
-  df
-
-}
-
-
-
-
-
-
-
 # lords_written_questions_multiple -----------------------------------------
 # lords Written questions multiple function
 

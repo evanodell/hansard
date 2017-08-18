@@ -14,7 +14,7 @@ hansard_lords_written_questions(peer_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{peer_id}{Acceots a member ID or array of IDs, and returns a tibble with all written questions asked by that member. If \code{NULL}, peer_id is not included in the query to the API. Defaults to \code{NULL}.}
+\item{peer_id}{Accepts a member ID or array of IDs, and returns a tibble with all written questions asked by that member. If \code{NULL}, peer_id is not included in the query to the API. Defaults to \code{NULL}.}
 
 \item{answering_department}{Accepts a string with a department name or partial name or an array of departmental names, and returns all written questions by that department. The query acts as a search, so entering \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.}
 
@@ -41,7 +41,7 @@ Imports data on House of Lords written questions asked by a given peer(s), and/o
 # Returns all written questions ever
 x <- lords_written_questions()
 
-x <- lords_written_questions(peer_id = 3526, answering_department = 'cabinet')
+x <- lords_written_questions(peer_id = c(3526,4176), answering_department = c('cabinet', 'Transport'))
 
 }
 }

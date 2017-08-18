@@ -3,6 +3,9 @@
 #' Commons oral question times
 #'
 #' Imports data on House of Commons oral question times.
+#'
+#'
+#'
 #' @param session Accepts a session in format \code{yyyy/yy} (e.g. \code{2016/17}) and returns a tibble of all oral question times from that session
 #' @param question_id Accepts a question time ID, and returns a tibble of that question time.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
