@@ -76,9 +76,13 @@ aaq_tidy <- function(df, tidy_style){
 
     if("groupedQuestionUIN" %in% colnames(df)){
 
-      df$groupedQuestionUIN <- ifelse(df$groupedQuestionUIN=="NULL", df$groupedQuestionUIN._value, df$groupedQuestionUIN)
+      if("groupedQuestionUIN._value" %in% colnames(df)){
 
-      df$groupedQuestionUIN._value <- NULL
+        df$groupedQuestionUIN <- ifelse(df$groupedQuestionUIN=="NULL", df$groupedQuestionUIN._value, df$groupedQuestionUIN)
+
+        df$groupedQuestionUIN._value <- NULL
+
+      }
 
       df$groupedQuestionUIN <- gsub("`_value` = ", "", df$groupedQuestionUIN)
 

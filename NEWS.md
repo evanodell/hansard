@@ -17,11 +17,11 @@ Small increase in speed for all functions.
 
 `all_answered_questions()` can now handle departmental ID numbers passed as characters.
 
+Now uses the `stringr` package to remove case sensitivity from queries. 
+
 ## Bug Fixes
 
 Fixed bug that prevented `lords_written_questions()` from retrieving more than 500 results at a time.
-
-
 
 
 # hansard 0.5.2

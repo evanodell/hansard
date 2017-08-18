@@ -22,7 +22,7 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
 
 \item{house}{The house to return questions from. Accepts either the short name of the legislature (e.g. \code{'commons'} or \code{'lords'}) or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If \code{NULL}, returns answers from both houses, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{answering_body}{The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so \code{'Education'} will work but \code{'education'} will not return any data. If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.}
+\item{answering_body}{The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education, \code{'Digital, Culture, Media and Sport'} for the Department for Digital, Culture, Media and Sport), or the ID of a particular department (e.g. 60 for education.) If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.}
 
 \item{start_date}{The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 

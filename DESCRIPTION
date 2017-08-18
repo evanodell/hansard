@@ -18,7 +18,8 @@ Imports:
     dplyr,
     tibble,
     lubridate,
-    tidyr
+    tidyr, 
+    stringr
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,

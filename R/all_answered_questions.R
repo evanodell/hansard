@@ -8,7 +8,7 @@
 #' @param mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions answered by that member. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.
 #' @param tabling_mp_id Accepts a member ID or array of member IDs, and returns a tibble with all available questions asked by that member, subject to all other parameters. Includes both oral and written questions, and includes members of the House of Commons and the House of Lords. If \code{NULL}, returns a tibble with all available answered questions, subject to other parameters. Defaults to \code{NULL}.
 #' @param house The house to return questions from. Accepts either the short name of the legislature (e.g. \code{'commons'} or \code{'lords'}) or the ID of the legislature (1 for the House of Commons, 2 for the House of Lords). The short names are not case sensitive. If \code{NULL}, returns answers from both houses, subject to other parameters. Defaults to \code{NULL}.
-#' @param answering_body The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education), or the ID of a particular department (e.g. 60 for education.) Note that if using departmental short names the API is case sensitive, so \code{'Education'} will work but \code{'education'} will not return any data. If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.
+#' @param answering_body The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education, \code{'Digital, Culture, Media and Sport'} for the Department for Digital, Culture, Media and Sport), or the ID of a particular department (e.g. 60 for education.) If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
@@ -17,7 +17,6 @@
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #'
 #' @return A tibble with details on all answered questions in the House of Commons and the House of Lords.
-### @keywords Answered Questions
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
@@ -49,13 +48,13 @@
 
 all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
-
     if (length(mp_id) > 1 || length(tabling_mp_id) > 1  || length(answering_body) > 1) {
 
       df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body, start_date, end_date, extra_args, verbose)
 
     } else {
+
+      dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
       # House query
       if (is.null(house) == TRUE) {
@@ -121,7 +120,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     } else {
 
-      dept_query <- utils::URLencode(paste0("&_search=AnsweringBody.=", answering_body))
+      dept_query <- utils::URLencode((paste0('&answeringDeptShortName=', stringr::str_to_title(answering_body))))
 
     }
 
