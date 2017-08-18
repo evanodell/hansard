@@ -9,7 +9,7 @@ test_that("all_answered_questions return expected format", {
     expect_length(aaqx, 32)
     expect_type(aaqx, "list")
     expect_true(tibble::is_tibble(aaqx))
-    expect_equal(nrow(aaqx), 22)
+    expect_equal(nrow(aaqx), 23)
 
     aaq <- hansard_all_answered_questions(start_date = "2017-03-01", end_date = "2017-03-01")
     expect_length(aaq, 38)

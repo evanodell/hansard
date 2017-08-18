@@ -5,11 +5,11 @@ test_that("bills return expected format", {
 
     skip_on_cran()
 
-    xb <- hansard_bills(start_date = "2017-01-01")
+    xb <- hansard_bills(start_date = "2017-07-01")
     expect_length(xb, 10)
     expect_true(tibble::is_tibble(xb))
 
-    xba <- hansard_bills(amendments = TRUE, start_date = "2016-12-21")
+    xba <- hansard_bills(amendments = TRUE, start_date = "2016-12-21", verbose=TRUE)
     expect_length(xba, 14)
     expect_true(tibble::is_tibble(xba))
 
