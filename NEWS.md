@@ -5,7 +5,7 @@
 
 `commons_answered_questions()`, `all_answered_questions()` now accept arrays for MP IDs.
 
-Added `verbose` parameter to all functions. If `verbose`==TRUE, messages displaying the progress of the API call are sent to the console.
+Added `verbose` parameter to all functions. If `verbose`=TRUE, messages displaying the progress of the API call are sent to the console.
 
 ## General improvements
 
