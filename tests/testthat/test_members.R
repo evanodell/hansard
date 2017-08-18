@@ -17,7 +17,7 @@ test_that("members functions return expected format", {
     expect_type(mabbot, "list")
     expect_true(tibble::is_tibble(mabbot))
 
-    memempt <- hansard_members()
+    memempt <- hansard_members(verbose = TRUE)
     expect_length(memempt, 12)
     expect_type(memempt, "list")
     expect_true(tibble::is_tibble(memempt))

@@ -84,10 +84,9 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
         if (tidy == TRUE) {
 
-            df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
-
             df <- hansard_tidy(df, tidy_style)
 
+            df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
 
         }
 
