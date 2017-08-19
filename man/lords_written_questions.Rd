@@ -41,7 +41,8 @@ Imports data on House of Lords written questions asked by a given peer(s), and/o
 # Returns all written questions ever
 x <- lords_written_questions()
 
-x <- lords_written_questions(peer_id = c(3526,4176), answering_department = c('cabinet', 'Transport'))
+x <- lords_written_questions(peer_id = c(3526,4176),
+                             answering_department = c('cabinet', 'Transport'))
 
 }
 }

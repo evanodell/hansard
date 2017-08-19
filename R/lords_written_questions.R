@@ -3,6 +3,9 @@
 #' House of Lords written questions
 #'
 #' Imports data on House of Lords written questions asked by a given peer(s), and/or directed to a given department.
+#'
+#'
+#'
 #' @param peer_id Accepts a member ID or array of IDs, and returns a tibble with all written questions asked by that member. If \code{NULL}, peer_id is not included in the query to the API. Defaults to \code{NULL}.
 #' @param answering_department Accepts a string with a department name or partial name or an array of departmental names, and returns all written questions by that department. The query acts as a search, so entering \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
@@ -25,7 +28,8 @@
 #' # Returns all written questions ever
 #' x <- lords_written_questions()
 #'
-#' x <- lords_written_questions(peer_id = c(3526,4176), answering_department = c('cabinet', 'Transport'))
+#' x <- lords_written_questions(peer_id = c(3526,4176),
+#'                              answering_department = c('cabinet', 'Transport'))
 #'
 #' }
 
