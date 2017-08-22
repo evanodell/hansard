@@ -6,7 +6,7 @@
 #' @param mp_id The ID number of a member of the House of Commons.
 #' @param lobby Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}. \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'} returns votes where the MP voted \code{'no'}, \code{'all'} returns all available votes by the MP. Defaults to \code{'all'}.
 #' @param session The parliamentary session to return votes from, in \code{'YYYY/YY'} format. Defaults to \code{NULL}.
-#' @param start_date The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
+#' @param start_date The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.

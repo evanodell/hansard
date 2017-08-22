@@ -16,9 +16,9 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 \arguments{
 \item{mp_id}{The ID of a given MP asking an oral question, or an array of MP Ids. Defaults to \code{NULL}.}
 
-\item{answering_department}{The name of a department, or an array of departments.}
+\item{answering_department}{The name of a department, or an array of departments. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
 \item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
 
@@ -34,7 +34,7 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 A tibble with details on all oral questions in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date.
+Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date. The \code{mp_id} and \code{answering_department} parameters accept a single ID or department names, or an array of IDs or department names, respectively.
 }
 \examples{
 \dontrun{

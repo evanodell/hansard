@@ -24,9 +24,9 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
 
 \item{answering_body}{The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education, \code{'Digital, Culture, Media and Sport'} for the Department for Digital, Culture, Media and Sport), or the ID of a particular department (e.g. 60 for education.) If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
@@ -40,10 +40,10 @@ hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
 A tibble with details on all answered questions in the House of Commons and the House of Lords.
 }
 \description{
-Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords.
+Imports data on all answered parliamentary questions in the House of Commons and/or in the House of Lords. The \code{mp_id}, \code{tabling_mp_id} and \code{answering_body} parameters accept a single ID or department names, or an array of IDs or department names, respectively.
 }
 \details{
-This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters. The member who asks the question, the member who answers it and the relevant department can all be used to query the API.
+This is the most flexible of the various functions that look up questions, as it queries all types of questions in both houses with a wide selection of parameters: The member who asks the question, the member who answers it and the relevant department can all be used to query the API.
 }
 \examples{
 \dontrun{

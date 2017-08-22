@@ -18,9 +18,9 @@ hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
 
 \item{type}{Accepts \code{'General Election'} or \code{'By-election'} as arguments if ID is \code{NULL}, and returns all General Elections or all By-elections, as specified.}
 
-\item{start_date}{The earliest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
 \item{label}{Label of the election. By-elections are in \code{'dd-mmm-yyyy By-election'} format; e.g. \code{'23-Feb-2017 By-election'}, and general elections use \code{'YYYY General Election'} format. The parameter cannot search, so check your format, spelling and make sure there were actually elections with the label specified. Defaults to \code{NULL}.}
 

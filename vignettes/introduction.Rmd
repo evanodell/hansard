@@ -34,11 +34,13 @@ library(hansard)
 
 ##Using hansard
 
-`hansard` contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <http://www.data.parliament.uk/> API. The parameter options for each function vary, depending on the specific information available from each API, but there are two constant parameters in every function (with the exception of the `hansard_generic()` and `research_topics_list()` functions [described below](#special-functions)): `tidy` and `tidy_style`.
+`hansard` contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <http://www.data.parliament.uk/> API. The parameter options for each function vary, depending on the specific information available from each API, but there are three constant parameters in every function (with the exception of the `hansard_generic()` and `research_topics_list()` functions [described below](#special-functions)): `tidy`, `tidy_style` and `verbose`.
 
-`tidy` is a logical parameter accepting either TRUE or FALSE, defaulting to TRUE. If TRUE, `hansard` will fix variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates and datetimes are converted to POSIXct class. Some extra URL data included in the API is also stripped out.
+`tidy` is a logical parameter accepting either `TRUE` or `FALSE`, defaulting to `TRUE`. If `TRUE`, `hansard` will fix variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates and datetimes are converted to POSIXct class. Some extra URL data included in the API is also stripped out.
 
-The naming convention for variables used if `tidy`==TRUE is indicated by `tidy_style`. `tidy_style` accepts one of `"snake_case"`, `"camelCase"` and `"period.case"`, defaulting to `"snake_case"`. All variable names will be converted to match the given naming convention.
+The naming convention for variables used if `tidy==TRUE` is indicated by `tidy_style`. `tidy_style` accepts one of `"snake_case"`, `"camelCase"` and `"period.case"`, defaulting to `"snake_case"`. All variable names will be converted to match the given naming convention.
+
+`verbose` is a logical parameter accepting either `TRUE` or `FALSE`, defaulting to `FALSE`. If `TRUE`, the function will print the progress of the API query to the console.
 
 In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with `hansard_`. For example, both `bills()` and `hansard_bills()` will return the same result.
 
@@ -65,7 +67,7 @@ glimpse(x)
 With the `summary` parameter, we can return a brief summary table of votes:
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
-y <- commons_divisions(722300, summary=TRUE)
+y <- commons_divisions(722300, summary=`TRUE`)
 glimpse(y)
 ```
 
