@@ -103,5 +103,4 @@ hansard_papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1
 
   df
 
-  df
 }
