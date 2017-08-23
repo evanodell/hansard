@@ -11,28 +11,28 @@ vignette: >
 
 `hansard` is an R package to pull data from the UK parliament through the <http://www.data.parliament.uk/> API. It emphasises simplicity and ease of use, so that users unfamiliar with APIs can easily retrieve large volumes of high quality data. Each function accepts a single argument at a time, and functions that require additional information to retrieve the data you requested will ask for it after you execute the function. Functions retrieve data in json format and convert it to a tibble. The `hansard_generic` function supports the building of API requests for XML, csv or HTML formats if required. Note that the API is rate limited to returning 5500 rows per request in some circumstances.
 
-##Installing hansard
+## Installing hansard
 
-###From CRAN
+### From CRAN
 
 ```
 install.packages("hansard")
 ```
 
-###From GitHub (Development Version)
+### From GitHub (Development Version)
 
 ```
 install.packages("devtools")
 devtools::install_github("EvanOdell/hansard")
 ```
 
-###Load hansard
+### Load hansard
 
 ```
 library(hansard)
 ```
 
-##Using hansard
+## Using hansard
 
 `hansard` contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <http://www.data.parliament.uk/> API. The parameter options for each function vary, depending on the specific information available from each API, but there are three constant parameters in every function (with the exception of the `hansard_generic()` and `research_topics_list()` functions [described below](#special-functions)): `tidy`, `tidy_style` and `verbose`.
 
@@ -44,15 +44,17 @@ The naming convention for variables used if `tidy==TRUE` is indicated by `tidy_s
 
 In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with `hansard_`. For example, both `bills()` and `hansard_bills()` will return the same result.
 
+Almost all `hansard` functions (the exceptions being the functions that retrieve more reference style data: `bill_stage_types()`, `commons_division_date()`, `commons_terms()` `constituencies()`, `election_candidates()`, `election_results()`, `members()`, `members_search()`, `research_briefings_lists()` and `hansard_generic()`) include a `start_date` and `end_date` parameter, which can be used to set the earliest (`start_date`) and latest (`end_date`) data to be returned from the API.
+
 ### Example using the `commons_divisions()` and `mp_vote_record()` functions
 
 The `commons_divisions()` function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. `mp_vote_record()` returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the [`members_search()` function described below](#special-functions).
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
 library(hansard)
-library(tibble)##for the `glimpse()` function
+library(tibble)##for the `tibble::glimpse()` function
 z <- mp_vote_record(172, "aye", start_date = "2017-01-01", end_date = "2017-05-03")
-glimpse(z)
+tibble::glimpse(z)
 
 ```
 
@@ -61,14 +63,14 @@ Using `commons_divisions()`, we can see the result of one of those votes, ID 722
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
 x <- commons_divisions(722300)
-glimpse(x)
+tibble::glimpse(x)
 ```
 
 With the `summary` parameter, we can return a brief summary table of votes:
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
-y <- commons_divisions(722300, summary=`TRUE`)
-glimpse(y)
+y <- commons_divisions(722300, summary=TRUE)
+tibble::glimpse(y)
 ```
 
 The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions.
@@ -90,6 +92,20 @@ The following functions accept arrays for member ID parameters and departmental 
 
 * `mp_edms()`
 
+For example, the following function returns all questions answered by Nichola Blackwood (4019) or Sam Gyimah (3980), asked by Keith Vaz (338) or Diane Abbot (172), and covered by the Department for Health or the Ministry of Justice, between 2016-12-18 and 2017-03-12.
+
+
+```{r, echo=TRUE, message=TRUE, warning=FALSE}
+w <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
+                                     answering_body = c("health", "justice"),
+                                      start_date = "2016-12-18", end_date = "2017-03-12")
+
+tibble::glimpse(w)
+
+```
+
+
+
 
 ### Special functions
 
@@ -104,7 +120,7 @@ Several functions have special or experimental features:
 
 ### The `research_briefings()` function
 
-The `research_briefings()` function includes the experimental feature of requesting data using lists created using the `research_briefings_lists` functions:
+The `research_briefings()` function includes the feature of requesting data using lists created using the `research_briefings_lists` functions:
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
 research_topics_list <- research_topics_list()
@@ -122,7 +138,7 @@ research_types_list[[1]]
 
 In this case I have given them the same name as their function, but you can assign any name you wish to them.
 
-Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used.
+Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used. In the example below, `a` and `c` contain the same data.
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
 a <- research_briefings(topic = research_topics_list[[7]])
@@ -159,7 +175,7 @@ The `hansard_generic()` function allows you to put in your own paths to the API.
 x <- hansard_generic("commonsansweredquestions.json")
 ```
 
-Note that the API defaults to returning 10 items per page, but allows up to 500 items per page.
+Note that the API defaults to returning 10 items per page, but allows up to 500 items per page, the default used by `hansard`.
 
 
 ### The `members_search()` function

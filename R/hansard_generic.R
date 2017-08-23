@@ -3,9 +3,8 @@
 #' Hansard - Generic API Function
 #'
 #' A semi-generic function for the parliamentary API. Provides greater flexibility, including any newly released features or data not yet included in the individual functions of the hansard package. Users must specify '.json' in their path.
-#' @param path The url path to the data you wish to retrieve
+#' @param path The url path to the data you wish to retrieve.
 #'
-### @keywords Hansard API
 #' @export
 #' @examples \dontrun{
 #'
@@ -16,7 +15,7 @@
 
 hansard_generic <- function(path) {
 
-    url <- modify_url("http://lda.data.parliament.uk/", path = path)
+    url <- httr::modify_url("http://lda.data.parliament.uk/", path = path)
 
     mydata <- jsonlite::fromJSON(url)
 

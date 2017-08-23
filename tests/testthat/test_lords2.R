@@ -7,18 +7,18 @@ test_that("lords functions return expected format", {
   skip_on_cran()
 
   # Divisions
-  ldivsum <- hansard_lords_divisions(division_id = 705891, summary = TRUE, tidy = TRUE)
+  ldivsum <- hansard_lords_divisions(division_id = 705891, summary = TRUE, tidy = TRUE, verbose = TRUE)
   expect_length(ldivsum, 11)
   expect_type(ldivsum, "list")
   expect_true(tibble::is_tibble(ldivsum))
 
-  ldiv <- hansard_lords_divisions(division_id = 705891, summary = FALSE, tidy = TRUE)
+  ldiv <- hansard_lords_divisions(division_id = 705891, summary = FALSE, tidy = TRUE, verbose = TRUE)
   expect_length(ldiv, 19)
   expect_type(ldiv, "list")
   expect_true(tibble::is_tibble(ldiv))
   expect_equal(nrow(ldiv),466)
 
-  ldivdec <- hansard_lords_divisions(division_id = NULL, FALSE, start_date = "2016-12-01", end_date = "2016-12-31")
+  ldivdec <- hansard_lords_divisions(division_id = NULL, FALSE, start_date = "2016-12-01", end_date = "2016-12-31", verbose = TRUE)
   expect_length(ldivdec, 5)
   expect_type(ldivdec, "list")
   expect_true(tibble::is_tibble(ldivdec))
@@ -32,12 +32,12 @@ test_that("lords functions return expected format", {
 
 
   # Attendance
-  la <- hansard_lords_attendance(session_id = 706178)
+  la <- hansard_lords_attendance(session_id = 706178, verbose = TRUE)
   expect_length(la, 8)
   expect_type(la, "list")
   expect_true(tibble::is_tibble(la))
 
-  lanull <- hansard_lords_attendance(start_date = "2016-03-01")
+  lanull <- hansard_lords_attendance(start_date = "2016-03-01", verbose = TRUE)
   expect_length(lanull, 4)
   expect_type(lanull, "list")
   expect_true(tibble::is_tibble(lanull))

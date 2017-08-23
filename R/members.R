@@ -18,7 +18,7 @@
 #' \item{commons_members}{MPs in the House of Commons}
 #' \item{lords_members}{Peers in the House of Lords}
 #' }
-#' @seealso \code{\link{members_search}}
+#' @seealso \code{\link{members}}
 #' @examples \dontrun{
 #' x <- members(172)
 #'
