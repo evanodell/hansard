@@ -68,9 +68,7 @@ Imports data on TV broadcasts, clips of individual members and parliamentary TV 
 
 \examples{
 \dontrun{
-
 x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
-
 }
 \dontrun{
 x <- tv_clips(4591)

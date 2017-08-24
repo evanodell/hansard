@@ -38,13 +38,11 @@ Returns lists of research briefing topics, subtopics and types. These functions 
 
 \examples{
  \dontrun{
-
 research_topics_list <- research_topics_list()
 
 research_subtopics_list <- research_subtopics_list()
 
 research_types_list <- research_types_list()
-
 }
 
 }

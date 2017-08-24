@@ -38,7 +38,6 @@ Imports data on general and by-elections from the 2010 General Election onwards.
 }
 \examples{
 \dontrun{
-
 x <- elections(517994)
 }
 }

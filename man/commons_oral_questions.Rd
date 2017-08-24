@@ -14,9 +14,9 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID of a given MP asking an oral question, or an array of MP Ids. Defaults to \code{NULL}.}
+\item{mp_id}{The ID of a given MP asking an oral question, or a vector of MP Ids. Defaults to \code{NULL}.}
 
-\item{answering_department}{The name of a department, or an array of departments. Defaults to \code{NULL}.}
+\item{answering_department}{The name of a department, or a vector of departments. Defaults to \code{NULL}.}
 
 \item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
@@ -34,16 +34,14 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 A tibble with details on all oral questions in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date. The \code{mp_id} and \code{answering_department} parameters accept a single ID or department names, or an array of IDs or department names, respectively.
+Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date. The \code{mp_id} and \code{answering_department} parameters accept a single ID or department names, or a vector of IDs or department names, respectively.
 }
 \examples{
 \dontrun{
-
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 
 x <- commons_oral_questions(mp_id=c(4019,4051,4588),
                             answering_department = c('education', 'health'))
-
 }
 }
 \seealso{

@@ -1,4 +1,14 @@
 
+# hansard 0.5.3.9000
+
+## General improvements
+
+Speeding up of some tests
+
+Better tidying on `lords_interests()`
+
+
+
 # hansard 0.5.3
 
 ## New features

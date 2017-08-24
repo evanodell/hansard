@@ -1,7 +1,7 @@
 
 #' General and By-Election Results
 #'
-#' Imports data on general election and by-election results from the 2010 general election onwards.
+#' Imports results from general and by-elections from the 2010 general election onwards.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.
 #' @param all_data If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.
@@ -11,13 +11,12 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with the results of all general and by-elections, or of a specified general election or by-election.
+#' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #'
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_candidates}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- election_results(ID=382037)
 #'
 #' y <- election_results()
@@ -25,7 +24,6 @@
 #' z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 #'
 #' w <- election_results(ID=730039, all_data=TRUE)
-#'
 #' }
 
 election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

@@ -34,11 +34,10 @@ hansard_bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
 A tibble with details on bills before the House of Lords and the House of Commons.
 }
 \description{
-Imports data on House of Commons and House of Lords bills
+Imports data on House of Commons and House of Lords bills.
 }
 \examples{
 \dontrun{
-
 x <- bills()
 
 x <- bills(amendments=TRUE)
@@ -46,7 +45,6 @@ x <- bills(amendments=TRUE)
 x <- bills(1719)
 
 x <- bills(start_date ='2016-01-01')
-
 }
 }
 \seealso{

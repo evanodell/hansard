@@ -11,7 +11,7 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with details on the voting record of a member of the House of Lords
+#' @return A tibble with details on the voting record of a member of the House of Lords
 #'
 #' @export
 #' @examples \dontrun{

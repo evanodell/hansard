@@ -14,7 +14,7 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to \code{NULL}.}
+\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to \code{NULL}. Only accepts a single division ID at a time, but to return details on a vector of division IDs use with \code{lapply}.}
 
 \item{summary}{If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
 
@@ -34,14 +34,12 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
 A tibble with the results of divisions in the House of Commons.
 }
 \description{
-Imports data on House of Commons divisions, either full details on how each member voted, or a summary of vote totals.
+Imports data on House of Commons divisions (votes), either full details on how each member voted, or a summary of vote totals.
 }
 \examples{
 \dontrun{
-
 x <- commons_divisions()
 
 x <- commons_divisions(division_id = 694163, summary = FALSE)
-
 }
 }

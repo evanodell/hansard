@@ -42,11 +42,9 @@ Includes the content, signatories, and sponsors of early day motions.
 }
 \examples{
 \dontrun{
-
 x <- early_day_motions(edm_id = 1073)
 
 x <- early_day_motions(edm_id = 1073, session='2015/16')
-
 }
 }
 \seealso{

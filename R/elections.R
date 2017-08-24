@@ -11,14 +11,12 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with details on all elections from the 2010 general election onwards, subject to function parameters. Includes the election ID, the date, and the type of election(s).
+#' @return A tibble with details on all elections from the 2010 general election onwards, subject to function parameters. Includes the election ID, the date, and the type of election(s).
 #'
-### @keywords Elections
 #' @seealso \code{\link{election_results}}
 #' @seealso \code{\link{election_candidates}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- elections(517994)
 #' }
 
@@ -48,9 +46,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01", end_dat
     } else {
 
         if (is.null(type) == FALSE) {
-
-            type_query <- paste0("&electionType=", type)
-            type_query <- utils::URLencode(type_query)
+            type_query <- utils::URLencode(paste0("&electionType=", type))
         } else {
             type_query <- NULL
         }

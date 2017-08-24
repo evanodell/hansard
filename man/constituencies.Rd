@@ -30,11 +30,9 @@ Imports data on House of Commons constituencies, returning a tibble of all curre
 }
 \examples{
 \dontrun{
-
 x <- constituencies()
 
 x <- constituencies(current = FALSE)
-
 }
 
 }

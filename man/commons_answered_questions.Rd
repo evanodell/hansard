@@ -15,9 +15,9 @@ hansard_commons_answered_questions(answering_department = NULL,
   verbose = FALSE)
 }
 \arguments{
-\item{answering_department}{Accepts the name of a department or an array of department names.  Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to \code{NULL}.}
+\item{answering_department}{Accepts the name of a department or a vector of department names.  Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to \code{NULL}.}
 
-\item{answered_by}{Accepts the ID of an MP, or an array of IDs. Returns a tibble with all answered questions in the House of Commons by the given MP(s). Defaults to \code{NULL}.}
+\item{answered_by}{Accepts the ID of an MP, or a vector of IDs. Returns a tibble with all answered questions in the House of Commons by the given MP(s). Defaults to \code{NULL}.}
 
 \item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
@@ -38,16 +38,14 @@ A tibble with details on all answered questions in the House of Commons.
 Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.
 }
 \details{
-If \code{answering_department} and/or \code{answered_by} are given arrays with multiple deparments/IDs, all possible combination of that criteria is returned.
+If \code{answering_department} and/or \code{answered_by} are given vectors with multiple deparments/IDs, all possible combination of those criteria are returned.
 }
 \examples{
 \dontrun{
-
 x <- commons_answered_questions(answering_department = c('health','education'),
                                 answered_by = c('4019', '1542', '111'), start_date = '2017-01-01')
 
 x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
-
 }
 }
 \seealso{

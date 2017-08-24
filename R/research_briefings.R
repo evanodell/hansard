@@ -9,8 +9,7 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with details on parliamentary research briefings on the given topic.
-#'
+#' @return A tibble with details on parliamentary research briefings on the given topic.
 #' @seealso \code{\link{research_subtopics_list}}
 #' @seealso \code{\link{research_types_list}}
 #' @seealso \code{\link{research_topics_list}}
@@ -35,8 +34,6 @@
 #' research_types_list <- research_types_list()
 #'
 #' x <- research_briefings(type = research_types_list[[3]])
-#'
-#'
 #' }
 
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

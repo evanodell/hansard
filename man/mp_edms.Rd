@@ -3,7 +3,7 @@
 \name{mp_edms}
 \alias{mp_edms}
 \alias{hansard_mp_edms}
-\title{Early Day Motions by MP}
+\title{Early Day Motions by MP or Peer}
 \usage{
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
@@ -16,7 +16,7 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID number of an MP. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.}
+\item{mp_id}{The ID number of an MP or Peer. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.}
 
 \item{primary_sponsor}{Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to \code{TRUE}.}
 
@@ -42,15 +42,13 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
 A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.
 }
 \description{
-Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
+Imports data on early day motions signed, sponsored or primarily sponsored by a given MP or Peer.
 }
 \examples{
 \dontrun{
-
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
 
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)
-
 }
 }
 \seealso{

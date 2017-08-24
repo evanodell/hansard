@@ -55,8 +55,6 @@ x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 research_types_list <- research_types_list()
 
 x <- research_briefings(type = research_types_list[[3]])
-
-
 }
 }
 \seealso{

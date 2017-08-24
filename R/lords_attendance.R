@@ -12,12 +12,9 @@
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #' @return  Returns a tibble with details on the lords who attended a given session.
 #'
-### @keywords House of Lords Attendance
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- lords_attendance(session_id = 706178)
-#'
 #' }
 
 lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

@@ -42,5 +42,4 @@ x <- papers_laid(withdrawn = FALSE, house = 'commons')
 
 x <- papers_laid(withdrawn = TRUE, house = NULL)
 }
-
 }

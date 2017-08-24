@@ -15,13 +15,11 @@
 #' \item{research_types_list}{A list of types of Parliamentary Research Briefings}
 #' }
 #' @examples  \dontrun{
-#'
 #' research_topics_list <- research_topics_list()
 #'
 #' research_subtopics_list <- research_subtopics_list()
 #'
 #' research_types_list <- research_types_list()
-#'
 #' }
 #'
 research_topics_list <- function() {

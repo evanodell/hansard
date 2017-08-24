@@ -7,7 +7,7 @@
 hansard_generic(path)
 }
 \arguments{
-\item{path}{The url path to the data you wish to retrieve}
+\item{path}{The url path to the data you wish to retrieve.}
 }
 \description{
 A semi-generic function for the parliamentary API. Provides greater flexibility, including any newly released features or data not yet included in the individual functions of the hansard package. Users must specify '.json' in their path.

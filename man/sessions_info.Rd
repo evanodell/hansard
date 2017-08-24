@@ -36,10 +36,8 @@ Imports data on Parliamentary Sessions. Note that due to the date format used by
 }
 \examples{
 \dontrun{
-
 x <- sessions_info(days=TRUE)
 
 y <- sessions_info(days=FALSE)
-
 }
 }

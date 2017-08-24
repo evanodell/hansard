@@ -77,8 +77,7 @@ The results of votes in the House of Lords can be retrieved with the `lords_divi
 
 ### Multiple Parameter Functions
 
-The following functions accept arrays for member ID parameters and departmental parameters (where applicable):
-
+The following functions accept vectors of member IDs and departmental names for applicable parameters:
 
 * `all_answered_questions()`
 

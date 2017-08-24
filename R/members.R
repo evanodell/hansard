@@ -2,15 +2,17 @@
 
 #' Members of Both Houses
 #'
-#' Imports data on all current and former Members of Parliament including the Lords and the Commons
-#' @param ID The ID of a member of the House of Commons or the House of Lords. Defaults to \code{NULL}. If \code{NULL}, returns a tibble of all members. If not NULL, returns a tibble with basic information on that member.
+#' Imports basic details on current and former Members of Parliament including the Lords and the Commons.
+#'
+#' For more details on a given member see \code{\link[mnis]{mnis_full_biog}}.
+#'
+#' @param ID The ID of a member of the House of Commons or the House of Lords to return data on. If \code{NULL}, returns a tibble of all members. Defaults to \code{NULL}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with data on members of the House of Commons and/or the House of Lords.
+#' @return A tibble with data on members of the House of Commons and/or the House of Lords.
 #'
-### @keywords All Members of Parliament
 #' @export
 #' @section Member details functions:
 #' \describe{
@@ -25,7 +27,6 @@
 #' x <- commons_members()
 #'
 #' x <- lords_members()
-#'
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

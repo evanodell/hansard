@@ -1,10 +1,7 @@
 
-#'
 #' Commons oral question times
 #'
 #' Imports data on House of Commons oral question times.
-#'
-#'
 #'
 #' @param session Accepts a session in format \code{yyyy/yy} (e.g. \code{2016/17}) and returns a tibble of all oral question times from that session
 #' @param question_id Accepts a question time ID, and returns a tibble of that question time.
@@ -12,7 +9,7 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with information on oral question times in the House of Commons.
+#' @return A tibble with information on oral question times in the House of Commons.
 ### @keywords Oral Questions Time
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_answered_questions}}
@@ -22,9 +19,7 @@
 #' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
-#'
-#'  x <- commons_oral_question_times(session='2016/17', question_id='685697')
-#'
+#' x <- commons_oral_question_times(session='2016/17', question_id='685697')
 #' }
 
 commons_oral_question_times <- function(session = NULL, question_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

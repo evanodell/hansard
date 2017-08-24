@@ -11,12 +11,12 @@ test_that("papers laid, publications, sessions, tv part 2, functions return expe
     # expect_true(tibble::is_tibble(tvclipsempty))
     # expect_equal(nrow(tvclipsempty), 378)
     #
-     tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11", end_date = "2017-01-12", verbose = TRUE)
-     expect_length(tvclipsmp, 7)
-     expect_type(tvclipsmp, "list")
-     expect_true(tibble::is_tibble(tvclipsmp))
+    tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11", end_date = "2017-01-12", verbose = TRUE)
+    expect_length(tvclipsmp, 7)
+    expect_type(tvclipsmp, "list")
+    expect_true(tibble::is_tibble(tvclipsmp))
 
-    chan <- hansard_tv_channels()
+    chan <- hansard_tv_channels(verbose=TRUE)
     expect_length(chan, 3)
     expect_type(chan, "list")
     expect_true(tibble::is_tibble(chan))
@@ -32,12 +32,12 @@ test_that("papers laid, publications, sessions, tv part 2, functions return expe
     expect_type(gen, "list")
     expect_true(tibble::is_tibble(gen))
 
-    sessdays <- hansard_sessions_info(days = TRUE, start_date = "2017-01-01", end_date = "2017-01-10")
+    sessdays <- hansard_sessions_info(days = TRUE, start_date = "2017-01-01", end_date = "2017-01-10", verbose=TRUE)
     expect_length(sessdays, 7)
     expect_type(sessdays, "list")
     expect_true(tibble::is_tibble(sessdays))
 
-    sess <- hansard_sessions_info(days = FALSE)
+    sess <- hansard_sessions_info(days = FALSE, verbose=TRUE)
     expect_length(sess, 9)
     expect_type(sess, "list")
     expect_true(tibble::is_tibble(sess))

@@ -14,9 +14,9 @@ hansard_commons_written_questions(mp_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{Accepts a member ID or an array of member IDs and returns a tibble with all written questions asked by that MP or array of MPs. If \code{NULL}, mp_id is not included as a query parameter. Defaults to \code{NULL}.}
+\item{mp_id}{Accepts a member ID or a vector of member IDs and returns a tibble with all written questions asked by that MP or vector of MPs. If \code{NULL}, mp_id is not included as a query parameter. Defaults to \code{NULL}.}
 
-\item{answering_department}{Accepts a string with a department name or partial name, or an array of such strings. The query acts as a search, so passing \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.}
+\item{answering_department}{Accepts a string with a department name or partial name, or a vector of such strings. The query acts as a search, so passing \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.}
 
 \item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
@@ -38,15 +38,11 @@ Imports data in a tibble on House of Commons written questions.
 }
 \examples{
 \dontrun{
-
 x <- commons_written_questions(mp_id=410, 'cabinet office')
 #Returns a tibble with written questions from Jon Trickett, answered by the Cabinet Office.
 
 x <- commons_written_questions(mp_id=c(410,172), c('cabinet','home'))
 # Returns a tibble with written questions from Jon Trickett or Diane Abbot,
 # and answered by the Cabinet Office or the Home Office.
-
-
-
 }
 }

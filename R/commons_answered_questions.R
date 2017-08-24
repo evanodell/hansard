@@ -4,10 +4,10 @@
 #'
 #' Imports data on House of Commons answered questions. If all parameters are left empty, imports all available answered questions in a tibble.
 #'
-#' If \code{answering_department} and/or \code{answered_by} are given arrays with multiple deparments/IDs, all possible combination of that criteria is returned.
+#' If \code{answering_department} and/or \code{answered_by} are given vectors with multiple deparments/IDs, all possible combination of those criteria are returned.
 #'
-#' @param answering_department Accepts the name of a department or an array of department names.  Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to \code{NULL}.
-#' @param answered_by Accepts the ID of an MP, or an array of IDs. Returns a tibble with all answered questions in the House of Commons by the given MP(s). Defaults to \code{NULL}.
+#' @param answering_department Accepts the name of a department or a vector of department names.  Returns a tibble with all answered questions in the House of Commons from the given department. Defaults to \code{NULL}.
+#' @param answered_by Accepts the ID of an MP, or a vector of IDs. Returns a tibble with all answered questions in the House of Commons by the given MP(s). Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
@@ -21,15 +21,12 @@
 #' @seealso \code{\link{commons_written_questions}}
 #' @seealso \code{\link{lords_written_questions}}
 #' @seealso \code{\link{mp_questions}}
-### @keywords bills
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- commons_answered_questions(answering_department = c('health','education'),
 #'                                 answered_by = c('4019', '1542', '111'), start_date = '2017-01-01')
 #'
 #' x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
-#'
 #' }
 
 
@@ -111,4 +108,3 @@ hansard_commons_answered_questions <- function(answering_department = NULL, answ
   df
 
 }
-

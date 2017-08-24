@@ -3,7 +3,7 @@
 \name{epetition}
 \alias{epetition}
 \alias{hansard_epetition}
-\title{Individual epititions}
+\title{Individual epetitions}
 \usage{
 epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
@@ -12,7 +12,7 @@ hansard_epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{ID}{The ID of a given petition. If \code{NULL}, returns all petitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}} for a greater degree of flexibility when querying all petitions.}
+\item{ID}{The ID of a given petition. If \code{NULL}, returns all epetitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}} for a greater degree of flexibility when querying all epetitions.}
 
 \item{by_constituency}{Accepts either \code{TRUE} or \code{FALSE}. If \code{TRUE}, provides a tibble with a breakdown of signatures for each petition, by constituency. Defaults to \code{FALSE}.}
 
@@ -28,13 +28,11 @@ hansard_epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 A tibble with details on electronic petitions submitted to parliament.
 }
 \description{
-Imports data on a given epetition. For bulk details on epitions, see \code{\link{epetition_tibble}}.
+Imports data on a given epetition. For bulk epetion data, see \code{\link{epetition_tibble}}.
 }
 \examples{
 \dontrun{
-
 x <- epetition(ID = 706964, by_constituency=TRUE)
-
 }
 }
 \seealso{

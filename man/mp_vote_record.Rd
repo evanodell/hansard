@@ -47,6 +47,5 @@ x <- mp_vote_record(172, lobby='aye')
 x <- mp_vote_record(172, lobby='no')
 
 x <- mp_vote_record(172, session = '2016/17')
-
 }
 }

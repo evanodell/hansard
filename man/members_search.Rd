@@ -28,11 +28,9 @@ Function searches for the string and returns a tibble with all matches from both
 }
 \examples{
 \dontrun{
-
 x <- members_search('chris')
 
 x <- members_search(search='chris')
-
 }
 }
 \seealso{

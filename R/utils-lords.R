@@ -1,10 +1,9 @@
 
-# lords_written_questions_multiple -----------------------------------------
-# lords Written questions multiple function
+# lords_written_questions_multiple ----------------------------------------- lords Written questions multiple function
 
-lwq_multi <- function(answering_department, peer_id, start_date, end_date, extra_args, verbose){
+lwq_multi <- function(answering_department, peer_id, start_date, end_date, extra_args, verbose) {
 
-  if(is.null(peer_id)==TRUE){
+  if (is.null(peer_id) == TRUE) {
 
     mp_id_list <- NA
 
@@ -14,7 +13,7 @@ lwq_multi <- function(answering_department, peer_id, start_date, end_date, extra
 
   }
 
-  if(is.null(answering_department)==TRUE){
+  if (is.null(answering_department) == TRUE) {
 
     dep_list <- NA
 
@@ -26,14 +25,14 @@ lwq_multi <- function(answering_department, peer_id, start_date, end_date, extra
 
   search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
-  names(search_grid)[names(search_grid)=="Var1"] <-"department"
-  names(search_grid)[names(search_grid)=="Var2"] <-"member"
+  names(search_grid)[names(search_grid) == "Var1"] <- "department"
+  names(search_grid)[names(search_grid) == "Var2"] <- "member"
 
   dat <- vector("list", nrow(search_grid))
 
   for (i in 1:nrow(search_grid)) {
 
-    dat[[i]] <- hansard::lords_written_questions(answering_department=search_grid$department[[i]], peer_id = search_grid$member[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose=verbose, tidy = FALSE)
+    dat[[i]] <- hansard::lords_written_questions(answering_department = search_grid$department[[i]], peer_id = search_grid$member[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose = verbose, tidy = FALSE)
 
   }
 
@@ -48,18 +47,11 @@ lwq_multi <- function(answering_department, peer_id, start_date, end_date, extra
 }
 
 
+# lords Written questions tidy function ------------------------------------------- Tidy up Lords Written Questions
 
+lwq_tidy <- function(df, tidy_style) {
 
-
-
-
-
-# lords Written questions tidy function -------------------------------------------
-##Tidy up Lords Written Questions
-
-lwq_tidy <- function(df, tidy_style){
-
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$dateTabled._value <- as.POSIXct(df$dateTabled._value)
 
@@ -115,6 +107,48 @@ lords_division_tidy <- function(df, division_id, summary, tidy_style) {
 }
 
 
+# lords division summary tidy function -------------------------------------------
+
+ldsum_tidy <- function(df, tidy_style) {
+
+  if (nrow(df) > 0) {
+
+    df$date._value <- as.POSIXct(df$date._value)
+
+    df$date._datatype <- "POSIXct"
+
+    df$vote.type <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type)
+
+    df$vote.type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type)
+
+    df$vote.member <- unlist(df$vote.member)
+
+    df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
+
+    if (tidy_style == "camelCase") {
+
+      df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
+
+      substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
+
+    } else if (tidy_style == "period.case") {
+
+      df$vote.type <- gsub("_", ".", df$vote.type)
+
+      df$vote.type <- tolower(df$vote.type)
+
+    } else {
+
+      df$vote.type <- tolower(df$vote.type)
+
+    }
+
+  }
+
+  df
+
+}
+
 # lords vote record tidy function -------------------------------------------
 
 
@@ -154,7 +188,6 @@ lords_amendments_tidy <- function(df, tidy_style) {
 
 # lords attendance tidy function -------------------------------------------
 
-
 lords_attendance_tidy <- function(df, tidy_style) {
 
   if (nrow(df) > 0) {
@@ -173,46 +206,119 @@ lords_attendance_tidy <- function(df, tidy_style) {
 
 
 
-# lords division summary tidy function -------------------------------------------
+
+# lords_interests_tidy2 ----------------------------------------------------
+##For single peers data
 
 
+lords_interests_tidy <- function(df, tidy_style) {
 
-ldsum_tidy <- function(df, tidy_style){
+  if (nrow(df) > 0) {
 
-  if(nrow(df)>0){
+    for (i in 1:nrow(df)) {
+
+      if (is.null(df$amendedDate[[i]]) == FALSE) {
+
+        df$amendedDate[[i]] <- as.POSIXct(df$amendedDate[[i]][[1]])
+
+      }
+
+    }
+
+    df$amendedDate[df$amendedDate == "NULL"] <- NA
 
     df$date._value <- as.POSIXct(df$date._value)
 
     df$date._datatype <- "POSIXct"
 
-    df$vote.type <- gsub("http://data.parliament.uk/schema/parl#", "", df$vote.type)
+    df$registeredLate._value <- as.logical(df$registeredLate._value)
 
-    df$vote.type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$vote.type)
+    df$registeredLate._datatype <- "Logical"
 
-    df$vote.member <- unlist(df$vote.member)
+  }
 
-    df$vote.member <- gsub("http://data.parliament.uk/resources/members/api/lords/id/", "", df$vote.member)
+  df <- hansard_tidy(df, tidy_style)
 
-    if (tidy_style == "camelCase") {
+  df
 
-      df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
+}
 
-      substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
+# lords_interests_tidy2 ----------------------------------------------------
+##For all peers data
 
-    } else if (tidy_style == "period.case") {
+lords_interests_tidy2 <- function(df, tidy_style) {
 
-      df$vote.type <- gsub("_", ".", df$vote.type)
+  if (nrow(df) > 0) {
 
-      df$vote.type <- tolower(df$vote.type)
+    for (i in 1:nrow(df)) {
 
-    } else {
+      df[i, ]$hasRegisteredInterest[[1]] <- as.data.frame(df[i, ]$hasRegisteredInterest)
 
-      df$vote.type <- tolower(df$vote.type)
+    }
+
+    for (i in 1:nrow(df)) {
+
+      if ("amendedDate" %in% colnames(df[i, ]$hasRegisteredInterest[[1]])) {#
+
+        for (x in 1:nrow(df[i, ]$hasRegisteredInterest[[1]])) {
+
+          if (is.null(df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]) == FALSE) {
+
+            df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]] <- df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]][['_value']]
+
+          }
+
+        }
+
+        df[i, ]$hasRegisteredInterest[[1]]$amendedDate[df[i, ]$hasRegisteredInterest[[1]]$amendedDate == "NULL"] <- NA
+
+        df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- do.call("c", df[i, ]$hasRegisteredInterest[[1]]$amendedDate)
+
+      }#
+
+        df[i, ]$hasRegisteredInterest[[1]]$date._value <- as.POSIXct(df[i, ]$hasRegisteredInterest[[1]]$date._value)
+
+        df[i, ]$hasRegisteredInterest[[1]]$date._datatype <- "POSIXct"
+
+        df[i, ]$hasRegisteredInterest[[1]]$registeredLate._value <- as.logical(df[i, ]$hasRegisteredInterest[[1]]$registeredLate._value)
+
+        df[i, ]$hasRegisteredInterest[[1]]$registeredLate._datatype <- "Logical"
+
+        names(df[i, ]$hasRegisteredInterest[[1]])[names(df[i, ]$hasRegisteredInterest[[1]])=="X_about"] <- "registeredInterestNumber"
+
+        names(df[i, ]$hasRegisteredInterest[[1]])[names(df[i, ]$hasRegisteredInterest[[1]])=="_about"] <- "registeredInterestNumber"
+
+        df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber <- gsub(".*registeredinterest/", "", df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber)
+
+
+
+      df[i, ]$hasRegisteredInterest[[1]] <- hansard_tidy(df[i, ]$hasRegisteredInterest[[1]], tidy_style)
 
     }
 
   }
 
+  df <- hansard_tidy(df, tidy_style)
+
   df
 
 }
+
+
+
+dd <- as.Date(c("2013-01-01", "2013-02-01", "2013-03-01"))
+class(dd)
+
+unlist(dd)
+
+list(dd)
+unlist(list(dd))
+
+
+dd <- list(dd)
+(d <- do.call("c", dd))
+
+class(d) # proof that class is still Date
+
+
+

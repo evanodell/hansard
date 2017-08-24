@@ -25,9 +25,7 @@ Returns a tibble with all possible bill stage types.
 }
 \examples{
 \dontrun{
-
 x <- bill_stage_types()
-
 }
 }
 \seealso{

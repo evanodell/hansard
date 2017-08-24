@@ -9,7 +9,7 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with details on TV broadcasts.
+#' @return A tibble with details on TV broadcasts.
 #'
 #' @section TV Programme functions:
 #' \describe{
@@ -17,14 +17,9 @@
 #' \item{tv_clips}{Clips of a given MP or Peer}
 #' \item{tv_channels}{Details on the different parliamentary TV channels}
 #' }
-#'
-#'
-### @keywords TV
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
-#'
 #' }
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
@@ -98,7 +93,7 @@ hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
 
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.
-#' @return  A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+#' @return A tibble with details on TV broadcasts featuring the given MP, or all available clips.
 #'
 #' @export
 #' @rdname tv_programmes
@@ -162,7 +157,7 @@ hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date =
 
 
 #' @rdname tv_programmes
-#' @return  A tibble with details on the different broadcasting channels.
+#' @return A tibble with details on the different broadcasting channels.
 #'
 ### @keywords TV
 #' @export

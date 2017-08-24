@@ -2,7 +2,7 @@
 
 #' Bill data
 #'
-#' Imports data on House of Commons and House of Lords bills
+#' Imports data on House of Commons and House of Lords bills.
 #'
 #' @param ID The ID of a given bill to return data on. If \code{NULL}, returns all bills, subject to other parameters. Defaults to \code{NULL}.
 #' @param amendments If \code{TRUE}, returns all bills with amendments. Defaults to \code{FALSE}.
@@ -12,12 +12,11 @@
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with details on bills before the House of Lords and the House of Commons.
+#' @return A tibble with details on bills before the House of Lords and the House of Commons.
 ### @keywords bills
 #' @seealso \code{\link{bill_stage_types}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- bills()
 #'
 #' x <- bills(amendments=TRUE)
@@ -25,7 +24,6 @@
 #' x <- bills(1719)
 #'
 #' x <- bills(start_date ='2016-01-01')
-#'
 #' }
 
 bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

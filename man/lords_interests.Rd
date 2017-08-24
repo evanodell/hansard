@@ -3,7 +3,7 @@
 \name{lords_interests}
 \alias{lords_interests}
 \alias{hansard_lords_interests}
-\title{Peers' interests}
+\title{Peers' registered interests}
 \usage{
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
@@ -27,4 +27,11 @@ A tibble with details on the interests of peers in the House of Lords.
 }
 \description{
 Registered interests of members of the House of Lords.
+}
+\examples{
+\dontrun{
+x <- lords_interests(4170)
+
+y <- lords_interests()
+}
 }

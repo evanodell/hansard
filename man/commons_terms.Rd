@@ -32,10 +32,8 @@ Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at
 }
 \examples{
 \dontrun{
-
 x <- commons_terms(search='estate')
 
 x <- commons_terms(search='estate', class='ORG')
-
 }
 }

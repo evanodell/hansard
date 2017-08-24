@@ -12,10 +12,8 @@
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #'
-### @keywords Publication Logs
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- publication_logs(house='commons')
 #'
 #' x <- publication_logs(683267)

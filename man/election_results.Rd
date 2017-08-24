@@ -34,11 +34,10 @@ hansard_election_results(ID = NULL, all_data = FALSE,
 A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 }
 \description{
-Imports data on general election and by-election results from the 2010 general election onwards.
+Imports results from general and by-elections from the 2010 general election onwards.
 }
 \examples{
 \dontrun{
-
 x <- election_results(ID=382037)
 
 y <- election_results()
@@ -46,7 +45,6 @@ y <- election_results()
 z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 
 w <- election_results(ID=730039, all_data=TRUE)
-
 }
 }
 \seealso{

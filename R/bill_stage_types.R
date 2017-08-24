@@ -9,9 +9,7 @@
 #' @seealso \code{\link{bills}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- bill_stage_types()
-#'
 #' }
 
 bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

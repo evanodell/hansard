@@ -7,16 +7,13 @@
 #' @param tidy Fix the variable names in the tibble to remove extra characters, superfluous text and convert variable names to snake_case. For the `members_search` function it also changes the '_about' column name to 'mnis_id' (or 'mnisId' or 'mnis.id', depending on the value of the `tidy_text` parameter, and removes the URL to preserve only the numerical ID. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return  A tibble with the results of the search.
-#'
+#' @return A tibble with the results of the search.
 #' @seealso \code{\link{members}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- members_search('chris')
 #'
 #' x <- members_search(search='chris')
-#'
 #' }
 
 members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {

@@ -1,8 +1,8 @@
 
-#' Early Day Motions by MP
+#' Early Day Motions by MP or Peer
 #'
-#' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP.
-#' @param mp_id The ID number of an MP. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
+#' Imports data on early day motions signed, sponsored or primarily sponsored by a given MP or Peer.
+#' @param mp_id The ID number of an MP or Peer. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.
 #' @param primary_sponsor Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to \code{TRUE}.
 #' @param sponsor Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to \code{TRUE}.
 #' @param signatory Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to \code{TRUE}.
@@ -18,11 +18,9 @@
 #' @seealso \code{\link{early_day_motions}}
 #' @export
 #' @examples \dontrun{
-#'
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
 #'
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)
-#'
 #' }
 
 
