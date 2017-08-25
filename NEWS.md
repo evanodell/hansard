@@ -3,10 +3,11 @@
 
 ## General improvements
 
-Speeding up of some tests
+Speeding up of some tests.
 
-Better tidying on `lords_interests()`
+Better tidying on `lords_interests()`.
 
+Changes to structure of `lord_vote_record()` to make it slightly faster and more consistent with other functions.
 
 
 # hansard 0.5.3

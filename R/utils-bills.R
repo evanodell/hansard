@@ -1,4 +1,4 @@
-
+###tidying bills datas
 
 bills_tidy <- function(df, tidy_style){
 

@@ -13,7 +13,7 @@ test_that("commons functions return expected format", {
 
     # Divisions
 
-    xcd <- hansard_commons_divisions(division_id = 694163, summary = FALSE)
+    xcd <- hansard_commons_divisions(division_id = 694163, summary = FALSE, verbose=TRUE)
     expect_length(xcd, 6)
     expect_type(xcd, "list")
     expect_true(tibble::is_tibble(xcd))
@@ -23,13 +23,13 @@ test_that("commons functions return expected format", {
     expect_type(xcds, "list")
     expect_true(tibble::is_tibble(xcds))
 
-    xcdall <- hansard_commons_divisions(start_date = "2017-02-01", end_date = "2017-03-01")
+    xcdall <- hansard_commons_divisions(start_date = "2017-02-01", end_date = "2017-03-01", verbose=TRUE)
     expect_length(xcdall, 5)
     expect_type(xcdall, "list")
     expect_true(tibble::is_tibble(xcdall))
 
     # Divisions by Date
-    cdd <- commons_division_date("2017-02-24")
+    cdd <- commons_division_date("2017-02-24", verbose=TRUE)
     expect_length(cdd, 5)
     expect_type(cdd, "list")
     expect_true(tibble::is_tibble(cdd))
@@ -41,7 +41,7 @@ test_that("commons functions return expected format", {
     expect_type(xcoqt, "list")
     expect_true(tibble::is_tibble(xcoqt))
 
-    xcoqs <- hansard_commons_oral_question_times(session = "2015/16")
+    xcoqs <- hansard_commons_oral_question_times(session = "2015/16", verbose=TRUE)
     expect_length(xcoqs, 14)
     expect_type(xcoqs, "list")
     expect_true(tibble::is_tibble(xcoqs))

@@ -25,21 +25,29 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
         house <- tolower(house)
 
         if (house == "commons") {
-            house <- "&legislature.prefLabel=House of Commons"
-            house <- utils::URLencode(house)
+
+            house <- utils::URLencode("&legislature.prefLabel=House of Commons")
+
         } else if (house == "lords") {
-            house <- "&legislature.prefLabel=House of Lords"
-            house <- utils::URLencode(house)
+
+            house <- utils::URLencode("&legislature.prefLabel=House of Lords")
+
         } else {
+
             house <- NULL
+
         }
 
     }
 
     if (withdrawn == TRUE) {
+
         query <- "&withdrawn=true"
+
     } else {
+
         query <- "&withdrawn=false"
+
     }
 
     dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=", as.Date(start_date))

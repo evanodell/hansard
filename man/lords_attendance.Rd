@@ -29,7 +29,7 @@ hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \value{
-Returns a tibble with details on the lords who attended a given session.
+A tibble with details on the lords who attended a given session.
 }
 \description{
 Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.

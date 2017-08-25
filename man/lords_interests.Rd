@@ -26,7 +26,7 @@ hansard_lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 A tibble with details on the interests of peers in the House of Lords.
 }
 \description{
-Registered interests of members of the House of Lords.
+Registered financial interests of members of the House of Lords. If \code{peer_id=NULL} the actual details of registered interests are stored in a nested data frame.
 }
 \examples{
 \dontrun{

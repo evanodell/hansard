@@ -1,7 +1,7 @@
 
 #' Peers' registered interests
 #'
-#' Registered interests of members of the House of Lords.
+#' Registered financial interests of members of the House of Lords. If \code{peer_id=NULL} the actual details of registered interests are stored in a nested data frame.
 #' @param peer_id The ID of a member of the House of lords. If \code{NULL}, returns a tibble with all listed financial interests for all members. Defaults to \code{NULL}.
 #' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
 #' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.

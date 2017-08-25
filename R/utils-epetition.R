@@ -1,9 +1,9 @@
+
 ### tidy function for epetition_tibble
 
+epetition_tibble_tidy <- function(df, tidy_style) {
 
-epetition_tibble_tidy <- function(df, tidy_style){
-
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$created._value <- gsub("T", " ", df$created._value)
 

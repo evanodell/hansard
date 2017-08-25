@@ -1,10 +1,9 @@
 
 # commons_oral_questions_multi -----------------------------------------
 
+commons_oral_questions_multi <- function(mp_id, answering_department, start_date, end_date, extra_args, verbose) {
 
-commons_oral_questions_multi <- function(mp_id, answering_department, start_date, end_date, extra_args, verbose){
-
-  if(is.null(mp_id)==TRUE){
+  if (is.null(mp_id) == TRUE) {
 
     mp_id_list <- NA
 
@@ -14,7 +13,7 @@ commons_oral_questions_multi <- function(mp_id, answering_department, start_date
 
   }
 
-  if(is.null(answering_department)==TRUE){
+  if (is.null(answering_department) == TRUE) {
 
     dep_list <- NA
 
@@ -26,14 +25,14 @@ commons_oral_questions_multi <- function(mp_id, answering_department, start_date
 
   search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
-  names(search_grid)[names(search_grid)=="Var1"] <-"department"
-  names(search_grid)[names(search_grid)=="Var2"] <-"member"
+  names(search_grid)[names(search_grid) == "Var1"] <- "department"
+  names(search_grid)[names(search_grid) == "Var2"] <- "member"
 
   dat <- vector("list", nrow(search_grid))
 
   for (i in 1:nrow(search_grid)) {
 
-    dat[[i]] <- hansard::commons_oral_questions(mp_id=search_grid$member[[i]], answering_department  = search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose=verbose, tidy = FALSE)
+    dat[[i]] <- hansard::commons_oral_questions(mp_id = search_grid$member[[i]], answering_department = search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose = verbose, tidy = FALSE)
 
   }
 
@@ -51,9 +50,9 @@ commons_oral_questions_multi <- function(mp_id, answering_department, start_date
 
 # commons_written_questions_multi -----------------------------------------
 
-commons_written_questions_multi <- function(mp_id, answering_department, start_date, end_date, extra_args, verbose){
+commons_written_questions_multi <- function(mp_id, answering_department, start_date, end_date, extra_args, verbose) {
 
-  if(is.null(mp_id)==TRUE){
+  if (is.null(mp_id) == TRUE) {
 
     mp_id_list <- NA
 
@@ -63,7 +62,7 @@ commons_written_questions_multi <- function(mp_id, answering_department, start_d
 
   }
 
-  if(is.null(answering_department)==TRUE){
+  if (is.null(answering_department) == TRUE) {
 
     dep_list <- NA
 
@@ -75,14 +74,14 @@ commons_written_questions_multi <- function(mp_id, answering_department, start_d
 
   search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
-  names(search_grid)[names(search_grid)=="Var1"] <-"department"
-  names(search_grid)[names(search_grid)=="Var2"] <-"member"
+  names(search_grid)[names(search_grid) == "Var1"] <- "department"
+  names(search_grid)[names(search_grid) == "Var2"] <- "member"
 
   dat <- vector("list", nrow(search_grid))
 
   for (i in 1:nrow(search_grid)) {
 
-    dat[[i]] <- hansard::commons_written_questions(mp_id=search_grid$member[[i]], answering_department  = search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose=verbose, tidy = FALSE)
+    dat[[i]] <- hansard::commons_written_questions(mp_id = search_grid$member[[i]], answering_department = search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose = verbose, tidy = FALSE)
 
   }
 
@@ -103,7 +102,7 @@ commons_written_questions_multi <- function(mp_id, answering_department, start_d
 caq_multi <- function(answering_department, answered_by, start_date, end_date, extra_args, verbose) {
 
 
-  if(is.null(answered_by)==TRUE){
+  if (is.null(answered_by) == TRUE) {
 
     mp_id_list <- NA
 
@@ -113,7 +112,7 @@ caq_multi <- function(answering_department, answered_by, start_date, end_date, e
 
   }
 
-  if(is.null(answering_department)==TRUE){
+  if (is.null(answering_department) == TRUE) {
 
     dep_list <- NA
 
@@ -125,14 +124,14 @@ caq_multi <- function(answering_department, answered_by, start_date, end_date, e
 
   search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
-  names(search_grid)[names(search_grid)=="Var1"] <-"department"
-  names(search_grid)[names(search_grid)=="Var2"] <-"member"
+  names(search_grid)[names(search_grid) == "Var1"] <- "department"
+  names(search_grid)[names(search_grid) == "Var2"] <- "member"
 
   dat <- vector("list", nrow(search_grid))
 
   for (i in 1:nrow(search_grid)) {
 
-    dat[[i]] <- hansard::commons_answered_questions(answering_department=search_grid$department[[i]], answered_by  = search_grid$member[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose=verbose, tidy = FALSE)
+    dat[[i]] <- hansard::commons_answered_questions(answering_department = search_grid$department[[i]], answered_by = search_grid$member[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, verbose = verbose, tidy = FALSE)
 
   }
 
@@ -147,9 +146,12 @@ caq_multi <- function(answering_department, answered_by, start_date, end_date, e
 }
 
 
-caq_tidy <- function(df, tidy_style){
 
-  if(nrow(df)>0){
+# commons_answered_questions_multiple_tidy -----------------------------------------
+
+caq_tidy <- function(df, tidy_style) {
+
+  if (nrow(df) > 0) {
 
     df$dateOfAnswer._value <- as.POSIXct(df$dateOfAnswer._value)
 
@@ -169,9 +171,8 @@ caq_tidy <- function(df, tidy_style){
 
 
 # commons divisions date -----------------------------------------
-
-
 ### First tidying function
+
 cdd_tidy <- function(df, tidy_style) {
 
   if (nrow(df) > 0) {
@@ -258,9 +259,9 @@ cd_tidy <- function(df, tidy_style, division_id, summary) {
 ## commons_written_questions utilities -----------------------------------------
 
 
-cwq_tidy <- function(df, tidy_style){
+cwq_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
 
@@ -289,9 +290,9 @@ cwq_tidy <- function(df, tidy_style){
 ## commons_oral_questions_times utilities -----------------------------------------
 
 
-coqt_tidy <- function(df, tidy_style){
+coqt_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$date._value <- gsub("T", " ", df$date._value)
 
@@ -316,9 +317,9 @@ coqt_tidy <- function(df, tidy_style){
 
 ## commons_oral_questions utilities -----------------------------------------
 
-coq_tidy <- function(df, tidy_style){
+coq_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
 
@@ -329,12 +330,6 @@ coq_tidy <- function(df, tidy_style){
     df$AnswerDate._value <- as.POSIXct(df$AnswerDate._value)
 
     df$AnswerDate._datatype <- "POSIXct"
-
-    # df$modified._value <- gsub('T', ' ', df$modified._value)
-
-    # df$modified._value <- lubridate::parse_date_time(df$modified._value, 'Y-m-d H:M:S')
-
-    # df$modified._datatype <- 'POSIXct'
 
     df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
 
@@ -349,4 +344,3 @@ coq_tidy <- function(df, tidy_style){
   df
 
 }
-

@@ -31,112 +31,70 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
-    if (lobby == "content") {
+    lobby <- gsub("-", "", lobby)
 
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
+    lobby <- tolower(lobby)
 
-        if(verbose==TRUE){message("Connecting to API")}
+    if (lobby=="all") {
 
-        content <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
+      if(verbose==TRUE){message("Retrieving 'content' votes")}
 
-        jpage <- floor(content$result$totalResults/500)
+      df_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "content", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
 
-        pages <- list()
+      if(verbose==TRUE){message("Retrieving 'not-content' votes")}
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
+      df_not_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "notcontent", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
 
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
+      df <- dplyr::bind_rows(df_content, df_not_content)
 
-    } else if (lobby == "notcontent") {
-
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
-
-        if(verbose==TRUE){message("Connecting to API")}
-
-        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
-
-        jpage <- floor(notcontent$result$totalResults/500)
-
-        pages <- list()
-
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
+      df
 
     } else {
 
-        message("Retrieving content votes:")
-
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/content.json?mnisId="
+        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/"
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        content <- jsonlite::fromJSON(paste0(baseurl, peer_id,  dates, extra_args), flatten = TRUE)
+        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,  dates, extra_args), flatten = TRUE)
 
         jpage <- floor(content$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
+            mydata <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,  dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+            if(verbose==TRUE){
+              message("Retrieving page ", i + 1, " of ", jpage + 1)
+            }
             pages[[i + 1]] <- mydata$result$items
         }
 
-        df_content <- tibble::as_tibble(dplyr::bind_rows(pages))
+        df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-        if (nrow(df_content) > 0) {
+        if (nrow(df) > 0 & lobby=="content") {
 
-        df_content$vote <- "content"
+        df$vote <- "Content"
 
-        }
+        } else if(nrow(df) > 0){
 
-        message("Retrieving not content votes:")
-
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/notcontent.json?mnisId="
-
-        if(verbose==TRUE){message("Connecting to API")}
-
-        notcontent <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args), flatten = TRUE)
-
-        jpage <- floor(notcontent$result$totalResults/500)
-
-        pages <- list()
-
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, peer_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df_notcontent <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-        if (nrow(df_notcontent) > 0) {
-
-        df_notcontent$vote <- "not-content"
+          df$vote <- "Not-Content"
 
         }
 
-        df <- rbind(df_content, df_notcontent)
-        df$vote <- as.factor(df$vote)
-        df$date._datatype <- as.factor(df$date._datatype)
-        df$date._value <- as.POSIXct(df$date._value)
+        df
 
-    }
+
+    }### End of ELSE above
 
     if (nrow(df) == 0 && verbose==TRUE) {
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
         if (tidy == TRUE) {
+
+          df$vote <- as.factor(df$vote)
+          df$date._datatype <- as.factor(df$date._datatype)
+          df$date._value <- as.POSIXct(df$date._value)
 
           df <- lord_vote_record_tidy(df, tidy_style)
 

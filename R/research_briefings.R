@@ -38,6 +38,9 @@
 
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
+
+  if(verbose==TRUE){message("Connecting to API")}
+
     if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
 
         if (is.null(type) == FALSE) {
@@ -48,8 +51,6 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         }
 
         baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
-
-        if(verbose==TRUE){message("Connecting to API")}
 
         research <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
@@ -76,8 +77,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         }
 
         if (is.null(subtopic) == FALSE) {
-            subtopic <- utils::URLencode(subtopic)
-            subtopic_query <- paste0("/", subtopic)
+            subtopic_query <- utils::URLencode(paste0("/", subtopic))
         } else {
             subtopic_query <- NULL
         }
@@ -87,8 +87,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         }
 
         if (is.null(type) == FALSE) {
-            type <- utils::URLencode(type)
-            query <- paste0("&subType.prefLabel=", type)
+            query <- utils::URLencode(paste0("&subType.prefLabel=", type))
         } else {
             query <- NULL
         }

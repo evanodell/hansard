@@ -5,17 +5,17 @@ test_that("members vote record and questions functions return expected format", 
 
     skip_on_cran()
 
-    mpqs <- hansard_mp_questions(172, "all", start_date = "2015-02-01", end_date = "2015-07-01")
+    mpqs <- hansard_mp_questions(c(303,172), "all", start_date = "2015-02-01", end_date = "2015-07-01", verbose=TRUE)
     expect_length(mpqs, 11)
     expect_type(mpqs, "list")
     expect_true(tibble::is_tibble(mpqs))
 
-    mpoqs <- hansard_mp_questions(172, "oral", start_date = "2015-02-01", end_date = "2015-07-01")
+    mpoqs <- hansard_mp_questions(172, "oral", start_date = "2015-02-01", end_date = "2015-07-01", verbose=TRUE)
     expect_length(mpoqs, 24)
     expect_type(mpoqs, "list")
     expect_true(tibble::is_tibble(mpoqs))
 
-    mpvrall <- hansard_mp_vote_record(172, lobby = "all", start_date = "2017-01-01", end_date = "2017-03-01")
+    mpvrall <- hansard_mp_vote_record(172, lobby = "all", start_date = "2017-01-01", end_date = "2017-03-01", verbose=TRUE)
     expect_length(mpvrall, 6)
     expect_type(mpvrall, "list")
     expect_true(tibble::is_tibble(mpvrall))

@@ -2,13 +2,13 @@
 
 # elections tidying -------------------------------------------------------
 
-elections_tidy <- function(df, tidy_style){
+elections_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
-  df$date._value <- as.POSIXct(df$date._value)
+    df$date._value <- as.POSIXct(df$date._value)
 
-  df$date._datatype <- "POSIXct"
+    df$date._datatype <- "POSIXct"
 
   }
 
@@ -19,14 +19,12 @@ elections_tidy <- function(df, tidy_style){
 }
 
 
-
-
 ## election_candidates tidy function -------------------------------------------------------
 
 
-elect_can_tidy <- function(df, tidy_style){
+elect_can_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$election._about <- gsub("http://data.parliament.uk/resources/", "", df$election._about)
 

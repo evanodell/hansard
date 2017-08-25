@@ -30,6 +30,9 @@ hansard_publication_logs(ID = NULL, house = NULL,
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
+\value{
+A tibble with details from publications in the House of Commons and House of Lords
+}
 \description{
 Imports data on House of Commons and House of Lords publications.
 }

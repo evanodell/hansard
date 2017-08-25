@@ -40,7 +40,6 @@ Accepts an ID number for a member of the House of Commons, and returns a tibble 
 \dontrun{
 x <- mp_questions(172, 'all')
 }
-
 }
 \seealso{
 \code{\link{all_answered_questions}}

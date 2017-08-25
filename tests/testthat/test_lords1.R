@@ -6,7 +6,7 @@ test_that("lords functions return expected format", {
     skip_on_cran()
 
     # Voting Records
-    lvotesall <- hansard_lord_vote_record(530, lobby = "all", start_date = "2017-03-01", end_date = "2017-04-01")
+    lvotesall <- hansard_lord_vote_record(530, lobby = "all", start_date = "2017-03-01", end_date = "2017-04-01", verbose=TRUE)
     expect_length(lvotesall, 11)
     expect_type(lvotesall, "list")
     expect_true(tibble::is_tibble(lvotesall))
@@ -22,13 +22,13 @@ test_that("lords functions return expected format", {
     # expect_true(tibble::is_tibble(lvotescont))
 
     # Amendments
-    lamend <- hansard_lords_amendments(decision = "Agreed", start_date = "2017-03-17", end_date = "2017-03-18")
+    lamend <- hansard_lords_amendments(decision = "Agreed", start_date = "2017-03-17", end_date = "2017-03-18", verbose=TRUE)
     expect_length(lamend, 29)
     expect_type(lamend, "list")
     expect_true(tibble::is_tibble(lamend))
     expect_equal(nrow(lamend),28)
 
-    lamendnu <- hansard_lords_amendments(decision = NULL, start_date = "2017-03-17", end_date = "2017-03-20")
+    lamendnu <- hansard_lords_amendments(decision = NULL, start_date = "2017-03-17", end_date = "2017-03-20", verbose=TRUE)
     expect_length(lamendnu, 29)
     expect_type(lamendnu, "list")
     expect_true(tibble::is_tibble(lamendnu))

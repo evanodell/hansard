@@ -1,11 +1,9 @@
 
-
-
 # publication logs tidying ------------------------------------------------
 
-pub_tidy <- function(df, tidy_style){
+pub_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$publicationDate._value <- as.POSIXct(df$publicationDate._value)
 
@@ -18,5 +16,3 @@ pub_tidy <- function(df, tidy_style){
   df
 
 }
-
-

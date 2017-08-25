@@ -3,9 +3,9 @@
 
 # 1st tv tidying function -------------------------------------------------
 
-tv_tidy <- function(df, tidy_style){
+tv_tidy <- function(df, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
     df$startDate._value <- gsub("T", " ", df$startDate._value)
 
@@ -31,9 +31,9 @@ tv_tidy <- function(df, tidy_style){
 
   }
 
-    df <- hansard_tidy(df, tidy_style)
+  df <- hansard_tidy(df, tidy_style)
 
-    df
+  df
 
 }
 
@@ -43,21 +43,21 @@ tv_tidy <- function(df, tidy_style){
 
 tv_tidy2 <- function(df, mp_id, tidy_style) {
 
-  if(nrow(df)>0){
+  if (nrow(df) > 0) {
 
-    if(is.null(mp_id)==FALSE){
+    if (is.null(mp_id) == FALSE) {
 
-    df <- tidyr::unnest_(df, "member")
+      df <- tidyr::unnest_(df, "member")
 
-    names(df)[names(df)=="_about1"] <- "member_about"
+      names(df)[names(df) == "_about1"] <- "member_about"
 
-    names(df)[names(df)=="label._value"] <- "member_label_value"
+      names(df)[names(df) == "label._value"] <- "member_label_value"
 
-    df$member_label_value <- gsub("Biography information for ", "", df$member_label_value)
+      df$member_label_value <- gsub("Biography information for ", "", df$member_label_value)
 
-    df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
+      df$member_about <- gsub("http://data.parliament.uk/terms/", "", df$member_about)
 
-    df <- tibble::as.tibble(df)
+      df <- tibble::as.tibble(df)
 
     }
 
@@ -68,4 +68,3 @@ tv_tidy2 <- function(df, mp_id, tidy_style) {
   df
 
 }
-
