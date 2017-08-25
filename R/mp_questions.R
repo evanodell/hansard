@@ -31,26 +31,27 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
     stop("mp_id must not be empty", call. = FALSE)
   }
 
-  if (length(mp_id) > 1) {#for vectors of more than 1 ID
-
-    df <- mp_question_multi(mp_id, question_type, start_date, end_date, extra_args, verbose)
-
-  } else {
-
     question_type <- tolower(question_type)
+
+    if (length(mp_id) > 1) {#for vectors of more than 1 ID
+
+      df <- mp_question_multi(mp_id=mp_id, question_type=question_type, start_date = start_date, end_date = end_date, extra_args = extra_args, verbose = verbose)
+
+    } else {
+
 
     if (question_type == "all") {
       if (verbose == TRUE) {
         message("Retrieving oral questions")
       }
 
-      df_oral <- mp_questions(mp_id = mp_id, question_type = "oral", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose = verbose)
+      df_oral <- hansard::mp_questions(mp_id = mp_id, question_type = "oral", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
 
       if (verbose == TRUE) {
         message("Retrieving written questions")
       }
 
-      df_writ <- mp_questions(mp_id = mp_id, question_type = "written", start_date = as.Date(start_date), end_date = as.Date(end_date), extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style, verbose = verbose)
+      df_writ <- hansard::mp_questions(mp_id = mp_id, question_type = "written", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style)
 
       if (verbose == TRUE) {
         message("Combining oral and written questions")
@@ -121,7 +122,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
   }
 
-  if (nrow(df) == 0 && verbose == TRUE) {
+  if (nrow(df)==0 && verbose == TRUE) {
     message("The request did not return any data. Please check your search parameters.")
   } else {
 
