@@ -5,10 +5,10 @@ test_that("papers laid, publications, sessions, tv functions return expected for
 
     skip_on_cran()
 
-    papl <- hansard_papers_laid(withdrawn = FALSE, house = "commons", start_date = "2017-01-30", end_date = "2017-02-02", verbose=TRUE)
-    expect_length(papl, 16)
-    expect_type(papl, "list")
-    expect_true(tibble::is_tibble(papl))
+    # papl <- hansard_papers_laid(withdrawn = FALSE, house = "commons", start_date = "2017-01-30", end_date = "2017-02-02", verbose=TRUE)
+    # expect_length(papl, 16)
+    # expect_type(papl, "list")
+    # expect_true(tibble::is_tibble(papl))
 
     pldec <- hansard_papers_laid(withdrawn = TRUE, house = "lords", start_date = "2015-12-01", end_date = "2015-12-31", verbose=TRUE)
     expect_length(pldec, 16)
