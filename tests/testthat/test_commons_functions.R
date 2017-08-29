@@ -36,8 +36,8 @@ test_that("commons functions return expected format", {
     expect_equal(nrow(cdd), 5)
 
     ## Questions
-    xcoqt <- hansard_commons_oral_question_times(session = "2016/17", question_id = "685697", verbose=TRUE)
-    expect_length(xcoqt, 14)
+    xcoqt <- hansard_commons_oral_question_times(session = "2016/17", question_id = "685697", verbose=TRUE) #
+    expect_length(xcoqt, 16)
     expect_type(xcoqt, "list")
     expect_true(tibble::is_tibble(xcoqt))
 

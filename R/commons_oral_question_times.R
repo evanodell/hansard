@@ -45,7 +45,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
     if (is.null(question_id)==TRUE) {
 
-      times <- jsonlite::fromJSON(paste0(baseurl, ".json", session_query, extra_args))
+      times <- jsonlite::fromJSON(paste0(baseurl, ".json?", session_query, extra_args))
 
       jpage <- floor(times$result$totalResults/500)
 
@@ -61,7 +61,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 
     } else {
 
-      mydata <- jsonlite::fromJSON(paste0(baseurl, question_query, ".json", session, extra_args), flatten = TRUE)
+      mydata <- jsonlite::fromJSON(paste0(baseurl, question_query, ".json?", session_query, extra_args), flatten = TRUE)
 
       df <- mydata$result$primaryTopic
 
