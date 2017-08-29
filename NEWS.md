@@ -5,6 +5,8 @@
 
 Ensure that `commons_oral_question_times()` only returns one question ID.
 
+`sessions_info()` is now better.
+
 
 # hansard 0.5.4
 

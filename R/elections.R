@@ -7,6 +7,7 @@
 #' @param type Accepts \code{'General Election'} or \code{'By-election'} as arguments if ID is \code{NULL}, and returns all General Elections or all By-elections, as specified.
 #' @param start_date Only includes elections held on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes elections held on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @param label Label of the election. By-elections are in \code{'dd-mmm-yyyy By-election'} format; e.g. \code{'23-Feb-2017 By-election'}, and general elections use \code{'YYYY General Election'} format. The parameter cannot search, so check your formatting, spelling and make sure there were actually elections with the label specified. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on all elections from the 2010 general election onwards, subject to function parameters. Includes the election ID, the date, and the type of election(s).
 #'

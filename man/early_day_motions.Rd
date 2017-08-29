@@ -24,6 +24,8 @@ hansard_early_day_motions(edm_id = NULL, session = NULL,
 
 \item{end_date}{Only includes early day motions tabled on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
+\item{signatures}{The minimum number of signatures required for inclusion in the tibble. Defaults to 1.}
+
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
