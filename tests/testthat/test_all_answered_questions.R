@@ -5,7 +5,7 @@ test_that("all_answered_questions return expected format", {
 
     skip_on_cran()
 
-    aaqx <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172), answering_body = c("health", "justice"), house = "commons", start_date = "2016-12-18", end_date = "2017-03-12", verbose = TRUE)
+    aaqx <- hansard_all_answered_questions(mp_id = c(4019, 3980), answering_body = c("health", "justice"), house = "commons", start_date = "2016-12-18", end_date = "2017-01-30", verbose = TRUE)
     expect_length(aaqx, 32)
     expect_type(aaqx, "list")
     expect_true(tibble::is_tibble(aaqx))

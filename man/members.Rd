@@ -32,7 +32,7 @@ hansard_lords_members(extra_args = NULL, tidy = TRUE,
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -50,9 +50,9 @@ For more details on a given member see \code{\link[mnis]{mnis_full_biog}}.
 \section{Member details functions}{
 
 \describe{
-\item{members}{Basic details on a given member}
-\item{commons_members}{MPs in the House of Commons}
-\item{lords_members}{Peers in the House of Lords}
+\item{\code{members}}{Basic details on a given member from either house}
+\item{\code{commons_members}}{MPs in the House of Commons}
+\item{\code{lords_members}}{Peers in the House of Lords}
 }
 }
 

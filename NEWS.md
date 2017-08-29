@@ -1,4 +1,11 @@
 
+# hansard 0.5.4.9000
+
+## Bug Fixes
+
+Ensure that `commons_oral_question_times()` only returns one question ID.
+
+
 # hansard 0.5.4
 
 ## General improvements

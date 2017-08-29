@@ -5,12 +5,9 @@
 #'
 #' @param mp_id The ID number of a member of the House of Commons. Defaults to \code{NULL}.
 #' @param question_type Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. Defaults to \code{'all'}.
-#' @param start_date The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-#' @param end_date The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
-#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
+#' @param start_date Only includes questions answered on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes questions answered on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @inheritParams all_answered_questions
 #' @return A tibble with details on all questions asked by a member of the House of Commons.
 #'
 #' @seealso \code{\link{all_answered_questions}}
@@ -33,7 +30,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
     question_type <- tolower(question_type)
 
-    if (length(mp_id) > 1) {#for vectors of more than 1 ID
+    if (length(mp_id) > 1) {#for lists of more than 1 ID
 
       df <- mp_question_multi(mp_id=mp_id, question_type=question_type, start_date = start_date, end_date = end_date, extra_args = extra_args, verbose = verbose)
 

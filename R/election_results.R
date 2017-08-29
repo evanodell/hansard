@@ -7,10 +7,7 @@
 #' @param all_data If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.
 #' @param calculate_percent If \code{TRUE}, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to \code{FALSE}.
 #' @param constit_details If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
-#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
+#' @inheritParams all_answered_questions
 #' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
 #'
 #' @seealso \code{\link{elections}}

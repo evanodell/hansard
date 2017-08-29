@@ -7,11 +7,7 @@
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.
 #' @param constit_details If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
-#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
-#' @return A tibble with the names of each candidate standing in each constituency in an election or elections. If there are multiple candidates from the same party, or multiple independent candidates, their names are combined into a list.
+#' @inheritParams all_answered_questions
 #' @export
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_results}}

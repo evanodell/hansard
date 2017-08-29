@@ -5,10 +5,7 @@
 #' @param topic The topic of the parliamentary briefing. Defaults to \code{NULL}.
 #' @param subtopic The subtopic of the parliamentary briefing. Defaults to \code{NULL}.
 #' @param type The type of research briefing. Defaults to \code{NULL}.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
-#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
+#' @inheritParams all_answered_questions
 #' @return A tibble with details on parliamentary research briefings on the given topic.
 #' @seealso \code{\link{research_subtopics_list}}
 #' @seealso \code{\link{research_types_list}}

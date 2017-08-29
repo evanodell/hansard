@@ -2,14 +2,12 @@
 #' House of Commons Written Questions
 #'
 #' Imports data in a tibble on House of Commons written questions.
-#' @param mp_id Accepts a member ID or a vector of member IDs and returns a tibble with all written questions asked by that MP or vector of MPs. If \code{NULL}, mp_id is not included as a query parameter. Defaults to \code{NULL}.
-#' @param answering_department Accepts a string with a department name or partial name, or a vector of such strings. The query acts as a search, so passing \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.
-#' @param start_date The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-#' @param end_date The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
-#' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
-#' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
+#'
+#' @param mp_id Accepts a member ID or a list of member IDs and returns a tibble with all written questions asked by that MP or list of MPs. If \code{NULL}, mp_id is not included as a query parameter. Defaults to \code{NULL}.
+#' @param answering_department Accepts a string with a department name or partial name, or a list of such strings. The query acts as a search, so passing \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.
+#' @param start_date Only includes questions tabled on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes questions tabled on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @inheritParams all_answered_questions
 #' @return A tibble with details on written questions in the House of Commons.
 #' @export
 #' @examples \dontrun{
@@ -21,10 +19,10 @@
 #' # and answered by the Cabinet Office or the Home Office.
 #' }
 
-commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
 
 
-  if (length(mp_id) > 1 || length(answering_department) > 1) { ## For vector queries
+  if (length(mp_id) > 1 || length(answering_department) > 1) { ## For lists queries
 
     df <- commons_written_questions_multi(mp_id, answering_department, start_date, end_date, extra_args, verbose)
 

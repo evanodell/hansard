@@ -294,9 +294,23 @@ coqt_tidy <- function(df, tidy_style) {
 
   if (nrow(df) > 0) {
 
+    df$session <- as.character(df$session)
+
+    df <- tidyr::unnest_(df, "AnswerBody")
+
+    df$`_about1` <- NULL
+
+    df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
+
+    df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value, "Y-m-d H:M:S")
+
+    df$AnswerDateTime._datatype <- "POSIXct"
+
     df$date._value <- gsub("T", " ", df$date._value)
 
     df$date._value <- lubridate::parse_date_time(df$date._value, "Y-m-d H:M:S")
+
+    df$date._datatype <- "POSIXct"
 
     df$modified._value <- gsub("T", " ", df$modified._value)
 
@@ -304,7 +318,7 @@ coqt_tidy <- function(df, tidy_style) {
 
     df$modified._datatype <- "POSIXct"
 
-    df$date._datatype <- "POSIXct"
+    df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
 
   }
 

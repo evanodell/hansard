@@ -14,17 +14,17 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID of a given MP asking an oral question, or a vector of MP Ids. Defaults to \code{NULL}.}
+\item{mp_id}{The ID of a given MP asking an oral question, or a list of MP Ids. Defaults to \code{NULL}.}
 
-\item{answering_department}{The name of a department, or a vector of departments. Defaults to \code{NULL}.}
+\item{answering_department}{The name of a department, or a list of departments. Defaults to \code{NULL}.}
 
-\item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes questions answered on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{The latest date to include in the tibble. Defaults to current system date. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}.}
+\item{end_date}{Only includes questions answered on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
 \item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
 
-\item{tidy}{Fix the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -34,7 +34,7 @@ hansard_commons_oral_questions(mp_id = NULL, answering_department = NULL,
 A tibble with details on all oral questions in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date. The \code{mp_id} and \code{answering_department} parameters accept a single ID or department names, or a vector of IDs or department names, respectively.
+Imports data on House of Commons oral questions, based on the asking MP, the answering department and the date. The \code{mp_id} and \code{answering_department} parameters accept a single ID or department names, or a list of IDs or department names, respectively.
 }
 \examples{
 \dontrun{
