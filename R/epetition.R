@@ -34,11 +34,23 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    if (is.null(ID) == FALSE & is.null(by_constituency) == TRUE) {
+    if (is.null(ID) == FALSE & by_constituency == FALSE) {
 
         petition <- jsonlite::fromJSON(paste0(baseurl, ID, query, extra_args), flatten = TRUE)
 
-        df <- tibble::as_tibble(petition$result$primaryTopic)
+        df <- tibble::tibble(about = petition$result$primaryTopic$`_about`,
+                              abstract = petition$result$primaryTopic$abstract$`_value`,
+                              created = petition$result$primaryTopic$created$`_value`,
+                              identifier = petition$result$primaryTopic$identifier$`_value`,
+                              isPrimaryTopicOf = petition$result$primaryTopic$isPrimaryTopicOf,
+                              label = petition$result$primaryTopic$label$`_value`,
+                              modified = petition$result$primaryTopic$modified$`_value`,
+                              numberOfSignatures = petition$result$primaryTopic$numberOfSignatures,
+                              replyActionAbout = petition$result$primaryTopic$replyAction$`_about`,
+                              replyAction = petition$result$primaryTopic$replyAction$abstract$`_value`,
+                              status = petition$result$primaryTopic$status,
+                              subType = petition$result$primaryTopic$subType$`_about`,
+                              website = petition$result$primaryTopic$website)
 
     } else {
 

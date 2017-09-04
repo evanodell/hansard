@@ -19,7 +19,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
 
     if (days == FALSE) {
 
-      query <- paste0("&max-endDate=", as.Date(end_date), "&min-startDate=", as.Date(start_date),".json?")
+      query <- paste0(".json?&max-endDate=", as.Date(end_date), "&min-startDate=", as.Date(start_date))
 
     } else {
 
