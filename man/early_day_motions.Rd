@@ -26,7 +26,7 @@ hansard_early_day_motions(edm_id = NULL, session = NULL,
 
 \item{signatures}{The minimum number of signatures required for inclusion in the tibble. Defaults to 1.}
 
-\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 

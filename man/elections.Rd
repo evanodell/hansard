@@ -24,7 +24,7 @@ hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
 
 \item{label}{Label of the election. By-elections are in \code{'dd-mmm-yyyy By-election'} format; e.g. \code{'23-Feb-2017 By-election'}, and general elections use \code{'YYYY General Election'} format. The parameter cannot search, so check your formatting, spelling and make sure there were actually elections with the label specified. Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 

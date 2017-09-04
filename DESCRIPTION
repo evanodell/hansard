@@ -25,5 +25,6 @@ Suggests: knitr,
     rmarkdown,
     testthat,
     covr,
-    methods
+    methods,
+    mnis
 VignetteBuilder: knitr

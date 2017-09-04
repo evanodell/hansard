@@ -24,7 +24,7 @@ hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
 
 \item{end_date}{Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 

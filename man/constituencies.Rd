@@ -14,7 +14,7 @@ hansard_constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
 \arguments{
 \item{current}{If \code{TRUE}, returns only current constituencies. If \code{FALSE}, returns only former constituencies. If \code{NULL}, returns all current and former constituencies. Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 

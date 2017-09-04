@@ -18,7 +18,7 @@ hansard_commons_oral_question_times(session = NULL, question_id = NULL,
 
 \item{question_id}{Accepts a question time ID, and returns a tibble of that question time.}
 
-\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
