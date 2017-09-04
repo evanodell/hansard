@@ -215,7 +215,11 @@ cd_tidy <- function(df, tidy_style, division_id, summary) {
 
         df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
 
-        names(df)[names(df) == "_about"] <- "voteId"
+        df$voteId <- gsub("/.*$", "", df$`_about`)
+
+        df$`_about` <- gsub("^.*/*/", "", df$`_about`)
+
+        names(df)[names(df) == "_about"] <- "number"
 
         df <- tidyr::unnest(df)
 
@@ -248,7 +252,11 @@ cd_tidy <- function(df, tidy_style, division_id, summary) {
 
   df <- hansard_tidy(df, tidy_style)
 
-  df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
+  if (summary == FALSE) {
+
+    df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
+
+  }
 
   df
 

@@ -30,9 +30,9 @@ hansard_lords_members(extra_args = NULL, tidy = TRUE,
 \arguments{
 \item{ID}{The ID of a member of the House of Commons or the House of Lords to return data on. If \code{NULL}, returns a tibble of all members. Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 

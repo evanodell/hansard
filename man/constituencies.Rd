@@ -5,18 +5,18 @@
 \alias{hansard_constituencies}
 \title{House of Commons constituencies}
 \usage{
-constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
+constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 
-hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
+hansard_constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{current}{If \code{TRUE}, returns only current constituencies. If FALSE, returns all current and former constituencies. Defaults to \code{TRUE}.}
+\item{current}{If \code{TRUE}, returns only current constituencies. If \code{FALSE}, returns only former constituencies. If \code{NULL}, returns all current and former constituencies. Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -26,7 +26,7 @@ hansard_constituencies(current = TRUE, extra_args = NULL, tidy = TRUE,
 A tibble with details of Westminster constituencies.
 }
 \description{
-Imports data on House of Commons constituencies, returning a tibble of all current and former Westminster constituencies.
+Imports data on House of Commons constituencies, returning a tibble of all current and/or former Westminster constituencies, subject to parameters.
 }
 \examples{
 \dontrun{

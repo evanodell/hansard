@@ -22,20 +22,28 @@
 #'}
 
 
-epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL, start_date="1900-01-01", end_date=Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL, start_date="1900-01-01", end_date=Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
   dates <- paste0("&max-created=", as.Date(end_date), "&min-created=", as.Date(start_date))
 
   if(is.null(status)==TRUE){
+
     status_query <- NULL
+
   } else {
+
     status_query <- paste0("&status=", status)
+
   }
 
   if(is.null(max_signatures)==TRUE){
+
     sig_query <- paste0("&min-numberOfSignatures=", min_signatures)
+
   } else {
+
     sig_query <- paste0("&min-numberOfSignatures=", min_signatures, "&max-numberOfSignatures=", max_signatures)
+
   }
 
   baseurl <- "http://lda.data.parliament.uk/epetitions.json?"
@@ -44,12 +52,12 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
 
   petition <- jsonlite::fromJSON(paste0(baseurl, status_query, sig_query, dates, extra_args), flatten = TRUE)
 
-  jpage <- floor(petition$result$totalResults/petition$result$itemsPerPage)
+  jpage <- floor(petition$result$totalResults/500)
 
   pages <- list()
 
   for (i in 0:jpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl, status_query, sig_query, dates, extra_args, "&_pageSize=500&_page=", i),flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(baseurl, status_query, sig_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
     if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
     pages[[i + 1]] <- mydata$result$items
   }
@@ -57,12 +65,14 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
   df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
   if (nrow(df) == 0 && verbose==TRUE) {
+
     message("The request did not return any data. Please check your search parameters.")
+
   } else {
 
     if (tidy == TRUE) {
 
-      df <- epetition_tibble_tidy(df, tidy_style)
+      df <- epetition_tibble_tidy(df, tidy_style) ## in utils-epetition.R
 
     }
 
@@ -75,9 +85,9 @@ epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL,
 #' @rdname epetition_tibble
 #' @export
 
-hansard_epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL, start_date="1900-01-01", end_date=Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_epetition_tibble <- function(min_signatures=1, max_signatures=NULL, status=NULL, start_date="1900-01-01", end_date=Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- epetition_tibble(min_signatures=min_signatures, max_signatures=max_signatures, status=status, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- epetition_tibble(min_signatures=min_signatures, max_signatures=max_signatures, status=status, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

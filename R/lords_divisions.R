@@ -1,8 +1,8 @@
 
 #'
-#' House of Lords Votes
+#' House of Lords divisions
 #'
-#' Imports data on House of Lords divisions. Either a general query subject to parameters, or the results of a specific division.
+#' Imports data on House of Lords divisions. Either a general query subject to parameters, or the results of a specific division. Individual divisions can be queried to return a short summary of the votes, or details on how each peer voted.
 #' @param division_id The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to \code{NULL}.
 #' @param summary If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.
 #' @param start_date Only includes divisions on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
@@ -20,7 +20,7 @@
 #' x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01', end_date = '2016-12-31')
 #' }
 
-lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,  tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
@@ -37,7 +37,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -45,8 +45,6 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
         df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     } else {
-
-        division_id <- as.character(division_id)
 
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/id/"
 
@@ -56,20 +54,18 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
         if (summary == TRUE) {
 
-            y <- divis$result$primaryTopic
-
             df <- list()
 
-            df$about <- y$`_about`
-            df$title <- y$title
-            df$description <- y$description
-            df$officialContentsCount <- y$officialContentsCount
-            df$officialNotContentsCount <- y$officialNotContentsCount
-            df$divisionNumber <- y$divisionNumber
-            df$divisionResult <- y$divisionResult
-            df$date <- y$date
-            df$session <- y$session
-            df$uin <- y$uin
+            df$about <- divis$result$primaryTopic$`_about`
+            df$title <- divis$result$primaryTopic$title
+            df$description <- divis$result$primaryTopic$description
+            df$officialContentsCount <- divis$result$primaryTopic$officialContentsCount
+            df$officialNotContentsCount <- divis$result$primaryTopic$officialNotContentsCount
+            df$divisionNumber <- divis$result$primaryTopic$divisionNumber
+            df$divisionResult <- divis$result$primaryTopic$divisionResult
+            df$date <- divis$result$primaryTopic$date
+            df$session <- divis$result$primaryTopic$session
+            df$uin <- divis$result$primaryTopic$uin
 
         } else {
 
@@ -82,16 +78,18 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
     }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
 
-          df <- lords_division_tidy(df, division_id, summary, tidy_style)
+          df <- lords_division_tidy(df, division_id, summary, tidy_style) ##in utils-lords.R
 
         }
 
-            df
+          df
 
     }
 }
@@ -99,9 +97,9 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
 #' @rdname lords_divisions
 #' @export
-hansard_lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,  tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- lords_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- lords_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

@@ -19,7 +19,7 @@
 #' # and answered by the Cabinet Office or the Home Office.
 #' }
 
-commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
 
   if (length(mp_id) > 1 || length(answering_department) > 1) { ## For lists queries
@@ -42,15 +42,11 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
     if (is.null(answering_department) == FALSE && is.na(answering_department) == FALSE) {
 
-        query <- "/answeringdepartment"
-
-        answering_department <- utils::URLencode(paste0("q=", answering_department))
+        query <- utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department))
 
     } else {
 
-        query <- NULL
-
-        answering_department <- NULL
+        query <- ".json?"
 
     }
 
@@ -58,14 +54,14 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, extra_args), flatten = TRUE)
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, mp_id, dates, extra_args), flatten = TRUE)
 
     jpage <- floor(writ$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, mp_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, mp_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -75,12 +71,14 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
   }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
 
-          df <- cwq_tidy(df, tidy_style)
+          df <- cwq_tidy(df, tidy_style)## in utils-commons.R
 
         }
 
@@ -92,9 +90,9 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
 #' @rdname commons_written_questions
 #' @export
-hansard_commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_commons_written_questions <- function(mp_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(),  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-    df <- commons_written_questions(mp_id = mp_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+    df <- commons_written_questions(mp_id = mp_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
     df
 

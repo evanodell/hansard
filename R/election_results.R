@@ -23,12 +23,16 @@
 #' w <- election_results(ID=730039, all_data=TRUE)
 #' }
 
-election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(ID) == TRUE) {
+
         id_query <- NULL
+
     } else {
+
         id_query <- paste0("electionId=", ID)
+
     }
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
@@ -42,7 +46,7 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -106,14 +110,16 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
     }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (calculate_percent == TRUE) {
 
-            df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 1)
+            df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 2)
 
-            df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 1)
+            df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 2)
 
         }
 
@@ -123,13 +129,13 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
             df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
 
-            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
-
             if (all_data == TRUE) {
 
-                df <- dplyr::left_join(df, df4, by = "about")
+              df <- dplyr::left_join(df, df4, by = "about")
 
             }
+
+            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
 
             df
 
@@ -153,9 +159,9 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
 #' @rdname election_results
 #' @export
-hansard_election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- election_results(ID = ID, all_data = all_data, calculate_percent = calculate_percent, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- election_results(ID = ID, all_data = all_data, calculate_percent = calculate_percent, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

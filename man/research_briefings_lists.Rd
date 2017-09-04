@@ -44,7 +44,6 @@ research_subtopics_list <- research_subtopics_list()
 
 research_types_list <- research_types_list()
 }
-
 }
 \seealso{
 \code{\link{research_briefings}}

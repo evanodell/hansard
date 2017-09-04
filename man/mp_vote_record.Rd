@@ -16,7 +16,7 @@ hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}
 
-\item{lobby}{Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}. \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'} returns votes where the MP voted \code{'no'}, \code{'all'} returns all available votes by the MP. Defaults to \code{'all'}.}
+\item{lobby}{Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}. \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'} returns votes where the MP voted \code{'no'}, \code{'all'} returns all available votes by the MP. This parameter is not case sensitive. Defaults to \code{'all'}.}
 
 \item{session}{The parliamentary session to return votes from, in \code{'YYYY/YY'} format. Defaults to \code{NULL}.}
 
@@ -24,9 +24,9 @@ hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
 
 \item{end_date}{Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 

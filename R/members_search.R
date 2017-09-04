@@ -14,26 +14,28 @@
 #' x <- members_search(search='chris')
 #' }
 
-members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(search)) {
+
         df <- members("all")
+
     } else {
 
         search <- utils::URLencode(search)
 
-        baseurl <- "http://lda.data.parliament.uk/members.json?_pageSize=500&_search=*"
+        baseurl <- "http://lda.data.parliament.uk/members.json?_search=*"
 
         if(verbose==TRUE){message("Connecting to API")}
 
         results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
 
-        jpage <- floor(results$result$totalResults/results$result$itemsPerPage)
+        jpage <- floor(results$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -43,7 +45,9 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
     }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
@@ -64,9 +68,9 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
 #' @rdname members_search
 #' @export
-hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE){
+hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){
 
-  df <- members_search(search = search, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- members_search(search = search, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

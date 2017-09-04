@@ -21,14 +21,12 @@
 #'
 #' research_types_list <- research_types_list()
 #' }
-#'
+
 research_topics_list <- function() {
 
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?", flatten = TRUE)
 
-    y <- x$result$items$prefLabel._value
-
-    research_topics_list <- as.list(y)
+    research_topics_list <- as.list(x$result$items$prefLabel._value)
 
     research_topics_list
 
@@ -42,6 +40,7 @@ hansard_research_topics_list <- function(){
   df <- research_topics_list()
 
   df
+
 }
 
 
@@ -52,9 +51,7 @@ research_subtopics_list <- function() {
 
     x <- jsonlite::fromJSON("http://lda.data.parliament.uk/researchbriefingtopics.json?", flatten = TRUE)
 
-    y <- x$result$items$prefLabel._value
-
-    research_topics_list <- as.list(y)
+    research_topics_list <- as.list(x$result$items$prefLabel._value)
 
     research_subtopics_list <- list()
 
@@ -81,6 +78,7 @@ hansard_research_subtopics_list <- function(){
   df <- research_subtopics_list()
 
   df
+
 }
 
 
@@ -103,4 +101,5 @@ hansard_research_types_list <- function(){
   df <- research_types_list()
 
   df
+
 }

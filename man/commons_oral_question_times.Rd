@@ -18,9 +18,9 @@ hansard_commons_oral_question_times(session = NULL, question_id = NULL,
 
 \item{question_id}{Accepts a question time ID, and returns a tibble of that question time.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -30,10 +30,7 @@ hansard_commons_oral_question_times(session = NULL, question_id = NULL,
 A tibble with information on oral question times in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral question times.
-}
-\details{
-Query with parameters for the parliamentary session or the question ID. If \code{tidy=TRUE}, datetime variables are converted to \code{POSIXct} class.
+Imports data on House of Commons oral question times. Query with parameters for the parliamentary session or the question ID. If \code{tidy=TRUE}, datetime variables are converted to \code{POSIXct} class.
 }
 \examples{
 \dontrun{

@@ -1,5 +1,5 @@
 
-#' House of Commons votes
+#' House of Commons divisions
 #'
 #' Imports data on House of Commons divisions (votes), either full details on how each member voted, or a summary of vote totals.
 #'
@@ -9,7 +9,6 @@
 #' @param end_date Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of divisions in the House of Commons.
-#'
 #' @export
 #' @examples \dontrun{
 #' x <- commons_divisions()
@@ -17,7 +16,7 @@
 #' x <- commons_divisions(division_id = 694163, summary = FALSE)
 #' }
 
-commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
 
@@ -34,7 +33,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?_pageSize=500", dates, "&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -51,20 +50,21 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 
         if (summary == TRUE) {
 
-            df <- divis$result$primaryTopic
-
-            df$AbstainCount <- df$AbstainCount$`_value`
-            df$AyesCount <- df$AyesCount$`_value`
-            df$Didnotvotecount <- df$Didnotvotecount$`_value`
-            df$Errorvotecount <- df$Errorvotecount$`_value`
-            df$Noesvotecount <- df$Noesvotecount$`_value`
-            df$Noneligiblecount <- df$Noneligiblecount$`_value`
-            df$vote <- NULL
-            df$Margin <- df$Margin$`_value`
-            df$Suspendedorexpelledvotescount <- df$Suspendedorexpelledvotescount$`_value`
-            df$date <- df$date$`_value`
-
-            df <- tibble::as_tibble(df)
+            df <- tibble::tibble(
+              AbstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
+              AyesCount = divis$result$primaryTopic$AyesCount$`_value`,
+              Noesvotecount = divis$result$primaryTopic$Noesvotecount$`_value`,
+              Didnotvotecount = divis$result$primaryTopic$Didnotvotecount$`_value`,
+              Errorvotecount = divis$result$primaryTopic$Errorvotecount$`_value`,
+              Noneligiblecount = divis$result$primaryTopic$Noneligiblecount$`_value`,
+              Suspendedorexpelledvotescount = divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
+              Margin = divis$result$primaryTopic$Margin$`_value`,
+              date = divis$result$primaryTopic$date$`_value`,
+              divisionNUmber = divis$result$primaryTopic$divisionNumber,
+              session =  divis$result$primaryTopic$session[[1]],
+              title = divis$result$primaryTopic$title,
+              uin = divis$result$primaryTopic$uin
+            )
 
         } else {
 
@@ -75,12 +75,14 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
     }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
 
-            df <- cd_tidy(df, tidy_style, division_id, summary) ## in utils-cd.R
+            df <- cd_tidy(df, tidy_style, division_id, summary) ## in utils-commons.R
 
         }
 
@@ -94,9 +96,9 @@ commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = 
 #' @rdname commons_divisions
 #' @export
 
-hansard_commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_commons_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- commons_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- commons_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

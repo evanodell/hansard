@@ -20,9 +20,9 @@ hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
 
 \item{type}{The type of research briefing. Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -50,7 +50,7 @@ research_subtopics_list <- research_subtopics_list()
 x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 
 # Requests for certain briefing types can also be made using lists
-# created with 'research_types_list'.
+# created with `research_types_list`.
 
 research_types_list <- research_types_list()
 

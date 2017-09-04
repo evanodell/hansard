@@ -156,9 +156,13 @@ lord_vote_record_tidy <- function(df, tidy_style) {
 
   if (nrow(df) > 0) {
 
-    df$date._datatype <- "POSIXct"
+    df$vote <- as.factor(df$vote)
+
+    df$date._datatype <- as.factor(df$date._datatype)
 
     df$date._value <- as.POSIXct(df$date._value)
+
+    df$date._datatype <- "POSIXct"
 
   }
 

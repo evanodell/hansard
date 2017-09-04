@@ -14,12 +14,12 @@ test_that("commons functions return expected format", {
     # Divisions
 
     xcd <- hansard_commons_divisions(division_id = 694163, summary = FALSE, verbose=TRUE)
-    expect_length(xcd, 6)
+    expect_length(xcd, 7)
     expect_type(xcd, "list")
     expect_true(tibble::is_tibble(xcd))
 
     xcds <- hansard_commons_divisions(division_id = 694163, summary = TRUE, verbose=TRUE)
-    expect_length(xcds, 17)
+    expect_length(xcds, 13)
     expect_type(xcds, "list")
     expect_true(tibble::is_tibble(xcds))
 

@@ -48,7 +48,7 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body, start_date, e
 
   for (i in 1:nrow(search_grid)) {
 
-    dat[[i]] <- hansard::all_answered_questions(mp_id = search_grid$answering_mp[[i]], tabling_mp_id=search_grid$tabling_mp[[i]], house=house, answering_body=search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
+    dat[[i]] <- hansard::all_answered_questions(mp_id = search_grid$answering_mp[[i]], tabling_mp_id=search_grid$tabling_mp[[i]], house=house, answering_body=search_grid$department[[i]], end_date = end_date, start_date = start_date, extra_args = extra_args, tidy = FALSE, verbose = verbose)
 
   }
 

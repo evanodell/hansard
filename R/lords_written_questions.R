@@ -26,7 +26,7 @@
 #'                              answering_department = c('cabinet', 'Transport'))
 #' }
 
-lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
   if (length(answering_department)> 1 || length(peer_id) > 1 )  {
 
@@ -40,21 +40,19 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
         peer_id <- utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", peer_id))
 
-    } else{
+    } else {
 
-      peer_id <- NULL
+        peer_id <- NULL
 
     }
 
     if (is.null(answering_department) == FALSE  && is.na(answering_department) == FALSE) {
 
-        query <- "/answeringdepartment"
-
-        answering_department <- utils::URLencode(paste0("q=", answering_department))
+        query <- utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department))
 
     } else {
 
-        query <- NULL
+        query <- ".json?"
 
     }
 
@@ -62,14 +60,14 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
     if(verbose==TRUE){message("Connecting to API")}
 
-    writ <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, extra_args), flatten = TRUE)
+    writ <- jsonlite::fromJSON(paste0(baseurl, query, peer_id, dates, extra_args), flatten = TRUE)
 
     jpage <- floor(writ$result$totalResults/500)
 
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, ".json?", answering_department, peer_id, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, peer_id, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -79,7 +77,9 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
   }
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
@@ -96,9 +96,9 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
 #' @rdname lords_written_questions
 #' @export
-hansard_lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_lords_written_questions <- function(peer_id = NULL, answering_department = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- lords_written_questions(peer_id = peer_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- lords_written_questions(peer_id = peer_id, answering_department = answering_department, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

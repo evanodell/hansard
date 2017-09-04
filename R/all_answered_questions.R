@@ -11,8 +11,8 @@
 #' @param answering_body The government department that answers the question. Accepts either the short name name of a department (e.g. \code{'Education'} for the Department for Education, \code{'Digital, Culture, Media and Sport'} for the Department for Digital, Culture, Media and Sport), or the ID of a particular department (e.g. 60 for the Department for Education). If \code{NULL}, returns answers from all departments, subject to other parameters. Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
-#' @param extra_args Additional parameters to pass to API. Defaults to \code{NULL}.
-#' @param tidy Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
+#' @param extra_args Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.
+#' @param tidy Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #' @param tidy_style The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.
 #'
@@ -53,8 +53,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.POSIXct(start_date))
 
-      # House query
-      if (is.null(house) == TRUE) {
+      if (is.null(house) == TRUE) {# House query
 
         house_query <- NULL
 
@@ -82,8 +81,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       }
 
-
-      if(is.null(mp_id)==TRUE || is.na(mp_id)==TRUE){
+      if(is.null(mp_id)==TRUE || is.na(mp_id)==TRUE){ #member type queries
 
         answering_member_query <- NULL
 
@@ -103,11 +101,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
       }
 
-      ## In case departmental IDs are passed as strings.
-      answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
+      answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))## In case departmental IDs are passed as strings.
 
-    # Department query
-    if (is.null(answering_body) == TRUE || is.na(answering_body)==TRUE) {
+    if (is.null(answering_body) == TRUE || is.na(answering_body)==TRUE) {# Department query
 
       dept_query <- NULL
 
@@ -142,7 +138,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
     }
 
     if (nrow(df) == 0 & verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
@@ -162,9 +160,9 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 #' @rdname all_answered_questions
 #' @export
 
-hansard_all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house=NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house=NULL, answering_body=NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- all_answered_questions(mp_id = mp_id, tabling_mp_id = tabling_mp_id, house=house, answering_body=answering_body, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- all_answered_questions(mp_id = mp_id, tabling_mp_id = tabling_mp_id, house=house, answering_body=answering_body, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

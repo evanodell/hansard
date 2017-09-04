@@ -14,7 +14,7 @@
 #' x <- commons_terms(search='estate', class='ORG')
 #'}
 
-commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(search) == FALSE) {
 
@@ -58,7 +58,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, "&_page=", i, extra_args, "&_pageSize=500"), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -66,8 +66,10 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
     df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
-    } else {
+
+      } else {
 
         if (tidy == TRUE) {
 
@@ -83,9 +85,9 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
 
 #' @rdname commons_terms
 #' @export
-hansard_commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- commons_terms(search = search, class = class, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- commons_terms(search = search, class = class, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

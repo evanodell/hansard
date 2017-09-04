@@ -3,7 +3,7 @@
 \name{mp_questions}
 \alias{mp_questions}
 \alias{hansard_mp_questions}
-\title{Oral and written questions asked by MPs}
+\title{Questions asked by a given MP or MPs}
 \usage{
 mp_questions(mp_id = NULL, question_type = "all",
   start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
@@ -14,17 +14,17 @@ hansard_mp_questions(mp_id = NULL, question_type = "all",
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID number of a member of the House of Commons. Defaults to \code{NULL}.}
+\item{mp_id}{The ID number of a member of the House of Commons, or a vector of IDs. Defaults to \code{NULL}.}
 
-\item{question_type}{Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. Defaults to \code{'all'}.}
+\item{question_type}{Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. This parameter is no case sensitive. Defaults to \code{'all'}.}
 
 \item{start_date}{Only includes questions answered on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
 \item{end_date}{Only includes questions answered on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -38,7 +38,11 @@ Accepts an ID number for a member of the House of Commons, and returns a tibble 
 }
 \examples{
 \dontrun{
-x <- mp_questions(172, 'all')
+x <- mp_questions(c(172,3967) 'all')
+
+y <- mp_questions(172, 'all')
+
+z <- mp_questions(c(172,3967) 'written')
 }
 }
 \seealso{

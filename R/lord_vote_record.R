@@ -4,7 +4,7 @@
 #'
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
 #' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to \code{NULL}.
-#' @param lobby Accepts one of \code{'all'}, \code{'content'}, \code{'notcontent'}. \code{'content'} returns votes where the peer voted \code{'content'}, \code{'notcontent'} returns votes where the peer voted \code{'notcontent'} and \code{'all'} returns all available votes by the peer. Defaults to \code{'all'}.
+#' @param lobby Accepts one of \code{'all'}, \code{'content'}, \code{'notcontent'}. \code{'content'} returns votes where the peer voted \code{'content'}, \code{'notcontent'} returns votes where the peer voted \code{'notcontent'} and \code{'all'} returns all available votes by the peer. This parameter is not case sensitive. Defaults to \code{'all'}.
 #' @param start_date Only includes divisions on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
 #' @inheritParams all_answered_questions
@@ -20,10 +20,12 @@
 #' }
 
 
-lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(peer_id) == TRUE) {
+
         stop("peer_id must not be empty", call. = FALSE)
+
     }
 
     dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
@@ -36,11 +38,11 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
       if(verbose==TRUE){message("Retrieving 'content' votes")}
 
-      df_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "content", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
+      df_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "content", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose = verbose)
 
       if(verbose==TRUE){message("Retrieving 'not-content' votes")}
 
-      df_not_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "notcontent", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose=verbose)
+      df_not_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "notcontent", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose = verbose)
 
       df <- dplyr::bind_rows(df_content, df_not_content)
 
@@ -70,7 +72,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if (nrow(df) > 0 & lobby=="content") {
 
-        df$vote <- "Content"
+          df$vote <- "Content"
 
         } else if(nrow(df) > 0){
 
@@ -81,19 +83,17 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
         df
 
 
-    }### End of ELSE above
+    }### End of else for specific lobbies above
 
     if (nrow(df) == 0 && verbose==TRUE) {
+
         message("The request did not return any data. Please check your search parameters.")
+
     } else {
 
         if (tidy == TRUE) {
 
-          df$vote <- as.factor(df$vote)
-          df$date._datatype <- as.factor(df$date._datatype)
-          df$date._value <- as.POSIXct(df$date._value)
-
-          df <- lord_vote_record_tidy(df, tidy_style)
+          df <- lord_vote_record_tidy(df, tidy_style) ## in utils-lords.R
 
         }
 
@@ -106,9 +106,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
 #' @rdname lord_vote_record
 #' @export
-hansard_lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- lord_vote_record(peer_id = peer_id, lobby = lobby, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- lord_vote_record(peer_id = peer_id, lobby = lobby, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

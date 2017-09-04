@@ -6,7 +6,7 @@
 \title{General and By-Elections}
 \usage{
 elections(ID = NULL, type = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), label = NULL, tidy = TRUE,
+  end_date = Sys.Date(), label = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 
 hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
@@ -14,9 +14,9 @@ hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{ID}{Accepts an ID for a general or by-election from the 2010 General Election onwards, and returns the date and type of the elction. If \code{NULL}, returns the date and type of all available elections. Defaults to \code{NULL}.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 General Election onwards, and returns the date and type of the elction. If \code{NULL}, returns the date and type of all available elections, subject to other parameters. Defaults to \code{NULL}.}
 
-\item{type}{Accepts \code{'General Election'} or \code{'By-election'} as arguments if ID is \code{NULL}, and returns all General Elections or all By-elections, as specified.}
+\item{type}{Accepts \code{'General Election'} or \code{'By-election'} as arguments if ID is \code{NULL}, and returns all General Elections or all By-elections, as specified, subject to other parameters. Defaults to \code{NULL}.}
 
 \item{start_date}{Only includes elections held on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 
@@ -24,7 +24,9 @@ hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
 
 \item{label}{Label of the election. By-elections are in \code{'dd-mmm-yyyy By-election'} format; e.g. \code{'23-Feb-2017 By-election'}, and general elections use \code{'YYYY General Election'} format. The parameter cannot search, so check your formatting, spelling and make sure there were actually elections with the label specified. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If TRUE, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{extra_args}{Additional parameters to pass to API. See the API documentation or the package vignette for more details. Defaults to \code{NULL}.}
+
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
@@ -35,6 +37,9 @@ A tibble with details on all elections from the 2010 general election onwards, s
 }
 \description{
 Imports data on general and by-elections from the 2010 General Election onwards.
+}
+\details{
+If both \code{ID} and \code{type} are used to query the API, \code{ID} takes precedence and \code{type} is ignored.
 }
 \examples{
 \dontrun{

@@ -21,12 +21,14 @@
 #' }
 
 
-mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signatory = TRUE, full_data = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signatory = TRUE, full_data = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
   dates <- paste0("&max-dateSigned=", as.Date(end_date), "&min-dateSigned=", as.Date(start_date))
 
   if (is.null(mp_id) == TRUE) {
+
     stop("mp_id must not be empty", call. = FALSE)
+
   }
 
   if (length(mp_id) > 1) {
@@ -58,7 +60,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
       if(verbose==TRUE){message("Connecting to API")}
 
       for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
       }
@@ -108,9 +110,9 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE, signat
 
 #' @export
 #' @rdname mp_edms
-hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE, signatory = FALSE, full_data = FALSE, extra_args = NULL, start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- mp_edms(mp_id = mp_id, primary_sponsor = primary_sponsor, sponsor = sponsor, signatory = signatory, full_data = full_data, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

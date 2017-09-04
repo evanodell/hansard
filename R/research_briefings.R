@@ -26,14 +26,14 @@
 #' x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
 #'
 #' # Requests for certain briefing types can also be made using lists
-#' # created with 'research_types_list'.
+#' # created with `research_types_list`.
 #'
 #' research_types_list <- research_types_list()
 #'
 #' x <- research_briefings(type = research_types_list[[3]])
 #' }
 
-research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
 
   if(verbose==TRUE){message("Connecting to API")}
@@ -41,10 +41,13 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
     if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
 
         if (is.null(type) == FALSE) {
-            type <- utils::URLencode(type)
-            query <- paste0("&subType.prefLabel=", type)
+
+            query <- utils::URLencode(paste0("&subType.prefLabel=", type))
+
         } else {
+
             query <- NULL
+
         }
 
         baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
@@ -56,7 +59,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, "&_pageSize=500&_page=", i, extra_args), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
@@ -74,19 +77,29 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         }
 
         if (is.null(subtopic) == FALSE) {
+
             subtopic_query <- utils::URLencode(paste0("/", subtopic))
+
         } else {
+
             subtopic_query <- NULL
+
         }
 
         if (is.null(topic) == FALSE) {
+
             topic_query <- utils::URLencode(topic)
+
         }
 
         if (is.null(type) == FALSE) {
+
             query <- utils::URLencode(paste0("&subType.prefLabel=", type))
+
         } else {
+
             query <- NULL
+
         }
 
         baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
@@ -111,7 +124,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
         message("The request did not return any data. Please check your search parameters.")
     } else {
 
-        if (tidy == TRUE) {
+        if (tidy == TRUE) {##move to external utils file?
 
             df$date._value <- gsub("T", " ", df$date._value)
 
@@ -146,9 +159,9 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
 #' @rdname research_briefings
 #' @export
-hansard_research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose=FALSE) {
+hansard_research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
-  df <- research_briefings(topic = topic, subtopic = subtopic, type = type, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose=verbose)
+  df <- research_briefings(topic = topic, subtopic = subtopic, type = type, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 

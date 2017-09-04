@@ -14,9 +14,13 @@
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
   if (is.null(peer_id) == TRUE) {### Better handling of lords with and without registered interests
+
     query <- ".json?"
+
   } else {
+
     query <- paste0(".json?member=", peer_id)
+
   }
 
   baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
@@ -25,7 +29,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
     message("Connecting to API")
   }
 
-  members <- jsonlite::fromJSON(paste0(baseurl, extra_args, query), flatten = TRUE)
+  members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
   jpage <- floor(members$result$totalResults/500)
 
@@ -33,27 +37,27 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
   for (i in 0:jpage) {
     mydata <- jsonlite::fromJSON(paste0(baseurl, query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-    if (verbose == TRUE) {
-      message("Retrieving page ", i + 1, " of ", jpage + 1)
-    }
+    if (verbose == TRUE) {message("Retrieving page ", i + 1, " of ", jpage + 1)}
     pages[[i + 1]] <- mydata$result$items
   }
 
   df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
   if (nrow(df) == 0 && verbose == TRUE) {
+
     message("The request did not return any data. Please check your search parameters.")
+
   } else {
 
     if (tidy == TRUE) {
 
       if(is.null(peer_id)){
 
-        df <- lords_interests_tidy2(df, tidy_style)
+        df <- lords_interests_tidy2(df, tidy_style) ##in utils-lords.R
 
       } else {
 
-      df <- lords_interests_tidy(df, tidy_style)
+      df <- lords_interests_tidy(df, tidy_style) ##in utils-lords.R
 
       }
 
