@@ -16,7 +16,7 @@ hansard_mp_questions(mp_id = NULL, question_type = "all",
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons, or a vector of IDs. Defaults to \code{NULL}.}
 
-\item{question_type}{Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. This parameter is no case sensitive. Defaults to \code{'all'}.}
+\item{question_type}{Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. This parameter is not case sensitive. Defaults to \code{'all'}.}
 
 \item{start_date}{Only includes questions answered on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 

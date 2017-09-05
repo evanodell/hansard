@@ -14,7 +14,7 @@ hansard_lords_amendments(decision = NULL, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{decision}{The decision on the amendments. Accepts one of \code{'Withdrawn'}, \code{'Agreed'}, \code{'Disagreed'}, \code{'Pending'}, \code{'NotMoved'}, \code{'Disposed'}. This parameters is not case sensitive. Defaults to \code{NULL}.}
+\item{decision}{The decision on the amendments. Accepts one of \code{'Withdrawn'}, \code{'Agreed'}, \code{'Disagreed'}, \code{'Pending'}, \code{'NotMoved'}, \code{'Disposed'}. This parameter is not case sensitive. Defaults to \code{NULL}.}
 
 \item{start_date}{Only includes amendments to bills introduced on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 

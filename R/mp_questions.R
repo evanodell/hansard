@@ -4,7 +4,7 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a tibble of of all their oral and written questions.
 #'
 #' @param mp_id The ID number of a member of the House of Commons, or a vector of IDs. Defaults to \code{NULL}.
-#' @param question_type Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. This parameter is no case sensitive. Defaults to \code{'all'}.
+#' @param question_type Accepts the arguments \code{'all'}, \code{'oral'} and \code{'written'}. This parameter is not case sensitive. Defaults to \code{'all'}.
 #' @param start_date Only includes questions answered on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes questions answered on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
 #' @inheritParams all_answered_questions

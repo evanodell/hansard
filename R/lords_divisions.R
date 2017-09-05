@@ -26,18 +26,18 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
     if (is.null(division_id) == TRUE) {
 
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions"
+        baseurl <- "http://lda.data.parliament.uk/lordsdivisions.json?"
 
         if(verbose==TRUE){message("Connecting to API")}
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args))
+        divis <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args))
 
         jpage <- floor(divis$result$totalResults/500)
 
         pages <- list()
 
         for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+            mydata <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
             if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
             pages[[i + 1]] <- mydata$result$items
         }
