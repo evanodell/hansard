@@ -2,8 +2,8 @@
 
 #' Search for an MP or Peer by name and constituency
 #'
-#' Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members('all')}.
-#' @param search Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament.
+#' Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members()}.
+#' @param search Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament. Searchs are not case sensitive.
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of the search.
 #' @seealso \code{\link{members}}

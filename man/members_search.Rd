@@ -12,7 +12,7 @@ hansard_members_search(search = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{search}{Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament.}
+\item{search}{Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament. Searchs are not case sensitive.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
@@ -24,7 +24,7 @@ hansard_members_search(search = NULL, tidy = TRUE,
 A tibble with the results of the search.
 }
 \description{
-Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members('all')}.
+Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members()}.
 }
 \examples{
 \dontrun{

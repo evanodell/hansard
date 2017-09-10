@@ -21,7 +21,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
 
     if (is.null(decision) == FALSE) {
 
-        decision_query <- paste0("&decision=", stringr::str_to_title(decision))
+        decision_query <- paste0("&decision=", stringi::stri_trans_totitle(decision))
 
     } else {
 

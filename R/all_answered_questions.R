@@ -113,7 +113,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
     } else {
 
-      dept_query <- utils::URLencode((paste0('&answeringDeptShortName=', stringr::str_to_title(answering_body))))
+      dept_query <- utils::URLencode((paste0('&answeringDeptShortName=', stringi::stri_trans_totitle(answering_body))))
 
     }
 

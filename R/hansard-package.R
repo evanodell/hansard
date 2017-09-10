@@ -16,6 +16,6 @@
 #' @import dplyr
 #' @import tibble
 #' @import tidyr
-#' @import stringr
+#' @import stringi
 #' @importFrom lubridate parse_date_time
 NULL

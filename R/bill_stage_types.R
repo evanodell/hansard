@@ -34,8 +34,6 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = F
 }
 
 
-
-
 #' @rdname bill_stage_types
 #' @export
 hansard_bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){

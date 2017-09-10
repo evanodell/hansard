@@ -1,14 +1,14 @@
 
 
-#' Members of Both Houses
+#' Members of both houses
 #'
 #' Imports basic details on current and former Members of Parliament including the Lords and the Commons.
 #'
 #' For more details on a given member see \code{\link[mnis]{mnis_full_biog}}.
 #'
-#' @param ID The ID of a member of the House of Commons or the House of Lords to return data on. If \code{NULL}, returns a tibble of all members. Defaults to \code{NULL}.
+#' @param ID The ID of a member of the House of Commons or the House of Lords to return data on. If \code{NULL}, returns a tibble of all members of both houses. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
-#' @return A tibble with data on members of the House of Commons and/or the House of Lords.
+#' @return A tibble with data on members of the House of Commons (\code{commons_members()}), the House of Lords, (\code{lords_members()}), or both (\code{members()}).
 #'
 #' @export
 #' @section Member details functions:
@@ -17,13 +17,15 @@
 #' \item{\code{commons_members}}{MPs in the House of Commons}
 #' \item{\code{lords_members}}{Peers in the House of Lords}
 #' }
-#' @seealso \code{\link{members}}
+#' @seealso \code{\link{members_search}}
 #' @examples \dontrun{
+#' a <- members()
+#'
 #' x <- members(172)
 #'
-#' x <- commons_members()
+#' y <- commons_members()
 #'
-#' x <- lords_members()
+#' z <- lords_members()
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
