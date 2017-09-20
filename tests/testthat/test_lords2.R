@@ -28,8 +28,7 @@ test_that("lords functions return expected format", {
   expect_length(lwq, 12)
   expect_type(lwq, "list")
   expect_true(tibble::is_tibble(lwq))
-  expect_equal(nrow(lwq), 48)
-
+  expect_equal(nrow(lwq), 49)
 
   # Attendance
   la <- hansard_lords_attendance(session_id = 706178, verbose = TRUE)
