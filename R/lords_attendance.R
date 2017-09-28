@@ -1,6 +1,5 @@
 
-
-#' House of Lords attendance
+#' House of Lords attendance-DEPRECATED
 #'
 #' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
 #' @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.
@@ -14,6 +13,10 @@
 #' }
 
 lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+
+  #.Deprecated("lords_attendance_session")
+
+  warning("lords_attendance has been deprecated. To retrieval attendance data by session, use lords_attendance_session. By date, use lords_attendance_date")
 
     if (is.null(session_id) == FALSE) {
 
@@ -79,4 +82,5 @@ hansard_lords_attendance <- function(session_id = NULL, start_date = "1900-01-01
 
   df
 
-  }
+}
+
