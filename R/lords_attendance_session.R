@@ -39,7 +39,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
     pages <- list()
 
     for (i in 0:jpage) {
-      mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+      mydata <- jsonlite::fromJSON(paste0(baseurl, query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
       if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
       pages[[i + 1]] <- mydata$result$items
     }
