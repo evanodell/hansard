@@ -8,8 +8,7 @@
 lords_attendance_session(session_id = NULL, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
-hansard_lords_attendance_session(session_id = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+hansard_lords_attendance_session(session_id = NULL, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
@@ -22,10 +21,6 @@ hansard_lords_attendance_session(session_id = NULL,
 \item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
-
-\item{start_date}{The earliest date to include in the tibble. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
-
-\item{end_date}{The latest date to include in the tibble. Defaults to \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
 }
 \value{
 A tibble with details on the lords who attended a given session.

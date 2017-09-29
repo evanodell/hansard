@@ -56,7 +56,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
 
     if (tidy == TRUE) {
 
-      df <- lords_attendance_session_tidy(df, tidy_style)
+      df <- lords_attendance_tidy(df, tidy_style)
 
     }
 
@@ -68,9 +68,9 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
 
 #' @rdname lords_attendance_session
 #' @export
-hansard_lords_attendance_session <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+hansard_lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){
 
-  df <- lords_attendance_session(session_id = session_id, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
+  df <- lords_attendance_session(session_id = session_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
   df
 
