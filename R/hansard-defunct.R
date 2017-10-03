@@ -18,18 +18,20 @@ lords_vote_record <- function(lord.id, lordsRecord = c("all", "content", "notCon
 
 
 
-# House of Lords attendance-DEPRECATED
+#' House of Lords attendance - Deprecated
 #
-# Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
-# @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.
-# @param start_date Only includes attendance on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-# @param end_date Only includes attendance on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
-# @inheritParams all_answered_questions
-# @return A tibble with details on the lords who attended a given session.
-# @export
-# @examples \dontrun{
-# x <- lords_attendance(session_id = 706178)
-# }
+#' Deprecated function, please see \code{\link{lords_attendance_date}} and \code{\link{lords_attendance_session}}.
+#'
+#' Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+#' @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.
+#' @param start_date Only includes attendance on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes attendance on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @inheritParams all_answered_questions
+#' @return A tibble with details on the lords who attended a given session.
+#' @export
+#' @examples \dontrun{
+#' x <- lords_attendance(session_id = 706178)
+#' }
 #' @export
 lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
@@ -93,7 +95,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
 }
 
 
-# @rdname lords_attendance
+#' @rdname lords_attendance
 #' @export
 hansard_lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
