@@ -137,10 +137,4 @@ mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900
 
 #' @rdname mp_questions
 #' @export
-hansard_mp_questions <- function(mp_id = NULL, question_type = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- mp_questions(mp_id = mp_id, question_type = question_type, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_mp_questions <- mp_questions

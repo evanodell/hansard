@@ -67,11 +67,5 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE, tidy_
 
 #' @rdname constituencies
 #' @export
-hansard_constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- constituencies(current=current, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_constituencies <- constituencies
 

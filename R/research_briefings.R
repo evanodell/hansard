@@ -159,10 +159,4 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra
 
 #' @rdname research_briefings
 #' @export
-hansard_research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- research_briefings(topic = topic, subtopic = subtopic, type = type, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_research_briefings <- research_briefings

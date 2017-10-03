@@ -1,5 +1,10 @@
 
-# hansard 0.5.4.9002
+# hansard 0.5.4.9003
+
+## Function changes
+
+`lords_attendance()` has been deprecated. Please use `lords_attendance_date()` for a given date, and `lords_attendance_session()` for a given session.
+
 
 ## Bug Fixes
 

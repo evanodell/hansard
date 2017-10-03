@@ -6,8 +6,9 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended on a given date.
 #' @export
+#' @seealso \code{\link{lords_attendance_session}}
 #' @examples \dontrun{
-#' x <- lords_attendance_date(date = 706178)
+#' x <- lords_attendance_date(date = "2016-03-01")
 #' }
 
 lords_attendance_date <- function(date = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
@@ -53,10 +54,4 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE, tidy_style = "snake_
 
 #' @rdname lords_attendance_date
 #' @export
-hansard_lords_attendance_date <- function(date = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- lords_attendance_date(date = date, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_attendance_date <- lords_attendance_date

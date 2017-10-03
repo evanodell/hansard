@@ -100,10 +100,4 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
 #' @rdname publication_logs
 #' @export
-hansard_publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,  tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- publication_logs(ID=ID, house=house, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_publication_logs <- publication_logs

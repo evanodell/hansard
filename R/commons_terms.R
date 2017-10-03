@@ -79,19 +79,13 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
 
             df
 
-    }
+      }
+
 }
 
 
 #' @rdname commons_terms
 #' @export
-hansard_commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- commons_terms(search = search, class = class, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
-
+hansard_commons_terms <- commons_terms
 
 

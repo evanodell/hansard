@@ -10,9 +10,9 @@ mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 
-hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = FALSE,
-  signatory = FALSE, full_data = FALSE, extra_args = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE,
+hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
+  signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{

@@ -87,16 +87,10 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tid
             df
 
     }
-}
 
+}
 
 
 #' @rdname epetition
 #' @export
-hansard_epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-    df <- epetition(ID = ID, by_constituency = by_constituency, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-    df
-
-}
+hansard_epetition <- epetition

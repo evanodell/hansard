@@ -2,7 +2,7 @@
 #' Parliamentary Session data
 #'
 #' Imports data on Parliamentary Sessions. Note that due to the date format used by the API, if \code{days==TRUE} and the \code{end_date} and \code{start_date} parameters are not set to the default values, the function downloads all available data and then subsets the tibble between the two given dates.
-#' @param days If \code{TRUE}, returns data for all available days. If \code{FALSE}, returns data on each parliamentary session. If \code{TRUE} and non-default \code{start_date} and/or \code{end_date} parameters are requested, the function must retrieve all days and subset based on the values passed to \code{start_date} and \code{end_date}. Defaults to \code{FALSE}.
+#' @param days If \code{TRUE}, returns data for all available days. If \code{FALSE}, returns data on each parliamentary session. If \code{TRUE} and non-default \code{start_date} and/or \code{end_date} parameters are requested, the function must retrieve all days and subset based on the values passed to \code{start_date} and \code{end_date}. Not applicable to \code{lords_sessions}. Defaults to \code{FALSE}.
 #' @param start_date Only includes sessions starting on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes sessions ending on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
 #' @inheritParams all_answered_questions
@@ -58,6 +58,8 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
 
         if (tidy == TRUE) {## move to external utils file?
 
+          df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
+
             if (days == FALSE) {
 
                 df$endDate._value <- as.POSIXct(df$endDate._value)
@@ -87,10 +89,4 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sy
 
 #' @rdname sessions_info
 #' @export
-hansard_sessions_info <- function(days = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- sessions_info(days=days, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_sessions_info <- sessions_info

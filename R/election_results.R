@@ -159,10 +159,4 @@ election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FA
 
 #' @rdname election_results
 #' @export
-hansard_election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- election_results(ID = ID, all_data = all_data, calculate_percent = calculate_percent, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_election_results <- election_results

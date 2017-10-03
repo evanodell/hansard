@@ -67,10 +67,4 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_dat
 
 #' @rdname lords_amendments
 #' @export
-hansard_lords_amendments <- function(decision = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- lords_amendments(decision = decision, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_amendments <- lords_amendments

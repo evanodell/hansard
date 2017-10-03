@@ -97,10 +97,4 @@ lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1
 
 #' @rdname lords_divisions
 #' @export
-hansard_lords_divisions <- function(division_id = NULL, summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- lords_divisions(division_id = division_id, summary = summary, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_divisions <- lords_divisions

@@ -2,12 +2,23 @@
 #' House of Lords attendance by session
 #'
 #' Imports data on House of Lords attendance for each parliamentary session. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+#'
+#' To return a tibble with all codes for available individual sessions, use \code{lords_attendance_session(session_id=NULL)}, or use \code{\link{lords_sessions}} to retrieve codes for a given date range. Attendance from multiple sessions can be accessed by using \code{lapply} with the output from \code{\link{lords_sessions}}.
+#'
 #' @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.
 #' @export
+#' @seealso \code{\link{lords_attendance_date}}
+#' @seealso \code{\link{lords_sessions}}
+#'
 #' @examples \dontrun{
 #' x <- lords_attendance_session(session_id = 706178)
+#'
+#' #Returns a list of data frames with details of attendance for each day of a given list of sessions.
+#' u <- lords_sessions(start_date="2017-01-01")
+#' m <- lapply(u$about, lords_attendance_session)
+#'
 #' }
 
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
@@ -63,15 +74,11 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
     df
 
   }
+
 }
+
 
 
 #' @rdname lords_attendance_session
 #' @export
-hansard_lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){
-
-  df <- lords_attendance_session(session_id = session_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_attendance_session <- lords_attendance_session

@@ -204,6 +204,8 @@ lords_attendance_tidy <- function(df, tidy_style) {
 
   df <- hansard_tidy(df, tidy_style)
 
+  df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+
   df
 
 }

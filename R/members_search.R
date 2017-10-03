@@ -68,10 +68,4 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
 #' @rdname members_search
 #' @export
-hansard_members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){
-
-  df <- members_search(search = search, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_members_search <- members_search

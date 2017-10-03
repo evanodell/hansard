@@ -35,13 +35,7 @@ research_topics_list <- function() {
 
 #' @rdname research_briefings_lists
 #' @export
-hansard_research_topics_list <- function(){
-
-  df <- research_topics_list()
-
-  df
-
-}
+hansard_research_topics_list <- research_topics_list
 
 
 
@@ -73,13 +67,7 @@ research_subtopics_list <- function() {
 
 #' @rdname research_briefings_lists
 #' @export
-hansard_research_subtopics_list <- function(){
-
-  df <- research_subtopics_list()
-
-  df
-
-}
+hansard_research_subtopics_list <- research_subtopics_list
 
 
 #' @rdname research_briefings_lists
@@ -96,10 +84,4 @@ research_types_list <- function() {
 
 #' @rdname research_briefings_lists
 #' @export
-hansard_research_types_list <- function(){
-
-  df <- research_types_list()
-
-  df
-
-}
+hansard_research_types_list <- research_types_list

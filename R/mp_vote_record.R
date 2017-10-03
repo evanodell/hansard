@@ -141,10 +141,4 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_da
 
 #' @rdname mp_vote_record
 #' @export
-hansard_mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- mp_vote_record(mp_id = mp_id, lobby = lobby, session = session, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_mp_vote_record <- mp_vote_record

@@ -61,10 +61,4 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, t
 
 #' @rdname commons_division_date
 #' @export
-hansard_commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- commons_division_date(date=date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_commons_division_date <- commons_division_date

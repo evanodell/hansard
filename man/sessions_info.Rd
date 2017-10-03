@@ -14,7 +14,7 @@ hansard_sessions_info(days = FALSE, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{days}{If \code{TRUE}, returns data for all available days. If \code{FALSE}, returns data on each parliamentary session. If \code{TRUE} and non-default \code{start_date} and/or \code{end_date} parameters are requested, the function must retrieve all days and subset based on the values passed to \code{start_date} and \code{end_date}. Defaults to \code{FALSE}.}
+\item{days}{If \code{TRUE}, returns data for all available days. If \code{FALSE}, returns data on each parliamentary session. If \code{TRUE} and non-default \code{start_date} and/or \code{end_date} parameters are requested, the function must retrieve all days and subset based on the values passed to \code{start_date} and \code{end_date}. Not applicable to \code{lords_sessions}. Defaults to \code{FALSE}.}
 
 \item{start_date}{Only includes sessions starting on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
 

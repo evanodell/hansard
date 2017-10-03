@@ -31,25 +31,25 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
     if (is.null(legislature) == TRUE) {
 
-      legislature_query <- NULL
+      leg_query <- NULL
 
     } else if (legislature == "commons") {
 
-      legislature_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
+      leg_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
 
     } else if (legislature == "lords") {
 
-      legislature_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
+      leg_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
 
     } else {
 
-      legislature_query <- NULL
+      leg_query <- NULL
 
     }
 
     baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?"
 
-    tv <- jsonlite::fromJSON(paste0(baseurl, legislature_query, dates, extra_args), flatten = TRUE)
+    tv <- jsonlite::fromJSON(paste0(baseurl, leg_query, dates, extra_args), flatten = TRUE)
 
     if(verbose==TRUE){message("Connecting to API")}
 
@@ -58,7 +58,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, legislature_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
+        mydata <- jsonlite::fromJSON(paste0(baseurl, leg_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
         if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
         pages[[i + 1]] <- mydata$result$items
     }
@@ -84,15 +84,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_dat
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_programmes <- function(legislature = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- tv_programmes(legislature = legislature,start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
-
-
+hansard_tv_programmes <- tv_programmes
 
 
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.
@@ -150,20 +142,14 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Dat
 
             df
 
-        }
+    }
 
 }
 
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_clips <- function(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- tv_clips(mp_id = mp_id, start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_tv_clips <- tv_clips
 
 
 #' @rdname tv_programmes
@@ -189,9 +175,4 @@ tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 
 #' @export
 #' @rdname tv_programmes
-hansard_tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- tv_channels(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-}
+hansard_tv_channels <- tv_channels

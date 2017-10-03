@@ -36,10 +36,4 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = F
 
 #' @rdname bill_stage_types
 #' @export
-hansard_bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE){
-
-  df <- bill_stage_types(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_bill_stage_types <- bill_stage_types

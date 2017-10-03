@@ -10,7 +10,7 @@ elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = FALSE)
 
 hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), label = NULL, tidy = TRUE,
+  end_date = Sys.Date(), label = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{

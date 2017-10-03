@@ -71,10 +71,4 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy
 
 #' @export
 #' @rdname lords_interests
-hansard_lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- lords_interests(peer_id = peer_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_interests <- lords_interests

@@ -28,6 +28,9 @@ Imports data on House of Lords attendance by date. Please note that the attendan
 }
 \examples{
 \dontrun{
-x <- lords_attendance_date(date = 706178)
+x <- lords_attendance_date(date = "2016-03-01")
 }
+}
+\seealso{
+\code{\link{lords_attendance_session}}
 }

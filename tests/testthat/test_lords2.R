@@ -31,14 +31,14 @@ test_that("lords functions return expected format", {
   expect_equal(nrow(lwq), 49)
 
   # Attendance
-  la <- hansard_lords_attendance(session_id = 706178, verbose = TRUE)
-  expect_length(la, 8)
-  expect_type(la, "list")
-  expect_true(tibble::is_tibble(la))
+  lasess <- hansard_lords_attendance_session(session_id = 706178, verbose = TRUE)
+  expect_length(lasess, 8)
+  expect_type(lasess, "list")
+  expect_true(tibble::is_tibble(lasess))
 
-  # lanull <- hansard_lords_attendance(start_date = "2016-03-01", verbose = TRUE)
-  # expect_length(lanull, 4)
-  # expect_type(lanull, "list")
-  # expect_true(tibble::is_tibble(lanull))
+  ladate <- hansard_lords_attendance_date(date = "2016-03-01", verbose = TRUE)
+  expect_length(ladate, 4)
+  expect_type(ladate, "list")
+  expect_true(tibble::is_tibble(ladate))
 
 })

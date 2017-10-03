@@ -101,10 +101,4 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL, extr
 #' @rdname commons_oral_question_times
 #' @export
 
-hansard_commons_oral_question_times <- function(session = NULL, question_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- commons_oral_question_times(session = session, question_id = question_id, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_commons_oral_question_times <- commons_oral_question_times

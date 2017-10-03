@@ -120,10 +120,4 @@ election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args =
 
 #' @rdname election_candidates
 #' @export
-hansard_election_candidates <- function(ID = NULL, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- election_candidates(ID = ID, constit_details = constit_details, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_election_candidates <- election_candidates

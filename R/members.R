@@ -103,13 +103,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
 #' @export
 #' @rdname members
-hansard_members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- members(ID=ID, extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_members <- members
 
 
 #' @export
@@ -154,13 +148,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
 #' @export
 #' @rdname members
-hansard_commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- commons_members(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_commons_members <- commons_members
 
 
 #' @export
@@ -206,12 +194,6 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
 #' @export
 #' @rdname members
-hansard_lords_members<- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  df <- lords_members(extra_args = extra_args, tidy = tidy, tidy_style = tidy_style, verbose = verbose)
-
-  df
-
-}
+hansard_lords_members<- lords_members
 
 
