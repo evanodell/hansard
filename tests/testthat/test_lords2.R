@@ -37,7 +37,7 @@ test_that("lords functions return expected format", {
   expect_true(tibble::is_tibble(lasess))
 
   ladate <- hansard_lords_attendance_date(date = "2016-03-01", verbose = TRUE)
-  expect_length(ladate, 4)
+  expect_length(ladate, 6)
   expect_type(ladate, "list")
   expect_true(tibble::is_tibble(ladate))
 
