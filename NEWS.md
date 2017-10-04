@@ -3,7 +3,7 @@
 
 ## Function changes
 
-`lords_attendance()` has been deprecated. Please use `lords_attendance_date()` for attendance data for a given date, and `lords_attendance_session()` for attendance from a given session ID.
+`lords_attendance()` has been deprecated. Please use `lords_attendance_date()` for attendance data for a given date, and `lords_attendance_session()` for attendance from a given session ID. (#4, @pssguy)
 
 New function `lords_sessions()` returns a tibble with details of all sessions in the House of Lords between two given dates.
 
