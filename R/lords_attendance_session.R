@@ -17,7 +17,8 @@
 #' @examples \dontrun{
 #' x <- lords_attendance_session(session_id = 706178)
 #'
-#' #Returns a list of data frames with details of attendance for each day of a given vector of sessions.
+#' #Returns a list of data frames with details of
+#' attendance for each day of a given vector of sessions.
 #' u <- lords_sessions(start_date="2017-01-01")
 #' m <- lapply(u$about, lords_attendance_session)
 #'

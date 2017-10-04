@@ -13,5 +13,5 @@ The API is still in beta, and only about half of the planned datasets are curren
 
 In addition to the standard function names, each function in the \code{hansard} package has a wrapper where the name is prefixed with \code{'hansard_'}. For example, both \code{bills()} and \code{hansard_bills()} will return the same result. This is because function names are taken from the specific API on \url{http://explore.data.parliament.uk/}, but they are often not very informative and could easily clash with functions in other packages (e.g. \code{bills()} is not a term unique to the British parliament).
 
-For more details please see the \href{https://cran.r-project.org/web/packages/hansard/vignettes/introduction.html}{vignette}, or the API documentation on \url{http://explore.data.parliament.uk/}.
+For more details please see the \href{http://ropengov.github.io/hansard/articles/introduction.html}{vignette}, or the API documentation on \url{http://explore.data.parliament.uk/}.
 }
