@@ -11,7 +11,7 @@ Provides functions to request data from the data.parliament.uk APIs. Because of 
 \details{
 The API is still in beta, and only about half of the planned datasets are currently available. The package name is ironic and hopeful, as the actual contents of the Hansard are not yet available through this API.
 
-In addition to the standard function names, each function in the \code{hansard} package has a wrapper where the name is prefixed with \code{'hansard_'}. For example, both \code{bills()} and \code{hansard_bills()} will return the same result.
+In addition to the standard function names, each function in the \code{hansard} package has a wrapper where the name is prefixed with \code{'hansard_'}. For example, both \code{bills()} and \code{hansard_bills()} will return the same result. This is because function names are taken from the specific API on \url{http://explore.data.parliament.uk/}, but they are often not very informative and could easily clash with functions in other packages (e.g. \code{bills()} is not a term unique to the British parliament).
 
 For more details please see the \href{https://cran.r-project.org/web/packages/hansard/vignettes/introduction.html}{vignette}, or the API documentation on \url{http://explore.data.parliament.uk/}.
 }

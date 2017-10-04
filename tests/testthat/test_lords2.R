@@ -24,11 +24,11 @@ test_that("lords functions return expected format", {
   expect_true(tibble::is_tibble(ldivdec))
 
   # Written Questions
-  lwq <- hansard_lords_written_questions(peer_id = c(3526,4176), answering_department = c('cabinet', 'Transport'), start_date = "2017-01-01", end_date = "2018-08-18", verbose=TRUE)
+  lwq <- hansard_lords_written_questions(peer_id = c(3526,4176), answering_department = c('cabinet', 'Transport'), start_date = "2017-01-01", end_date = "2017-08-19", verbose=TRUE)
   expect_length(lwq, 12)
   expect_type(lwq, "list")
   expect_true(tibble::is_tibble(lwq))
-  expect_equal(nrow(lwq), 49)
+  expect_equal(nrow(lwq), 48)
 
   # Attendance
   lasess <- hansard_lords_attendance_session(session_id = 706178, verbose = TRUE)
