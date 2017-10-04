@@ -1,7 +1,11 @@
 
 #' House of Lords attendance by date
 #'
-#' Imports data on House of Lords attendance by date. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+#' Imports data on House of Lords attendance on a given date.
+#'
+#' Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
+#'
+#'
 #' @param date Accepts a date to return attendance data for. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended on a given date.

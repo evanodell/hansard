@@ -24,7 +24,10 @@ hansard_lords_attendance_date(date = NULL, tidy = TRUE,
 A tibble with details on the lords who attended on a given date.
 }
 \description{
-Imports data on House of Lords attendance by date. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+Imports data on House of Lords attendance on a given date.
+}
+\details{
+Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
 }
 \examples{
 \dontrun{

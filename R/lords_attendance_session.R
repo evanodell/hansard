@@ -5,6 +5,8 @@
 #'
 #' To return a tibble with all codes for available individual sessions, use \code{lords_attendance_session(session_id=NULL)}, or use \code{\link{lords_sessions}} to retrieve codes for a given date range. Attendance from multiple sessions can be accessed by using \code{lapply} with the output from \code{\link{lords_sessions}}.
 #'
+#' Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
+#'
 #' @param session_id The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.
@@ -15,7 +17,7 @@
 #' @examples \dontrun{
 #' x <- lords_attendance_session(session_id = 706178)
 #'
-#' #Returns a list of data frames with details of attendance for each day of a given list of sessions.
+#' #Returns a list of data frames with details of attendance for each day of a given vector of sessions.
 #' u <- lords_sessions(start_date="2017-01-01")
 #' m <- lapply(u$about, lords_attendance_session)
 #'
@@ -40,6 +42,8 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
   attend <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
   if (is.null(session_id) == FALSE) {
+
+    if(verbose==TRUE){message("Retrieving attendance data")}
 
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
 

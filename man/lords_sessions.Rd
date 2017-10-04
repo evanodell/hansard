@@ -23,7 +23,7 @@ hansard_lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
 \item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
 }
 \description{
-Returns the session code for House of Lords sittings.
+Returns the session code and other basic details for individual House of Lords sittings.
 }
 \seealso{
 \code{\link{lords_attendance_session}}

@@ -2,7 +2,7 @@
 
 #' Lords sessions
 #'
-#' Returns the session code for House of Lords sittings.
+#' Returns the session code and other basic details for individual House of Lords sittings.
 #'
 #' @param start_date Only includes sessions starting on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes sessions ending on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
@@ -11,6 +11,7 @@
 #'
 #' @inheritParams all_answered_questions
 #' @export
+
 lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
 
   baseurl <- "http://lda.data.parliament.uk/lordsattendances.json"

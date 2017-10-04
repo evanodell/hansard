@@ -1,16 +1,15 @@
 
-# hansard 0.5.4.9003
+# hansard 0.5.5
 
 ## Function changes
 
-`lords_attendance()` has been deprecated. Please use `lords_attendance_date()` for a given date, and `lords_attendance_session()` for a given session.
+`lords_attendance()` has been deprecated. Please use `lords_attendance_date()` for attendance data for a given date, and `lords_attendance_session()` for attendance from a given session ID.
 
+New function `lords_sessions()` returns a tibble with details of all sessions in the House of Lords between two given dates.
 
 ## Bug Fixes
 
-Ensure that `commons_oral_question_times()` only returns one question ID.
-
-`sessions_info()` is now better.
+`commons_oral_question_times()` now only returns one question ID.
 
 ## General improvements
 
@@ -21,6 +20,8 @@ Changes to syntax for `constituencies()`. The `current` parameter can now distin
 Simplification of some internal code, which may have a marginal effect on speed, and will make maintenance and adding features easier going forward.
 
 Switch from using `stringr` to `stringi` for internal string processing.
+
+`sessions_info()` is now faster.
 
 # hansard 0.5.4
 

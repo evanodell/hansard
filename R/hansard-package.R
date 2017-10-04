@@ -4,7 +4,7 @@
 #'
 #' The API is still in beta, and only about half of the planned datasets are currently available. The package name is ironic and hopeful, as the actual contents of the Hansard are not yet available through this API.
 #'
-#' In addition to the more generic function names, each function in hansard has a wrapper where the name is prefixed with \code{'hansard_'}. For example, both \code{bills()} and \code{hansard_bills()} will return the same result.
+#' In addition to the standard function names, each function in the \code{hansard} package has a wrapper where the name is prefixed with \code{'hansard_'}. For example, both \code{bills()} and \code{hansard_bills()} will return the same result.
 #'
 #' For more details please see the \href{https://cran.r-project.org/web/packages/hansard/vignettes/introduction.html}{vignette}, or the API documentation on \url{http://explore.data.parliament.uk/}.
 #'

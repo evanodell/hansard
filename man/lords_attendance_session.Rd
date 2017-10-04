@@ -30,12 +30,14 @@ Imports data on House of Lords attendance for each parliamentary session. Please
 }
 \details{
 To return a tibble with all codes for available individual sessions, use \code{lords_attendance_session(session_id=NULL)}, or use \code{\link{lords_sessions}} to retrieve codes for a given date range. Attendance from multiple sessions can be accessed by using \code{lapply} with the output from \code{\link{lords_sessions}}.
+
+Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
 }
 \examples{
 \dontrun{
 x <- lords_attendance_session(session_id = 706178)
 
-#Returns a list of data frames with details of attendance for each day of a given list of sessions.
+#Returns a list of data frames with details of attendance for each day of a given vector of sessions.
 u <- lords_sessions(start_date="2017-01-01")
 m <- lapply(u$about, lords_attendance_session)
 
