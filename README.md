@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- rmarkdown v1 -->
 
@@ -44,7 +40,7 @@ devtools::install_github("evanodell/hansard")
 
 ## Using hansard
 
-For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is useful.
+For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
 
 #### API calls with console input
 
