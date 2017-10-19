@@ -9,6 +9,7 @@ test_that("epetitions functions return expected format", {
     expect_length(epetit, 7)
     expect_type(epetit, "list")
     expect_true(tibble::is_tibble(epetit))
+    expect_true(nrow(epetit)==650)
 
     epetitnocont <- hansard_epetition(ID = 706964, by_constituency = FALSE, verbose=TRUE)
     expect_length(epetitnocont, 13)

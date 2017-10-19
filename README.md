@@ -2,6 +2,7 @@
 <!-- rmarkdown v1 -->
 
 
+
 # hansard: Accessing Westminster Parliament Data
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/evanodell/hansard/blob/master/LICENSE)
@@ -39,7 +40,7 @@ devtools::install_github("evanodell/hansard")
 
 ## Using hansard
 
-For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [https://zapier.com/learn/apis/](this introductory course) is useful.
+For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
 
 #### API calls with console input
 
