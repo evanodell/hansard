@@ -5,7 +5,7 @@
 
 # hansard: Accessing Westminster Parliament Data
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/evanodell/hansard/blob/master/LICENSE)
+ [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
 [![GitHub tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
 [![](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
