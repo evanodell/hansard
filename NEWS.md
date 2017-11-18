@@ -1,4 +1,9 @@
 
+# hansard 0.5.6
+
+Fixed bug on `constituencies()` so that the `NULL` default value of parameter `current` works properly.
+
+
 # hansard 0.5.5
 
 ## Function changes

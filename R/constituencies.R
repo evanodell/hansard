@@ -25,17 +25,17 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE, tidy_
 
     pages <- list()
 
-    if(current==TRUE){
+    if(is.null(current)) {
+
+      current_query <- NULL
+
+    } else if(current==TRUE){
 
       current_query <- "&exists-endedDate=false"
 
     } else if (current==FALSE) {
 
       current_query <- "&exists-endedDate=true"
-
-    } else {
-
-      current_query <- NULL
 
     }
 

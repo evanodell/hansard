@@ -5,7 +5,7 @@ cons_tidy <- function(df, current, tidy_style) {
 
   if (nrow(df) > 0) {
 
-    if (current == FALSE) {
+    if (is.null(current) || current == FALSE) {
 
       df$endedDate._value <- as.POSIXct(df$endedDate._value)
 
