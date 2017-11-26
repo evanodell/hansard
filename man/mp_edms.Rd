@@ -16,39 +16,68 @@ hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{mp_id}{The ID number of an MP or Peer. Required parameter, Defaults to \code{NULL}. Accepts single IDs in numerical or character format, or a list, data.frame column, etc. If given multiple IDs, the results are combined into a single tibble.}
+\item{mp_id}{The ID number of an MP or Peer. Required parameter, Defaults
+to \code{NULL}. Accepts single IDs in numerical or character format, or a
+list, data.frame column, etc. If given multiple IDs, the results are
+combined into a single tibble.}
 
-\item{primary_sponsor}{Includes all early day motions where the given member is the primary sponsor in the tibble. Defaults to \code{TRUE}.}
+\item{primary_sponsor}{Includes all early day motions where the given
+member is the primary sponsor in the tibble. Defaults to \code{TRUE}.}
 
-\item{sponsor}{Includes all early day motions where the given member a sponsor (but not the primary sponsor) in the tibble. Defaults to \code{TRUE}.}
+\item{sponsor}{Includes all early day motions where the given member a
+sponsor (but not the primary sponsor) in the tibble.
+Defaults to \code{TRUE}.}
 
-\item{signatory}{Includes all early day motions signed (but not sponsored or primarily sponsored) by the given member in the tibble. Defaults to \code{TRUE}.}
+\item{signatory}{Includes all early day motions signed (but not sponsored
+or primarily sponsored) by the given member in the tibble.
+Defaults to \code{TRUE}.}
 
-\item{full_data}{If \code{TRUE}, returns all available data on the EDMs signed or sponsored by a member. Defaults to \code{FALSE}. Note that this can be a very slow process compared to other \code{hansard} functions.}
+\item{full_data}{If \code{TRUE}, returns all available data on the EDMs
+signed or sponsored by a member. Defaults to \code{FALSE}. Note that
+this can be a very slow process compared to other \code{hansard} functions.}
 
-\item{start_date}{Only includes early day motions signed on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes early day motions signed on or after this
+date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects
+of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes early day motions signed on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes early day motions signed on or before this
+date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects
+of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
-A tibble with information on the tibbles signed, sponsored and/or primarily sponsored by the given MP.
+A tibble with information on the tibbles signed, sponsored
+and/or primarily sponsored by the given MP.
 }
 \description{
-Imports data on early day motions signed, sponsored or primarily sponsored by a given MP or Peer.
+Imports data on early day motions signed, sponsored or primarily sponsored
+by a given MP or Peer.
 }
 \examples{
 \dontrun{
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=TRUE)
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
+             sponsor = TRUE, signatory=TRUE)
 
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE, sponsor = TRUE, signatory=FALSE, full_data=TRUE)
+x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
+             sponsor = TRUE, signatory=FALSE, full_data=TRUE)
 }
 }
 \seealso{

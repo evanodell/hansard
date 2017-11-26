@@ -1,8 +1,13 @@
 
+# hansard 0.5.7
+
+Internal rewrites to make maintenance easier and produce a few very small increases in speed in several functions.
+
+Fixed some typos in documentation, brought documentation into line with the reccomended 80 character maximum width for each line.
+
 # hansard 0.5.6
 
 Fixed bug on `constituencies()` so that the `NULL` default value of parameter `current` works properly.
-
 
 # hansard 0.5.5
 

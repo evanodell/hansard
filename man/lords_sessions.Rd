@@ -12,18 +12,32 @@ hansard_lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{start_date}{Only includes sessions starting on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes sessions starting on or after this date.
+Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes sessions ending on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes sessions ending on or before this date.
+Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to the current system date.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \description{
-Returns the session code and other basic details for individual House of Lords sittings.
+Returns the session code and other basic details for individual
+House of Lords sittings.
 }
 \seealso{
 \code{\link{lords_attendance_session}}

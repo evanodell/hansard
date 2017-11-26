@@ -14,21 +14,31 @@ hansard_commons_terms(search = NULL, class = NULL, extra_args = NULL,
 \arguments{
 \item{search}{A string to search the parliamentary thesaurus for.}
 
-\item{class}{The class of definition to be returned Accepts one of \code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},\code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.}
+\item{class}{The class of definition to be returned Accepts one of
+\code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},
+\code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with results from the parliamentary thesaurus.
 }
 \description{
-Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
+Imports the parliamentary thesaurus. The API is rate limited to 5500
+requests at a time, so some use of parameters is required.
 }
 \examples{
 \dontrun{

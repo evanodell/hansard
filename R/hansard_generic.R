@@ -2,9 +2,14 @@
 
 #' Hansard - Generic API Function
 #'
-#' A semi-generic function for the parliamentary API. Provides greater flexibility, including any newly released features or data not yet included in the individual functions of the hansard package.
+#' A semi-generic function for the parliamentary API. Provides greater
+#' flexibility, including any newly released features or data not yet
+#' included in the individual functions of the hansard package.
 #'
-#' Users must specify '.json?' in their path. The function uses the default of 10 items per page, to include more include \code{'&_pageSize=[number]'}, e.g. \code{'&_pageSize=500'} to specifiy the maximum amount of 500 items per page.
+#' Users must specify '.json?' in their path. The function uses the default
+#' of 10 items per page, to include more include \code{'&_pageSize=[number]'},
+#' e.g. \code{'&_pageSize=500'} to specifiy the maximum amount of
+#' 500 items per page.
 #'
 #' This function does not tidy any variable names.
 #'
@@ -30,9 +35,9 @@ hansard_generic <- function(path) {
     pages <- list()
 
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(url, "&_page=", i), flatten = TRUE)
-        #message("Retrieving page ", i + 1, " of ", genericJPages + 1)
-        pages[[i + 1]] <- mydata$result$items
+      mydata <- jsonlite::fromJSON(paste0(url, "&_page=", i), flatten = TRUE)
+      #message("Retrieving page ", i + 1, " of ", genericJPages + 1)
+      pages[[i + 1]] <- mydata$result$items
     }
 
     df <- tibble::as_tibble(dplyr::bind_rows(pages))

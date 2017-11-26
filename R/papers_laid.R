@@ -3,10 +3,21 @@
 #' Papers laid
 #'
 #' Imports data on papers laid before the House.
-#' @param withdrawn If \code{TRUE}, only returns withdrawn papers. Defaults to \code{FALSE}.
-#' @param house The house the paper was laid in. Accepts \code{'commons'} and \code{'lords'}. If \code{NULL}, returns both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
-#' @param start_date Only includes papers laid before the House on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-#' @param end_date Only includes papers laid before the House on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @param withdrawn If \code{TRUE}, only returns withdrawn papers.
+#' Defaults to \code{FALSE}.
+#' @param house The house the paper was laid in. Accepts \code{'commons'}
+#' and \code{'lords'}. If \code{NULL}, returns both House of Commons and
+#' House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
+#' @param start_date Only includes papers laid before the House on or after
+#' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
+#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
+#' or anything else that can be coerced to a date with \code{as.Date()}.
+#' Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes papers laid before the House on or before
+#' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
+#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
+#' or anything else that can be coerced to a date with \code{as.Date()}.
+#' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on papers laid before the given House.
 #' @export
@@ -16,7 +27,10 @@
 #' x <- papers_laid(withdrawn = TRUE, house = NULL)
 #' }
 
-papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,  tidy_style = "snake_case", verbose = FALSE) {
+papers_laid <- function(withdrawn = FALSE, house = NULL,
+                        start_date = "1900-01-01", end_date = Sys.Date(),
+                        extra_args = NULL, tidy = TRUE,
+                        tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(house) == FALSE) {
 
@@ -40,41 +54,41 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
     if (withdrawn == TRUE) {
 
-      withdrawn_query <- "&withdrawn=true"
+        withdrawn_query <- "&withdrawn=true"
 
     } else {
 
-      withdrawn_query <- "&withdrawn=false"
+        withdrawn_query <- "&withdrawn=false"
 
     }
 
-    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=", as.Date(start_date))
+    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=",
+        as.Date(start_date))
 
     baseurl <- "http://lda.data.parliament.uk/paperslaid.json?"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
-    papers <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query, house, dates, extra_args), flatten = TRUE)
+    papers <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query,
+                                        house, dates, extra_args, "&_pageSize=1"),
+                                 flatten = TRUE)
 
     jpage <- floor(papers$result$totalResults/500)
 
-    pages <- list()
+      query <- paste0(baseurl, withdrawn_query, house, dates,
+                      extra_args, "&_pageSize=500&_page=")
 
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query, house, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-        pages[[i + 1]] <- mydata$result$items
-    }
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
     } else {
 
-        if (tidy == TRUE) {###move this to external utils file?
+        if (tidy == TRUE) { ### move this to external utils file?
 
             df$dateLaid._value <- as.POSIXct(df$dateLaid._value)
 
@@ -84,7 +98,8 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
                 df$dateWithdrawn._value <- gsub("T", " ", df$dateWithdrawn._value)
 
-                df$dateWithdrawn._value <- as.POSIXct(lubridate::parse_date_time(df$dateWithdrawn._value, "Y-m-d H:M:S"))
+                df$dateWithdrawn._value <- as.POSIXct(lubridate::parse_date_time(df$dateWithdrawn._value,
+                  "Y-m-d H:M:S"))
 
                 df$dateWithdrawn._datatype <- "POSIXct"
 
@@ -94,7 +109,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL, start_date = "1900-01-0
 
         }
 
-            df
+        df
 
     }
 }

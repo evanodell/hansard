@@ -2,9 +2,12 @@
 
 #' Parliamentary Thesaurus
 #'
-#' Imports the parliamentary thesaurus. The API is rate limited to 5500 requests at a time, so some use of parameters is required.
+#' Imports the parliamentary thesaurus. The API is rate limited to 5500
+#' requests at a time, so some use of parameters is required.
 #' @param search A string to search the parliamentary thesaurus for.
-#' @param class The class of definition to be returned Accepts one of \code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},\code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.
+#' @param class The class of definition to be returned Accepts one of
+#' \code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},
+#' \code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with results from the parliamentary thesaurus.
 #' @export
@@ -14,7 +17,9 @@
 #' x <- commons_terms(search='estate', class='ORG')
 #'}
 
-commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
+                          tidy = TRUE, tidy_style = "snake_case",
+                          verbose = FALSE) {
 
     if (is.null(search) == FALSE) {
 
@@ -49,27 +54,26 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
 
     baseurl <- "http://lda.data.parliament.uk/terms.json?&_view=description"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
-    terms <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, extra_args), flatten = TRUE)
+    terms <- jsonlite::fromJSON(paste0(baseurl, search_query,
+                                       class_query, extra_args),
+                                flatten = TRUE)
 
     jpage <- floor(terms$result$totalResults/500)
 
-    pages <- list()
+    query <- paste0(baseurl, search_query, class_query,
+                    extra_args, "&_pageSize=500&_page=")
 
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, search_query, class_query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-        pages[[i + 1]] <- mydata$result$items
-    }
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
-      } else {
+    } else {
 
         if (tidy == TRUE) {
 
@@ -77,9 +81,9 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
 
         }
 
-            df
+        df
 
-      }
+    }
 
 }
 
@@ -87,5 +91,3 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL, tidy =
 #' @rdname commons_terms
 #' @export
 hansard_commons_terms <- commons_terms
-
-

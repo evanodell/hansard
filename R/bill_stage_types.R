@@ -10,27 +10,28 @@
 #' }
 
 bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
-  stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500", flatten = TRUE)
-
-  df <- tibble::as_tibble(stages$result$items)
-
-  if (nrow(df) == 0 && verbose==TRUE) {
-
-    message("The request did not return any data. Please check your search parameters.")
-
-  } else {
-
-    if (tidy == TRUE) {
-
-      df <- hansard_tidy(df, tidy_style)
-
+    
+    stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500", 
+        flatten = TRUE)
+    
+    df <- tibble::as_tibble(stages$result$items)
+    
+    if (nrow(df) == 0 && verbose == TRUE) {
+        
+        message("The request did not return any data. Please check your search parameters.")
+        
+    } else {
+        
+        if (tidy == TRUE) {
+            
+            df <- hansard_tidy(df, tidy_style)
+            
+        }
+        
+        df
+        
     }
-
-      df
-
-  }
-
+    
 }
 
 

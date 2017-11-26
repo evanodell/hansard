@@ -1,8 +1,12 @@
 
 #' Peers' registered interests
 #'
-#' Registered financial interests of members of the House of Lords. If \code{peer_id=NULL} the actual details of registered interests are stored in a nested data frame.
-#' @param peer_id The ID of a member of the House of lords. If \code{NULL}, returns a tibble with all listed financial interests for all members. Defaults to \code{NULL}.
+#' Registered financial interests of members of the House of Lords.
+#' If \code{peer_id=NULL} the actual details of registered interests
+#' are stored in a nested data frame.
+#' @param peer_id The ID of a member of the House of lords. If \code{NULL},
+#' returns a tibble with all listed financial interests for all members.
+#' Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the interests of peers in the House of Lords.
 #' @export
@@ -11,61 +15,57 @@
 #'
 #' y <- lords_interests()
 #'}
-lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
+                            tidy_style = "snake_case", verbose = FALSE) {
 
-  if (is.null(peer_id) == TRUE) {### Better handling of lords with and without registered interests
+    if (is.null(peer_id) == TRUE) {
+        # For handling lords with and without registered interests
 
-    query <- ".json?"
+        json_query <- ".json?"
 
-  } else {
+    } else {
 
-    query <- paste0(".json?member=", peer_id)
-
-  }
-
-  baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
-
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
-
-  members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
-
-  jpage <- floor(members$result$totalResults/500)
-
-  pages <- list()
-
-  for (i in 0:jpage) {
-    mydata <- jsonlite::fromJSON(paste0(baseurl, query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-    if (verbose == TRUE) {message("Retrieving page ", i + 1, " of ", jpage + 1)}
-    pages[[i + 1]] <- mydata$result$items
-  }
-
-  df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-  if (nrow(df) == 0 && verbose == TRUE) {
-
-    message("The request did not return any data. Please check your search parameters.")
-
-  } else {
-
-    if (tidy == TRUE) {
-
-      if(is.null(peer_id)){
-
-        df <- lords_interests_tidy2(df, tidy_style) ##in utils-lords.R
-
-      } else {
-
-      df <- lords_interests_tidy(df, tidy_style) ##in utils-lords.R
-
-      }
+        json_query <- paste0(".json?member=", peer_id)
 
     }
 
-    df
+    baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
 
-  }
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
+
+    members <- jsonlite::fromJSON(paste0(baseurl, json_query, extra_args), flatten = TRUE)
+
+    jpage <- floor(members$result$totalResults/500)
+
+    query <- paste0(baseurl, json_query, extra_args, "&_pageSize=500&_page=")
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+
+    if (nrow(df) == 0 && verbose == TRUE) {
+
+        message("The request did not return any data. Please check your search parameters.")
+
+    } else {
+
+        if (tidy == TRUE) {
+
+            if (is.null(peer_id)) {
+
+                df <- lords_interests_tidy2(df, tidy_style)  ##in utils-lords.R
+
+            } else {
+
+                df <- lords_interests_tidy(df, tidy_style)  ##in utils-lords.R
+
+            }
+
+        }
+
+        df
+
+    }
 }
 
 

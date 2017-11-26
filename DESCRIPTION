@@ -1,9 +1,9 @@
 Package: hansard
 Type: Package
 Title: Provides Easy Downloading Capabilities for the UK Parliament API
-Version: 0.5.6
-Date: 2017-11-18
-Authors@R: person("Evan Odell", email="evanodell91@gmail.com", role=c("aut", "cre"))
+Version: 0.5.7
+Date: 2017-11-26
+Authors@R: person("Evan Odell", email="evanodell91@gmail.com", role=c("aut", "cre"), comment = c(ORCID="0000-0003-1845-808X"))
 Author: Evan Odell [aut, cre]
 Maintainer: Evan Odell <evanodell91@gmail.com>
 Description: Provides functions to download data from the <http://www.data.parliament.uk/> APIs. Because of the structure of the API, there is a named function for each type of available data for ease of use, as well as some functions designed to retrieve specific pieces of commonly used data. Functions for each new API will be added as and when they become available.

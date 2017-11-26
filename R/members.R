@@ -2,13 +2,18 @@
 
 #' Members of both houses
 #'
-#' Imports basic details on current and former Members of Parliament including the Lords and the Commons.
+#' Imports basic details on current and former Members of Parliament including
+#' the Lords and the Commons.
 #'
 #' For more details on a given member see \code{\link[mnis]{mnis_full_biog}}.
 #'
-#' @param ID The ID of a member of the House of Commons or the House of Lords to return data on. If \code{NULL}, returns a tibble of all members of both houses. Defaults to \code{NULL}.
+#' @param ID The ID of a member of the House of Commons or the House of Lords
+#' to return data on. If \code{NULL}, returns a tibble of all members of both
+#' houses. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
-#' @return A tibble with data on members of the House of Commons (\code{commons_members()}), the House of Lords, (\code{lords_members()}), or both (\code{members()}).
+#' @return A tibble with data on members of the House of Commons
+#' (\code{commons_members()}), the House of Lords, (\code{lords_members()}),
+#' or both (\code{members()}).
 #'
 #' @export
 #' @section Member details functions:
@@ -28,7 +33,8 @@
 #' z <- lords_members()
 #'}
 
-members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
+                    tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(ID) == TRUE) {
 
@@ -42,7 +48,9 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
     baseurl <- "http://lda.data.parliament.uk/members"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
     members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
 
@@ -50,37 +58,29 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
         jpage <- floor(members$result$totalResults/500)
 
-        pages <- list()
+        query <- paste0(baseurl, query, extra_args, "&_pageSize=500&_page=")
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- dplyr::bind_rows(pages)
+        df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     } else {
 
-      df <- tibble::tibble(
-        about = members$result$primaryTopic$`_about`,
-        additionalName = members$result$primaryTopic$additionalName$`_value`,
-        constituencyAbout = members$result$primaryTopic$constituency$`_about`,
-        constituencyLabel = members$result$primaryTopic$constituency$label,
-        familyName = members$result$primaryTopic$familyName$`_value`,
-        fullName = members$result$primaryTopic$fullName$`_value`,
-        gender = members$result$primaryTopic$gender$`_value`,
-        givenName = members$result$primaryTopic$givenName$`_value`,
-        homePage = members$result$primaryTopic$homePage,
-        isPrimaryTopicOf = members$result$primaryTopic$isPrimaryTopicOf,
-        label = members$result$primaryTopic$label$`_value`,
-        party = members$result$primaryTopic$party$`_value`,
-        twitter = members$result$primaryTopic$twitter$`_value`
-      )
+        df <- tibble::tibble(about = members$result$primaryTopic$`_about`,
+                             additionalName = members$result$primaryTopic$additionalName$`_value`,
+                             constituencyAbout = members$result$primaryTopic$constituency$`_about`,
+                             constituencyLabel = members$result$primaryTopic$constituency$label,
+                             familyName = members$result$primaryTopic$familyName$`_value`,
+                             fullName = members$result$primaryTopic$fullName$`_value`,
+                             gender = members$result$primaryTopic$gender$`_value`,
+                             givenName = members$result$primaryTopic$givenName$`_value`,
+                             homePage = members$result$primaryTopic$homePage,
+                             isPrimaryTopicOf = members$result$primaryTopic$isPrimaryTopicOf,
+                             label = members$result$primaryTopic$label$`_value`,
+                             party = members$result$primaryTopic$party$`_value`,
+                             twitter = members$result$primaryTopic$twitter$`_value`)
 
     }
 
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -94,9 +94,9 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "sna
 
         }
 
-            df <- tibble::as.tibble(df)
+        df <- tibble::as.tibble(df)
 
-            df
+        df
 
     }
 }
@@ -108,27 +108,24 @@ hansard_members <- members
 
 #' @export
 #' @rdname members
-commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+    verbose = FALSE) {
 
     baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
     jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
-    pages <- list()
+    query <- paste0(baseurl, extra_args, "&_page=")
 
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, extra_args, "&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-        pages[[i + 1]] <- mydata$result$items
-    }
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -140,7 +137,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
         }
 
-            df
+        df
 
     }
 }
@@ -153,29 +150,24 @@ hansard_commons_members <- commons_members
 
 #' @export
 #' @rdname members
-lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+    verbose = FALSE) {
 
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
     jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
 
-    pages <- list()
+    query <- paste0(baseurl, extra_args, "&_page=")
 
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, extra_args, "&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-        pages[[i + 1]] <- mydata$result$items
-    }
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- dplyr::bind_rows(pages)
-
-    df <- tibble::as_tibble(df)
-
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -187,13 +179,12 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
         }
 
-            df
+        df
 
     }
 }
 
 #' @export
 #' @rdname members
-hansard_lords_members<- lords_members
-
+hansard_lords_members <- lords_members
 

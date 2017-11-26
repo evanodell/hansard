@@ -12,26 +12,44 @@ hansard_lords_attendance_session(session_id = NULL, extra_args = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{session_id}{The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.}
+\item{session_id}{The ID of the House of Lords session. If \code{NULL},
+returns a list of all sessions, subject to other parameters.
+Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with details on the lords who attended a given session.
 }
 \description{
-Imports data on House of Lords attendance for each parliamentary session. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+Imports data on House of Lords attendance for each parliamentary session.
+Please note that the attendance data is not as tidy as some of the others
+that are accessible through this API, and so additional work to prepare
+this data in a way that you want may be required.
 }
 \details{
-To return a tibble with all codes for available individual sessions, use \code{lords_attendance_session(session_id=NULL)}, or use \code{\link{lords_sessions}} to retrieve codes for a given date range. Attendance from multiple sessions can be accessed by using \code{lapply} with the output from \code{\link{lords_sessions}}.
+To return a tibble with all codes for available individual sessions, use
+\code{lords_attendance_session(session_id=NULL)}, or use
+\code{\link{lords_sessions}} to retrieve codes for a given date range.
+Attendance from multiple sessions can be accessed by using \code{lapply}
+with the output from \code{\link{lords_sessions}}.
 
-Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
+Please note that House of Lords attendance data is not as tidy as some of
+the others that are accessible through this API, and so additional work
+on the return from the API may be required.
 }
 \examples{
 \dontrun{
@@ -39,7 +57,7 @@ x <- lords_attendance_session(session_id = 706178)
 
 #Returns a list of data frames with details of
 attendance for each day of a given vector of sessions.
-u <- lords_sessions(start_date="2017-01-01")
+u <- lords_sessions(start_date='2017-01-01')
 m <- lapply(u$about, lords_attendance_session)
 
 }

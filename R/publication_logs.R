@@ -3,12 +3,25 @@
 #' House publications
 #'
 #' Imports data on House of Commons and House of Lords publications.
-#' @param ID Publication ID. Defaults to \code{NULL}. If not \code{NULL}, requests a tibble with information on the given publication.
-#' @param house The house that produced the particular publication. Accepts \code{'commons'} and \code{'lords'}. If \code{NULL} or not \code{'commons'} or \code{'lords'}, returns publications from both House of Commons and House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
-#' @param start_date Only includes publications issued on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-#' @param end_date Only includes publications issued on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' @param ID Publication ID. Defaults to \code{NULL}. If not \code{NULL},
+#'  requests a tibble with information on the given publication.
+#' @param house The house that produced the particular publication. Accepts
+#' \code{'commons'} and \code{'lords'}. If \code{NULL} or not \code{'commons'}
+#' or \code{'lords'}, returns publications from both House of Commons and
+#' House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
+#' @param start_date Only includes publications issued on or after this date.
+#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes publications issued on or before this
+#' date. Accepts character values in \code{'YYYY-MM-DD'} format, and
+#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
+#' \code{POSIXlt} or anything else that can be coerced to a date with
+#' \code{as.Date()}. Defaults to the current system date.
 #' @inheritParams all_answered_questions
-#' @return A tibble with details from publications in the House of Commons and House of Lords
+#' @return A tibble with details from publications in the House of
+#' Commons and House of Lords
 #' @export
 #' @examples \dontrun{
 #' x <- publication_logs(house='commons')
@@ -16,15 +29,18 @@
 #' x <- publication_logs(683267)
 #' }
 
-publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
+                             end_date = Sys.Date(), extra_args = NULL,
+                             tidy = TRUE, tidy_style = "snake_case",
+                             verbose = FALSE) {
 
     if (is.null(ID) == FALSE) {
 
-        query <- paste0("/", ID, ".json?")
+        id_query <- paste0("/", ID, ".json?")
 
     } else {
 
-        query <- ".json?"
+      id_query <- ".json?"
 
     }
 
@@ -52,13 +68,20 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
     }
 
-    dates <- paste0("&_properties=publicationDate&max-publicationDate=", as.Date(end_date), "&min-publicationDate=", as.Date(start_date))
+    dates <- paste0("&_properties=publicationDate&max-publicationDate=",
+                    as.Date(end_date),
+                    "&min-publicationDate=",
+                    as.Date(start_date))
 
     baseurl <- "http://lda.data.parliament.uk/publicationlogs"
 
-    if(verbose==TRUE){message("Connecting to API")}
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
 
-    logs <- jsonlite::fromJSON(paste0(baseurl, query, house_query, dates, extra_args), flatten = TRUE)
+    logs <- jsonlite::fromJSON(paste0(baseurl, id_query, house_query,
+                                      dates, extra_args),
+                               flatten = TRUE)
 
     if (is.null(ID) == FALSE) {
 
@@ -68,19 +91,14 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
         jpage <- floor(logs$result$totalResults/500)
 
-        pages <- list()
+        query <- paste0(baseurl, id_query, house_query, dates,
+                        extra_args, "&_pageSize=500&_page=")
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, house_query, dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
+        df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     }
 
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -88,11 +106,11 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
         if (tidy == TRUE) {
 
-            df <- pub_tidy(df, tidy_style) ## in utils-publogs.R
+            df <- pub_tidy(df, tidy_style)  ## in utils-publogs.R
 
         }
 
-            df
+        df
 
     }
 }

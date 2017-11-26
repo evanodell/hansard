@@ -2,8 +2,14 @@
 
 #' Search for an MP or Peer by name and constituency
 #'
-#' Function searches for the string and returns a tibble with all matches from both houses of parliament. Returns all partial matches in the members' names, constituencies, twitter handle and webpage. The default search is NULL, which returns a tibble of all members of both houses, the same result as \code{members()}.
-#' @param search Accepts any string. Defaults to \code{NULL}. If \code{NULL}, returns a tibble with all members of both houses of parliament. Searchs are not case sensitive.
+#' Function searches for the string and returns a tibble with all matches from
+#' both houses of parliament. Returns all partial matches in the members'
+#' names, constituencies, twitter handle and webpage. The default search is
+#' \code{NULL}, which returns a tibble of all members of both houses, the
+#' same result as \code{members()}.
+#' @param search Accepts any string. Defaults to \code{NULL}. If \code{NULL},
+#' returns a tibble with all members of both houses of parliament. Searchs are
+#' not case sensitive.
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of the search.
 #' @seealso \code{\link{members}}
@@ -14,7 +20,8 @@
 #' x <- members_search(search='chris')
 #' }
 
-members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+members_search <- function(search = NULL, tidy = TRUE,
+                           tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(search)) {
 
@@ -26,25 +33,21 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
         baseurl <- "http://lda.data.parliament.uk/members.json?_search=*"
 
-        if(verbose==TRUE){message("Connecting to API")}
+        if (verbose == TRUE) {
+            message("Connecting to API")
+        }
 
         results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
 
         jpage <- floor(results$result$totalResults/500)
 
-        pages <- list()
+        query <- paste0(baseurl, search, "*", "&_pageSize=500&_page=")
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, search, "*", "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
+        df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     }
 
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -60,7 +63,7 @@ members_search <- function(search = NULL, tidy = TRUE, tidy_style = "snake_case"
 
         }
 
-            df
+        df
 
     }
 

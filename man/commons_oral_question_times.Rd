@@ -14,23 +14,35 @@ hansard_commons_oral_question_times(session = NULL, question_id = NULL,
   verbose = FALSE)
 }
 \arguments{
-\item{session}{Accepts a session in format \code{yyyy/yy} (e.g. \code{2016/17}) and returns a tibble of all oral question times from that session. Defaults to \code{NULL}.}
+\item{session}{Accepts a session in format \code{yyyy/yy}
+(e.g. \code{2016/17}) and returns a tibble of all oral question times from
+that session. Defaults to \code{NULL}.}
 
-\item{question_id}{Accepts a question time ID, and returns a tibble of that question time.}
+\item{question_id}{Accepts a question time ID, and returns a tibble of
+that question time.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with information on oral question times in the House of Commons.
 }
 \description{
-Imports data on House of Commons oral question times. Query with parameters for the parliamentary session or the question ID. If \code{tidy=TRUE}, datetime variables are converted to \code{POSIXct} class.
+Imports data on House of Commons oral question times. Query with parameters
+for the parliamentary session or the question ID. If \code{tidy=TRUE},
+datetime variables are converted to \code{POSIXct} class.
 }
 \examples{
 \dontrun{

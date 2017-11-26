@@ -2,13 +2,29 @@
 
 #' Voting record of members of the House of Lords
 #'
-#' Accepts an ID number for a member of the House of Commons, and returns a tibble of their votes.
-#' @param peer_id The ID number of a member of the House of Lords. A value must be included for this parameter. Use the \code{\link{lords_members}} to find IDs for members of the House of Lords. Defaults to \code{NULL}.
-#' @param lobby Accepts one of \code{'all'}, \code{'content'}, \code{'notcontent'}. \code{'content'} returns votes where the peer voted \code{'content'}, \code{'notcontent'} returns votes where the peer voted \code{'notcontent'} and \code{'all'} returns all available votes by the peer. This parameter is not case sensitive. Defaults to \code{'all'}.
-#' @param start_date Only includes divisions on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
-#' @param end_date Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.
+#' Accepts an ID number for a member of the House of Commons, and returns a
+#' tibble of their votes.
+#' @param peer_id The ID number of a member of the House of Lords. A value
+#' must be included for this parameter. Use the \code{\link{lords_members}}
+#' to find IDs for members of the House of Lords. Defaults to \code{NULL}.
+#' @param lobby Accepts one of \code{'all'}, \code{'content'},
+#' \code{'notcontent'}. \code{'content'} returns votes where the peer voted
+#' \code{'content'}, \code{'notcontent'} returns votes where the peer voted
+#' \code{'notcontent'} and \code{'all'} returns all available votes by the
+#' peer. This parameter is not case sensitive. Defaults to \code{'all'}.
+#' @param start_date Only includes divisions on or after this date. Accepts
+#' character values in \code{'YYYY-MM-DD'} format, and objects of class
+#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+#' else that can be coerced to a date with \code{as.Date()}.
+#' Defaults to \code{'1900-01-01'}.
+#' @param end_date Only includes divisions on or before this date.
+#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Defaults to the current system date.
 #' @inheritParams all_answered_questions
-#' @return A tibble with details on the voting record of a member of the House of Lords
+#' @return A tibble with details on the voting record of a
+#' member of the House of Lords.
 #'
 #' @export
 #' @examples \dontrun{
@@ -20,7 +36,10 @@
 #' }
 
 
-lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+lord_vote_record <- function(peer_id = NULL, lobby = "all",
+                             start_date = "1900-01-01", end_date = Sys.Date(),
+                             extra_args = NULL, tidy = TRUE,
+                             tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(peer_id) == TRUE) {
 
@@ -28,64 +47,77 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
     }
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=", as.Date(start_date))
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=",
+        as.Date(start_date))
 
     lobby <- gsub("-", "", lobby)
 
     lobby <- tolower(lobby)
 
-    if (lobby=="all") {
+    if (lobby == "all") {
 
-      if(verbose==TRUE){message("Retrieving 'content' votes")}
+        if (verbose == TRUE) {
+            message("Retrieving 'content' votes")
+        }
 
-      df_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "content", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose = verbose)
+        df_content <- hansard::lord_vote_record(peer_id = peer_id,
+                                                lobby = "content",
+                                                start_date = start_date,
+                                                end_date = end_date,
+                                                extra_args = extra_args,
+                                                tidy = FALSE,
+                                                verbose = verbose)
 
-      if(verbose==TRUE){message("Retrieving 'not-content' votes")}
+        if (verbose == TRUE) {
+            message("Retrieving 'not-content' votes")
+        }
 
-      df_not_content <- hansard::lord_vote_record(peer_id = peer_id, lobby = "notcontent", start_date = start_date, end_date = end_date, extra_args = extra_args, tidy = FALSE, verbose = verbose)
+        df_not_content <- hansard::lord_vote_record(peer_id = peer_id,
+                                                    lobby = "notcontent",
+                                                    start_date = start_date,
+                                                    end_date = end_date,
+                                                    extra_args = extra_args,
+                                                    tidy = FALSE,
+                                                    verbose = verbose)
 
-      df <- dplyr::bind_rows(df_content, df_not_content)
+        df <- dplyr::bind_rows(df_content, df_not_content)
 
-      df
+        df
 
     } else {
 
         baseurl <- "http://lda.data.parliament.uk/lordsdivisions/"
 
-        if(verbose==TRUE){message("Connecting to API")}
+        if (verbose == TRUE) {
+            message("Connecting to API")
+        }
 
-        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,  dates, extra_args), flatten = TRUE)
+        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,
+            dates, extra_args), flatten = TRUE)
 
         jpage <- floor(content$result$totalResults/500)
 
-        pages <- list()
+        query <- paste0(baseurl, lobby, ".json?mnisId=",
+                        peer_id, dates, extra_args, "&_pageSize=500&_page=")
 
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,  dates, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-            if(verbose==TRUE){
-              message("Retrieving page ", i + 1, " of ", jpage + 1)
-            }
-            pages[[i + 1]] <- mydata$result$items
-        }
+        df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
+        if (nrow(df) > 0 & lobby == "content") {
 
-        if (nrow(df) > 0 & lobby=="content") {
+            df$vote <- "Content"
 
-          df$vote <- "Content"
+        } else if (nrow(df) > 0) {
 
-        } else if(nrow(df) > 0){
-
-          df$vote <- "Not-Content"
+            df$vote <- "Not-Content"
 
         }
 
         df
 
 
-    }### End of else for specific lobbies above
+    }  ### End of else for specific lobbies above
 
-    if (nrow(df) == 0 && verbose==TRUE) {
+    if (nrow(df) == 0 && verbose == TRUE) {
 
         message("The request did not return any data. Please check your search parameters.")
 
@@ -93,11 +125,11 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all", start_date = "1900-0
 
         if (tidy == TRUE) {
 
-          df <- lord_vote_record_tidy(df, tidy_style) ## in utils-lords.R
+            df <- lord_vote_record_tidy(df, tidy_style)  ## in utils-lords.R
 
         }
 
-          df
+        df
 
     }
 

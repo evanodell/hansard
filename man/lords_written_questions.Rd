@@ -14,27 +14,52 @@ hansard_lords_written_questions(peer_id = NULL, answering_department = NULL,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{peer_id}{Accepts a member ID or list of IDs, and returns a tibble with all written questions asked by that member or members. If \code{NULL}, peer_id is not included in the query to the API and so all written questions are returned subject to other function parameters. Defaults to \code{NULL}.}
+\item{peer_id}{Accepts a member ID or list of IDs, and returns a tibble
+with all written questions asked by that member or members. If \code{NULL},
+peer_id is not included in the query to the API and so all written
+questions are returned subject to other function parameters.
+Defaults to \code{NULL}.}
 
-\item{answering_department}{Accepts a string with a department name or partial name or a list of departmental names, and returns all written questions by that department. The query acts as a search, so entering \code{'health'} will return all questions answered by the Department of Health. If \code{NULL}, answering_department is not included as a query parameter. Defaults to \code{NULL}.}
+\item{answering_department}{Accepts a string with a department name or
+partial name or a list of departmental names, and returns all written
+questions by that department. The query acts as a search, so entering
+\code{'health'} will return all questions answered by the Department of
+Health. If \code{NULL}, answering_department is not included as a query
+parameter. Defaults to \code{NULL}.}
 
-\item{start_date}{Only includes questions tabled on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes questions tabled on or after this date.
+Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes questions tabled on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes questions tabled on or before this date.
+Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
+class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with details on written questions in the House of Lords.
 }
 \description{
-Imports data on House of Lords written questions asked by a given peer(s), and/or directed to a given department.
+Imports data on House of Lords written questions asked by a given peer(s),
+and/or directed to a given department.
 }
 \examples{
 \dontrun{

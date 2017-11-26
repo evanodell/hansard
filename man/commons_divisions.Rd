@@ -14,27 +14,49 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all commons divisions, subject to all other parameters. Defaults to \code{NULL}. Only accepts a single division ID at a time, but to return details on a list of division IDs use with \code{lapply}.}
+\item{division_id}{The id of a particular vote. If empty, returns a
+tibble with information on all commons divisions, subject to all other
+parameters. Defaults to \code{NULL}. Only accepts a single division ID
+at a time, but to return details on a list of division IDs use with
+\code{lapply}.}
 
-\item{summary}{If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
+\item{summary}{If \code{TRUE}, returns a small tibble summarising a
+division outcome. Otherwise returns a tibble with details on how each
+MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
 
-\item{start_date}{Only includes divisions on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes divisions on or after this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+else that can be coerced to a date with \code{as.Date()}. Defaults
+to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes divisions on or before this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+else that can be coerced to a date with \code{as.Date()}. Defaults to
+the current system date.}
 
-\item{extra_args}{Additional parameters to pass to API. See the \href{http://explore.data.parliament.uk/}{API documentation} or the package vignette for more details. Defaults to \code{NULL}.}
+\item{extra_args}{Additional parameters to pass to API.
+See the \href{http://explore.data.parliament.uk/}{API documentation}
+or the package vignette for more details. Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with the results of divisions in the House of Commons.
 }
 \description{
-Imports data on House of Commons divisions (votes), either full details on how each member voted, or a summary of vote totals.
+Imports data on House of Commons divisions (votes), either full details
+on how each member voted, or a summary of vote totals.
 }
 \examples{
 \dontrun{

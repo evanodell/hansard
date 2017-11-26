@@ -23,134 +23,145 @@
 #' w <- election_results(ID=730039, all_data=TRUE)
 #' }
 
-election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
-
+election_results <- function(ID = NULL, all_data = FALSE, calculate_percent = FALSE, 
+    constit_details = FALSE, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", 
+    verbose = FALSE) {
+    
     if (is.null(ID) == TRUE) {
-
+        
         id_query <- NULL
-
+        
     } else {
-
+        
         id_query <- paste0("electionId=", ID)
-
+        
     }
-
+    
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
-
-    if(verbose==TRUE){message("Connecting to API")}
-
+    
+    if (verbose == TRUE) {
+        message("Connecting to API")
+    }
+    
     elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args))
-
+    
     jpage <- floor(elect$result$totalResults/500)
-
+    
     pages <- list()
-
+    
     for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=", i), flatten = TRUE)
-        if(verbose==TRUE){message("Retrieving page ", i + 1, " of ", jpage + 1)}
+        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=", 
+            i), flatten = TRUE)
+        if (verbose == TRUE) {
+            message("Retrieving page ", i + 1, " of ", jpage + 1)
+        }
         pages[[i + 1]] <- mydata$result$items
     }
-
+    
     df <- dplyr::bind_rows(pages)
-
+    
     if (constit_details == TRUE & (nrow(df) > 0)) {
-
+        
         message("Retrieving constituency information")
-
+        
         constits <- suppressMessages(constituencies(current = FALSE))
-
+        
         df <- dplyr::left_join(df, constits, by = c(constituency._about = "about"))
     }
-
+    
     if (all_data == TRUE) {
-
+        
         names(df)[names(df) == "_about"] <- "about"
-
+        
         dat <- vector("list", nrow(df))
-
+        
         df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
-
+        
         for (i in 1:nrow(df)) {
-
-            x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/", df$about[[i]], ".json"), flatten = TRUE)
-
+            
+            x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/", 
+                df$about[[i]], ".json"), flatten = TRUE)
+            
             dat[[i]] <- x$result$primaryTopic$candidate
-
-            if(verbose==TRUE) {
-              message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], ", ", df$election.label._value[[i]])
+            
+            if (verbose == TRUE) {
+                message("Retrieving ", i, " of ", nrow(df), ": ", df$constituency.label._value[[i]], 
+                  ", ", df$election.label._value[[i]])
             }
-
+            
         }
-
+        
         df2 <- dplyr::bind_rows(dat)
-
+        
         df2$fullName._value <- NULL
         df2$order <- NULL
-
+        
         names(df2)[names(df2) == "_about"] <- "about"
-
+        
         df3 <- tidyr::spread_(df2, "party._value", "numberOfVotes")
-
+        
         df3$about <- gsub("http://data.parliament.uk/resources/", "", df3$about)
         df3$about <- gsub("/.*", "", df3$about)
-
+        
         df3 <- dplyr::grouped_df(df3, "about")
-
+        
         df4 <- dplyr::summarise_all(df3, sum, na.rm = TRUE)
-
+        
         df4[df4 == 0] <- NA
-
-        names(df4)[names(df4)=="Con"] <- "Conservative"
-        names(df4)[names(df4)=="Lab"] <- "Labour"
-        names(df4)[names(df4)=="Lib"] <- "Liberal Democrat"
-        names(df4)[names(df4)=="Ind"] <- "Independent"
-
-        df4 <- df4[,order(colnames(df4))]
-
+        
+        names(df4)[names(df4) == "Con"] <- "Conservative"
+        names(df4)[names(df4) == "Lab"] <- "Labour"
+        names(df4)[names(df4) == "Lib"] <- "Liberal Democrat"
+        names(df4)[names(df4) == "Ind"] <- "Independent"
+        
+        df4 <- df4[, order(colnames(df4))]
+        
     }
-
-    if (nrow(df) == 0 && verbose==TRUE) {
-
+    
+    if (nrow(df) == 0 && verbose == TRUE) {
+        
         message("The request did not return any data. Please check your search parameters.")
-
+        
     } else {
-
+        
         if (calculate_percent == TRUE) {
-
+            
             df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 2)
-
+            
             df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 2)
-
+            
         }
-
+        
         if (tidy == TRUE) {
-
-            df$election._about <- gsub("http://data.parliament.uk/resources/", "", df$election._about)
-
-            df$constituency._about <- gsub("http://data.parliament.uk/resources/", "", df$constituency._about)
-
+            
+            df$election._about <- gsub("http://data.parliament.uk/resources/", "", 
+                df$election._about)
+            
+            df$constituency._about <- gsub("http://data.parliament.uk/resources/", 
+                "", df$constituency._about)
+            
             if (all_data == TRUE) {
-
-              df <- dplyr::left_join(df, df4, by = "about")
-
-            }
-
-            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
-
-            df
-
-        } else {
-
-            df <- tibble::as.tibble(df)
-
-            if (all_data == TRUE) {
-
+                
                 df <- dplyr::left_join(df, df4, by = "about")
-
+                
             }
-
+            
+            df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
+            
             df
-
+            
+        } else {
+            
+            df <- tibble::as.tibble(df)
+            
+            if (all_data == TRUE) {
+                
+                df <- dplyr::left_join(df, df4, by = "about")
+                
+            }
+            
+            df
+            
         }
     }
 }

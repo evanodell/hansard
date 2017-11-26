@@ -12,13 +12,22 @@ hansard_lords_attendance_date(date = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{date}{Accepts a date to return attendance data for. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else than can be coerced to a date with \code{as.Date()}. Defaults to \code{NULL}.}
+\item{date}{Accepts a date to return attendance data for. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of
+class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
+anything else that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{NULL}.}
 
-\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names in the tibble to remove special characters and superfluous text, and converts the variable names to a consistent style. Defaults to \code{TRUE}.}
+\item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
-\item{tidy_style}{The style to convert variable names to, if \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'} and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\item{tidy_style}{The style to convert variable names to, if
+\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
+and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress of the API request. Defaults to \code{FALSE}.}
+\item{verbose}{If \code{TRUE}, returns data to console on the progress
+of the API request. Defaults to \code{FALSE}.}
 }
 \value{
 A tibble with details on the lords who attended on a given date.
@@ -27,11 +36,13 @@ A tibble with details on the lords who attended on a given date.
 Imports data on House of Lords attendance on a given date.
 }
 \details{
-Please note that House of Lords attendance data is not as tidy as some of the others that are accessible through this API, and so additional work on the return from the API may be required.
+Please note that House of Lords attendance data is not as
+tidy as some of the others that are accessible through this
+API, and so additional work on the return from the API may be required.
 }
 \examples{
 \dontrun{
-x <- lords_attendance_date(date = "2016-03-01")
+x <- lords_attendance_date(date = '2016-03-01')
 }
 }
 \seealso{
