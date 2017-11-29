@@ -1,7 +1,12 @@
 template:
   params:
-   bootswatch: readable
+   bootswatch: journal
    ganalytics: UA-90706059-1
+
+
+authors:
+  Evan Odell:
+    href: https://evanodell.com
 
 name:
 navbar:
