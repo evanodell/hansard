@@ -1,6 +1,6 @@
 
 ## tidying sessions queries
-sessions_tidy <- function(df){
+sessions_tidy <- function(df, days, tidy_style){
 
   df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
 

@@ -1,6 +1,6 @@
 
 # Tidying research briefing retrievals
-research_tidy <- function(df){
+research_tidy <- function(df, tidy_style){
 
           df$date._value <- gsub("T", " ", df$date._value)
 

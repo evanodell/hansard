@@ -4,20 +4,47 @@
 # all_answered_questions_multiple -----------------------------------------
 
 aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
-                      start_date, end_date,  extra_args, verbose) {
+                      start_date, end_date, extra_args, verbose) {
 
-  mp_id_list <- dplyr::if_else(is.null(mp_id) == TRUE, NA, as.list(mp_id))
+    if (is.null(mp_id) == TRUE) {
 
-  tabling_mp_id_list <- dplyr::if_else(is.null(tabling_mp_id) == TRUE, NA, as.list(tabling_mp_id))
+        mp_id_list <- NA
 
-  answering_body_list <- dplyr::if_else(is.null(answering_body) == TRUE, NA, as.list(answering_body))
+    } else {
 
-  search_grid <- expand.grid(mp_id_list, tabling_mp_id_list,
-                             answering_body_list, stringsAsFactors = FALSE)
+        mp_id_list <- as.list(mp_id)
+
+    }
+
+
+    if (is.null(tabling_mp_id) == TRUE) {
+
+        tabling_mp_id_list <- NA
+
+    } else {
+
+        tabling_mp_id_list <- as.list(tabling_mp_id)
+
+    }
+
+    if (is.null(answering_body) == TRUE) {
+
+        answering_body_list <- NA
+
+    } else {
+
+        answering_body_list <- as.list(answering_body)
+
+    }
+
+    search_grid <- expand.grid(mp_id_list, tabling_mp_id_list, answering_body_list,
+        stringsAsFactors = FALSE)
 
     names(search_grid)[names(search_grid) == "Var1"] <- "answering_mp"
     names(search_grid)[names(search_grid) == "Var2"] <- "tabling_mp"
     names(search_grid)[names(search_grid) == "Var3"] <- "department"
+
+    search_grid
 
     dat <- vector("list", nrow(search_grid))
 
@@ -49,7 +76,6 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
 
 
 # all_answered_questions tidying -----------------------------------------
-
 aaq_tidy <- function(df, tidy_style) {
 
     if (nrow(df) > 0) {
@@ -167,5 +193,3 @@ move_me <- function(data, tomove, where = "last", ba = NULL) {
         })
     x
 }
-
-

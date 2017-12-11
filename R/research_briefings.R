@@ -72,9 +72,10 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
         if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
 
             g <- rep(seq_along(hansard::research_subtopics_list()),
-                     sapply(hansard::research_subtopics_list(),
-                            length))
+                     sapply(hansard::research_subtopics_list(), length))
+
             dex <- g[match(subtopic, unlist(hansard::research_subtopics_list()))]
+
             topic <- names(hansard::research_subtopics_list())[dex]
 
         }
@@ -83,7 +84,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                         utils::URLencode(paste0("/", subtopic)),
                                         "")
 
-       topic_query <- dplr::if_else(is.null(topic) == FALSE,
+       topic_query <- dplyr::if_else(is.null(topic) == FALSE,
                                     utils::URLencode(topic),
                                     "")
 
@@ -115,7 +116,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
         if (tidy == TRUE) {
 
-          df <- research_tidy(df) ##in utils-research.R
+          df <- research_tidy(df, tidy_style) ##in utils-research.R
 
         }
 

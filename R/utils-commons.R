@@ -5,9 +5,25 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
                                          start_date, end_date,
                                          extra_args, verbose) {
 
-    mp_id_list <- dplyr::if_else(is.null(mp_id) == TRUE, NA, as.list(mp_id))
+    if (is.null(mp_id) == TRUE) {
 
-    dep_list <- dplyr::if_else(is.null(answering_department) == TRUE, NA, as.list(answering_department))
+        mp_id_list <- NA
+
+    } else {
+
+        mp_id_list <- as.list(mp_id)
+
+    }
+
+    if (is.null(answering_department) == TRUE) {
+
+        dep_list <- NA
+
+    } else {
+
+        dep_list <- as.list(answering_department)
+
+    }
 
     search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
@@ -46,9 +62,25 @@ commons_written_questions_multi <- function(mp_id, answering_department,
                                             start_date, end_date,
                                             extra_args, verbose) {
 
-    mp_id_list <- dplyr::if_else(is.null(mp_id) == TRUE, NA, as.list(mp_id))
+    if (is.null(mp_id) == TRUE) {
 
-    dep_list <- dplyr::if_else(is.null(answering_department) == TRUE, NA, as.list(answering_department))
+        mp_id_list <- NA
+
+    } else {
+
+        mp_id_list <- as.list(mp_id)
+
+    }
+
+    if (is.null(answering_department) == TRUE) {
+
+        dep_list <- NA
+
+    } else {
+
+        dep_list <- as.list(answering_department)
+
+    }
 
     search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 
@@ -86,9 +118,25 @@ commons_written_questions_multi <- function(mp_id, answering_department,
 caq_multi <- function(answering_department, answered_by,
                       start_date, end_date, extra_args, verbose) {
 
-    mp_id_list <- dplyr::if_else(is.null(answered_by) == TRUE, NA, as.list(answered_by))
+    if (is.null(mp_id) == TRUE) {
 
-    dep_list <- dplyr::if_else(is.null(answering_department) == TRUE, NA, as.list(answering_department))
+        mp_id_list <- NA
+
+    } else {
+
+        mp_id_list <- as.list(mp_id)
+
+    }
+
+    if (is.null(answering_department) == TRUE) {
+
+        dep_list <- NA
+
+    } else {
+
+        dep_list <- as.list(answering_department)
+
+    }
 
     search_grid <- expand.grid(dep_list, mp_id_list, stringsAsFactors = FALSE)
 

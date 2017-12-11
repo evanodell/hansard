@@ -70,9 +70,8 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
     } else {
 
         if (tidy == TRUE) {
-            ## move to external utils file?
 
-          df <- sessions_tidy(df) ## in utils-sessions.R
+          df <- sessions_tidy(df, days, tidy_style) ## in utils-sessions.R
 
         }
 
