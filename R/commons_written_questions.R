@@ -55,26 +55,14 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
                         "&min-dateTabled=",
                         as.Date(start_date))
 
-        if (is.null(mp_id) == FALSE && is.na(mp_id) == FALSE) {
+        mp_id_query <- dplyr::if_else(is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
+                                      utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", mp_id)),
+                                      "")
 
-            mp_id <- utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", mp_id))
-
-        } else {
-
-            mp_id <- NULL
-
-        }
-
-        if (is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE) {
-
-            json_query <- utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department))
-
-        } else {
-
-            json_query <- ".json?"
-
-        }
+        json_query <- dplyr::if_else(is.null(answering_department) == FALSE &&
+                                       is.na(answering_department) == FALSE,
+                                     utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department)),
+                                     ".json?")
 
         baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions"
 
@@ -82,22 +70,22 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
             message("Connecting to API")
         }
 
-        writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id,
+        writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id_query,
                                           dates, extra_args),
                                    flatten = TRUE)
 
         jpage <- floor(writ$result$totalResults/500)
 
-        query <- paste0(baseurl, json_query, mp_id, dates,
+        query <- paste0(baseurl, json_query, mp_id_query, dates,
                         extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

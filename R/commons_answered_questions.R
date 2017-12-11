@@ -6,7 +6,7 @@
 #' are left empty, imports all available answered questions in a tibble.
 #'
 #' If \code{answering_department} and/or \code{answered_by} are given
-#' a list with multiple deparments/IDs, all possible combination of those
+#' a vector with multiple deparments/IDs, all possible combination of those
 #' criteria are returned.
 #'
 #' @param answering_department Accepts the name of a department or a
@@ -26,7 +26,8 @@
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
-#' @return A tibble with details on all answered questions in the House of Commons.
+#' @return A tibble with details on all answered questions in the
+#' House of Commons.
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
 #' @seealso \code{\link{commons_oral_question_times}}
@@ -46,47 +47,35 @@ commons_answered_questions <- function(answering_department = NULL,
                                        answered_by = NULL,
                                        start_date = "1900-01-01",
                                        end_date = Sys.Date(),
-                                       extra_args = NULL,
-                                       tidy = TRUE,
+                                       extra_args = NULL, tidy = TRUE,
                                        tidy_style = "snake_case",
                                        verbose = FALSE) {
 
     if (length(answered_by) > 1 || length(answering_department) > 1) {
 
         df <- caq_multi(answering_department, answered_by,
-                        start_date, end_date,
-                        extra_args, verbose)
+                        start_date, end_date, extra_args, verbose)
 
     } else {
 
-        dates <- paste0("&max-dateOfAnswer=",
-                        as.Date(end_date),
-                        "&min-dateOfAnswer=",
-                        as.Date(start_date))
+        dates <- paste0("&max-dateOfAnswer=",  as.Date(end_date),
+                        "&min-dateOfAnswer=", as.Date(start_date))
 
-        if (is.null(answered_by) == FALSE && is.na(answered_by) == FALSE) {
+        answered_by <- dplyr::if_else(is.null(answered_by) == FALSE &&
+                                        is.na(answered_by) == FALSE,
+                                      paste0("&answeringMember=http://data.parliament.uk/members/", answered_by),
+                                      "")
 
-            answered_by <- paste0("&answeringMember=http://data.parliament.uk/members/",
-                                  answered_by)
+        dept_query <- NULL
 
-        } else {
+        answering_dept_query <- NULL
 
-            answered_by <- NULL
-
-        }
-
-        if (is.null(answering_department) == FALSE && is.na(answering_department) ==
-            FALSE) {
+        if (is.null(answering_department) == FALSE &&
+            is.na(answering_department) == FALSE) {
 
             dept_query <- "/answeringdepartment"
 
-            answering_department <- paste0("q=", answering_department)
-
-        } else {
-
-            dept_query <- NULL
-
-            answering_department <- NULL
+            answering_dept_query <- paste0("q=", answering_department)
 
         }
 
@@ -97,21 +86,21 @@ commons_answered_questions <- function(answering_department = NULL,
         }
 
         answered <- jsonlite::fromJSON(paste0(baseurl, dept_query, ".json?",
-                                              answering_department, answered_by,
+                                              answering_dept_query, answered_by,
                                               dates, extra_args, "&_pageSize=1"),
                                        flatten = TRUE)
 
         jpage <- floor(answered$result$totalResults/500)
 
-        query <- paste0(baseurl, dept_query, ".json?", answering_department,
-                          answered_by, dates, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, dept_query, ".json?", answering_dept_query,
+                        answered_by, dates, extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose)
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
-        message("The request did not return any data. Please check your search parameters.")
+    if (nrow(df) == 0) {
+        message("The request did not return any data. Please check your parameters.")
     }
 
     if (tidy == TRUE) {

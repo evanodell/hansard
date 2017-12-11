@@ -61,26 +61,16 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
                         "&min-dateTabled=",
                         as.Date(start_date))
 
-        if (is.null(peer_id) == FALSE && is.na(peer_id) == FALSE) {
 
-            peer_id <- utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", peer_id))
+        peer_id <- dplyr::if_else(is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
+                                  utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", peer_id)),
+                                  ""
+                                  )
 
-        } else {
-
-            peer_id <- NULL
-
-        }
-
-        if (is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE) {
-
-            dept_query <- utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department))
-
-        } else {
-
-          dept_query <- ".json?"
-
-        }
+        dept_query <- dplyr::if_else(is.null(answering_department) == FALSE &&
+                                       is.na(answering_department) == FALSE,
+                                     utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department)),
+                                     ".json?")
 
         baseurl <- "http://lda.data.parliament.uk/lordswrittenquestions"
 
@@ -94,16 +84,16 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
         jpage <- floor(writ$result$totalResults/500)
 
-        query <- paste0(baseurl, dept_query, peer_id, dates, extra_args,
-                        "&_pageSize=500&_page=")
+        query <- paste0(baseurl, dept_query, peer_id, dates,
+                        extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

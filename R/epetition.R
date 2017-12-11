@@ -27,15 +27,10 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
         ID <- paste0("/", ID)
     }
 
-    if (by_constituency == TRUE) {
 
-        json_query <- "/signaturesbyconstituency.json?"
-
-    } else {
-
-      json_query <- ".json?"
-
-    }
+    json_query <- dplyr::if_else(by_constituency == TRUE,
+                               "/signaturesbyconstituency.json?",
+                               ".json?")
 
     baseurl <- "http://lda.data.parliament.uk/epetitions"
 
@@ -45,7 +40,9 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
     if (is.null(ID) == FALSE & by_constituency == FALSE) {
 
-        petition <- jsonlite::fromJSON(paste0(baseurl, ID, json_query, extra_args), flatten = TRUE)
+        petition <- jsonlite::fromJSON(paste0(baseurl, ID,
+                                              json_query, extra_args),
+                                       flatten = TRUE)
 
         df <- tibble::tibble(about = petition$result$primaryTopic$`_about`,
                              abstract = petition$result$primaryTopic$abstract$`_value`,
@@ -63,7 +60,9 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
     } else {
 
-        petition <- jsonlite::fromJSON(paste0(baseurl, ID, json_query, extra_args), flatten = TRUE)
+        petition <- jsonlite::fromJSON(paste0(baseurl, ID,
+                                              json_query, extra_args),
+                                       flatten = TRUE)
 
         jpage <- floor(petition$result$totalResults/500)
 
@@ -75,9 +74,9 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

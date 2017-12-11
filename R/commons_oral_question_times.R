@@ -28,6 +28,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         tidy_style = "snake_case", verbose = FALSE) {
 
     session_query <- NULL
+
     question_query <- NULL
 
     if (is.null(session) == FALSE) {
@@ -85,9 +86,9 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

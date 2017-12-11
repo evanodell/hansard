@@ -103,9 +103,9 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

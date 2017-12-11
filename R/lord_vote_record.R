@@ -9,9 +9,9 @@
 #' to find IDs for members of the House of Lords. Defaults to \code{NULL}.
 #' @param lobby Accepts one of \code{'all'}, \code{'content'},
 #' \code{'notcontent'}. \code{'content'} returns votes where the peer voted
-#' \code{'content'}, \code{'notcontent'} returns votes where the peer voted
-#' \code{'notcontent'} and \code{'all'} returns all available votes by the
-#' peer. This parameter is not case sensitive. Defaults to \code{'all'}.
+#' 'Content', \code{'notcontent'} returns votes where the peer voted
+#' 'Not Content' and \code{'all'} returns all available votes by the peer.
+#' This parameter is not case sensitive. Defaults to \code{'all'}.
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
@@ -33,6 +33,9 @@
 #' x <- lord_vote_record(530, lobby='content')
 #'
 #' x <- lord_vote_record(530, lobby='notcontent')
+#'
+#' x <- lord_vote_record(530, lobby='not-content')
+#' # This will also work
 #' }
 
 
@@ -47,10 +50,10 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     }
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date), "&min-date=",
-        as.Date(start_date))
+    dates <- paste0("&_properties=date&max-date=", as.Date(end_date),
+                    "&min-date=", as.Date(start_date))
 
-    lobby <- gsub("-", "", lobby)
+    lobby <- stringi::stri_replace_all_fixed(lobby, "-", "")
 
     lobby <- tolower(lobby)
 
@@ -92,13 +95,14 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
             message("Connecting to API")
         }
 
-        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=", peer_id,
-            dates, extra_args), flatten = TRUE)
+        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=",
+                                             peer_id, dates, extra_args),
+                                      flatten = TRUE)
 
         jpage <- floor(content$result$totalResults/500)
 
-        query <- paste0(baseurl, lobby, ".json?mnisId=",
-                        peer_id, dates, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, lobby, ".json?mnisId=", peer_id,
+                        dates, extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -117,9 +121,9 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     }  ### End of else for specific lobbies above
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

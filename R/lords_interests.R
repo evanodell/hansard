@@ -8,7 +8,8 @@
 #' returns a tibble with all listed financial interests for all members.
 #' Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
-#' @return A tibble with details on the interests of peers in the House of Lords.
+#' @return A tibble with details on the interests of peers in
+#' the House of Lords.
 #' @export
 #' @examples \dontrun{
 #' x <- lords_interests(4170)
@@ -18,16 +19,9 @@
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = FALSE) {
 
-    if (is.null(peer_id) == TRUE) {
-        # For handling lords with and without registered interests
-
-        json_query <- ".json?"
-
-    } else {
-
-        json_query <- paste0(".json?member=", peer_id)
-
-    }
+    json_query <- dplyr::if_else(is.null(peer_id) == TRUE,
+                                 ".json?",
+                                 paste0(".json?member=", peer_id))
 
     baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
 
@@ -43,9 +37,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

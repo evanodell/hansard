@@ -46,28 +46,14 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
 
     dates <- paste0("&max-created=", as.Date(end_date), "&min-created=", as.Date(start_date))
 
-    if (is.null(status) == TRUE) {
+    status_query <- dplyr::if_else(is.null(status) == TRUE,
+                                   "",
+                                   paste0("&status=", status))
 
-        status_query <- NULL
-
-    } else {
-
-        status_query <- paste0("&status=", status)
-
-    }
-
-    if (is.null(max_signatures) == TRUE) {
-
-        sig_query <- paste0("&min-numberOfSignatures=", min_signatures)
-
-    } else {
-
-        sig_query <- paste0("&min-numberOfSignatures=",
-                            min_signatures,
-                            "&max-numberOfSignatures=",
-                            max_signatures)
-
-    }
+    signature_query <- dplyr::if_else(is.null(max_signatures) == TRUE,
+                                      paste0("&min-numberOfSignatures=", min_signatures),
+                                      paste0("&min-numberOfSignatures=", min_signatures,
+                                             "&max-numberOfSignatures=", max_signatures))
 
     baseurl <- "http://lda.data.parliament.uk/epetitions.json?"
 
@@ -76,19 +62,19 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     }
 
     petition <- jsonlite::fromJSON(paste0(baseurl, status_query,
-                                          sig_query, dates, extra_args),
+                                          signature_query, dates, extra_args),
                                    flatten = TRUE)
 
     jpage <- floor(petition$result$totalResults/500)
 
-    query <- paste0(baseurl, status_query, sig_query, dates,
-                    extra_args, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, status_query, signature_query,
+                    dates, extra_args, "&_pageSize=500&_page=")
 
    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

@@ -55,15 +55,13 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
         jpage <- floor(divis$result$totalResults/500)
 
-        pages <- list()
-
         query <- paste0(baseurl, ".json?",
                         dates, extra_args,
                         "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    } else if (is.null(division_id) == FALSE) {
+    } else {
 
         baseurl <- "http://lda.data.parliament.uk/commonsdivisions/id/"
 
@@ -99,9 +97,9 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

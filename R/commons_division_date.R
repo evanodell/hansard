@@ -46,9 +46,9 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-        if (nrow(df) == 0 && verbose == TRUE) {
+        if (nrow(df) == 0) {
 
-            message("The request did not return any data. Please check your search parameters.")
+            message("The request did not return any data. Please check your parameters.")
 
         } else {
 

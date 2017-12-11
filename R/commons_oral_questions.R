@@ -37,10 +37,9 @@
 #' }
 
 commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
-                                   start_date = "1900-01-01",
-                                   end_date = Sys.Date(), extra_args = NULL,
-                                   tidy = TRUE, tidy_style = "snake_case",
-                                   verbose = FALSE) {
+                                   start_date = "1900-01-01", end_date = Sys.Date(),
+                                   extra_args = NULL, tidy = TRUE,
+                                   tidy_style = "snake_case", verbose = FALSE) {
 
     if (length(mp_id) > 1 || length(answering_department) > 1) {
 
@@ -50,27 +49,16 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
 
     } else {
 
-        if (is.null(mp_id) == FALSE && is.na(mp_id) == FALSE) {
 
-            mp_id <- paste0("&tablingMember=http://data.parliament.uk/members/",
-                mp_id)
+        mp_id <- dplyr::if_else(is.null(mp_id) == FALSE &&
+                                  is.na(mp_id) == FALSE,
+                                paste0("&tablingMember=http://data.parliament.uk/members/", mp_id),
+                                "")
 
-        } else {
-
-            mp_id <- NULL
-
-        }
-
-        if (is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE) {
-
-            json_query <- utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department))
-
-        } else {
-
-            json_query <- ".json?"
-
-        }
+        json_query <- dplyr::if_else(is.null(answering_department) == FALSE &&
+                                       is.na(answering_department) == FALSE,
+                                     utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department)),
+                                     ".json?")
 
         dates <- paste0("&_properties=AnswerDate&max-AnswerDate=",
                         as.Date(end_date),
@@ -92,13 +80,13 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
         query <- paste0(baseurl, json_query, mp_id, dates,
                         extra_args, "&_pageSize=500&_page=")
 
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
+        df <- loop_query(query, jpage, verbose)  # in utils-loop.R
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

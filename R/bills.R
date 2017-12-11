@@ -42,25 +42,15 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
                     "&min-date=",
                     as.Date(start_date))
 
-    if (is.null(ID) == FALSE) {
+    id_query <- dplyr::case_when(
+      is.null(ID) == FALSE ~ paste0("&identifier=", ID),
+      TRUE ~ ""
+    )
 
-        id_query <- paste0("&identifier=", ID)
-
-    } else {
-
-        id_query <- NULL
-
-    }
-
-    if (amendments == TRUE) {
-
-        amend_query <- "withamendments.json?"
-
-    } else {
-
-        amend_query <- ".json?"
-
-    }
+    amend_query <- dplyr::case_when(
+      amendments == TRUE ~ "withamendments.json?",
+      TRUE ~ ".json?"
+    )
 
     baseurl <- "http://lda.data.parliament.uk/bills"
 
@@ -80,9 +70,9 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

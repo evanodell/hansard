@@ -47,9 +47,9 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -57,7 +57,9 @@ members_search <- function(search = NULL, tidy = TRUE,
 
             names(df)[names(df) == "_about"] <- "mnis_id"
 
-            df$mnis_id <- gsub("http://data.parliament.uk/members/", "", df$mnis_id)
+            df$mnis_id <- stringi::stri_replace_all_fixed(df$mnis_id,
+            "http://data.parliament.uk/members/", "",
+            vectorize_all = FALSE)
 
             df <- hansard_tidy(df, tidy_style)
 

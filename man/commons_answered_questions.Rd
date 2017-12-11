@@ -51,7 +51,8 @@ and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 of the API request. Defaults to \code{FALSE}.}
 }
 \value{
-A tibble with details on all answered questions in the House of Commons.
+A tibble with details on all answered questions in the
+House of Commons.
 }
 \description{
 Imports data on House of Commons answered questions. If all parameters
@@ -59,7 +60,7 @@ are left empty, imports all available answered questions in a tibble.
 }
 \details{
 If \code{answering_department} and/or \code{answered_by} are given
-a list with multiple deparments/IDs, all possible combination of those
+a vector with multiple deparments/IDs, all possible combination of those
 criteria are returned.
 }
 \examples{

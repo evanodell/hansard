@@ -41,26 +41,16 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(mp_id) == TRUE) {
-
         stop("mp_id must not be empty", call. = FALSE)
-
     }
 
     if (is.null(extra_args) == FALSE) {
-
         extra_args <- utils::URLencode(extra_args)
-
     }
 
-    if (is.null(session) == FALSE) {
-
-        session_query <- paste0("&session=", session)
-
-    } else {
-
-        session_query <- NULL
-
-    }
+    session_query <- dplyr::if_else(is.null(session) == FALSE,
+                                    paste0("&session=", session),
+                                  "")
 
     lobby <- tolower(lobby)
 
@@ -84,7 +74,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
         jpage <- floor(url_aye$result$totalResults/500)
 
         query <- paste0(baseurl, mp_id, dates, session_query,
-                     extra_args, "&_pageSize=500&_page=")
+                        extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -141,9 +131,9 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

@@ -32,38 +32,19 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
                         extra_args = NULL, tidy = TRUE,
                         tidy_style = "snake_case", verbose = FALSE) {
 
-    if (is.null(house) == FALSE) {
+    house <- tolower(house)
 
-        house <- tolower(house)
+    house_query <- dplyr::case_when(
+      house == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
+      house == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
+      TRUE ~ "")
 
-        if (house == "commons") {
+    withdrawn_query <- dplyr::if_else(withdrawn == TRUE,
+                                      "&withdrawn=true",
+                                      "&withdrawn=false")
 
-            house <- utils::URLencode("&legislature.prefLabel=House of Commons")
-
-        } else if (house == "lords") {
-
-            house <- utils::URLencode("&legislature.prefLabel=House of Lords")
-
-        } else {
-
-            house <- NULL
-
-        }
-
-    }
-
-    if (withdrawn == TRUE) {
-
-        withdrawn_query <- "&withdrawn=true"
-
-    } else {
-
-        withdrawn_query <- "&withdrawn=false"
-
-    }
-
-    dates <- paste0("&max-ddpModified=", as.Date(end_date), "&min-ddpModified=",
-        as.Date(start_date))
+    dates <- paste0("&max-ddpModified=", as.Date(end_date),
+                    "&min-ddpModified=", as.Date(start_date))
 
     baseurl <- "http://lda.data.parliament.uk/paperslaid.json?"
 
@@ -71,20 +52,20 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
         message("Connecting to API")
     }
 
-    papers <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query,
-                                        house, dates, extra_args, "&_pageSize=1"),
+    papers <- jsonlite::fromJSON(paste0(baseurl, withdrawn_query, house_query,
+                                        dates, extra_args, "&_pageSize=1"),
                                  flatten = TRUE)
 
     jpage <- floor(papers$result$totalResults/500)
 
-      query <- paste0(baseurl, withdrawn_query, house, dates,
-                      extra_args, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, withdrawn_query, house_query, dates,
+                    extra_args, "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -92,7 +73,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
             df$dateLaid._value <- as.POSIXct(df$dateLaid._value)
 
-            df$dateLaid._datatype <- "Dat"
+            df$dateLaid._datatype <- "POSIXct"
 
             if (withdrawn == TRUE) {
 

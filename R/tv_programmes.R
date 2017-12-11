@@ -38,29 +38,13 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
                     "T23:59:59Z&min-startDate=", as.Date(start_date),
                     "T00:00:00Z")
 
-    if (is.null(legislature) == FALSE) {
+    legislature <- tolower(legislature)
 
-        legislature <- tolower(legislature)
-
-    }
-
-    if (is.null(legislature) == TRUE) {
-
-        leg_query <- NULL
-
-    } else if (legislature == "commons") {
-
-        leg_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
-
-    } else if (legislature == "lords") {
-
-        leg_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
-
-    } else {
-
-        leg_query <- NULL
-
-    }
+    leg_query <- dplyr::case_when(
+      legislature == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
+      legislature == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
+      TRUE ~ ""
+    )
 
     baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?"
 
@@ -78,9 +62,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -116,29 +100,26 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z",
                     "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
-    if (is.null(mp_id) == FALSE) {
-
-        member_query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
-
-    } else {
-
-        member_query <- NULL
-
-    }
+    member_query <- dplyr::if_else(is.null(mp_id) == FALSE,
+                                   paste0("&member=http://data.parliament.uk/members/", mp_id),
+                                   "")
 
     baseurl <- "http://lda.data.parliament.uk/tvclips.json?"
 
-    tv <- jsonlite::fromJSON(paste0(baseurl, member_query, dates, extra_args), flatten = TRUE)
+    tv <- jsonlite::fromJSON(paste0(baseurl, member_query,
+                                    dates, extra_args),
+                             flatten = TRUE)
 
     jpage <- floor(tv$result$totalResults/500)
 
-    query <- paste0(baseurl, member_query, dates, extra_args, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, member_query, dates,
+                    extra_args, "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

@@ -21,16 +21,9 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = FALSE) {
 
-    if (is.null(search) == FALSE) {
-
-        search <- utils::URLencode(search)
-
-        search_query <- paste0("&_search=", search)
-
-    } else {
-
-        search_query <- NULL
-    }
+    search_query <- dplyr::if_else(is.null(search) == FALSE,
+                                   paste0("&_search=", utils::URLencode(search)),
+                                   NULL)
 
     if (is.null(class) == FALSE) {
 
@@ -38,7 +31,8 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
 
         if (!(class %in% class_list)) {
 
-            stop("Please check your class parameter. It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", call. = FALSE)
+            stop("Please check your class parameter.
+                 It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\", \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", call. = FALSE)
 
         } else {
 
@@ -67,11 +61,11 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     query <- paste0(baseurl, search_query, class_query,
                     extra_args, "&_pageSize=500&_page=")
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, jpage, verbose)  # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

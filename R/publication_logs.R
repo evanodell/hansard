@@ -34,39 +34,16 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                              tidy = TRUE, tidy_style = "snake_case",
                              verbose = FALSE) {
 
-    if (is.null(ID) == FALSE) {
+  id_query <- dplyr::if_else(is.null(ID) == FALSE,
+                             paste0("/", ID, ".json?"),
+                             ".json?")
 
-        id_query <- paste0("/", ID, ".json?")
+    house <- tolower(house)
 
-    } else {
-
-      id_query <- ".json?"
-
-    }
-
-    if (is.null(house) == FALSE) {
-
-        house <- tolower(house)
-
-        if (house == "commons") {
-
-            house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
-
-        } else if (house == "lords") {
-
-            house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
-
-        } else {
-
-            house_query <- NULL
-
-        }
-
-    } else {
-
-        house_query <- NULL
-
-    }
+    house_query <- dplyr::case_when(
+      house == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
+      house == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
+      TRUE ~ "")
 
     dates <- paste0("&_properties=publicationDate&max-publicationDate=",
                     as.Date(end_date),
@@ -98,9 +75,9 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

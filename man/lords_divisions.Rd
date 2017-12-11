@@ -14,13 +14,25 @@ hansard_lords_divisions(division_id = NULL, summary = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{division_id}{The id of a particular vote. If empty, returns a tibble with information on all lords divisions. Defaults to \code{NULL}.}
+\item{division_id}{The id of a particular vote. If empty, returns a tibble
+with information on all lords divisions. Defaults to \code{NULL}.}
 
-\item{summary}{If \code{TRUE}, returns a small tibble summarising a division outcome. Otherwise returns a tibble with details on how each peer voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
+\item{summary}{If \code{TRUE}, returns a small tibble summarising a
+division outcome. Otherwise returns a tibble with details on how each peer
+voted. Has no effect if \code{division_id} is empty.
+Defaults to \code{FALSE}.}
 
-\item{start_date}{Only includes divisions on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else that can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes divisions on or after this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+else that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes divisions on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else that can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes divisions on or before this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+else that can be coerced to a date with \code{as.Date()}.
+Defaults to the current system date.}
 
 \item{extra_args}{Additional parameters to pass to API.
 See the \href{http://explore.data.parliament.uk/}{API documentation}
@@ -41,7 +53,10 @@ of the API request. Defaults to \code{FALSE}.}
 A tibble with the results of divisions in the House of Lords.
 }
 \description{
-Imports data on House of Lords divisions. Either a general query subject to parameters, or the results of a specific division. Individual divisions can be queried to return a short summary of the votes, or details on how each peer voted.
+Imports data on House of Lords divisions. Either a general query subject to
+parameters, or the results of a specific division. Individual divisions can
+be queried to return a short summary of the votes, or details on how each
+peer voted.
 }
 \examples{
 \dontrun{

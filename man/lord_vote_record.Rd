@@ -20,9 +20,9 @@ to find IDs for members of the House of Lords. Defaults to \code{NULL}.}
 
 \item{lobby}{Accepts one of \code{'all'}, \code{'content'},
 \code{'notcontent'}. \code{'content'} returns votes where the peer voted
-\code{'content'}, \code{'notcontent'} returns votes where the peer voted
-\code{'notcontent'} and \code{'all'} returns all available votes by the
-peer. This parameter is not case sensitive. Defaults to \code{'all'}.}
+'Content', \code{'notcontent'} returns votes where the peer voted
+'Not Content' and \code{'all'} returns all available votes by the peer.
+This parameter is not case sensitive. Defaults to \code{'all'}.}
 
 \item{start_date}{Only includes divisions on or after this date. Accepts
 character values in \code{'YYYY-MM-DD'} format, and objects of class
@@ -66,5 +66,8 @@ x <- lord_vote_record(530, lobby='all')
 x <- lord_vote_record(530, lobby='content')
 
 x <- lord_vote_record(530, lobby='notcontent')
+
+x <- lord_vote_record(530, lobby='not-content')
+# This will also work
 }
 }

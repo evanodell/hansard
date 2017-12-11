@@ -29,15 +29,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
                                 extra_args = NULL, tidy = TRUE,
                                 tidy_style = "snake_case", verbose = FALSE) {
 
-    if (is.null(ID) == TRUE) {
-
-        id_query <- NULL
-
-    } else {
-
-        id_query <- paste0("electionId=", ID)
-
-    }
+    id_query <- dplyr::if_else(is.null(ID) == FALSE,
+                               paste0("electionId=", ID),
+                               "")
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
 
@@ -71,7 +65,8 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
     for (i in 1:nrow(df)) {
 
         x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/",
-            df$about[[i]], ".json"), flatten = TRUE)
+                                       df$about[[i]], ".json"),
+                                flatten = TRUE)
 
         df2 <- x$result$primaryTopic$candidate
 
@@ -79,8 +74,8 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
         df2$about <- gsub("http://data.parliament.uk/resources/", "", df2$about)
         df2$about <- gsub("/.*", "", df2$about)
 
-        df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2,
-            c)
+        df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2, c)
+
         df2$fullName._value <- as.list(df2$fullName._value)
 
         dat[[i]] <- tidyr::spread_(df2, key_col = "party._value", value_col = "fullName._value")
@@ -102,9 +97,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
     df4 <- df4[, order(colnames(df4))]
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

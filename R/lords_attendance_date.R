@@ -21,8 +21,7 @@
 #' }
 
 lords_attendance_date <- function(date = NULL, tidy = TRUE,
-                                  tidy_style = "snake_case",
-                                  verbose = FALSE) {
+                                  tidy_style = "snake_case", verbose = FALSE) {
 
     if (is.null(date) == TRUE)
         stop("Please include a date.", call. = FALSE)
@@ -41,9 +40,9 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
     df <- tidyr::unnest_(df, "member")
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -53,7 +52,9 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
             names(df)[names(df) == "_about"] <- "peer_id"
 
-            df$peer_id <- gsub("http://data.parliament.uk/members/", "", df$peer_id)
+            df$peer_id <- stringi::stri_replace_all_fixed(df$peer_id,
+                                                          "http://data.parliament.uk/members/", "",
+                                                           vectorize_all = FALSE)
 
             df <- hansard_tidy(df, tidy_style)
 

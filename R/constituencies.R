@@ -29,29 +29,21 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
 
     jpage <- floor(conts$result$totalResults/500)
 
-    pages <- list()
+    current_query <- dplyr::case_when(
+      is.null(current)==TRUE ~ "",
+      current == TRUE ~ "&exists-endedDate=false",
+      current == FALSE ~ "&exists-endedDate=true",
+      TRUE ~ ""
+    )
 
-    if (is.null(current)) {
-
-        current_query <- NULL
-
-    } else if (current == TRUE) {
-
-        current_query <- "&exists-endedDate=false"
-
-    } else if (current == FALSE) {
-
-        current_query <- "&exists-endedDate=true"
-
-    }
 
     query <- paste0(baseurl, extra_args, current_query, "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

@@ -29,19 +29,15 @@
 
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
-                             tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+                             tidy = TRUE, tidy_style = "snake_case",
+                             verbose = FALSE) {
 
-    dates <- paste0("&min-bill.date=", as.Date(start_date), "&max-bill.date=", as.Date(end_date))
+    dates <- paste0("&min-bill.date=", as.Date(start_date),
+                    "&max-bill.date=", as.Date(end_date))
 
-    if (is.null(decision) == FALSE) {
-
-        decision_query <- paste0("&decision=", stringi::stri_trans_totitle(decision))
-
-    } else {
-
-        decision_query <- NULL
-
-    }
+    decision_query <- dplyr::if_else(is.null(decision) == FALSE,
+                                     paste0("&decision=", stringi::stri_trans_totitle(decision)),
+                                     "")
 
     baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?"
 
@@ -49,8 +45,9 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
         message("Connecting to API")
     }
 
-    ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query, dates, extra_args),
-        flatten = TRUE)
+    ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query,
+                                        dates, extra_args),
+                                 flatten = TRUE)
 
     jpage <- floor(ammend$result$totalResults/500)
 
@@ -61,9 +58,9 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

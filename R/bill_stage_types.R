@@ -16,9 +16,9 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = F
     
     df <- tibble::as_tibble(stages$result$items)
     
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
         
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
         
     } else {
         

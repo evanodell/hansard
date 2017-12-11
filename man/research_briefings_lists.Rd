@@ -25,14 +25,18 @@ hansard_research_types_list()
 A list with the different research topics/subtopics/types available.
 }
 \description{
-Returns lists of research briefing topics, subtopics and types. These functions do not accept any arguments.
+Returns lists of research briefing topics, subtopics and types.
+These functions do not accept any arguments.
 }
 \section{Member details functions}{
 
 \describe{
-\item{research_topics_list}{A list with the different research topics available}
-\item{research_subtopics_list}{A list of Parliamentary Research Briefings topics}
-\item{research_types_list}{A list of types of Parliamentary Research Briefings}
+\item{research_topics_list}{A list with the different research
+topics available}
+\item{research_subtopics_list}{A list of Parliamentary Research
+ Briefings topics}
+\item{research_types_list}{A list of types of Parliamentary
+Research Briefings}
 }
 }
 

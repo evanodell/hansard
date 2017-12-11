@@ -48,24 +48,13 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
                               extra_args = NULL, tidy = TRUE,
                               tidy_style = "snake_case", verbose = FALSE) {
 
-    if (is.null(edm_id) == FALSE) {
+    edm_query <- dplyr::if_else(is.null(edm_id) == FALSE,
+                                paste0("&edmNumber=", edm_id),
+                                "")
 
-        edm_query <- paste0("&edmNumber=", edm_id)
-
-    } else {
-
-        edm_query <- NULL
-
-    }
-
-    if (is.null(session) == FALSE) {
-
-        session_query <- paste0("&session.=", session)
-
-    } else {
-
-        session_query <- NULL
-    }
+    session_query <- dplyr::if_else(is.null(session) == FALSE,
+                                    paste0("&session.=", session),
+                                    "")
 
     dates <- paste0("&_properties=dateTabled&max-dateTabled=",
                     as.Date(end_date),
@@ -92,9 +81,9 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

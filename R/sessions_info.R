@@ -37,16 +37,11 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = FALSE) {
 
-    if (days == FALSE) {
-
-      days_query <- paste0(".json?&max-endDate=", as.Date(end_date),
-                           "&min-startDate=", as.Date(start_date))
-
-    } else {
-
-      days_query <- "/days.json?"
-
-    }
+    days_query <- dplyr::if_else(days==FALSE,
+                                paste0(".json?&max-endDate=", as.Date(end_date),
+                                        "&min-startDate=", as.Date(start_date)),
+                                "/days.json?"
+                           )
 
     baseurl <- "http://lda.data.parliament.uk/sessions"
 
@@ -68,35 +63,16 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                    df$date._value >= as.Date(start_date),]
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
         if (tidy == TRUE) {
             ## move to external utils file?
 
-            df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
-
-            if (days == FALSE) {
-
-                df$endDate._value <- as.POSIXct(df$endDate._value)
-
-                df$startDate._value <- as.POSIXct(df$startDate._value)
-
-                df$endDate._datatype <- "POSIXct"
-
-                df$startDate._datatype <- "POSIXct"
-
-            } else {
-
-                df$date._value <- as.POSIXct(df$date._value)
-
-                df$date._datatype <- "POSIXct"
-            }
-
-            df <- hansard_tidy(df, tidy_style)
+          df <- sessions_tidy(df) ## in utils-sessions.R
 
         }
 

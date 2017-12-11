@@ -32,7 +32,8 @@ and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 of the API request. Defaults to \code{FALSE}.}
 }
 \value{
-A tibble with details on the interests of peers in the House of Lords.
+A tibble with details on the interests of peers in
+the House of Lords.
 }
 \description{
 Registered financial interests of members of the House of Lords.

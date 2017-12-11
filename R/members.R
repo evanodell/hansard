@@ -36,15 +36,9 @@
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
                     tidy_style = "snake_case", verbose = FALSE) {
 
-    if (is.null(ID) == TRUE) {
-
-        query <- ".json?"
-
-    } else {
-
-        query <- paste0("/", ID, ".json?")
-
-    }
+    id_query <- dplyr::if_else(is.null(ID) == TRUE,
+                               ".json?",
+                               paste0("/", ID, ".json?"))
 
     baseurl <- "http://lda.data.parliament.uk/members"
 
@@ -52,13 +46,13 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, query, extra_args), flatten = TRUE)
+    members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args), flatten = TRUE)
 
     if (is.null(ID) == TRUE) {
 
         jpage <- floor(members$result$totalResults/500)
 
-        query <- paste0(baseurl, query, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -80,9 +74,9 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -108,8 +102,8 @@ hansard_members <- members
 
 #' @export
 #' @rdname members
-commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-    verbose = FALSE) {
+commons_members <- function(extra_args = NULL, tidy = TRUE,
+                            tidy_style = "snake_case", verbose = FALSE) {
 
     baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
 
@@ -125,9 +119,9 @@ commons_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
@@ -150,8 +144,8 @@ hansard_commons_members <- commons_members
 
 #' @export
 #' @rdname members
-lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-    verbose = FALSE) {
+lords_members <- function(extra_args = NULL, tidy = TRUE,
+                          tidy_style = "snake_case", verbose = FALSE) {
 
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
 
@@ -167,9 +161,9 @@ lords_members <- function(extra_args = NULL, tidy = TRUE, tidy_style = "snake_ca
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

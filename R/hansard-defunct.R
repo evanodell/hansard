@@ -83,9 +83,9 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01", end_d
         
     }
     
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
         
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
         
     } else {
         

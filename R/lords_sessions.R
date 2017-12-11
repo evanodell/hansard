@@ -22,11 +22,13 @@
 #' @export
 
 lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
-                           tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+                           tidy = TRUE, tidy_style = "snake_case",
+                           verbose = FALSE) {
 
     baseurl <- "http://lda.data.parliament.uk/lordsattendances.json"
 
-    dates <- paste0("?&min-date=", as.Date(start_date), "&max-date=", as.Date(end_date))
+    dates <- paste0("?&min-date=", as.Date(start_date),
+                    "&max-date=", as.Date(end_date))
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -40,9 +42,9 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

@@ -14,12 +14,12 @@
 #' lists of multiple relevant search parameters. This can be in the form of a
 #' list, a data.frame column, a character vector, etc.
 #'
-#' @param mp_id Accepts a member ID or list of member IDs, and returns a tibble
+#' @param mp_id Accepts a member ID or vector of member IDs, and returns a tibble
 #' with all available questions answered by that member. Includes both oral
 #' and written questions, and includes members of the House of Commons and the
 #' House of Lords. If \code{NULL}, returns a tibble with all available answered
 #' questions, subject to other parameters. Defaults to \code{NULL}.
-#' @param tabling_mp_id Accepts a member ID or list of member IDs, and returns
+#' @param tabling_mp_id Accepts a member ID or vector of member IDs, and returns
 #' a tibble with all available questions asked by that member, subject to all
 #' other parameters. Includes both oral and written questions, and includes
 #' members of the House of Commons and the House of Lords. If \code{NULL},
@@ -30,13 +30,13 @@
 #' ID of the legislature (1 for the House of Commons, 2 for the House of Lords).
 #' The short names are not case sensitive. If \code{NULL}, returns answers from
 #' both houses, subject to other parameters. Defaults to \code{NULL}.
-#' @param answering_body The government department that answers the question.
-#' Accepts either the short name name of a department (e.g. \code{'Education'}
-#' for the Department for Education, \code{'Digital, Culture, Media and Sport'}
-#' for the Department for Digital, Culture, Media and Sport), or the ID of a
-#' particular department (e.g. 60 for the Department for Education). If
-#' \code{NULL}, returns answers from all departments, subject to other
-#' parameters. Defaults to \code{NULL}.
+#' @param answering_body The name of the government department that answers the
+#' question, or a vector of government deparment names. Accepts either the
+#' short name name of a department (e.g. \code{'Education'} for the Department
+#' for Education, \code{'Digital, Culture, Media and Sport'} for the Department
+#' for Digital, Culture, Media and Sport), or the ID of a particular department
+#' (e.g. 60 for the Department for Education). If \code{NULL}, returns answers
+#' from all departments, subject to other parameters. Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
@@ -90,8 +90,9 @@
 #' # Accepts multiple inputs for mp_id, tabling_mp_id and answering_body
 #' }
 
-all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = NULL,
-                                   answering_body = NULL, start_date = "1900-01-01",
+all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
+                                   house = NULL, answering_body = NULL,
+                                   start_date = "1900-01-01",
                                    end_date = Sys.Date(), extra_args = NULL,
                                    tidy = TRUE, tidy_style = "snake_case",
                                    verbose = FALSE) {
@@ -106,75 +107,39 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
     } else {
 
         dates <- paste0("&_properties=date&max-date=",
-                        as.Date(end_date), "&min-date=",
+                        as.Date(end_date),
+                        "&min-date=",
                         as.POSIXct(start_date))
 
-        if (is.null(house) == TRUE) {
-            # House query
+        house <- tolower(house)
 
-            house_query <- NULL
+        house_query <- dplyr::case_when(house == "commons" |
+                                          house == "1" ~
+                                          "&legislature.prefLabel=House%20of%20Commons",
+                                        house == "lords" |
+                                          house == "2" ~
+                                          "&legislature.prefLabel=House%20of%20Lords",
+                                        TRUE ~ "")  # If no value, house_query will be blank
 
-        } else {
+        answering_member_query <- dplyr::if_else(is.null(mp_id) == TRUE ||
+                                                   is.na(mp_id) == TRUE,
+                                                 "",
+                                                 paste0("&answer.answeringMember=http://data.parliament.uk/members/", mp_id))
 
-            if (is.numeric(house) == FALSE) {
+        tabling_member_query <- dplyr::if_else(is.null(tabling_mp_id) == TRUE ||
+                                                 is.na(tabling_mp_id) == TRUE,
+                                               "",
+                                               paste0("&tablingMember=http://data.parliament.uk/members/", tabling_mp_id))
 
-                house <- tolower(house)
+        answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
+        ## In case departmental IDs are passed as strings.
 
-            }
-
-            if (house == "commons" | house == 1 | house == "1") {
-
-                house_query <- utils::URLencode("&legislature.prefLabel=House of Commons")
-
-            } else if (house == "lords" | house == 2 | house == "2") {
-
-                house_query <- utils::URLencode("&legislature.prefLabel=House of Lords")
-
-            } else {
-
-                house_query <- NULL
-
-            }
-
-        }
-
-        if (is.null(mp_id) == TRUE || is.na(mp_id) == TRUE) { # member type queries
-
-            answering_member_query <- NULL
-
-        } else {
-
-            answering_member_query <- paste0("&answer.answeringMember=http://data.parliament.uk/members/", mp_id)
-
-        }
-
-        if (is.null(tabling_mp_id) == TRUE || is.na(tabling_mp_id) == TRUE) {
-
-            tabling_member_query <- NULL
-
-        } else {
-
-            tabling_member_query <- utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", tabling_mp_id))
-
-        }
-
-        answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))  ## In case departmental IDs are passed as strings.
-
-        if (is.null(answering_body) == TRUE || is.na(answering_body) == TRUE) {
-            # Department query
-
-            dept_query <- NULL
-
-        } else if (is.na(answering_body_check) == FALSE) {
-
-            dept_query <- paste0("&answeringDeptId=", answering_body)
-
-        } else {
-
-            dept_query <- utils::URLencode((paste0("&answeringDeptShortName=",
-                                                   stringi::stri_trans_totitle(answering_body))))
-
-        }
+        dept_query <- dplyr::case_when(is.null(answering_body) == TRUE ||
+                                         is.na(answering_body) == TRUE ~ "",
+                                       is.na(answering_body_check) == FALSE ~
+                                         paste0("&answeringDeptId=", answering_body),
+                                       TRUE ~ utils::URLencode((paste0("&answeringDeptShortName=",
+                                                                       stringi::stri_trans_totitle(answering_body)))))
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
 
@@ -184,23 +149,23 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL, house = N
 
         all <- jsonlite::fromJSON(paste0(baseurl, answering_member_query,
                                          tabling_member_query, house_query,
-                                         dept_query, dates, extra_args, "&_pageSize=1"),
+                                         dept_query, dates, extra_args,
+                                         "&_pageSize=1"),
                                   flatten = TRUE)
 
         jpage <- floor(all$result$totalResults/500)
 
-        query <- paste0(baseurl, answering_member_query,
-                        tabling_member_query, house_query,
-                        dept_query, dates, extra_args,
+        query <- paste0(baseurl, answering_member_query, tabling_member_query,
+                        house_query, dept_query, dates, extra_args,
                         "&_pageSize=500&_page=")
 
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
+        df <- loop_query(query, jpage, verbose)  # in utils-loop.R
 
     }
 
     if (nrow(df) == 0 & verbose == TRUE) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 

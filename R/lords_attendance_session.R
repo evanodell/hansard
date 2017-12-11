@@ -35,17 +35,13 @@
 #'
 #' }
 
-lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
+                                     tidy = TRUE, tidy_style = "snake_case",
+                                     verbose = FALSE) {
 
-    if (is.null(session_id) == FALSE) {
-
-        json_query <- paste0("/", session_id, ".json?")
-
-    } else {
-
-      json_query <- ".json?"
-
-    }
+    json_query <- dplyr::if_else(is.null(session_id) == FALSE,
+                                 paste0("/", session_id, ".json?"),
+                                 ".json?")
 
     baseurl <- "http://lda.data.parliament.uk/lordsattendances"
 
@@ -72,9 +68,9 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL, tidy 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
     }
 
-    if (nrow(df) == 0 && verbose == TRUE) {
+    if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your search parameters.")
+        message("The request did not return any data. Please check your parameters.")
 
     } else {
 
