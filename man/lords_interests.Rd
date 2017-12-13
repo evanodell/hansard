@@ -16,8 +16,9 @@ hansard_lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 returns a tibble with all listed financial interests for all members.
 Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API.
-See the \href{http://explore.data.parliament.uk/}{API documentation}
+\item{extra_args}{Additional parameters and queries to pass to API. These
+queries must be strings and start with "&". See the
+\href{http://explore.data.parliament.uk/}{API documentation}
 or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names

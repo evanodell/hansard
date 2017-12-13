@@ -79,7 +79,7 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
         }
 
         writ <- jsonlite::fromJSON(paste0(baseurl, dept_query, peer_id,
-                                          dates, extra_args),
+                                          dates, extra_args, "&_pageSize=1"),
                                    flatten = TRUE)
 
         jpage <- floor(writ$result$totalResults/500)

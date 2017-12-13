@@ -51,7 +51,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
             message("Connecting to API")
         }
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args))
+        divis <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args, "&_pageSize=1"))
 
         jpage <- floor(divis$result$totalResults/500)
 

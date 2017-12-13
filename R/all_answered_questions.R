@@ -47,8 +47,9 @@
 #' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
 #' \code{POSIXlt} or anything else that can be coerced to a date with
 #' \code{as.Date()}. Defaults to the current system date.
-#' @param extra_args Additional parameters to pass to API.
-#' See the \href{http://explore.data.parliament.uk/}{API documentation}
+#' @param extra_args Additional parameters and queries to pass to API. These
+#' queries must be strings and start with "&". See the
+#' \href{http://explore.data.parliament.uk/}{API documentation}
 #' or the package vignette for more details. Defaults to \code{NULL}.
 #' @param tidy Logical parameter. If \code{TRUE}, fixes the variable names
 #' in the tibble to remove special characters and superfluous text, and

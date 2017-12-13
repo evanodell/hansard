@@ -70,7 +70,8 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
     }
 
     edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates,
-                                      session_query, sig_min, extra_args),
+                                      session_query, sig_min, extra_args,
+                                      "&_pageSize=1"),
                                flatten = TRUE)
 
     jpage <- floor(edms$result$totalResults/500)

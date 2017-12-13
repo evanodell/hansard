@@ -53,7 +53,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     }
 
     terms <- jsonlite::fromJSON(paste0(baseurl, search_query,
-                                       class_query, extra_args),
+                                       class_query, extra_args, "&_pageSize=1"),
                                 flatten = TRUE)
 
     jpage <- floor(terms$result$totalResults/500)

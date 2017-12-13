@@ -62,7 +62,8 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     }
 
     petition <- jsonlite::fromJSON(paste0(baseurl, status_query,
-                                          signature_query, dates, extra_args),
+                                          signature_query, dates,
+                                          extra_args, "&_pageSize=1"),
                                    flatten = TRUE)
 
     jpage <- floor(petition$result$totalResults/500)

@@ -79,27 +79,25 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     } else {
 
-        if (is.null(type) == FALSE) {
+      baseurl <- "http://lda.data.parliament.uk/elections"
 
-            type_query <- utils::URLencode(paste0(".json?&_pageSize=500&electionType=", type))
-
-        } else {
-
-            type_query <- ".json?&_pageSize=500"
-
-        }
-
-        baseurl <- "http://lda.data.parliament.uk/elections"
+      type_query <- dplyr::if_else(is.null(type) == FALSE,
+                                   utils::URLencode(paste0(".json?&electionType=", type)),
+                                   ".json?")
 
         if (verbose == TRUE) {
             message("Connecting to API")
         }
 
         elect <- jsonlite::fromJSON(paste0(baseurl, type_query, dates,
-                                           label, extra_args),
+                                           label, extra_args, "&_pageSize=1"),
                                     flatten = TRUE)
 
-        df <- tibble::as_tibble(elect$result$items)
+        jpage <- floor(elect$result$totalResults/500)
+
+        query <- paste0(baseurl, type_query, dates, label, extra_args, "&_pageSize=500&_page=")
+
+        df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     }
 

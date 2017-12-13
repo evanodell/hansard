@@ -3,12 +3,30 @@
 #'
 #' Imports results from general and by-elections from the 2010 general election onwards.
 #'
-#' @param ID Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.
-#' @param all_data If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.
-#' @param calculate_percent If \code{TRUE}, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to \code{FALSE}.
-#' @param constit_details If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.
+#' @param ID Accepts an ID for a general or by-election from the 2010 General
+#' Election onwards, and returns the results. If \code{NULL}, returns all
+#' available election results. Defaults to \code{NULL}.
+#' @param all_data If \code{TRUE}, returns vote share for all parties standing
+#' in any constituency in the election/elections returned. Defaults to
+#' \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour,
+#' Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively)
+#' being converted to their full names, party names are not tidied, so will
+#' contain spaces in the case of parties with multiple words in their name,
+#' such as the Liberal Democrats. If a party did not stand in a constituency
+#' its vote count is listed as NA. There is a drawback to using this parameter,
+#' as multiple candidates from the same party in a constituency, or multiple
+#' independent candidates, have their vote totals combined.
+#' @param calculate_percent If \code{TRUE}, calculates the turnout percentage
+#' for each constituency in the tibble and the majority of the winning
+#' candidate to one decimal place, and includes this information in the
+#' tibble in additional columns labelled 'turnout_percentage' and
+#' 'majority_percentage'. Defaults to \code{FALSE}.
+#' @param constit_details If \code{TRUE}, returns additional details on each
+#' constituency, including its GSS (Government Statistical Service) code.
+#' Defaults to \code{FALSE}.
 #' @inheritParams all_answered_questions
-#' @return A tibble with the results of all general and by-elections, or of a specified general election or by-election.
+#' @return A tibble with the results of all general and by-elections, or of
+#' a specified general election or by-election.
 #'
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_candidates}}
@@ -38,23 +56,13 @@ election_results <- function(ID = NULL, all_data = FALSE,
         message("Connecting to API")
     }
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=1"))
 
     jpage <- floor(elect$result$totalResults/500)
 
-    pages <- list()
+    query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
 
-    for (i in 0:jpage) {
-        mydata <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args,
-                                            "&_pageSize=500&_page=", i),
-                                     flatten = TRUE)
-        if (verbose == TRUE) {
-            message("Retrieving page ", i + 1, " of ", jpage + 1)
-        }
-        pages[[i + 1]] <- mydata$result$items
-    }
-
-    df <- dplyr::bind_rows(pages)
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     if (constit_details == TRUE & (nrow(df) > 0)) {
 
@@ -148,8 +156,6 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
             df <- tibble::as.tibble(hansard_tidy(df, tidy_style))
 
-            df
-
         } else {
 
             df <- tibble::as.tibble(df)
@@ -160,9 +166,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
             }
 
-            df
-
         }
+
+      df
     }
 }
 

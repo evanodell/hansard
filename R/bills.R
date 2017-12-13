@@ -6,8 +6,8 @@
 #'
 #' @param ID The ID of a given bill to return data on. If \code{NULL},
 #' returns all bills, subject to other parameters. Defaults to \code{NULL}.
-#' @param amendments If \code{TRUE}, returns all bills with amendments.
-#' Defaults to \code{FALSE}.
+#' @param amendments If \code{TRUE}, returns all bills with amendments,
+#' subject to other parameters. Defaults to \code{FALSE}.
 #' @param start_date Only includes bills introduced on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

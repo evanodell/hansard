@@ -27,23 +27,13 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake_case", verbose = FALSE) {
 
-    session_query <- NULL
+    session_query <- dplyr::if_else(is.null(session) == FALSE,
+                                    utils::URLencode(paste0("session=", session)),
+                                    "")
 
-    question_query <- NULL
-
-    if (is.null(session) == FALSE) {
-
-        session_query <- utils::URLencode(paste0("session=", session))
-
-    }
-
-    if (is.null(question_id) == FALSE) {
-
-        question_query <- paste0("/", question_id)
-
-        page_size <- NULL
-
-    }
+    question_query <- dplyr::if_else(is.null(question_id) == FALSE,
+                                     paste0("/", question_id),
+                                     "")
 
     baseurl <- "http://lda.data.parliament.uk/commonsoralquestiontimes"
 
@@ -53,7 +43,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
     if (is.null(question_id) == TRUE) {
 
-        times <- jsonlite::fromJSON(paste0(baseurl, ".json?", session_query, extra_args))
+        times <- jsonlite::fromJSON(paste0(baseurl, ".json?", session_query, extra_args, "&_pageSize=1"))
 
         jpage <- floor(times$result$totalResults/500)
 

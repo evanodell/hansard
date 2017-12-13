@@ -118,7 +118,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
             baseurl <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
 
-            oral <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
+            oral <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args, "&_pageSize=1"))
 
             jpage <- floor(oral$result$totalResults/500)
 

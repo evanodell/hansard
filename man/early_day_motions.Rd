@@ -41,8 +41,9 @@ and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
 \item{signatures}{The minimum number of signatures required for inclusion
 in the tibble. Defaults to 1.}
 
-\item{extra_args}{Additional parameters to pass to API.
-See the \href{http://explore.data.parliament.uk/}{API documentation}
+\item{extra_args}{Additional parameters and queries to pass to API. These
+queries must be strings and start with "&". See the
+\href{http://explore.data.parliament.uk/}{API documentation}
 or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names

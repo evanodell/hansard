@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
 
 
-An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <http://www.data.parliament.uk/>. Help on the API itself is here: <http://api.data.parliament.uk/help/>. 
+An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <http://www.data.parliament.uk/>. Help on the API itself is [here](http://api.data.parliament.uk/help/).
 
 Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <http://ropengov.github.io/hansard> and at <https://docs.evanodell.com/hansard/>.
 
@@ -40,13 +40,19 @@ pacman::p_load(hansard)
 To install the development version run:
 
 ```
-install.packages("devtools")
+#install.packages("devtools")
 devtools::install_github("evanodell/hansard")
+```
+
+or
+
+```
+pacman::p_load_current_gh("evanodell/hansard")
 ```
 
 ## Using hansard
 
-For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
+For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with web APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
 
 #### API calls with console input
 
@@ -58,4 +64,4 @@ This package is in no way officially related to or endorsed by the UK Parliament
 
 ### Acknowledgements
 
-This package is part of [rOpenGov](http://ropengov.github.io). It was written by [Evan Odell](https://evanodell.com).
+This package is part of [rOpenGov](http://ropengov.github.io). [Evan Odell](https://evanodell.com) is the creator and maintainer.

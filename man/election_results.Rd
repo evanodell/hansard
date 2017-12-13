@@ -14,16 +14,34 @@ hansard_election_results(ID = NULL, all_data = FALSE,
   tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
-\item{ID}{Accepts an ID for a general or by-election from the 2010 general election onwards, and returns the results. If \code{NULL}, returns all available election results. Defaults to \code{NULL}.}
+\item{ID}{Accepts an ID for a general or by-election from the 2010 General
+Election onwards, and returns the results. If \code{NULL}, returns all
+available election results. Defaults to \code{NULL}.}
 
-\item{all_data}{If \code{TRUE}, returns vote share for all parties standing in any constituency in the election/elections returned. Defaults to \code{FALSE}. Note that aside from shorthand for the Conservatives, Labour, Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively) being converted to their full names, party names are not tidied, so will contain spaces in the case of parties with multiple words in their name, such as the Liberal Democrats. If a party did not stand in a constituency its vote count is listed as NA. There is a drawback to using this parameter, as multiple candidates from the same party in a constituency, or multiple independent candidates, have their vote totals combined.}
+\item{all_data}{If \code{TRUE}, returns vote share for all parties standing
+in any constituency in the election/elections returned. Defaults to
+\code{FALSE}. Note that aside from shorthand for the Conservatives, Labour,
+Liberal Democrat and Independent (Con, Lab, Lib and Ind, respectively)
+being converted to their full names, party names are not tidied, so will
+contain spaces in the case of parties with multiple words in their name,
+such as the Liberal Democrats. If a party did not stand in a constituency
+its vote count is listed as NA. There is a drawback to using this parameter,
+as multiple candidates from the same party in a constituency, or multiple
+independent candidates, have their vote totals combined.}
 
-\item{calculate_percent}{If \code{TRUE}, calculates the turnout percentage for each constituency in the tibble and the majority of the winning candidate to one decimal place, and includes this information in the tibble in additional columns labelled 'turnout_percentage' and 'majority_percentage'. Defaults to \code{FALSE}.}
+\item{calculate_percent}{If \code{TRUE}, calculates the turnout percentage
+for each constituency in the tibble and the majority of the winning
+candidate to one decimal place, and includes this information in the
+tibble in additional columns labelled 'turnout_percentage' and
+'majority_percentage'. Defaults to \code{FALSE}.}
 
-\item{constit_details}{If \code{TRUE}, returns additional details on each constituency, including its GSS (Government Statistical Service) code. Defaults to \code{FALSE}.}
+\item{constit_details}{If \code{TRUE}, returns additional details on each
+constituency, including its GSS (Government Statistical Service) code.
+Defaults to \code{FALSE}.}
 
-\item{extra_args}{Additional parameters to pass to API.
-See the \href{http://explore.data.parliament.uk/}{API documentation}
+\item{extra_args}{Additional parameters and queries to pass to API. These
+queries must be strings and start with "&". See the
+\href{http://explore.data.parliament.uk/}{API documentation}
 or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names
@@ -38,7 +56,8 @@ and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 of the API request. Defaults to \code{FALSE}.}
 }
 \value{
-A tibble with the results of all general and by-elections, or of a specified general election or by-election.
+A tibble with the results of all general and by-elections, or of
+a specified general election or by-election.
 }
 \description{
 Imports results from general and by-elections from the 2010 general election onwards.

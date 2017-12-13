@@ -46,7 +46,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     }
 
     ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query,
-                                        dates, extra_args),
+                                        dates, extra_args, "&_pageSize=1"),
                                  flatten = TRUE)
 
     jpage <- floor(ammend$result$totalResults/500)

@@ -96,7 +96,8 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
         }
 
         content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=",
-                                             peer_id, dates, extra_args),
+                                             peer_id, dates, extra_args,
+                                             "&_pageSize=1"),
                                       flatten = TRUE)
 
         jpage <- floor(content$result$totalResults/500)

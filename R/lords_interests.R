@@ -29,7 +29,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, json_query, extra_args), flatten = TRUE)
+    members <- jsonlite::fromJSON(paste0(baseurl, json_query,
+                                         extra_args, "&_pageSize=1"),
+                                  flatten = TRUE)
 
     jpage <- floor(members$result$totalResults/500)
 

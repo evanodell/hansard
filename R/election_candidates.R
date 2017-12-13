@@ -39,7 +39,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
         message("Connecting to API")
     }
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=1"))
 
     jpage <- floor(elect$result$totalResults/500)
 

@@ -80,8 +80,8 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
             baseurl <- "http://lda.data.parliament.uk/edmsignatures.json?"
 
-            edms <- jsonlite::fromJSON(paste0(baseurl, z_query,
-                                              dates, extra_args),
+            edms <- jsonlite::fromJSON(paste0(baseurl, z_query, dates,
+                                              extra_args, "&_pageSize=1"),
                                        flatten = TRUE)
 
             jpage <- floor(edms$result$totalResults/500)

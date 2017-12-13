@@ -87,7 +87,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
         }
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
-                                            session_query, extra_args),
+                                            session_query, extra_args, "&_pageSize=1"),
                                      flatten = TRUE)
 
         jpage <- floor(url_no$result$totalResults/500)

@@ -72,7 +72,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
         }
 
         oral <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id,
-                                          dates, extra_args),
+                                          dates, extra_args, "&_pageSize=1"),
                                    flatten = TRUE)
 
         jpage <- floor(oral$result$totalResults/500)

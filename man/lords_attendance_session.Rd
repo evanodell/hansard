@@ -16,8 +16,9 @@ hansard_lords_attendance_session(session_id = NULL, extra_args = NULL,
 returns a list of all sessions, subject to other parameters.
 Defaults to \code{NULL}.}
 
-\item{extra_args}{Additional parameters to pass to API.
-See the \href{http://explore.data.parliament.uk/}{API documentation}
+\item{extra_args}{Additional parameters and queries to pass to API. These
+queries must be strings and start with "&". See the
+\href{http://explore.data.parliament.uk/}{API documentation}
 or the package vignette for more details. Defaults to \code{NULL}.}
 
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names

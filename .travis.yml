@@ -4,7 +4,10 @@ language: r
 r:
   - devel
 sudo: required
-#cache: packages
+cache: packages
+
+r_packages:
+  - devtools
 
 r_github_packages:
    - jimhester/robustr

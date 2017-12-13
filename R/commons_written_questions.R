@@ -71,7 +71,7 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
         }
 
         writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id_query,
-                                          dates, extra_args),
+                                          dates, extra_args, "&_pageSize=1"),
                                    flatten = TRUE)
 
         jpage <- floor(writ$result$totalResults/500)

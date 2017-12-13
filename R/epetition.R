@@ -60,8 +60,8 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
     } else {
 
-        petition <- jsonlite::fromJSON(paste0(baseurl, ID,
-                                              json_query, extra_args),
+        petition <- jsonlite::fromJSON(paste0(baseurl, ID, json_query,
+                                              "&_pageSize=1", extra_args),
                                        flatten = TRUE)
 
         jpage <- floor(petition$result$totalResults/500)

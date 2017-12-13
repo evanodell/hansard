@@ -3,15 +3,22 @@
 
 # hansard 0.5.7.9000
 
+## New Functions
+
+`bill_publications()` function introduced.
+
+## Performance improvements
+
 Process of transitioning from if and else statements to `dplyr`'s `case_when()` 
 and `if_else()` functions for internal use. Also replacing `gsub()` with 
-`stringi` functions. This is intended to increase speed and improve maintenance.
+faster `stringi` functions in some cases. These changes are intended to 
+increase speed and improve ease of maintenance.
 
 
 # hansard 0.5.7
 
-Internal rewrites to make maintenance easier and produce a few very small increases
-in speed in several functions.
+Internal rewrites to make maintenance easier and produce a few very small 
+increases in speed in several functions.
 
 Fixed some typos in documentation, brought documentation into line with the 
 recommended 80 character maximum width for each line.
