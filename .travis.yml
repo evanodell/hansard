@@ -8,10 +8,8 @@ cache: packages
 
 r_packages:
   - devtools
-
-r_github_packages:
-   - jimhester/robustr
-   - jimhester/covr
+  - withr
+  - covr
 
 after_success:
   - Rscript -e 'covr::codecov(quiet=FALSE)'
