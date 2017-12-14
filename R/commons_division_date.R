@@ -38,11 +38,13 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
             message("Connecting to API")
         }
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", date, extra_args, "&_pageSize=1"))
+        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", date,
+                                           extra_args, "&_pageSize=1"))
 
         jpage <- floor(divis$result$totalResults/500)
 
-        query <-paste0(baseurl, ".json?", date, extra_args, "&_pageSize=500&_page=")
+        query <-paste0(baseurl, ".json?", date, extra_args,
+                       "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -54,7 +56,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
             if (tidy == TRUE) {
 
-                df <- cdd_tidy(df, tidy_style)  ##utils-commons.R
+                df <- cdd_tidy(df, tidy_style) ##utils-commons.R
 
             }
 

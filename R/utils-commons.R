@@ -118,13 +118,13 @@ commons_written_questions_multi <- function(mp_id, answering_department,
 caq_multi <- function(answering_department, answered_by,
                       start_date, end_date, extra_args, verbose) {
 
-    if (is.null(mp_id) == TRUE) {
+    if (is.null(answered_by) == TRUE) {
 
         mp_id_list <- NA
 
     } else {
 
-        mp_id_list <- as.list(mp_id)
+        mp_id_list <- as.list(answered_by)
 
     }
 
@@ -169,8 +169,7 @@ caq_multi <- function(answering_department, answered_by,
 
 
 
-# commons_answered_questions_multiple_tidy
-# -----------------------------------------
+# commons_answered_questions_multiple_tidy -----------------------------------------
 
 caq_tidy <- function(df, tidy_style) {
 
@@ -195,8 +194,8 @@ caq_tidy <- function(df, tidy_style) {
 }
 
 
-# commons divisions date ----------------------------------------- First tidying
-# function
+# commons divisions date -----------------------------------------
+# First tidying function
 
 cdd_tidy <- function(df, tidy_style) {
 
@@ -322,8 +321,7 @@ cwq_tidy <- function(df, tidy_style) {
 
 
 
-## commons_oral_questions_times utilities
-## -----------------------------------------
+## commons_oral_questions_times utilities -----------------------------------------
 
 
 coqt_tidy <- function(df, tidy_style) {
@@ -338,8 +336,7 @@ coqt_tidy <- function(df, tidy_style) {
 
         df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
 
-        df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value,
-            "Y-m-d H:M:S")
+        df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value, "Y-m-d H:M:S")
 
         df$AnswerDateTime._datatype <- "POSIXct"
 

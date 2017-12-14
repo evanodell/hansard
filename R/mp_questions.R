@@ -118,7 +118,8 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
             baseurl <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
 
-            oral <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args, "&_pageSize=1"))
+            oral <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
+                                              extra_args, "&_pageSize=1"))
 
             jpage <- floor(oral$result$totalResults/500)
 
@@ -136,9 +137,9 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
                             "&min-dateTabled=",
                             as.Date(start_date))
 
-            writ <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
+            wr <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
 
-            jpage <- floor(writ$result$totalResults/500)
+            jpage <- floor(wr$result$totalResults/500)
 
             pages <- list()
 

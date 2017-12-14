@@ -22,6 +22,7 @@
 #' @return A tibble with details on bills before the House of Lords
 #' and the House of Commons.
 #' @seealso \code{\link{bill_stage_types}}
+#' @seealso \code{\link{bill_publications}}
 #' @export
 #' @examples \dontrun{
 #' x <- bills()

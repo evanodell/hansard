@@ -28,11 +28,9 @@ edm_search <- function(df, verbose) {
 
     names(df)[names(df) == "_about"] <- "about"
 
-    df$about <- stringi::stri_replace_all_fixed(df$about, "http://data.parliament.uk/resources/",
-                                                "", vectorize_all = FALSE)
+    df$about <- stringi::stri_replace_all_fixed(df$about, "http://data.parliament.uk/resources/", "")
 
-    df$about <- stringi::stri_replace_all_fixed(df$about, "/signatures/.*",
-                                                "", vectorize_all = FALSE)
+    df$about <- stringi::stri_replace_all_regex(df$about, "/signatures/.*", "")
 
     search_list <- as.list(dplyr::distinct(df[, "about"])[["about"]])
 
@@ -40,7 +38,7 @@ edm_search <- function(df, verbose) {
 
     message("Retrieving EDM details")
 
-    baseurl <- "http://lda.data.parliament.uk/edms/"
+    baseurl <- "http://lda.data.parliament.uk/resources/"
 
     for (i in search_list) {
 
@@ -48,7 +46,7 @@ edm_search <- function(df, verbose) {
 
         dat3[[i]] <- tibble::data_frame(about = list(search$result$primaryTopic$`_about`),
                                         title = list(search$result$primaryTopic$title),
-                                        dateTabled._value = list(lapply(search$result$primaryTopic$dateTabled._value, as.POSIXct)),
+                                        dateTabled._value = as.POSIXct(search$result$primaryTopic$dateTabled$`_value`),
                                         dateTabled._datatype = list("POSIXct"),
                                         session = list(search$result$primaryTopic$session),
                                         sessionNumber = list(search$result$primaryTopic$sessionNumber),
@@ -57,16 +55,17 @@ edm_search <- function(df, verbose) {
                                         numberOfSignatures = list(search$result$primaryTopic$numberOfSignatures),
                                         primarySponsor = list(search$result$primaryTopic$primarySponsorPrinted),
                                         sponsor = list(search$result$primaryTopic$sponsorPrinted),
-                                        signingMembers = list(search$result$primaryTopic$signature$member),
-                                        memberSigningOrder = list(search$result$primaryTopic$signature$order),
-                                        memberConstituency._value = list(search$result$primaryTopic$signature$constituency._value),
-                                        memberDateSigned._value = list(lapply(search$result$primaryTopic$signature$dateSigned._value, as.POSIXct)),
-                                        memberDateSigned._datatype = list("POSIXct"),
-                                        signingMemberPrinted._value = list(search$result$primaryTopic$signature$memberPrinted._value),
-                                        memberParty._value = list(search$result$primaryTopic$signature$party._value))
+                                        #signingMembers = list(search$result$primaryTopic$signature$member),
+                                        # memberSigningOrder = list(search$result$primaryTopic$signature$order),
+                                        # memberConstituency._value = list(search$result$primaryTopic$signature$constituency._value),
+                                        # memberDateSigned._value = list(lapply(search$result$primaryTopic$signature$dateSigned._value, as.POSIXct)),
+                                        # memberDateSigned._datatype = list("POSIXct"),
+                                        # signingMemberPrinted._value = list(search$result$primaryTopic$signature$memberPrinted._value),
+                                        # memberParty._value = list(search$result$primaryTopic$signature$party._value)
+                                        )
 
         if (verbose == TRUE) {
-            message("Retrieving motion ", match(i, search_list), " of ", length(search_list))
+              message("Retrieving motion ", match(i, search_list), " of ", length(search_list))
         }
 
     }
@@ -79,14 +78,14 @@ edm_search <- function(df, verbose) {
                                                  "http://data.parliament.uk/resources/", "",
                                                  vectorize_all = FALSE)
 
-    df2$about <- stringi::stri_replace_all_fixed(df2$about, "/signatures/.*", "",
+    df2$about <- stringi::stri_replace_all_regex(df2$about, "/signatures/.*", "",
                                                  vectorize_all = FALSE)
 
     df2$session <- as.factor(unlist(df2$session))
 
     df2$dateTabled._datatype <- as.factor(unlist(df2$dateTabled._datatype))
 
-    df2$memberDateSigned._datatype <- as.factor(unlist(df2$memberDateSigned._datatype))
+    #df2$memberDateSigned._datatype <- as.factor(unlist(df2$memberDateSigned._datatype))
 
     df2$title <- as.character(df2$title)
 

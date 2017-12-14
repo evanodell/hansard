@@ -35,4 +35,6 @@ x <- bill_stage_types()
 }
 \seealso{
 \code{\link{bills}}
+
+\code{\link{bill_publications}}
 }

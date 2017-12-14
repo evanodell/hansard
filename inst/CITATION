@@ -7,6 +7,6 @@ bibentry(bibtype = "Manual",
          year = 2017,
          note = note,
          doi = "10.5281/zenodo.591264",
-         url = "https://cran.r-project.org/package=hansard")
+         url = c("https://cran.r-project.org/package=hansard","https://docs.evanodell.com/hansard" ))
 
 

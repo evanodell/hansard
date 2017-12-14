@@ -105,7 +105,7 @@ commons_answered_questions <- function(answering_department = NULL,
 
     if (tidy == TRUE) {
 
-        df <- caq_tidy(df, tidy_style)  ## in utils-commons.R
+        df <- caq_tidy(df, tidy_style) ## in utils-commons.R
 
     }
 

@@ -2,15 +2,24 @@
 % Please edit documentation in R/bill_publications.R
 \name{bill_publications}
 \alias{bill_publications}
+\alias{hansard_bill_publications}
 \title{Bill Publications}
 \usage{
-bill_publications(ID = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+bill_publications(ID = NULL, publication_type = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
+
+hansard_bill_publications(ID = NULL, publication_type = NULL,
+  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
 }
 \arguments{
 \item{ID}{The ID of a specific bill to return publications for.
 If \code{NULL}, returns all bill publications subject to other parameters.}
+
+\item{publication_type}{The type of bill publication to return, in the form
+of a string. For a character vector of bill publication types, see
+\code{\link{bill_publication_types}}.}
 
 \item{start_date}{Only includes bill publications on or after this date.
 Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
@@ -44,8 +53,8 @@ of the API request. Defaults to \code{FALSE}.}
 A tibble with details on bill publications.
 }
 \description{
-Returns details all publications associated with a specific bill or
-all bills.
+Returns details of all publications associated with a specific bill
+or all bills.
 }
 \examples{
 \dontrun{
@@ -53,4 +62,11 @@ all bills.
 x <- bill_publications(ID=752025)
 
 }
+}
+\seealso{
+\code{\link{bill_stage_types}}
+
+\code{\link{bills}}
+
+\code{\link{bill_publication_types}}
 }
