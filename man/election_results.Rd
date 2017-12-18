@@ -60,7 +60,8 @@ A tibble with the results of all general and by-elections, or of
 a specified general election or by-election.
 }
 \description{
-Imports results from general and by-elections from the 2010 general election onwards.
+Imports results from general and by-elections from the
+2010 General Election onwards.
 }
 \examples{
 \dontrun{

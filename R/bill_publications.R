@@ -1,6 +1,5 @@
 
 
-
 #' Bill Publications
 #'
 #' Returns details of all publications associated with a specific bill

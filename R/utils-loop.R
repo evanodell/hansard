@@ -1,6 +1,6 @@
 
 
-## Retrieves the data from the API
+## Retrieves data from the API, using pagination
 loop_query <- function(query, jpage, verbose){
 
   pages <- list()

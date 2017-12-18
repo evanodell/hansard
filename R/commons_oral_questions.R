@@ -49,7 +49,6 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
 
     } else {
 
-
         mp_id <- dplyr::if_else(is.null(mp_id) == FALSE &&
                                   is.na(mp_id) == FALSE,
                                 paste0("&tablingMember=http://data.parliament.uk/members/", mp_id),

@@ -1,11 +1,11 @@
 
 
-
-# hansard 0.5.7.9000
+# hansard 0.5.8
 
 ## New Functions
 
-`bill_publications()` function introduced.
+`bill_publications()` function introduced, to retrieve data on publications
+associated with different bills.
 
 ## Performance improvements
 

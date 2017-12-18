@@ -1,7 +1,8 @@
 
 #' General and By-Election Results
 #'
-#' Imports results from general and by-elections from the 2010 general election onwards.
+#' Imports results from general and by-elections from the
+#' 2010 General Election onwards.
 #'
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
 #' Election onwards, and returns the results. If \code{NULL}, returns all
@@ -46,9 +47,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake_case", verbose = FALSE) {
 
-    id_query <- dplyr::if_else(is.null(ID) == FALSE,
-                               paste0("electionId=", ID),
-                               "")
+    id_query <- dplyr::if_else(is.null(ID), "", paste0("electionId=", ID))
 
     baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
 
