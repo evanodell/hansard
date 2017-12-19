@@ -7,9 +7,12 @@
 #'
 #' @param ID The ID of a specific bill to return publications for.
 #' If \code{NULL}, returns all bill publications subject to other parameters.
+#' Defaults to \code{NULL}.
 #' @param publication_type The type of bill publication to return, in the form
 #' of a string. For a character vector of bill publication types, see
-#' \code{\link{bill_publication_types}}.
+#' \code{\link{bill_publication_types}}. If \code{NULL}, returns all
+#' publications of all types, subject to other parameters.
+#' Defaults to \code{NULL}.
 #' @param start_date Only includes bill publications on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

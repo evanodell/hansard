@@ -6,3 +6,6 @@ hansard.Rproj
 inst/doc
 data.kml
 .Rd2pdf41583
+README.html
+vignettes/introduction.R
+vignettes/introduction.html

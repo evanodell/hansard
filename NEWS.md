@@ -9,7 +9,7 @@ associated with different bills.
 
 ## Performance improvements
 
-Process of transitioning from if and else statements to `dplyr`'s `case_when()` 
+Transitioned from if and else statements to `dplyr`'s `case_when()` 
 and `if_else()` functions for internal use. Also replacing `gsub()` with 
 faster `stringi` functions in some cases. These changes are intended to 
 increase speed and improve ease of maintenance.

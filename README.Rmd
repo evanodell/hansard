@@ -60,7 +60,7 @@ Previous versions (<=0.3.4) of `hansard` included options for console-based inpu
 
 ### Disclaimer
 
-This package is in no way officially related to or endorsed by the UK Parliamentary Data Service.
+This package is in no way officially related to or endorsed by the UK Parliamentary Data Service. It is released under an MIT license.
 
 ### Acknowledgements
 

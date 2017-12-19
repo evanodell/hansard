@@ -12,7 +12,6 @@
 ^mp_edms_cleanbit\.txt$
 ^_pkgdown\.yml$
 ^README\.html$
-^README\.md$
 ^appveyor\.yml$
 ^testing\.R$
 ^code for wrappers$
