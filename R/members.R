@@ -3,9 +3,9 @@
 #' Members of both houses
 #'
 #' Imports basic details on current and former Members of Parliament including
-#' the Lords and the Commons.
-#'
-#' For more details on a given member see \code{\link[mnis]{mnis_full_biog}}.
+#' the Lords and the Commons. For more details on a given member see
+#' \code{\link[mnis]{mnis_full_biog}} from the
+#' \code{\href{https://cran.r-project.org/package=mnis}{mnis}} package.
 #'
 #' @param ID The ID of a member of the House of Commons or the House of Lords
 #' to return data on. If \code{NULL}, returns a tibble of all members of both
