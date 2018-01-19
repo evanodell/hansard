@@ -142,6 +142,8 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
                                        TRUE ~ utils::URLencode((paste0("&answeringDeptShortName=",
                                                                        stringi::stri_trans_totitle(answering_body)))))
 
+        dept_query <- stringi::stri_replace_all_fixed(dept_query, list("And", "Of", "For"), list("and", "of", "for"), vectorize_all = FALSE)
+
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
 
         if (verbose == TRUE) {

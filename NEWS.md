@@ -1,4 +1,10 @@
 
+# hansard 0.5.9
+
+## Bug fixes
+
+Fixed bugs where capitalised conjunctions in department names were causing queries to fail.
+
 
 # hansard 0.5.8
 
