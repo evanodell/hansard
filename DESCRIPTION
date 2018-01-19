@@ -6,7 +6,6 @@ Date: 2017-01-19
 Authors@R: person("Evan Odell", email="evanodell91@gmail.com",
   role=c("aut", "cre"),
   comment = c(ORCID='0000-0003-1845-808X'))
-Author: Evan Odell [aut, cre]
 Maintainer: Evan Odell <evanodell91@gmail.com>
 Description: Provides functions to download data from the 
   <http://www.data.parliament.uk/> APIs. Because of the structure of the API, 
