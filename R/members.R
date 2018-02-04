@@ -4,25 +4,24 @@
 #'
 #' Imports basic details on current and former Members of Parliament including
 #' the Lords and the Commons. For more details on a given member see
-#' \code{\link[mnis]{mnis_full_biog}} from the
-#' \code{\href{https://cran.r-project.org/package=mnis}{mnis}} package.
+#' \link[mnis]{mnis_full_biog} from the \link[mnis]{mnis} package.
 #'
 #' @param ID The ID of a member of the House of Commons or the House of Lords
 #' to return data on. If \code{NULL}, returns a tibble of all members of both
 #' houses. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with data on members of the House of Commons
-#' (\code{commons_members()}), the House of Lords, (\code{lords_members()}),
-#' or both (\code{members()}).
+#' (`commons_members()`), the House of Lords, (`lords_members()`),
+#' or both (`members()`).
 #'
 #' @export
 #' @section Member details functions:
 #' \describe{
-#' \item{\code{members}}{Basic details on a given member from either house}
-#' \item{\code{commons_members}}{MPs in the House of Commons}
-#' \item{\code{lords_members}}{Peers in the House of Lords}
+#' \item{`members`}{Basic details on a given member from either house}
+#' \item{`commons_members`}{MPs in the House of Commons}
+#' \item{`lords_members`}{Peers in the House of Lords}
 #' }
-#' @seealso \code{\link{members_search}}
+#' @seealso `\link{members_search}`
 #' @examples \dontrun{
 #' a <- members()
 #'

@@ -27,9 +27,10 @@
 #' parameters. Defaults to \code{NULL}.
 #' @param house The house to return questions from. Accepts either the short
 #' name of the legislature (e.g. \code{'commons'} or \code{'lords'}) or the
-#' ID of the legislature (1 for the House of Commons, 2 for the House of Lords).
-#' The short names are not case sensitive. If \code{NULL}, returns answers from
-#' both houses, subject to other parameters. Defaults to \code{NULL}.
+#' ID of the legislature (\code{1} for the House of Commons, \code{2} for the
+#' House of Lords). The short names are not case sensitive.
+#' If \code{NULL}, returns answers from both houses, subject to other
+#' parameters. Defaults to \code{NULL}.
 #' @param answering_body The name of the government department that answers the
 #' question, or a vector of government deparment names. Accepts either the
 #' short name name of a department (e.g. \code{'Education'} for the Department
@@ -39,8 +40,8 @@
 #' from all departments, subject to other parameters. Defaults to \code{NULL}.
 #' @param start_date The earliest date to include in the tibble. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}.
+#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
+#' that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
 #' @param end_date The latest date to include in the tibble. Defaults to
 #' \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'}
@@ -75,7 +76,8 @@
 #' y <- all_answered_questions(4019, start_date ='2017-01-01',
 #'                                         tidy_style='camelCase')
 #'
-#' z <- hansard_all_answered_questions(tabling_mp_id=179, start_date ='2017-01-01')
+#' z <- hansard_all_answered_questions(tabling_mp_id=179,
+#'                                     start_date ='2017-01-01')
 #'
 #' a <- hansard_all_answered_questions(house='lords', answering_body=60)
 #' # Returns all questions asked in the House of Lords
@@ -85,9 +87,11 @@
 #' # Returns all questions asked in the House of Lords
 #' # answered by the Department for Education.
 #'
-#' w <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
+#' w <- hansard_all_answered_questions(mp_id = c(4019, 3980),
+#'                                     tabling_mp_id = c(338, 172),
 #'                                     answering_body = c('health', 'justice'),
-#'                                      start_date = '2016-12-18', end_date = '2017-03-12')
+#'                                     start_date = '2016-12-18',
+#'                                     end_date = '2017-03-12')
 #' # Accepts multiple inputs for mp_id, tabling_mp_id and answering_body
 #' }
 
@@ -138,11 +142,18 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
         dept_query <- dplyr::case_when(is.null(answering_body) == TRUE ||
                                          is.na(answering_body) == TRUE ~ "",
                                        is.na(answering_body_check) == FALSE ~
-                                         paste0("&answeringDeptId=", answering_body),
-                                       TRUE ~ utils::URLencode((paste0("&answeringDeptShortName=",
-                                                                       stringi::stri_trans_totitle(answering_body)))))
+                                         paste0("&answeringDeptId=",
+                                                answering_body),
+                                       TRUE ~ utils::URLencode((
+                                         paste0("&answeringDeptShortName=",
+                                          stringi::stri_trans_totitle(answering_body)
+                                          )
+                                         )))
 
-        dept_query <- stringi::stri_replace_all_fixed(dept_query, list("And", "Of", "For"), list("and", "of", "for"), vectorize_all = FALSE)
+        dept_query <- stringi::stri_replace_all_fixed(dept_query,
+                                                      list("And", "Of", "For"),
+                                                      list("and", "of", "for"),
+                                                      vectorize_all = FALSE)
 
         baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
 

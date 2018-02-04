@@ -82,7 +82,11 @@ aaq_tidy <- function(df, tidy_style) {
 
         names(df)[names(df) == "_about"] <- "about"
 
-        names(df) <- gsub("^answer.", "", names(df), perl = TRUE)
+        df$answer._about <- NULL
+
+        names(df) <- gsub("^answer\\.", "", names(df), perl = TRUE)
+
+        df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
 
         if ("groupedQuestionUIN" %in% colnames(df)) {
 

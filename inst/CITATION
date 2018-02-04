@@ -4,9 +4,7 @@ note <- sprintf("R package version %s", meta$Version)
 bibentry(bibtype = "Manual",
          title = "{hansard}: Provides Easy Downloading Capabilities for the UK Parliament API",
          author = c(person("Evan", "Odell")),
-         year = 2017,
+         year = year,
          note = note,
          doi = "10.5281/zenodo.591264",
-         url = c("https://cran.r-project.org/package=hansard","https://docs.evanodell.com/hansard" ))
-
-
+         url = "https://cran.r-project.org/package=hansard")

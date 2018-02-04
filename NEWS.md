@@ -1,4 +1,11 @@
 
+
+# hansard 0.5.9.9000
+
+## Bug fixes
+
+Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
+
 # hansard 0.5.9
 
 ## Bug fixes
