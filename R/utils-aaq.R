@@ -153,7 +153,7 @@ aaq_tidy <- function(df, tidy_style) {
 
         }
 
-        #df$legislature <- dplyr::bind_rows(df$legislature)
+        df$legislature <- dplyr::bind_rows(df$legislature)#get legislature info
 
         df$legislature.prefLabel._value <- df$legislature$prefLabel._value
 
@@ -162,7 +162,7 @@ aaq_tidy <- function(df, tidy_style) {
         df$legislature_about <- gsub("http://data.parliament.uk/terms/",
                                      "", df$legislature_about)
 
-        df$legislature <- NULL
+        df$legislature <- NULL #delete now superfluous column
 
     }
 

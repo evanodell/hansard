@@ -7,12 +7,12 @@ loop_query <- function(query, jpage, verbose){
 
   pages <- list()
 
-  for (i in seq_along(seq_list)) {
-    mydata <- jsonlite::fromJSON(paste0(query, i), flatten = TRUE)
+  for(i in seq_along(seq_list)){
+    mydata <- jsonlite::fromJSON(paste0(query, seq_list[[i]]), flatten = TRUE)
     if (verbose == TRUE) {
-      message("Retrieving page ", i + 1, " of ", jpage + 1)
+      message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }
-    pages[[i + 1]] <- mydata$result$items
+    pages[[seq_list[[i]] + 1]] <- mydata$result$items
   }
 
   df <- tibble::as_tibble(dplyr::bind_rows(pages))
