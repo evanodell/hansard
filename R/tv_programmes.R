@@ -32,7 +32,7 @@
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-                          tidy_style = "snake_case", verbose = FALSE) {
+                          tidy_style = "snake_case", verbose = TRUE) {
 
     dates <- paste0("&max-endDate=", as.Date(end_date),
                     "T23:59:59Z&min-startDate=", as.Date(start_date),
@@ -95,7 +95,7 @@ hansard_tv_programmes <- tv_programmes
 
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
                      end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-                     tidy_style = "snake_case", verbose = FALSE) {
+                     tidy_style = "snake_case", verbose = TRUE) {
 
     dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z",
                     "&min-startDate=", as.Date(start_date), "T00:00:00Z")
@@ -148,7 +148,7 @@ hansard_tv_clips <- tv_clips
 #'
 #' @export
 
-tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
 
     channels <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500",
         flatten = TRUE)

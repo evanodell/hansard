@@ -46,7 +46,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), signatures = 1,
                               extra_args = NULL, tidy = TRUE,
-                              tidy_style = "snake_case", verbose = FALSE) {
+                              tidy_style = "snake_case", verbose = TRUE) {
 
     edm_query <- dplyr::if_else(is.null(edm_id) == FALSE,
                                 paste0("&edmNumber=", edm_id),

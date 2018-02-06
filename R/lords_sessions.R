@@ -23,7 +23,7 @@
 
 lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
                            tidy = TRUE, tidy_style = "snake_case",
-                           verbose = FALSE) {
+                           verbose = TRUE) {
 
     baseurl <- "http://lda.data.parliament.uk/lordsattendances.json?"
 

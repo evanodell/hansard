@@ -6,10 +6,10 @@
 \title{Lords sessions}
 \usage{
 lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
-  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
+  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 
 hansard_lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
-  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
+  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{start_date}{Only includes sessions starting on or after this date.
@@ -33,7 +33,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \description{
 Returns the session code and other basic details for individual

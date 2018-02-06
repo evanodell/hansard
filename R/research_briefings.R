@@ -43,7 +43,7 @@
 
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
-                               tidy_style = "snake_case", verbose = FALSE) {
+                               tidy_style = "snake_case", verbose = TRUE) {
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -52,7 +52,8 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
 
         type_query <- dplyr::if_else(is.null(type) == FALSE,
-                                     utils::URLencode(paste0("&subType.prefLabel=", type)),
+                                     utils::URLencode(
+                                       paste0("&subType.prefLabel=", type)),
                                      "")
 
         baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
@@ -63,7 +64,8 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
         jpage <- floor(research$result$totalResults/500)
 
-        query <- paste0(baseurl, type_query, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, type_query, extra_args,
+                        "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

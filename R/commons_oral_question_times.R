@@ -25,7 +25,7 @@
 
 commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
-                                        tidy_style = "snake_case", verbose = FALSE) {
+                                        tidy_style = "snake_case", verbose = TRUE) {
 
     session_query <- dplyr::if_else(is.null(session) == FALSE,
                                     utils::URLencode(paste0("session=", session)),

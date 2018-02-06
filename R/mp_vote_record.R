@@ -38,7 +38,7 @@
 mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            start_date = "1900-01-01", end_date = Sys.Date(),
                            extra_args = NULL, tidy = TRUE,
-                           tidy_style = "snake_case", verbose = FALSE) {
+                           tidy_style = "snake_case", verbose = TRUE) {
 
     if (is.null(mp_id) == TRUE) {
         stop("mp_id must not be empty", call. = FALSE)

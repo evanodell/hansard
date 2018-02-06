@@ -30,7 +30,7 @@
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
-                             verbose = FALSE) {
+                             verbose = TRUE) {
 
     dates <- paste0("&min-bill.date=", as.Date(start_date),
                     "&max-bill.date=", as.Date(end_date))

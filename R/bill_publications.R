@@ -35,6 +35,8 @@
 #'
 #' x <- bill_publications(ID=752025)
 #'
+#' y <- bill_publications(start_date = "2018-01-01")
+#'
 #' }
 bill_publications <- function(ID = NULL, publication_type = NULL,
                               start_date = "1900-01-01", end_date = Sys.Date(),
@@ -54,7 +56,8 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
 
   pub_query <- ifelse(is.null(publication_type),
                       "",
-                      utils::URLencode(paste0("&publicationType=", publication_type)))
+                      utils::URLencode(paste0("&publicationType=",
+                                              publication_type)))
 
   if (verbose == TRUE) {
         message("Connecting to API")

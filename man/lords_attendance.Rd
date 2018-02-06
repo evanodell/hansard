@@ -8,11 +8,11 @@ Deprecated function, please see \code{\link{lords_attendance_date}} and \code{\l
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.}
@@ -35,7 +35,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with details on the lords who attended a given session.

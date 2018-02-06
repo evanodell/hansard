@@ -19,7 +19,7 @@
 
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
-                          verbose = FALSE) {
+                          verbose = TRUE) {
 
     search_query <- dplyr::if_else(is.null(search) == FALSE,
                                    paste0("&_search=", utils::URLencode(search)),

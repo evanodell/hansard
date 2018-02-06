@@ -30,7 +30,7 @@
 papers_laid <- function(withdrawn = FALSE, house = NULL,
                         start_date = "1900-01-01", end_date = Sys.Date(),
                         extra_args = NULL, tidy = TRUE,
-                        tidy_style = "snake_case", verbose = FALSE) {
+                        tidy_style = "snake_case", verbose = TRUE) {
 
     house <- tolower(house)
 

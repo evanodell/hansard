@@ -21,7 +21,7 @@
 #'}
 
 epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
-                      tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+                      tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
 
     if (is.null(ID) == FALSE) {
         ID <- paste0("/", ID)

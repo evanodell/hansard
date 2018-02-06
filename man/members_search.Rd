@@ -6,10 +6,10 @@
 \title{Search for an MP or Peer by name and constituency}
 \usage{
 members_search(search = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 
 hansard_members_search(search = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{search}{Accepts any string. Defaults to \code{NULL}. If \code{NULL},
@@ -25,7 +25,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with the results of the search.

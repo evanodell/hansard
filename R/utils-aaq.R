@@ -16,7 +16,6 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
 
     }
 
-
     if (is.null(tabling_mp_id) == TRUE) {
 
         tabling_mp_id_list <- NA
@@ -37,14 +36,14 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
 
     }
 
-    search_grid <- expand.grid(mp_id_list, tabling_mp_id_list, answering_body_list,
-        stringsAsFactors = FALSE)
+    search_grid <- expand.grid(mp_id_list, tabling_mp_id_list,
+                               answering_body_list, stringsAsFactors = FALSE)
 
     names(search_grid)[names(search_grid) == "Var1"] <- "answering_mp"
     names(search_grid)[names(search_grid) == "Var2"] <- "tabling_mp"
     names(search_grid)[names(search_grid) == "Var3"] <- "department"
 
-    search_grid
+    #search_grid
 
     dat <- vector("list", nrow(search_grid))
 
@@ -107,13 +106,11 @@ aaq_tidy <- function(df, tidy_style) {
 
         }
 
-        df$answeringMember._about <- stringi::stri_replace_all_fixed(df$answeringMember._about,
-                                                                     "http://data.parliament.uk/members/", "",
-                                                                     vectorize_all = FALSE)
+        df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "",
+                                          df$answeringMember._about)
 
-        df$tablingMember._about <- stringi::stri_replace_all_fixed(df$tablingMember._about,
-                                                                   "http://data.parliament.uk/members/", "",
-                                                                   vectorize_all = FALSE)
+        df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "",
+                                        df$tablingMember._about)
 
         df$AnsweringBody <- unlist(df$AnsweringBody)
 
@@ -131,8 +128,10 @@ aaq_tidy <- function(df, tidy_style) {
 
         df$answerDateTime <- gsub("T", " ", df$answerDateTime)
 
-        df$answerDateTime <- as.POSIXct(lubridate::parse_date_time(df$answerDateTime,
-                                                                   "Y-m-d H:M:S"))
+        df$answerDateTime <- as.POSIXct(
+                            lubridate::parse_date_time(df$answerDateTime,
+                                                       "Y-m-d H:M:S")
+                            )
 
         df$dateOfAnswer._datatype <- "POXIXct"
 
@@ -142,9 +141,11 @@ aaq_tidy <- function(df, tidy_style) {
 
                 if (is.null(names(df$attachment[[i]])) == FALSE) {
 
-                  names(df$attachment[[i]])[names(df$attachment[[i]]) == "_about"] <- "about"
+                  names(df$attachment[[i]])[names(df$attachment[[i]]) ==
+                                              "_about"] <- "about"
 
-                  names(df$attachment[[i]])[names(df$attachment[[i]]) == "fileName._value"] <- "fileName"
+                  names(df$attachment[[i]])[names(df$attachment[[i]]) ==
+                                              "fileName._value"] <- "fileName"
 
                 }
 
@@ -152,15 +153,14 @@ aaq_tidy <- function(df, tidy_style) {
 
         }
 
-        df$legislature <- dplyr::bind_rows(df$legislature)
+        #df$legislature <- dplyr::bind_rows(df$legislature)
 
         df$legislature.prefLabel._value <- df$legislature$prefLabel._value
 
         df$legislature_about <- df$legislature$`_about`
 
-        df$legislature_about <- stringi::stri_replace_all_fixed(df$legislature_about,
-                                                                "http://data.parliament.uk/terms/", "",
-                                                                vectorize_all = FALSE)
+        df$legislature_about <- gsub("http://data.parliament.uk/terms/",
+                                     "", df$legislature_about)
 
         df$legislature <- NULL
 

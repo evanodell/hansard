@@ -33,7 +33,7 @@
 #'}
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
-                    tidy_style = "snake_case", verbose = FALSE) {
+                    tidy_style = "snake_case", verbose = TRUE) {
 
     id_query <- dplyr::if_else(is.null(ID) == TRUE,
                                ".json?",
@@ -45,7 +45,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args), flatten = TRUE)
+    members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
+                                  flatten = TRUE)
 
     if (is.null(ID) == TRUE) {
 
@@ -102,7 +103,7 @@ hansard_members <- members
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
-                            tidy_style = "snake_case", verbose = FALSE) {
+                            tidy_style = "snake_case", verbose = TRUE) {
 
     baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
 
@@ -112,7 +113,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
+    jpage <- floor(members$result$totalResults/500)
 
     query <- paste0(baseurl, extra_args, "&_page=")
 
@@ -144,7 +145,7 @@ hansard_commons_members <- commons_members
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
-                          tidy_style = "snake_case", verbose = FALSE) {
+                          tidy_style = "snake_case", verbose = TRUE) {
 
     baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
 
@@ -154,7 +155,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
 
     members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- floor(members$result$totalResults/members$result$itemsPerPage)
+    jpage <- floor(members$result$totalResults/500)
 
     query <- paste0(baseurl, extra_args, "&_page=")
 

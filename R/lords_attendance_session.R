@@ -37,7 +37,7 @@
 
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
                                      tidy = TRUE, tidy_style = "snake_case",
-                                     verbose = FALSE) {
+                                     verbose = TRUE) {
 
     json_query <- dplyr::if_else(is.null(session_id) == FALSE,
                                  paste0("/", session_id, ".json?"),

@@ -8,12 +8,12 @@
 early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 
 hansard_early_day_motions(edm_id = NULL, session = NULL,
   start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 }
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns
@@ -55,7 +55,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with details on the content, signatories and sponsors of

@@ -59,7 +59,7 @@
 #' \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 #' and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #' @param verbose If \code{TRUE}, returns data to console on the progress
-#' of the API request. Defaults to \code{FALSE}.
+#' of the API request. Defaults to \code{TRUE}.
 #'
 #' @return A tibble with details on all answered questions in the House
 #' of Commons and the House of Lords.
@@ -100,7 +100,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
                                    start_date = "1900-01-01",
                                    end_date = Sys.Date(), extra_args = NULL,
                                    tidy = TRUE, tidy_style = "snake_case",
-                                   verbose = FALSE) {
+                                   verbose = TRUE) {
 
     if (length(mp_id) > 1 ||
         length(tabling_mp_id) > 1 ||

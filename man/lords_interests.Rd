@@ -6,10 +6,10 @@
 \title{Peers' registered interests}
 \usage{
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{peer_id}{The ID of a member of the House of lords. If \code{NULL},
@@ -30,7 +30,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with details on the interests of peers in

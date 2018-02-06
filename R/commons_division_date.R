@@ -22,7 +22,7 @@
 
 
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
-                                  tidy_style = "snake_case", verbose = FALSE) {
+                                  tidy_style = "snake_case", verbose = TRUE) {
 
     if (is.null(date) == TRUE) {
 

@@ -42,7 +42,7 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
                              status = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
-                             verbose = FALSE) {
+                             verbose = TRUE) {
 
     dates <- paste0("&max-created=", as.Date(end_date), "&min-created=", as.Date(start_date))
 

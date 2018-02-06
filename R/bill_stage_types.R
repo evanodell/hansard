@@ -10,9 +10,10 @@
 #' x <- bill_stage_types()
 #' }
 
-bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE) {
+bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
 
-    stages <- jsonlite::fromJSON("http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500",
+    stages <- jsonlite::fromJSON(
+      "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500",
         flatten = TRUE)
 
     df <- tibble::as_tibble(stages$result$items)

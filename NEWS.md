@@ -2,6 +2,10 @@
 
 # hansard 0.5.9.9000
 
+## Code changes
+
+Changed default value of `verbose` parameter to `TRUE`.
+
 ## Bug fixes
 
 Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
@@ -10,7 +14,8 @@ Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
 
 ## Bug fixes
 
-Fixed bugs where capitalised conjunctions in department names were causing queries to fail.
+Fixed bugs where capitalised conjunctions in department names were causing 
+queries to fail.
 
 
 # hansard 0.5.8

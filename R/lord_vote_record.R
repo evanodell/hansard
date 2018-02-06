@@ -42,7 +42,7 @@
 lord_vote_record <- function(peer_id = NULL, lobby = "all",
                              start_date = "1900-01-01", end_date = Sys.Date(),
                              extra_args = NULL, tidy = TRUE,
-                             tidy_style = "snake_case", verbose = FALSE) {
+                             tidy_style = "snake_case", verbose = TRUE) {
 
     if (is.null(peer_id) == TRUE) {
 

@@ -17,7 +17,7 @@
 
 
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
-                           tidy_style = "snake_case", verbose = FALSE) {
+                           tidy_style = "snake_case", verbose = TRUE) {
 
     baseurl <- "http://lda.data.parliament.uk/constituencies.json?"
 

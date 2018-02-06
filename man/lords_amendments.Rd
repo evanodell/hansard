@@ -7,11 +7,11 @@
 \usage{
 lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_lords_amendments(decision = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{decision}{The decision on the amendments. Accepts one of
@@ -45,7 +45,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with details on amendments proposed by the House of Lords.

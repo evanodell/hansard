@@ -6,11 +6,11 @@
 \title{Election candidate details}
 \usage{
 election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
+  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 
 hansard_election_candidates(ID = NULL, constit_details = FALSE,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 General
@@ -35,7 +35,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 }
 \description{
 Returns the name and party of all candidates standing in an election, for

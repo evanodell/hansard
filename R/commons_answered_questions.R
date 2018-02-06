@@ -49,7 +49,7 @@ commons_answered_questions <- function(answering_department = NULL,
                                        end_date = Sys.Date(),
                                        extra_args = NULL, tidy = TRUE,
                                        tidy_style = "snake_case",
-                                       verbose = FALSE) {
+                                       verbose = TRUE) {
 
     if (length(answered_by) > 1 || length(answering_department) > 1) {
 

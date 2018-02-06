@@ -32,7 +32,7 @@
 publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
-                             verbose = FALSE) {
+                             verbose = TRUE) {
 
   id_query <- dplyr::if_else(is.null(ID) == FALSE,
                              paste0("/", ID, ".json?"),

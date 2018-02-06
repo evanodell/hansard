@@ -47,7 +47,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
                     signatory = TRUE, full_data = FALSE,
                     start_date = "1900-01-01", end_date = Sys.Date(),
                     extra_args = NULL, tidy = TRUE,
-                    tidy_style = "snake_case", verbose = FALSE) {
+                    tidy_style = "snake_case", verbose = TRUE) {
 
     dates <- paste0("&max-dateSigned=", as.Date(end_date),
                     "&min-dateSigned=", as.Date(start_date))

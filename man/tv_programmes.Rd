@@ -11,24 +11,24 @@
 \usage{
 tv_programmes(legislature = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_tv_programmes(legislature = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
 tv_clips(mp_id = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 
 hansard_tv_clips(mp_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = FALSE)
+  tidy_style = "snake_case", verbose = TRUE)
 
-tv_channels(tidy = TRUE, tidy_style = "snake_case", verbose = FALSE)
+tv_channels(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 
 hansard_tv_channels(tidy = TRUE, tidy_style = "snake_case",
-  verbose = FALSE)
+  verbose = TRUE)
 }
 \arguments{
 \item{legislature}{Accepts one of either \code{'commons'} or
@@ -61,7 +61,7 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{FALSE}.}
+of the API request. Defaults to \code{TRUE}.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.}
 }
