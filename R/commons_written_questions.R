@@ -35,10 +35,13 @@
 #' # and answered by the Cabinet Office or the Home Office.
 #' }
 
-commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
+commons_written_questions <- function(mp_id = NULL,
+                                      answering_department = NULL,
                                       start_date = "1900-01-01",
-                                      end_date = Sys.Date(), extra_args = NULL,
-                                      tidy = TRUE, tidy_style = "snake_case",
+                                      end_date = Sys.Date(),
+                                      extra_args = NULL,
+                                      tidy = TRUE,
+                                      tidy_style = "snake_case",
                                       verbose = TRUE) {
 
     if (length(mp_id) > 1 || length(answering_department) > 1) {
@@ -55,16 +58,23 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
                         "&min-dateTabled=",
                         as.Date(start_date))
 
-        mp_id_query <- dplyr::if_else(is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
-                                      utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", mp_id)),
-                                      "")
+        mp_id_query <- dplyr::if_else(
+          is.null(mp_id) == FALSE &&
+            is.na(mp_id) == FALSE,
+          utils::URLencode(
+            paste0(
+              "&tablingMember=http://data.parliament.uk/members/", mp_id)
+            ),
+          "")
 
-        json_query <- dplyr::if_else(is.null(answering_department) == FALSE &&
-                                       is.na(answering_department) == FALSE,
-                                     utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department)),
+        json_query <- dplyr::if_else(
+          is.null(answering_department) == FALSE &&
+            is.na(answering_department) == FALSE,
+          utils::URLencode(
+            paste0("/answeringdepartment.json?q=", answering_department)),
                                      ".json?")
 
-        baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions"
+        baseurl <- paste0(url_util,  "commonswrittenquestions")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -85,7 +95,8 @@ commons_written_questions <- function(mp_id = NULL, answering_department = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

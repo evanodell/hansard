@@ -37,19 +37,21 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
 
-    days_query <- dplyr::if_else(days==FALSE,
-                                paste0(".json?&max-endDate=", as.Date(end_date),
-                                        "&min-startDate=", as.Date(start_date)),
-                                "/days.json?"
-                           )
+    days_query <- dplyr::if_else(
+      days==FALSE,
+      paste0(".json?&max-endDate=", as.Date(end_date),
+             "&min-startDate=", as.Date(start_date)),
+      "/days.json?"
+      )
 
-    baseurl <- "http://lda.data.parliament.uk/sessions"
+    baseurl <- paste0(url_util,  "sessions")
 
     if (verbose == TRUE) {
         message("Connecting to API")
     }
 
-    session <- jsonlite::fromJSON(paste0(baseurl, days_query, extra_args, "&_pageSize=1"))
+    session <- jsonlite::fromJSON(paste0(baseurl, days_query,
+                                         extra_args, "&_pageSize=1"))
 
     jpage <- floor(session$result$totalResults/500)
 
@@ -65,7 +67,8 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

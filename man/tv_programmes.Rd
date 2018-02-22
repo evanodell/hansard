@@ -63,12 +63,15 @@ and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 \item{verbose}{If \code{TRUE}, returns data to console on the progress
 of the API request. Defaults to \code{TRUE}.}
 
-\item{mp_id}{Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.}
+\item{mp_id}{Accepts the ID of an MP or peer, and returns all clips
+featuring that MP or peer. If \code{NULL}, returns data on all available
+clips. Defaults to \code{NULL}.}
 }
 \value{
 A tibble with details on TV broadcasts.
 
-A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+A tibble with details on TV broadcasts featuring the given MP,
+or all available clips.
 
 A tibble with details on the different broadcasting channels.
 }
@@ -87,7 +90,8 @@ parliamentary TV channels.
 
 \examples{
 \dontrun{
-x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
+x <- tv_programmes('commons', start_date ='2016-11-01',
+                   end_date='2016-12-01')
 }
 \dontrun{
 x <- tv_clips(4591)

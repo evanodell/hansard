@@ -19,7 +19,8 @@ hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
 \item{lobby}{Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}.
 \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'}
 returns votes where the MP voted \code{'no'}, \code{'all'} returns all
-available votes by the MP. This parameter is not case sensitive. Defaults to \code{'all'}.}
+available votes by the MP. This parameter is not case sensitive.
+Defaults to \code{'all'}.}
 
 \item{session}{The parliamentary session to return votes from, in
 \code{'YYYY/YY'} format. Defaults to \code{NULL}.}

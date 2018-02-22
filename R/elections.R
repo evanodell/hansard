@@ -63,7 +63,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
         ID <- paste0("/", ID, ".json?")
 
-        baseurl <- "http://lda.data.parliament.uk/elections"
+        baseurl <- paste0(url_util,  "elections")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -79,10 +79,11 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     } else {
 
-      baseurl <- "http://lda.data.parliament.uk/elections"
+      baseurl <- paste0(url_util,  "elections")
 
       type_query <- dplyr::if_else(is.null(type) == FALSE,
-                                   utils::URLencode(paste0(".json?&electionType=", type)),
+                                   utils::URLencode(
+                                     paste0(".json?&electionType=", type)),
                                    ".json?")
 
         if (verbose == TRUE) {
@@ -95,7 +96,8 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
         jpage <- floor(elect$result$totalResults/500)
 
-        query <- paste0(baseurl, type_query, dates, label, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, type_query, dates, label,
+                        extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -103,7 +105,8 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

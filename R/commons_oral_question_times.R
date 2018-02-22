@@ -25,17 +25,20 @@
 
 commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
-                                        tidy_style = "snake_case", verbose = TRUE) {
+                                        tidy_style = "snake_case",
+                                        verbose = TRUE) {
 
     session_query <- dplyr::if_else(is.null(session) == FALSE,
-                                    utils::URLencode(paste0("session=", session)),
+                                    utils::URLencode(
+                                      paste0("session=", session)
+                                      ),
                                     "")
 
     question_query <- dplyr::if_else(is.null(question_id) == FALSE,
                                      paste0("/", question_id),
                                      "")
 
-    baseurl <- "http://lda.data.parliament.uk/commonsoralquestiontimes"
+    baseurl <- paste0(url_util,  "commonsoralquestiontimes")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -43,7 +46,11 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
     if (is.null(question_id) == TRUE) {
 
-        times <- jsonlite::fromJSON(paste0(baseurl, ".json?", session_query, extra_args, "&_pageSize=1"))
+        times <- jsonlite::fromJSON(paste0(baseurl, ".json?",
+                                           session_query,
+                                           extra_args, "&_pageSize=1"),
+                                    flatten = TRUE
+                                    )
 
         jpage <- floor(times$result$totalResults/500)
 
@@ -59,26 +66,33 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                             extra_args),
                                      flatten = TRUE)
 
-        df <- tibble::tibble(about = mydata$result$primaryTopic$`_about`,
-                             AnswerBody = list(mydata$result$primaryTopic$AnswerBody),
-                             session = mydata$result$primaryTopic$session,
-                             title = mydata$result$primaryTopic$title,
-                             AnswerDateTime._value = mydata$result$primaryTopic$AnswerDateTime$`_value`,
-                             AnswerDateTime._datatype = mydata$result$primaryTopic$AnswerDateTime$`_datatype`,
-                             Location._about = mydata$result$primaryTopic$Location$`_about`,
-                             Location.prefLabel._value = mydata$result$primaryTopic$Location$prefLabel$`_value`,
-                             QuestionType._value = mydata$result$primaryTopic$QuestionType$`_value`,
-                             date._value = mydata$result$primaryTopic$date$`_value`,
-                             date._datatype = mydata$result$primaryTopic$date$`_datatype`,
-                             modified._value = mydata$result$primaryTopic$modified$`_value`,
-                             modified._datatype = mydata$result$primaryTopic$modified$`_datatype`,
-                             sessionNumber._value = mydata$result$primaryTopic$sessionNumber$`_value`)
+        df <- tibble::tibble(
+          about = mydata$result$primaryTopic$`_about`,
+          AnswerBody = list(mydata$result$primaryTopic$AnswerBody),
+          session = mydata$result$primaryTopic$session,
+          title = mydata$result$primaryTopic$title,
+          AnswerDateTime._value =
+            mydata$result$primaryTopic$AnswerDateTime$`_value`,
+          AnswerDateTime._datatype =
+            mydata$result$primaryTopic$AnswerDateTime$`_datatype`,
+          Location._about = mydata$result$primaryTopic$Location$`_about`,
+          Location.prefLabel._value =
+            mydata$result$primaryTopic$Location$prefLabel$`_value`,
+          QuestionType._value =
+            mydata$result$primaryTopic$QuestionType$`_value`,
+          date._value = mydata$result$primaryTopic$date$`_value`,
+          date._datatype = mydata$result$primaryTopic$date$`_datatype`,
+          modified._value = mydata$result$primaryTopic$modified$`_value`,
+          modified._datatype = mydata$result$primaryTopic$modified$`_datatype`,
+          sessionNumber._value =
+            mydata$result$primaryTopic$sessionNumber$`_value`)
 
     }
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

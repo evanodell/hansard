@@ -102,60 +102,64 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
                                    tidy = TRUE, tidy_style = "snake_case",
                                    verbose = TRUE) {
 
-    if (length(mp_id) > 1 ||
-        length(tabling_mp_id) > 1 ||
-        length(answering_body) > 1) {
+  if (length(mp_id) > 1 ||
+      length(tabling_mp_id) > 1 ||
+      length(answering_body) > 1) {
 
-        df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body,
-                        start_date, end_date, extra_args, verbose)
+    df <- aaq_multi(mp_id, tabling_mp_id, house, answering_body,
+                    start_date, end_date, extra_args, verbose)
 
-    } else {
+  } else {
 
-        dates <- paste0("&_properties=date&max-date=",
-                        as.Date(end_date),
-                        "&min-date=",
-                        as.POSIXct(start_date))
+      dates <- paste0("&_properties=date&max-date=",
+                      as.Date(end_date),
+                      "&min-date=",
+                      as.POSIXct(start_date))
 
-        house <- tolower(house)
+      house <- tolower(house)
 
-        house_query <- dplyr::case_when(house == "commons" |
-                                          house == "1" ~
-                                          "&legislature.prefLabel=House%20of%20Commons",
-                                        house == "lords" |
-                                          house == "2" ~
-                                          "&legislature.prefLabel=House%20of%20Lords",
-                                        TRUE ~ "")  # If no value, house_query will be blank
+      house_query <- dplyr::case_when(
+        house == "commons" | house == "1" ~
+          "&legislature.prefLabel=House%20of%20Commons",
+        house == "lords" | house == "2" ~
+          "&legislature.prefLabel=House%20of%20Lords",
+                                        TRUE ~ "")
 
-        answering_member_query <- dplyr::if_else(is.null(mp_id) == TRUE ||
-                                                   is.na(mp_id) == TRUE,
-                                                 "",
-                                                 paste0("&answer.answeringMember=http://data.parliament.uk/members/", mp_id))
+      answering_member_query <- dplyr::if_else(is.null(mp_id) == TRUE ||
+                                                is.na(mp_id) == TRUE,
+                                                "",
+                        paste0(
+        "&answer.answeringMember=http://data.parliament.uk/members/",
+                                                   mp_id))
 
-        tabling_member_query <- dplyr::if_else(is.null(tabling_mp_id) == TRUE ||
-                                                 is.na(tabling_mp_id) == TRUE,
-                                               "",
-                                               paste0("&tablingMember=http://data.parliament.uk/members/", tabling_mp_id))
+        tabling_member_query <- dplyr::if_else(
+          is.null(tabling_mp_id) == TRUE || is.na(tabling_mp_id) == TRUE, "",
+          paste0(
+            "&tablingMember=http://data.parliament.uk/members/", tabling_mp_id)
+          )
 
-        answering_body_check <- suppressWarnings(as.numeric(as.character(answering_body)))
+        answering_body_check <- suppressWarnings(
+          as.numeric(as.character(answering_body))
+          )
         ## In case departmental IDs are passed as strings.
 
-        dept_query <- dplyr::case_when(is.null(answering_body) == TRUE ||
-                                         is.na(answering_body) == TRUE ~ "",
-                                       is.na(answering_body_check) == FALSE ~
-                                         paste0("&answeringDeptId=",
+        dept_query <- dplyr::case_when(
+          is.null(answering_body) == TRUE || is.na(answering_body) == TRUE ~ "",
+          is.na(answering_body_check) == FALSE ~ paste0("&answeringDeptId=",
                                                 answering_body),
-                                       TRUE ~ utils::URLencode((
-                                         paste0("&answeringDeptShortName=",
-                                          stringi::stri_trans_totitle(answering_body)
-                                          )
-                                         )))
+          TRUE ~ utils::URLencode(
+            paste0("&answeringDeptShortName=",
+                   stringi::stri_trans_totitle(answering_body)
+                   )
+            )
+          )
 
         dept_query <- stringi::stri_replace_all_fixed(dept_query,
                                                       list("And", "Of", "For"),
                                                       list("and", "of", "for"),
                                                       vectorize_all = FALSE)
 
-        baseurl <- "http://lda.data.parliament.uk/answeredquestions.json?"
+        baseurl <- paste0(url_util,  "answeredquestions.json?")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -179,7 +183,8 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     if (nrow(df) == 0 & verbose == TRUE) {
 
-        message("The request did not return any data. Please check your parameters.")
+      message("The request did not return any data.
+              Please check your parameters.")
 
     } else {
 

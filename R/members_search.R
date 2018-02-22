@@ -25,13 +25,15 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     if (is.null(search)) {
 
-        df <- members("all")
+        df <- members()
+
+        df
 
     } else {
 
         search <- utils::URLencode(search)
 
-        baseurl <- "http://lda.data.parliament.uk/members.json?_search=*"
+        baseurl <- paste0(url_util,  "members.json?_search=*")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -45,11 +47,10 @@ members_search <- function(search = NULL, tidy = TRUE,
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    }
-
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -65,9 +66,10 @@ members_search <- function(search = NULL, tidy = TRUE,
 
         }
 
-        df
+      df
 
     }
+  }
 
 }
 

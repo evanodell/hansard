@@ -32,7 +32,8 @@
 #' x <- lords_divisions(division_id = 705891, summary = FALSE)
 #'
 #' # Return all lords divisions in 2016
-#' x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01', end_date = '2016-12-31')
+#' x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01',
+#'                      end_date = '2016-12-31')
 #' }
 
 lords_divisions <- function(division_id = NULL, summary = FALSE,
@@ -45,13 +46,14 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
 
     if (is.null(division_id) == TRUE) {
 
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions.json?"
+        baseurl <- paste0(url_util,  "lordsdivisions.json?")
 
         if (verbose == TRUE) {
             message("Connecting to API")
         }
 
-        divis <- jsonlite::fromJSON(paste0(baseurl, dates, extra_args, "&_pageSize=1"))
+        divis <- jsonlite::fromJSON(paste0(baseurl, dates,
+                                           extra_args, "&_pageSize=1"))
 
         jpage <- floor(divis$result$totalResults/500)
 
@@ -61,7 +63,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
 
     } else {
 
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/id/"
+        baseurl <- paste0(url_util,  "lordsdivisions/id/")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -78,8 +80,10 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
             df$about <- divis$result$primaryTopic$`_about`
             df$title <- divis$result$primaryTopic$title
             df$description <- divis$result$primaryTopic$description
-            df$officialContentsCount <- divis$result$primaryTopic$officialContentsCount
-            df$officialNotContentsCount <- divis$result$primaryTopic$officialNotContentsCount
+            df$officialContentsCount <-
+              divis$result$primaryTopic$officialContentsCount
+            df$officialNotContentsCount <-
+              divis$result$primaryTopic$officialNotContentsCount
             df$divisionNumber <- divis$result$primaryTopic$divisionNumber
             df$divisionResult <- divis$result$primaryTopic$divisionResult
             df$date <- divis$result$primaryTopic$date
@@ -98,13 +102,15 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
         if (tidy == TRUE) {
 
-            df <- lords_division_tidy(df, division_id, summary, tidy_style)  ##in utils-lords.R
+            df <- lords_division_tidy(df, division_id,
+                                      summary, tidy_style)  ##in utils-lords.R
 
         }
 

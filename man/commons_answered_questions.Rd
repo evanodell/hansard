@@ -66,11 +66,14 @@ criteria are returned.
 }
 \examples{
 \dontrun{
-x <- commons_answered_questions(answering_department = c('health','education'),
-                                answered_by = c('4019', '1542', '111'),
-                                start_date = '2017-01-01')
+x <- commons_answered_questions(
+     answering_department = c('health','education'),
+     answered_by = c('4019', '1542', '111'),
+     start_date = '2017-01-01'
+     )
 
-x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
+x <- commons_answered_questions(start_date = '2017-03-26',
+                                end_date='2017-04-01')
 }
 }
 \seealso{

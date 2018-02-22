@@ -33,13 +33,15 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
                                paste0("electionId=", ID),
                                "")
 
-    baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
+    baseurl <- paste0(url_util,  "electionresults.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
     }
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=1"))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query,
+                                       extra_args, "&_pageSize=1"),
+                                flatten = TRUE)
 
     jpage <- floor(elect$result$totalResults/500)
 
@@ -53,7 +55,8 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
         constits <- suppressMessages(constituencies(current = FALSE))
 
-        df <- dplyr::left_join(df, constits, by = c(constituency._about = "about"))
+        df <- dplyr::left_join(df, constits,
+                               by = c(constituency._about = "about"))
     }
 
     names(df)[names(df) == "_about"] <- "about"
@@ -64,21 +67,25 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
     for (i in 1:nrow(df)) {
 
-        x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/",
-                                       df$about[[i]], ".json"),
+        x <- jsonlite::fromJSON(
+          paste0("http://lda.data.parliament.uk/electionresults/",
+                 df$about[[i]], ".json"),
                                 flatten = TRUE)
 
         df2 <- x$result$primaryTopic$candidate
 
         names(df2)[names(df2) == "_about"] <- "about"
-        df2$about <- gsub("http://data.parliament.uk/resources/", "", df2$about)
+        df2$about <- gsub("http://data.parliament.uk/resources/",
+                          "", df2$about)
         df2$about <- gsub("/.*", "", df2$about)
 
-        df2 <- stats::aggregate(fullName._value ~ party._value + about, data = df2, c)
+        df2 <- stats::aggregate(fullName._value ~ party._value + about,
+                                data = df2, c)
 
         df2$fullName._value <- as.list(df2$fullName._value)
 
-        dat[[i]] <- tidyr::spread_(df2, key_col = "party._value", value_col = "fullName._value")
+        dat[[i]] <- tidyr::spread_(df2, key_col = "party._value",
+                                   value_col = "fullName._value")
 
         if (verbose == TRUE) {
             message("Retrieving ", i, " of ", nrow(df), ": ",
@@ -99,7 +106,8 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

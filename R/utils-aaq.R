@@ -98,18 +98,21 @@ aaq_tidy <- function(df, tidy_style) {
 
             }
 
-            df$groupedQuestionUIN <- stringi::stri_replace_all_fixed(df$groupedQuestionUIN,
-                                                                     "`_value` = ", "",
-                                                                     vectorize_all = FALSE)
+            df$groupedQuestionUIN <- stringi::stri_replace_all_fixed(
+              df$groupedQuestionUIN,
+              "`_value` = ", "",
+              vectorize_all = FALSE)
 
             df$groupedQuestionUIN <- as.list(df$groupedQuestionUIN)
 
         }
 
-        df$answeringMember._about <- gsub("http://data.parliament.uk/members/", "",
+        df$answeringMember._about <- gsub("http://data.parliament.uk/members/",
+                                          "",
                                           df$answeringMember._about)
 
-        df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "",
+        df$tablingMember._about <- gsub("http://data.parliament.uk/members/",
+                                        "",
                                         df$tablingMember._about)
 
         df$AnsweringBody <- unlist(df$AnsweringBody)

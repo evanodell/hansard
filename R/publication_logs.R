@@ -50,7 +50,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                     "&min-publicationDate=",
                     as.Date(start_date))
 
-    baseurl <- "http://lda.data.parliament.uk/publicationlogs"
+    baseurl <- paste0(url_util,  "publicationlogs")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -77,7 +77,8 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

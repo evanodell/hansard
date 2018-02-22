@@ -36,11 +36,14 @@
 #' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
-#' x <- commons_answered_questions(answering_department = c('health','education'),
-#'                                 answered_by = c('4019', '1542', '111'),
-#'                                 start_date = '2017-01-01')
+#' x <- commons_answered_questions(
+#'      answering_department = c('health','education'),
+#'      answered_by = c('4019', '1542', '111'),
+#'      start_date = '2017-01-01'
+#'      )
 #'
-#' x <- commons_answered_questions(start_date = '2017-03-26', end_date='2017-04-01')
+#' x <- commons_answered_questions(start_date = '2017-03-26',
+#'                                 end_date='2017-04-01')
 #' }
 
 commons_answered_questions <- function(answering_department = NULL,
@@ -61,10 +64,12 @@ commons_answered_questions <- function(answering_department = NULL,
         dates <- paste0("&max-dateOfAnswer=",  as.Date(end_date),
                         "&min-dateOfAnswer=", as.Date(start_date))
 
-        answered_by <- dplyr::if_else(is.null(answered_by) == FALSE &&
-                                        is.na(answered_by) == FALSE,
-                                      paste0("&answeringMember=http://data.parliament.uk/members/", answered_by),
-                                      "")
+        answered_by <- dplyr::if_else(
+          is.null(answered_by) == FALSE && is.na(answered_by) == FALSE,
+          paste0(
+            "&answeringMember=http://data.parliament.uk/members/",
+            answered_by),
+          "")
 
         dept_query <- NULL
 
@@ -79,28 +84,31 @@ commons_answered_questions <- function(answering_department = NULL,
 
         }
 
-        baseurl <- "http://lda.data.parliament.uk/commonsansweredquestions"
+        baseurl <- paste0(url_util,  "commonsansweredquestions")
 
         if (verbose == TRUE) {
             message("Connecting to API")
         }
 
         answered <- jsonlite::fromJSON(paste0(baseurl, dept_query, ".json?",
-                                              answering_dept_query, answered_by,
-                                              dates, extra_args, "&_pageSize=1"),
+                                              answering_dept_query,
+                                              answered_by, dates,
+                                              extra_args, "&_pageSize=1"),
                                        flatten = TRUE)
 
         jpage <- floor(answered$result$totalResults/500)
 
-        query <- paste0(baseurl, dept_query, ".json?", answering_dept_query,
-                        answered_by, dates, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, dept_query, ".json?",
+                        answering_dept_query, answered_by,
+                        dates, extra_args, "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose)
 
     }
 
     if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
     }
 
     if (tidy == TRUE) {

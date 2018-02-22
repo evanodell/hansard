@@ -67,7 +67,8 @@ and/or directed to a given department.
 x <- lords_written_questions() # Returns all written questions ever
 
 x <- lords_written_questions(peer_id = c(3526,4176),
-                             answering_department = c('cabinet', 'Transport'))
+                             answering_department = c('cabinet',
+                                                      'Transport'))
 }
 }
 \seealso{

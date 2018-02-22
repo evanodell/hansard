@@ -10,6 +10,8 @@ Changed default value of `verbose` parameter to `TRUE`.
 
 Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
 
+Fixed error in `members_search()` that produced a 404 error if left empty.
+
 # hansard 0.5.9
 
 ## Bug fixes

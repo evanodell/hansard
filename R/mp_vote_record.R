@@ -8,7 +8,8 @@
 #' @param lobby Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}.
 #' \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'}
 #' returns votes where the MP voted \code{'no'}, \code{'all'} returns all
-#' available votes by the MP. This parameter is not case sensitive. Defaults to \code{'all'}.
+#' available votes by the MP. This parameter is not case sensitive.
+#' Defaults to \code{'all'}.
 #' @param session The parliamentary session to return votes from, in
 #' \code{'YYYY/YY'} format. Defaults to \code{NULL}.
 #' @param start_date Only includes divisions on or after this date. Accepts
@@ -60,7 +61,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     if (lobby == "aye") {
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/aye.json?mnisId="
+        baseurl <- paste0(url_util,  "commonsdivisions/aye.json?mnisId=")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -80,14 +81,15 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     } else if (lobby == "no") {
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/no.json?mnisId="
+        baseurl <- paste0(url_util,  "commonsdivisions/no.json?mnisId=")
 
         if (verbose == TRUE) {
             message("Connecting to API")
         }
 
         url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
-                                            session_query, extra_args, "&_pageSize=1"),
+                                            session_query, extra_args,
+                                            "&_pageSize=1"),
                                      flatten = TRUE)
 
         jpage <- floor(url_no$result$totalResults/500)
@@ -103,9 +105,11 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
             message("Retrieving aye votes:")
         }
 
-        df_aye <- mp_vote_record(mp_id = mp_id, lobby = "aye", session = session,
-            start_date = start_date, end_date = end_date, extra_args = extra_args,
-            tidy = FALSE, tidy_style = tidy_style, verbose = verbose)
+        df_aye <- mp_vote_record(mp_id = mp_id, lobby = "aye",
+                                 session = session, start_date = start_date,
+                                 end_date = end_date, extra_args = extra_args,
+                                 tidy = FALSE, tidy_style = tidy_style,
+                                 verbose = verbose)
 
         df_aye$vote <- "aye"
 
@@ -113,9 +117,11 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
             message("Retrieving no votes:")
         }
 
-        df_no <- mp_vote_record(mp_id = mp_id, lobby = "no", session = session, start_date = start_date,
-            end_date = end_date, extra_args = extra_args, tidy = FALSE, tidy_style = tidy_style,
-            verbose = verbose)
+        df_no <- mp_vote_record(mp_id = mp_id, lobby = "no",
+                                session = session, start_date = start_date,
+                                end_date = end_date, extra_args = extra_args,
+                                tidy = FALSE, tidy_style = tidy_style,
+                                verbose = verbose)
 
         df_no$divisionNumber <- NULL
 
@@ -133,7 +139,8 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

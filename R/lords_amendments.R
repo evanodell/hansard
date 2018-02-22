@@ -35,11 +35,12 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     dates <- paste0("&min-bill.date=", as.Date(start_date),
                     "&max-bill.date=", as.Date(end_date))
 
-    decision_query <- dplyr::if_else(is.null(decision) == FALSE,
-                                     paste0("&decision=", stringi::stri_trans_totitle(decision)),
-                                     "")
+    decision_query <- dplyr::if_else(
+      is.null(decision) == FALSE,
+      paste0("&decision=", stringi::stri_trans_totitle(decision)),
+      "")
 
-    baseurl <- "http://lda.data.parliament.uk/lordsbillamendments.json?"
+    baseurl <- paste0(url_util,  "lordsbillamendments.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -60,7 +61,8 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

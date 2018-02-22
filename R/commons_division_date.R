@@ -32,7 +32,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
         date <- paste0("&date=", as.character(date))
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
+        baseurl <- paste0(url_util,  "commonsdivisions")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -50,7 +50,8 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
         if (nrow(df) == 0) {
 
-            message("The request did not return any data. Please check your parameters.")
+            message("The request did not return any data.
+                    Please check your parameters.")
 
         } else {
 

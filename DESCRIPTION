@@ -26,7 +26,8 @@ Imports:
     tidyr, 
     stringi
 RoxygenNote: 6.0.1
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown,
     testthat,
     covr,

@@ -41,13 +41,17 @@
 #' x <- lords_written_questions() # Returns all written questions ever
 #'
 #' x <- lords_written_questions(peer_id = c(3526,4176),
-#'                              answering_department = c('cabinet', 'Transport'))
+#'                              answering_department = c('cabinet',
+#'                                                       'Transport'))
 #' }
 
-lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
-                                    start_date = "1900-01-01", end_date = Sys.Date(),
+lords_written_questions <- function(peer_id = NULL,
+                                    answering_department = NULL,
+                                    start_date = "1900-01-01",
+                                    end_date = Sys.Date(),
                                     extra_args = NULL, tidy = TRUE,
-                                    tidy_style = "snake_case", verbose = TRUE) {
+                                    tidy_style = "snake_case",
+                                    verbose = TRUE) {
 
     if (length(answering_department) > 1 || length(peer_id) > 1) {
 
@@ -62,17 +66,21 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
                         as.Date(start_date))
 
 
-        peer_id <- dplyr::if_else(is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
-                                  utils::URLencode(paste0("&tablingMember=http://data.parliament.uk/members/", peer_id)),
-                                  ""
-                                  )
+        peer_id <- dplyr::if_else(
+          is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
+          utils::URLencode(
+            paste0("&tablingMember=http://data.parliament.uk/members/",
+                   peer_id)),
+          "")
 
-        dept_query <- dplyr::if_else(is.null(answering_department) == FALSE &&
-                                       is.na(answering_department) == FALSE,
-                                     utils::URLencode(paste0("/answeringdepartment.json?q=", answering_department)),
-                                     ".json?")
+        dept_query <- dplyr::if_else(
+          is.null(answering_department) == FALSE &&
+            is.na(answering_department) == FALSE,
+          utils::URLencode(
+            paste0("/answeringdepartment.json?q=", answering_department)),
+          ".json?")
 
-        baseurl <- "http://lda.data.parliament.uk/lordswrittenquestions"
+        baseurl <- paste0(url_util,  "lordswrittenquestions")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -93,7 +101,8 @@ lords_written_questions <- function(peer_id = NULL, answering_department = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

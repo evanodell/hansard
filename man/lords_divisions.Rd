@@ -66,6 +66,7 @@ x <- lords_divisions(division_id = 705891, summary = TRUE)
 x <- lords_divisions(division_id = 705891, summary = FALSE)
 
 # Return all lords divisions in 2016
-x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01', end_date = '2016-12-31')
+x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01',
+                     end_date = '2016-12-31')
 }
 }

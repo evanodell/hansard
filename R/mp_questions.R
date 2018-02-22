@@ -103,7 +103,8 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
                 common <- intersect(colnames(df_writ), colnames(df_oral))
 
-                df <- rbind(subset(df_writ, select = common), subset(df_oral, select = common))
+                df <- rbind(subset(df_writ, select = common),
+                            subset(df_oral, select = common))
 
             }
 
@@ -116,7 +117,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
                             "&min-AnswerDate=",
                             as.Date(start_date))
 
-            baseurl <- "http://lda.data.parliament.uk/commonsoralquestions.json?mnisId="
+            baseurl <- paste0(url_util,  "commonsoralquestions.json?mnisId=")
 
             oral <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
                                               extra_args, "&_pageSize=1"))
@@ -130,7 +131,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
         } else if (question_type == "written") {
 
-            baseurl <- "http://lda.data.parliament.uk/commonswrittenquestions.json?mnisId="
+            baseurl <- paste0(url_util, "commonswrittenquestions.json?mnisId=")
 
             dates <- paste0("&_properties=dateTabled&max-dateTabled=",
                             as.Date(end_date),
@@ -153,7 +154,8 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

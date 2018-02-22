@@ -44,18 +44,20 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
 
-    dates <- paste0("&max-created=", as.Date(end_date), "&min-created=", as.Date(start_date))
+    dates <- paste0("&max-created=", as.Date(end_date),
+                    "&min-created=", as.Date(start_date))
 
     status_query <- dplyr::if_else(is.null(status) == TRUE,
                                    "",
                                    paste0("&status=", status))
 
-    signature_query <- dplyr::if_else(is.null(max_signatures) == TRUE,
-                                      paste0("&min-numberOfSignatures=", min_signatures),
-                                      paste0("&min-numberOfSignatures=", min_signatures,
-                                             "&max-numberOfSignatures=", max_signatures))
+    signature_query <- dplyr::if_else(
+      is.null(max_signatures) == TRUE,
+      paste0("&min-numberOfSignatures=", min_signatures),
+      paste0("&min-numberOfSignatures=", min_signatures,
+             "&max-numberOfSignatures=", max_signatures))
 
-    baseurl <- "http://lda.data.parliament.uk/epetitions.json?"
+    baseurl <- paste0(url_util,  "epetitions.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -75,7 +77,8 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

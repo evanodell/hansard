@@ -23,7 +23,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
                                  ".json?",
                                  paste0(".json?member=", peer_id))
 
-    baseurl <- "http://lda.data.parliament.uk/lordsregisteredinterests"
+    baseurl <- paste0(url_util,  "lordsregisteredinterests")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -41,7 +41,8 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

@@ -4,7 +4,8 @@
 \alias{lords_attendance}
 \alias{hansard_lords_attendance}
 \title{House of Lords attendance - Deprecated
-Deprecated function, please see \code{\link{lords_attendance_date}} and \code{\link{lords_attendance_session}}.}
+Deprecated function, please see \code{\link{lords_attendance_date}} and
+\code{\link{lords_attendance_session}}.}
 \usage{
 lords_attendance(session_id = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
@@ -15,11 +16,21 @@ hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
   tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
-\item{session_id}{The ID of the House of Lords session. If \code{NULL}, returns a list of all sessions, subject to other parameters. Defaults to \code{NULL}.}
+\item{session_id}{The ID of the House of Lords session. If \code{NULL},
+returns a list of all sessions, subject to other parameters.
+Defaults to \code{NULL}.}
 
-\item{start_date}{Only includes attendance on or after this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else that can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+\item{start_date}{Only includes attendance on or after this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
+that can be coerced to a date with \code{as.Date()}.
+Defaults to \code{'1900-01-01'}.}
 
-\item{end_date}{Only includes attendance on or before this date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else that can be coerced to a date with \code{as.Date()}. Defaults to the current system date.}
+\item{end_date}{Only includes attendance on or before this date. Accepts
+character values in \code{'YYYY-MM-DD'} format, and objects of class
+\code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
+else that can be coerced to a date with \code{as.Date()}.
+Defaults to the current system date.}
 
 \item{extra_args}{Additional parameters and queries to pass to API. These
 queries must be strings and start with "&". See the
@@ -41,7 +52,10 @@ of the API request. Defaults to \code{TRUE}.}
 A tibble with details on the lords who attended a given session.
 }
 \description{
-Imports data on House of Lords attendance. Please note that the attendance data is not as tidy as some of the others that are accessible through this API, and so additional work to prepare this data in a way that you want may be required.
+Imports data on House of Lords attendance. Please note that the attendance
+data is not as tidy as some of the others that are accessible through this
+API, and so additional work to prepare this data in a way that you want may
+be required.
 }
 \examples{
 \dontrun{

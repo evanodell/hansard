@@ -25,7 +25,7 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
                            tidy = TRUE, tidy_style = "snake_case",
                            verbose = TRUE) {
 
-    baseurl <- "http://lda.data.parliament.uk/lordsattendances.json?"
+    baseurl <- paste0(url_util,  "lordsattendances.json?")
 
     dates <- paste0("&min-date=", as.Date(start_date),
                     "&max-date=", as.Date(end_date))
@@ -34,7 +34,9 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
         message("Connecting to API")
     }
 
-    attend <- jsonlite::fromJSON(paste0(baseurl, dates, "&_pageSize=1"), flatten = TRUE)
+    attend <- jsonlite::fromJSON(paste0(baseurl, dates,
+                                        "&_pageSize=1"),
+                                 flatten = TRUE)
 
     jpage <- floor(attend$result$totalResults/500)
 
@@ -44,7 +46,8 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

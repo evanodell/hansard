@@ -46,7 +46,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
     dates <- paste0("&max-ddpModified=", as.Date(end_date),
                     "&min-ddpModified=", as.Date(start_date))
 
-    baseurl <- "http://lda.data.parliament.uk/paperslaid.json?"
+    baseurl <- paste0(url_util,  "paperslaid.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -65,7 +65,8 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -77,10 +78,12 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
             if (withdrawn == TRUE) {
 
-                df$dateWithdrawn._value <- gsub("T", " ", df$dateWithdrawn._value)
+                df$dateWithdrawn._value <- gsub("T", " ",
+                                                df$dateWithdrawn._value)
 
-                df$dateWithdrawn._value <- as.POSIXct(lubridate::parse_date_time(df$dateWithdrawn._value,
-                  "Y-m-d H:M:S"))
+                df$dateWithdrawn._value <- as.POSIXct(
+                  lubridate::parse_date_time(df$dateWithdrawn._value,
+                                             "Y-m-d H:M:S"))
 
                 df$dateWithdrawn._datatype <- "POSIXct"
 

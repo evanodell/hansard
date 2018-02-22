@@ -89,7 +89,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     } else {
 
-        baseurl <- "http://lda.data.parliament.uk/lordsdivisions/"
+        baseurl <- paste0(url_util,  "lordsdivisions/")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -124,7 +124,8 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

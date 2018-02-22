@@ -19,7 +19,7 @@
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
 
-    baseurl <- "http://lda.data.parliament.uk/constituencies.json?"
+    baseurl <- paste0(url_util,  "constituencies.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -43,7 +43,8 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

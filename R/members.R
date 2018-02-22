@@ -39,7 +39,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
                                ".json?",
                                paste0("/", ID, ".json?"))
 
-    baseurl <- "http://lda.data.parliament.uk/members"
+    baseurl <- paste0(url_util,  "members")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -58,25 +58,28 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
     } else {
 
-        df <- tibble::tibble(about = members$result$primaryTopic$`_about`,
-                             additionalName = members$result$primaryTopic$additionalName$`_value`,
-                             constituencyAbout = members$result$primaryTopic$constituency$`_about`,
-                             constituencyLabel = members$result$primaryTopic$constituency$label,
-                             familyName = members$result$primaryTopic$familyName$`_value`,
-                             fullName = members$result$primaryTopic$fullName$`_value`,
-                             gender = members$result$primaryTopic$gender$`_value`,
-                             givenName = members$result$primaryTopic$givenName$`_value`,
-                             homePage = members$result$primaryTopic$homePage,
-                             isPrimaryTopicOf = members$result$primaryTopic$isPrimaryTopicOf,
-                             label = members$result$primaryTopic$label$`_value`,
-                             party = members$result$primaryTopic$party$`_value`,
-                             twitter = members$result$primaryTopic$twitter$`_value`)
+        df <- tibble::tibble(
+          about = members$result$primaryTopic$`_about`,
+          additionalName = members$result$primaryTopic$additionalName$`_value`,
+          constituencyAbout =
+            members$result$primaryTopic$constituency$`_about`,
+          constituencyLabel = members$result$primaryTopic$constituency$label,
+          familyName = members$result$primaryTopic$familyName$`_value`,
+          fullName = members$result$primaryTopic$fullName$`_value`,
+          gender = members$result$primaryTopic$gender$`_value`,
+          givenName = members$result$primaryTopic$givenName$`_value`,
+          homePage = members$result$primaryTopic$homePage,
+          isPrimaryTopicOf = members$result$primaryTopic$isPrimaryTopicOf,
+          label = members$result$primaryTopic$label$`_value`,
+          party = members$result$primaryTopic$party$`_value`,
+          twitter = members$result$primaryTopic$twitter$`_value`)
 
     }
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -84,7 +87,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
             df <- hansard_tidy(df, tidy_style)
 
-            df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
+            df$about <- gsub("http://data.parliament.uk/members/", "",
+                             df$about)
 
         }
 
@@ -105,7 +109,7 @@ hansard_members <- members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
 
-    baseurl <- "http://lda.data.parliament.uk/commonsmembers.json?_pageSize=500"
+    baseurl <- paste0(url_util,  "commonsmembers.json?_pageSize=500")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -121,7 +125,8 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -147,7 +152,7 @@ hansard_commons_members <- commons_members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake_case", verbose = TRUE) {
 
-    baseurl <- "http://lda.data.parliament.uk/lordsmembers.json?_pageSize=500"
+    baseurl <- paste0(url_util,  "lordsmembers.json?_pageSize=500")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -163,7 +168,8 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

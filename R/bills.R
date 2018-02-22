@@ -53,7 +53,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
       TRUE ~ ".json?"
     )
 
-    baseurl <- "http://lda.data.parliament.uk/bills"
+    baseurl <- paste0(url_util,  "bills")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -73,7 +73,8 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

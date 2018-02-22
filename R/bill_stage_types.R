@@ -10,7 +10,8 @@
 #' x <- bill_stage_types()
 #' }
 
-bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
+bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case",
+                             verbose = TRUE) {
 
     stages <- jsonlite::fromJSON(
       "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500",
@@ -20,7 +21,8 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case", verbose = T
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

@@ -43,7 +43,7 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
                               extra_args = NULL, tidy = TRUE,
                               tidy_style = "snake_case", verbose = FALSE){
 
-  baseurl <- "http://lda.data.parliament.uk/billpublications.json?"
+  baseurl <- paste0(url_util,  "billpublications.json?")
 
   dates <- paste0("&max-date=",
                     as.Date(end_date),
@@ -76,7 +76,8 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

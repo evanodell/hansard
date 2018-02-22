@@ -43,19 +43,21 @@
 #' }
 
 election_results <- function(ID = NULL, all_data = FALSE,
-                             calculate_percent = FALSE, constit_details = FALSE,
+                             calculate_percent = FALSE,
+                             constit_details = FALSE,
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake_case", verbose = TRUE) {
 
     id_query <- dplyr::if_else(is.null(ID), "", paste0("electionId=", ID))
 
-    baseurl <- "http://lda.data.parliament.uk/electionresults.json?"
+    baseurl <- paste0(url_util,  "electionresults.json?")
 
     if (verbose == TRUE) {
         message("Connecting to API")
     }
 
-    elect <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args, "&_pageSize=1"))
+    elect <- jsonlite::fromJSON(paste0(baseurl, id_query,
+                                       extra_args, "&_pageSize=1"))
 
     jpage <- floor(elect$result$totalResults/500)
 
@@ -69,7 +71,8 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
         constits <- suppressMessages(constituencies(current = FALSE))
 
-        df <- dplyr::left_join(df, constits, by = c(constituency._about = "about"))
+        df <- dplyr::left_join(df, constits,
+                               by = c(constituency._about = "about"))
     }
 
     if (all_data == TRUE) {
@@ -82,8 +85,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
         for (i in 1:nrow(df)) {
 
-            x <- jsonlite::fromJSON(paste0("http://lda.data.parliament.uk/electionresults/",
-                                           df$about[[i]], ".json"),
+            x <- jsonlite::fromJSON(
+              paste0("http://lda.data.parliament.uk/electionresults/",
+                     df$about[[i]], ".json"),
                                     flatten = TRUE)
 
             dat[[i]] <- x$result$primaryTopic$candidate
@@ -105,7 +109,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
         df3 <- tidyr::spread_(df2, "party._value", "numberOfVotes")
 
-        df3$about <- gsub("http://data.parliament.uk/resources/", "", df3$about)
+        df3$about <- gsub("http://data.parliament.uk/resources/",
+                          "", df3$about)
+
         df3$about <- gsub("/.*", "", df3$about)
 
         df3 <- dplyr::grouped_df(df3, "about")
@@ -125,27 +131,34 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
         if (calculate_percent == TRUE) {
 
-            df$turnout_percentage <- round((df$turnout/df$electorate) * 100, digits = 2)
+            df$turnout_percentage <- round(
+                (df$turnout/df$electorate) * 100, digits = 2
+              )
 
-            df$majority_percentage <- round((df$majority/df$turnout) * 100, digits = 2)
+            df$majority_percentage <- round(
+                (df$majority/df$turnout) * 100, digits = 2
+              )
 
         }
 
         if (tidy == TRUE) {
 
-            df$election._about <- stringi::stri_replace_all_fixed(df$election._about,
-                                                                  "http://data.parliament.uk/resources/", "",
-                                                                  vectorize_all = FALSE)
+            df$election._about <- stringi::stri_replace_all_fixed(
+              df$election._about, "http://data.parliament.uk/resources/", "",
+              vectorize_all = FALSE
+              )
 
-            df$constituency._about <- stringi::stri_replace_all_fixed(df$constituency._about,
-                                                                      "http://data.parliament.uk/resources/", "",
-                                                                      vectorize_all = FALSE)
+            df$constituency._about <- stringi::stri_replace_all_fixed(
+              df$constituency._about,
+              "http://data.parliament.uk/resources/", "",
+              vectorize_all = FALSE)
 
             if (all_data == TRUE) {
 

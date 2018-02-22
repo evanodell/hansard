@@ -43,13 +43,14 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
                                  paste0("/", session_id, ".json?"),
                                  ".json?")
 
-    baseurl <- "http://lda.data.parliament.uk/lordsattendances"
+    baseurl <- paste0(url_util,  "lordsattendances")
 
     if (verbose == TRUE) {
         message("Connecting to API")
     }
 
-    attend <- jsonlite::fromJSON(paste0(baseurl, json_query, extra_args), flatten = TRUE)
+    attend <- jsonlite::fromJSON(paste0(baseurl, json_query,
+                                        extra_args), flatten = TRUE)
 
     if (is.null(session_id) == FALSE) {
 
@@ -63,14 +64,16 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
 
         jpage <- floor(attend$result$totalResults/500)
 
-        query <- paste0(baseurl, json_query, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, json_query, extra_args,
+                        "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
     }
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

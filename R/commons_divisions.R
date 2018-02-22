@@ -43,7 +43,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
     if (is.null(division_id) == TRUE) {
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions"
+        baseurl <- paste0(url_util,  "commonsdivisions")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -63,7 +63,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
     } else {
 
-        baseurl <- "http://lda.data.parliament.uk/commonsdivisions/id/"
+        baseurl <- paste0(url_util,  "commonsdivisions/id/")
 
         if (verbose == TRUE) {
             message("Connecting to API")
@@ -75,19 +75,25 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
         if (summary == TRUE) {
 
-            df <- tibble::tibble(abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
-                ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
-                noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
-                didNotVoteCount = divis$result$primaryTopic$Didnotvotecount$`_value`,
-                errorVoteCount = divis$result$primaryTopic$Errorvotecount$`_value`,
-                nonEligibleCount = divis$result$primaryTopic$Noneligiblecount$`_value`,
-                suspendedOrExpelledVotesCount = divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
-                margin = divis$result$primaryTopic$Margin$`_value`,
-                date = divis$result$primaryTopic$date$`_value`,
-                divisionNumber = divis$result$primaryTopic$divisionNumber,
-                session = divis$result$primaryTopic$session[[1]],
-                title = divis$result$primaryTopic$title,
-                uin = divis$result$primaryTopic$uin)
+          df <- tibble::tibble(
+            abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
+            ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
+            noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
+            didNotVoteCount =
+              divis$result$primaryTopic$Didnotvotecount$`_value`,
+            errorVoteCount =
+              divis$result$primaryTopic$Errorvotecount$`_value`,
+            nonEligibleCount =
+              divis$result$primaryTopic$Noneligiblecount$`_value`,
+            suspendedOrExpelledVotesCount =
+              divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
+            margin = divis$result$primaryTopic$Margin$`_value`,
+            date = divis$result$primaryTopic$date$`_value`,
+            divisionNumber = divis$result$primaryTopic$divisionNumber,
+            session = divis$result$primaryTopic$session[[1]],
+            title = divis$result$primaryTopic$title,
+            uin = divis$result$primaryTopic$uin
+            )
 
         } else {
 
@@ -99,13 +105,15 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
         if (tidy == TRUE) {
 
-            df <- cd_tidy(df, tidy_style, division_id, summary)  ## in utils-commons.R
+            df <- cd_tidy(df, tidy_style, division_id, summary)
+            ## in utils-commons.R
 
         }
 

@@ -32,15 +32,18 @@ lwq_multi <- function(answering_department, peer_id,
 
     dat <- vector("list", nrow(search_grid))
 
-    for (i in 1:nrow(search_grid)) {
+    seq_list <- seq(from = 1, to = nrow(search_grid), by = 1)
 
-        dat[[i]] <- hansard::lords_written_questions(answering_department = search_grid$department[[i]],
-                                                     peer_id = search_grid$member[[i]],
-                                                     end_date = end_date,
-                                                     start_date = start_date,
-                                                     extra_args = extra_args,
-                                                     verbose = verbose,
-                                                     tidy = FALSE)
+    for (i in seq_along(seq_list)) {
+
+        dat[[i]] <- hansard::lords_written_questions(
+          answering_department = search_grid$department[[i]],
+          peer_id = search_grid$member[[i]],
+          end_date = end_date,
+          start_date = start_date,
+          extra_args = extra_args,
+          verbose = verbose,
+          tidy = FALSE)
 
     }
 
@@ -74,9 +77,10 @@ lwq_tidy <- function(df, tidy_style) {
 
         df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
 
-        df$tablingMember._about <- stringi::stri_replace_all_fixed(df$tablingMember._about,
-                                                                   "http://data.parliament.uk/members/", "",
-                                                                   vectorize_all = FALSE)
+        df$tablingMember._about <- stringi::stri_replace_all_fixed(
+          df$tablingMember._about,
+          "http://data.parliament.uk/members/", "", vectorize_all = FALSE
+          )
 
     }
 
@@ -129,27 +133,35 @@ ldsum_tidy <- function(df, tidy_style) {
 
         df$date._datatype <- "POSIXct"
 
-        df$vote.type <- stringi::stri_replace_all_fixed(df$vote.type,
-                                                        "http://data.parliament.uk/schema/parl#", "",
-                                                        vectorize_all = FALSE)
+        df$vote.type <- stringi::stri_replace_all_fixed(
+          df$vote.type, "http://data.parliament.uk/schema/parl#", "",
+          vectorize_all = FALSE
+          )
 
-        df$vote.type <- stringi::stri_replace_all_regex(df$vote.type, "([[:lower:]])([[:upper:]])", "$1_$2", vectorize_all = FALSE)
+        df$vote.type <- stringi::stri_replace_all_regex(
+          df$vote.type, "([[:lower:]])([[:upper:]])", "$1_$2",
+          vectorize_all = FALSE
+          )
 
         df$vote.member <- unlist(df$vote.member)
 
-        df$vote.member <- stringi::stri_replace_all_fixed(df$vote.member,
-                                                          "http://data.parliament.uk/resources/members/api/lords/id/", "",
-                                                          vectorize_all = FALSE)
+        df$vote.member <- stringi::stri_replace_all_fixed(
+          df$vote.member,
+          "http://data.parliament.uk/resources/members/api/lords/id/", "",
+          vectorize_all = FALSE)
 
         if (tidy_style == "camelCase") {
 
-            df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$vote.type, perl = TRUE)
+            df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2",
+                                 df$vote.type, perl = TRUE)
 
             substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
 
         } else if (tidy_style == "period.case") {
 
-            df$vote.type <- stringi::stri_replace_all_fixed(df$vote.type, "_", ".")
+            df$vote.type <- stringi::stri_replace_all_fixed(
+              df$vote.type, "_", "."
+              )
 
             df$vote.type <- tolower(df$vote.type)
 
@@ -237,7 +249,9 @@ lords_interests_tidy <- function(df, tidy_style) {
 
         if ("amendedDate" %in% colnames(df)) {
 
-            for (i in 1:nrow(df)) {
+          seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+          for (i in seq_along(seq_list)) {
 
                 if (is.null(df$amendedDate[[i]]) == FALSE) {
 
@@ -267,7 +281,8 @@ lords_interests_tidy <- function(df, tidy_style) {
 
         names(df)[names(df) == "_about"] <- "registeredInterestNumber"
 
-        df$registeredInterestNumber <- gsub(".*registeredinterest/", "", df$registeredInterestNumber)
+        df$registeredInterestNumber <- gsub(".*registeredinterest/", "",
+                                            df$registeredInterestNumber)
 
     }
 
@@ -277,20 +292,26 @@ lords_interests_tidy <- function(df, tidy_style) {
 
 }
 
-# lords_interests_tidy2 ---------------------------------------------------- For
-# all peers data
+# lords_interests_tidy2 ----------------------------------------------------
+# For all peers data
 
 lords_interests_tidy2 <- function(df, tidy_style) {
 
     if (nrow(df) > 0) {
 
-        for (i in 1:nrow(df)) {
+      seq_list <- seq(from = 1, to = nrow(df), by = 1)
 
-            df[i, ]$hasRegisteredInterest[[1]] <- as.data.frame(df[i, ]$hasRegisteredInterest)
+        for (i in seq_along(seq_list)) {
+
+            df[i, ]$hasRegisteredInterest[[1]] <- as.data.frame(
+              df[i, ]$hasRegisteredInterest
+              )
 
         }
 
-        for (i in 1:nrow(df)) {
+    seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+      for (i in seq_along(seq_list)) {
 
             if ("amendedDate" %in% colnames(df[i, ]$hasRegisteredInterest[[1]]))
                 {
@@ -299,47 +320,61 @@ lords_interests_tidy2 <- function(df, tidy_style) {
                   for (x in 1:nrow(df[i, ]$hasRegisteredInterest[[1]])) {
                     # because apply wasn't working with all the NULL values
 
-                    if (is.null(df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]) ==
+                    if (is.null(
+                      df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]) ==
                       FALSE) {
                       ## If there is an amended date value, extract it
 
-                      df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]] <- df[i,
-                        ]$hasRegisteredInterest[[1]]$amendedDate[[x]][["_value"]]
+              df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]] <-
+                df[i,]$hasRegisteredInterest[[1]]$amendedDate[[x]][["_value"]]
 
                     }
 
                   }
 
-                  df[i, ]$hasRegisteredInterest[[1]]$amendedDate[df[i, ]$hasRegisteredInterest[[1]]$amendedDate =="NULL"] <- NA  #Change the NULL values to NA to be more R like
+                  df[i, ]$
+                    hasRegisteredInterest[[1]]$
+                    amendedDate[df[i, ]$
+                                  hasRegisteredInterest[[1]]$
+                                  amendedDate =="NULL"] <- NA
+                  #Change the NULL values to NA to be more R like
 
-                  df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- do.call("c",
-                    df[i, ]$hasRegisteredInterest[[1]]$amendedDate)  ## Extract dates from list into 'normal' vector column
+                  df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- do.call(
+                    "c", df[i, ]$hasRegisteredInterest[[1]]$amendedDate)
+                  ## Extract dates from list into 'normal' vector column
 
-                  df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- as.POSIXct(df[i,
-                    ]$hasRegisteredInterest[[1]]$amendedDate)
+                  df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- as.POSIXct(
+                    df[i,]$hasRegisteredInterest[[1]]$amendedDate
+                    )
 
                 }  #
 
-            df[i, ]$hasRegisteredInterest[[1]]$date._value <- as.POSIXct(df[i, ]$hasRegisteredInterest[[1]]$date._value)
+            df[i, ]$hasRegisteredInterest[[1]]$date._value <- as.POSIXct(
+              df[i, ]$hasRegisteredInterest[[1]]$date._value
+              )
 
             df[i, ]$hasRegisteredInterest[[1]]$date._datatype <- "POSIXct"
 
-            df[i, ]$hasRegisteredInterest[[1]]$registeredLate._value <- as.logical(df[i,
-                ]$hasRegisteredInterest[[1]]$registeredLate._value)
+        df[i, ]$hasRegisteredInterest[[1]]$registeredLate._value <- as.logical(
+          df[i,]$hasRegisteredInterest[[1]]$registeredLate._value)
 
-            df[i, ]$hasRegisteredInterest[[1]]$registeredLate._datatype <- "Logical"
+        df[i, ]$hasRegisteredInterest[[1]]$registeredLate._datatype <- "Logical"
 
-            names(df[i, ]$hasRegisteredInterest[[1]])[names(df[i, ]$hasRegisteredInterest[[1]]) ==
-                "X_about"] <- "registeredInterestNumber"
+            names(df[i, ]$hasRegisteredInterest[[1]])[
+              names(df[i, ]$hasRegisteredInterest[[1]]) == "X_about"] <-
+              "registeredInterestNumber"
 
-            names(df[i, ]$hasRegisteredInterest[[1]])[names(df[i, ]$hasRegisteredInterest[[1]]) ==
-                "_about"] <- "registeredInterestNumber"
+            names(df[i, ]$hasRegisteredInterest[[1]])[names(
+              df[i, ]$hasRegisteredInterest[[1]]) == "_about"] <-
+              "registeredInterestNumber"
 
-            df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber <- gsub(".*registeredinterest/",
-                "", df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber)
+            df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber <-
+              gsub(".*registeredinterest/", "",
+                   df[i, ]$hasRegisteredInterest[[1]]$registeredInterestNumber
+                   )
 
-            df[i, ]$hasRegisteredInterest[[1]] <- hansard_tidy(df[i, ]$hasRegisteredInterest[[1]],
-                tidy_style)
+            df[i, ]$hasRegisteredInterest[[1]] <- hansard_tidy(
+              df[i, ]$hasRegisteredInterest[[1]], tidy_style)
 
         }
 

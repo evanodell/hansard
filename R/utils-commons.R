@@ -34,13 +34,14 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
 
     for (i in 1:nrow(search_grid)) {
 
-        dat[[i]] <- hansard::commons_oral_questions(mp_id = search_grid$member[[i]],
-                                                    answering_department = search_grid$department[[i]],
-                                                    end_date = end_date,
-                                                    start_date = start_date,
-                                                    extra_args = extra_args,
-                                                    verbose = verbose,
-                                                    tidy = FALSE)
+        dat[[i]] <- hansard::commons_oral_questions(
+          mp_id = search_grid$member[[i]],
+          answering_department = search_grid$department[[i]],
+          end_date = end_date,
+          start_date = start_date,
+          extra_args = extra_args,
+          verbose = verbose,
+          tidy = FALSE)
 
     }
 
@@ -91,13 +92,14 @@ commons_written_questions_multi <- function(mp_id, answering_department,
 
     for (i in 1:nrow(search_grid)) {
 
-        dat[[i]] <- hansard::commons_written_questions(mp_id = search_grid$member[[i]],
-                                                       answering_department = search_grid$department[[i]],
-                                                       end_date = end_date,
-                                                       start_date = start_date,
-                                                       extra_args = extra_args,
-                                                       verbose = verbose,
-                                                       tidy = FALSE)
+        dat[[i]] <- hansard::commons_written_questions(
+          mp_id = search_grid$member[[i]],
+          answering_department = search_grid$department[[i]],
+          end_date = end_date,
+          start_date = start_date,
+          extra_args = extra_args,
+          verbose = verbose,
+          tidy = FALSE)
 
     }
 
@@ -147,13 +149,14 @@ caq_multi <- function(answering_department, answered_by,
 
     for (i in 1:nrow(search_grid)) {
 
-        dat[[i]] <- hansard::commons_answered_questions(answering_department = search_grid$department[[i]],
-                                                        answered_by = search_grid$member[[i]],
-                                                        end_date = end_date,
-                                                        start_date = start_date,
-                                                        extra_args = extra_args,
-                                                        verbose = verbose,
-                                                        tidy = FALSE)
+        dat[[i]] <- hansard::commons_answered_questions(
+          answering_department = search_grid$department[[i]],
+          answered_by = search_grid$member[[i]],
+          end_date = end_date,
+          start_date = start_date,
+          extra_args = extra_args,
+          verbose = verbose,
+          tidy = FALSE)
 
     }
 
@@ -179,9 +182,10 @@ caq_tidy <- function(df, tidy_style) {
 
         df$dateOfAnswer._datatype <- "POSIXct"
 
-        df$answeringMember._about <- stringi::stri_replace_all_fixed(df$answeringMember._about,
-                                                                     "http://data.parliament.uk/members/", "",
-                                                                     vectorize_all = FALSE)
+        df$answeringMember._about <- stringi::stri_replace_all_fixed(
+          df$answeringMember._about,
+          "http://data.parliament.uk/members/", "",
+          vectorize_all = FALSE)
 
         df$AnsweringBody <- unlist(df$AnsweringBody)
 
@@ -237,7 +241,8 @@ cd_tidy <- function(df, tidy_style, division_id, summary) {
 
             } else {
 
-                df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
+                df$`_about` <- gsub("http://data.parliament.uk/resources/", "",
+                                    df$`_about`)
 
                 df$voteId <- gsub("/.*$", "", df$`_about`)
 
@@ -247,13 +252,16 @@ cd_tidy <- function(df, tidy_style, division_id, summary) {
 
                 df <- tidyr::unnest(df)
 
-                df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
+                df$type <- gsub("http://data.parliament.uk/schema/parl#", "",
+                                df$type)
 
-                df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)
+                df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2",
+                                df$type)
 
                 if (tidy_style == "camelCase") {
 
-                  df$type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2", df$type,
+                  df$type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2",
+                                  df$type,
                     perl = TRUE)
 
                   substr(df$type, 1, 1) <- tolower(substr(df$type, 1, 1))
@@ -308,8 +316,9 @@ cwq_tidy <- function(df, tidy_style) {
 
         df$AnsweringBody <- unlist(df$AnsweringBody)
 
-        df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "",
-            df$tablingMember._about)
+        df$tablingMember._about <- gsub(
+          "http://data.parliament.uk/members/", "", df$tablingMember._about
+          )
 
     }
 
@@ -336,23 +345,30 @@ coqt_tidy <- function(df, tidy_style) {
 
         df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
 
-        df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value, "Y-m-d H:M:S")
+        df$AnswerDateTime._value <- lubridate::parse_date_time(
+          df$AnswerDateTime._value, "Y-m-d H:M:S"
+          )
 
         df$AnswerDateTime._datatype <- "POSIXct"
 
         df$date._value <- gsub("T", " ", df$date._value)
 
-        df$date._value <- lubridate::parse_date_time(df$date._value, "Y-m-d H:M:S")
+        df$date._value <- lubridate::parse_date_time(
+          df$date._value, "Y-m-d H:M:S"
+          )
 
         df$date._datatype <- "POSIXct"
 
         df$modified._value <- gsub("T", " ", df$modified._value)
 
-        df$modified._value <- lubridate::parse_date_time(df$modified._value, "Y-m-d H:M:S")
+        df$modified._value <- lubridate::parse_date_time(
+          df$modified._value, "Y-m-d H:M:S"
+          )
 
         df$modified._datatype <- "POSIXct"
 
-        df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
+        df$`_about` <- gsub("http://data.parliament.uk/resources/", "",
+                            df$`_about`)
 
     }
 
@@ -371,8 +387,9 @@ coq_tidy <- function(df, tidy_style) {
 
         df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
 
-        df$AnswerDateTime._value <- lubridate::parse_date_time(df$AnswerDateTime._value,
-            "Y-m-d H:M:S")
+        df$AnswerDateTime._value <- lubridate::parse_date_time(
+          df$AnswerDateTime._value, "Y-m-d H:M:S"
+          )
 
         df$AnswerDateTime._datatype <- "POSIXct"
 
@@ -384,8 +401,9 @@ coq_tidy <- function(df, tidy_style) {
 
         df$AnsweringBody <- unlist(df$AnsweringBody)
 
-        df$tablingMember._about <- gsub("http://data.parliament.uk/members/", "",
-            df$tablingMember._about)
+        df$tablingMember._about <- gsub(
+          "http://data.parliament.uk/members/", "", df$tablingMember._about
+          )
 
     }
 

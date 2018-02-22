@@ -8,7 +8,9 @@ mp_question_multi <- function(mp_id, question_type, start_date,
 
     dat <- vector("list", length(mp_id_list))
 
-    for (i in 1:length(mp_id_list)) {
+    seq_list <- seq(from = 1, to = length(mp_id_list), by = 1)
+
+    for (i in seq_along(seq_list)) {
 
         dat[[i]] <- hansard::mp_questions(mp_id = mp_id_list[[i]],
                                           question_type = question_type,
@@ -49,9 +51,10 @@ mp_question_tidy <- function(df, tidy_style) {
 
         df$AnsweringBody <- unlist(df$AnsweringBody)
 
-        df$tablingMember._about <- stringi::stri_replace_all_fixed(df$tablingMember._about,
-                                                                   "http://data.parliament.uk/members/", "",
-                                                                   vectorize_all = FALSE)
+        df$tablingMember._about <- stringi::stri_replace_all_fixed(
+          df$tablingMember._about,
+          "http://data.parliament.uk/members/", "",
+          vectorize_all = FALSE)
 
     }
 

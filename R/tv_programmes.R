@@ -27,12 +27,14 @@
 #' }
 #' @export
 #' @examples \dontrun{
-#' x <- tv_programmes('commons', start_date ='2016-11-01', end_date='2016-12-01')
+#' x <- tv_programmes('commons', start_date ='2016-11-01',
+#'                    end_date='2016-12-01')
 #' }
 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
-                          end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-                          tidy_style = "snake_case", verbose = TRUE) {
+                          end_date = Sys.Date(), extra_args = NULL,
+                          tidy = TRUE, tidy_style = "snake_case",
+                          verbose = TRUE) {
 
     dates <- paste0("&max-endDate=", as.Date(end_date),
                     "T23:59:59Z&min-startDate=", as.Date(start_date),
@@ -46,7 +48,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
       TRUE ~ ""
     )
 
-    baseurl <- "http://lda.data.parliament.uk/tvprogrammes.json?"
+    baseurl <- paste0(url_util,  "tvprogrammes.json?")
 
     tv <- jsonlite::fromJSON(paste0(baseurl, leg_query, dates,
                                     extra_args, "&_pageSize=1"),
@@ -58,13 +60,15 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
     jpage <- floor(tv$result$totalResults/500)
 
-    query <- paste0(baseurl, leg_query, dates, extra_args, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, leg_query, dates, extra_args,
+                    "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -84,8 +88,11 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 hansard_tv_programmes <- tv_programmes
 
 
-#' @param mp_id Accepts the ID of an MP or peer, and returns all clips featuring that MP or peer. If \code{NULL}, returns data on all available clips. Defaults to \code{NULL}.
-#' @return A tibble with details on TV broadcasts featuring the given MP, or all available clips.
+#' @param mp_id Accepts the ID of an MP or peer, and returns all clips
+#' featuring that MP or peer. If \code{NULL}, returns data on all available
+#' clips. Defaults to \code{NULL}.
+#' @return A tibble with details on TV broadcasts featuring the given MP,
+#' or all available clips.
 #'
 #' @export
 #' @rdname tv_programmes
@@ -100,11 +107,12 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     dates <- paste0("&max-startDate=", as.Date(end_date), "T00:00:00Z",
                     "&min-startDate=", as.Date(start_date), "T00:00:00Z")
 
-    member_query <- dplyr::if_else(is.null(mp_id) == FALSE,
-                                   paste0("&member=http://data.parliament.uk/members/", mp_id),
-                                   "")
+    member_query <- dplyr::if_else(
+      is.null(mp_id) == FALSE,
+      paste0("&member=http://data.parliament.uk/members/", mp_id),
+      "")
 
-    baseurl <- "http://lda.data.parliament.uk/tvclips.json?"
+    baseurl <- paste0(url_util,  "tvclips.json?")
 
     tv <- jsonlite::fromJSON(paste0(baseurl, member_query,
                                     dates, extra_args),
@@ -119,7 +127,8 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -148,9 +157,11 @@ hansard_tv_clips <- tv_clips
 #'
 #' @export
 
-tv_channels <- function(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
+tv_channels <- function(tidy = TRUE, tidy_style = "snake_case",
+                        verbose = TRUE) {
 
-    channels <- jsonlite::fromJSON("http://lda.data.parliament.uk/tvchannels.json?_pageSize=500",
+    channels <- jsonlite::fromJSON(paste0(
+      url_util, "tvchannels.json?_pageSize=500"),
         flatten = TRUE)
 
     df <- tibble::as_tibble(channels$result$items)

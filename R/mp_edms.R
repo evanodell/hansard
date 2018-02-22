@@ -74,11 +74,12 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
         } else {
 
-            z_query <- paste0("member=http://data.parliament.uk/members/", mp_id,
+            z_query <- paste0("member=http://data.parliament.uk/members/",
+                              mp_id,
                             "&isPrimarySponsor=", tolower(primary_sponsor),
                             "&isSponsor=", tolower(sponsor))
 
-            baseurl <- "http://lda.data.parliament.uk/edmsignatures.json?"
+            baseurl <- paste0(url_util,  "edmsignatures.json?")
 
             edms <- jsonlite::fromJSON(paste0(baseurl, z_query, dates,
                                               extra_args, "&_pageSize=1"),

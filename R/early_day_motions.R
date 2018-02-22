@@ -63,7 +63,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
     sig_min <- paste0("&min-numberOfSignatures=", signatures)
 
-    baseurl <- "http://lda.data.parliament.uk/edms"
+    baseurl <- paste0(url_util,  "edms")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -84,7 +84,8 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

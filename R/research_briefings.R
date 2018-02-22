@@ -56,7 +56,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                        paste0("&subType.prefLabel=", type)),
                                      "")
 
-        baseurl <- "http://lda.data.parliament.uk/researchbriefings.json?"
+        baseurl <- paste0(url_util,  "researchbriefings.json?")
 
         research <- jsonlite::fromJSON(paste0(baseurl, type_query,
                                               extra_args, "&_pageSize=1"),
@@ -74,27 +74,30 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
         if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
 
             g <- rep(seq_along(hansard::research_subtopics_list()),
-                     sapply(hansard::research_subtopics_list(), length))
+                     lapply(hansard::research_subtopics_list(), length))
 
-            dex <- g[match(subtopic, unlist(hansard::research_subtopics_list()))]
+            dex <- g[match(subtopic,
+                           unlist(hansard::research_subtopics_list()))]
 
             topic <- names(hansard::research_subtopics_list())[dex]
 
         }
 
-       subtopic_query <- dplyr::if_else(is.null(subtopic) == FALSE,
-                                        utils::URLencode(paste0("/", subtopic)),
-                                        "")
+       subtopic_query <- dplyr::if_else(
+         is.null(subtopic) == FALSE,
+         utils::URLencode(paste0("/", subtopic)),
+         "")
 
        topic_query <- dplyr::if_else(is.null(topic) == FALSE,
                                     utils::URLencode(topic),
                                     "")
 
-       null_type_query <- dplyr::if_else(is.null(type) == FALSE,
-                                         utils::URLencode(paste0("&subType.prefLabel=", type)),
-                                         "")
+       null_type_query <- dplyr::if_else(
+         is.null(type) == FALSE, utils::URLencode(
+           paste0("&subType.prefLabel=", type)),
+         "")
 
-       baseurl <- "http://lda.data.parliament.uk/researchbriefings/bridgeterm/"
+       baseurl <- paste0(url_util,  "researchbriefings/bridgeterm/")
 
        research <- jsonlite::fromJSON(paste0(baseurl, topic_query,
                                               subtopic_query, ".json?",
@@ -113,7 +116,8 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     }
 
     if (nrow(df) == 0) {
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
     } else {
 
         if (tidy == TRUE) {

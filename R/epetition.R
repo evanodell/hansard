@@ -20,8 +20,9 @@
 #' x <- epetition(ID = 706964, by_constituency=TRUE)
 #'}
 
-epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
-                      tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
+epetition <- function(ID = NULL, by_constituency = FALSE,
+                      extra_args = NULL, tidy = TRUE,
+                      tidy_style = "snake_case", verbose = TRUE) {
 
     if (is.null(ID) == FALSE) {
         ID <- paste0("/", ID)
@@ -32,7 +33,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
                                "/signaturesbyconstituency.json?",
                                ".json?")
 
-    baseurl <- "http://lda.data.parliament.uk/epetitions"
+    baseurl <- paste0(url_util,  "epetitions")
 
     if (verbose == TRUE) {
         message("Connecting to API")
@@ -44,19 +45,21 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
                                               json_query, extra_args),
                                        flatten = TRUE)
 
-        df <- tibble::tibble(about = petition$result$primaryTopic$`_about`,
-                             abstract = petition$result$primaryTopic$abstract$`_value`,
-                             created = petition$result$primaryTopic$created$`_value`,
-                             identifier = petition$result$primaryTopic$identifier$`_value`,
-                             isPrimaryTopicOf = petition$result$primaryTopic$isPrimaryTopicOf,
-                             label = petition$result$primaryTopic$label$`_value`,
-                             modified = petition$result$primaryTopic$modified$`_value`,
-                             numberOfSignatures = petition$result$primaryTopic$numberOfSignatures,
-                             replyActionAbout = petition$result$primaryTopic$replyAction$`_about`,
-                             replyAction = petition$result$primaryTopic$replyAction$abstract$`_value`,
-                             status = petition$result$primaryTopic$status,
-                             subType = petition$result$primaryTopic$subType$`_about`,
-                             website = petition$result$primaryTopic$website)
+        df <- tibble::tibble(
+          about = petition$result$primaryTopic$`_about`,
+          abstract = petition$result$primaryTopic$abstract$`_value`,
+          created = petition$result$primaryTopic$created$`_value`,
+          identifier = petition$result$primaryTopic$identifier$`_value`,
+          isPrimaryTopicOf = petition$result$primaryTopic$isPrimaryTopicOf,
+          label = petition$result$primaryTopic$label$`_value`,
+          modified = petition$result$primaryTopic$modified$`_value`,
+          numberOfSignatures = petition$result$primaryTopic$numberOfSignatures,
+          replyActionAbout = petition$result$primaryTopic$replyAction$`_about`,
+          replyAction =
+            petition$result$primaryTopic$replyAction$abstract$`_value`,
+          status = petition$result$primaryTopic$status,
+          subType = petition$result$primaryTopic$subType$`_about`,
+          website = petition$result$primaryTopic$website)
 
     } else {
 
@@ -66,7 +69,8 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
         jpage <- floor(petition$result$totalResults/500)
 
-        query <- paste0(baseurl, ID, json_query, extra_args, "&_pageSize=500&_page=")
+        query <- paste0(baseurl, ID, json_query, extra_args,
+                        "&_pageSize=500&_page=")
 
         df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -76,7 +80,8 @@ epetition <- function(ID = NULL, by_constituency = FALSE, extra_args = NULL,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 

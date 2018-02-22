@@ -28,13 +28,14 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
     date_query <- as.Date(date)
 
-    baseurl <- "http://lda.data.parliament.uk/lordsattendances/date/"
+    baseurl <- paste0(url_util,  "lordsattendances/date/")
 
     if (verbose == TRUE) {
         message("Connecting to API")
     }
 
-    attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"), flatten = TRUE)
+    attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"),
+                                 flatten = TRUE)
 
     df <- tibble::as_tibble(as.data.frame(attend$result$items$attendee))
 
@@ -42,7 +43,8 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
     if (nrow(df) == 0) {
 
-        message("The request did not return any data. Please check your parameters.")
+        message("The request did not return any data.
+                Please check your parameters.")
 
     } else {
 
@@ -52,9 +54,10 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
             names(df)[names(df) == "_about"] <- "peer_id"
 
-            df$peer_id <- stringi::stri_replace_all_fixed(df$peer_id,
-                                                          "http://data.parliament.uk/members/", "",
-                                                           vectorize_all = FALSE)
+            df$peer_id <- stringi::stri_replace_all_fixed(
+              df$peer_id,
+              "http://data.parliament.uk/members/", "",
+              vectorize_all = FALSE)
 
             df <- hansard_tidy(df, tidy_style)
 
