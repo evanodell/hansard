@@ -37,4 +37,9 @@ test_that("members functions return expected format", {
     expect_type(lint, "list")
     expect_true(tibble::is_tibble(lint))
 
+
+    a <- members()
+    b <- members_search()
+    expect_equal(a,b)
+
 })
