@@ -16,7 +16,7 @@
 #' @seealso \code{\link{epetition_tibble}}
 #'
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- epetition(ID = 706964, by_constituency=TRUE)
 #'}
 

@@ -60,7 +60,7 @@ Imports data on House of Commons divisions (votes), either full details
 on how each member voted, or a summary of vote totals.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- commons_divisions()
 
 x <- commons_divisions(division_id = 694163, summary = FALSE)

@@ -35,7 +35,7 @@
 #' @seealso \code{\link{lords_written_questions}}
 #' @seealso \code{\link{mp_questions}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- commons_answered_questions(
 #'      answering_department = c('health','education'),
 #'      answered_by = c('4019', '1542', '111'),

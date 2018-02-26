@@ -45,7 +45,7 @@ Imports data on a given epetition. For bulk epetion data,
 see \code{\link{epetition_tibble}}.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- epetition(ID = 706964, by_constituency=TRUE)
 }
 }

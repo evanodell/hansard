@@ -42,7 +42,7 @@ If \code{peer_id=NULL} the actual details of registered interests
 are stored in a nested data frame.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- lords_interests(4170)
 
 y <- lords_interests()

@@ -51,7 +51,7 @@ function can return results with newlines in the text of the abstract or
 description of the research briefing, represented as \code{'\\n'}.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- research_briefings('Housing and planning')
 
 # Requests can be made using lists created using `research_topics_list`

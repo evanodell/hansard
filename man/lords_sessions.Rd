@@ -41,7 +41,7 @@ House of Lords sittings. Note that this API does not appear to have been
 updated with data after 2017-01-31.
 }
 \examples{
-\donttest{
+\dontrun{
 
 a <- lords_sessions(start_date = "2017-01-01", end_date = "2017-01-31")
 

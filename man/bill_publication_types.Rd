@@ -3,13 +3,15 @@
 \docType{data}
 \name{bill_publication_types}
 \alias{bill_publication_types}
-\title{A character vector of possible types of bill publications. For use with \code{\link{bill_publications}}}
+\title{A character vector of possible types of bill publications.
+For use with \code{\link{bill_publications}}}
 \format{A character vector containing 38 elements}
 \usage{
 bill_publication_types
 }
 \description{
-A character vector of possible types of bill publications. For use with \code{\link{bill_publications}}
+A character vector of possible types of bill publications.
+For use with \code{\link{bill_publications}}
 }
 \seealso{
 \code{\link{bill_publications}}

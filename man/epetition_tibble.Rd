@@ -64,7 +64,7 @@ number of signatures, date created and epetition ID. For greater detail on
 indidivual epetitions, see \code{\link{epetition}}.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- epetition_tibble()
 
 y <- epetition_tibble(max_signatures=500)

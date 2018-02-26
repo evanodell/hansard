@@ -61,7 +61,7 @@ Accepts an ID number for a member of the House of Commons, and returns a
 tibble of their votes.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- mp_vote_record(172, lobby='all')
 
 x <- mp_vote_record(172, lobby='aye')

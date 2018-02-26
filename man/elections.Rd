@@ -75,7 +75,7 @@ If both \code{ID} and \code{type} are used to query the API, \code{ID}
 takes precedence and \code{type} is ignored.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- elections(517994)
 }
 }

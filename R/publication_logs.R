@@ -23,7 +23,7 @@
 #' @return A tibble with details from publications in the House of
 #' Commons and House of Lords
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- publication_logs(house='commons')
 #'
 #' x <- publication_logs(683267)

@@ -55,7 +55,7 @@ Returns a tibble with all available House of Lords amendments, subject
 to parameters.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- lords_amendments()
 
 x <- lords_amendments(decision='Withdrawn')

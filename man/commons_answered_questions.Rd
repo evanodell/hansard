@@ -65,7 +65,7 @@ a vector with multiple deparments/IDs, all possible combination of those
 criteria are returned.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- commons_answered_questions(
      answering_department = c('health','education'),
      answered_by = c('4019', '1542', '111'),

@@ -19,7 +19,7 @@
 #' @return A tibble with details on the lords who attended on a given date.
 #' @export
 #' @seealso \code{\link{lords_attendance_session}}
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- lords_attendance_date(date = '2016-03-01')
 #' }
 

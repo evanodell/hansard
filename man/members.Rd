@@ -68,7 +68,7 @@ the Lords and the Commons. For more details on a given member see
 }
 
 \examples{
-\donttest{
+\dontrun{
 a <- members()
 
 x <- members(172)

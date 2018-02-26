@@ -19,7 +19,7 @@
 #' @seealso \code{\link{lords_written_questions}}
 #' @seealso \code{\link{mp_questions}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- commons_oral_question_times(session='2016/17', question_id='685697')
 #' }
 

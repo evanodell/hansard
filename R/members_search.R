@@ -14,7 +14,7 @@
 #' @return A tibble with the results of the search.
 #' @seealso \code{\link{members}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- members_search('chris')
 #'
 #' x <- members_search(search='chris')

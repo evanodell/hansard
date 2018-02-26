@@ -9,7 +9,7 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details of Westminster constituencies.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- constituencies()
 #'
 #' y <- constituencies(current = FALSE)

@@ -44,7 +44,7 @@ Also note that this API does not appear to have been
 updated with data after 2017-01-31.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- lords_attendance_date(date = '2016-03-01')
 }
 }

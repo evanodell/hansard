@@ -37,7 +37,7 @@ Returns a tibble with the divisions (votes) in the
 House of Commons on a given date.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- commons_division_date('2017-04-19')
 }
 }

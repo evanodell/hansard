@@ -34,7 +34,7 @@
 #'
 #' @seealso \code{\link{early_day_motions}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
 #'              sponsor = TRUE, signatory=TRUE)
 #'

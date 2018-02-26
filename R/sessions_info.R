@@ -26,7 +26,7 @@
 #' @return A tibble with details on parliamentary sessions.
 #'
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- sessions_info(days=TRUE)
 #'
 #' y <- sessions_info(days=FALSE)

@@ -43,7 +43,7 @@ each constituency. Note that for general elections this can return a very
 large tibble with hundreds of variables.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- election_candidates(ID=382037)
 
 y <- election_candidates()

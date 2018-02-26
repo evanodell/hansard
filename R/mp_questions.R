@@ -31,7 +31,7 @@
 #' @seealso \code{\link{lords_written_questions}}
 #'
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- mp_questions(c(172,3967) 'all')
 #'
 #' y <- mp_questions(172, 'all')

@@ -22,7 +22,7 @@
 #' \item{`lords_members`}{Peers in the House of Lords}
 #' }
 #' @seealso `\link{members_search}`
-#' @examples \donttest{
+#' @examples \dontrun{
 #' a <- members()
 #'
 #' x <- members(172)

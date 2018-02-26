@@ -25,7 +25,7 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the voting record of the given MP.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- mp_vote_record(172, lobby='all')
 #'
 #' x <- mp_vote_record(172, lobby='aye')

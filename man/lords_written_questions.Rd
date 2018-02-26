@@ -63,7 +63,7 @@ Imports data on House of Lords written questions asked by a given peer(s),
 and/or directed to a given department.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- lords_written_questions() # Returns all written questions ever
 
 x <- lords_written_questions(peer_id = c(3526,4176),

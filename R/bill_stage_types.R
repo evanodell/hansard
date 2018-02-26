@@ -6,7 +6,7 @@
 #' @seealso \code{\link{bills}}
 #' @seealso \code{\link{bill_publications}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- bill_stage_types()
 #' }
 

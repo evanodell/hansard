@@ -70,7 +70,7 @@
 #' @seealso \code{\link{lords_written_questions}}
 #' @seealso \code{\link{mp_questions}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- all_answered_questions(4019, start_date ='2017-01-01')
 #'
 #' y <- all_answered_questions(4019, start_date ='2017-01-01',

@@ -28,7 +28,7 @@
 #' @seealso \code{\link{lords_attendance_date}}
 #' @seealso \code{\link{lords_sessions}}
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- lords_attendance_session(session_id = 706178)
 #'
 #' #Returns a list of data frames with details of

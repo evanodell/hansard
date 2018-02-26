@@ -25,7 +25,7 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of divisions in the House of Commons.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- commons_divisions()
 #'
 #' x <- commons_divisions(division_id = 694163, summary = FALSE)

@@ -41,7 +41,7 @@
 #' @seealso \code{\link{election_results}}
 #' @seealso \code{\link{election_candidates}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- elections(517994)
 #' }
 

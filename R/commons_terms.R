@@ -11,7 +11,7 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with results from the parliamentary thesaurus.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- commons_terms(search='estate')
 #'
 #' x <- commons_terms(search='estate', class='ORG')

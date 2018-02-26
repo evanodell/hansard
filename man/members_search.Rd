@@ -38,7 +38,7 @@ names, constituencies, twitter handle and webpage. The default search is
 same result as \code{members()}.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- members_search('chris')
 
 x <- members_search(search='chris')

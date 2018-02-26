@@ -21,7 +21,7 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on papers laid before the given House.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- papers_laid(withdrawn = FALSE, house = 'commons')
 #'
 #' x <- papers_laid(withdrawn = TRUE, house = NULL)

@@ -31,7 +31,7 @@
 #' @seealso \code{\link{bills}}
 #' @seealso \code{\link{bill_publication_types}}
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #'
 #' x <- bill_publications(ID=752025)
 #'

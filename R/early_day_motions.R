@@ -35,7 +35,7 @@
 #'
 #' @seealso \code{\link{mp_edms}}
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- early_day_motions(edm_id = 1073)
 #'
 #' x <- early_day_motions(edm_id = 1073, session='2015/16')

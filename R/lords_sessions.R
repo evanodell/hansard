@@ -21,7 +21,7 @@
 #'
 #' @inheritParams all_answered_questions
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #'
 #' a <- lords_sessions(start_date = "2017-01-01", end_date = "2017-01-31")
 #'

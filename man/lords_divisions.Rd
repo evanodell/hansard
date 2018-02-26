@@ -60,7 +60,7 @@ be queried to return a short summary of the votes, or details on how each
 peer voted.
 }
 \examples{
-\donttest{
+\dontrun{
 x <- lords_divisions(division_id = 705891, summary = TRUE)
 
 x <- lords_divisions(division_id = 705891, summary = FALSE)

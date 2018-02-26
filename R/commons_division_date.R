@@ -16,7 +16,7 @@
 #' the API request. Defaults to \code{FALSE}.
 #' @return A tibble with the dates of divisions in the House of Commons.
 #' @export
-#' @examples \donttest{
+#' @examples \dontrun{
 #' x <- commons_division_date('2017-04-19')
 #' }
 
