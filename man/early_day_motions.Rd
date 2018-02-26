@@ -71,7 +71,7 @@ multiple early day motions with the same ID code from different
 parliamentary sessions.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- early_day_motions(edm_id = 1073)
 
 x <- early_day_motions(edm_id = 1073, session='2015/16')

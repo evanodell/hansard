@@ -1,6 +1,7 @@
 
 
-#' A character vector of possible types of bill publications. For use with \code{\link{bill_publications}}
+#' A character vector of possible types of bill publications.
+#' For use with \code{\link{bill_publications}}
 #'
 #' @seealso \code{\link{bill_publications}}
 #' @seealso \code{\link{bills}}

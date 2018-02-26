@@ -29,7 +29,7 @@
 #' @seealso \code{\link{epetition}}
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- epetition_tibble()
 #'
 #' y <- epetition_tibble(max_signatures=500)

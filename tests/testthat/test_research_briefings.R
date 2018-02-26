@@ -18,11 +18,14 @@ test_that("research_briefings return expected format", {
     expect_is(rtyl, "list")
     expect_length(rtyl, 6)
 
-    rbdf <- hansard_research_briefings(subtopic = "Falkland Islands", verbose=TRUE)
+    rbdf <- hansard_research_briefings(subtopic = "Falkland Islands",
+                                       verbose=TRUE)
     expect_length(rbdf, 14)
     expect_true(tibble::is_tibble(rbdf))
 
-    rbtsb <- hansard_research_briefings(topic = "Defence", subtopic = "Falkland Islands", verbose=TRUE)
+    rbtsb <- hansard_research_briefings(topic = "Defence",
+                                        subtopic = "Falkland Islands",
+                                        verbose=TRUE)
     expect_length(rbtsb, 14)
     expect_true(tibble::is_tibble(rbtsb))
     expect_true(rbdf[[1]][[1]]==rbtsb[[1]][[1]])

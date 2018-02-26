@@ -17,7 +17,7 @@
 #' @param path The url path to the data you wish to retrieve.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- hansard_generic('elections.json?')
 #'
 #' y <- hansard_generic('elections.json?electionType=General Election')

@@ -57,7 +57,7 @@ the answering department and the date. The \code{mp_id} and
 names, or a list of IDs or department names, respectively.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 
 x <- commons_oral_questions(mp_id=c(4019,4051,4588),

@@ -40,7 +40,7 @@ Imports data on House of Commons constituencies, returning a tibble of all
 current and/or former Westminster constituencies, subject to parameters.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- constituencies()
 
 y <- constituencies(current = FALSE)

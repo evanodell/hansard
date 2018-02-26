@@ -23,7 +23,7 @@ e.g. \code{'&_pageSize=500'} to specifiy the maximum amount of
 This function does not tidy any variable names.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- hansard_generic('elections.json?')
 
 y <- hansard_generic('elections.json?electionType=General Election')

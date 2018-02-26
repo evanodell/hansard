@@ -73,7 +73,7 @@ Imports data on early day motions signed, sponsored or primarily sponsored
 by a given MP or Peer.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
              sponsor = TRUE, signatory=TRUE)
 

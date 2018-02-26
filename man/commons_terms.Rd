@@ -42,7 +42,7 @@ Imports the parliamentary thesaurus. The API is rate limited to 5500
 requests at a time, so some use of parameters is required.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- commons_terms(search='estate')
 
 x <- commons_terms(search='estate', class='ORG')

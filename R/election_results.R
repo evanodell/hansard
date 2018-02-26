@@ -32,7 +32,7 @@
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_candidates}}
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- election_results(ID=382037)
 #'
 #' y <- election_results()

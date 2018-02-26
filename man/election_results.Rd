@@ -64,7 +64,7 @@ Imports results from general and by-elections from the
 2010 General Election onwards.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- election_results(ID=382037)
 
 y <- election_results()

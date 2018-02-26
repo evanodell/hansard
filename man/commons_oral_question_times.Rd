@@ -46,7 +46,7 @@ for the parliamentary session or the question ID. If \code{tidy=TRUE},
 datetime variables are converted to \code{POSIXct} class.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- commons_oral_question_times(session='2016/17', question_id='685697')
 }
 }

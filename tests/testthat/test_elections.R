@@ -17,7 +17,9 @@ test_that("election functions return expected format", {
     expect_true(tibble::is_tibble(electid))
     expect_equal(nrow(electid), 1)
 
-    elreidperc <- hansard_election_results(ID = 517994, calculate_percent = TRUE, verbose=TRUE)
+    elreidperc <- hansard_election_results(ID = 517994,
+                                           calculate_percent = TRUE,
+                                           verbose=TRUE)
     expect_length(elreidperc, 11)
     expect_type(elreidperc, "list")
     expect_true(tibble::is_tibble(elreidperc))
@@ -27,7 +29,10 @@ test_that("election functions return expected format", {
     expect_type(electall, "list")
     expect_true(tibble::is_tibble(electall))
 
-    electcons <- hansard_election_results(ID=730039, calculate_percent = TRUE, constit_details = TRUE, verbose=TRUE)
+    electcons <- hansard_election_results(ID=730039,
+                                          calculate_percent = TRUE,
+                                          constit_details = TRUE,
+                                          verbose=TRUE)
     expect_length(electcons, 19)
     expect_type(electcons, "list")
     expect_true(tibble::is_tibble(electcons))

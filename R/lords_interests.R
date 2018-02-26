@@ -11,7 +11,7 @@
 #' @return A tibble with details on the interests of peers in
 #' the House of Lords.
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lords_interests(4170)
 #'
 #' y <- lords_interests()

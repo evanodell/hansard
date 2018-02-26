@@ -22,7 +22,7 @@
 #' \item{`lords_members`}{Peers in the House of Lords}
 #' }
 #' @seealso `\link{members_search}`
-#' @examples \dontrun{
+#' @examples \donttest{
 #' a <- members()
 #'
 #' x <- members(172)
@@ -58,21 +58,16 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
     } else {
 
-        df <- tibble::tibble(
-          about = members$result$primaryTopic$`_about`,
-          additionalName = members$result$primaryTopic$additionalName$`_value`,
-          constituencyAbout =
-            members$result$primaryTopic$constituency$`_about`,
-          constituencyLabel = members$result$primaryTopic$constituency$label,
-          familyName = members$result$primaryTopic$familyName$`_value`,
-          fullName = members$result$primaryTopic$fullName$`_value`,
-          gender = members$result$primaryTopic$gender$`_value`,
-          givenName = members$result$primaryTopic$givenName$`_value`,
-          homePage = members$result$primaryTopic$homePage,
-          isPrimaryTopicOf = members$result$primaryTopic$isPrimaryTopicOf,
-          label = members$result$primaryTopic$label$`_value`,
-          party = members$result$primaryTopic$party$`_value`,
-          twitter = members$result$primaryTopic$twitter$`_value`)
+        df <- tibble::as.tibble(as.data.frame(members$result$primaryTopic))
+
+        names(df)[names(df)=="X_about"] <- "about"
+        names(df)[names(df)=="X_value"] <- "additionalName"
+        names(df)[names(df)=="X_value.1"] <- "familyName"
+        names(df)[names(df)=="X_value.2"] <- "fullName"
+        names(df)[names(df)=="X_value.3"] <- "gender"
+        names(df)[names(df)=="X_value.4"] <- "givenName"
+        names(df)[names(df)=="X_value.5"] <- "label"
+        names(df)[names(df)=="X_value.6"] <- "party"
 
     }
 

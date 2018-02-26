@@ -51,9 +51,12 @@ with the output from \code{\link{lords_sessions}}.
 Please note that House of Lords attendance data is not as tidy as some of
 the others that are accessible through this API, and so additional work
 on the return from the API may be required.
+
+Also note that this API does not appear to have been
+updated with data after 2017-01-31.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- lords_attendance_session(session_id = 706178)
 
 #Returns a list of data frames with details of

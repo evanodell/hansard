@@ -26,7 +26,7 @@
 #' @return A tibble with the results of divisions in the House of Lords.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lords_divisions(division_id = 705891, summary = TRUE)
 #'
 #' x <- lords_divisions(division_id = 705891, summary = FALSE)

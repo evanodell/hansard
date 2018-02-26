@@ -29,7 +29,7 @@
 #' @seealso \code{\link{lords_written_questions}}
 #' @seealso \code{\link{mp_questions}}
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 #'
 #' x <- commons_oral_questions(mp_id=c(4019,4051,4588),

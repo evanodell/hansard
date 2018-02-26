@@ -60,7 +60,7 @@ A tibble with details on written questions in the House of Commons.
 Imports data in a tibble on House of Commons written questions.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- commons_written_questions(mp_id=410, 'cabinet office')
 # Returns a tibble with written questions from Jon Trickett,
 # answered by the Cabinet Office.

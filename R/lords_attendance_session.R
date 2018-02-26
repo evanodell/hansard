@@ -16,6 +16,9 @@
 #' the others that are accessible through this API, and so additional work
 #' on the return from the API may be required.
 #'
+#' Also note that this API does not appear to have been
+#' updated with data after 2017-01-31.
+#'
 #' @param session_id The ID of the House of Lords session. If \code{NULL},
 #' returns a list of all sessions, subject to other parameters.
 #' Defaults to \code{NULL}.
@@ -25,7 +28,7 @@
 #' @seealso \code{\link{lords_attendance_date}}
 #' @seealso \code{\link{lords_sessions}}
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lords_attendance_session(session_id = 706178)
 #'
 #' #Returns a list of data frames with details of

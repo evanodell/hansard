@@ -9,7 +9,8 @@ test_that("bills return expected format", {
     expect_length(xb, 10)
     expect_true(tibble::is_tibble(xb))
 
-    xba <- hansard_bills(amendments = TRUE, start_date = "2016-12-21", verbose=TRUE)
+    xba <- hansard_bills(amendments = TRUE, start_date = "2016-12-21",
+                         verbose=TRUE)
     expect_length(xba, 14)
     expect_true(tibble::is_tibble(xba))
 
@@ -21,5 +22,14 @@ test_that("bills return expected format", {
     expect_length(bst, 7)
     expect_true(tibble::is_tibble(bst))
 
+    bill_pubs <- bill_publications(ID=752025)
+    expect_length(bill_pubs, 10)
+    expect_true(tibble::is_tibble(bill_pubs))
+
+    bill_pubs_date <- bill_publications(start_date = "2018-01-01",
+                                        end_date = "2018-01-12")
+    expect_length(bill_pubs_date, 11)
+    expect_true(tibble::is_tibble(bill_pubs_date))
+    expect_true(nrow(bill_pubs_date)==8)
 
 })

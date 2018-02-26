@@ -58,7 +58,7 @@ Accepts an ID number for a member of the House of Commons, and returns a
 tibble of of all their oral and written questions.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- mp_questions(c(172,3967) 'all')
 
 y <- mp_questions(172, 'all')

@@ -60,7 +60,7 @@ function downloads all available data and then subsets the tibble
 between the two given dates.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- sessions_info(days=TRUE)
 
 y <- sessions_info(days=FALSE)

@@ -19,7 +19,7 @@
 #' @seealso \code{\link{research_types_list}}
 #' @seealso \code{\link{research_topics_list}}
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- research_briefings('Housing and planning')
 #'
 #' # Requests can be made using lists created using `research_topics_list`

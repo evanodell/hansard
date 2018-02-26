@@ -6,11 +6,18 @@
 
 Changed default value of `verbose` parameter to `TRUE`.
 
+Adapted `members()` to fit follow changes in API structure.
+
 ## Bug fixes
 
 Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
 
 Fixed error in `members_search()` that produced a 404 error if left empty.
+
+## Testing
+
+Expanded test coverage
+
 
 # hansard 0.5.9
 

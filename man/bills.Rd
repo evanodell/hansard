@@ -56,7 +56,7 @@ and the House of Commons.
 Imports data on House of Commons and House of Lords bills.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- bills()
 
 x <- bills(amendments=TRUE)

@@ -29,7 +29,7 @@ A tibble of bill stage types.
 Returns a tibble with all possible bill stage types.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- bill_stage_types()
 }
 }

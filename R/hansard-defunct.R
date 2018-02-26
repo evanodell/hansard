@@ -45,7 +45,7 @@ lords_vote_record <- function(lord.id,
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lords_attendance(session_id = 706178)
 #' }
 #' @export

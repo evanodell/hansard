@@ -56,7 +56,7 @@ A tibble with details on papers laid before the given House.
 Imports data on papers laid before the House.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- papers_laid(withdrawn = FALSE, house = 'commons')
 
 x <- papers_laid(withdrawn = TRUE, house = NULL)

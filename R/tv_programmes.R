@@ -26,7 +26,7 @@
 #' \item{tv_channels}{Details on the different parliamentary TV channels}
 #' }
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- tv_programmes('commons', start_date ='2016-11-01',
 #'                    end_date='2016-12-01')
 #' }
@@ -96,7 +96,7 @@ hansard_tv_programmes <- tv_programmes
 #'
 #' @export
 #' @rdname tv_programmes
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- tv_clips(4591)
 #' }
 

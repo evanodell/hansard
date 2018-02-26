@@ -24,7 +24,7 @@
 #' @seealso \code{\link{bill_stage_types}}
 #' @seealso \code{\link{bill_publications}}
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- bills()
 #'
 #' x <- bills(amendments=TRUE)

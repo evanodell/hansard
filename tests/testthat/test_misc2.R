@@ -1,17 +1,12 @@
 library(hansard)
 context("papers, publications, sessions, tv part 2")
 
-test_that("papers laid, publications, sessions, tv part 2, functions return expected format", {
+test_that("papers laid, publications, sessions, tv part 2, expected format", {
 
     skip_on_cran()
 
-    # tvclipsempty <- hansard_tv_clips(start_date = "2016-01-11", end_date = "2016-01-12")
-    # expect_length(tvclipsempty, 6)
-    # expect_type(tvclipsempty, "list")
-    # expect_true(tibble::is_tibble(tvclipsempty))
-    # expect_equal(nrow(tvclipsempty), 378)
-    #
-    tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11", end_date = "2017-01-12", verbose = TRUE)
+    tvclipsmp <- hansard_tv_clips(4591, start_date = "2016-01-11",
+                                  end_date = "2017-01-12", verbose = TRUE)
     expect_length(tvclipsmp, 7)
     expect_type(tvclipsmp, "list")
     expect_true(tibble::is_tibble(tvclipsmp))
@@ -21,21 +16,10 @@ test_that("papers laid, publications, sessions, tv part 2, functions return expe
     expect_type(chan, "list")
     expect_true(tibble::is_tibble(chan))
 
-    # chanmess <- hansard_tv_channels(tidy = FALSE)
-    # expect_length(chanmess, 3)
-    # expect_type(chanmess, "list")
-    # expect_true(tibble::is_tibble(chanmess))
-    # expect_true(names(chanmess[2])=="broadcastChannelId")
-
     gen <- hansard_generic("elections.json?")
     expect_length(gen, 5)
     expect_type(gen, "list")
     expect_true(tibble::is_tibble(gen))
-
-    #sessdays <- hansard_sessions_info(days = TRUE, start_date = "2017-01-01", end_date = "2017-01-10", verbose=TRUE)
-    #expect_length(sessdays, 7)
-    #expect_type(sessdays, "list")
-    #expect_true(tibble::is_tibble(sessdays))
 
     sess <- hansard_sessions_info(days = FALSE, verbose=TRUE)
     expect_length(sess, 9)

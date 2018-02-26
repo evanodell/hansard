@@ -16,7 +16,7 @@
 #' @seealso \code{\link{elections}}
 #' @seealso \code{\link{election_results}}
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- election_candidates(ID=382037)
 #'
 #' y <- election_candidates()

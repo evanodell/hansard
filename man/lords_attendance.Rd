@@ -58,7 +58,7 @@ API, and so additional work to prepare this data in a way that you want may
 be required.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- lords_attendance(session_id = 706178)
 }
 }

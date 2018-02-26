@@ -27,7 +27,7 @@
 #' member of the House of Lords.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lord_vote_record(530, lobby='all')
 #'
 #' x <- lord_vote_record(530, lobby='content')

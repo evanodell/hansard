@@ -21,7 +21,7 @@
 #' @return A tibble with details on amendments proposed by the House of Lords.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples \donttest{
 #' x <- lords_amendments()
 #'
 #' x <- lords_amendments(decision='Withdrawn')

@@ -58,7 +58,7 @@ Commons and House of Lords
 Imports data on House of Commons and House of Lords publications.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- publication_logs(house='commons')
 
 x <- publication_logs(683267)

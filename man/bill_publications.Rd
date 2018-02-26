@@ -60,7 +60,7 @@ Returns details of all publications associated with a specific bill
 or all bills.
 }
 \examples{
-\dontrun{
+\donttest{
 
 x <- bill_publications(ID=752025)
 

@@ -92,7 +92,7 @@ lists of multiple relevant search parameters. This can be in the form of a
 list, a data.frame column, a character vector, etc.
 }
 \examples{
-\dontrun{
+\donttest{
 x <- all_answered_questions(4019, start_date ='2017-01-01')
 
 y <- all_answered_questions(4019, start_date ='2017-01-01',
