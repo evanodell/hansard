@@ -1,6 +1,6 @@
 
 
-# hansard 0.5.9.9000
+# hansard 0.6.0
 
 ## Code changes
 
