@@ -1,5 +1,12 @@
 
 
+# hansard 0.6.1
+
+## Code changs
+
+`members_search()` now allows custom lucene queries, with or without wildcards.
+
+
 # hansard 0.6.0
 
 ## Code changes

@@ -56,13 +56,13 @@ A tibble with details on all answered questions in the
 House of Commons.
 }
 \description{
-Imports data on House of Commons answered questions. If all parameters
-are left empty, imports all available answered questions in a tibble.
-}
-\details{
-If \code{answering_department} and/or \code{answered_by} are given
-a vector with multiple deparments/IDs, all possible combination of those
-criteria are returned.
+Imports data on House of Commons answered questions. If all
+parameters are left empty, imports all available answered questions in a
+tibble.
+
+If \code{answering_department} and/or \code{answered_by} are
+given a vector with multiple deparments/IDs, all possible combination of
+those criteria are returned.
 }
 \examples{
 \dontrun{
@@ -72,7 +72,7 @@ x <- commons_answered_questions(
      start_date = '2017-01-01'
      )
 
-x <- commons_answered_questions(start_date = '2017-03-26',
+y <- commons_answered_questions(start_date = '2017-03-26',
                                 end_date='2017-04-01')
 }
 }

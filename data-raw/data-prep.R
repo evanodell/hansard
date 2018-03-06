@@ -3,7 +3,7 @@
 
 
 
-x <- bill_publications(start_date="2015-01-01", verbose = T)
+x <- bill_publications(start_date="2015-01-01")
 
 bill_publication_types <- unique(x$publication_type_value)
 

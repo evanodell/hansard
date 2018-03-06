@@ -7,17 +7,20 @@
 #' names, constituencies, twitter handle and webpage. The default search is
 #' \code{NULL}, which returns a tibble of all members of both houses, the
 #' same result as \code{members()}.
-#' @param search Accepts any string. Defaults to \code{NULL}. If \code{NULL},
-#' returns a tibble with all members of both houses of parliament. Searchs are
-#' not case sensitive.
+#'
+#' @param search Accepts any lucene query string, using * as a multiple
+#' character wildcard, and ? as the single character wildcard. Searchs are
+#' not case sensitive. If \code{NULL}, returns a tibble with all members of
+#' both houses of parliament. Defaults to \code{NULL}.
+#'
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of the search.
 #' @seealso \code{\link{members}}
 #' @export
 #' @examples \dontrun{
-#' x <- members_search('chris')
+#' x <- members_search('*chris*')
 #'
-#' x <- members_search(search='chris')
+#' x <- members_search(search='*chris*')
 #' }
 
 members_search <- function(search = NULL, tidy = TRUE,
@@ -25,7 +28,7 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     if (is.null(search)) {
 
-        df <- members()
+        df <- members(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
         df
 
@@ -33,13 +36,13 @@ members_search <- function(search = NULL, tidy = TRUE,
 
         search <- utils::URLencode(search)
 
-        baseurl <- paste0(url_util,  "members.json?_search=*")
+        baseurl <- paste0(url_util,  "members.json?_search=")
 
         if (verbose == TRUE) {
             message("Connecting to API")
         }
 
-        results <- jsonlite::fromJSON(paste0(baseurl, search, "*"))
+        results <- jsonlite::fromJSON(paste0(baseurl, search))
 
         jpage <- floor(results$result$totalResults/500)
 

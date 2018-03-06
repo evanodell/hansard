@@ -32,7 +32,8 @@
 #' @name hansard
 #' @importFrom httr modify_url
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr bind_rows case_when if_else left_join bind_rows grouped_df summarise_all distinct
+#' @importFrom dplyr bind_rows case_when if_else left_join bind_rows grouped_df
+#' summarise_all distinct
 #' @importFrom tibble as_tibble as.tibble
 #' @importFrom tidyr spread_ unnest_
 #' @importFrom stringi stri_replace_all_fixed stri_replace_all_regex

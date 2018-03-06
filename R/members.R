@@ -11,17 +11,17 @@
 #' houses. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with data on members of the House of Commons
-#' (`commons_members()`), the House of Lords, (`lords_members()`),
-#' or both (`members()`).
+#' (\code{commons_members()}), the House of Lords, (\code{lords_members()}),
+#' or both (\code{members()}).
 #'
 #' @export
 #' @section Member details functions:
 #' \describe{
-#' \item{`members`}{Basic details on a given member from either house}
-#' \item{`commons_members`}{MPs in the House of Commons}
-#' \item{`lords_members`}{Peers in the House of Lords}
+#' \item{\code{members}}{Basic details on a given member from either house}
+#' \item{\code{commons_members}}{MPs in the House of Commons}
+#' \item{\code{lords_members}}{Peers in the House of Lords}
 #' }
-#' @seealso `\link{members_search}`
+#' @seealso \code{\link{members_search}}
 #' @examples \dontrun{
 #' a <- members()
 #'
@@ -45,12 +45,12 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
+    q_members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
                                   flatten = TRUE)
 
     if (is.null(ID) == TRUE) {
 
-        jpage <- floor(members$result$totalResults/500)
+        jpage <- floor(q_members$result$totalResults/500)
 
         query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
 
@@ -58,7 +58,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
     } else {
 
-        df <- tibble::as.tibble(as.data.frame(members$result$primaryTopic))
+        df <- tibble::as.tibble(as.data.frame(q_members$result$primaryTopic))
 
         names(df)[names(df)=="X_about"] <- "about"
         names(df)[names(df)=="X_value"] <- "additionalName"
@@ -110,9 +110,9 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+    c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- floor(members$result$totalResults/500)
+    jpage <- floor(c_members$result$totalResults/500)
 
     query <- paste0(baseurl, extra_args, "&_page=")
 
@@ -153,9 +153,9 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
         message("Connecting to API")
     }
 
-    members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+    l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    jpage <- floor(members$result$totalResults/500)
+    jpage <- floor(l_members$result$totalResults/500)
 
     query <- paste0(baseurl, extra_args, "&_page=")
 
