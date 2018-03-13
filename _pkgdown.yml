@@ -18,7 +18,7 @@ navbar:
     - text: "Reference"
       href: reference/index.html
       menu:
-    - text: "Articles"
+    - text: "Introduction"
       href: articles/introduction.html
     - text: "Packages"
       menu:
