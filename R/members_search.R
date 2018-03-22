@@ -25,55 +25,45 @@
 
 members_search <- function(search = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
+  if (is.null(search)) {
+    df <- members(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
-    if (is.null(search)) {
+    df
+  } else {
+    search <- utils::URLencode(search)
 
-        df <- members(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
+    baseurl <- paste0(url_util, "members.json?_search=")
 
-        df
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
 
-    } else {
+    results <- jsonlite::fromJSON(paste0(baseurl, search))
 
-        search <- utils::URLencode(search)
+    jpage <- floor(results$result$totalResults / 500)
 
-        baseurl <- paste0(url_util,  "members.json?_search=")
+    query <- paste0(baseurl, search, "*", "&_pageSize=500&_page=")
 
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        results <- jsonlite::fromJSON(paste0(baseurl, search))
-
-        jpage <- floor(results$result$totalResults/500)
-
-        query <- paste0(baseurl, search, "*", "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
     if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+      message("The request did not return any data.
                 Please check your parameters.")
-
     } else {
+      if (tidy == TRUE) {
+        names(df)[names(df) == "_about"] <- "mnis_id"
 
-        if (tidy == TRUE) {
+        df$mnis_id <- stringi::stri_replace_all_fixed(df$mnis_id,
+          "http://data.parliament.uk/members/", "",
+          vectorize_all = FALSE
+        )
 
-            names(df)[names(df) == "_about"] <- "mnis_id"
-
-            df$mnis_id <- stringi::stri_replace_all_fixed(df$mnis_id,
-            "http://data.parliament.uk/members/", "",
-            vectorize_all = FALSE)
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
+        df <- hansard_tidy(df, tidy_style)
+      }
 
       df
-
     }
   }
-
 }
 
 #' @rdname members_search

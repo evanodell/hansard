@@ -25,69 +25,69 @@
 #' @seealso \code{\link{bill_publications}}
 #' @export
 #' @examples \dontrun{
+#' # Download data on all bills
 #' x <- bills()
 #'
-#' x <- bills(amendments=TRUE)
+#' # Download data on all bill amendments
+#' x <- bills(amendments = TRUE)
 #'
+#' # Download data on a specific bills
 #' x <- bills(1719)
 #'
-#' x <- bills(start_date ='2016-01-01')
+#' # Download data on all bills introduced after a given date
+#' x <- bills(start_date = '2016-01-01')
 #' }
 
 bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
                   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
                   tidy_style = "snake_case", verbose = TRUE) {
+  dates <- paste0(
+    "&_properties=date&max-date=",
+    as.Date(end_date),
+    "&min-date=",
+    as.Date(start_date)
+  )
 
-    dates <- paste0("&_properties=date&max-date=",
-                    as.Date(end_date),
-                    "&min-date=",
-                    as.Date(start_date))
+  id_query <- dplyr::case_when(
+    is.null(ID) == FALSE ~ paste0("&identifier=", ID),
+    TRUE ~ ""
+  )
 
-    id_query <- dplyr::case_when(
-      is.null(ID) == FALSE ~ paste0("&identifier=", ID),
-      TRUE ~ ""
-    )
+  amend_query <- dplyr::case_when(
+    amendments == TRUE ~ "withamendments.json?",
+    TRUE ~ ".json?"
+  )
 
-    amend_query <- dplyr::case_when(
-      amendments == TRUE ~ "withamendments.json?",
-      TRUE ~ ".json?"
-    )
+  baseurl <- paste0(url_util, "bills")
 
-    baseurl <- paste0(url_util,  "bills")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  bills <- jsonlite::fromJSON(paste0(baseurl, amend_query, dates, id_query,
+                                     extra_args, "&_pageSize=1"),
+                              flatten = TRUE)
 
-    bills <- jsonlite::fromJSON(paste0(baseurl, amend_query, dates,
-                                       id_query, extra_args, "&_pageSize=1"),
-                                flatten = TRUE)
+  jpage <- floor(bills$result$totalResults / 500)
 
-    jpage <- floor(bills$result$totalResults/500)
+  query <- paste0(
+    baseurl, amend_query,
+    dates, id_query, extra_args,
+    "&_pageSize=500&_page="
+  )
 
-    query <- paste0(baseurl, amend_query,
-                    dates, id_query, extra_args,
-                    "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- bills_tidy(df, tidy_style)  ### in utils-bills.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- bills_tidy(df, tidy_style) ### in utils-bills.R
     }
 
+    df
+  }
 }
 
 

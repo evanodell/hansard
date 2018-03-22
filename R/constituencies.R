@@ -18,49 +18,41 @@
 
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
+  baseurl <- paste0(url_util, "constituencies.json?")
 
-    baseurl <- paste0(url_util,  "constituencies.json?")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+  jpage <- floor(conts$result$totalResults / 500)
 
-    jpage <- floor(conts$result$totalResults/500)
-
-    current_query <- dplyr::case_when(
-      is.null(current)==TRUE ~ "",
-      current == TRUE ~ "&exists-endedDate=false",
-      current == FALSE ~ "&exists-endedDate=true",
-      TRUE ~ ""
-    )
+  current_query <- dplyr::case_when(
+    is.null(current) == TRUE ~ "",
+    current == TRUE ~ "&exists-endedDate=false",
+    current == FALSE ~ "&exists-endedDate=true",
+    TRUE ~ ""
+  )
 
 
-    query <- paste0(baseurl, extra_args, current_query, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, extra_args, current_query, "&_pageSize=500&_page=")
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- cons_tidy(df, current, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- cons_tidy(df, current, tidy_style)
     }
+
+    df
+  }
 }
 
 
 #' @rdname constituencies
 #' @export
 hansard_constituencies <- constituencies
-

@@ -1,8 +1,16 @@
 
 
+# hansard 0.6.1.9000
+
+## Code changes
+
+If `tidy=TRUE`, URLs are consistently removed from `about` columns in all 
+functions.
+
+
 # hansard 0.6.1
 
-## Code changs
+## Code changes
 
 `members_search()` now allows custom lucene queries, with or without wildcards.
 

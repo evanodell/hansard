@@ -25,26 +25,25 @@
 
 
 hansard_generic <- function(path) {
+  url <- httr::modify_url("http://lda.data.parliament.uk/",
+    path = utils::URLencode(path)
+  )
 
-    url <- httr::modify_url("http://lda.data.parliament.uk/",
-                            path = utils::URLencode(path))
+  mydata <- jsonlite::fromJSON(url)
 
-    mydata <- jsonlite::fromJSON(url)
+  jpage <- floor(mydata$result$totalResults / mydata$result$itemsPerPage)
 
-    jpage <- floor(mydata$result$totalResults/mydata$result$itemsPerPage)
+  seq_list <- seq(from = 0, to = jpage, by = 1)
 
-    seq_list <- seq(from=0, to=jpage, by=1)
+  pages <- list()
 
-    pages <- list()
+  for (i in seq_along(seq_list)) {
+    mydata <- jsonlite::fromJSON(paste0(url, "&_page=", i), flatten = TRUE)
+    # message("Retrieving page ", i + 1, " of ", genericJPages + 1)
+    pages[[i + 1]] <- mydata$result$items
+  }
 
-    for (i in seq_along(seq_list)) {
-      mydata <- jsonlite::fromJSON(paste0(url, "&_page=", i), flatten = TRUE)
-      #message("Retrieving page ", i + 1, " of ", genericJPages + 1)
-      pages[[i + 1]] <- mydata$result$items
-    }
+  df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-    df
-
+  df
 }

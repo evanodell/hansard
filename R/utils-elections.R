@@ -3,44 +3,33 @@
 # elections tidying -------------------------------------------------------
 
 elections_tidy <- function(df, tidy_style) {
+  if (nrow(df) > 0) {
+    df$date._value <- as.POSIXct(df$date._value)
 
-    if (nrow(df) > 0) {
+    df$date._datatype <- "POSIXct"
+  }
 
-        df$date._value <- as.POSIXct(df$date._value)
+  df <- hansard_tidy(df, tidy_style)
 
-        df$date._datatype <- "POSIXct"
-
-    }
-
-    df <- hansard_tidy(df, tidy_style)
-
-    df
-
+  df
 }
 
 
-## election_candidates tidy function
-## -------------------------------------------------------
-
-
+## election_candidates tidy function -------------------------------------
 elect_can_tidy <- function(df, tidy_style) {
+  if (nrow(df) > 0) {
+    df$election._about <- stringi::stri_replace_all_fixed(
+      df$election._about, "http://data.parliament.uk/resources/", "",
+      vectorize_all = FALSE
+    )
 
-    if (nrow(df) > 0) {
+    df$constituency._about <- stringi::stri_replace_all_fixed(
+      df$constituency._about, "http://data.parliament.uk/resources/", "",
+      vectorize_all = FALSE
+    )
+  }
 
-        df$election._about <- stringi::stri_replace_all_fixed(
-          df$election._about, "http://data.parliament.uk/resources/", "",
-          vectorize_all = FALSE
-          )
+  df <- hansard_tidy(df, tidy_style)
 
-        df$constituency._about <- stringi::stri_replace_all_fixed(
-          df$constituency._about, "http://data.parliament.uk/resources/", "",
-          vectorize_all = FALSE
-          )
-
-    }
-
-    df <- hansard_tidy(df, tidy_style)
-
-    df
-
+  df
 }

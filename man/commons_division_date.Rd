@@ -38,6 +38,7 @@ House of Commons on a given date.
 }
 \examples{
 \dontrun{
+# all commons divisions on 19 April 2017
 x <- commons_division_date('2017-04-19')
 }
 }

@@ -31,50 +31,51 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
+  dates <- paste0(
+    "&min-bill.date=", as.Date(start_date),
+    "&max-bill.date=", as.Date(end_date)
+  )
 
-    dates <- paste0("&min-bill.date=", as.Date(start_date),
-                    "&max-bill.date=", as.Date(end_date))
+  decision_query <- dplyr::if_else(
+    is.null(decision) == FALSE,
+    paste0("&decision=", stringi::stri_trans_totitle(decision)),
+    ""
+  )
 
-    decision_query <- dplyr::if_else(
-      is.null(decision) == FALSE,
-      paste0("&decision=", stringi::stri_trans_totitle(decision)),
-      "")
+  baseurl <- paste0(url_util, "lordsbillamendments.json?")
 
-    baseurl <- paste0(url_util,  "lordsbillamendments.json?")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  ammend <- jsonlite::fromJSON(paste0(
+    baseurl, decision_query,
+    dates, extra_args, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
-    ammend <- jsonlite::fromJSON(paste0(baseurl, decision_query,
-                                        dates, extra_args, "&_pageSize=1"),
-                                 flatten = TRUE)
+  jpage <- floor(ammend$result$totalResults / 500)
 
-    jpage <- floor(ammend$result$totalResults/500)
+  pages <- list()
 
-    pages <- list()
+  query <- paste0(
+    baseurl, decision_query, dates,
+    extra_args, "&_pageSize=500&_page="
+  )
 
-    query <- paste0(baseurl, decision_query, dates,
-                    extra_args, "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lords_amendments_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lords_amendments_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 

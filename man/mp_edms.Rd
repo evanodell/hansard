@@ -61,8 +61,8 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{TRUE}.}
+\item{verbose}{If \code{TRUE}, displayes messages on the console on the
+progress of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with information on the tibbles signed, sponsored
@@ -74,11 +74,14 @@ by a given MP or Peer.
 }
 \examples{
 \dontrun{
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
-             sponsor = TRUE, signatory=TRUE)
 
-x <- mp_edms(mp_id=3967, primary_sponsor=TRUE,
-             sponsor = TRUE, signatory=FALSE, full_data=TRUE)
+# All EDMs primarily sponsored, sponsored or signed by Mike Crockart
+x <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
+             sponsor = TRUE, signatory = TRUE)
+
+# Detailed data on all EDMs primarily sponsored by Mike Crockart
+y <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
+             sponsor = TRUE, signatory = FALSE, full_data = TRUE)
 }
 }
 \seealso{

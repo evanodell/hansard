@@ -25,50 +25,46 @@
 
 lords_attendance_date <- function(date = NULL, tidy = TRUE,
                                   tidy_style = "snake_case", verbose = TRUE) {
+  if (is.null(date) == TRUE) {
+    stop("Please include a date.", call. = FALSE)
+  }
 
-    if (is.null(date) == TRUE)
-        stop("Please include a date.", call. = FALSE)
+  date_query <- as.Date(date)
 
-    date_query <- as.Date(date)
+  baseurl <- paste0(url_util, "lordsattendances/date/")
 
-    baseurl <- paste0(url_util,  "lordsattendances/date/")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"),
+    flatten = TRUE
+  )
 
-    attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"),
-                                 flatten = TRUE)
+  df <- tibble::as_tibble(as.data.frame(attend$result$items$attendee))
 
-    df <- tibble::as_tibble(as.data.frame(attend$result$items$attendee))
+  df <- tidyr::unnest_(df, "member")
 
-    df <- tidyr::unnest_(df, "member")
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
+  } else {
+    if (tidy == TRUE) {
+      names(df)[names(df) == "X_about"] <- "about"
 
-    } else {
+      names(df)[names(df) == "_about"] <- "peer_id"
 
-        if (tidy == TRUE) {
+      df$peer_id <- stringi::stri_replace_all_fixed(
+        df$peer_id,
+        "http://data.parliament.uk/members/", "",
+        vectorize_all = FALSE
+      )
 
-            names(df)[names(df) == "X_about"] <- "about"
-
-            names(df)[names(df) == "_about"] <- "peer_id"
-
-            df$peer_id <- stringi::stri_replace_all_fixed(
-              df$peer_id,
-              "http://data.parliament.uk/members/", "",
-              vectorize_all = FALSE)
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+      df <- hansard_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 

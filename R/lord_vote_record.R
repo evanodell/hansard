@@ -43,102 +43,94 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
                              start_date = "1900-01-01", end_date = Sys.Date(),
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake_case", verbose = TRUE) {
+  if (is.null(peer_id) == TRUE) {
+    stop("peer_id must not be empty", call. = FALSE)
+  }
 
-    if (is.null(peer_id) == TRUE) {
+  dates <- paste0(
+    "&_properties=date&max-date=", as.Date(end_date),
+    "&min-date=", as.Date(start_date)
+  )
 
-        stop("peer_id must not be empty", call. = FALSE)
+  lobby <- stringi::stri_replace_all_fixed(lobby, "-", "")
 
+  lobby <- tolower(lobby)
+
+  if (lobby == "all") {
+    if (verbose == TRUE) {
+      message("Retrieving 'content' votes")
     }
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date),
-                    "&min-date=", as.Date(start_date))
+    df_content <- hansard::lord_vote_record(
+      peer_id = peer_id,
+      lobby = "content",
+      start_date = start_date,
+      end_date = end_date,
+      extra_args = extra_args,
+      tidy = FALSE,
+      verbose = verbose
+    )
 
-    lobby <- stringi::stri_replace_all_fixed(lobby, "-", "")
+    if (verbose == TRUE) {
+      message("Retrieving 'not-content' votes")
+    }
 
-    lobby <- tolower(lobby)
+    df_not_content <- hansard::lord_vote_record(
+      peer_id = peer_id,
+      lobby = "notcontent",
+      start_date = start_date,
+      end_date = end_date,
+      extra_args = extra_args,
+      tidy = FALSE,
+      verbose = verbose
+    )
 
-    if (lobby == "all") {
+    df <- dplyr::bind_rows(df_content, df_not_content)
 
-        if (verbose == TRUE) {
-            message("Retrieving 'content' votes")
-        }
+    df
+  } else {
+    baseurl <- paste0(url_util, "lordsdivisions/")
 
-        df_content <- hansard::lord_vote_record(peer_id = peer_id,
-                                                lobby = "content",
-                                                start_date = start_date,
-                                                end_date = end_date,
-                                                extra_args = extra_args,
-                                                tidy = FALSE,
-                                                verbose = verbose)
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
 
-        if (verbose == TRUE) {
-            message("Retrieving 'not-content' votes")
-        }
+    content <- jsonlite::fromJSON(paste0(
+      baseurl, lobby, ".json?mnisId=",
+      peer_id, dates, extra_args,
+      "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        df_not_content <- hansard::lord_vote_record(peer_id = peer_id,
-                                                    lobby = "notcontent",
-                                                    start_date = start_date,
-                                                    end_date = end_date,
-                                                    extra_args = extra_args,
-                                                    tidy = FALSE,
-                                                    verbose = verbose)
+    jpage <- floor(content$result$totalResults / 500)
 
-        df <- dplyr::bind_rows(df_content, df_not_content)
+    query <- paste0(
+      baseurl, lobby, ".json?mnisId=", peer_id,
+      dates, extra_args, "&_pageSize=500&_page="
+    )
 
-        df
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    } else {
+    if (nrow(df) > 0 & lobby == "content") {
+      df$vote <- "Content"
+    } else if (nrow(df) > 0) {
+      df$vote <- "Not-Content"
+    }
 
-        baseurl <- paste0(url_util,  "lordsdivisions/")
+    df
+  } ### End of else for specific lobbies above
 
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        content <- jsonlite::fromJSON(paste0(baseurl, lobby, ".json?mnisId=",
-                                             peer_id, dates, extra_args,
-                                             "&_pageSize=1"),
-                                      flatten = TRUE)
-
-        jpage <- floor(content$result$totalResults/500)
-
-        query <- paste0(baseurl, lobby, ".json?mnisId=", peer_id,
-                        dates, extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-        if (nrow(df) > 0 & lobby == "content") {
-
-            df$vote <- "Content"
-
-        } else if (nrow(df) > 0) {
-
-            df$vote <- "Not-Content"
-
-        }
-
-        df
-
-
-    }  ### End of else for specific lobbies above
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lord_vote_record_tidy(df, tidy_style)  ## in utils-lords.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lord_vote_record_tidy(df, tidy_style) ## in utils-lords.R
     }
 
+    df
+  }
 }
 
 

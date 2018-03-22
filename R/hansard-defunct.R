@@ -5,17 +5,19 @@
 #'
 
 lords_ammendments <- function() {
-    .Defunct("lords_amendments")
-    lords_amendments()
+  .Defunct("lords_amendments")
+  lords_amendments()
 }
 
 
 
 lords_vote_record <- function(lord.id,
-                              lordsRecord = c("all", "content",
-                                              "notContent")) {
-    .Deprecated("lord_vote_record")
-    lord_vote_record(peer_id = lord.id, lobby = tolower(lordsRecord))
+                              lordsRecord = c(
+                                "all", "content",
+                                "notContent"
+                              )) {
+  .Deprecated("lord_vote_record")
+  lord_vote_record(peer_id = lord.id, lobby = tolower(lordsRecord))
 }
 
 
@@ -54,75 +56,68 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake_case", verbose = TRUE) {
 
-    # .Deprecated('lords_attendance_session')
+  # .Deprecated('lords_attendance_session')
 
-    warning("lords_attendance has been deprecated.
+  warning("lords_attendance has been deprecated.
             To retrieval attendance data by session,
             use lords_attendance_session. By date, use lords_attendance_date")
 
-    if (is.null(session_id) == FALSE) {
+  if (is.null(session_id) == FALSE) {
+    query <- paste0("/", session_id, ".json?")
+  } else {
+    query <- ".json?"
+  }
 
-        query <- paste0("/", session_id, ".json?")
+  dates <- paste0(
+    "&max-date=", as.Date(end_date),
+    "&min-date=", as.Date(start_date)
+  )
 
-    } else {
+  baseurl <- paste0(url_util, "lordsattendances")
 
-        query <- ".json?"
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
+  attend <- jsonlite::fromJSON(paste0(
+    baseurl, query,
+    dates, extra_args
+  ), flatten = TRUE)
+
+  if (is.null(session_id) == FALSE) {
+    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+  } else {
+    jpage <- floor(attend$result$totalResults / 500)
+
+    pages <- list()
+
+    for (i in 0:jpage) {
+      mydata <- jsonlite::fromJSON(paste0(
+        baseurl, query, dates,
+        extra_args,
+        "&_pageSize=500&_page=", i
+      ),
+      flatten = TRUE
+      )
+      if (verbose == TRUE) {
+        message("Retrieving page ", i + 1, " of ", jpage + 1)
+      }
+      pages[[i + 1]] <- mydata$result$items
     }
 
-    dates <- paste0("&max-date=", as.Date(end_date),
-                    "&min-date=", as.Date(start_date))
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
+  }
 
-    baseurl <- paste0(url_util,  "lordsattendances")
-
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
-
-    attend <- jsonlite::fromJSON(paste0(baseurl, query,
-                                        dates, extra_args), flatten = TRUE)
-
-    if (is.null(session_id) == FALSE) {
-
-        df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
-
-    } else {
-
-        jpage <- floor(attend$result$totalResults/500)
-
-        pages <- list()
-
-        for (i in 0:jpage) {
-            mydata <- jsonlite::fromJSON(paste0(baseurl, query, dates,
-                                                extra_args,
-                                                "&_pageSize=500&_page=", i),
-                                         flatten = TRUE)
-            if (verbose == TRUE) {
-                message("Retrieving page ", i + 1, " of ", jpage + 1)
-            }
-            pages[[i + 1]] <- mydata$result$items
-        }
-
-        df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lords_attendance_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lords_attendance_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 
@@ -133,15 +128,12 @@ hansard_lords_attendance <- function(session_id = NULL,
                                      end_date = Sys.Date(), extra_args = NULL,
                                      tidy = TRUE, tidy_style = "snake_case",
                                      verbose = TRUE) {
+  df <- lords_attendance(
+    session_id = session_id,
+    start_date = start_date, end_date = end_date,
+    extra_args = extra_args, tidy = tidy,
+    tidy_style = tidy_style, verbose = verbose
+  )
 
-    df <- lords_attendance(session_id = session_id,
-                           start_date = start_date, end_date = end_date,
-                           extra_args = extra_args, tidy = tidy,
-                           tidy_style = tidy_style, verbose = verbose)
-
-    df
-
+  df
 }
-
-
-

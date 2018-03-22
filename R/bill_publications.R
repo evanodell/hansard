@@ -33,7 +33,7 @@
 #'
 #' @examples \dontrun{
 #'
-#' x <- bill_publications(ID=752025)
+#' x <- bill_publications(ID = 752025)
 #'
 #' y <- bill_publications(start_date = "2018-01-01")
 #'
@@ -41,56 +41,59 @@
 bill_publications <- function(ID = NULL, publication_type = NULL,
                               start_date = "1900-01-01", end_date = Sys.Date(),
                               extra_args = NULL, tidy = TRUE,
-                              tidy_style = "snake_case", verbose = FALSE){
+                              tidy_style = "snake_case", verbose = FALSE) {
+  baseurl <- paste0(url_util, "billpublications.json?")
 
-  baseurl <- paste0(url_util,  "billpublications.json?")
-
-  dates <- paste0("&max-date=",
-                    as.Date(end_date),
-                    "&min-date=",
-                    as.Date(start_date))
+  dates <- paste0(
+    "&max-date=",
+    as.Date(end_date),
+    "&min-date=",
+    as.Date(start_date)
+  )
 
   bill_id <- ifelse(is.null(ID),
-                    "",
-                    paste0("&bill=http://data.parliament.uk/resources/", ID))
+    "",
+    paste0("&bill=http://data.parliament.uk/resources/", ID)
+  )
 
   pub_query <- ifelse(is.null(publication_type),
-                      "",
-                      utils::URLencode(paste0("&publicationType=",
-                                              publication_type)))
+    "",
+    utils::URLencode(paste0(
+      "&publicationType=",
+      publication_type
+    ))
+  )
 
   if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+    message("Connecting to API")
+  }
 
-  bills <- jsonlite::fromJSON(paste0(baseurl, bill_id, dates,
-                                     extra_args, "&_pageSize=1"),
-                                flatten = TRUE)
+  bills <- jsonlite::fromJSON(paste0(
+    baseurl, bill_id, dates,
+    extra_args, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
-  jpage <- floor(bills$result$totalResults/500)
+  jpage <- floor(bills$result$totalResults / 500)
 
-  query <- paste0(baseurl, bill_id, dates, extra_args,
-                  "&_pageSize=500&_page=")
+  query <- paste0(
+    baseurl, bill_id, dates, extra_args,
+    "&_pageSize=500&_page="
+  )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- bills_tidy(df, tidy_style) # in utils-bills.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- bills_tidy(df, tidy_style) # in utils-bills.R
     }
 
+    df
+  }
 }
 
 #' @rdname bill_publications

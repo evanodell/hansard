@@ -34,8 +34,8 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{TRUE}.}
+\item{verbose}{If \code{TRUE}, displayes messages on the console on the
+progress of the API request. Defaults to \code{TRUE}.}
 }
 \description{
 Returns the name and party of all candidates standing in an election, for
@@ -44,7 +44,7 @@ large tibble with hundreds of variables.
 }
 \examples{
 \dontrun{
-x <- election_candidates(ID=382037)
+x <- election_candidates(ID = 382037)
 
 y <- election_candidates()
 

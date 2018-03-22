@@ -54,72 +54,73 @@ commons_answered_questions <- function(answering_department = NULL,
                                        extra_args = NULL, tidy = TRUE,
                                        tidy_style = "snake_case",
                                        verbose = TRUE) {
+  if (length(answered_by) > 1 || length(answering_department) > 1) {
+    df <- caq_multi(
+      answering_department, answered_by,
+      start_date, end_date, extra_args, verbose
+    )
+  } else {
+    dates <- paste0(
+      "&max-dateOfAnswer=", as.Date(end_date),
+      "&min-dateOfAnswer=", as.Date(start_date)
+    )
 
-    if (length(answered_by) > 1 || length(answering_department) > 1) {
+    answered_by <- dplyr::if_else(
+      is.null(answered_by) == FALSE && is.na(answered_by) == FALSE,
+      paste0(
+        "&answeringMember=http://data.parliament.uk/members/",
+        answered_by
+      ),
+      ""
+    )
 
-        df <- caq_multi(answering_department, answered_by,
-                        start_date, end_date, extra_args, verbose)
+    dept_query <- NULL
 
-    } else {
+    answering_dept_query <- NULL
 
-        dates <- paste0("&max-dateOfAnswer=",  as.Date(end_date),
-                        "&min-dateOfAnswer=", as.Date(start_date))
+    if (is.null(answering_department) == FALSE &&
+      is.na(answering_department) == FALSE) {
+      dept_query <- "/answeringdepartment"
 
-        answered_by <- dplyr::if_else(
-          is.null(answered_by) == FALSE && is.na(answered_by) == FALSE,
-          paste0(
-            "&answeringMember=http://data.parliament.uk/members/",
-            answered_by),
-          "")
-
-        dept_query <- NULL
-
-        answering_dept_query <- NULL
-
-        if (is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE) {
-
-            dept_query <- "/answeringdepartment"
-
-            answering_dept_query <- paste0("q=", answering_department)
-
-        }
-
-        baseurl <- paste0(url_util,  "commonsansweredquestions")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        answered <- jsonlite::fromJSON(paste0(baseurl, dept_query, ".json?",
-                                              answering_dept_query,
-                                              answered_by, dates,
-                                              extra_args, "&_pageSize=1"),
-                                       flatten = TRUE)
-
-        jpage <- floor(answered$result$totalResults/500)
-
-        query <- paste0(baseurl, dept_query, ".json?",
-                        answering_dept_query, answered_by,
-                        dates, extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose)
-
+      answering_dept_query <- paste0("q=", answering_department)
     }
 
-    if (nrow(df) == 0) {
-        message("The request did not return any data.
+    baseurl <- paste0(url_util, "commonsansweredquestions")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
+
+    answered <- jsonlite::fromJSON(paste0(
+      baseurl, dept_query, ".json?",
+      answering_dept_query,
+      answered_by, dates,
+      extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
+
+    jpage <- floor(answered$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, dept_query, ".json?",
+      answering_dept_query, answered_by,
+      dates, extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose)
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-    }
+  }
 
-    if (tidy == TRUE) {
+  if (tidy == TRUE) {
+    df <- caq_tidy(df, tidy_style) ## in utils-commons.R
+  }
 
-        df <- caq_tidy(df, tidy_style) ## in utils-commons.R
-
-    }
-
-    df
-
+  df
 }
 
 

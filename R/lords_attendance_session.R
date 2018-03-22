@@ -41,55 +41,50 @@
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
                                      tidy = TRUE, tidy_style = "snake_case",
                                      verbose = TRUE) {
+  json_query <- dplyr::if_else(
+    is.null(session_id) == FALSE,
+    paste0("/", session_id, ".json?"),
+    ".json?"
+  )
 
-    json_query <- dplyr::if_else(is.null(session_id) == FALSE,
-                                 paste0("/", session_id, ".json?"),
-                                 ".json?")
+  baseurl <- paste0(url_util, "lordsattendances")
 
-    baseurl <- paste0(url_util,  "lordsattendances")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
+  attend <- jsonlite::fromJSON(paste0(
+    baseurl, json_query,
+    extra_args
+  ), flatten = TRUE)
+
+  if (is.null(session_id) == FALSE) {
     if (verbose == TRUE) {
-        message("Connecting to API")
+      message("Retrieving attendance data")
     }
 
-    attend <- jsonlite::fromJSON(paste0(baseurl, json_query,
-                                        extra_args), flatten = TRUE)
+    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+  } else {
+    jpage <- floor(attend$result$totalResults / 500)
 
-    if (is.null(session_id) == FALSE) {
+    query <- paste0(
+      baseurl, json_query, extra_args,
+      "&_pageSize=500&_page="
+    )
 
-        if (verbose == TRUE) {
-            message("Retrieving attendance data")
-        }
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
 
-        df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
-
-    } else {
-
-        jpage <- floor(attend$result$totalResults/500)
-
-        query <- paste0(baseurl, json_query, extra_args,
-                        "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lords_attendance_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lords_attendance_tidy(df, tidy_style)
     }
 
+    df
+  }
 }
 
 

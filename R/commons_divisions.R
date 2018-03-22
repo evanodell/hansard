@@ -36,91 +36,85 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
                               end_date = Sys.Date(), extra_args = NULL,
                               tidy = TRUE, tidy_style = "snake_case",
                               verbose = TRUE) {
+  dates <- paste0(
+    "&_properties=date&max-date=",
+    as.Date(end_date), "&min-date=",
+    as.Date(start_date)
+  )
 
-    dates <- paste0("&_properties=date&max-date=",
-                    as.Date(end_date), "&min-date=",
-                    as.Date(start_date))
+  if (is.null(division_id) == TRUE) {
+    baseurl <- paste0(url_util, "commonsdivisions")
 
-    if (is.null(division_id) == TRUE) {
-
-        baseurl <- paste0(url_util,  "commonsdivisions")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        divis <- jsonlite::fromJSON(paste0(baseurl, ".json?",
-                                           dates, extra_args, "&_pageSize=1"),
-                                    flatten = TRUE)
-
-        jpage <- floor(divis$result$totalResults/500)
-
-        query <- paste0(baseurl, ".json?",
-                        dates, extra_args,
-                        "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else {
-
-        baseurl <- paste0(url_util,  "commonsdivisions/id/")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        divis <- jsonlite::fromJSON(paste0(baseurl, division_id, ".json?",
-                                           dates, extra_args),
-                                    flatten = TRUE)
-
-        if (summary == TRUE) {
-
-          df <- tibble::tibble(
-            abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
-            ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
-            noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
-            didNotVoteCount =
-              divis$result$primaryTopic$Didnotvotecount$`_value`,
-            errorVoteCount =
-              divis$result$primaryTopic$Errorvotecount$`_value`,
-            nonEligibleCount =
-              divis$result$primaryTopic$Noneligiblecount$`_value`,
-            suspendedOrExpelledVotesCount =
-              divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
-            margin = divis$result$primaryTopic$Margin$`_value`,
-            date = divis$result$primaryTopic$date$`_value`,
-            divisionNumber = divis$result$primaryTopic$divisionNumber,
-            session = divis$result$primaryTopic$session[[1]],
-            title = divis$result$primaryTopic$title,
-            uin = divis$result$primaryTopic$uin
-            )
-
-        } else {
-
-            df <- tibble::as_tibble(divis$result$primaryTopic$vote)
-
-        }
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, ".json?",
+      dates, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        message("The request did not return any data.
+    jpage <- floor(divis$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, ".json?",
+      dates, extra_args,
+      "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    baseurl <- paste0(url_util, "commonsdivisions/id/")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
+
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, division_id, ".json?",
+      dates, extra_args
+    ),
+    flatten = TRUE
+    )
+
+    if (summary == TRUE) {
+      df <- tibble::tibble(
+        abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
+        ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
+        noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
+        didNotVoteCount =
+          divis$result$primaryTopic$Didnotvotecount$`_value`,
+        errorVoteCount =
+          divis$result$primaryTopic$Errorvotecount$`_value`,
+        nonEligibleCount =
+          divis$result$primaryTopic$Noneligiblecount$`_value`,
+        suspendedOrExpelledVotesCount =
+          divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
+        margin = divis$result$primaryTopic$Margin$`_value`,
+        date = divis$result$primaryTopic$date$`_value`,
+        divisionNumber = divis$result$primaryTopic$divisionNumber,
+        session = divis$result$primaryTopic$session[[1]],
+        title = divis$result$primaryTopic$title,
+        uin = divis$result$primaryTopic$uin
+      )
+    } else {
+      df <- tibble::as_tibble(divis$result$primaryTopic$vote)
+    }
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- cd_tidy(df, tidy_style, division_id, summary)
-            ## in utils-commons.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- cd_tidy(df, tidy_style, division_id, summary)
+      ## in utils-commons.R
     }
 
+    df
+  }
 }
 
 

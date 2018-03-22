@@ -30,68 +30,62 @@
 #' y <- commons_members()
 #'
 #' z <- lords_members()
-#'}
+#' }
 
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
                     tidy_style = "snake_case", verbose = TRUE) {
+  id_query <- dplyr::if_else(
+    is.null(ID) == TRUE,
+    ".json?",
+    paste0("/", ID, ".json?")
+  )
 
-    id_query <- dplyr::if_else(is.null(ID) == TRUE,
-                               ".json?",
-                               paste0("/", ID, ".json?"))
+  baseurl <- paste0(url_util, "members")
 
-    baseurl <- paste0(url_util,  "members")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  q_members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
+    flatten = TRUE
+  )
 
-    q_members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
-                                  flatten = TRUE)
+  if (is.null(ID) == TRUE) {
+    jpage <- floor(q_members$result$totalResults / 500)
 
-    if (is.null(ID) == TRUE) {
+    query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
 
-        jpage <- floor(q_members$result$totalResults/500)
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    df <- tibble::as.tibble(as.data.frame(q_members$result$primaryTopic))
 
-        query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
+    names(df)[names(df) == "X_about"] <- "about"
+    names(df)[names(df) == "X_value"] <- "additionalName"
+    names(df)[names(df) == "X_value.1"] <- "familyName"
+    names(df)[names(df) == "X_value.2"] <- "fullName"
+    names(df)[names(df) == "X_value.3"] <- "gender"
+    names(df)[names(df) == "X_value.4"] <- "givenName"
+    names(df)[names(df) == "X_value.5"] <- "label"
+    names(df)[names(df) == "X_value.6"] <- "party"
+  }
 
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else {
-
-        df <- tibble::as.tibble(as.data.frame(q_members$result$primaryTopic))
-
-        names(df)[names(df)=="X_about"] <- "about"
-        names(df)[names(df)=="X_value"] <- "additionalName"
-        names(df)[names(df)=="X_value.1"] <- "familyName"
-        names(df)[names(df)=="X_value.2"] <- "fullName"
-        names(df)[names(df)=="X_value.3"] <- "gender"
-        names(df)[names(df)=="X_value.4"] <- "givenName"
-        names(df)[names(df)=="X_value.5"] <- "label"
-        names(df)[names(df)=="X_value.6"] <- "party"
-
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
+  } else {
+    if (tidy == TRUE) {
+      df <- hansard_tidy(df, tidy_style)
 
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-            df$about <- gsub("http://data.parliament.uk/members/", "",
-                             df$about)
-
-        }
-
-        df <- tibble::as.tibble(df)
-
-        df
-
+      df$about <- gsub(
+        "http://data.parliament.uk/members/", "",
+        df$about
+      )
     }
+
+    df <- tibble::as.tibble(df)
+
+    df
+  }
 }
 
 #' @export
@@ -103,37 +97,30 @@ hansard_members <- members
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
+  baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=500")
 
-    baseurl <- paste0(url_util,  "commonsmembers.json?_pageSize=500")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+  jpage <- floor(c_members$result$totalResults / 500)
 
-    jpage <- floor(c_members$result$totalResults/500)
+  query <- paste0(baseurl, extra_args, "&_page=")
 
-    query <- paste0(baseurl, extra_args, "&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- hansard_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 
@@ -146,40 +133,32 @@ hansard_commons_members <- commons_members
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake_case", verbose = TRUE) {
+  baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=500")
 
-    baseurl <- paste0(url_util,  "lordsmembers.json?_pageSize=500")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-    l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+  jpage <- floor(l_members$result$totalResults / 500)
 
-    jpage <- floor(l_members$result$totalResults/500)
+  query <- paste0(baseurl, extra_args, "&_page=")
 
-    query <- paste0(baseurl, extra_args, "&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- hansard_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 #' @export
 #' @rdname members
 hansard_lords_members <- lords_members
-

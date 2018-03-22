@@ -44,92 +44,102 @@
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
                                tidy_style = "snake_case", verbose = TRUE) {
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
+  if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
+    type_query <- dplyr::if_else(
+      is.null(type) == FALSE,
+      utils::URLencode(
+        paste0("&subType.prefLabel=", type)
+      ),
+      ""
+    )
+
+    baseurl <- paste0(url_util, "researchbriefings.json?")
+
+    research <- jsonlite::fromJSON(paste0(
+      baseurl, type_query,
+      extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
+
+    jpage <- floor(research$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, type_query, extra_args,
+      "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
+      g <- rep(
+        seq_along(hansard::research_subtopics_list()),
+        lapply(hansard::research_subtopics_list(), length)
+      )
+
+      dex <- g[match(
+        subtopic,
+        unlist(hansard::research_subtopics_list())
+      )]
+
+      topic <- names(hansard::research_subtopics_list())[dex]
     }
 
-    if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
+    subtopic_query <- dplyr::if_else(
+      is.null(subtopic) == FALSE,
+      utils::URLencode(paste0("/", subtopic)),
+      ""
+    )
 
-        type_query <- dplyr::if_else(is.null(type) == FALSE,
-                                     utils::URLencode(
-                                       paste0("&subType.prefLabel=", type)),
-                                     "")
+    topic_query <- dplyr::if_else(
+      is.null(topic) == FALSE,
+      utils::URLencode(topic),
+      ""
+    )
 
-        baseurl <- paste0(url_util,  "researchbriefings.json?")
+    null_type_query <- dplyr::if_else(
+      is.null(type) == FALSE, utils::URLencode(
+        paste0("&subType.prefLabel=", type)
+      ),
+      ""
+    )
 
-        research <- jsonlite::fromJSON(paste0(baseurl, type_query,
-                                              extra_args, "&_pageSize=1"),
-                                       flatten = TRUE)
+    baseurl <- paste0(url_util, "researchbriefings/bridgeterm/")
 
-        jpage <- floor(research$result$totalResults/500)
+    research <- jsonlite::fromJSON(paste0(
+      baseurl, topic_query,
+      subtopic_query, ".json?",
+      null_type_query, extra_args,
+      "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        query <- paste0(baseurl, type_query, extra_args,
-                        "&_pageSize=500&_page=")
+    jpage <- floor(research$result$totalResults / 500)
 
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    query <- paste0(
+      baseurl, topic_query, subtopic_query,
+      ".json?", null_type_query, extra_args,
+      "&_pageSize=500&_page="
+    )
 
-    } else {
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
 
-        if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
-
-            g <- rep(seq_along(hansard::research_subtopics_list()),
-                     lapply(hansard::research_subtopics_list(), length))
-
-            dex <- g[match(subtopic,
-                           unlist(hansard::research_subtopics_list()))]
-
-            topic <- names(hansard::research_subtopics_list())[dex]
-
-        }
-
-       subtopic_query <- dplyr::if_else(
-         is.null(subtopic) == FALSE,
-         utils::URLencode(paste0("/", subtopic)),
-         "")
-
-       topic_query <- dplyr::if_else(is.null(topic) == FALSE,
-                                    utils::URLencode(topic),
-                                    "")
-
-       null_type_query <- dplyr::if_else(
-         is.null(type) == FALSE, utils::URLencode(
-           paste0("&subType.prefLabel=", type)),
-         "")
-
-       baseurl <- paste0(url_util,  "researchbriefings/bridgeterm/")
-
-       research <- jsonlite::fromJSON(paste0(baseurl, topic_query,
-                                              subtopic_query, ".json?",
-                                              null_type_query, extra_args,
-                                              "&_pageSize=1"),
-                                       flatten = TRUE)
-
-        jpage <- floor(research$result$totalResults/500)
-
-        query <- paste0(baseurl, topic_query, subtopic_query,
-                        ".json?", null_type_query, extra_args,
-                        "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    }
-
-    if (nrow(df) == 0) {
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-    } else {
-
-        if (tidy == TRUE) {
-
-          df <- research_tidy(df, tidy_style) ##in utils-research.R
-
-        }
-
-          df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- research_tidy(df, tidy_style) ## in utils-research.R
     }
 
+    df
+  }
 }
 
 #' @rdname research_briefings

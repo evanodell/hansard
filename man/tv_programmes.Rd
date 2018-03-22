@@ -60,8 +60,8 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{TRUE}.}
+\item{verbose}{If \code{TRUE}, displayes messages on the console on the
+progress of the API request. Defaults to \code{TRUE}.}
 
 \item{mp_id}{Accepts the ID of an MP or peer, and returns all clips
 featuring that MP or peer. If \code{NULL}, returns data on all available

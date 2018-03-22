@@ -41,68 +41,70 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
                                    end_date = Sys.Date(),
                                    extra_args = NULL, tidy = TRUE,
                                    tidy_style = "snake_case", verbose = TRUE) {
+  if (length(mp_id) > 1 || length(answering_department) > 1) {
+    df <- commons_oral_questions_multi(
+      mp_id, answering_department,
+      start_date, end_date,
+      extra_args, verbose
+    )
+  } else {
+    mp_id <- dplyr::if_else(
+      is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
+      paste0(
+        "&tablingMember=http://data.parliament.uk/members/", mp_id
+      ),
+      ""
+    )
 
-    if (length(mp_id) > 1 || length(answering_department) > 1) {
+    json_query <- dplyr::if_else(
+      is.null(answering_department) == FALSE &&
+        is.na(answering_department) == FALSE,
+      utils::URLencode(paste0(
+        "/answeringdepartment.json?q=",
+        answering_department
+      )), ".json?"
+    )
 
-        df <- commons_oral_questions_multi(mp_id, answering_department,
-                                           start_date, end_date,
-                                           extra_args, verbose)
+    dates <- paste0(
+      "&_properties=AnswerDate&max-AnswerDate=",
+      as.Date(end_date),
+      "&min-AnswerDate=",
+      as.Date(start_date)
+    )
 
-    } else {
+    baseurl <- paste0(url_util, "commonsoralquestions")
 
-        mp_id <- dplyr::if_else(
-          is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
-          paste0(
-            "&tablingMember=http://data.parliament.uk/members/", mp_id),
-          "")
-
-        json_query <- dplyr::if_else(
-          is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE,
-          utils::URLencode(paste0("/answeringdepartment.json?q=",
-                                  answering_department)), ".json?")
-
-        dates <- paste0("&_properties=AnswerDate&max-AnswerDate=",
-                        as.Date(end_date),
-                        "&min-AnswerDate=",
-                        as.Date(start_date))
-
-        baseurl <- paste0(url_util,  "commonsoralquestions")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        oral <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id,
-                                          dates, extra_args, "&_pageSize=1"),
-                                   flatten = TRUE)
-
-        jpage <- floor(oral$result$totalResults/500)
-
-        query <- paste0(baseurl, json_query, mp_id, dates,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose)  # in utils-loop.R
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    oral <- jsonlite::fromJSON(paste0(
+      baseurl, json_query, mp_id,
+      dates, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        message("The request did not return any data.
+    jpage <- floor(oral$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, json_query, mp_id, dates,
+      extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- coq_tidy(df, tidy_style)  ## in utils-commons.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- coq_tidy(df, tidy_style) ## in utils-commons.R
     }
 
+    df
+  }
 }
 
 

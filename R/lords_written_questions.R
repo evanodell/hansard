@@ -52,70 +52,73 @@ lords_written_questions <- function(peer_id = NULL,
                                     extra_args = NULL, tidy = TRUE,
                                     tidy_style = "snake_case",
                                     verbose = TRUE) {
+  if (length(answering_department) > 1 || length(peer_id) > 1) {
+    df <- lwq_multi(
+      answering_department, peer_id, start_date,
+      end_date, extra_args, verbose
+    ) ### in utils-lords.R
+  } else {
+    dates <- paste0(
+      "&_properties=dateTabled&max-dateTabled=",
+      as.Date(end_date),
+      "&min-dateTabled=",
+      as.Date(start_date)
+    )
 
-    if (length(answering_department) > 1 || length(peer_id) > 1) {
 
-        df <- lwq_multi(answering_department, peer_id, start_date,
-                        end_date, extra_args, verbose)  ### in utils-lords.R
+    peer_id <- dplyr::if_else(
+      is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
+      utils::URLencode(
+        paste0(
+          "&tablingMember=http://data.parliament.uk/members/",
+          peer_id
+        )
+      ),
+      ""
+    )
 
-    } else {
+    dept_query <- dplyr::if_else(
+      is.null(answering_department) == FALSE &&
+        is.na(answering_department) == FALSE,
+      utils::URLencode(
+        paste0("/answeringdepartment.json?q=", answering_department)
+      ),
+      ".json?"
+    )
 
-        dates <- paste0("&_properties=dateTabled&max-dateTabled=",
-                        as.Date(end_date),
-                        "&min-dateTabled=",
-                        as.Date(start_date))
+    baseurl <- paste0(url_util, "lordswrittenquestions")
 
-
-        peer_id <- dplyr::if_else(
-          is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
-          utils::URLencode(
-            paste0("&tablingMember=http://data.parliament.uk/members/",
-                   peer_id)),
-          "")
-
-        dept_query <- dplyr::if_else(
-          is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE,
-          utils::URLencode(
-            paste0("/answeringdepartment.json?q=", answering_department)),
-          ".json?")
-
-        baseurl <- paste0(url_util,  "lordswrittenquestions")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        writ <- jsonlite::fromJSON(paste0(baseurl, dept_query, peer_id,
-                                          dates, extra_args, "&_pageSize=1"),
-                                   flatten = TRUE)
-
-        jpage <- floor(writ$result$totalResults/500)
-
-        query <- paste0(baseurl, dept_query, peer_id, dates,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    writ <- jsonlite::fromJSON(paste0(
+      baseurl, dept_query, peer_id,
+      dates, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        message("The request did not return any data.
+    jpage <- floor(writ$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, dept_query, peer_id, dates,
+      extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lwq_tidy(df, tidy_style)  ## in utils-lords.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lwq_tidy(df, tidy_style) ## in utils-lords.R
     }
 
+    df
+  }
 }
 
 #' @rdname lords_written_questions

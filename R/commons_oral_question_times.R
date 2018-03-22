@@ -11,7 +11,8 @@
 #' @param question_id Accepts a question time ID, and returns a tibble of
 #' that question time.
 #' @inheritParams all_answered_questions
-#' @return A tibble with information on oral question times in the House of Commons.
+#' @return A tibble with information on oral question times in the House of
+#' Commons.
 #' @seealso \code{\link{all_answered_questions}}
 #' @seealso \code{\link{commons_answered_questions}}
 #' @seealso \code{\link{commons_oral_questions}}
@@ -27,84 +28,85 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake_case",
                                         verbose = TRUE) {
+  session_query <- dplyr::if_else(
+    is.null(session) == FALSE,
+    utils::URLencode(
+      paste0("session=", session)
+    ),
+    ""
+  )
 
-    session_query <- dplyr::if_else(is.null(session) == FALSE,
-                                    utils::URLencode(
-                                      paste0("session=", session)
-                                      ),
-                                    "")
+  question_query <- dplyr::if_else(
+    is.null(question_id) == FALSE,
+    paste0("/", question_id),
+    ""
+  )
 
-    question_query <- dplyr::if_else(is.null(question_id) == FALSE,
-                                     paste0("/", question_id),
-                                     "")
+  baseurl <- paste0(url_util, "commonsoralquestiontimes")
 
-    baseurl <- paste0(url_util,  "commonsoralquestiontimes")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  if (is.null(question_id) == TRUE) {
+    times <- jsonlite::fromJSON(paste0(
+      baseurl, ".json?",
+      session_query,
+      extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-    if (is.null(question_id) == TRUE) {
+    jpage <- floor(times$result$totalResults / 500)
 
-        times <- jsonlite::fromJSON(paste0(baseurl, ".json?",
-                                           session_query,
-                                           extra_args, "&_pageSize=1"),
-                                    flatten = TRUE
-                                    )
+    query <- paste0(
+      baseurl, ".json?", session_query,
+      extra_args, "&_pageSize=500&_page="
+    )
 
-        jpage <- floor(times$result$totalResults/500)
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    mydata <- jsonlite::fromJSON(paste0(
+      baseurl, question_query,
+      ".json?", session_query,
+      extra_args
+    ),
+    flatten = TRUE
+    )
 
-        query <- paste0(baseurl, ".json?", session_query,
-                        extra_args, "&_pageSize=500&_page=")
+    df <- tibble::tibble(
+      about = mydata$result$primaryTopic$`_about`,
+      AnswerBody = list(mydata$result$primaryTopic$AnswerBody),
+      session = mydata$result$primaryTopic$session,
+      title = mydata$result$primaryTopic$title,
+      AnswerDateTime._value =
+        mydata$result$primaryTopic$AnswerDateTime$`_value`,
+      AnswerDateTime._datatype =
+        mydata$result$primaryTopic$AnswerDateTime$`_datatype`,
+      Location._about = mydata$result$primaryTopic$Location$`_about`,
+      Location.prefLabel._value =
+        mydata$result$primaryTopic$Location$prefLabel$`_value`,
+      QuestionType._value =
+        mydata$result$primaryTopic$QuestionType$`_value`,
+      date._value = mydata$result$primaryTopic$date$`_value`,
+      date._datatype = mydata$result$primaryTopic$date$`_datatype`,
+      modified._value = mydata$result$primaryTopic$modified$`_value`,
+      modified._datatype = mydata$result$primaryTopic$modified$`_datatype`,
+      sessionNumber._value =
+        mydata$result$primaryTopic$sessionNumber$`_value`
+    )
+  }
 
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else {
-
-        mydata <- jsonlite::fromJSON(paste0(baseurl, question_query,
-                                            ".json?", session_query,
-                                            extra_args),
-                                     flatten = TRUE)
-
-        df <- tibble::tibble(
-          about = mydata$result$primaryTopic$`_about`,
-          AnswerBody = list(mydata$result$primaryTopic$AnswerBody),
-          session = mydata$result$primaryTopic$session,
-          title = mydata$result$primaryTopic$title,
-          AnswerDateTime._value =
-            mydata$result$primaryTopic$AnswerDateTime$`_value`,
-          AnswerDateTime._datatype =
-            mydata$result$primaryTopic$AnswerDateTime$`_datatype`,
-          Location._about = mydata$result$primaryTopic$Location$`_about`,
-          Location.prefLabel._value =
-            mydata$result$primaryTopic$Location$prefLabel$`_value`,
-          QuestionType._value =
-            mydata$result$primaryTopic$QuestionType$`_value`,
-          date._value = mydata$result$primaryTopic$date$`_value`,
-          date._datatype = mydata$result$primaryTopic$date$`_datatype`,
-          modified._value = mydata$result$primaryTopic$modified$`_value`,
-          modified._datatype = mydata$result$primaryTopic$modified$`_datatype`,
-          sessionNumber._value =
-            mydata$result$primaryTopic$sessionNumber$`_value`)
-
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- coqt_tidy(df, tidy_style)  ## in utils-commons.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- coqt_tidy(df, tidy_style) ## in utils-commons.R
     }
+
+    df
+  }
 }
 
 

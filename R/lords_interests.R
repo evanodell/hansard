@@ -15,54 +15,48 @@
 #' x <- lords_interests(4170)
 #'
 #' y <- lords_interests()
-#'}
+#' }
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
+  json_query <- dplyr::if_else(
+    is.null(peer_id) == TRUE,
+    ".json?",
+    paste0(".json?member=", peer_id)
+  )
 
-    json_query <- dplyr::if_else(is.null(peer_id) == TRUE,
-                                 ".json?",
-                                 paste0(".json?member=", peer_id))
+  baseurl <- paste0(url_util, "lordsregisteredinterests")
 
-    baseurl <- paste0(url_util,  "lordsregisteredinterests")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  members <- jsonlite::fromJSON(paste0(
+    baseurl, json_query,
+    extra_args, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
-    members <- jsonlite::fromJSON(paste0(baseurl, json_query,
-                                         extra_args, "&_pageSize=1"),
-                                  flatten = TRUE)
+  jpage <- floor(members$result$totalResults / 500)
 
-    jpage <- floor(members$result$totalResults/500)
+  query <- paste0(baseurl, json_query, extra_args, "&_pageSize=500&_page=")
 
-    query <- paste0(baseurl, json_query, extra_args, "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            if (is.null(peer_id)) {
-
-                df <- lords_interests_tidy2(df, tidy_style)  ##in utils-lords.R
-
-            } else {
-
-                df <- lords_interests_tidy(df, tidy_style)  ##in utils-lords.R
-
-            }
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      if (is.null(peer_id)) {
+        df <- lords_interests_tidy2(df, tidy_style) ## in utils-lords.R
+      } else {
+        df <- lords_interests_tidy(df, tidy_style) ## in utils-lords.R
+      }
     }
+
+    df
+  }
 }
 
 

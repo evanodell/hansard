@@ -54,15 +54,16 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{TRUE}.}
+\item{verbose}{If \code{TRUE}, displayes messages on the console on the
+progress of the API request. Defaults to \code{TRUE}.}
 }
 \value{
 A tibble with details on the content, signatories and sponsors of
 all or a specified early day motions.
 }
 \description{
-Includes the content, signatories, and sponsors of early day motions.
+Return data on the content, signatories, and sponsors of early day
+motions (EDMS).
 }
 \details{
 Early Day Motion IDs reset for each parliamentary session, so not including
@@ -72,9 +73,12 @@ parliamentary sessions.
 }
 \examples{
 \dontrun{
+
+# Returns all EDMs with a given ID
 x <- early_day_motions(edm_id = 1073)
 
-x <- early_day_motions(edm_id = 1073, session='2015/16')
+# Return a specific early day motion by ID
+x <- early_day_motions(edm_id = 1073, session='2017/19')
 }
 }
 \seealso{

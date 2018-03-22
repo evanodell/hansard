@@ -49,77 +49,76 @@
 elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
                       end_date = Sys.Date(), label = NULL, extra_args = NULL,
                       tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
+  dates <- paste0(
+    "&max-date=", as.Date(end_date),
+    "&min-date=", as.Date(start_date)
+  )
 
-    dates <- paste0("&max-date=", as.Date(end_date),
-                    "&min-date=", as.Date(start_date))
+  if (is.null(label) == FALSE) {
+    label <- utils::URLencode(paste0("&label=", label))
+  }
 
-    if (is.null(label) == FALSE) {
+  if (is.null(ID) == FALSE) {
+    ID <- paste0("/", ID, ".json?")
 
-        label <- utils::URLencode(paste0("&label=", label))
+    baseurl <- paste0(url_util, "elections")
 
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (is.null(ID) == FALSE) {
+    elect <- jsonlite::fromJSON(paste0(
+      baseurl, ID, dates,
+      label, extra_args
+    ),
+    flatten = TRUE
+    )
 
-        ID <- paste0("/", ID, ".json?")
+    df <- elect$result$primaryTopic
 
-        baseurl <- paste0(url_util,  "elections")
+    df <- tibble::as_tibble(as.data.frame(df))
+  } else {
+    baseurl <- paste0(url_util, "elections")
 
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
+    type_query <- dplyr::if_else(
+      is.null(type) == FALSE,
+      utils::URLencode(
+        paste0(".json?&electionType=", type)
+      ),
+      ".json?"
+    )
 
-        elect <- jsonlite::fromJSON(paste0(baseurl, ID, dates,
-                                           label, extra_args),
-                                    flatten = TRUE)
-
-        df <- elect$result$primaryTopic
-
-        df <- tibble::as_tibble(as.data.frame(df))
-
-    } else {
-
-      baseurl <- paste0(url_util,  "elections")
-
-      type_query <- dplyr::if_else(is.null(type) == FALSE,
-                                   utils::URLencode(
-                                     paste0(".json?&electionType=", type)),
-                                   ".json?")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        elect <- jsonlite::fromJSON(paste0(baseurl, type_query, dates,
-                                           label, extra_args, "&_pageSize=1"),
-                                    flatten = TRUE)
-
-        jpage <- floor(elect$result$totalResults/500)
-
-        query <- paste0(baseurl, type_query, dates, label,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    elect <- jsonlite::fromJSON(paste0(
+      baseurl, type_query, dates,
+      label, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        message("The request did not return any data.
+    jpage <- floor(elect$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, type_query, dates, label,
+      extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- elections_tidy(df, tidy_style)  ## in utils-elections.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- elections_tidy(df, tidy_style) ## in utils-elections.R
     }
 
+    df
+  }
 }
 
 #' @rdname elections

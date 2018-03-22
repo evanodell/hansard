@@ -33,64 +33,63 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
+  id_query <- dplyr::if_else(
+    is.null(ID) == FALSE,
+    paste0("/", ID, ".json?"),
+    ".json?"
+  )
 
-  id_query <- dplyr::if_else(is.null(ID) == FALSE,
-                             paste0("/", ID, ".json?"),
-                             ".json?")
+  house <- tolower(house)
 
-    house <- tolower(house)
+  house_query <- dplyr::case_when(
+    house == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
+    house == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
+    TRUE ~ ""
+  )
 
-    house_query <- dplyr::case_when(
-      house == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
-      house == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
-      TRUE ~ "")
+  dates <- paste0(
+    "&_properties=publicationDate&max-publicationDate=",
+    as.Date(end_date),
+    "&min-publicationDate=",
+    as.Date(start_date)
+  )
 
-    dates <- paste0("&_properties=publicationDate&max-publicationDate=",
-                    as.Date(end_date),
-                    "&min-publicationDate=",
-                    as.Date(start_date))
+  baseurl <- paste0(url_util, "publicationlogs")
 
-    baseurl <- paste0(url_util,  "publicationlogs")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  logs <- jsonlite::fromJSON(paste0(
+    baseurl, id_query, house_query,
+    dates, extra_args
+  ),
+  flatten = TRUE
+  )
 
-    logs <- jsonlite::fromJSON(paste0(baseurl, id_query, house_query,
-                                      dates, extra_args),
-                               flatten = TRUE)
+  if (is.null(ID) == FALSE) {
+    df <- tibble::as_tibble(as.data.frame(logs$result$primaryTopic))
+  } else {
+    jpage <- floor(logs$result$totalResults / 500)
 
-    if (is.null(ID) == FALSE) {
+    query <- paste0(
+      baseurl, id_query, house_query, dates,
+      extra_args, "&_pageSize=500&_page="
+    )
 
-        df <- tibble::as_tibble(as.data.frame(logs$result$primaryTopic))
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
 
-    } else {
-
-        jpage <- floor(logs$result$totalResults/500)
-
-        query <- paste0(baseurl, id_query, house_query, dates,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- pub_tidy(df, tidy_style)  ## in utils-publogs.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- pub_tidy(df, tidy_style) ## in utils-publogs.R
     }
+
+    df
+  }
 }
 
 

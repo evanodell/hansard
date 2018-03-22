@@ -18,83 +18,82 @@
 #' @export
 #' @examples \dontrun{
 #' x <- epetition(ID = 706964, by_constituency=TRUE)
-#'}
+#' }
 
 epetition <- function(ID = NULL, by_constituency = FALSE,
                       extra_args = NULL, tidy = TRUE,
                       tidy_style = "snake_case", verbose = TRUE) {
+  if (is.null(ID) == FALSE) {
+    ID <- paste0("/", ID)
+  }
 
-    if (is.null(ID) == FALSE) {
-        ID <- paste0("/", ID)
-    }
 
+  json_query <- dplyr::if_else(
+    by_constituency == TRUE,
+    "/signaturesbyconstituency.json?",
+    ".json?"
+  )
 
-    json_query <- dplyr::if_else(by_constituency == TRUE,
-                               "/signaturesbyconstituency.json?",
-                               ".json?")
+  baseurl <- paste0(url_util, "epetitions")
 
-    baseurl <- paste0(url_util,  "epetitions")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  if (is.null(ID) == FALSE & by_constituency == FALSE) {
+    petition <- jsonlite::fromJSON(paste0(
+      baseurl, ID,
+      json_query, extra_args
+    ),
+    flatten = TRUE
+    )
 
-    if (is.null(ID) == FALSE & by_constituency == FALSE) {
+    df <- tibble::tibble(
+      about = petition$result$primaryTopic$`_about`,
+      abstract = petition$result$primaryTopic$abstract$`_value`,
+      created = petition$result$primaryTopic$created$`_value`,
+      identifier = petition$result$primaryTopic$identifier$`_value`,
+      isPrimaryTopicOf = petition$result$primaryTopic$isPrimaryTopicOf,
+      label = petition$result$primaryTopic$label$`_value`,
+      modified = petition$result$primaryTopic$modified$`_value`,
+      numberOfSignatures = petition$result$primaryTopic$numberOfSignatures,
+      replyActionAbout = petition$result$primaryTopic$replyAction$`_about`,
+      replyAction =
+        petition$result$primaryTopic$replyAction$abstract$`_value`,
+      status = petition$result$primaryTopic$status,
+      subType = petition$result$primaryTopic$subType$`_about`,
+      website = petition$result$primaryTopic$website
+    )
+  } else {
+    petition <- jsonlite::fromJSON(paste0(
+      baseurl, ID, json_query,
+      "&_pageSize=1", extra_args
+    ),
+    flatten = TRUE
+    )
 
-        petition <- jsonlite::fromJSON(paste0(baseurl, ID,
-                                              json_query, extra_args),
-                                       flatten = TRUE)
+    jpage <- floor(petition$result$totalResults / 500)
 
-        df <- tibble::tibble(
-          about = petition$result$primaryTopic$`_about`,
-          abstract = petition$result$primaryTopic$abstract$`_value`,
-          created = petition$result$primaryTopic$created$`_value`,
-          identifier = petition$result$primaryTopic$identifier$`_value`,
-          isPrimaryTopicOf = petition$result$primaryTopic$isPrimaryTopicOf,
-          label = petition$result$primaryTopic$label$`_value`,
-          modified = petition$result$primaryTopic$modified$`_value`,
-          numberOfSignatures = petition$result$primaryTopic$numberOfSignatures,
-          replyActionAbout = petition$result$primaryTopic$replyAction$`_about`,
-          replyAction =
-            petition$result$primaryTopic$replyAction$abstract$`_value`,
-          status = petition$result$primaryTopic$status,
-          subType = petition$result$primaryTopic$subType$`_about`,
-          website = petition$result$primaryTopic$website)
+    query <- paste0(
+      baseurl, ID, json_query, extra_args,
+      "&_pageSize=500&_page="
+    )
 
-    } else {
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-        petition <- jsonlite::fromJSON(paste0(baseurl, ID, json_query,
-                                              "&_pageSize=1", extra_args),
-                                       flatten = TRUE)
+    df$member <- NULL # Removes superfluous member column
+  }
 
-        jpage <- floor(petition$result$totalResults/500)
-
-        query <- paste0(baseurl, ID, json_query, extra_args,
-                        "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-        df$member <- NULL # Removes superfluous member column
-
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- hansard_tidy(df, tidy_style)
     }
 
+    df
+  }
 }
 
 

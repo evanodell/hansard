@@ -36,51 +36,48 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
+  days_query <- dplyr::if_else(
+    days == FALSE,
+    paste0(
+      ".json?&max-endDate=", as.Date(end_date),
+      "&min-startDate=", as.Date(start_date)
+    ),
+    "/days.json?"
+  )
 
-    days_query <- dplyr::if_else(
-      days==FALSE,
-      paste0(".json?&max-endDate=", as.Date(end_date),
-             "&min-startDate=", as.Date(start_date)),
-      "/days.json?"
-      )
+  baseurl <- paste0(url_util, "sessions")
 
-    baseurl <- paste0(url_util,  "sessions")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  session <- jsonlite::fromJSON(paste0(
+    baseurl, days_query,
+    extra_args, "&_pageSize=1"
+  ))
 
-    session <- jsonlite::fromJSON(paste0(baseurl, days_query,
-                                         extra_args, "&_pageSize=1"))
+  jpage <- floor(session$result$totalResults / 500)
 
-    jpage <- floor(session$result$totalResults/500)
+  query <- paste0(baseurl, days_query, extra_args, "&_pageSize=500&_page=")
 
-    query <- paste0(baseurl, days_query, extra_args, "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  if (days == TRUE) {
+    df$date._value <- as.POSIXct(df$date._value)
+    df <- df[df$date._value <= as.Date(end_date) &
+      df$date._value >= as.Date(start_date), ]
+  }
 
-    if (days == TRUE) {
-        df$date._value <- as.POSIXct(df$date._value)
-        df <- df[df$date._value <= as.Date(end_date) &
-                   df$date._value >= as.Date(start_date),]
-    }
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-          df <- sessions_tidy(df, days, tidy_style) ## in utils-sessions.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- sessions_tidy(df, days, tidy_style) ## in utils-sessions.R
     }
+
+    df
+  }
 }
 
 

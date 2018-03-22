@@ -2,7 +2,8 @@
 
 #' Early day motion data
 #'
-#' Includes the content, signatories, and sponsors of early day motions.
+#' Return data on the content, signatories, and sponsors of early day
+#' motions (EDMS).
 #'
 #' Early Day Motion IDs reset for each parliamentary session, so not including
 #' a query for \code{session} but including an \code{edm_id} will return
@@ -36,9 +37,12 @@
 #' @seealso \code{\link{mp_edms}}
 #' @export
 #' @examples \dontrun{
+#'
+#' # Returns all EDMs with a given ID
 #' x <- early_day_motions(edm_id = 1073)
 #'
-#' x <- early_day_motions(edm_id = 1073, session='2015/16')
+#' # Return a specific early day motion by ID
+#' x <- early_day_motions(edm_id = 1073, session='2017/19')
 #' }
 
 
@@ -47,57 +51,50 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
                               end_date = Sys.Date(), signatures = 1,
                               extra_args = NULL, tidy = TRUE,
                               tidy_style = "snake_case", verbose = TRUE) {
+  edm_query <- dplyr::if_else(
+    is.null(edm_id) == FALSE,
+    paste0("&edmNumber=", edm_id),
+    ""
+  )
 
-    edm_query <- dplyr::if_else(is.null(edm_id) == FALSE,
-                                paste0("&edmNumber=", edm_id),
-                                "")
+  session_query <- dplyr::if_else(
+    is.null(session) == FALSE,
+    paste0("&session.=", session),
+    ""
+  )
 
-    session_query <- dplyr::if_else(is.null(session) == FALSE,
-                                    paste0("&session.=", session),
-                                    "")
+  dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date),
+                  "&min-dateTabled=", as.Date(start_date))
 
-    dates <- paste0("&_properties=dateTabled&max-dateTabled=",
-                    as.Date(end_date),
-                    "&min-dateTabled=",
-                    as.Date(start_date))
+  sig_min <- paste0("&min-numberOfSignatures=", signatures)
 
-    sig_min <- paste0("&min-numberOfSignatures=", signatures)
+  baseurl <- paste0(url_util, "edms")
 
-    baseurl <- paste0(url_util,  "edms")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates,
+                                    session_query, sig_min, extra_args,
+                                    "&_pageSize=1"), flatten = TRUE)
 
-    edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates,
-                                      session_query, sig_min, extra_args,
-                                      "&_pageSize=1"),
-                               flatten = TRUE)
+  jpage <- floor(edms$result$totalResults / 500)
 
-    jpage <- floor(edms$result$totalResults/500)
+  query <- paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min,
+                  extra_args, "&_pageSize=500&_page=")
 
-    query <- paste0(baseurl, ".json?", edm_query, dates,
-                    session_query, sig_min, extra_args,
-                    "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- edm_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- edm_tidy(df, tidy_style)
     }
+
+    df
+  }
 }
 
 

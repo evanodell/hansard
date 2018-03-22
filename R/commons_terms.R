@@ -15,75 +15,69 @@
 #' x <- commons_terms(search='estate')
 #'
 #' x <- commons_terms(search='estate', class='ORG')
-#'}
+#' }
 
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
+  search_query <- dplyr::if_else(
+    is.null(search) == FALSE,
+    paste0(
+      "&_search=", utils::URLencode(search)
+    ),
+    NULL
+  )
 
-    search_query <- dplyr::if_else(is.null(search) == FALSE,
-                                   paste0(
-                                     "&_search=", utils::URLencode(search)),
-                                   NULL)
+  if (is.null(class) == FALSE) {
+    class_list <- list(
+      "ID", "ORG", "SIT", "NAME", "LEG",
+      "CTP", "PBT", "TPG"
+    )
 
-    if (is.null(class) == FALSE) {
-
-        class_list <- list("ID", "ORG", "SIT", "NAME", "LEG",
-                           "CTP", "PBT", "TPG")
-
-        if (!(class %in% class_list)) {
-
-            stop("Please check your class parameter.
+    if (!(class %in% class_list)) {
+      stop("Please check your class parameter.
                  It must be one of \"ID\", \"ORG\", \"SIT\", \"NAME\",
                  \"LEG\", \"CTP\", \"PBT\" or\"TPG\"", call. = FALSE)
-
-        } else {
-
-            class_query <- paste0("&class=", class)
-
-        }
-
     } else {
-
-        class_query <- NULL
-
+      class_query <- paste0("&class=", class)
     }
+  } else {
+    class_query <- NULL
+  }
 
-    baseurl <- paste0(url_util,  "terms.json?&_view=description")
+  baseurl <- paste0(url_util, "terms.json?&_view=description")
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    terms <- jsonlite::fromJSON(paste0(baseurl, search_query,
-                                       class_query, extra_args,
-                                       "&_pageSize=1"),
-                                flatten = TRUE)
+  terms <- jsonlite::fromJSON(paste0(
+    baseurl, search_query,
+    class_query, extra_args,
+    "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
-    jpage <- floor(terms$result$totalResults/500)
+  jpage <- floor(terms$result$totalResults / 500)
 
-    query <- paste0(baseurl, search_query, class_query,
-                    extra_args, "&_pageSize=500&_page=")
+  query <- paste0(
+    baseurl, search_query, class_query,
+    extra_args, "&_pageSize=500&_page="
+  )
 
-    df <- loop_query(query, jpage, verbose)  # in utils-loop.R
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- hansard_tidy(df, tidy_style)
     }
 
+    df
+  }
 }
 
 

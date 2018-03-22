@@ -43,73 +43,75 @@ commons_written_questions <- function(mp_id = NULL,
                                       tidy = TRUE,
                                       tidy_style = "snake_case",
                                       verbose = TRUE) {
+  if (length(mp_id) > 1 || length(answering_department) > 1) {
+    ## For lists queries
 
-    if (length(mp_id) > 1 || length(answering_department) > 1) {
-        ## For lists queries
+    df <- commons_written_questions_multi(
+      mp_id, answering_department,
+      start_date, end_date,
+      extra_args, verbose
+    )
+  } else {
+    dates <- paste0(
+      "&_properties=dateTabled&max-dateTabled=",
+      as.Date(end_date),
+      "&min-dateTabled=",
+      as.Date(start_date)
+    )
 
-        df <- commons_written_questions_multi(mp_id, answering_department,
-                                              start_date, end_date,
-                                              extra_args, verbose)
+    mp_id_query <- dplyr::if_else(
+      is.null(mp_id) == FALSE &&
+        is.na(mp_id) == FALSE,
+      utils::URLencode(
+        paste0(
+          "&tablingMember=http://data.parliament.uk/members/", mp_id
+        )
+      ),
+      ""
+    )
 
-    } else {
+    json_query <- dplyr::if_else(
+      is.null(answering_department) == FALSE &&
+        is.na(answering_department) == FALSE,
+      utils::URLencode(
+        paste0("/answeringdepartment.json?q=", answering_department)
+      ),
+      ".json?"
+    )
 
-        dates <- paste0("&_properties=dateTabled&max-dateTabled=",
-                        as.Date(end_date),
-                        "&min-dateTabled=",
-                        as.Date(start_date))
+    baseurl <- paste0(url_util, "commonswrittenquestions")
 
-        mp_id_query <- dplyr::if_else(
-          is.null(mp_id) == FALSE &&
-            is.na(mp_id) == FALSE,
-          utils::URLencode(
-            paste0(
-              "&tablingMember=http://data.parliament.uk/members/", mp_id)
-            ),
-          "")
-
-        json_query <- dplyr::if_else(
-          is.null(answering_department) == FALSE &&
-            is.na(answering_department) == FALSE,
-          utils::URLencode(
-            paste0("/answeringdepartment.json?q=", answering_department)),
-                                     ".json?")
-
-        baseurl <- paste0(url_util,  "commonswrittenquestions")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id_query,
-                                          dates, extra_args, "&_pageSize=1"),
-                                   flatten = TRUE)
-
-        jpage <- floor(writ$result$totalResults/500)
-
-        query <- paste0(baseurl, json_query, mp_id_query, dates,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    writ <- jsonlite::fromJSON(paste0(
+      baseurl, json_query, mp_id_query,
+      dates, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-        message("The request did not return any data.
+    jpage <- floor(writ$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, json_query, mp_id_query, dates,
+      extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- cwq_tidy(df, tidy_style)  ## in utils-commons.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- cwq_tidy(df, tidy_style) ## in utils-commons.R
     }
 
+    df
+  }
 }
 
 

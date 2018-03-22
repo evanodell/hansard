@@ -34,11 +34,12 @@ converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 and \code{'period.case'}. Defaults to \code{'snake_case'}.}
 
-\item{verbose}{If \code{TRUE}, returns data to console on the progress
-of the API request. Defaults to \code{TRUE}.}
+\item{verbose}{If \code{TRUE}, displayes messages on the console on the
+progress of the API request. Defaults to \code{TRUE}.}
 }
 \value{
-A tibble with information on oral question times in the House of Commons.
+A tibble with information on oral question times in the House of
+Commons.
 }
 \description{
 Imports data on House of Commons oral question times. Query with parameters

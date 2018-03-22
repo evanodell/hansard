@@ -40,124 +40,126 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            start_date = "1900-01-01", end_date = Sys.Date(),
                            extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
+  if (is.null(mp_id) == TRUE) {
+    stop("mp_id must not be empty", call. = FALSE)
+  }
 
-    if (is.null(mp_id) == TRUE) {
-        stop("mp_id must not be empty", call. = FALSE)
+  if (is.null(extra_args) == FALSE) {
+    extra_args <- utils::URLencode(extra_args)
+  }
+
+  session_query <- dplyr::if_else(
+    is.null(session) == FALSE,
+    paste0("&session=", session),
+    ""
+  )
+
+  lobby <- tolower(lobby)
+
+  dates <- paste0(
+    "&_properties=date&max-date=",
+    as.Date(end_date), "&min-date=",
+    as.Date(start_date)
+  )
+
+  if (lobby == "aye") {
+    baseurl <- paste0(url_util, "commonsdivisions/aye.json?mnisId=")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (is.null(extra_args) == FALSE) {
-        extra_args <- utils::URLencode(extra_args)
+    url_aye <- jsonlite::fromJSON(paste0(
+      baseurl, mp_id, dates,
+      session_query, extra_args,
+      "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
+
+    jpage <- floor(url_aye$result$totalResults / 500)
+
+    query <- paste0(
+      baseurl, mp_id, dates, session_query,
+      extra_args, "&_pageSize=500&_page="
+    )
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else if (lobby == "no") {
+    baseurl <- paste0(url_util, "commonsdivisions/no.json?mnisId=")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    session_query <- dplyr::if_else(is.null(session) == FALSE,
-                                    paste0("&session=", session),
-                                  "")
+    url_no <- jsonlite::fromJSON(paste0(
+      baseurl, mp_id, dates,
+      session_query, extra_args,
+      "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
-    lobby <- tolower(lobby)
+    jpage <- floor(url_no$result$totalResults / 500)
 
-    dates <- paste0("&_properties=date&max-date=",
-                    as.Date(end_date), "&min-date=",
-                    as.Date(start_date))
+    query <- paste0(
+      baseurl, mp_id, dates, session_query,
+      extra_args, "&_pageSize=500&_page="
+    )
 
-    if (lobby == "aye") {
-
-        baseurl <- paste0(url_util,  "commonsdivisions/aye.json?mnisId=")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        url_aye <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
-                                             session_query, extra_args,
-                                             "&_pageSize=1"),
-                                      flatten = TRUE)
-
-        jpage <- floor(url_aye$result$totalResults/500)
-
-        query <- paste0(baseurl, mp_id, dates, session_query,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else if (lobby == "no") {
-
-        baseurl <- paste0(url_util,  "commonsdivisions/no.json?mnisId=")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        url_no <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates,
-                                            session_query, extra_args,
-                                            "&_pageSize=1"),
-                                     flatten = TRUE)
-
-        jpage <- floor(url_no$result$totalResults/500)
-
-        query <- paste0(baseurl, mp_id, dates, session_query,
-                        extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else {
-
-        if (verbose == TRUE) {
-            message("Retrieving aye votes:")
-        }
-
-        df_aye <- mp_vote_record(mp_id = mp_id, lobby = "aye",
-                                 session = session, start_date = start_date,
-                                 end_date = end_date, extra_args = extra_args,
-                                 tidy = FALSE, tidy_style = tidy_style,
-                                 verbose = verbose)
-
-        df_aye$vote <- "aye"
-
-        if (verbose == TRUE) {
-            message("Retrieving no votes:")
-        }
-
-        df_no <- mp_vote_record(mp_id = mp_id, lobby = "no",
-                                session = session, start_date = start_date,
-                                end_date = end_date, extra_args = extra_args,
-                                tidy = FALSE, tidy_style = tidy_style,
-                                verbose = verbose)
-
-        df_no$divisionNumber <- NULL
-
-        df_no$vote <- "no"
-
-        df <- dplyr::bind_rows(df_aye, df_no)
-
-        if (tidy == TRUE) {
-
-            df$vote <- as.factor(df$vote)
-
-        }
-
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    if (verbose == TRUE) {
+      message("Retrieving aye votes:")
     }
 
-    if (nrow(df) == 0) {
+    df_aye <- mp_vote_record(
+      mp_id = mp_id, lobby = "aye",
+      session = session, start_date = start_date,
+      end_date = end_date, extra_args = extra_args,
+      tidy = FALSE, tidy_style = tidy_style,
+      verbose = verbose
+    )
 
-        message("The request did not return any data.
+    df_aye$vote <- "aye"
+
+    if (verbose == TRUE) {
+      message("Retrieving no votes:")
+    }
+
+    df_no <- mp_vote_record(
+      mp_id = mp_id, lobby = "no",
+      session = session, start_date = start_date,
+      end_date = end_date, extra_args = extra_args,
+      tidy = FALSE, tidy_style = tidy_style,
+      verbose = verbose
+    )
+
+    df_no$divisionNumber <- NULL
+
+    df_no$vote <- "no"
+
+    df <- dplyr::bind_rows(df_aye, df_no)
+
+    if (tidy == TRUE) {
+      df$vote <- as.factor(df$vote)
+    }
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
+  } else {
+    if (tidy == TRUE) {
+      df$date._datatype <- "POSIXct"
 
-    } else {
+      df$date._value <- as.POSIXct(df$date._value)
 
-        if (tidy == TRUE) {
-
-            df$date._datatype <- "POSIXct"
-
-            df$date._value <- as.POSIXct(df$date._value)
-
-            df <- hansard_tidy(df, tidy_style)
-
-        }
-
-        df
-
+      df <- hansard_tidy(df, tidy_style)
     }
 
+    df
+  }
 }
 
 

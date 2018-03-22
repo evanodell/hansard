@@ -35,7 +35,7 @@
 #' y <- epetition_tibble(max_signatures=500)
 #'
 #' z <- epetition_tibble(start_date='2016-12-01', end_date='2017-04-25')
-#'}
+#' }
 
 
 epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
@@ -43,54 +43,59 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
+  dates <- paste0(
+    "&max-created=", as.Date(end_date),
+    "&min-created=", as.Date(start_date)
+  )
 
-    dates <- paste0("&max-created=", as.Date(end_date),
-                    "&min-created=", as.Date(start_date))
+  status_query <- dplyr::if_else(
+    is.null(status) == TRUE,
+    "",
+    paste0("&status=", status)
+  )
 
-    status_query <- dplyr::if_else(is.null(status) == TRUE,
-                                   "",
-                                   paste0("&status=", status))
+  signature_query <- dplyr::if_else(
+    is.null(max_signatures) == TRUE,
+    paste0("&min-numberOfSignatures=", min_signatures),
+    paste0(
+      "&min-numberOfSignatures=", min_signatures,
+      "&max-numberOfSignatures=", max_signatures
+    )
+  )
 
-    signature_query <- dplyr::if_else(
-      is.null(max_signatures) == TRUE,
-      paste0("&min-numberOfSignatures=", min_signatures),
-      paste0("&min-numberOfSignatures=", min_signatures,
-             "&max-numberOfSignatures=", max_signatures))
+  baseurl <- paste0(url_util, "epetitions.json?")
 
-    baseurl <- paste0(url_util,  "epetitions.json?")
+  if (verbose == TRUE) {
+    message("Connecting to API")
+  }
 
-    if (verbose == TRUE) {
-        message("Connecting to API")
-    }
+  petition <- jsonlite::fromJSON(paste0(
+    baseurl, status_query,
+    signature_query, dates,
+    extra_args, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
-    petition <- jsonlite::fromJSON(paste0(baseurl, status_query,
-                                          signature_query, dates,
-                                          extra_args, "&_pageSize=1"),
-                                   flatten = TRUE)
+  jpage <- floor(petition$result$totalResults / 500)
 
-    jpage <- floor(petition$result$totalResults/500)
+  query <- paste0(
+    baseurl, status_query, signature_query,
+    dates, extra_args, "&_pageSize=500&_page="
+  )
 
-    query <- paste0(baseurl, status_query, signature_query,
-                    dates, extra_args, "&_pageSize=500&_page=")
+  df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-   df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    if (nrow(df) == 0) {
-
-        message("The request did not return any data.
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- epetition_tibble_tidy(df, tidy_style)  ## in utils-epetition.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- epetition_tibble_tidy(df, tidy_style) ## in utils-epetition.R
     }
+
+    df
+  }
 }
 
 

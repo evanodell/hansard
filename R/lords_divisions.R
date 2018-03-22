@@ -40,83 +40,77 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
                             start_date = "1900-01-01", end_date = Sys.Date(),
                             extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
+  dates <- paste0(
+    "&_properties=date&max-date=", as.Date(end_date),
+    "&min-date=", as.Date(start_date)
+  )
 
-    dates <- paste0("&_properties=date&max-date=", as.Date(end_date),
-                    "&min-date=", as.Date(start_date))
+  if (is.null(division_id) == TRUE) {
+    baseurl <- paste0(url_util, "lordsdivisions.json?")
 
-    if (is.null(division_id) == TRUE) {
-
-        baseurl <- paste0(url_util,  "lordsdivisions.json?")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        divis <- jsonlite::fromJSON(paste0(baseurl, dates,
-                                           extra_args, "&_pageSize=1"))
-
-        jpage <- floor(divis$result$totalResults/500)
-
-        query <- paste0(baseurl, dates, extra_args, "&_pageSize=500&_page=")
-
-        df <- loop_query(query, jpage, verbose) # in utils-loop.R
-
-    } else {
-
-        baseurl <- paste0(url_util,  "lordsdivisions/id/")
-
-        if (verbose == TRUE) {
-            message("Connecting to API")
-        }
-
-        divis <- jsonlite::fromJSON(paste0(baseurl, division_id,
-                                           ".json?", dates, extra_args),
-                                    flatten = TRUE)
-
-        if (summary == TRUE) {
-
-            df <- list()
-
-            df$about <- divis$result$primaryTopic$`_about`
-            df$title <- divis$result$primaryTopic$title
-            df$description <- divis$result$primaryTopic$description
-            df$officialContentsCount <-
-              divis$result$primaryTopic$officialContentsCount
-            df$officialNotContentsCount <-
-              divis$result$primaryTopic$officialNotContentsCount
-            df$divisionNumber <- divis$result$primaryTopic$divisionNumber
-            df$divisionResult <- divis$result$primaryTopic$divisionResult
-            df$date <- divis$result$primaryTopic$date
-            df$session <- divis$result$primaryTopic$session
-            df$uin <- divis$result$primaryTopic$uin
-
-        } else {
-
-            df <- divis$result$primaryTopic
-
-        }
-
-        df <- tibble::as_tibble(as.data.frame(df))
-
+    if (verbose == TRUE) {
+      message("Connecting to API")
     }
 
-    if (nrow(df) == 0) {
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, dates,
+      extra_args, "&_pageSize=1"
+    ))
 
-        message("The request did not return any data.
+    jpage <- floor(divis$result$totalResults / 500)
+
+    query <- paste0(baseurl, dates, extra_args, "&_pageSize=500&_page=")
+
+    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  } else {
+    baseurl <- paste0(url_util, "lordsdivisions/id/")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
+
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, division_id,
+      ".json?", dates, extra_args
+    ),
+    flatten = TRUE
+    )
+
+    if (summary == TRUE) {
+      df <- list()
+
+      df$about <- divis$result$primaryTopic$`_about`
+      df$title <- divis$result$primaryTopic$title
+      df$description <- divis$result$primaryTopic$description
+      df$officialContentsCount <-
+        divis$result$primaryTopic$officialContentsCount
+      df$officialNotContentsCount <-
+        divis$result$primaryTopic$officialNotContentsCount
+      df$divisionNumber <- divis$result$primaryTopic$divisionNumber
+      df$divisionResult <- divis$result$primaryTopic$divisionResult
+      df$date <- divis$result$primaryTopic$date
+      df$session <- divis$result$primaryTopic$session
+      df$uin <- divis$result$primaryTopic$uin
+    } else {
+      df <- divis$result$primaryTopic
+    }
+
+    df <- tibble::as_tibble(as.data.frame(df))
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
                 Please check your parameters.")
-
-    } else {
-
-        if (tidy == TRUE) {
-
-            df <- lords_division_tidy(df, division_id,
-                                      summary, tidy_style)  ##in utils-lords.R
-
-        }
-
-        df
-
+  } else {
+    if (tidy == TRUE) {
+      df <- lords_division_tidy(
+        df, division_id,
+        summary, tidy_style
+      ) ## in utils-lords.R
     }
+
+    df
+  }
 }
 
 

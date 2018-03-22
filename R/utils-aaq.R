@@ -5,174 +5,157 @@
 
 aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
                       start_date, end_date, extra_args, verbose) {
+  if (is.null(mp_id) == TRUE) {
+    mp_id_list <- NA
+  } else {
+    mp_id_list <- as.list(mp_id)
+  }
 
-    if (is.null(mp_id) == TRUE) {
+  if (is.null(tabling_mp_id) == TRUE) {
+    tabling_mp_id_list <- NA
+  } else {
+    tabling_mp_id_list <- as.list(tabling_mp_id)
+  }
 
-        mp_id_list <- NA
+  if (is.null(answering_body) == TRUE) {
+    answering_body_list <- NA
+  } else {
+    answering_body_list <- as.list(answering_body)
+  }
 
-    } else {
+  search_grid <- expand.grid(mp_id_list, tabling_mp_id_list,
+    answering_body_list,
+    stringsAsFactors = FALSE
+  )
 
-        mp_id_list <- as.list(mp_id)
+  names(search_grid)[names(search_grid) == "Var1"] <- "answering_mp"
+  names(search_grid)[names(search_grid) == "Var2"] <- "tabling_mp"
+  names(search_grid)[names(search_grid) == "Var3"] <- "department"
 
-    }
+  # search_grid
 
-    if (is.null(tabling_mp_id) == TRUE) {
+  dat <- vector("list", nrow(search_grid))
 
-        tabling_mp_id_list <- NA
+  for (i in 1:nrow(search_grid)) {
+    dat[[i]] <- hansard::all_answered_questions(
+      mp_id = search_grid$answering_mp[[i]],
+      tabling_mp_id = search_grid$tabling_mp[[i]],
+      house = house,
+      answering_body = search_grid$department[[i]],
+      end_date = end_date,
+      start_date = start_date,
+      extra_args = extra_args,
+      tidy = FALSE,
+      verbose = verbose
+    )
+  }
 
-    } else {
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
-        tabling_mp_id_list <- as.list(tabling_mp_id)
+  df <- dplyr::bind_rows(dat)
 
-    }
+  names(df)[names(df) == "_about"] <- "about"
 
-    if (is.null(answering_body) == TRUE) {
-
-        answering_body_list <- NA
-
-    } else {
-
-        answering_body_list <- as.list(answering_body)
-
-    }
-
-    search_grid <- expand.grid(mp_id_list, tabling_mp_id_list,
-                               answering_body_list, stringsAsFactors = FALSE)
-
-    names(search_grid)[names(search_grid) == "Var1"] <- "answering_mp"
-    names(search_grid)[names(search_grid) == "Var2"] <- "tabling_mp"
-    names(search_grid)[names(search_grid) == "Var3"] <- "department"
-
-    #search_grid
-
-    dat <- vector("list", nrow(search_grid))
-
-    for (i in 1:nrow(search_grid)) {
-
-        dat[[i]] <- hansard::all_answered_questions(
-          mp_id = search_grid$answering_mp[[i]],
-          tabling_mp_id = search_grid$tabling_mp[[i]],
-          house = house,
-          answering_body = search_grid$department[[i]],
-          end_date = end_date,
-          start_date = start_date,
-          extra_args = extra_args,
-          tidy = FALSE,
-          verbose = verbose)
-
-    }
-
-    dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
-
-    df <- dplyr::bind_rows(dat)
-
-    names(df)[names(df) == "_about"] <- "about"
-
-    df
-
+  df
 }
 
 
 
 # all_answered_questions tidying -----------------------------------------
 aaq_tidy <- function(df, tidy_style) {
+  if (nrow(df) > 0) {
+    names(df)[names(df) == "_about"] <- "about"
 
-    if (nrow(df) > 0) {
+    df$answer._about <- NULL
 
-        names(df)[names(df) == "_about"] <- "about"
+    names(df) <- gsub("^answer\\.", "", names(df), perl = TRUE)
 
-        df$answer._about <- NULL
+    df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
 
-        names(df) <- gsub("^answer\\.", "", names(df), perl = TRUE)
+    if ("groupedQuestionUIN" %in% colnames(df)) {
+      if ("groupedQuestionUIN._value" %in% colnames(df)) {
+        df$groupedQuestionUIN <- ifelse(df$groupedQuestionUIN == "NULL",
+          df$groupedQuestionUIN._value, df$groupedQuestionUIN
+        )
 
-        df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
+        df$groupedQuestionUIN._value <- NULL
+      }
 
-        if ("groupedQuestionUIN" %in% colnames(df)) {
+      df$groupedQuestionUIN <- stringi::stri_replace_all_fixed(
+        df$groupedQuestionUIN,
+        "`_value` = ", "",
+        vectorize_all = FALSE
+      )
 
-            if ("groupedQuestionUIN._value" %in% colnames(df)) {
-
-                df$groupedQuestionUIN <- ifelse(df$groupedQuestionUIN == "NULL",
-                  df$groupedQuestionUIN._value, df$groupedQuestionUIN)
-
-                df$groupedQuestionUIN._value <- NULL
-
-            }
-
-            df$groupedQuestionUIN <- stringi::stri_replace_all_fixed(
-              df$groupedQuestionUIN,
-              "`_value` = ", "",
-              vectorize_all = FALSE)
-
-            df$groupedQuestionUIN <- as.list(df$groupedQuestionUIN)
-
-        }
-
-        df$answeringMember._about <- gsub("http://data.parliament.uk/members/",
-                                          "",
-                                          df$answeringMember._about)
-
-        df$tablingMember._about <- gsub("http://data.parliament.uk/members/",
-                                        "",
-                                        df$tablingMember._about)
-
-        df$AnsweringBody <- unlist(df$AnsweringBody)
-
-        df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
-
-        df$questionFirstAnswered <- df$questionFirstAnswered
-
-        df <- tidyr::unnest_(df, "questionFirstAnswered")
-
-        names(df)[names(df) == "_value"] <- "answerDateTime"
-
-        df$`_datatype` <- NULL
-
-        df <- move_me(df, c("answerDateTime"), "after", "dateOfAnswer._value")
-
-        df$answerDateTime <- gsub("T", " ", df$answerDateTime)
-
-        df$answerDateTime <- as.POSIXct(
-                            lubridate::parse_date_time(df$answerDateTime,
-                                                       "Y-m-d H:M:S")
-                            )
-
-        df$dateOfAnswer._datatype <- "POXIXct"
-
-        if ("attachment" %in% colnames(df)) {
-
-            for (i in 1:nrow(df)) {
-
-                if (is.null(names(df$attachment[[i]])) == FALSE) {
-
-                  names(df$attachment[[i]])[names(df$attachment[[i]]) ==
-                                              "_about"] <- "about"
-
-                  names(df$attachment[[i]])[names(df$attachment[[i]]) ==
-                                              "fileName._value"] <- "fileName"
-
-                }
-
-            }
-
-        }
-
-        df$legislature <- dplyr::bind_rows(df$legislature)#get legislature info
-
-        df$legislature.prefLabel._value <- df$legislature$prefLabel._value
-
-        df$legislature_about <- df$legislature$`_about`
-
-        df$legislature_about <- gsub("http://data.parliament.uk/terms/",
-                                     "", df$legislature_about)
-
-        df$legislature <- NULL #delete now superfluous column
-
+      df$groupedQuestionUIN <- as.list(df$groupedQuestionUIN)
     }
 
-    df <- hansard_tidy(df, tidy_style)
+    df$answeringMember._about <- gsub(
+      "http://data.parliament.uk/members/",
+      "",
+      df$answeringMember._about
+    )
 
-    df
+    df$tablingMember._about <- gsub(
+      "http://data.parliament.uk/members/",
+      "",
+      df$tablingMember._about
+    )
 
+    df$AnsweringBody <- unlist(df$AnsweringBody)
+
+    df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
+
+    df$questionFirstAnswered <- df$questionFirstAnswered
+
+    df <- tidyr::unnest_(df, "questionFirstAnswered")
+
+    names(df)[names(df) == "_value"] <- "answerDateTime"
+
+    df$`_datatype` <- NULL
+
+    df <- move_me(df, c("answerDateTime"), "after", "dateOfAnswer._value")
+
+    df$answerDateTime <- gsub("T", " ", df$answerDateTime)
+
+    df$answerDateTime <- as.POSIXct(
+      lubridate::parse_date_time(
+        df$answerDateTime,
+        "Y-m-d H:M:S"
+      )
+    )
+
+    df$dateOfAnswer._datatype <- "POXIXct"
+
+    if ("attachment" %in% colnames(df)) {
+      for (i in 1:nrow(df)) {
+        if (is.null(names(df$attachment[[i]])) == FALSE) {
+          names(df$attachment[[i]])[names(df$attachment[[i]]) ==
+            "_about"] <- "about"
+
+          names(df$attachment[[i]])[names(df$attachment[[i]]) ==
+            "fileName._value"] <- "fileName"
+        }
+      }
+    }
+
+    df$legislature <- dplyr::bind_rows(df$legislature) # get legislature info
+
+    df$legislature.prefLabel._value <- df$legislature$prefLabel._value
+
+    df$legislature_about <- df$legislature$`_about`
+
+    df$legislature_about <- gsub(
+      "http://data.parliament.uk/terms/",
+      "", df$legislature_about
+    )
+
+    df$legislature <- NULL # delete now superfluous column
+  }
+
+  df <- hansard_tidy(df, tidy_style)
+
+  df
 }
 
 
@@ -182,21 +165,21 @@ aaq_tidy <- function(df, tidy_style) {
 ## Courtesy of A5C1D2H2I1M1N2O1R2T1 on StackOverflow, question 18339370
 
 move_me <- function(data, tomove, where = "last", ba = NULL) {
+  temp <- setdiff(names(data), tomove)
 
-    temp <- setdiff(names(data), tomove)
-
-    x <- switch(where,
-                first = data[c(tomove, temp)],
-                last = data[c(temp, tomove)],
-                before = {
-            if (is.null(ba)) stop("must specify ba column")
-            if (length(ba) > 1) stop("ba must be a single character string")
-            data[append(temp, values = tomove, after = (match(ba, temp) - 1))]
-        },
-        after = {
-            if (is.null(ba)) stop("must specify ba column")
-            if (length(ba) > 1) stop("ba must be a single character string")
-            data[append(temp, values = tomove, after = (match(ba, temp)))]
-        })
-    x
+  x <- switch(where,
+    first = data[c(tomove, temp)],
+    last = data[c(temp, tomove)],
+    before = {
+      if (is.null(ba)) stop("must specify ba column")
+      if (length(ba) > 1) stop("ba must be a single character string")
+      data[append(temp, values = tomove, after = (match(ba, temp) - 1))]
+    },
+    after = {
+      if (is.null(ba)) stop("must specify ba column")
+      if (length(ba) > 1) stop("ba must be a single character string")
+      data[append(temp, values = tomove, after = (match(ba, temp)))]
+    }
+  )
+  x
 }
