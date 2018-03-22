@@ -83,7 +83,7 @@ tibble::glimpse(x)
 With the `summary` parameter, we can return a brief summary table of votes:
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
-y <- commons_divisions(722300, summary=TRUE)
+y <- commons_divisions(722300, summary = TRUE)
 tibble::glimpse(y)
 ```
 
