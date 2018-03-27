@@ -58,9 +58,13 @@ names, or a list of IDs or department names, respectively.
 }
 \examples{
 \dontrun{
+
+# Oral questions from a single MP to a single department
 x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 
-x <- commons_oral_questions(mp_id=c(4019,4051,4588),
+
+## Questions from multiple MPs and to multiple departments
+y <- commons_oral_questions(mp_id=c(4019,4051,4588),
                             answering_department = c('education', 'health'))
 }
 }

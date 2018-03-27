@@ -3,6 +3,7 @@
 #' House publications
 #'
 #' Imports data on House of Commons and House of Lords publications.
+#'
 #' @param ID Publication ID. Defaults to \code{NULL}. If not \code{NULL},
 #'  requests a tibble with information on the given publication.
 #' @param house The house that produced the particular publication. Accepts
@@ -24,9 +25,11 @@
 #' Commons and House of Lords
 #' @export
 #' @examples \dontrun{
+#' # All publications in the house of commons
 #' x <- publication_logs(house='commons')
 #'
-#' x <- publication_logs(683267)
+#' # Returns a given publication
+#' y <- publication_logs(683267)
 #' }
 
 publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",

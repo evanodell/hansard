@@ -61,8 +61,11 @@ on how each member voted, or a summary of vote totals.
 }
 \examples{
 \dontrun{
+
+## All commons divisions
 x <- commons_divisions()
 
-x <- commons_divisions(division_id = 694163, summary = FALSE)
+## Vote breakdown of specific commons division
+y <- commons_divisions(division_id = 694163, summary = FALSE)
 }
 }

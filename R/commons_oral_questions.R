@@ -30,9 +30,13 @@
 #' @seealso \code{\link{mp_questions}}
 #' @export
 #' @examples \dontrun{
+#'
+#' # Oral questions from a single MP to a single department
 #' x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
 #'
-#' x <- commons_oral_questions(mp_id=c(4019,4051,4588),
+#'
+#' ## Questions from multiple MPs and to multiple departments
+#' y <- commons_oral_questions(mp_id=c(4019,4051,4588),
 #'                             answering_department = c('education', 'health'))
 #' }
 
@@ -50,20 +54,15 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
   } else {
     mp_id <- dplyr::if_else(
       is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
-      paste0(
-        "&tablingMember=http://data.parliament.uk/members/", mp_id
-      ),
-      ""
-    )
+      paste0("&tablingMember=http://data.parliament.uk/members/", mp_id),"")
 
     json_query <- dplyr::if_else(
       is.null(answering_department) == FALSE &&
         is.na(answering_department) == FALSE,
       utils::URLencode(paste0(
         "/answeringdepartment.json?q=",
-        answering_department
-      )), ".json?"
-    )
+        answering_department)), ".json?"
+      )
 
     dates <- paste0(
       "&_properties=AnswerDate&max-AnswerDate=",

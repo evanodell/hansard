@@ -26,13 +26,15 @@
 #' @return A tibble with details on written questions in the House of Commons.
 #' @export
 #' @examples \dontrun{
-#' x <- commons_written_questions(mp_id=410, 'cabinet office')
 #' # Returns a tibble with written questions from Jon Trickett,
 #' # answered by the Cabinet Office.
+#' x <- commons_written_questions(mp_id = 410,
+#'                                answering_department = 'cabinet office')
 #'
-#' x <- commons_written_questions(mp_id=c(410,172), c('cabinet','home'))
 #' # Returns a tibble with written questions from Jon Trickett or Diane Abbott,
 #' # and answered by the Cabinet Office or the Home Office.
+#' x <- commons_written_questions(mp_id = c(410,172),
+#'                                answering_department = c('cabinet','home'))
 #' }
 
 commons_written_questions <- function(mp_id = NULL,
@@ -43,9 +45,8 @@ commons_written_questions <- function(mp_id = NULL,
                                       tidy = TRUE,
                                       tidy_style = "snake_case",
                                       verbose = TRUE) {
+  ## For lists queries
   if (length(mp_id) > 1 || length(answering_department) > 1) {
-    ## For lists queries
-
     df <- commons_written_questions_multi(
       mp_id, answering_department,
       start_date, end_date,
@@ -85,19 +86,14 @@ commons_written_questions <- function(mp_id = NULL,
       message("Connecting to API")
     }
 
-    writ <- jsonlite::fromJSON(paste0(
-      baseurl, json_query, mp_id_query,
-      dates, extra_args, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
+    writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id_query,
+                                      dates, extra_args, "&_pageSize=1"),
+                               flatten = TRUE)
 
     jpage <- floor(writ$result$totalResults / 500)
 
-    query <- paste0(
-      baseurl, json_query, mp_id_query, dates,
-      extra_args, "&_pageSize=500&_page="
-    )
+    query <- paste0(baseurl, json_query, mp_id_query, dates,
+                    extra_args, "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

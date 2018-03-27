@@ -1,11 +1,15 @@
 
 
-# hansard 0.6.1.9000
+# hansard 0.6.2
 
 ## Code changes
 
 If `tidy=TRUE`, URLs are consistently removed from `about` columns in all 
 functions.
+
+## Documentation updates
+
+Improvements to some example descriptions
 
 
 # hansard 0.6.1
