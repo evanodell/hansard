@@ -12,7 +12,7 @@ Description: Provides functions to download data from the
   as well as some functions designed to retrieve specific pieces of commonly 
   used data. Functions for each new API will be added as and when they become
   available.
-URL: http://docs.evanodell.com/hansard
+URL: https://docs.evanodell.com/hansard
 BugReports: https://github.com/EvanOdell/hansard/issues
 License: MIT + file LICENSE
 LazyData: TRUE

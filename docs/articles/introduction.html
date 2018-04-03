@@ -36,8 +36,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -109,8 +113,11 @@
       <h1>Introduction to hansard</h1>
                         <h4 class="author">Evan Odell</h4>
             
-            <h4 class="date">2018-03-13</h4>
-          </div>
+            <h4 class="date">2018-03-28</h4>
+      
+      
+
+    </div>
 
     
     
@@ -182,7 +189,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(z)</a></code></pre></div>
 <pre><code>## Observations: 38
 ## Variables: 5
-## $ about         &lt;chr&gt; "http://data.parliament.uk/resources/722300", "h...
+## $ about         &lt;chr&gt; "722300", "714865", "714866", "714868", "713962"...
 ## $ title         &lt;chr&gt; "Early Parliamentary General Election", "Pension...
 ## $ uin           &lt;chr&gt; "CD:2017-04-19:264", "CD:2017-03-29:260", "CD:20...
 ## $ date_value    &lt;dttm&gt; 2017-04-19, 2017-03-29, 2017-03-29, 2017-03-29,...
@@ -201,7 +208,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 ## $ about                &lt;chr&gt; "172", "4573", "1579", "4088", "3950", "1...
 ## $ label_value          &lt;chr&gt; "Biography information for Ms Diane Abbot...</code></pre>
 <p>With the <code>summary</code> parameter, we can return a brief summary table of votes:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw"><a href="../reference/commons_divisions.html">commons_divisions</a></span>(<span class="dv">722300</span>, <span class="dt">summary=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw"><a href="../reference/commons_divisions.html">commons_divisions</a></span>(<span class="dv">722300</span>, <span class="dt">summary =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## Connecting to API</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(y)</a></code></pre></div>
 <pre><code>## Observations: 1
@@ -344,12 +351,12 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.377   0.105   6.954</code></pre>
+##   0.462   0.138   6.299</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">system.time</span>(with_topic &lt;-<span class="st"> </span><span class="kw"><a href="../reference/research_briefings.html">research_briefings</a></span>(<span class="dt">topic =</span> research_topics_list[[<span class="dv">7</span>]], <span class="dt">subtopic=</span>research_subtopics_list[[<span class="dv">7</span>]][<span class="dv">10</span>]))</a></code></pre></div>
 <pre><code>## Connecting to API
 ## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.023   0.003   0.165</code></pre>
+##   0.026   0.003   0.154</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">identical</span>(with_topic, without_topic)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.</p>

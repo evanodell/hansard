@@ -25,15 +25,22 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="All answered parliamentary questions — all_answered_questions" />
 
-<meta property="og:description" content="Imports data on all answered parliamentary questions in the House of Commons
-and/or in the House of Lords. The mp_id, tabling_mp_id and
-answering_body parameters accept a single ID or department names,
-or a list of IDs or department names, respectively." />
+<meta property="og:description" content="Imports data on all answered parliamentary questions in the
+House of Commons and/or in the House of Lords. The mp_id,
+tabling_mp_id and answering_body parameters accept a single
+ID or department names, or a list of IDs or department names, respectively.
+This is the most flexible of the various functions that look
+up questions, as it queries all types of questions in both houses with a
+wide selection of parameters: The member who asks the question, the member
+who answers it and the relevant department can all be used to query the API.
+mp_id, tabling_mp_id and answering_body all accept
+lists of multiple relevant search parameters. This can be in the form of a
+list, a data.frame column, a character vector, etc." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -68,8 +75,12 @@ or a list of IDs or department names, respectively." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -139,13 +150,21 @@ or a list of IDs or department names, respectively." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>All answered parliamentary questions</h1>
+    
     </div>
 
     
-    <p>Imports data on all answered parliamentary questions in the House of Commons
-and/or in the House of Lords. The <code>mp_id</code>, <code>tabling_mp_id</code> and
-<code>answering_body</code> parameters accept a single ID or department names,
-or a list of IDs or department names, respectively.</p>
+    <p>Imports data on all answered parliamentary questions in the
+House of Commons and/or in the House of Lords. The <code>mp_id</code>,
+<code>tabling_mp_id</code> and <code>answering_body</code> parameters accept a single
+ID or department names, or a list of IDs or department names, respectively.</p>
+<p>This is the most flexible of the various functions that look
+up questions, as it queries all types of questions in both houses with a
+wide selection of parameters: The member who asks the question, the member
+who answers it and the relevant department can all be used to query the API.
+<code>mp_id</code>, <code>tabling_mp_id</code> and <code>answering_body</code> all accept
+lists of multiple relevant search parameters. This can be in the form of a
+list, a data.frame column, a character vector, etc.</p>
     
 
     <pre class="usage"><span class='fu'>all_answered_questions</span>(<span class='kw'>mp_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tabling_mp_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>house</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -158,25 +177,25 @@ or a list of IDs or department names, respectively.</p>
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>mp_id</th>
-      <td><p>Accepts a member ID or vector of member IDs, and returns a tibble
-with all available questions answered by that member. Includes both oral
-and written questions, and includes members of the House of Commons and the
-House of Lords. If <code>NULL</code>, returns a tibble with all available answered
-questions, subject to other parameters. Defaults to <code>NULL</code>.</p></td>
+      <td><p>Accepts a member ID or vector of member IDs, and returns a
+tibble with all available questions answered by that member. Includes both
+oral and written questions, and includes members of the House of Commons
+and the House of Lords. If <code>NULL</code>, returns a tibble with all available
+answered questions, subject to other parameters. Defaults to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>tabling_mp_id</th>
-      <td><p>Accepts a member ID or vector of member IDs, and returns
-a tibble with all available questions asked by that member, subject to all
-other parameters. Includes both oral and written questions, and includes
-members of the House of Commons and the House of Lords. If <code>NULL</code>,
-returns a tibble with all available answered questions, subject to other
-parameters. Defaults to <code>NULL</code>.</p></td>
+      <td><p>Accepts a member ID or vector of member IDs, and
+returns a tibble with all available questions asked by that member,
+subject to all other parameters. Includes both oral and written questions,
+and includes members of the House of Commons and the House of Lords. If
+<code>NULL</code>, returns a tibble with all available answered questions,
+subject to other parameters. Defaults to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>house</th>
@@ -234,8 +253,8 @@ and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress
-of the API request. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     
@@ -244,50 +263,44 @@ of the API request. Defaults to <code>TRUE</code>.</p></td>
     <p>A tibble with details on all answered questions in the House
 of Commons and the House of Lords.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>This is the most flexible of the various functions that look up questions,
-as it queries all types of questions in both houses with a wide selection
-of parameters: The member who asks the question, the member who answers
-it and the relevant department can all be used to query the API.
-<code>mp_id</code>, <code>tabling_mp_id</code> and <code>answering_body</code> all accept
-lists of multiple relevant search parameters. This can be in the form of a
-list, a data.frame column, a character vector, etc.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='commons_answered_questions.html'>commons_answered_questions</a></code>
-    <code><a href='commons_oral_questions.html'>commons_oral_questions</a></code>
-    <code><a href='commons_oral_question_times.html'>commons_oral_question_times</a></code>
-    <code><a href='commons_written_questions.html'>commons_written_questions</a></code>
-    <code><a href='lords_written_questions.html'>lords_written_questions</a></code>
-    <code><a href='mp_questions.html'>mp_questions</a></code></p>
+    <p><code><a href='commons_answered_questions.html'>commons_answered_questions</a></code></p>
+<p><code><a href='commons_oral_questions.html'>commons_oral_questions</a></code></p>
+<p><code><a href='commons_oral_question_times.html'>commons_oral_question_times</a></code></p>
+<p><code><a href='commons_written_questions.html'>commons_written_questions</a></code></p>
+<p><code><a href='lords_written_questions.html'>lords_written_questions</a></code></p>
+<p><code><a href='mp_questions.html'>mp_questions</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># All questions answered by Nicola Blackwood from 1 January 2017 onwards</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>all_answered_questions</span>(<span class='fl'>4019</span>, <span class='kw'>start_date</span> <span class='kw'>=</span><span class='st'>'2017-01-01'</span>)
 
+<span class='co'># All questions answered by Nicola Blackwood from 1 January 2017 onwards</span>
+<span class='co'># returns variables in camelCase style</span>
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>all_answered_questions</span>(<span class='fl'>4019</span>, <span class='kw'>start_date</span> <span class='kw'>=</span><span class='st'>'2017-01-01'</span>,
                                         <span class='kw'>tidy_style</span><span class='kw'>=</span><span class='st'>'camelCase'</span>)
 
+<span class='co'># All questions asked by Andrew Dismore from 1 January 2017 onwards</span>
 <span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'>hansard_all_answered_questions</span>(<span class='kw'>tabling_mp_id</span><span class='kw'>=</span><span class='fl'>179</span>,
                                     <span class='kw'>start_date</span> <span class='kw'>=</span><span class='st'>'2017-01-01'</span>)
 
+<span class='co'># Return all questions asked in the House of Lords</span>
+<span class='co'># answered by the Department for Education.</span>
 <span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'>hansard_all_answered_questions</span>(<span class='kw'>house</span><span class='kw'>=</span><span class='st'>'lords'</span>, <span class='kw'>answering_body</span><span class='kw'>=</span><span class='fl'>60</span>)
+
 <span class='co'># Returns all questions asked in the House of Lords</span>
 <span class='co'># answered by the Department for Education.</span>
-
 <span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'>hansard_all_answered_questions</span>(<span class='kw'>house</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>answering_body</span><span class='kw'>=</span><span class='st'>'Education'</span>)
-<span class='co'># Returns all questions asked in the House of Lords</span>
-<span class='co'># answered by the Department for Education.</span>
 
+<span class='co'># Accepts multiple inputs for mp_id, tabling_mp_id and answering_body</span>
 <span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fu'>hansard_all_answered_questions</span>(<span class='kw'>mp_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>4019</span>, <span class='fl'>3980</span>),
                                     <span class='kw'>tabling_mp_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>338</span>, <span class='fl'>172</span>),
                                     <span class='kw'>answering_body</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'health'</span>, <span class='st'>'justice'</span>),
                                     <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>'2016-12-18'</span>,
                                     <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='st'>'2017-03-12'</span>)
-<span class='co'># Accepts multiple inputs for mp_id, tabling_mp_id and answering_body</span>
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -296,8 +309,6 @@ list, a data.frame column, a character vector, etc.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

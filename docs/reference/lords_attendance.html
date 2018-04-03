@@ -27,8 +27,6 @@ Deprecated function, please see <code><a href='lords_attendance_date.html'>lords
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="House of Lords attendance - Deprecated
 Deprecated function, please see <code><a href='lords_attendance_date.html'>lords_attendance_date</a></code> and
 <code><a href='lords_attendance_session.html'>lords_attendance_session</a></code>. — lords_attendance" />
@@ -38,6 +36,8 @@ data is not as tidy as some of the others that are accessible through this
 API, and so additional work to prepare this data in a way that you want may
 be required." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -72,8 +72,12 @@ be required." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -145,6 +149,7 @@ be required." />
     <h1>House of Lords attendance - Deprecated
 Deprecated function, please see <code><a href='lords_attendance_date.html'>lords_attendance_date</a></code> and
 <code><a href='lords_attendance_session.html'>lords_attendance_session</a></code>.</h1>
+    
     </div>
 
     
@@ -162,7 +167,7 @@ be required.</p>
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -208,8 +213,8 @@ and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress
-of the API request. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     

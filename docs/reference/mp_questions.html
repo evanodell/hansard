@@ -25,13 +25,13 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="Questions asked by a given MP or MPs — mp_questions" />
 
 <meta property="og:description" content="Accepts an ID number for a member of the House of Commons, and returns a
 tibble of of all their oral and written questions." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -66,8 +66,12 @@ tibble of of all their oral and written questions." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -137,6 +141,7 @@ tibble of of all their oral and written questions." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Questions asked by a given MP or MPs</h1>
+    
     </div>
 
     
@@ -152,7 +157,7 @@ tibble of of all their oral and written questions.</p>
   <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -203,8 +208,8 @@ and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress
-of the API request. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     
@@ -215,12 +220,12 @@ member of the House of Commons.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='all_answered_questions.html'>all_answered_questions</a></code>
-    <code><a href='commons_answered_questions.html'>commons_answered_questions</a></code>
-    <code><a href='commons_oral_questions.html'>commons_oral_questions</a></code>
-    <code><a href='commons_oral_question_times.html'>commons_oral_question_times</a></code>
-    <code><a href='commons_written_questions.html'>commons_written_questions</a></code>
-    <code><a href='lords_written_questions.html'>lords_written_questions</a></code></p>
+    <p><code><a href='all_answered_questions.html'>all_answered_questions</a></code></p>
+<p><code><a href='commons_answered_questions.html'>commons_answered_questions</a></code></p>
+<p><code><a href='commons_oral_questions.html'>commons_oral_questions</a></code></p>
+<p><code><a href='commons_oral_question_times.html'>commons_oral_question_times</a></code></p>
+<p><code><a href='commons_written_questions.html'>commons_written_questions</a></code></p>
+<p><code><a href='lords_written_questions.html'>lords_written_questions</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

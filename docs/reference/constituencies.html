@@ -25,13 +25,13 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="House of Commons constituencies — constituencies" />
 
 <meta property="og:description" content="Imports data on House of Commons constituencies, returning a tibble of all
 current and/or former Westminster constituencies, subject to parameters." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -66,8 +66,12 @@ current and/or former Westminster constituencies, subject to parameters." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -137,6 +141,7 @@ current and/or former Westminster constituencies, subject to parameters." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>House of Commons constituencies</h1>
+    
     </div>
 
     
@@ -150,7 +155,7 @@ current and/or former Westminster constituencies, subject to parameters.</p>
 <span class='fu'>hansard_constituencies</span>(<span class='kw'>current</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -180,8 +185,8 @@ and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress
-of the API request. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     

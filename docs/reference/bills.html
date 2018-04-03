@@ -25,12 +25,12 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="Bill data — bills" />
 
 <meta property="og:description" content="Imports data on House of Commons and House of Lords bills." />
 <meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -65,8 +65,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">hansard</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">hansard</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -136,6 +140,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bill data</h1>
+    
     </div>
 
     
@@ -150,7 +155,7 @@
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -200,8 +205,8 @@ and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress
-of the API request. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     
@@ -212,19 +217,23 @@ and the House of Commons.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='bill_stage_types.html'>bill_stage_types</a></code>
-    <code><a href='bill_publications.html'>bill_publications</a></code></p>
+    <p><code><a href='bill_stage_types.html'>bill_stage_types</a></code></p>
+<p><code><a href='bill_publications.html'>bill_publications</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># Download data on all bills</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>()
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>(<span class='kw'>amendments</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='co'># Download data on all bill amendments</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>(<span class='kw'>amendments</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
+<span class='co'># Download data on a specific bills</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>(<span class='fl'>1719</span>)
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>(<span class='kw'>start_date</span> <span class='kw'>=</span><span class='st'>'2016-01-01'</span>)
+<span class='co'># Download data on all bills introduced after a given date</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bills</span>(<span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>'2016-01-01'</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
