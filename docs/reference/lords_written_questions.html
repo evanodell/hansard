@@ -25,6 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="House of Lords written questions — lords_written_questions" />
 
 <meta property="og:description" content="Imports data on House of Lords written questions asked by a given peer(s),
@@ -41,16 +44,14 @@ and/or directed to a given department." />
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90706059-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-90706059-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-90706059-1');
 </script>
 
   </head>
@@ -110,6 +111,12 @@ and/or directed to a given department." />
       <a href="http://docs.evanodell.com/nomisr">nomisr</a>
     </li>
     <li>
+      <a href="http://docs.evanodell.com/fixerapi">fixerapi</a>
+    </li>
+    <li>
+      <a href="http://docs.evanodell.com/refuge">refuge</a>
+    </li>
+    <li>
       <a href="http://docs.evanodell.com/emisc">emisc</a>
     </li>
   </ul>
@@ -130,6 +137,7 @@ and/or directed to a given department." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -137,17 +145,20 @@ and/or directed to a given department." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>House of Lords written questions</h1>
     
+    <div class="hidden name"><code>lords_written_questions.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Imports data on House of Lords written questions asked by a given peer(s),
 and/or directed to a given department.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>lords_written_questions</span>(<span class='kw'>peer_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>answering_department</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -225,12 +236,12 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='all_answered_questions.html'>all_answered_questions</a></code></p>
+    <div class='dont-index'><p><code><a href='all_answered_questions.html'>all_answered_questions</a></code></p>
 <p><code><a href='commons_answered_questions.html'>commons_answered_questions</a></code></p>
 <p><code><a href='commons_oral_questions.html'>commons_oral_questions</a></code></p>
 <p><code><a href='commons_oral_question_times.html'>commons_oral_question_times</a></code></p>
 <p><code><a href='commons_written_questions.html'>commons_written_questions</a></code></p>
-<p><code><a href='mp_questions.html'>mp_questions</a></code></p>
+<p><code><a href='mp_questions.html'>mp_questions</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -268,6 +279,8 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

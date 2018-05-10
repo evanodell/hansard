@@ -27,6 +27,9 @@ Deprecated function, please see <code><a href='lords_attendance_date.html'>lords
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="House of Lords attendance - Deprecated
 Deprecated function, please see <code><a href='lords_attendance_date.html'>lords_attendance_date</a></code> and
 <code><a href='lords_attendance_session.html'>lords_attendance_session</a></code>. — lords_attendance" />
@@ -47,16 +50,14 @@ be required." />
 <![endif]-->
 
 
-<!-- Google analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90706059-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-90706059-1', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-90706059-1');
 </script>
 
   </head>
@@ -116,6 +117,12 @@ be required." />
       <a href="http://docs.evanodell.com/nomisr">nomisr</a>
     </li>
     <li>
+      <a href="http://docs.evanodell.com/fixerapi">fixerapi</a>
+    </li>
+    <li>
+      <a href="http://docs.evanodell.com/refuge">refuge</a>
+    </li>
+    <li>
       <a href="http://docs.evanodell.com/emisc">emisc</a>
     </li>
   </ul>
@@ -136,6 +143,7 @@ be required." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -143,21 +151,24 @@ be required." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>House of Lords attendance - Deprecated
 Deprecated function, please see <code><a href='lords_attendance_date.html'>lords_attendance_date</a></code> and
 <code><a href='lords_attendance_session.html'>lords_attendance_session</a></code>.</h1>
     
+    <div class="hidden name"><code>lords_attendance.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Imports data on House of Lords attendance. Please note that the attendance
 data is not as tidy as some of the others that are accessible through this
 API, and so additional work to prepare this data in a way that you want may
 be required.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>lords_attendance</span>(<span class='kw'>session_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>,
   <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
@@ -252,6 +263,8 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

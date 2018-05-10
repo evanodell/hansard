@@ -132,22 +132,18 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     house <- tolower(house)
 
-    house_query <- dplyr::case_when(
-      house == "commons" | house == "1" ~
-      "&legislature.prefLabel=House%20of%20Commons",
-      house == "lords" | house == "2" ~
-      "&legislature.prefLabel=House%20of%20Lords",
-      TRUE ~ ""
-    )
+    if (house == "commons" | house == "1") {
+      house_query <- "&legislature.prefLabel=House%20of%20Commons"
+    } else if (house == "lords" | house == "2") {
+      house_query <- "&legislature.prefLabel=House%20of%20Lords"
+    } else {
+      house_query <- ""
+    }
 
-    answering_member_query <- dplyr::if_else(
-      is.null(mp_id) == TRUE ||
-        is.na(mp_id) == TRUE,
-      "",
-      paste0(
-        "&answer.answeringMember=http://data.parliament.uk/members/",
-        mp_id
-      )
+    answering_member_query <- ifelse(
+      is.null(mp_id) == TRUE || is.na(mp_id) == TRUE, "",
+      paste0("&answer.answeringMember=http://data.parliament.uk/members/",
+             mp_id)
     )
 
     tabling_member_query <- dplyr::if_else(
