@@ -48,15 +48,9 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
     as.Date(start_date)
   )
 
-  id_query <- dplyr::case_when(
-    is.null(ID) == FALSE ~ paste0("&identifier=", ID),
-    TRUE ~ ""
-  )
+  id_query <- ifelse(is.null(ID) == FALSE, paste0("&identifier=", ID), "")
 
-  amend_query <- dplyr::case_when(
-    amendments == TRUE ~ "withamendments.json?",
-    TRUE ~ ".json?"
-  )
+  amend_query <- ifelse(amendments, "withamendments.json?", ".json?")
 
   baseurl <- paste0(url_util, "bills")
 

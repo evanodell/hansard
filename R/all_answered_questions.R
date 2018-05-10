@@ -141,7 +141,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     }
 
     answering_member_query <- ifelse(
-      is.null(mp_id) == TRUE || is.na(mp_id) == TRUE, "",
+      is.null(mp_id) || is.na(mp_id), "",
       paste0(
         "&answer.answeringMember=http://data.parliament.uk/members/",
         mp_id
@@ -160,19 +160,21 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     )
     ## In case departmental IDs are passed as strings.
 
-      if (is.null(answering_body) == TRUE || is.na(answering_body) == TRUE) {
-        dept_query <- ""
-      } else if(is.na(answering_body_check) == FALSE) {
-        dept_query <- paste0("&answeringDeptId=", answering_body)
-      } else {
-        dept_query <- utils::URLencode(
-          paste0(
-            "&answeringDeptShortName=",
-            gsub("\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",
-                 tolower(answering_body), perl=TRUE)
+    if (is.null(answering_body) == TRUE || is.na(answering_body) == TRUE) {
+      dept_query <- ""
+    } else if (is.na(answering_body_check) == FALSE) {
+      dept_query <- paste0("&answeringDeptId=", answering_body)
+    } else {
+      dept_query <- utils::URLencode(
+        paste0(
+          "&answeringDeptShortName=",
+          gsub("\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",
+            tolower(answering_body),
+            perl = TRUE
           )
         )
-      }
+      )
+    }
 
     dept_query <- gsub("And", "and", dept_query)
     dept_query <- gsub("Of", "of", dept_query)
@@ -189,8 +191,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       tabling_member_query, house_query,
       dept_query, dates, extra_args,
       "&_pageSize=1"
-    ), flatten = TRUE
-    )
+    ), flatten = TRUE)
 
     jpage <- floor(all$result$totalResults / 500)
 

@@ -38,7 +38,10 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
 
   decision_query <- dplyr::if_else(
     is.null(decision) == FALSE,
-    paste0("&decision=", stringi::stri_trans_totitle(decision)),
+    paste0("&decision=", gsub(
+    "\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",
+    tolower(decision), perl = TRUE
+          )),
     ""
   )
 

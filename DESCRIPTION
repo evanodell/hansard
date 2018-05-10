@@ -23,8 +23,7 @@ Imports:
     dplyr,
     tibble,
     lubridate,
-    tidyr, 
-    stringi
+    tidyr
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,

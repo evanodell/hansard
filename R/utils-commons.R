@@ -147,10 +147,8 @@ caq_tidy <- function(df, tidy_style) {
 
     df$dateOfAnswer._datatype <- "POSIXct"
 
-    df$answeringMember._about <- stringi::stri_replace_all_fixed(
-      df$answeringMember._about,
-      "http://data.parliament.uk/members/", "",
-      vectorize_all = FALSE
+    df$answeringMember._about <- gsub(
+      "http://data.parliament.uk/members/", "", df$answeringMember._about
     )
 
     df$AnsweringBody <- unlist(df$AnsweringBody)

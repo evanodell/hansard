@@ -14,7 +14,8 @@
 #' @param start_date Only includes questions answered on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.
+#' else that can be coerced to a date with \code{as.Date()}. ]
+#' Defaults to \code{'1900-01-01'}.
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
@@ -52,12 +53,12 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
       extra_args, verbose
     )
   } else {
-    mp_id <- dplyr::if_else(
+    mp_id <- ifelse(
       is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
       paste0("&tablingMember=http://data.parliament.uk/members/", mp_id), ""
     )
 
-    json_query <- dplyr::if_else(
+    json_query <- ifelse(
       is.null(answering_department) == FALSE &&
         is.na(answering_department) == FALSE,
       utils::URLencode(paste0(

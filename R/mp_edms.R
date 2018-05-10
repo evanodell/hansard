@@ -114,14 +114,14 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
   if (tidy == TRUE) {
     if (full_data == FALSE) {
-      df$about <- stringi::stri_replace_all_fixed(df$about,
+      df$about <- gsub(
         "http://data.parliament.uk/resources/", "",
-        vectorize_all = FALSE
+df$about
       )
 
-      df$about <- stringi::stri_replace_all_fixed(df$about,
+      df$about <- gsub(
         "/signatures/.*", "",
-        vectorize_all = FALSE
+df$about
       )
     }
 

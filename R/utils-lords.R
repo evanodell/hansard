@@ -64,10 +64,9 @@ lwq_tidy <- function(df, tidy_style) {
 
     df$tablingMemberPrinted <- unlist(df$tablingMemberPrinted)
 
-    df$tablingMember._about <- stringi::stri_replace_all_fixed(
-      df$tablingMember._about,
+    df$tablingMember._about <- gsub(
       "http://data.parliament.uk/members/", "",
-      vectorize_all = FALSE
+      df$tablingMember._about
     )
   }
 
@@ -108,22 +107,21 @@ ldsum_tidy <- function(df, tidy_style) {
 
     df$date._datatype <- "POSIXct"
 
-    df$vote.type <- stringi::stri_replace_all_fixed(
-      df$vote.type, "http://data.parliament.uk/schema/parl#", "",
-      vectorize_all = FALSE
+    df$vote.type <- gsub(
+      "http://data.parliament.uk/schema/parl#", "",
+      df$vote.type
     )
 
-    df$vote.type <- stringi::stri_replace_all_regex(
-      df$vote.type, "([[:lower:]])([[:upper:]])", "$1_$2",
-      vectorize_all = FALSE
+    df$vote.type <- gsub(
+      "([[:lower:]])([[:upper:]])", "$1_$2",
+      df$vote.type
     )
 
     df$vote.member <- unlist(df$vote.member)
 
-    df$vote.member <- stringi::stri_replace_all_fixed(
-      df$vote.member,
+    df$vote.member <- gsub(
       "http://data.parliament.uk/resources/members/api/lords/id/", "",
-      vectorize_all = FALSE
+      df$vote.member
     )
 
     if (tidy_style == "camelCase") {
@@ -134,9 +132,7 @@ ldsum_tidy <- function(df, tidy_style) {
 
       substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
     } else if (tidy_style == "period.case") {
-      df$vote.type <- stringi::stri_replace_all_fixed(
-        df$vote.type, "_", "."
-      )
+      df$vote.type <- gsub("_", ".", df$vote.type)
 
       df$vote.type <- tolower(df$vote.type)
     } else {

@@ -23,11 +23,11 @@ edm_tidy <- function(df, tidy_style) {
 edm_search <- function(df, verbose) {
   names(df)[names(df) == "_about"] <- "about"
 
-  df$about <- stringi::stri_replace_all_fixed(
-    df$about, "http://data.parliament.uk/resources/", ""
+  df$about <- gsub(
+    "http://data.parliament.uk/resources/", "", df$about
   )
 
-  df$about <- stringi::stri_replace_all_regex(df$about, "/signatures/.*", "")
+  df$about <- gsub("/signatures/.*", "", df$about, perl=TRUE)
 
   search_list <- as.list(dplyr::distinct(df[, "about"])[["about"]])
 
@@ -94,15 +94,13 @@ edm_search <- function(df, verbose) {
 
   duplicated(df2)
 
-  df2$about <- stringi::stri_replace_all_fixed(
-    df2$about,
+  df2$about <- gsub(
+
     "http://data.parliament.uk/resources/", "",
-    vectorize_all = FALSE
+    df2$about
   )
 
-  df2$about <- stringi::stri_replace_all_regex(
-    df2$about, "/signatures/.*", "",
-    vectorize_all = FALSE
+  df2$about <- gsub("/signatures/.*", "", df2$about, perl=TRUE
   )
 
   df2$session <- as.factor(unlist(df2$session))

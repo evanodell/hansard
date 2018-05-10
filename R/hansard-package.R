@@ -36,6 +36,5 @@
 #' summarise_all distinct
 #' @importFrom tibble as_tibble as.tibble
 #' @importFrom tidyr spread_ unnest_
-#' @importFrom stringi stri_replace_all_fixed stri_replace_all_regex
 #' @importFrom lubridate parse_date_time
 NULL

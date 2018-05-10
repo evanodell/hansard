@@ -65,7 +65,7 @@ commons_answered_questions <- function(answering_department = NULL,
       "&min-dateOfAnswer=", as.Date(start_date)
     )
 
-    answered_by <- dplyr::if_else(
+    answered_by <- ifelse(
       is.null(answered_by) == FALSE && is.na(answered_by) == FALSE,
       paste0(
         "&answeringMember=http://data.parliament.uk/members/",

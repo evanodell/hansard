@@ -54,10 +54,9 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
       names(df)[names(df) == "_about"] <- "peer_id"
 
-      df$peer_id <- stringi::stri_replace_all_fixed(
-        df$peer_id,
+      df$peer_id <- gsub(
         "http://data.parliament.uk/members/", "",
-        vectorize_all = FALSE
+        df$peer_id
       )
 
       df <- hansard_tidy(df, tidy_style)

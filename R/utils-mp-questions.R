@@ -47,10 +47,9 @@ mp_question_tidy <- function(df, tidy_style) {
 
     df$AnsweringBody <- unlist(df$AnsweringBody)
 
-    df$tablingMember._about <- stringi::stri_replace_all_fixed(
-      df$tablingMember._about,
+    df$tablingMember._about <- gsub(
       "http://data.parliament.uk/members/", "",
-      vectorize_all = FALSE
+      df$tablingMember._about
     )
   }
 

@@ -52,7 +52,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
     "&min-date=", as.Date(start_date)
   )
 
-  lobby <- stringi::stri_replace_all_fixed(lobby, "-", "")
+  lobby <- gsub("-", "", lobby)
 
   lobby <- tolower(lobby)
 

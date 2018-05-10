@@ -60,24 +60,22 @@ commons_written_questions <- function(mp_id = NULL,
       as.Date(start_date)
     )
 
-    mp_id_query <- dplyr::if_else(
-      is.null(mp_id) == FALSE &&
-        is.na(mp_id) == FALSE,
+    mp_id_query <- ifelse(
+      is.null(mp_id) &&
+        is.na(mp_id),  "",
       utils::URLencode(
         paste0(
           "&tablingMember=http://data.parliament.uk/members/", mp_id
         )
-      ),
-      ""
+      )
     )
 
-    json_query <- dplyr::if_else(
-      is.null(answering_department) == FALSE &&
-        is.na(answering_department) == FALSE,
+    json_query <- ifelse(
+      is.null(answering_department) &&
+        is.na(answering_department), ".json?",
       utils::URLencode(
         paste0("/answeringdepartment.json?q=", answering_department)
-      ),
-      ".json?"
+      )
     )
 
     baseurl <- paste0(url_util, "commonswrittenquestions")

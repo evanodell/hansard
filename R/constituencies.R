@@ -28,13 +28,15 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
 
   jpage <- floor(conts$result$totalResults / 500)
 
-  current_query <- dplyr::case_when(
-    is.null(current) == TRUE ~ "",
-    current == TRUE ~ "&exists-endedDate=false",
-    current == FALSE ~ "&exists-endedDate=true",
-    TRUE ~ ""
-  )
-
+  if (is.null(current)) {
+    current_query <- ""
+  } else if (current==TRUE) {
+    current_query <- "&exists-endedDate=false"
+  } else if (current==FALSE) {
+    current_query <- "&exists-endedDate=true"
+  } else {
+    current_query <- ""
+  }
 
   query <- paste0(baseurl, extra_args, current_query, "&_pageSize=500&_page=")
 

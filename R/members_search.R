@@ -53,9 +53,8 @@ members_search <- function(search = NULL, tidy = TRUE,
       if (tidy == TRUE) {
         names(df)[names(df) == "_about"] <- "mnis_id"
 
-        df$mnis_id <- stringi::stri_replace_all_fixed(df$mnis_id,
-          "http://data.parliament.uk/members/", "",
-          vectorize_all = FALSE
+        df$mnis_id <- gsub(
+          "http://data.parliament.uk/members/", "", df$mnis_id
         )
 
         df <- hansard_tidy(df, tidy_style)

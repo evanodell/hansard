@@ -81,10 +81,9 @@ aaq_tidy <- function(df, tidy_style) {
         df$groupedQuestionUIN._value <- NULL
       }
 
-      df$groupedQuestionUIN <- stringi::stri_replace_all_fixed(
-        df$groupedQuestionUIN,
+      df$groupedQuestionUIN <- gsub(
         "`_value` = ", "",
-        vectorize_all = FALSE
+        df$groupedQuestionUIN
       )
 
       df$groupedQuestionUIN <- as.list(df$groupedQuestionUIN)

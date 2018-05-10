@@ -6,7 +6,7 @@
 #' datetime variables are converted to \code{POSIXct} class.
 #'
 #' @param session Accepts a session in format \code{yyyy/yy}
-#' (e.g. \code{2016/17}) and returns a tibble of all oral question times from
+#' (e.g. \code{"2016/17"}) and returns a tibble of all oral question times from
 #' that session. Defaults to \code{NULL}.
 #' @param question_id Accepts a question time ID, and returns a tibble of
 #' that question time.
@@ -28,15 +28,10 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake_case",
                                         verbose = TRUE) {
-  session_query <- dplyr::if_else(
-    is.null(session) == FALSE,
-    utils::URLencode(
-      paste0("session=", session)
-    ),
-    ""
-  )
+  session_query <- ifelse(is.null(session) == FALSE,
+    utils::URLencode(paste0("session=", session)), "")
 
-  question_query <- dplyr::if_else(
+  question_query <- ifelse(
     is.null(question_id) == FALSE,
     paste0("/", question_id),
     ""

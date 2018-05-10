@@ -3,10 +3,7 @@
 
 epetition_tibble_tidy <- function(df, tidy_style) {
   if (nrow(df) > 0) {
-    df$created._value <- stringi::stri_replace_all_fixed(
-      df$created._value, "T", " ",
-      vectorize_all = FALSE
-    )
+    df$created._value <- gsub("T", " ", df$created._value)
 
     df$created._value <- lubridate::parse_date_time(
       df$created._value, "Y-m-d H:M:S"
