@@ -86,14 +86,19 @@ commons_written_questions <- function(mp_id = NULL,
       message("Connecting to API")
     }
 
-    writ <- jsonlite::fromJSON(paste0(baseurl, json_query, mp_id_query,
-                                      dates, extra_args, "&_pageSize=1"),
-                               flatten = TRUE)
+    writ <- jsonlite::fromJSON(paste0(
+      baseurl, json_query, mp_id_query,
+      dates, extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
     jpage <- floor(writ$result$totalResults / 500)
 
-    query <- paste0(baseurl, json_query, mp_id_query, dates,
-                    extra_args, "&_pageSize=500&_page=")
+    query <- paste0(
+      baseurl, json_query, mp_id_query, dates,
+      extra_args, "&_pageSize=500&_page="
+    )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

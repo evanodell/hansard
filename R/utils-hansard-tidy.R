@@ -20,13 +20,15 @@ hansard_tidy <- function(df, tidy_style) {
 
     names(df)[names(df) == "x_value"] <- "value"
 
-    if("about" %in% names(df)){
+    if ("about" %in% names(df)) {
       df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
     }
 
     if (tidy_style == "camelCase") {
       names(df) <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2",
-                        names(df), perl = TRUE)
+        names(df),
+        perl = TRUE
+      )
 
       substr(names(df), 1, 1) <- tolower(substr(names(df), 1, 1))
     } else if (tidy_style == "period.case") {

@@ -57,14 +57,19 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
       message("Connecting to API")
     }
 
-    divis <- jsonlite::fromJSON(paste0(baseurl, ".json?", dates,
-                                       extra_args, "&_pageSize=1"),
-                                flatten = TRUE)
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, ".json?", dates,
+      extra_args, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
 
     jpage <- floor(divis$result$totalResults / 500)
 
-    query <- paste0(baseurl, ".json?", dates,
-                    extra_args, "&_pageSize=500&_page=")
+    query <- paste0(
+      baseurl, ".json?", dates,
+      extra_args, "&_pageSize=500&_page="
+    )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -74,9 +79,12 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
       message("Connecting to API")
     }
 
-    divis <- jsonlite::fromJSON(paste0(baseurl, division_id,
-                                       ".json?", dates, extra_args),
-                                flatten = TRUE)
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, division_id,
+      ".json?", dates, extra_args
+    ),
+    flatten = TRUE
+    )
 
     if (summary == TRUE) {
       df <- tibble::tibble(

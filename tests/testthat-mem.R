@@ -1,4 +1,4 @@
 library(testthat)
 library(hansard)
 
-test_check("hansard", filter="mem")
+test_check("hansard", filter = "mem")

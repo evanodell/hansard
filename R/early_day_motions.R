@@ -63,8 +63,10 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
     ""
   )
 
-  dates <- paste0("&_properties=dateTabled&max-dateTabled=", as.Date(end_date),
-                  "&min-dateTabled=", as.Date(start_date))
+  dates <- paste0(
+    "&_properties=dateTabled&max-dateTabled=", as.Date(end_date),
+    "&min-dateTabled=", as.Date(start_date)
+  )
 
   sig_min <- paste0("&min-numberOfSignatures=", signatures)
 
@@ -74,14 +76,18 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
     message("Connecting to API")
   }
 
-  edms <- jsonlite::fromJSON(paste0(baseurl, ".json?", edm_query, dates,
-                                    session_query, sig_min, extra_args,
-                                    "&_pageSize=1"), flatten = TRUE)
+  edms <- jsonlite::fromJSON(paste0(
+    baseurl, ".json?", edm_query, dates,
+    session_query, sig_min, extra_args,
+    "&_pageSize=1"
+  ), flatten = TRUE)
 
   jpage <- floor(edms$result$totalResults / 500)
 
-  query <- paste0(baseurl, ".json?", edm_query, dates, session_query, sig_min,
-                  extra_args, "&_pageSize=500&_page=")
+  query <- paste0(
+    baseurl, ".json?", edm_query, dates, session_query, sig_min,
+    extra_args, "&_pageSize=500&_page="
+  )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

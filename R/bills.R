@@ -64,9 +64,12 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
     message("Connecting to API")
   }
 
-  bills <- jsonlite::fromJSON(paste0(baseurl, amend_query, dates, id_query,
-                                     extra_args, "&_pageSize=1"),
-                              flatten = TRUE)
+  bills <- jsonlite::fromJSON(paste0(
+    baseurl, amend_query, dates, id_query,
+    extra_args, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
 
   jpage <- floor(bills$result$totalResults / 500)
 

@@ -142,11 +142,13 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     answering_member_query <- ifelse(
       is.null(mp_id) == TRUE || is.na(mp_id) == TRUE, "",
-      paste0("&answer.answeringMember=http://data.parliament.uk/members/",
-             mp_id)
+      paste0(
+        "&answer.answeringMember=http://data.parliament.uk/members/",
+        mp_id
+      )
     )
 
-    tabling_member_query <- dplyr::if_else(
+    tabling_member_query <- ifelse(
       is.null(tabling_mp_id) == TRUE || is.na(tabling_mp_id) == TRUE, "",
       paste0(
         "&tablingMember=http://data.parliament.uk/members/", tabling_mp_id
@@ -158,25 +160,23 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     )
     ## In case departmental IDs are passed as strings.
 
-    dept_query <- dplyr::case_when(
-      is.null(answering_body) == TRUE || is.na(answering_body) == TRUE ~ "",
-      is.na(answering_body_check) == FALSE ~ paste0(
-        "&answeringDeptId=",
-        answering_body
-      ),
-      TRUE ~ utils::URLencode(
-        paste0(
-          "&answeringDeptShortName=",
-          stringi::stri_trans_totitle(answering_body)
+      if (is.null(answering_body) == TRUE || is.na(answering_body) == TRUE) {
+        dept_query <- ""
+      } else if(is.na(answering_body_check) == FALSE) {
+        dept_query <- paste0("&answeringDeptId=", answering_body)
+      } else {
+        dept_query <- utils::URLencode(
+          paste0(
+            "&answeringDeptShortName=",
+            gsub("\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",
+                 tolower(answering_body), perl=TRUE)
+          )
         )
-      )
-    )
+      }
 
-    dept_query <- stringi::stri_replace_all_fixed(dept_query,
-      list("And", "Of", "For"),
-      list("and", "of", "for"),
-      vectorize_all = FALSE
-    )
+    dept_query <- gsub("And", "and", dept_query)
+    dept_query <- gsub("Of", "of", dept_query)
+    dept_query <- gsub("For", "for", dept_query)
 
     baseurl <- paste0(url_util, "answeredquestions.json?")
 
@@ -189,8 +189,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       tabling_member_query, house_query,
       dept_query, dates, extra_args,
       "&_pageSize=1"
-    ),
-    flatten = TRUE
+    ), flatten = TRUE
     )
 
     jpage <- floor(all$result$totalResults / 500)

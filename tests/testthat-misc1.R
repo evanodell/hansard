@@ -1,4 +1,4 @@
 library(testthat)
 library(hansard)
 
-test_check("hansard", filter="misc1")
+test_check("hansard", filter = "misc1")
