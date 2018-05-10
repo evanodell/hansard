@@ -36,7 +36,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     "&max-bill.date=", as.Date(end_date)
   )
 
-  decision_query <- dplyr::if_else(
+  decision_query <- ifelse(
     is.null(decision) == FALSE,
     paste0("&decision=", gsub(
     "\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",

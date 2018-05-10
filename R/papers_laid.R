@@ -33,13 +33,9 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
                         tidy_style = "snake_case", verbose = TRUE) {
   house <- tolower(house)
 
-  house_query <- dplyr::case_when(
-    house == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
-    house == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
-    TRUE ~ ""
-  )
+  house_query <- house_query_util(house) ## in utils-house.R
 
-  withdrawn_query <- dplyr::if_else(
+  withdrawn_query <- ifelse(
     withdrawn == TRUE,
     "&withdrawn=true",
     "&withdrawn=false"

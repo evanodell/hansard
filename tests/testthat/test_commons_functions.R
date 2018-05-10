@@ -86,16 +86,16 @@ test_that("commons functions return expected format", {
 
   # Commons Terms
 
-  xcte <- hansard_commons_terms(search = "estate", verbose = TRUE)
-  expect_length(xcte, 20)
-  expect_type(xcte, "list")
-  expect_true(tibble::is_tibble(xcte))
-
-  xctec <- hansard_commons_terms(
-    search = "estate",
-    class = "ORG", verbose = TRUE
-  )
-  expect_length(xctec, 19)
-  expect_type(xctec, "list")
-  expect_true(tibble::is_tibble(xctec))
+  # xcte <- hansard_commons_terms(search = "estate", verbose = TRUE)
+  # expect_length(xcte, 20)
+  # expect_type(xcte, "list")
+  # expect_true(tibble::is_tibble(xcte))
+  #
+  # xctec <- hansard_commons_terms(
+  #   search = "estate",
+  #   class = "ORG", verbose = TRUE
+  # )
+  # expect_length(xctec, 19)
+  # expect_type(xctec, "list")
+  # expect_true(tibble::is_tibble(xctec))
 })

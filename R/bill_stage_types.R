@@ -19,7 +19,7 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case",
     flatten = TRUE
   )
 
-  df <- tibble::as_tibble(stages$result$items)
+  df <- tibble::as.tibble(stages$result$items)
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

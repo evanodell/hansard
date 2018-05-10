@@ -130,11 +130,11 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       as.POSIXct(start_date)
     )
 
-    house <- tolower(house)
-
-    if (house == "commons" | house == "1") {
+    if (is.null(house)) {
+      house_query <- ""
+    } else if (tolower(house) == "commons" | house == "1") {
       house_query <- "&legislature.prefLabel=House%20of%20Commons"
-    } else if (house == "lords" | house == "2") {
+    } else if (tolower(house) == "lords" | house == "2") {
       house_query <- "&legislature.prefLabel=House%20of%20Lords"
     } else {
       house_query <- ""

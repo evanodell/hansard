@@ -48,7 +48,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     extra_args <- utils::URLencode(extra_args)
   }
 
-  session_query <- dplyr::if_else(
+  session_query <- ifelse(
     is.null(session) == FALSE,
     paste0("&session=", session),
     ""

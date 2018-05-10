@@ -23,7 +23,8 @@ departments. Defaults to \code{NULL}.}
 \item{start_date}{Only includes questions answered on or after this date.
 Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-else that can be coerced to a date with \code{as.Date()}. Defaults to \code{'1900-01-01'}.}
+else that can be coerced to a date with \code{as.Date()}. ]
+Defaults to \code{'1900-01-01'}.}
 
 \item{end_date}{Only includes questions answered on or before this date.
 Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class

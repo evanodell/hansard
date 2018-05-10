@@ -49,7 +49,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
   }
 
   if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
-    type_query <- dplyr::if_else(
+    type_query <- ifelse(
       is.null(type) == FALSE,
       utils::URLencode(
         paste0("&subType.prefLabel=", type)
@@ -89,19 +89,19 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       topic <- names(hansard::research_subtopics_list())[dex]
     }
 
-    subtopic_query <- dplyr::if_else(
+    subtopic_query <- ifelse(
       is.null(subtopic) == FALSE,
       utils::URLencode(paste0("/", subtopic)),
       ""
     )
 
-    topic_query <- dplyr::if_else(
+    topic_query <- ifelse(
       is.null(topic) == FALSE,
       utils::URLencode(topic),
       ""
     )
 
-    null_type_query <- dplyr::if_else(
+    null_type_query <- ifelse(
       is.null(type) == FALSE, utils::URLencode(
         paste0("&subType.prefLabel=", type)
       ),

@@ -14,7 +14,7 @@ loop_query <- function(query, jpage, verbose) {
     pages[[seq_list[[i]] + 1]] <- mydata$result$items
   }
 
-  df <- tibble::as_tibble(dplyr::bind_rows(pages))
+  df <- tibble::as.tibble(dplyr::bind_rows(pages))
 
   df
 }

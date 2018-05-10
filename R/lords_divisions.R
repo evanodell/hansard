@@ -95,7 +95,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
       df <- divis$result$primaryTopic
     }
 
-    df <- tibble::as_tibble(as.data.frame(df))
+    df <- tibble::as.tibble(as.data.frame(df))
   }
 
   if (nrow(df) == 0) {

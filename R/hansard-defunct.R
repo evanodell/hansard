@@ -85,7 +85,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
   ), flatten = TRUE)
 
   if (is.null(session_id) == FALSE) {
-    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+    df <- tibble::as.tibble(as.data.frame(attend$result$primaryTopic))
   } else {
     jpage <- floor(attend$result$totalResults / 500)
 
@@ -105,7 +105,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- tibble::as_tibble(dplyr::bind_rows(pages))
+    df <- tibble::as.tibble(dplyr::bind_rows(pages))
   }
 
   if (nrow(df) == 0) {

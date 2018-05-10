@@ -1,5 +1,15 @@
 
 
+# hansard 0.6.2.9000
+
+## Dependency changes
+
+Removed need for `stringi` and `httr` packages, and dropped some `dplyr` dependencies
+
+## Function changes
+
+dropping `hansard_generic` function
+
 # hansard 0.6.2
 
 ## Code changes

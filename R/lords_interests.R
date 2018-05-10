@@ -18,7 +18,7 @@
 #' }
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
-  json_query <- dplyr::if_else(
+  json_query <- ifelse(
     is.null(peer_id) == TRUE,
     ".json?",
     paste0(".json?member=", peer_id)

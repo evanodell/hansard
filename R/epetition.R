@@ -28,7 +28,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
   }
 
 
-  json_query <- dplyr::if_else(
+  json_query <- ifelse(
     by_constituency == TRUE,
     "/signaturesbyconstituency.json?",
     ".json?"

@@ -28,7 +28,7 @@
 election_candidates <- function(ID = NULL, constit_details = FALSE,
                                 extra_args = NULL, tidy = TRUE,
                                 tidy_style = "snake_case", verbose = TRUE) {
-  id_query <- dplyr::if_else(
+  id_query <- ifelse(
     is.null(ID) == FALSE,
     paste0("electionId=", ID),
     ""

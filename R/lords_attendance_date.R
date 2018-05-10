@@ -41,7 +41,7 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
     flatten = TRUE
   )
 
-  df <- tibble::as_tibble(as.data.frame(attend$result$items$attendee))
+  df <- tibble::as.tibble(as.data.frame(attend$result$items$attendee))
 
   df <- tidyr::unnest_(df, "member")
 

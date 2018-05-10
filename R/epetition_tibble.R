@@ -48,13 +48,13 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     "&min-created=", as.Date(start_date)
   )
 
-  status_query <- dplyr::if_else(
+  status_query <- ifelse(
     is.null(status) == TRUE,
     "",
     paste0("&status=", status)
   )
 
-  signature_query <- dplyr::if_else(
+  signature_query <- ifelse(
     is.null(max_signatures) == TRUE,
     paste0("&min-numberOfSignatures=", min_signatures),
     paste0(

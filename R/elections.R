@@ -76,11 +76,11 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     df <- elect$result$primaryTopic
 
-    df <- tibble::as_tibble(as.data.frame(df))
+    df <- tibble::as.tibble(as.data.frame(df))
   } else {
     baseurl <- paste0(url_util, "elections")
 
-    type_query <- dplyr::if_else(
+    type_query <- ifelse(
       is.null(type) == FALSE,
       utils::URLencode(
         paste0(".json?&electionType=", type)

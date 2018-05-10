@@ -41,7 +41,7 @@
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
                                      tidy = TRUE, tidy_style = "snake_case",
                                      verbose = TRUE) {
-  json_query <- dplyr::if_else(
+  json_query <- ifelse(
     is.null(session_id) == FALSE,
     paste0("/", session_id, ".json?"),
     ".json?"
@@ -63,7 +63,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
       message("Retrieving attendance data")
     }
 
-    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
+    df <- tibble::as.tibble(as.data.frame(attend$result$primaryTopic))
   } else {
     jpage <- floor(attend$result$totalResults / 500)
 

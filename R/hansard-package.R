@@ -21,7 +21,7 @@
 #' `bills()` is not a term unique to the British parliament).
 #'
 #' For more details please see the
-#' \href{http://ropengov.github.io/hansard/articles/introduction.html}{vignette},
+#' \href{https://docs.evanodell.com/hansard/articles/introduction}{vignette},
 #' or the API documentation on \url{http://explore.data.parliament.uk/}.
 #'
 #' This package is in no way officially related to or endorsed by the UK
@@ -30,11 +30,9 @@
 #'
 #' @docType package
 #' @name hansard
-#' @importFrom httr modify_url
 #' @importFrom jsonlite fromJSON
-#' @importFrom dplyr bind_rows case_when if_else left_join bind_rows grouped_df
-#' summarise_all distinct
-#' @importFrom tibble as_tibble as.tibble
+#' @importFrom dplyr left_join bind_rows grouped_df summarise_all distinct
+#' @importFrom tibble as.tibble
 #' @importFrom tidyr spread_ unnest_
 #' @importFrom lubridate parse_date_time
 NULL

@@ -36,7 +36,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
-  days_query <- dplyr::if_else(
+  days_query <- ifelse(
     days == FALSE,
     paste0(
       ".json?&max-endDate=", as.Date(end_date),

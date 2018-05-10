@@ -31,7 +31,7 @@ test_that("bills return expected format", {
     start_date = "2018-01-01",
     end_date = "2018-01-12"
   )
-  expect_length(bill_pubs_date, 11)
+  expect_length(bill_pubs_date, 13)
   expect_true(tibble::is_tibble(bill_pubs_date))
-  expect_true(nrow(bill_pubs_date) == 8)
+  expect_true(nrow(bill_pubs_date) == 87)
 })

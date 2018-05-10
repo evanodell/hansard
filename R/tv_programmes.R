@@ -43,11 +43,13 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
   legislature <- tolower(legislature)
 
-  leg_query <- dplyr::case_when(
-    legislature == "commons" ~ "&legislature.prefLabel=House%20of%20Commons",
-    legislature == "lords" ~ "&legislature.prefLabel=House%20of%20Lords",
-    TRUE ~ ""
-  )
+  if (  legislature == "commons") {
+    leg_query <- "&legislature.prefLabel=House%20of%20Commons"
+  } else if(legislature == "lords") {
+    leg_query <- "&legislature.prefLabel=House%20of%20Lords"
+  } else {
+    leg_query <- ""
+  }
 
   baseurl <- paste0(url_util, "tvprogrammes.json?")
 
@@ -108,7 +110,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     "&min-startDate=", as.Date(start_date), "T00:00:00Z"
   )
 
-  member_query <- dplyr::if_else(
+  member_query <- ifelse(
     is.null(mp_id) == FALSE,
     paste0("&member=http://data.parliament.uk/members/", mp_id),
     ""
@@ -165,7 +167,7 @@ tv_channels <- function(tidy = TRUE, tidy_style = "snake_case",
   flatten = TRUE
   )
 
-  df <- tibble::as_tibble(channels$result$items)
+  df <- tibble::as.tibble(channels$result$items)
 
   if (tidy == TRUE) {
     df <- hansard_tidy(df, tidy_style)

@@ -66,7 +66,7 @@ lords_written_questions <- function(peer_id = NULL,
     )
 
 
-    peer_id <- dplyr::if_else(
+    peer_id <- ifelse(
       is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
       utils::URLencode(
         paste0(
@@ -77,7 +77,7 @@ lords_written_questions <- function(peer_id = NULL,
       ""
     )
 
-    dept_query <- dplyr::if_else(
+    dept_query <- ifelse(
       is.null(answering_department) == FALSE &&
         is.na(answering_department) == FALSE,
       utils::URLencode(

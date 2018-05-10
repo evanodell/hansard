@@ -28,7 +28,7 @@ informative and could clash with functions in other packages (e.g.
 `bills()` is not a term unique to the British parliament).
 
 For more details please see the
-\href{http://ropengov.github.io/hansard/articles/introduction.html}{vignette},
+\href{https://docs.evanodell.com/hansard/articles/introduction}{vignette},
 or the API documentation on \url{http://explore.data.parliament.uk/}.
 
 This package is in no way officially related to or endorsed by the UK

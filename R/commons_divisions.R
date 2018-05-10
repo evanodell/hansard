@@ -107,7 +107,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
         uin = divis$result$primaryTopic$uin
       )
     } else {
-      df <- tibble::as_tibble(divis$result$primaryTopic$vote)
+      df <- tibble::as.tibble(divis$result$primaryTopic$vote)
     }
   }
 

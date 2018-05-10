@@ -42,7 +42,7 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     jpage <- floor(results$result$totalResults / 500)
 
-    query <- paste0(baseurl, search, "*", "&_pageSize=500&_page=")
+    query <- paste0(baseurl, search, "&_pageSize=500&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

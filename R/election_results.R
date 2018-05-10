@@ -47,7 +47,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
                              constit_details = FALSE,
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake_case", verbose = TRUE) {
-  id_query <- dplyr::if_else(is.null(ID), "", paste0("electionId=", ID))
+  id_query <- ifelse(is.null(ID), "", paste0("electionId=", ID))
 
   baseurl <- paste0(url_util, "electionresults.json?")
 
