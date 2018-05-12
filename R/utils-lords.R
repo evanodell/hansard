@@ -37,7 +37,7 @@ lwq_multi <- function(answering_department, peer_id,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -257,13 +257,13 @@ lords_interests_tidy2 <- function(df, tidy_style) {
       if ("amendedDate" %in% colnames(df[i, ]$hasRegisteredInterest[[1]])) {
         # as not all entries have been amended
 
-        for (x in 1:nrow(df[i, ]$hasRegisteredInterest[[1]])) {
+        seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+        for (i in seq_along(seq_list)) {
           # because apply wasn't working with all the NULL values
 
           if (is.null(
-            df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]
-          ) ==
-            FALSE) {
+            df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]) == FALSE) {
             ## If there is an amended date value, extract it
 
             df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]] <-

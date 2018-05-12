@@ -69,7 +69,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
   df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
 
-  for (i in 1:nrow(df)) {
+  seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+  for (i in seq_along(seq_list)) {
     x <- jsonlite::fromJSON(
       paste0(
         "http://lda.data.parliament.uk/electionresults/",

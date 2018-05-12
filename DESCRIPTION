@@ -18,7 +18,6 @@ License: MIT + file LICENSE
 LazyData: TRUE
 Depends: R(>= 3.2.0)
 Imports:
-    httr,
     jsonlite,
     dplyr,
     tibble,
@@ -30,6 +29,5 @@ Suggests:
     rmarkdown,
     testthat,
     covr,
-    methods,
-    mnis
+    methods
 VignetteBuilder: knitr

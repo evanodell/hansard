@@ -30,6 +30,8 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     df
   } else {
+    warning("Search functions are not consistently working on the API")
+
     search <- utils::URLencode(search)
 
     baseurl <- paste0(url_util, "members.json?_search=")

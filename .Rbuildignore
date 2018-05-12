@@ -15,3 +15,5 @@
 ^appveyor\.yml$
 ^testing\.R$
 ^code for wrappers$
+^LICENSE\.md$
+^CODE_OF_CONDUCT\.md$

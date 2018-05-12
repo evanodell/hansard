@@ -157,42 +157,28 @@ hr {
 <a href="https://codecov.io/github/evanodell/hansard?branch=master"><img src="https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg" alt="Coverage Status"/></a>
 <a href="https://zenodo.org/badge/latestdoi/72111315"><img src="https://zenodo.org/badge/72111315.svg" alt="DOI"/></a></p>
 
-<p>An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <a href="http://www.data.parliament.uk/">http://www.data.parliament.uk/</a>. Help on the API itself is <a href="http://explore.data.parliament.uk/">here</a>.</p>
+<p>An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <a href="http://www.data.parliament.uk/">http://www.data.parliament.uk/</a>. Documentation for the API itself is available <a href="http://explore.data.parliament.uk/">here</a>.</p>
 
-<p>Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <a href="http://ropengov.github.io/hansard">http://ropengov.github.io/hansard</a> and at <a href="https://docs.evanodell.com/hansard/">https://docs.evanodell.com/hansard/</a>.</p>
+<p>Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <a href="https://docs.evanodell.com/hansard/">https://docs.evanodell.com/hansard/</a>.</p>
 
 <p>To install from CRAN run:</p>
 
 <pre><code>install.packages(&quot;hansard&quot;)
 </code></pre>
 
-<p>Or, if using the <a href="https://CRAN.R-project.org/package=pacman"><code>pacman</code></a> package:</p>
-
-<pre><code>pacman::p_load(hansard)
-</code></pre>
-
 <p>To install the development version run:</p>
 
-<pre><code>#install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;evanodell/hansard&quot;)
-</code></pre>
-
-<p>or</p>
-
-<pre><code>pacman::p_load_current_gh(&quot;evanodell/hansard&quot;)
+<pre><code>#install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;evanodell/hansard&quot;)
 </code></pre>
 
 <h2>Using hansard</h2>
 
 <p>For an introduction to <code>hansard</code>, please see the <a href="http://ropengov.github.io/hansard/articles/introduction.html">vignette</a>. If you are unfamiliar with web APIs <a href="https://zapier.com/learn/apis/">this introductory course</a> is useful.</p>
 
-<h4>API calls with console input</h4>
-
-<p>Previous versions (&lt;=0.3.4) of <code>hansard</code> included options for console-based inputs to call data and interact with the API. This feature has been removed from subsequent versions, and is available in the <a href="%60hansardconsole%60">https://github.com/evanodell/hansard-console</a> package. There are no plans to submit this to CRAN, and it is not being actively maintained.</p>
-
 <h3>Disclaimer</h3>
 
-<p>This package is in no way officially related to or endorsed by the UK Parliamentary Data Service. It is released under an MIT license.</p>
+<p>This package is in no way officially related to or endorsed by the UK Parliamentary Data Service. It is released under an MIT license. Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 
 <h3>Acknowledgements</h3>
 

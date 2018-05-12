@@ -116,12 +116,12 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
     if (full_data == FALSE) {
       df$about <- gsub(
         "http://data.parliament.uk/resources/", "",
-df$about
+        df$about
       )
 
       df$about <- gsub(
         "/signatures/.*", "",
-df$about
+        df$about
       )
     }
 

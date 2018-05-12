@@ -27,7 +27,7 @@ edm_search <- function(df, verbose) {
     "http://data.parliament.uk/resources/", "", df$about
   )
 
-  df$about <- gsub("/signatures/.*", "", df$about, perl=TRUE)
+  df$about <- gsub("/signatures/.*", "", df$about, perl = TRUE)
 
   search_list <- as.list(dplyr::distinct(df[, "about"])[["about"]])
 
@@ -95,13 +95,11 @@ edm_search <- function(df, verbose) {
   duplicated(df2)
 
   df2$about <- gsub(
-
     "http://data.parliament.uk/resources/", "",
     df2$about
   )
 
-  df2$about <- gsub("/signatures/.*", "", df2$about, perl=TRUE
-  )
+  df2$about <- gsub("/signatures/.*", "", df2$about, perl = TRUE)
 
   df2$session <- as.factor(unlist(df2$session))
 
@@ -141,7 +139,7 @@ multi_mp_edms <- function(mp_id = mp_id, extra_args = extra_args,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 

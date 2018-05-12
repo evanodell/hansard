@@ -23,7 +23,9 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
 
   dat <- vector("list", nrow(search_grid))
 
-  for (i in 1:nrow(search_grid)) {
+  seq_list <- seq(from = 1, to = nrow(search_grid), by = 1)
+
+  for (i in seq_along(seq_list)) {
     dat[[i]] <- hansard::commons_oral_questions(
       mp_id = search_grid$member[[i]],
       answering_department = search_grid$department[[i]],
@@ -35,7 +37,7 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -70,7 +72,9 @@ commons_written_questions_multi <- function(mp_id, answering_department,
 
   dat <- vector("list", nrow(search_grid))
 
-  for (i in 1:nrow(search_grid)) {
+  seq_list <- seq(from = 1, to = nrow(search_grid), by = 1)
+
+  for (i in seq_along(seq_list)) {
     dat[[i]] <- hansard::commons_written_questions(
       mp_id = search_grid$member[[i]],
       answering_department = search_grid$department[[i]],
@@ -82,7 +86,7 @@ commons_written_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -116,7 +120,9 @@ caq_multi <- function(answering_department, answered_by,
 
   dat <- vector("list", nrow(search_grid))
 
-  for (i in 1:nrow(search_grid)) {
+  seq_list <- seq(from = 1, to = nrow(search_grid), by = 1)
+
+  for (i in seq_along(seq_list)) {
     dat[[i]] <- hansard::commons_answered_questions(
       answering_department = search_grid$department[[i]],
       answered_by = search_grid$member[[i]],
@@ -128,7 +134,7 @@ caq_multi <- function(answering_department, answered_by,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 

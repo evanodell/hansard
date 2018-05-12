@@ -20,6 +20,8 @@
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
+  warning("Search functions are not consistently working on the API")
+
   search_query <- ifelse(
     is.null(search) == FALSE,
     paste0("&_search=", utils::URLencode(search)), NULL

@@ -25,7 +25,7 @@
 
 
 hansard_generic <- function(path) {
-  .Defunct(package = NULL, msg="Please use specific functions")
+  .Defunct(package = NULL, msg = "Please use specific functions")
 
   url <- paste0("http://lda.data.parliament.uk/", utils::URLencode(path))
 

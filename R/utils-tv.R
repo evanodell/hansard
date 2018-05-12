@@ -15,7 +15,8 @@ tv_tidy <- function(df, tidy_style) {
 
     df$startDate._datatype <- "POSIXct"
 
-    df$endDate._value <- gsub("T", " ",
+    df$endDate._value <- gsub(
+      "T", " ",
       df$endDate._value
     )
 
@@ -31,7 +32,8 @@ tv_tidy <- function(df, tidy_style) {
 
     df$legislature_about <- df$legislature$`_about`
 
-    df$legislature_about <- gsub("http://data.parliament.uk/terms/", "",
+    df$legislature_about <- gsub(
+      "http://data.parliament.uk/terms/", "",
       df$legislature_about
     )
 
@@ -58,7 +60,8 @@ tv_tidy2 <- function(df, mp_id, tidy_style) {
 
       df$member_label_value <- gsub(
         "Biography information for ", "",
-        df$member_label_value)
+        df$member_label_value
+      )
 
       df$member_about <- gsub(
         "http://data.parliament.uk/terms/", "",

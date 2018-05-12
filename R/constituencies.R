@@ -30,9 +30,9 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
 
   if (is.null(current)) {
     current_query <- ""
-  } else if (current==TRUE) {
+  } else if (current == TRUE) {
     current_query <- "&exists-endedDate=false"
-  } else if (current==FALSE) {
+  } else if (current == FALSE) {
     current_query <- "&exists-endedDate=true"
   } else {
     current_query <- ""

@@ -82,7 +82,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
   if (all_data == TRUE) {
     dat <- vector("list", nrow(df))
 
-    for (i in 1:nrow(df)) {
+    seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+    for (i in seq_along(seq_list)) {
       x <- jsonlite::fromJSON(
         paste0(
           "http://lda.data.parliament.uk/electionresults/",
@@ -154,7 +156,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
       )
 
       df$constituency._about <- gsub(
-      "http://data.parliament.uk/resources/", "",
+        "http://data.parliament.uk/resources/", "",
         df$constituency._about
       )
 

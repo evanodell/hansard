@@ -43,9 +43,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
   legislature <- tolower(legislature)
 
-  if (  legislature == "commons") {
+  if (legislature == "commons") {
     leg_query <- "&legislature.prefLabel=House%20of%20Commons"
-  } else if(legislature == "lords") {
+  } else if (legislature == "lords") {
     leg_query <- "&legislature.prefLabel=House%20of%20Lords"
   } else {
     leg_query <- ""

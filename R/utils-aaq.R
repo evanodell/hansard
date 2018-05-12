@@ -36,7 +36,9 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
 
   dat <- vector("list", nrow(search_grid))
 
-  for (i in 1:nrow(search_grid)) {
+  seq_list <- seq(from = 1, to = nrow(search_grid), by = 1)
+
+  for (i in seq_along(seq_list)) {
     dat[[i]] <- hansard::all_answered_questions(
       mp_id = search_grid$answering_mp[[i]],
       tabling_mp_id = search_grid$tabling_mp[[i]],
@@ -50,7 +52,7 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -127,7 +129,10 @@ aaq_tidy <- function(df, tidy_style) {
     df$dateOfAnswer._datatype <- "POXIXct"
 
     if ("attachment" %in% colnames(df)) {
-      for (i in 1:nrow(df)) {
+
+      seq_list <- seq(from = 1, to = nrow(df), by = 1)
+
+      for (i in seq_along(seq_list)) {
         if (is.null(names(df$attachment[[i]])) == FALSE) {
           names(df$attachment[[i]])[names(df$attachment[[i]]) ==
             "_about"] <- "about"

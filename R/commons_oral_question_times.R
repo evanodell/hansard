@@ -29,7 +29,8 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         tidy_style = "snake_case",
                                         verbose = TRUE) {
   session_query <- ifelse(is.null(session) == FALSE,
-    utils::URLencode(paste0("session=", session)), "")
+    utils::URLencode(paste0("session=", session)), ""
+  )
 
   question_query <- ifelse(
     is.null(question_id) == FALSE,
@@ -103,9 +104,6 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     df
   }
 }
-
-
-
 
 #' @rdname commons_oral_question_times
 #' @export
