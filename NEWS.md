@@ -4,17 +4,18 @@
 
 ## Dependency changes
 
-Removed need for `stringi` and `httr` packages, and dropped some `dplyr` dependencies
+* Removed need for `stringi` and `httr` packages, and dropped some `dplyr` 
+dependencies
 
 ## Function changes
 
-dropping `hansard_generic` function
+* Dropping `hansard_generic` function
 
 # hansard 0.6.2
 
 ## Code changes
 
-If `tidy=TRUE`, URLs are consistently removed from `about` columns in all 
+* If `tidy=TRUE`, URLs are consistently removed from `about` columns in all 
 functions.
 
 ## Documentation updates

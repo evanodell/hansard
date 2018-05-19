@@ -10,11 +10,13 @@
 #' Also note that this API does not appear to have been
 #' updated with data after 2017-01-31.
 #'
+#' 
 #' @param date Accepts a date to return attendance data for. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{NULL}.
+
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended on a given date.
 #' @export

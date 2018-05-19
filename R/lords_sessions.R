@@ -6,11 +6,13 @@
 #' House of Lords sittings. Note that this API does not appear to have been
 #' updated with data after 2017-01-31.
 #'
+#' 
 #' @param start_date Only includes sessions starting on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes sessions ending on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

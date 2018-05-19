@@ -10,24 +10,29 @@
 #' multiple early day motions with the same ID code from different
 #' parliamentary sessions.
 #'
+#' 
 #' @param edm_id Accepts the ID number of an early day motion, and returns
 #' data on that motion. If \code{NULL}, returns all available Early Day
 #' Motions. Note that there, are as of 2017-06-15, 43,330 early day motions
 #' on listed in the API, so requesting all early day motions without other
 #' parameters is slow and very demanding on the API itself.
 #' Defaults to \code{NULL}.
+#' 
 #' @param session Accepts a parliamentary session, in \code{'yyyy/yy'} format.
 #' Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes early day motions tabled on or after
 #' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
 #' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
 #' \code{POSIXlt} or anything else that can be coerced to a date with
 #' \code{as.Date()}. Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes early day motions tabled on or before
 #' this date. Accepts character values in \code{'YYYY-MM-DD'} format,
 #' and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
 #' \code{POSIXlt} or anything else that can be coerced to a date with
 #' \code{as.Date()}. Defaults to the current system date.
+#' 
 #' @param signatures The minimum number of signatures required for inclusion
 #' in the tibble. Defaults to 1.
 #' @inheritParams all_answered_questions

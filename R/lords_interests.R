@@ -4,6 +4,7 @@
 #' Registered financial interests of members of the House of Lords.
 #' If \code{peer_id=NULL} the actual details of registered interests
 #' are stored in a nested data frame.
+#' 
 #' @param peer_id The ID of a member of the House of lords. If \code{NULL},
 #' returns a tibble with all listed financial interests for all members.
 #' Defaults to \code{NULL}.

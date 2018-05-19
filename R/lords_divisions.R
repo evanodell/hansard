@@ -6,17 +6,21 @@
 #' parameters, or the results of a specific division. Individual divisions can
 #' be queried to return a short summary of the votes, or details on how each
 #' peer voted.
+#' 
 #' @param division_id The id of a particular vote. If empty, returns a tibble
 #' with information on all lords divisions. Defaults to \code{NULL}.
+#' 
 #' @param summary If \code{TRUE}, returns a small tibble summarising a
 #' division outcome. Otherwise returns a tibble with details on how each peer
 #' voted. Has no effect if \code{division_id} is empty.
 #' Defaults to \code{FALSE}.
+#' 
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
 #' else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes divisions on or before this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything

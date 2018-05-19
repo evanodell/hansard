@@ -4,22 +4,26 @@
 #' Imports data on House of Commons divisions (votes), either full details
 #' on how each member voted, or a summary of vote totals.
 #'
+#' 
 #' @param division_id The id of a particular vote. If empty, returns a
 #' tibble with information on all commons divisions, subject to all other
 #' parameters. Defaults to \code{NULL}. Only accepts a single division ID
 #' at a time, but to return details on a list of division IDs use with
 #' \code{lapply}.
 #'
+#' 
 #' @param summary If \code{TRUE}, returns a small tibble summarising a
 #' division outcome. Otherwise returns a tibble with details on how each
 #' MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.
 #'
+#' 
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
 #' else that can be coerced to a date with \code{as.Date()}. Defaults
 #' to \code{'1900-01-01'}.
 #'
+#' 
 #' @param end_date Only includes divisions on or before this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything

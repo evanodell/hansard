@@ -3,14 +3,17 @@
 #'
 #' Imports data on TV broadcasts, clips of individual members and
 #' parliamentary TV channels.
+#'
 #' @param legislature Accepts one of either \code{'commons'} or
 #' \code{'lords'}. If \code{NULL}, returns all TV programmes for
 #' all chambers.
+#'
 #' @param start_date Only includes broadcasts on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#'
 #' @param end_date Only includes broadcasts on or before this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything

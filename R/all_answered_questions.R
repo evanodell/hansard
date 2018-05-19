@@ -14,12 +14,14 @@
 #' lists of multiple relevant search parameters. This can be in the form of a
 #' list, a data.frame column, a character vector, etc.
 #'
+#' 
 #' @param mp_id Accepts a member ID or vector of member IDs, and returns a
 #' tibble with all available questions answered by that member. Includes both
 #' oral and written questions, and includes members of the House of Commons
 #' and the House of Lords. If \code{NULL}, returns a tibble with all available
 #' answered questions, subject to other parameters. Defaults to \code{NULL}.
 #'
+#' 
 #' @param tabling_mp_id Accepts a member ID or vector of member IDs, and
 #' returns a tibble with all available questions asked by that member,
 #' subject to all other parameters. Includes both oral and written questions,
@@ -27,6 +29,7 @@
 #' \code{NULL}, returns a tibble with all available answered questions,
 #' subject to other parameters. Defaults to \code{NULL}.
 #'
+#' 
 #' @param house The house to return questions from. Accepts either the short
 #' name of the legislature (e.g. \code{'commons'} or \code{'lords'}) or the
 #' ID of the legislature (\code{1} for the House of Commons, \code{2} for the
@@ -34,6 +37,7 @@
 #' If \code{NULL}, returns answers from both houses, subject to other
 #' parameters. Defaults to \code{NULL}.
 #'
+#' 
 #' @param answering_body The name of the government department that answers the
 #' question, or a vector of government deparment names. Accepts either the
 #' short name name of a department (e.g. \code{'Education'} for the Department
@@ -42,31 +46,37 @@
 #' (e.g. 60 for the Department for Education). If \code{NULL}, returns answers
 #' from all departments, subject to other parameters. Defaults to \code{NULL}.
 #'
+#' 
 #' @param start_date The earliest date to include in the tibble. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
 #' that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
 #'
+#' 
 #' @param end_date The latest date to include in the tibble. Defaults to
 #' \code{'1900-01-01'}. Accepts character values in \code{'YYYY-MM-DD'}
 #' format, and objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
 #' \code{POSIXlt} or anything else that can be coerced to a date with
 #' \code{as.Date()}. Defaults to the current system date.
 #'
+#' 
 #' @param extra_args Additional parameters and queries to pass to API. These
 #' queries must be strings and start with "&". See the
 #' \href{http://explore.data.parliament.uk/}{API documentation}
 #' or the package vignette for more details. Defaults to \code{NULL}.
 #'
+#' 
 #' @param tidy Logical parameter. If \code{TRUE}, fixes the variable names
 #' in the tibble to remove special characters and superfluous text, and
 #' converts the variable names to a consistent style. Defaults to \code{TRUE}.
 #'
+#' 
 #' @param tidy_style The style to convert variable names to, if
 #' \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
 #' and \code{'period.case'}. Defaults to \code{'snake_case'}.
 #'
+#' 
 #' @param verbose If \code{TRUE}, displayes messages on the console on the
 #' progress of the API request. Defaults to \code{TRUE}.
 #'

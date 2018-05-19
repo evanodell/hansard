@@ -7,10 +7,13 @@
 #' see a list of briefing types, call \code{\link{research_types_list}}. This
 #' function can return results with newlines in the text of the abstract or
 #' description of the research briefing, represented as \code{'\\n'}.
+#' 
 #' @param topic The topic of the parliamentary briefing.
 #' Defaults to \code{NULL}.
+#' 
 #' @param subtopic The subtopic of the parliamentary briefing.
 #' Defaults to \code{NULL}.
+#' 
 #' @param type The type of research briefing. Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on parliamentary research briefings on

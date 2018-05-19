@@ -9,18 +9,21 @@
 #' @description If \code{answering_department} and/or \code{answered_by} are
 #' given a vector with multiple deparments/IDs, all possible combination of
 #' those criteria are returned.
-#'
+#' 
 #' @param answering_department Accepts the name of a department or a
 #' list of department names.  Returns a tibble with all answered questions
 #' in the House of Commons from the given department. Defaults to \code{NULL}.
+#' 
 #' @param answered_by Accepts the ID of an MP, or a list of IDs. Returns a
 #' tibble with all answered questions in the House of Commons by the given
 #' MP(s). Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes questions answered introduced on or after
 #' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
 #' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
 #' or anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

@@ -4,17 +4,21 @@
 #'
 #' Imports data on House of Commons and House of Lords publications.
 #'
+#' 
 #' @param ID Publication ID. Defaults to \code{NULL}. If not \code{NULL},
-#'  requests a tibble with information on the given publication.
+#' requests a tibble with information on the given publication.
+#' 
 #' @param house The house that produced the particular publication. Accepts
 #' \code{'commons'} and \code{'lords'}. If \code{NULL} or not \code{'commons'}
 #' or \code{'lords'}, returns publications from both House of Commons and
 #' House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes publications issued on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes publications issued on or before this
 #' date. Accepts character values in \code{'YYYY-MM-DD'} format, and
 #' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
@@ -26,7 +30,7 @@
 #' @export
 #' @examples \dontrun{
 #' # All publications in the house of commons
-#' x <- publication_logs(house='commons')
+#' x <- publication_logs(house = 'commons')
 #'
 #' # Returns a given publication
 #' y <- publication_logs(683267)

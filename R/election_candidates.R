@@ -5,9 +5,11 @@
 #' each constituency. Note that for general elections this can return a very
 #' large tibble with hundreds of variables.
 #'
+#' 
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
 #' Election onwards, and returns the results. If \code{NULL}, returns all
 #' available election results. Defaults to \code{NULL}.
+#' 
 #' @param constit_details If \code{TRUE}, returns additional details on each
 #' constituency, including its GSS (Government Statistical Service) code.
 #' Defaults to \code{FALSE}.

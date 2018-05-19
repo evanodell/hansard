@@ -4,7 +4,9 @@
 #'
 #' Imports the parliamentary thesaurus. The API is rate limited to 5500
 #' requests at a time, so some use of parameters is required.
+#' 
 #' @param search A string to search the parliamentary thesaurus for.
+#' 
 #' @param class The class of definition to be returned Accepts one of
 #' \code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},
 #' \code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.

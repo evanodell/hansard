@@ -41,7 +41,7 @@ Defaults to the current system date.}
 e.g. \code{'23-Feb-2017 By-election'}, and general elections use
 \code{'YYYY General Election'} format. The parameter cannot search,
 so check your formatting, spelling and make sure there were actually
-elections with the label specified. If NULL, returns all
+elections with the label specified. If \code{NULL}, returns all
 Elections/By-elections subject to other parameters.
 Defaults to \code{NULL}.}
 
@@ -69,10 +69,9 @@ ID, the date, and the type of election(s).
 \description{
 Imports data on general and by-elections from the
 2010 General Election onwards.
-}
-\details{
-If both \code{ID} and \code{type} are used to query the API, \code{ID}
-takes precedence and \code{type} is ignored.
+
+If both \code{ID} and \code{type} are used to query the API,
+\code{ID} takes precedence and \code{type} is ignored.
 }
 \examples{
 \dontrun{

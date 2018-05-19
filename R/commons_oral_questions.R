@@ -9,13 +9,16 @@
 #'
 #' @param mp_id The ID of a given MP asking an oral question, or a list of
 #' MP Ids. Defaults to \code{NULL}.
+#' 
 #' @param answering_department The name of a department, or a list of
 #' departments. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes questions answered on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
 #' else that can be coerced to a date with \code{as.Date()}. ]
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else

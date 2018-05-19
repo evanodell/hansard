@@ -5,9 +5,11 @@
 #' for the parliamentary session or the question ID. If \code{tidy=TRUE},
 #' datetime variables are converted to \code{POSIXct} class.
 #'
+#' 
 #' @param session Accepts a session in format \code{yyyy/yy}
 #' (e.g. \code{"2016/17"}) and returns a tibble of all oral question times from
 #' that session. Defaults to \code{NULL}.
+#' 
 #' @param question_id Accepts a question time ID, and returns a tibble of
 #' that question time.
 #' @inheritParams all_answered_questions

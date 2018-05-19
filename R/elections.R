@@ -2,35 +2,40 @@
 
 #' General and By-Elections
 #'
-#' Imports data on general and by-elections from the
+#' @description Imports data on general and by-elections from the
 #' 2010 General Election onwards.
 #'
-#' If both \code{ID} and \code{type} are used to query the API, \code{ID}
-#' takes precedence and \code{type} is ignored.
+#' @description If both \code{ID} and \code{type} are used to query the API,
+#' \code{ID} takes precedence and \code{type} is ignored.
+#' 
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
 #' Election onwards, and returns the date and type of the elction.
 #' If \code{NULL}, returns the date and type of all available elections,
 #' subject to other parameters. Defaults to \code{NULL}.
+#' 
 #' @param type Accepts \code{'General Election'} or \code{'By-election'} as
 #' arguments if ID is \code{NULL}, and returns all General Elections or all
 #' By-elections, as specified, subject to other parameters.
 #' Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes elections held on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes elections held on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to the current system date.
+#' 
 #' @param label Label of the election. By-elections are in
 #' \code{'dd-mmm-yyyy By-election'} format;
 #' e.g. \code{'23-Feb-2017 By-election'}, and general elections use
 #' \code{'YYYY General Election'} format. The parameter cannot search,
 #' so check your formatting, spelling and make sure there were actually
-#' elections with the label specified. If NULL, returns all
+#' elections with the label specified. If \code{NULL}, returns all
 #' Elections/By-elections subject to other parameters.
 #' Defaults to \code{NULL}.
 #' @inheritParams all_answered_questions

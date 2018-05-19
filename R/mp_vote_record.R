@@ -4,19 +4,25 @@
 #'
 #' Accepts an ID number for a member of the House of Commons, and returns a
 #' tibble of their votes.
+#'
+#' 
 #' @param mp_id The ID number of a member of the House of Commons.
+#' 
 #' @param lobby Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}.
 #' \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'}
 #' returns votes where the MP voted \code{'no'}, \code{'all'} returns all
 #' available votes by the MP. This parameter is not case sensitive.
 #' Defaults to \code{'all'}.
+#' 
 #' @param session The parliamentary session to return votes from, in
 #' \code{'YYYY/YY'} format. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
 #' else that can be coerced to a date with \code{as.Date()}. Defaults to
 #' \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes divisions on or before this date. Accepts
 #' character values in \code{'YYYY-MM-DD'} format, and objects of class
 #' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything

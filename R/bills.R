@@ -4,26 +4,37 @@
 #'
 #' Imports data on House of Commons and House of Lords bills.
 #'
+#' 
 #' @param ID The ID of a given bill to return data on. If \code{NULL},
 #' returns all bills, subject to other parameters. Defaults to \code{NULL}.
+#'
+#' 
 #' @param amendments If \code{TRUE}, returns all bills with amendments,
 #' subject to other parameters. Defaults to \code{FALSE}.
+#'
+#' 
 #' @param start_date Only includes bills introduced on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#'
+#' 
 #' @param end_date Only includes bills introduced on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to the current system date.
+#'
 #' @inheritParams all_answered_questions
+#'
 #' @return A tibble with details on bills before the House of Lords
 #' and the House of Commons.
+#'
 #' @seealso \code{\link{bill_stage_types}}
 #' @seealso \code{\link{bill_publications}}
 #' @export
+#'
 #' @examples \dontrun{
 #' # Download data on all bills
 #' x <- bills()

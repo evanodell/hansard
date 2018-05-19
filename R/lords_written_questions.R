@@ -6,22 +6,26 @@
 #' and/or directed to a given department.
 #'
 #'
+#' 
 #' @param peer_id Accepts a member ID or list of IDs, and returns a tibble
 #' with all written questions asked by that member or members. If \code{NULL},
 #' peer_id is not included in the query to the API and so all written
 #' questions are returned subject to other function parameters.
 #' Defaults to \code{NULL}.
+#' 
 #' @param answering_department Accepts a string with a department name or
 #' partial name or a list of departmental names, and returns all written
 #' questions by that department. The query acts as a search, so entering
 #' \code{'health'} will return all questions answered by the Department of
 #' Health. If \code{NULL}, answering_department is not included as a query
 #' parameter. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes questions tabled on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes questions tabled on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

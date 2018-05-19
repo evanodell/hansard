@@ -37,7 +37,7 @@ lwq_multi <- function(answering_department, peer_id,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 

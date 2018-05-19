@@ -5,19 +5,24 @@
 #' number of signatures, date created and epetition ID. For greater detail on
 #' indidivual epetitions, see \code{\link{epetition}}.
 #'
+#' 
 #' @param min_signatures The minimum number of signatures required for
 #' inclusion in the tibble. Defaults to 1.
+#' 
 #' @param max_signatures The maximum number of signatures required for
 #' inclusion in the tibble. If \code{NULL}, there is no maximum number of
 #' signatures. Defaults to \code{NULL}.
+#' 
 #' @param status The status of the petition, either \code{'open'} or
 #' \code{'closed'}. If \code{NULL}, returns all petitions both open and
 #' closed. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes epetitions created on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
 #' anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes epetitions created on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or a

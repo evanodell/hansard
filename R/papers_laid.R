@@ -3,16 +3,20 @@
 #' Papers laid
 #'
 #' Imports data on papers laid before the House.
+#' 
 #' @param withdrawn If \code{TRUE}, only returns withdrawn papers.
 #' Defaults to \code{FALSE}.
+#' 
 #' @param house The house the paper was laid in. Accepts \code{'commons'}
 #' and \code{'lords'}. If \code{NULL}, returns both House of Commons and
 #' House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
+#' 
 #' @param start_date Only includes papers laid before the House on or after
 #' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
 #' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
 #' or anything else that can be coerced to a date with \code{as.Date()}.
 #' Defaults to \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes papers laid before the House on or before
 #' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
 #' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}

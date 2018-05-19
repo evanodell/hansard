@@ -8,6 +8,7 @@
 #' \code{NULL}, which returns a tibble of all members of both houses, the
 #' same result as \code{members()}.
 #'
+#' 
 #' @param search Accepts any lucene query string, using * as a multiple
 #' character wildcard, and ? as the single character wildcard. Searchs are
 #' not case sensitive. If \code{NULL}, returns a tibble with all members of

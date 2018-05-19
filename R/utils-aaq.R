@@ -52,7 +52,7 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 

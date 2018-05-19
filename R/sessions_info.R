@@ -6,17 +6,20 @@
 #' \code{start_date} parameters are not set to the default values, the
 #' function downloads all available data and then subsets the tibble
 #' between the two given dates.
+#' 
 #' @param days If \code{TRUE}, returns data for all available days. If
 #' \code{FALSE}, returns data on each parliamentary session. If \code{TRUE}
 #' and non-default \code{start_date} and/or \code{end_date} parameters are
 #' requested, the function must retrieve all days and subset based on the
 #' values passed to \code{start_date} and \code{end_date}. Not applicable
 #' to \code{lords_sessions}. Defaults to \code{FALSE}.
+#' 
 #' @param start_date Only includes sessions starting on or after this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
 #' else that can be coerced to a date with \code{as.Date()}. Defaults to
 #' \code{'1900-01-01'}.
+#' 
 #' @param end_date Only includes sessions ending on or before this date.
 #' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
 #' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or

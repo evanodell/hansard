@@ -6,6 +6,7 @@
 #' the Lords and the Commons. For more details on a given member see
 #' \link[mnis]{mnis_full_biog} from the \link[mnis]{mnis} package.
 #'
+#' 
 #' @param ID The ID of a member of the House of Commons or the House of Lords
 #' to return data on. If \code{NULL}, returns a tibble of all members of both
 #' houses. Defaults to \code{NULL}.

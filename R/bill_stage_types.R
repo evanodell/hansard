@@ -2,7 +2,6 @@
 #'
 #' Returns a tibble with all possible bill stage types.
 #'
-#'
 #' @inheritParams all_answered_questions
 #' @return A tibble of bill stage types.
 #' @seealso \code{\link{bills}}

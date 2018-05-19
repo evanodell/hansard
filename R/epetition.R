@@ -4,9 +4,11 @@
 #'
 #' Imports data on a given epetition. For bulk epetion data,
 #' see \code{\link{epetition_tibble}}.
+#' 
 #' @param ID The ID of a given petition. If \code{NULL}, returns all
 #' epetitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}}
 #' for a greater degree of flexibility when querying all epetitions.
+#' 
 #' @param by_constituency Accepts either \code{TRUE} or \code{FALSE}.
 #' If \code{TRUE}, provides a tibble with a breakdown of signatures for
 #' each petition, by constituency. Defaults to \code{FALSE}.
