@@ -37,7 +37,7 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -86,7 +86,7 @@ commons_written_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 
@@ -134,7 +134,7 @@ caq_multi <- function(answering_department, answered_by,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
 
   df <- dplyr::bind_rows(dat)
 

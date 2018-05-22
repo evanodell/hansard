@@ -1,4 +1,3 @@
-
 library(hansard)
 context("commons functions")
 
