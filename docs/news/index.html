@@ -21,14 +21,17 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Changelog" />
+
 
 
 <!-- mathjax -->
@@ -65,7 +68,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2.9000</span>
       </span>
     </div>
 
@@ -148,6 +151,25 @@
       
     </div>
 
+    <div id="hansard-0-6-2-9000" class="section level1">
+<h1 class="page-header">
+<a href="#hansard-0-6-2-9000" class="anchor"></a>hansard 0.6.2.9000<small> Unreleased </small>
+</h1>
+<div id="dependency-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#dependency-changes" class="anchor"></a>Dependency changes</h2>
+<ul>
+<li>Removed need for <code>stringi</code> and <code>httr</code> packages, and dropped some <code>dplyr</code> dependencies</li>
+</ul>
+</div>
+<div id="function-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#function-changes" class="anchor"></a>Function changes</h2>
+<ul>
+<li>Dropping <code>hansard_generic</code> function</li>
+</ul>
+</div>
+</div>
     <div id="hansard-0-6-2" class="section level1">
 <h1 class="page-header">
 <a href="#hansard-0-6-2" class="anchor"></a>hansard 0.6.2<small> Unreleased </small>
@@ -155,7 +177,9 @@
 <div id="code-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#code-changes" class="anchor"></a>Code changes</h2>
-<p>If <code>tidy=TRUE</code>, URLs are consistently removed from <code>about</code> columns in all functions.</p>
+<ul>
+<li>If <code>tidy=TRUE</code>, URLs are consistently removed from <code>about</code> columns in all functions.</li>
+</ul>
 </div>
 <div id="documentation-updates" class="section level2">
 <h2 class="hasAnchor">
@@ -237,9 +261,9 @@
 <h1 class="page-header">
 <a href="#hansard-0-5-5" class="anchor"></a>hansard 0.5.5<small> 2017-10-09 </small>
 </h1>
-<div id="function-changes" class="section level2">
+<div id="function-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#function-changes" class="anchor"></a>Function changes</h2>
+<a href="#function-changes-1" class="anchor"></a>Function changes</h2>
 <p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (#4, <a href='http://github.com/pssguy'>@pssguy</a>)</p>
 <p>New function <code><a href="../reference/lords_sessions.html">lords_sessions()</a></code> returns a tibble with details of all sessions in the House of Lords between two given dates.</p>
 </div>
@@ -562,6 +586,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#hansard-0-6-2-9000">0.6.2.9000</a></li>
         <li><a href="#hansard-0-6-2">0.6.2</a></li>
         <li><a href="#hansard-0-6-1">0.6.1</a></li>
         <li><a href="#hansard-0-6-0">0.6.0</a></li>
