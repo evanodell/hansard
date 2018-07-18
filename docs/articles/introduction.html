@@ -8,8 +8,8 @@
 <title>Introduction to hansard • hansard</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to hansard">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to hansard">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.2.9000</span>
       </span>
     </div>
 
@@ -116,7 +116,7 @@
       <h1>Introduction to hansard</h1>
                         <h4 class="author">Evan Odell</h4>
             
-            <h4 class="date">2018-05-02</h4>
+            <h4 class="date">2018-06-21</h4>
       
       
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -149,7 +149,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <div id="using-hansard" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-hansard" class="anchor"></a>Using hansard</h2>
-<p><code>hansard</code> contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <a href="http://www.data.parliament.uk/" class="uri">http://www.data.parliament.uk/</a> API. The parameter options for each function vary, depending on the specific information available from each API, but there are four constant parameters in every function (with the exception of the <code><a href="../reference/hansard_generic.html">hansard_generic()</a></code> and <code><a href="../reference/research_briefings_lists.html">research_topics_list()</a></code> functions <a href="#special-functions">described below</a>): <code>extra_args</code>, <code>tidy</code>, <code>tidy_style</code> and <code>verbose</code>.</p>
+<p><code>hansard</code> contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <a href="http://www.data.parliament.uk/" class="uri">http://www.data.parliament.uk/</a> API. The parameter options for each function vary, depending on the specific information available from each API, but there are four constant parameters in every function (with the exception of the <code>hansard_generic()</code> and <code><a href="../reference/research_briefings_lists.html">research_topics_list()</a></code> functions <a href="#special-functions">described below</a>): <code>extra_args</code>, <code>tidy</code>, <code>tidy_style</code> and <code>verbose</code>.</p>
 <div id="extra_args" class="section level4">
 <h4 class="hasAnchor">
 <a href="#extra_args" class="anchor"></a><code>extra_args</code>
@@ -178,7 +178,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <h4 class="hasAnchor">
 <a href="#hansard_-prefixes" class="anchor"></a><code>hansard_</code> prefixes</h4>
 <p>In addition to the more generic sounding function names, each function in hansard has a wrapper where the name is prefixed with <code>hansard_</code>. For example, both <code><a href="../reference/bills.html">bills()</a></code> and <code><a href="../reference/bills.html">hansard_bills()</a></code> will return the same result.</p>
-<p>Almost all <code>hansard</code> functions (the exceptions being the functions that retrieve more reference style data: <code><a href="../reference/bill_stage_types.html">bill_stage_types()</a></code>, <code><a href="../reference/commons_division_date.html">commons_division_date()</a></code>, <code><a href="../reference/commons_terms.html">commons_terms()</a></code> <code><a href="../reference/constituencies.html">constituencies()</a></code>, <code><a href="../reference/election_candidates.html">election_candidates()</a></code>, <code><a href="../reference/election_results.html">election_results()</a></code>, <code><a href="../reference/members.html">members()</a></code>, <code><a href="../reference/members_search.html">members_search()</a></code>, <code>research_briefings_lists()</code> and <code><a href="../reference/hansard_generic.html">hansard_generic()</a></code>) include a <code>start_date</code> and <code>end_date</code> parameter, which can be used to set the earliest (<code>start_date</code>) and latest (<code>end_date</code>) data to be returned from the API.</p>
+<p>Almost all <code>hansard</code> functions (the exceptions being the functions that retrieve more reference style data: <code><a href="../reference/bill_stage_types.html">bill_stage_types()</a></code>, <code><a href="../reference/commons_division_date.html">commons_division_date()</a></code>, <code><a href="../reference/commons_terms.html">commons_terms()</a></code> <code><a href="../reference/constituencies.html">constituencies()</a></code>, <code><a href="../reference/election_candidates.html">election_candidates()</a></code>, <code><a href="../reference/election_results.html">election_results()</a></code>, <code><a href="../reference/members.html">members()</a></code>, <code><a href="../reference/members_search.html">members_search()</a></code>, <code>research_briefings_lists()</code> and <code>hansard_generic()</code>) include a <code>start_date</code> and <code>end_date</code> parameter, which can be used to set the earliest (<code>start_date</code>) and latest (<code>end_date</code>) data to be returned from the API.</p>
 </div>
 <div id="example-using-the-commons_divisions-and-mp_vote_record-functions" class="section level3">
 <h3 class="hasAnchor">
@@ -192,7 +192,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/glimpse">glimpse</a></span>(z)</a></code></pre></div>
 <pre><code>## Observations: 38
 ## Variables: 5
-## $ about         &lt;chr&gt; "http://data.parliament.uk/resources/722300", "h...
+## $ about         &lt;chr&gt; "722300", "714865", "714866", "714868", "713962"...
 ## $ title         &lt;chr&gt; "Early Parliamentary General Election", "Pension...
 ## $ uin           &lt;chr&gt; "CD:2017-04-19:264", "CD:2017-03-29:260", "CD:20...
 ## $ date_value    &lt;dttm&gt; 2017-04-19, 2017-03-29, 2017-03-29, 2017-03-29,...
@@ -314,7 +314,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <p>Several functions have special or experimental features:</p>
 <ul>
 <li><p><code>research_briefings_lists()</code> An experimental feature that creates lists of possible parameters, and allows the user to call to the API based on the content of the list. Currently only available with the <code>research_briefings_lists</code> function.</p></li>
-<li><p><code><a href="../reference/hansard_generic.html">hansard_generic()</a></code> A basic wrapper function for any of the available APIs. Users must specify the exact path they want the function to call from, and must also specify JSON formatting.</p></li>
+<li><p><code>hansard_generic()</code> A basic wrapper function for any of the available APIs. Users must specify the exact path they want the function to call from, and must also specify JSON formatting.</p></li>
 <li><p><code><a href="../reference/members_search.html">members_search()</a></code> A search function for members of the House of Commons and House of Lords.</p></li>
 </ul>
 </div>
@@ -354,21 +354,21 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.477   0.145 150.161</code></pre>
+##   0.473   0.135   7.456</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">system.time</span>(with_topic &lt;-<span class="st"> </span><span class="kw"><a href="../reference/research_briefings.html">research_briefings</a></span>(<span class="dt">topic =</span> research_topics_list[[<span class="dv">7</span>]], <span class="dt">subtopic=</span>research_subtopics_list[[<span class="dv">7</span>]][<span class="dv">10</span>]))</a></code></pre></div>
 <pre><code>## Connecting to API
 ## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.024   0.004   6.532</code></pre>
+##   0.030   0.003   0.179</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">identical</span>(with_topic, without_topic)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.</p>
 </div>
 <div id="the-hansard_generic-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#the-hansard_generic-function" class="anchor"></a>The <code><a href="../reference/hansard_generic.html">hansard_generic()</a></code> function</h3>
-<p>The <code><a href="../reference/hansard_generic.html">hansard_generic()</a></code> function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the <a href="http://explore.data.parliament.uk/">DDP Explorer website</a>.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/hansard_generic.html">hansard_generic</a></span>(<span class="st">"commonsansweredquestions.json"</span>)</a></code></pre></div>
+<a href="#the-hansard_generic-function" class="anchor"></a>The <code>hansard_generic()</code> function</h3>
+<p>The <code>hansard_generic()</code> function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the <a href="http://explore.data.parliament.uk/">DDP Explorer website</a>.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">hansard_generic</span>(<span class="st">"commonsansweredquestions.json"</span>)</a></code></pre></div>
 <p>Note that the API defaults to returning 10 items per page, but allows up to 500 items per page, the default used by <code>hansard</code>.</p>
 </div>
 <div id="the-members_search-function" class="section level3">
@@ -377,20 +377,26 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <p>Looking up information on an individual MP or Lord through the Parliamentary API requires knowing their parliamentary ID number. This can be hard to find on the web, but luckily you can look it up through the API. We want information on the voting record of the Labour MP for Hackney North and Stoke Newington Diane Abbott, but we don’t know her ID number, so we search for her:</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
 <a class="sourceLine" id="cb64-2" data-line-number="2"><span class="kw"><a href="../reference/members_search.html">members_search</a></span>(<span class="st">"abbot"</span>)</a></code></pre></div>
+<pre><code>## Warning in members_search("abbot"): Search functions are not consistently
+## working on the API</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>## The request did not return any data.
 ##                 Please check your parameters.</code></pre>
 <p>The same function, without the use of the tidy parameter, illustrating the differences in the variable names and the presentation of information in the first column:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw"><a href="../reference/members_search.html">members_search</a></span>(<span class="st">"abbot"</span>, <span class="dt">tidy =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="kw"><a href="../reference/members_search.html">members_search</a></span>(<span class="st">"abbot"</span>, <span class="dt">tidy =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## Warning in members_search("abbot", tidy = FALSE): Search functions are not
+## consistently working on the API</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>## The request did not return any data.
 ##                 Please check your parameters.</code></pre>
 <p>The same function as above, but with <code>tidy_style = "period.case"</code>, so it returns variables with a different naming convention.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="kw"><a href="../reference/members_search.html">members_search</a></span>(<span class="st">"abbot"</span>, <span class="dt">tidy =</span> <span class="ot">TRUE</span>, <span class="dt">tidy_style =</span> <span class="st">"period.case"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="kw"><a href="../reference/members_search.html">members_search</a></span>(<span class="st">"abbot"</span>, <span class="dt">tidy =</span> <span class="ot">TRUE</span>, <span class="dt">tidy_style =</span> <span class="st">"period.case"</span>)</a></code></pre></div>
+<pre><code>## Warning in members_search("abbot", tidy = TRUE, tidy_style =
+## "period.case"): Search functions are not consistently working on the API</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>## The request did not return any data.
