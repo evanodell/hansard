@@ -4,7 +4,7 @@ language: r
 r:
   - devel
 sudo: required
-cache: packages
+cache: false
 
 r_packages:
   - devtools
