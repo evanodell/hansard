@@ -6,12 +6,14 @@
 \title{House of Commons divisions}
 \usage{
 commons_divisions(division_id = NULL, summary = FALSE,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 
 hansard_commons_divisions(division_id = NULL, summary = FALSE,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 }
 \arguments{
 \item{division_id}{The id of a particular vote. If empty, returns a

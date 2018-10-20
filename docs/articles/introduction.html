@@ -116,7 +116,7 @@
       <h1>Introduction to hansard</h1>
                         <h4 class="author">Evan Odell</h4>
             
-            <h4 class="date">2018-06-21</h4>
+            <h4 class="date">2018-10-20</h4>
       
       
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -185,7 +185,7 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <a href="#example-using-the-commons_divisions-and-mp_vote_record-functions" class="anchor"></a>Example using the <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> and <code><a href="../reference/mp_vote_record.html">mp_vote_record()</a></code> functions</h3>
 <p>The <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. <code><a href="../reference/mp_vote_record.html">mp_vote_record()</a></code> returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the <a href="#special-functions"><code><a href="../reference/members_search.html">members_search()</a></code> function described below</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(hansard)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(tibble)##for the `tibble::glimpse()` function</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">library</span>(tibble)<span class="co">##for the `tibble::glimpse()` function</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">z &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mp_vote_record.html">mp_vote_record</a></span>(<span class="dv">172</span>, <span class="st">"aye"</span>, <span class="dt">start_date =</span> <span class="st">"2017-01-01"</span>, <span class="dt">end_date =</span> <span class="st">"2017-05-03"</span>)</a></code></pre></div>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
@@ -354,12 +354,12 @@ devtools::install_github("EvanOdell/hansard")</code></pre>
 <pre><code>## Connecting to API</code></pre>
 <pre><code>## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.473   0.135   7.456</code></pre>
+##   0.425   0.122   2.698</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">system.time</span>(with_topic &lt;-<span class="st"> </span><span class="kw"><a href="../reference/research_briefings.html">research_briefings</a></span>(<span class="dt">topic =</span> research_topics_list[[<span class="dv">7</span>]], <span class="dt">subtopic=</span>research_subtopics_list[[<span class="dv">7</span>]][<span class="dv">10</span>]))</a></code></pre></div>
 <pre><code>## Connecting to API
 ## Retrieving page 1 of 1</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.030   0.003   0.179</code></pre>
+##   0.027   0.003   0.075</code></pre>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">identical</span>(with_topic, without_topic)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.</p>

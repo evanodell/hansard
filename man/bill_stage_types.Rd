@@ -5,7 +5,8 @@
 \alias{hansard_bill_stage_types}
 \title{Bill Stage Types}
 \usage{
-bill_stage_types(tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+bill_stage_types(tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 
 hansard_bill_stage_types(tidy = TRUE, tidy_style = "snake_case",
   verbose = TRUE)

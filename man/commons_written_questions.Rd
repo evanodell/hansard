@@ -6,12 +6,14 @@
 \title{House of Commons Written Questions}
 \usage{
 commons_written_questions(mp_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 
-hansard_commons_written_questions(mp_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+hansard_commons_written_questions(mp_id = NULL,
+  answering_department = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{mp_id}{Accepts a member ID or a list of member IDs and returns a
