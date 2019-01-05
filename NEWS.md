@@ -1,6 +1,6 @@
 
 
-# hansard 0.6.2.9000
+# hansard 0.6.3
 
 ## Dependency changes
 
@@ -9,7 +9,7 @@ dependencies
 
 ## Function changes
 
-* Dropping `hansard_generic` function
+* `hansard_generic` function is now defunct.
 
 # hansard 0.6.2
 
