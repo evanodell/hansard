@@ -52,13 +52,13 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
   )
 
   if (is.null(ID) == TRUE) {
-    jpage <- floor(q_members$result$totalResults / 500)
+    jpage <- floor(q_members$result$totalResults / 100)
 
-    query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, id_query, extra_args, "&_pageSize=100&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
-    df <- tibble::as.tibble(as.data.frame(q_members$result$primaryTopic))
+    df <- tibble::as_tibble(as.data.frame(q_members$result$primaryTopic))
 
     names(df)[names(df) == "X_about"] <- "about"
     names(df)[names(df) == "X_value"] <- "additionalName"
@@ -83,7 +83,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
       )
     }
 
-    df <- tibble::as.tibble(df)
+    df <- tibble::as_tibble(df)
 
     df
   }
@@ -98,7 +98,7 @@ hansard_members <- members
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake_case", verbose = TRUE) {
-  baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=500")
+  baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=100")
 
   if (verbose == TRUE) {
     message("Connecting to API")
@@ -106,7 +106,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
 
   c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-  jpage <- floor(c_members$result$totalResults / 500)
+  jpage <- floor(c_members$result$totalResults / 100)
 
   query <- paste0(baseurl, extra_args, "&_page=")
 
@@ -134,7 +134,7 @@ hansard_commons_members <- commons_members
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake_case", verbose = TRUE) {
-  baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=500")
+  baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=100")
 
   if (verbose == TRUE) {
     message("Connecting to API")
@@ -142,7 +142,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
 
   l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-  jpage <- floor(l_members$result$totalResults / 500)
+  jpage <- floor(l_members$result$totalResults / 100)
 
   query <- paste0(baseurl, extra_args, "&_page=")
 

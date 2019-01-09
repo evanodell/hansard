@@ -67,11 +67,11 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
     message("Connecting to API")
   }
 
-  jpage <- floor(tv$result$totalResults / 500)
+  jpage <- floor(tv$result$totalResults / 100)
 
   query <- paste0(
     baseurl, leg_query, dates, extra_args,
-    "&_pageSize=500&_page="
+    "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -128,11 +128,11 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
   flatten = TRUE
   )
 
-  jpage <- floor(tv$result$totalResults / 500)
+  jpage <- floor(tv$result$totalResults / 100)
 
   query <- paste0(
     baseurl, member_query, dates,
-    extra_args, "&_pageSize=500&_page="
+    extra_args, "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -145,7 +145,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
       df <- tv_tidy2(df, mp_id, tidy_style)
     }
 
-    df <- tibble::as.tibble(df)
+    df <- tibble::as_tibble(df)
 
     df
   }
@@ -165,12 +165,12 @@ hansard_tv_clips <- tv_clips
 tv_channels <- function(tidy = TRUE, tidy_style = "snake_case",
                         verbose = TRUE) {
   channels <- jsonlite::fromJSON(paste0(
-    url_util, "tvchannels.json?_pageSize=500"
+    url_util, "tvchannels.json?_pageSize=100"
   ),
   flatten = TRUE
   )
 
-  df <- tibble::as.tibble(channels$result$items)
+  df <- tibble::as_tibble(channels$result$items)
 
   if (tidy == TRUE) {
     df <- hansard_tidy(df, tidy_style)

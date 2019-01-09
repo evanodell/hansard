@@ -82,11 +82,11 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
   flatten = TRUE
   )
 
-  jpage <- floor(petition$result$totalResults / 500)
+  jpage <- floor(petition$result$totalResults / 100)
 
   query <- paste0(
     baseurl, status_query, signature_query,
-    dates, extra_args, "&_pageSize=500&_page="
+    dates, extra_args, "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

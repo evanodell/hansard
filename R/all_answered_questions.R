@@ -203,12 +203,12 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       "&_pageSize=1"
     ), flatten = TRUE)
 
-    jpage <- floor(all$result$totalResults / 500)
+    jpage <- floor(all$result$totalResults / 100)
 
     query <- paste0(
       baseurl, answering_member_query, tabling_member_query,
       house_query, dept_query, dates, extra_args,
-      "&_pageSize=500&_page="
+      "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

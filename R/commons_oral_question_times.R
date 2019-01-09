@@ -55,11 +55,11 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(times$result$totalResults / 500)
+    jpage <- floor(times$result$totalResults / 100)
 
     query <- paste0(
       baseurl, ".json?", session_query,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

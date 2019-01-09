@@ -63,11 +63,11 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
   flatten = TRUE
   )
 
-  jpage <- floor(papers$result$totalResults / 500)
+  jpage <- floor(papers$result$totalResults / 100)
 
   query <- paste0(
     baseurl, withdrawn_query, house_query, dates,
-    extra_args, "&_pageSize=500&_page="
+    extra_args, "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

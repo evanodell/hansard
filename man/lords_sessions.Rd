@@ -8,8 +8,9 @@
 lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
   tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 
-hansard_lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+hansard_lords_sessions(start_date = "1900-01-01",
+  end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 }
 \arguments{
 \item{start_date}{Only includes sessions starting on or after this date.

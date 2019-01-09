@@ -9,9 +9,9 @@ research_briefings(topic = NULL, subtopic = NULL, type = NULL,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
   verbose = TRUE)
 
-hansard_research_briefings(topic = NULL, subtopic = NULL, type = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = TRUE)
+hansard_research_briefings(topic = NULL, subtopic = NULL,
+  type = NULL, extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{topic}{The topic of the parliamentary briefing.

@@ -98,11 +98,11 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
       flatten = TRUE
       )
 
-      jpage <- floor(edms$result$totalResults / 500)
+      jpage <- floor(edms$result$totalResults / 100)
 
       query <- paste0(
         baseurl, z_query, dates, extra_args,
-        "&_pageSize=500&_page="
+        "&_pageSize=100&_page="
       )
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R

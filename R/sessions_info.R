@@ -59,9 +59,9 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
     extra_args, "&_pageSize=1"
   ))
 
-  jpage <- floor(session$result$totalResults / 500)
+  jpage <- floor(session$result$totalResults / 100)
 
-  query <- paste0(baseurl, days_query, extra_args, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, days_query, extra_args, "&_pageSize=100&_page=")
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

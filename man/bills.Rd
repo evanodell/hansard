@@ -9,9 +9,10 @@ bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)
 
-hansard_bills(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+hansard_bills(ID = NULL, amendments = FALSE,
+  start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 }
 \arguments{
 \item{ID}{The ID of a given bill to return data on. If \code{NULL},

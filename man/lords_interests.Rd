@@ -8,8 +8,8 @@
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)
 
-hansard_lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+hansard_lords_interests(peer_id = NULL, extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{peer_id}{The ID of a member of the House of lords. If \code{NULL},

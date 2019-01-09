@@ -43,9 +43,9 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     results <- jsonlite::fromJSON(paste0(baseurl, search))
 
-    jpage <- floor(results$result$totalResults / 500)
+    jpage <- floor(results$result$totalResults / 100)
 
-    query <- paste0(baseurl, search, "&_pageSize=500&_page=")
+    query <- paste0(baseurl, search, "&_pageSize=100&_page=")
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

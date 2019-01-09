@@ -32,7 +32,7 @@
 #' @name hansard
 #' @importFrom jsonlite fromJSON
 #' @importFrom dplyr left_join bind_rows grouped_df summarise_all distinct
-#' @importFrom tibble as.tibble
+#' @importFrom tibble as_tibble
 #' @importFrom tidyr spread_ unnest_
 #' @importFrom lubridate parse_date_time
 NULL

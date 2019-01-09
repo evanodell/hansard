@@ -81,7 +81,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     df <- elect$result$primaryTopic
 
-    df <- tibble::as.tibble(as.data.frame(df))
+    df <- tibble::as_tibble(as.data.frame(df))
   } else {
     baseurl <- paste0(url_util, "elections")
 
@@ -104,11 +104,11 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
     flatten = TRUE
     )
 
-    jpage <- floor(elect$result$totalResults / 500)
+    jpage <- floor(elect$result$totalResults / 100)
 
     query <- paste0(
       baseurl, type_query, dates, label,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

@@ -5,10 +5,10 @@
 \alias{hansard_all_answered_questions}
 \title{All answered parliamentary questions}
 \usage{
-all_answered_questions(mp_id = NULL, tabling_mp_id = NULL, house = NULL,
-  answering_body = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = TRUE)
+all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
+  house = NULL, answering_body = NULL, start_date = "1900-01-01",
+  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
   house = NULL, answering_body = NULL, start_date = "1900-01-01",

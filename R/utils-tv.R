@@ -68,7 +68,7 @@ tv_tidy2 <- function(df, mp_id, tidy_style) {
         df$member_about
       )
 
-      df <- tibble::as.tibble(df)
+      df <- tibble::as_tibble(df)
     }
   }
 

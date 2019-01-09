@@ -8,7 +8,7 @@
 #
 # Users must specify '.json?' in their path. The function uses the default
 # of 10 items per page, to include more include \code{'&_pageSize=[number]'},
-# e.g. \code{'&_pageSize=500'} to specifiy the maximum amount of
+# e.g. \code{'&_pageSize=100'} to specifiy the maximum amount of
 # 500 items per page.
 #
 # This function does not tidy any variable names.
@@ -44,7 +44,7 @@ hansard_generic <- function(path) {
     pages[[i + 1]] <- mydata$result$items
   }
 
-  df <- tibble::as.tibble(dplyr::bind_rows(pages))
+  df <- tibble::as_tibble(dplyr::bind_rows(pages))
 
   df
 }

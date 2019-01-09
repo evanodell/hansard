@@ -8,8 +8,8 @@
 constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)
 
-hansard_constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+hansard_constituencies(current = NULL, extra_args = NULL,
+  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
 }
 \arguments{
 \item{current}{If \code{TRUE}, returns only current constituencies. If

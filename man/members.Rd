@@ -15,14 +15,14 @@ members(ID = NULL, extra_args = NULL, tidy = TRUE,
 hansard_members(ID = NULL, extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)
 
-commons_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = TRUE)
+commons_members(extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_commons_members(extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)
 
-lords_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
-  verbose = TRUE)
+lords_members(extra_args = NULL, tidy = TRUE,
+  tidy_style = "snake_case", verbose = TRUE)
 
 hansard_lords_members(extra_args = NULL, tidy = TRUE,
   tidy_style = "snake_case", verbose = TRUE)

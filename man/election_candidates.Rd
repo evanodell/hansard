@@ -5,8 +5,9 @@
 \alias{hansard_election_candidates}
 \title{Election candidate details}
 \usage{
-election_candidates(ID = NULL, constit_details = FALSE, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+election_candidates(ID = NULL, constit_details = FALSE,
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+  verbose = TRUE)
 
 hansard_election_candidates(ID = NULL, constit_details = FALSE,
   extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",

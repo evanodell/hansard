@@ -60,11 +60,11 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
   flatten = TRUE
   )
 
-  jpage <- floor(terms$result$totalResults / 500)
+  jpage <- floor(terms$result$totalResults / 100)
 
   query <- paste0(
     baseurl, search_query, class_query,
-    extra_args, "&_pageSize=500&_page="
+    extra_args, "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

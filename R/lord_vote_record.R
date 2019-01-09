@@ -107,11 +107,11 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
     flatten = TRUE
     )
 
-    jpage <- floor(content$result$totalResults / 500)
+    jpage <- floor(content$result$totalResults / 100)
 
     query <- paste0(
       baseurl, lobby, ".json?mnisId=", peer_id,
-      dates, extra_args, "&_pageSize=500&_page="
+      dates, extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

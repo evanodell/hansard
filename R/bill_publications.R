@@ -83,11 +83,11 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
   flatten = TRUE
   )
 
-  jpage <- floor(bills$result$totalResults / 500)
+  jpage <- floor(bills$result$totalResults / 100)
 
   query <- paste0(
     baseurl, bill_id, dates, extra_args,
-    "&_pageSize=500&_page="
+    "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
