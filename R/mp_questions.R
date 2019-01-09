@@ -124,11 +124,11 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         extra_args, "&_pageSize=1"
       ))
 
-      jpage <- floor(oral$result$totalResults / 500)
+      jpage <- floor(oral$result$totalResults / 100)
 
       query <- paste0(
         baseurl, mp_id, dates, extra_args,
-        "&_pageSize=500&_page="
+        "&_pageSize=100&_page="
       )
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -144,13 +144,13 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
       wr <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
 
-      jpage <- floor(wr$result$totalResults / 500)
+      jpage <- floor(wr$result$totalResults / 100)
 
       pages <- list()
 
       query <- paste0(
         baseurl, mp_id, dates, extra_args,
-        "&_pageSize=500&_page="
+        "&_pageSize=100&_page="
       )
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R

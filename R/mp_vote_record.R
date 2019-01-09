@@ -83,11 +83,11 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(url_aye$result$totalResults / 500)
+    jpage <- floor(url_aye$result$totalResults / 100)
 
     query <- paste0(
       baseurl, mp_id, dates, session_query,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -106,11 +106,11 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(url_no$result$totalResults / 500)
+    jpage <- floor(url_no$result$totalResults / 100)
 
     query <- paste0(
       baseurl, mp_id, dates, session_query,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

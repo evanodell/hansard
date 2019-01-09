@@ -103,12 +103,12 @@ commons_answered_questions <- function(answering_department = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(answered$result$totalResults / 500)
+    jpage <- floor(answered$result$totalResults / 100)
 
     query <- paste0(
       baseurl, dept_query, ".json?",
       answering_dept_query, answered_by,
-      dates, extra_args, "&_pageSize=500&_page="
+      dates, extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose)

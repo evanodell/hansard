@@ -88,9 +88,9 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
   ), flatten = TRUE)
 
   if (is.null(session_id) == FALSE) {
-    df <- tibble::as.tibble(as.data.frame(attend$result$primaryTopic))
+    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
-    jpage <- floor(attend$result$totalResults / 500)
+    jpage <- floor(attend$result$totalResults / 100)
 
     pages <- list()
 
@@ -98,7 +98,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
       mydata <- jsonlite::fromJSON(paste0(
         baseurl, query, dates,
         extra_args,
-        "&_pageSize=500&_page=", i
+        "&_pageSize=100&_page=", i
       ),
       flatten = TRUE
       )
@@ -108,7 +108,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
       pages[[i + 1]] <- mydata$result$items
     }
 
-    df <- tibble::as.tibble(dplyr::bind_rows(pages))
+    df <- tibble::as_tibble(dplyr::bind_rows(pages))
   }
 
   if (nrow(df) == 0) {

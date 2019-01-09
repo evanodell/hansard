@@ -76,12 +76,12 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
   flatten = TRUE
   )
 
-  jpage <- floor(bills$result$totalResults / 500)
+  jpage <- floor(bills$result$totalResults / 100)
 
   query <- paste0(
     baseurl, amend_query,
     dates, id_query, extra_args,
-    "&_pageSize=500&_page="
+    "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

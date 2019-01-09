@@ -50,9 +50,9 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
   flatten = TRUE
   )
 
-  jpage <- floor(attend$result$totalResults / 500)
+  jpage <- floor(attend$result$totalResults / 100)
 
-  query <- paste0(baseurl, dates, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, dates, "&_pageSize=100&_page=")
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

@@ -68,11 +68,11 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
     flatten = TRUE
     )
 
-    jpage <- floor(divis$result$totalResults / 500)
+    jpage <- floor(divis$result$totalResults / 100)
 
     query <- paste0(
       baseurl, ".json?", dates,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -111,7 +111,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
         uin = divis$result$primaryTopic$uin
       )
     } else {
-      df <- tibble::as.tibble(divis$result$primaryTopic$vote)
+      df <- tibble::as_tibble(divis$result$primaryTopic$vote)
     }
   }
 

@@ -1,7 +1,7 @@
 
 
-## Retrieves data from the API, using pagination
-loop_query <- function(query, jpage, verbose) {
+
+edm_loop_query <- function(query, jpage, verbose) {
   seq_list <- seq(from = 0, to = jpage, by = 1)
 
   pages <- list()
@@ -11,6 +11,8 @@ loop_query <- function(query, jpage, verbose) {
     if (verbose == TRUE) {
       message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }
+    mydata$result$items$primarySponsorPrinted <- as.list(mydata$result$items$primarySponsorPrinted)
+
     pages[[seq_list[[i]] + 1]] <- mydata$result$items
   }
 

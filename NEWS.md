@@ -1,11 +1,21 @@
 
 
-# hansard 0.6.3
+# hansard 0.6.2.9000
+
+## Bug Fixes
+
+* The max number of items per page has changed at some point. 
+  Please check your code to ensure that functions return the data you expect. 
+  If it is returning tibbles with multiples of 100 rows it is likely 
+  that your data is incomplete.
+  
+* Fixed an bug where the the `early_day_motions()` function mishandled 
+  list columns.
 
 ## Dependency changes
 
 * Removed need for `stringi` and `httr` packages, and dropped some `dplyr` 
-dependencies
+  dependencies
 
 ## Function changes
 

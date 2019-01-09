@@ -14,11 +14,11 @@
 bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
   stages <- jsonlite::fromJSON(
-    "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=500",
+    "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=100",
     flatten = TRUE
   )
 
-  df <- tibble::as.tibble(stages$result$items)
+  df <- tibble::as_tibble(stages$result$items)
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

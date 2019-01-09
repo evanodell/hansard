@@ -90,11 +90,11 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(oral$result$totalResults / 500)
+    jpage <- floor(oral$result$totalResults / 100)
 
     query <- paste0(
       baseurl, json_query, mp_id, dates,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

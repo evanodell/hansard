@@ -64,13 +64,13 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
       message("Retrieving attendance data")
     }
 
-    df <- tibble::as.tibble(as.data.frame(attend$result$primaryTopic))
+    df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
-    jpage <- floor(attend$result$totalResults / 500)
+    jpage <- floor(attend$result$totalResults / 100)
 
     query <- paste0(
       baseurl, json_query, extra_args,
-      "&_pageSize=500&_page="
+      "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

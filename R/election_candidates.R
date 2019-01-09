@@ -49,9 +49,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
   flatten = TRUE
   )
 
-  jpage <- floor(elect$result$totalResults / 500)
+  jpage <- floor(elect$result$totalResults / 100)
 
-  query <- paste0(baseurl, id_query, extra_args, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, id_query, extra_args, "&_pageSize=100&_page=")
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -128,7 +128,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
       df <- elect_can_tidy(df, tidy_style)
     }
 
-    df <- tibble::as.tibble(df)
+    df <- tibble::as_tibble(df)
 
     df <- dplyr::left_join(df, df4, by = "about")
 

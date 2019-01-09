@@ -95,11 +95,11 @@ commons_written_questions <- function(mp_id = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(writ$result$totalResults / 500)
+    jpage <- floor(writ$result$totalResults / 100)
 
     query <- paste0(
       baseurl, json_query, mp_id_query, dates,
-      extra_args, "&_pageSize=500&_page="
+      extra_args, "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

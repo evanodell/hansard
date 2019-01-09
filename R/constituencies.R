@@ -27,7 +27,7 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
 
   conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-  jpage <- floor(conts$result$totalResults / 500)
+  jpage <- floor(conts$result$totalResults / 100)
 
   if (is.null(current)) {
     current_query <- ""
@@ -39,7 +39,7 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
     current_query <- ""
   }
 
-  query <- paste0(baseurl, extra_args, current_query, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, extra_args, current_query, "&_pageSize=100&_page=")
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

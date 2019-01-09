@@ -69,11 +69,11 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(research$result$totalResults / 500)
+    jpage <- floor(research$result$totalResults / 100)
 
     query <- paste0(
       baseurl, type_query, extra_args,
-      "&_pageSize=500&_page="
+      "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
@@ -122,12 +122,12 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(research$result$totalResults / 500)
+    jpage <- floor(research$result$totalResults / 100)
 
     query <- paste0(
       baseurl, topic_query, subtopic_query,
       ".json?", null_type_query, extra_args,
-      "&_pageSize=500&_page="
+      "&_pageSize=100&_page="
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

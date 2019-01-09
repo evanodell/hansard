@@ -38,9 +38,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
   flatten = TRUE
   )
 
-  jpage <- floor(members$result$totalResults / 500)
+  jpage <- floor(members$result$totalResults / 100)
 
-  query <- paste0(baseurl, json_query, extra_args, "&_pageSize=500&_page=")
+  query <- paste0(baseurl, json_query, extra_args, "&_pageSize=100&_page=")
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

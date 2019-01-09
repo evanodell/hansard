@@ -62,13 +62,13 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
   flatten = TRUE
   )
 
-  jpage <- floor(ammend$result$totalResults / 500)
+  jpage <- floor(ammend$result$totalResults / 100)
 
   pages <- list()
 
   query <- paste0(
     baseurl, decision_query, dates,
-    extra_args, "&_pageSize=500&_page="
+    extra_args, "&_pageSize=100&_page="
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
