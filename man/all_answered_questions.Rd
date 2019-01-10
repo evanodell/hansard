@@ -92,7 +92,6 @@ list, a data.frame column, a character vector, etc.
 }
 \examples{
 \dontrun{
-
 # All questions answered by Nicola Blackwood from 1 January 2017 onwards
 x <- all_answered_questions(4019, start_date = "2017-01-01")
 
@@ -126,7 +125,6 @@ w <- hansard_all_answered_questions(
   end_date = "2017-03-12"
 )
 }
-
 }
 \seealso{
 \code{\link[=commons_answered_questions]{commons_answered_questions()}}

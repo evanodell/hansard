@@ -13,6 +13,7 @@ There are no notes, warnings or errors from R CMD check
 
 * Ubuntu 14.04.5 (on Travis-CI): R devel
 * local MacOS 10.14.2 installation: R 3.5.2
+* local Windows installation: R 3.5.2
 * win-builder (devel)
  
 
