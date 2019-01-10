@@ -122,15 +122,15 @@ w <- hansard_all_answered_questions(mp_id = c(4019, 3980),
 }
 }
 \seealso{
-\code{\link{commons_answered_questions}}
+\code{\link[=commons_answered_questions]{commons_answered_questions()}}
 
-\code{\link{commons_oral_questions}}
+\code{\link[=commons_oral_questions]{commons_oral_questions()}}
 
-\code{\link{commons_oral_question_times}}
+\code{\link[=commons_oral_question_times]{commons_oral_question_times()}}
 
-\code{\link{commons_written_questions}}
+\code{\link[=commons_written_questions]{commons_written_questions()}}
 
-\code{\link{lords_written_questions}}
+\code{\link[=lords_written_questions]{lords_written_questions()}}
 
-\code{\link{mp_questions}}
+\code{\link[=mp_questions]{mp_questions()}}
 }

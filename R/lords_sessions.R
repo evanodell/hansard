@@ -8,18 +8,18 @@
 #'
 #' 
 #' @param start_date Only includes sessions starting on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes sessions ending on or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
-#' @seealso \code{\link{lords_attendance_session}}
-#' @seealso \code{\link{sessions_info}}
+#' @seealso [lords_attendance_session()]
+#' @seealso [sessions_info()]
 #'
 #' @inheritParams all_answered_questions
 #' @export

@@ -4,7 +4,7 @@
 #' Because of the structure of the data.parliament.uk API, there is a named
 #' function for each type of available data for ease of use. Functions for
 #' each new API will be added as and when they become available on
-#' \url{data.parliament.uk}. The API is rate limited to returning 5500 rows
+#' <data.parliament.uk>. The API is rate limited to returning 5500 rows
 #' per request in some instances, though this has been inconsistent in testing.
 #'
 #' The API itself is still in beta, and only about half of the planned datasets
@@ -16,13 +16,13 @@
 #' `'hansard_'`. For example, both `bills()` and
 #' `hansard_bills()` will return the same result. This is because
 #' function names are taken from the specific API on
-#' \url{http://explore.data.parliament.uk/}, but they are often not very
+#' <http://explore.data.parliament.uk/>, but they are often not very
 #' informative and could clash with functions in other packages (e.g.
 #' `bills()` is not a term unique to the British parliament).
 #'
 #' For more details please see the
-#' \href{https://docs.evanodell.com/hansard/articles/introduction}{vignette},
-#' or the API documentation on \url{http://explore.data.parliament.uk/}.
+#' [vignette](https://docs.evanodell.com/hansard/articles/introduction),
+#' or the API documentation on <http://explore.data.parliament.uk/>.
 #'
 #' This package is in no way officially related to or endorsed by the UK
 #' Parliamentary Data Service.

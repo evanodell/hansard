@@ -1,15 +1,18 @@
 
 
-#Resubmission 
+# Resubmission 
 
-This is the sixth update of this package. The previous version, 0.5.5, was accepted and published on CRAN on 2017-10-09. 
+This is the 7th update of this package. The previous version, 0.6.0, was 
+accepted and published on CRAN on 2018-03-03. This version features reduced
+dependencies, code changes to accomodate new API limits, and improved 
+list-column handling.
 
-There is are no notes, warnings or errors from R CMD check
+There are no notes, warnings or errors from R CMD check
 
 ## Test environments
 
 * Ubuntu 14.04.5 (on Travis-CI): R devel
-* local MacOS 10.13.3 installation: R 3.4.3
+* local MacOS 10.14.2 installation: R 3.5.2
 * win-builder (devel)
  
 

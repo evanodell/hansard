@@ -14,7 +14,7 @@ hansard_epetition(ID = NULL, by_constituency = FALSE,
 }
 \arguments{
 \item{ID}{The ID of a given petition. If \code{NULL}, returns all
-epetitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}}
+epetitions. Defaults to \code{NULL}. See \code{\link[=epetition_tibble]{epetition_tibble()}}
 for a greater degree of flexibility when querying all epetitions.}
 
 \item{by_constituency}{Accepts either \code{TRUE} or \code{FALSE}.
@@ -43,7 +43,7 @@ submitted to parliament.
 }
 \description{
 Imports data on a given epetition. For bulk epetion data,
-see \code{\link{epetition_tibble}}.
+see \code{\link[=epetition_tibble]{epetition_tibble()}}.
 }
 \examples{
 \dontrun{
@@ -51,5 +51,5 @@ x <- epetition(ID = 706964, by_constituency=TRUE)
 }
 }
 \seealso{
-\code{\link{epetition_tibble}}
+\code{\link[=epetition_tibble]{epetition_tibble()}}
 }

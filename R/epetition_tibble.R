@@ -3,35 +3,35 @@
 #'
 #' Get data on all epetitions submitted to parliament, with the label, sponsor,
 #' number of signatures, date created and epetition ID. For greater detail on
-#' indidivual epetitions, see \code{\link{epetition}}.
+#' indidivual epetitions, see [epetition()].
 #'
 #' 
 #' @param min_signatures The minimum number of signatures required for
 #' inclusion in the tibble. Defaults to 1.
 #' 
 #' @param max_signatures The maximum number of signatures required for
-#' inclusion in the tibble. If \code{NULL}, there is no maximum number of
-#' signatures. Defaults to \code{NULL}.
+#' inclusion in the tibble. If `NULL`, there is no maximum number of
+#' signatures. Defaults to `NULL`.
 #' 
-#' @param status The status of the petition, either \code{'open'} or
-#' \code{'closed'}. If \code{NULL}, returns all petitions both open and
-#' closed. Defaults to \code{NULL}.
+#' @param status The status of the petition, either `'open'` or
+#' `'closed'`. If `NULL`, returns all petitions both open and
+#' closed. Defaults to `NULL`.
 #' 
 #' @param start_date Only includes epetitions created on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes epetitions created on or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or a
-#' nything else that can be coerced to a date with \code{as.Date()}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or a
+#' nything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on electronic petitions
 #' submitted to parliament.
-#' @seealso \code{\link{epetition}}
+#' @seealso [epetition()]
 #'
 #' @export
 #' @examples \dontrun{

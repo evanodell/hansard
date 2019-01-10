@@ -44,9 +44,9 @@ this data in a way that you want may be required.
 \details{
 To return a tibble with all codes for available individual sessions, use
 \code{lords_attendance_session(session_id=NULL)}, or use
-\code{\link{lords_sessions}} to retrieve codes for a given date range.
+\code{\link[=lords_sessions]{lords_sessions()}} to retrieve codes for a given date range.
 Attendance from multiple sessions can be accessed by using \code{lapply}
-with the output from \code{\link{lords_sessions}}.
+with the output from \code{\link[=lords_sessions]{lords_sessions()}}.
 
 Please note that House of Lords attendance data is not as tidy as some of
 the others that are accessible through this API, and so additional work
@@ -67,7 +67,7 @@ m <- lapply(u$about, lords_attendance_session)
 }
 }
 \seealso{
-\code{\link{lords_attendance_date}}
+\code{\link[=lords_attendance_date]{lords_attendance_date()}}
 
-\code{\link{lords_sessions}}
+\code{\link[=lords_sessions]{lords_sessions()}}
 }

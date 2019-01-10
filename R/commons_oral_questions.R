@@ -3,35 +3,35 @@
 #' House of Commons Oral Questions
 #'
 #' Imports data on House of Commons oral questions, based on the asking MP,
-#' the answering department and the date. The \code{mp_id} and
-#' \code{answering_department} parameters accept a single ID or department
+#' the answering department and the date. The `mp_id` and
+#' `answering_department` parameters accept a single ID or department
 #' names, or a list of IDs or department names, respectively.
 #'
 #' @param mp_id The ID of a given MP asking an oral question, or a list of
-#' MP Ids. Defaults to \code{NULL}.
+#' MP Ids. Defaults to `NULL`.
 #' 
 #' @param answering_department The name of a department, or a list of
-#' departments. Defaults to \code{NULL}.
+#' departments. Defaults to `NULL`.
 #' 
 #' @param start_date Only includes questions answered on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}. ]
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`. ]
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes questions answered on or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
-#' that can be coerced to a date with \code{as.Date()}. Defaults to the current
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything else
+#' that can be coerced to a date with `as.Date()`. Defaults to the current
 #' system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on all oral questions in the House of Commons.
-#' @seealso \code{\link{all_answered_questions}}
-#' @seealso \code{\link{commons_answered_questions}}
-#' @seealso \code{\link{commons_oral_question_times}}
-#' @seealso \code{\link{commons_written_questions}}
-#' @seealso \code{\link{lords_written_questions}}
-#' @seealso \code{\link{mp_questions}}
+#' @seealso [all_answered_questions()]
+#' @seealso [commons_answered_questions()]
+#' @seealso [commons_oral_question_times()]
+#' @seealso [commons_written_questions()]
+#' @seealso [lords_written_questions()]
+#' @seealso [mp_questions()]
 #' @export
 #' @examples \dontrun{
 #'

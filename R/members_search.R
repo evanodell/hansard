@@ -5,18 +5,18 @@
 #' Function searches for the string and returns a tibble with all matches from
 #' both houses of parliament. Returns all partial matches in the members'
 #' names, constituencies, twitter handle and webpage. The default search is
-#' \code{NULL}, which returns a tibble of all members of both houses, the
-#' same result as \code{members()}.
+#' `NULL`, which returns a tibble of all members of both houses, the
+#' same result as `members()`.
 #'
 #' 
 #' @param search Accepts any lucene query string, using * as a multiple
 #' character wildcard, and ? as the single character wildcard. Searchs are
-#' not case sensitive. If \code{NULL}, returns a tibble with all members of
-#' both houses of parliament. Defaults to \code{NULL}.
+#' not case sensitive. If `NULL`, returns a tibble with all members of
+#' both houses of parliament. Defaults to `NULL`.
 #'
 #' @inheritParams all_answered_questions
 #' @return A tibble with the results of the search.
-#' @seealso \code{\link{members}}
+#' @seealso [members()]
 #' @export
 #' @examples \dontrun{
 #' x <- members_search('*chris*')

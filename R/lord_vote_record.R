@@ -6,25 +6,25 @@
 #' tibble of their votes.
 #' 
 #' @param peer_id The ID number of a member of the House of Lords. A value
-#' must be included for this parameter. Use the \code{\link{lords_members}}
-#' to find IDs for members of the House of Lords. Defaults to \code{NULL}.
+#' must be included for this parameter. Use the [lords_members()]
+#' to find IDs for members of the House of Lords. Defaults to `NULL`.
 #' 
-#' @param lobby Accepts one of \code{'all'}, \code{'content'},
-#' \code{'notcontent'}. \code{'content'} returns votes where the peer voted
-#' 'Content', \code{'notcontent'} returns votes where the peer voted
-#' 'Not Content' and \code{'all'} returns all available votes by the peer.
-#' This parameter is not case sensitive. Defaults to \code{'all'}.
+#' @param lobby Accepts one of `'all'`, `'content'`,
+#' `'notcontent'`. `'content'` returns votes where the peer voted
+#' 'Content', `'notcontent'` returns votes where the peer voted
+#' 'Not Content' and `'all'` returns all available votes by the peer.
+#' This parameter is not case sensitive. Defaults to `'all'`.
 #' 
 #' @param start_date Only includes divisions on or after this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes divisions on or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the voting record of a

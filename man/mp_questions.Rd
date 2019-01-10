@@ -69,15 +69,15 @@ z <- mp_questions(c(172,3967) 'written')
 }
 }
 \seealso{
-\code{\link{all_answered_questions}}
+\code{\link[=all_answered_questions]{all_answered_questions()}}
 
-\code{\link{commons_answered_questions}}
+\code{\link[=commons_answered_questions]{commons_answered_questions()}}
 
-\code{\link{commons_oral_questions}}
+\code{\link[=commons_oral_questions]{commons_oral_questions()}}
 
-\code{\link{commons_oral_question_times}}
+\code{\link[=commons_oral_question_times]{commons_oral_question_times()}}
 
-\code{\link{commons_written_questions}}
+\code{\link[=commons_written_questions]{commons_written_questions()}}
 
-\code{\link{lords_written_questions}}
+\code{\link[=lords_written_questions]{lords_written_questions()}}
 }

@@ -22,7 +22,7 @@ Defaults to \code{NULL}.}
 
 \item{publication_type}{The type of bill publication to return, in the form
 of a string. For a character vector of bill publication types, see
-\code{\link{bill_publication_types}}. If \code{NULL}, returns all
+\code{\link[=bill_publication_types]{bill_publication_types()}}. If \code{NULL}, returns all
 publications of all types, subject to other parameters.
 Defaults to \code{NULL}.}
 
@@ -71,9 +71,9 @@ y <- bill_publications(start_date = "2018-01-01")
 }
 }
 \seealso{
-\code{\link{bill_stage_types}}
+\code{\link[=bill_stage_types]{bill_stage_types()}}
 
-\code{\link{bills}}
+\code{\link[=bills]{bills()}}
 
-\code{\link{bill_publication_types}}
+\code{\link[=bill_publication_types]{bill_publication_types()}}
 }

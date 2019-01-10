@@ -79,5 +79,5 @@ z <- lords_members()
 }
 }
 \seealso{
-\code{\link{members_search}}
+\code{\link[=members_search]{members_search()}}
 }

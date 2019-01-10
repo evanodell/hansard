@@ -4,20 +4,20 @@
 #' Imports data on TV broadcasts, clips of individual members and
 #' parliamentary TV channels.
 #'
-#' @param legislature Accepts one of either \code{'commons'} or
-#' \code{'lords'}. If \code{NULL}, returns all TV programmes for
+#' @param legislature Accepts one of either `'commons'` or
+#' `'lords'`. If `NULL`, returns all TV programmes for
 #' all chambers.
 #'
 #' @param start_date Only includes broadcasts on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #'
 #' @param end_date Only includes broadcasts on or before this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}. Defaults to
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`. Defaults to
 #' the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on TV broadcasts.
@@ -94,8 +94,8 @@ hansard_tv_programmes <- tv_programmes
 
 
 #' @param mp_id Accepts the ID of an MP or peer, and returns all clips
-#' featuring that MP or peer. If \code{NULL}, returns data on all available
-#' clips. Defaults to \code{NULL}.
+#' featuring that MP or peer. If `NULL`, returns data on all available
+#' clips. Defaults to `NULL`.
 #' @return A tibble with details on TV broadcasts featuring the given MP,
 #' or all available clips.
 #'

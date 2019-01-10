@@ -6,38 +6,38 @@
 #' parameters are left empty, imports all available answered questions in a
 #' tibble.
 #'
-#' @description If \code{answering_department} and/or \code{answered_by} are
+#' @description If `answering_department` and/or `answered_by` are
 #' given a vector with multiple deparments/IDs, all possible combination of
 #' those criteria are returned.
 #' 
 #' @param answering_department Accepts the name of a department or a
 #' list of department names.  Returns a tibble with all answered questions
-#' in the House of Commons from the given department. Defaults to \code{NULL}.
+#' in the House of Commons from the given department. Defaults to `NULL`.
 #' 
 #' @param answered_by Accepts the ID of an MP, or a list of IDs. Returns a
 #' tibble with all answered questions in the House of Commons by the given
-#' MP(s). Defaults to \code{NULL}.
+#' MP(s). Defaults to `NULL`.
 #' 
 #' @param start_date Only includes questions answered introduced on or after
-#' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
-#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
-#' or anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' this date. Accepts character values in `'YYYY-MM-DD'` format, and
+#' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
+#' or anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes questions answered on or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on all answered questions in the
 #' House of Commons.
-#' @seealso \code{\link{all_answered_questions}}
-#' @seealso \code{\link{commons_oral_questions}}
-#' @seealso \code{\link{commons_oral_question_times}}
-#' @seealso \code{\link{commons_written_questions}}
-#' @seealso \code{\link{lords_written_questions}}
-#' @seealso \code{\link{mp_questions}}
+#' @seealso [all_answered_questions()]
+#' @seealso [commons_oral_questions()]
+#' @seealso [commons_oral_question_times()]
+#' @seealso [commons_written_questions()]
+#' @seealso [lords_written_questions()]
+#' @seealso [mp_questions()]
 #' @export
 #' @examples \dontrun{
 #' x <- commons_answered_questions(

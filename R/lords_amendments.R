@@ -5,20 +5,20 @@
 #' to parameters.
 #' 
 #' @param decision The decision on the amendments. Accepts one of
-#' \code{'Withdrawn'}, \code{'Agreed'}, \code{'Disagreed'}, \code{'Pending'},
-#' \code{'NotMoved'}, \code{'Disposed'}. This parameter is not case sensitive.
-#' Defaults to \code{NULL}.
+#' `'Withdrawn'`, `'Agreed'`, `'Disagreed'`, `'Pending'`,
+#' `'NotMoved'`, `'Disposed'`. This parameter is not case sensitive.
+#' Defaults to `NULL`.
 #' 
 #' @param start_date Only includes amendments to bills introduced on or after
-#' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
-#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
-#' or anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' this date. Accepts character values in `'YYYY-MM-DD'` format, and
+#' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
+#' or anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes amendments to bills introduced on or before
-#' this date. Accepts character values in \code{'YYYY-MM-DD'} format, and
-#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt}
-#' or anything else that can be coerced to a date with \code{as.Date()}.
+#' this date. Accepts character values in `'YYYY-MM-DD'` format, and
+#' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
+#' or anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on amendments proposed by the House of Lords.

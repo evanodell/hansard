@@ -8,8 +8,8 @@
 #' @param search A string to search the parliamentary thesaurus for.
 #' 
 #' @param class The class of definition to be returned Accepts one of
-#' \code{'ID'}, \code{'ORG'}, \code{'SIT'}, \code{'NAME'}, \code{'LEG'},
-#' \code{'CTP'}, \code{'PBT'} and \code{'TPG'}.  Defaults to \code{NULL}.
+#' `'ID'`, `'ORG'`, `'SIT'`, `'NAME'`, `'LEG'`,
+#' `'CTP'`, `'PBT'` and `'TPG'`.  Defaults to `NULL`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with results from the parliamentary thesaurus.
 #' @export

@@ -3,24 +3,22 @@
 #' Returns a tibble with the divisions (votes) in the
 #' House of Commons on a given date.
 #'
-#'
 #' @param date Returns all divisions on a given date.
-#' Defaults to \code{NULL}.
+#' Defaults to `NULL`.
 #'
 #' @param extra_args Additional parameters to pass to API.
-#' Defaults to \code{NULL}.
-#'
+#' Defaults to `NULL`.
 #'
 #' @param tidy Logical parameter. If TRUE, fixes the variable names in the
 #' tibble to remove special characters and superfluous text, and converts
-#' the variable names to a consistent style. Defaults to \code{TRUE}.
+#' the variable names to a consistent style. Defaults to `TRUE`.
 #'
 #' @param tidy_style The style to convert variable names to, if
-#' \code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-#' and \code{'period.case'}. Defaults to \code{'snake_case'}.
+#' `tidy = TRUE`. Accepts one of `'snake_case'`, `'camelCase'`
+#' and `'period.case'`. Defaults to `'snake_case'`.
 #'
-#' @param verbose If \code{TRUE}, returns data to console on the progress of
-#' the API request. Defaults to \code{FALSE}.
+#' @param verbose If `TRUE`, returns data to console on the progress of
+#' the API request. Defaults to `FALSE`.
 #'
 #' @return A tibble with the dates of divisions in the House of Commons.
 #' @export
@@ -28,7 +26,6 @@
 #' # all commons divisions on 19 April 2017
 #' x <- commons_division_date('2017-04-19')
 #' }
-
 
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
                                   tidy_style = "snake_case", verbose = TRUE) {

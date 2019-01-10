@@ -72,7 +72,7 @@ x <- bills(start_date = '2016-01-01')
 }
 }
 \seealso{
-\code{\link{bill_stage_types}}
+\code{\link[=bill_stage_types]{bill_stage_types()}}
 
-\code{\link{bill_publications}}
+\code{\link[=bill_publications]{bill_publications()}}
 }

@@ -78,15 +78,15 @@ y <- commons_answered_questions(start_date = '2017-03-26',
 }
 }
 \seealso{
-\code{\link{all_answered_questions}}
+\code{\link[=all_answered_questions]{all_answered_questions()}}
 
-\code{\link{commons_oral_questions}}
+\code{\link[=commons_oral_questions]{commons_oral_questions()}}
 
-\code{\link{commons_oral_question_times}}
+\code{\link[=commons_oral_question_times]{commons_oral_question_times()}}
 
-\code{\link{commons_written_questions}}
+\code{\link[=commons_written_questions]{commons_written_questions()}}
 
-\code{\link{lords_written_questions}}
+\code{\link[=lords_written_questions]{lords_written_questions()}}
 
-\code{\link{mp_questions}}
+\code{\link[=mp_questions]{mp_questions()}}
 }

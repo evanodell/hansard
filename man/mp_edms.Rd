@@ -85,5 +85,5 @@ y <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
 }
 }
 \seealso{
-\code{\link{early_day_motions}}
+\code{\link[=early_day_motions]{early_day_motions()}}
 }

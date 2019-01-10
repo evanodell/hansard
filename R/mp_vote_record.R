@@ -8,25 +8,25 @@
 #' 
 #' @param mp_id The ID number of a member of the House of Commons.
 #' 
-#' @param lobby Accepts one of \code{'all'}, \code{'aye'} or \code{'no'}.
-#' \code{'aye'} returns votes where the MP voted \code{'aye'}, \code{'no'}
-#' returns votes where the MP voted \code{'no'}, \code{'all'} returns all
+#' @param lobby Accepts one of `'all'`, `'aye'` or `'no'`.
+#' `'aye'` returns votes where the MP voted `'aye'`, `'no'`
+#' returns votes where the MP voted `'no'`, `'all'` returns all
 #' available votes by the MP. This parameter is not case sensitive.
-#' Defaults to \code{'all'}.
+#' Defaults to `'all'`.
 #' 
 #' @param session The parliamentary session to return votes from, in
-#' \code{'YYYY/YY'} format. Defaults to \code{NULL}.
+#' `'YYYY/YY'` format. Defaults to `NULL`.
 #' 
 #' @param start_date Only includes divisions on or after this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}. Defaults to
-#' \code{'1900-01-01'}.
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`. Defaults to
+#' `'1900-01-01'`.
 #' 
 #' @param end_date Only includes divisions on or before this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}. Defaults to
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`. Defaults to
 #' the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the voting record of the given MP.

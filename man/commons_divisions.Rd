@@ -24,7 +24,7 @@ at a time, but to return details on a list of division IDs use with
 
 \item{summary}{If \code{TRUE}, returns a small tibble summarising a
 division outcome. Otherwise returns a tibble with details on how each
-MP voted. Has no effect if `division_id` is empty. Defaults to \code{FALSE}.}
+MP voted. Has no effect if \code{division_id} is empty. Defaults to \code{FALSE}.}
 
 \item{start_date}{Only includes divisions on or after this date. Accepts
 character values in \code{'YYYY-MM-DD'} format, and objects of class

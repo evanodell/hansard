@@ -44,9 +44,9 @@ the given topic.
 }
 \description{
 Imports data on  Parliamentary Research Briefings. To see a list of possible
-topics call \code{\link{research_topics_list}} or
-\code{\link{research_subtopics_list}} for both topics and subtopics. To
-see a list of briefing types, call \code{\link{research_types_list}}. This
+topics call \code{\link[=research_topics_list]{research_topics_list()}} or
+\code{\link[=research_subtopics_list]{research_subtopics_list()}} for both topics and subtopics. To
+see a list of briefing types, call \code{\link[=research_types_list]{research_types_list()}}. This
 function can return results with newlines in the text of the abstract or
 description of the research briefing, represented as \code{'\\n'}.
 }
@@ -74,9 +74,9 @@ x <- research_briefings(type = research_types_list[[3]])
 }
 }
 \seealso{
-\code{\link{research_subtopics_list}}
+\code{\link[=research_subtopics_list]{research_subtopics_list()}}
 
-\code{\link{research_types_list}}
+\code{\link[=research_types_list]{research_types_list()}}
 
-\code{\link{research_topics_list}}
+\code{\link[=research_topics_list]{research_topics_list()}}
 }

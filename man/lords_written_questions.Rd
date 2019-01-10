@@ -74,15 +74,15 @@ x <- lords_written_questions(peer_id = c(3526,4176),
 }
 }
 \seealso{
-\code{\link{all_answered_questions}}
+\code{\link[=all_answered_questions]{all_answered_questions()}}
 
-\code{\link{commons_answered_questions}}
+\code{\link[=commons_answered_questions]{commons_answered_questions()}}
 
-\code{\link{commons_oral_questions}}
+\code{\link[=commons_oral_questions]{commons_oral_questions()}}
 
-\code{\link{commons_oral_question_times}}
+\code{\link[=commons_oral_question_times]{commons_oral_question_times()}}
 
-\code{\link{commons_written_questions}}
+\code{\link[=commons_written_questions]{commons_written_questions()}}
 
-\code{\link{mp_questions}}
+\code{\link[=mp_questions]{mp_questions()}}
 }

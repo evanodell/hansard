@@ -7,8 +7,8 @@
 # included in the individual functions of the hansard package.
 #
 # Users must specify '.json?' in their path. The function uses the default
-# of 10 items per page, to include more include \code{'&_pageSize=[number]'},
-# e.g. \code{'&_pageSize=100'} to specifiy the maximum amount of
+# of 10 items per page, to include more include `'&_pageSize=[number]'`,
+# e.g. `'&_pageSize=100'` to specifiy the maximum amount of
 # 500 items per page.
 #
 # This function does not tidy any variable names.

@@ -62,7 +62,7 @@ submitted to parliament.
 \description{
 Get data on all epetitions submitted to parliament, with the label, sponsor,
 number of signatures, date created and epetition ID. For greater detail on
-indidivual epetitions, see \code{\link{epetition}}.
+indidivual epetitions, see \code{\link[=epetition]{epetition()}}.
 }
 \examples{
 \dontrun{
@@ -74,5 +74,5 @@ z <- epetition_tibble(start_date='2016-12-01', end_date='2017-04-25')
 }
 }
 \seealso{
-\code{\link{epetition}}
+\code{\link[=epetition]{epetition()}}
 }

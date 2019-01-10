@@ -4,9 +4,9 @@
 #' Imports data on House of Commons constituencies, returning a tibble of all
 #' current and/or former Westminster constituencies, subject to parameters.
 #' 
-#' @param current If \code{TRUE}, returns only current constituencies. If
-#' \code{FALSE}, returns only former constituencies. If \code{NULL}, returns
-#' all current and former constituencies. Defaults to \code{NULL}.
+#' @param current If `TRUE`, returns only current constituencies. If
+#' `FALSE`, returns only former constituencies. If `NULL`, returns
+#' all current and former constituencies. Defaults to `NULL`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details of Westminster constituencies.
 #' @export

@@ -1,29 +1,27 @@
 
-
 #' House publications
 #'
 #' Imports data on House of Commons and House of Lords publications.
 #'
-#'
-#' @param ID Publication ID. Defaults to \code{NULL}. If not \code{NULL},
+#' @param ID Publication ID. Defaults to `NULL`. If not `NULL`,
 #' requests a tibble with information on the given publication.
 #'
 #' @param house The house that produced the particular publication. Accepts
-#' \code{'commons'} and \code{'lords'}. If \code{NULL} or not \code{'commons'}
-#' or \code{'lords'}, returns publications from both House of Commons and
-#' House of Lords. This parameter is case-insensitive. Defaults to \code{NULL}.
+#' `'commons'` and `'lords'`. If `NULL` or not `'commons'`
+#' or `'lords'`, returns publications from both House of Commons and
+#' House of Lords. This parameter is case-insensitive. Defaults to `NULL`.
 #'
 #' @param start_date Only includes publications issued on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #'
 #' @param end_date Only includes publications issued on or before this
-#' date. Accepts character values in \code{'YYYY-MM-DD'} format, and
-#' objects of class \code{Date}, \code{POSIXt}, \code{POSIXct},
-#' \code{POSIXlt} or anything else that can be coerced to a date with
-#' \code{as.Date()}. Defaults to the current system date.
+#' date. Accepts character values in `'YYYY-MM-DD'` format, and
+#' objects of class `Date`, `POSIXt`, `POSIXct`,
+#' `POSIXlt` or anything else that can be coerced to a date with
+#' `as.Date()`. Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details from publications in the House of
 #' Commons and House of Lords

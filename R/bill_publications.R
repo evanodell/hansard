@@ -5,39 +5,39 @@
 #' Returns details of all publications associated with a specific bill
 #' or all bills.
 #'
-#' 
-#' @param ID The ID of a specific bill to return publications for.
-#' If \code{NULL}, returns all bill publications subject to other parameters.
-#' Defaults to \code{NULL}.
 #'
-#' 
+#' @param ID The ID of a specific bill to return publications for.
+#' If `NULL`, returns all bill publications subject to other parameters.
+#' Defaults to `NULL`.
+#'
+#'
 #' @param publication_type The type of bill publication to return, in the form
 #' of a string. For a character vector of bill publication types, see
-#' \code{\link{bill_publication_types}}. If \code{NULL}, returns all
+#' [bill_publication_types()]. If `NULL`, returns all
 #' publications of all types, subject to other parameters.
-#' Defaults to \code{NULL}.
+#' Defaults to `NULL`.
 #'
-#' 
+#'
 #' @param start_date Only includes bill publications on or after this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #'
-#' 
+#'
 #' @param end_date Only includes bill publicationson or before this date.
-#' Accepts character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
+#' Accepts character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #'
 #' @inheritParams all_answered_questions
 #'
 #' @return A tibble with details on bill publications.
 #' @export
-#' @seealso \code{\link{bill_stage_types}}
-#' @seealso \code{\link{bills}}
-#' @seealso \code{\link{bill_publication_types}}
+#' @seealso [bill_stage_types()]
+#' @seealso [bills()]
+#' @seealso [bill_publication_types()]
 #'
 #' @examples \dontrun{
 #' # Requesting a specific publication

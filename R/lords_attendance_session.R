@@ -7,10 +7,10 @@
 #' this data in a way that you want may be required.
 #'
 #' To return a tibble with all codes for available individual sessions, use
-#' \code{lords_attendance_session(session_id=NULL)}, or use
-#' \code{\link{lords_sessions}} to retrieve codes for a given date range.
-#' Attendance from multiple sessions can be accessed by using \code{lapply}
-#' with the output from \code{\link{lords_sessions}}.
+#' `lords_attendance_session(session_id=NULL)`, or use
+#' [lords_sessions()] to retrieve codes for a given date range.
+#' Attendance from multiple sessions can be accessed by using `lapply`
+#' with the output from [lords_sessions()].
 #'
 #' Please note that House of Lords attendance data is not as tidy as some of
 #' the others that are accessible through this API, and so additional work
@@ -20,14 +20,14 @@
 #' updated with data after 2017-01-31.
 #'
 #' 
-#' @param session_id The ID of the House of Lords session. If \code{NULL},
+#' @param session_id The ID of the House of Lords session. If `NULL`,
 #' returns a list of all sessions, subject to other parameters.
-#' Defaults to \code{NULL}.
+#' Defaults to `NULL`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.
 #' @export
-#' @seealso \code{\link{lords_attendance_date}}
-#' @seealso \code{\link{lords_sessions}}
+#' @seealso [lords_attendance_date()]
+#' @seealso [lords_sessions()]
 #'
 #' @examples \dontrun{
 #' x <- lords_attendance_session(session_id = 706178)

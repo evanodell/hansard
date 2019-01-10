@@ -77,7 +77,7 @@ w <- election_results(ID = 730039, all_data = TRUE)
 }
 }
 \seealso{
-\code{\link{elections}}
+\code{\link[=elections]{elections()}}
 
-\code{\link{election_candidates}}
+\code{\link[=election_candidates]{election_candidates()}}
 }

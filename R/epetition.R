@@ -3,19 +3,19 @@
 #' Individual epetitions
 #'
 #' Imports data on a given epetition. For bulk epetion data,
-#' see \code{\link{epetition_tibble}}.
+#' see [epetition_tibble()].
 #' 
-#' @param ID The ID of a given petition. If \code{NULL}, returns all
-#' epetitions. Defaults to \code{NULL}. See \code{\link{epetition_tibble}}
+#' @param ID The ID of a given petition. If `NULL`, returns all
+#' epetitions. Defaults to `NULL`. See [epetition_tibble()]
 #' for a greater degree of flexibility when querying all epetitions.
 #' 
-#' @param by_constituency Accepts either \code{TRUE} or \code{FALSE}.
-#' If \code{TRUE}, provides a tibble with a breakdown of signatures for
-#' each petition, by constituency. Defaults to \code{FALSE}.
+#' @param by_constituency Accepts either `TRUE` or `FALSE`.
+#' If `TRUE`, provides a tibble with a breakdown of signatures for
+#' each petition, by constituency. Defaults to `FALSE`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on electronic petitions
 #' submitted to parliament.
-#' @seealso \code{\link{epetition_tibble}}
+#' @seealso [epetition_tibble()]
 #'
 #' @export
 #' @examples \dontrun{

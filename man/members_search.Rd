@@ -46,5 +46,5 @@ x <- members_search(search='*chris*')
 }
 }
 \seealso{
-\code{\link{members}}
+\code{\link[=members]{members()}}
 }

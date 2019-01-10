@@ -17,7 +17,7 @@ hansard_lord_vote_record(peer_id = NULL, lobby = "all",
 }
 \arguments{
 \item{peer_id}{The ID number of a member of the House of Lords. A value
-must be included for this parameter. Use the \code{\link{lords_members}}
+must be included for this parameter. Use the \code{\link[=lords_members]{lords_members()}}
 to find IDs for members of the House of Lords. Defaults to \code{NULL}.}
 
 \item{lobby}{Accepts one of \code{'all'}, \code{'content'},

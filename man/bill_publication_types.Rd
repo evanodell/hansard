@@ -4,20 +4,20 @@
 \name{bill_publication_types}
 \alias{bill_publication_types}
 \title{A character vector of possible types of bill publications.
-For use with \code{\link{bill_publications}}}
+For use with \code{\link[=bill_publications]{bill_publications()}}}
 \format{A character vector containing 38 elements}
 \usage{
 bill_publication_types
 }
 \description{
 A character vector of possible types of bill publications.
-For use with \code{\link{bill_publications}}
+For use with \code{\link[=bill_publications]{bill_publications()}}
 }
 \seealso{
-\code{\link{bill_publications}}
+\code{\link[=bill_publications]{bill_publications()}}
 
-\code{\link{bills}}
+\code{\link[=bills]{bills()}}
 
-\code{\link{bill_stage_types}}
+\code{\link[=bill_stage_types]{bill_stage_types()}}
 }
 \keyword{datasets}

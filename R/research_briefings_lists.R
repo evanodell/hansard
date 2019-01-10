@@ -7,7 +7,7 @@
 #' @rdname research_briefings_lists
 #' @return A list with the different research topics/subtopics/types available.
 #' @export
-#' @seealso \code{\link{research_briefings}}
+#' @seealso [research_briefings()]
 #'
 #' @section Member details functions:
 #' \describe{

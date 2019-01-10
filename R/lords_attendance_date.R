@@ -12,15 +12,15 @@
 #'
 #' 
 #' @param date Accepts a date to return attendance data for. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of
-#' class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{NULL}.
+#' character values in `'YYYY-MM-DD'` format, and objects of
+#' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `NULL`.
 
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended on a given date.
 #' @export
-#' @seealso \code{\link{lords_attendance_session}}
+#' @seealso [lords_attendance_session()]
 #' @examples \dontrun{
 #' x <- lords_attendance_date(date = '2016-03-01')
 #' }

@@ -35,7 +35,7 @@ x <- bill_stage_types()
 }
 }
 \seealso{
-\code{\link{bills}}
+\code{\link[=bills]{bills()}}
 
-\code{\link{bill_publications}}
+\code{\link[=bill_publications]{bill_publications()}}
 }

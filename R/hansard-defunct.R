@@ -24,28 +24,28 @@ lords_vote_record <- function(lord.id,
 
 #' House of Lords attendance - Deprecated
 #
-#' Deprecated function, please see \code{\link{lords_attendance_date}} and
-#' \code{\link{lords_attendance_session}}.
+#' Deprecated function, please see [lords_attendance_date()] and
+#' [lords_attendance_session()].
 #'
 #' Imports data on House of Lords attendance. Please note that the attendance
 #' data is not as tidy as some of the others that are accessible through this
 #' API, and so additional work to prepare this data in a way that you want may
 #' be required.
 #' 
-#' @param session_id The ID of the House of Lords session. If \code{NULL},
+#' @param session_id The ID of the House of Lords session. If `NULL`,
 #' returns a list of all sessions, subject to other parameters.
-#' Defaults to \code{NULL}.
+#' Defaults to `NULL`.
 #' 
 #' @param start_date Only includes attendance on or after this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything else
-#' that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything else
+#' that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
 #' 
 #' @param end_date Only includes attendance on or before this date. Accepts
-#' character values in \code{'YYYY-MM-DD'} format, and objects of class
-#' \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or anything
-#' else that can be coerced to a date with \code{as.Date()}.
+#' character values in `'YYYY-MM-DD'` format, and objects of class
+#' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
+#' else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.

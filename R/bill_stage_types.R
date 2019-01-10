@@ -4,8 +4,8 @@
 #'
 #' @inheritParams all_answered_questions
 #' @return A tibble of bill stage types.
-#' @seealso \code{\link{bills}}
-#' @seealso \code{\link{bill_publications}}
+#' @seealso [bills()]
+#' @seealso [bill_publications()]
 #' @export
 #' @examples \dontrun{
 #' x <- bill_stage_types()

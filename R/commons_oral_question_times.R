@@ -2,25 +2,25 @@
 #' Commons oral question times
 #'
 #' Imports data on House of Commons oral question times. Query with parameters
-#' for the parliamentary session or the question ID. If \code{tidy=TRUE},
-#' datetime variables are converted to \code{POSIXct} class.
+#' for the parliamentary session or the question ID. If `tidy=TRUE`,
+#' datetime variables are converted to `POSIXct` class.
 #'
 #' 
-#' @param session Accepts a session in format \code{yyyy/yy}
-#' (e.g. \code{"2016/17"}) and returns a tibble of all oral question times from
-#' that session. Defaults to \code{NULL}.
+#' @param session Accepts a session in format `yyyy/yy`
+#' (e.g. `"2016/17"`) and returns a tibble of all oral question times from
+#' that session. Defaults to `NULL`.
 #' 
 #' @param question_id Accepts a question time ID, and returns a tibble of
 #' that question time.
 #' @inheritParams all_answered_questions
 #' @return A tibble with information on oral question times in the House of
 #' Commons.
-#' @seealso \code{\link{all_answered_questions}}
-#' @seealso \code{\link{commons_answered_questions}}
-#' @seealso \code{\link{commons_oral_questions}}
-#' @seealso \code{\link{commons_written_questions}}
-#' @seealso \code{\link{lords_written_questions}}
-#' @seealso \code{\link{mp_questions}}
+#' @seealso [all_answered_questions()]
+#' @seealso [commons_answered_questions()]
+#' @seealso [commons_oral_questions()]
+#' @seealso [commons_written_questions()]
+#' @seealso [lords_written_questions()]
+#' @seealso [mp_questions()]
 #' @export
 #' @examples \dontrun{
 #' x <- commons_oral_question_times(session='2016/17', question_id='685697')

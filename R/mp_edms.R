@@ -4,43 +4,42 @@
 #' Imports data on early day motions signed, sponsored or primarily sponsored
 #' by a given MP or Peer.
 #'
-#' 
 #' @param mp_id The ID number of an MP or Peer. Required parameter, Defaults
-#' to \code{NULL}. Accepts single IDs in numerical or character format, or a
+#' to `NULL`. Accepts single IDs in numerical or character format, or a
 #' list, data.frame column, etc. If given multiple IDs, the results are
 #' combined into a single tibble.
-#' 
+#'
 #' @param primary_sponsor Includes all early day motions where the given
-#' member is the primary sponsor in the tibble. Defaults to \code{TRUE}.
-#' 
+#' member is the primary sponsor in the tibble. Defaults to `TRUE`.
+#'
 #' @param sponsor Includes all early day motions where the given member a
 #' sponsor (but not the primary sponsor) in the tibble.
-#' Defaults to \code{TRUE}.
-#' 
+#' Defaults to `TRUE`.
+#'
 #' @param signatory Includes all early day motions signed (but not sponsored
 #' or primarily sponsored) by the given member in the tibble.
-#' Defaults to \code{TRUE}.
-#' 
-#' @param full_data If \code{TRUE}, returns all available data on the EDMs
-#' signed or sponsored by a member. Defaults to \code{FALSE}. Note that
-#' this can be a very slow process compared to other \code{hansard} functions.
-#' 
+#' Defaults to `TRUE`.
+#'
+#' @param full_data If `TRUE`, returns all available data on the EDMs
+#' signed or sponsored by a member. Defaults to `FALSE`. Note that
+#' this can be a very slow process compared to other `hansard` functions.
+#'
 #' @param start_date Only includes early day motions signed on or after this
-#' date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects
-#' of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
-#' Defaults to \code{'1900-01-01'}.
-#' 
+#' date. Accepts character values in `'YYYY-MM-DD'` format, and objects
+#' of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
+#' Defaults to `'1900-01-01'`.
+#'
 #' @param end_date Only includes early day motions signed on or before this
-#' date. Accepts character values in \code{'YYYY-MM-DD'} format, and objects
-#' of class \code{Date}, \code{POSIXt}, \code{POSIXct}, \code{POSIXlt} or
-#' anything else that can be coerced to a date with \code{as.Date()}.
+#' date. Accepts character values in `'YYYY-MM-DD'` format, and objects
+#' of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
+#' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to the current system date.
 #' @inheritParams all_answered_questions
 #' @return A tibble with information on the tibbles signed, sponsored
 #' and/or primarily sponsored by the given MP.
 #'
-#' @seealso \code{\link{early_day_motions}}
+#' @seealso [early_day_motions()]
 #' @export
 #' @examples \dontrun{
 #'

@@ -7,16 +7,16 @@
 #'
 #' 
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
-#' Election onwards, and returns the results. If \code{NULL}, returns all
-#' available election results. Defaults to \code{NULL}.
+#' Election onwards, and returns the results. If `NULL`, returns all
+#' available election results. Defaults to `NULL`.
 #' 
-#' @param constit_details If \code{TRUE}, returns additional details on each
+#' @param constit_details If `TRUE`, returns additional details on each
 #' constituency, including its GSS (Government Statistical Service) code.
-#' Defaults to \code{FALSE}.
+#' Defaults to `FALSE`.
 #' @inheritParams all_answered_questions
 #' @export
-#' @seealso \code{\link{elections}}
-#' @seealso \code{\link{election_results}}
+#' @seealso [elections()]
+#' @seealso [election_results()]
 #'
 #' @examples \dontrun{
 #' x <- election_candidates(ID = 382037)
