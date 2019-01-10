@@ -76,13 +76,18 @@ by a given MP or Peer.
 \dontrun{
 
 # All EDMs primarily sponsored, sponsored or signed by Mike Crockart
-x <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
-             sponsor = TRUE, signatory = TRUE)
+x <- mp_edms(
+  mp_id = 3967, primary_sponsor = TRUE,
+  sponsor = TRUE, signatory = TRUE
+)
 
 # Detailed data on all EDMs primarily sponsored by Mike Crockart
-y <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
-             sponsor = TRUE, signatory = FALSE, full_data = TRUE)
+y <- mp_edms(
+  mp_id = 3967, primary_sponsor = TRUE,
+  sponsor = TRUE, signatory = FALSE, full_data = TRUE
+)
 }
+
 }
 \seealso{
 \code{\link[=early_day_motions]{early_day_motions()}}

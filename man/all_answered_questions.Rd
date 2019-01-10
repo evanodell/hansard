@@ -94,32 +94,39 @@ list, a data.frame column, a character vector, etc.
 \dontrun{
 
 # All questions answered by Nicola Blackwood from 1 January 2017 onwards
-x <- all_answered_questions(4019, start_date ='2017-01-01')
+x <- all_answered_questions(4019, start_date = "2017-01-01")
 
 # All questions answered by Nicola Blackwood from 1 January 2017 onwards
 # returns variables in camelCase style
-y <- all_answered_questions(4019, start_date ='2017-01-01',
-                                        tidy_style='camelCase')
+y <- all_answered_questions(4019,
+  start_date = "2017-01-01",
+  tidy_style = "camelCase"
+)
 
 # All questions asked by Andrew Dismore from 1 January 2017 onwards
-z <- hansard_all_answered_questions(tabling_mp_id=179,
-                                    start_date ='2017-01-01')
+z <- hansard_all_answered_questions(
+  tabling_mp_id = 179,
+  start_date = "2017-01-01"
+)
 
 # Return all questions asked in the House of Lords
 # answered by the Department for Education.
-a <- hansard_all_answered_questions(house='lords', answering_body=60)
+a <- hansard_all_answered_questions(house = "lords", answering_body = 60)
 
 # Returns all questions asked in the House of Lords
 # answered by the Department for Education.
-b <- hansard_all_answered_questions(house=2, answering_body='Education')
+b <- hansard_all_answered_questions(house = 2, answering_body = "Education")
 
 # Accepts multiple inputs for mp_id, tabling_mp_id and answering_body
-w <- hansard_all_answered_questions(mp_id = c(4019, 3980),
-                                    tabling_mp_id = c(338, 172),
-                                    answering_body = c('health', 'justice'),
-                                    start_date = '2016-12-18',
-                                    end_date = '2017-03-12')
+w <- hansard_all_answered_questions(
+  mp_id = c(4019, 3980),
+  tabling_mp_id = c(338, 172),
+  answering_body = c("health", "justice"),
+  start_date = "2016-12-18",
+  end_date = "2017-03-12"
+)
 }
+
 }
 \seealso{
 \code{\link[=commons_answered_questions]{commons_answered_questions()}}

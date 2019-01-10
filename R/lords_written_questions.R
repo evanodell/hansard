@@ -38,14 +38,19 @@
 #' @seealso [commons_written_questions()]
 #' @seealso [mp_questions()]
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- lords_written_questions() # Returns all written questions ever
-#'
-#' x <- lords_written_questions(peer_id = c(3526,4176),
-#'                              answering_department = c('cabinet',
-#'                                                       'Transport'))
+#' 
+#' x <- lords_written_questions(
+#'   peer_id = c(3526, 4176),
+#'   answering_department = c(
+#'     "cabinet",
+#'     "Transport"
+#'   )
+#' )
 #' }
-
+#' 
 lords_written_questions <- function(peer_id = NULL,
                                     answering_department = NULL,
                                     start_date = "1900-01-01",

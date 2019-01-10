@@ -70,4 +70,5 @@ x <- commons_divisions()
 ## Vote breakdown of specific commons division
 y <- commons_divisions(division_id = 694163, summary = FALSE)
 }
+
 }

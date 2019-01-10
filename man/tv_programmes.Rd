@@ -90,10 +90,14 @@ parliamentary TV channels.
 
 \examples{
 \dontrun{
-x <- tv_programmes('commons', start_date ='2016-11-01',
-                   end_date='2016-12-01')
+x <- tv_programmes("commons",
+  start_date = "2016-11-01",
+  end_date = "2016-12-01"
+)
 }
+
 \dontrun{
 x <- tv_clips(4591)
 }
+
 }

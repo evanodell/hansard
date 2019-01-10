@@ -4,11 +4,11 @@
 #'
 #' Imports data on a given epetition. For bulk epetion data,
 #' see [epetition_tibble()].
-#' 
+#'
 #' @param ID The ID of a given petition. If `NULL`, returns all
 #' epetitions. Defaults to `NULL`. See [epetition_tibble()]
 #' for a greater degree of flexibility when querying all epetitions.
-#' 
+#'
 #' @param by_constituency Accepts either `TRUE` or `FALSE`.
 #' If `TRUE`, provides a tibble with a breakdown of signatures for
 #' each petition, by constituency. Defaults to `FALSE`.
@@ -18,10 +18,11 @@
 #' @seealso [epetition_tibble()]
 #'
 #' @export
-#' @examples \dontrun{
-#' x <- epetition(ID = 706964, by_constituency=TRUE)
+#' @examples
+#' \dontrun{
+#' x <- epetition(ID = 706964, by_constituency = TRUE)
 #' }
-
+#' 
 epetition <- function(ID = NULL, by_constituency = FALSE,
                       extra_args = NULL, tidy = TRUE,
                       tidy_style = "snake_case", verbose = TRUE) {

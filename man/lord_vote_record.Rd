@@ -64,13 +64,14 @@ tibble of their votes.
 }
 \examples{
 \dontrun{
-x <- lord_vote_record(530, lobby='all')
+x <- lord_vote_record(530, lobby = "all")
 
-x <- lord_vote_record(530, lobby='content')
+x <- lord_vote_record(530, lobby = "content")
 
-x <- lord_vote_record(530, lobby='notcontent')
+x <- lord_vote_record(530, lobby = "notcontent")
 
-x <- lord_vote_record(530, lobby='not-content')
+x <- lord_vote_record(530, lobby = "not-content")
 # This will also work
 }
+
 }

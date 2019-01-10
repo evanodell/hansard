@@ -61,8 +61,9 @@ between the two given dates.
 }
 \examples{
 \dontrun{
-x <- sessions_info(days=TRUE)
+x <- sessions_info(days = TRUE)
 
-y <- sessions_info(days=FALSE)
+y <- sessions_info(days = FALSE)
 }
+
 }

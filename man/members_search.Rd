@@ -40,10 +40,11 @@ same result as \code{members()}.
 }
 \examples{
 \dontrun{
-x <- members_search('*chris*')
+x <- members_search("*chris*")
 
-x <- members_search(search='*chris*')
+x <- members_search(search = "*chris*")
 }
+
 }
 \seealso{
 \code{\link[=members]{members()}}

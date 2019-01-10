@@ -5,11 +5,11 @@
 #' for the parliamentary session or the question ID. If `tidy=TRUE`,
 #' datetime variables are converted to `POSIXct` class.
 #'
-#' 
+#'
 #' @param session Accepts a session in format `yyyy/yy`
 #' (e.g. `"2016/17"`) and returns a tibble of all oral question times from
 #' that session. Defaults to `NULL`.
-#' 
+#'
 #' @param question_id Accepts a question time ID, and returns a tibble of
 #' that question time.
 #' @inheritParams all_answered_questions
@@ -22,10 +22,11 @@
 #' @seealso [lords_written_questions()]
 #' @seealso [mp_questions()]
 #' @export
-#' @examples \dontrun{
-#' x <- commons_oral_question_times(session='2016/17', question_id='685697')
+#' @examples
+#' \dontrun{
+#' x <- commons_oral_question_times(session = "2016/17", question_id = "685697")
 #' }
-
+#' 
 commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake_case",

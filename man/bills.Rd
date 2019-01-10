@@ -68,8 +68,9 @@ x <- bills(amendments = TRUE)
 x <- bills(1719)
 
 # Download data on all bills introduced after a given date
-x <- bills(start_date = '2016-01-01')
+x <- bills(start_date = "2016-01-01")
 }
+
 }
 \seealso{
 \code{\link[=bill_stage_types]{bill_stage_types()}}

@@ -4,7 +4,7 @@
 #' Registered financial interests of members of the House of Lords.
 #' If `peer_id=NULL` the actual details of registered interests
 #' are stored in a nested data frame.
-#' 
+#'
 #' @param peer_id The ID of a member of the House of lords. If `NULL`,
 #' returns a tibble with all listed financial interests for all members.
 #' Defaults to `NULL`.
@@ -12,9 +12,10 @@
 #' @return A tibble with details on the interests of peers in
 #' the House of Lords.
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- lords_interests(4170)
-#'
+#' 
 #' y <- lords_interests()
 #' }
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,

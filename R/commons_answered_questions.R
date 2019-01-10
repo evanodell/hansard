@@ -9,21 +9,21 @@
 #' @description If `answering_department` and/or `answered_by` are
 #' given a vector with multiple deparments/IDs, all possible combination of
 #' those criteria are returned.
-#' 
+#'
 #' @param answering_department Accepts the name of a department or a
 #' list of department names.  Returns a tibble with all answered questions
 #' in the House of Commons from the given department. Defaults to `NULL`.
-#' 
+#'
 #' @param answered_by Accepts the ID of an MP, or a list of IDs. Returns a
 #' tibble with all answered questions in the House of Commons by the given
 #' MP(s). Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes questions answered introduced on or after
 #' this date. Accepts character values in `'YYYY-MM-DD'` format, and
 #' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
 #' or anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
@@ -39,17 +39,20 @@
 #' @seealso [lords_written_questions()]
 #' @seealso [mp_questions()]
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- commons_answered_questions(
-#'      answering_department = c('health','education'),
-#'      answered_by = c('4019', '1542', '111'),
-#'      start_date = '2017-01-01'
-#'      )
-#'
-#' y <- commons_answered_questions(start_date = '2017-03-26',
-#'                                 end_date='2017-04-01')
+#'   answering_department = c("health", "education"),
+#'   answered_by = c("4019", "1542", "111"),
+#'   start_date = "2017-01-01"
+#' )
+#' 
+#' y <- commons_answered_questions(
+#'   start_date = "2017-03-26",
+#'   end_date = "2017-04-01"
+#' )
 #' }
-
+#' 
 commons_answered_questions <- function(answering_department = NULL,
                                        answered_by = NULL,
                                        start_date = "1900-01-01",

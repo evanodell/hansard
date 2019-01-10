@@ -8,7 +8,7 @@
 #' `NULL`, which returns a tibble of all members of both houses, the
 #' same result as `members()`.
 #'
-#' 
+#'
 #' @param search Accepts any lucene query string, using * as a multiple
 #' character wildcard, and ? as the single character wildcard. Searchs are
 #' not case sensitive. If `NULL`, returns a tibble with all members of
@@ -18,12 +18,13 @@
 #' @return A tibble with the results of the search.
 #' @seealso [members()]
 #' @export
-#' @examples \dontrun{
-#' x <- members_search('*chris*')
-#'
-#' x <- members_search(search='*chris*')
+#' @examples
+#' \dontrun{
+#' x <- members_search("*chris*")
+#' 
+#' x <- members_search(search = "*chris*")
 #' }
-
+#' 
 members_search <- function(search = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
   if (is.null(search)) {

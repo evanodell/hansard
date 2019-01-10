@@ -3,18 +3,18 @@
 #'
 #' Returns a tibble with all available House of Lords amendments, subject
 #' to parameters.
-#' 
+#'
 #' @param decision The decision on the amendments. Accepts one of
 #' `'Withdrawn'`, `'Agreed'`, `'Disagreed'`, `'Pending'`,
 #' `'NotMoved'`, `'Disposed'`. This parameter is not case sensitive.
 #' Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes amendments to bills introduced on or after
 #' this date. Accepts character values in `'YYYY-MM-DD'` format, and
 #' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
 #' or anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes amendments to bills introduced on or before
 #' this date. Accepts character values in `'YYYY-MM-DD'` format, and
 #' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
@@ -24,12 +24,13 @@
 #' @return A tibble with details on amendments proposed by the House of Lords.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- lords_amendments()
-#'
-#' x <- lords_amendments(decision='Withdrawn')
+#' 
+#' x <- lords_amendments(decision = "Withdrawn")
 #' }
-
+#' 
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",

@@ -47,8 +47,9 @@ see \code{\link[=epetition_tibble]{epetition_tibble()}}.
 }
 \examples{
 \dontrun{
-x <- epetition(ID = 706964, by_constituency=TRUE)
+x <- epetition(ID = 706964, by_constituency = TRUE)
 }
+
 }
 \seealso{
 \code{\link[=epetition_tibble]{epetition_tibble()}}

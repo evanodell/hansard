@@ -22,11 +22,12 @@
 #'
 #' @return A tibble with the dates of divisions in the House of Commons.
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # all commons divisions on 19 April 2017
-#' x <- commons_division_date('2017-04-19')
+#' x <- commons_division_date("2017-04-19")
 #' }
-
+#' 
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
                                   tidy_style = "snake_case", verbose = TRUE) {
   if (is.null(date) == TRUE) {

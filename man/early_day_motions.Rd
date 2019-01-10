@@ -78,8 +78,9 @@ parliamentary sessions.
 x <- early_day_motions(edm_id = 1073)
 
 # Return a specific early day motion by ID
-x <- early_day_motions(edm_id = 1073, session='2017/19')
+x <- early_day_motions(edm_id = 1073, session = "2017/19")
 }
+
 }
 \seealso{
 \code{\link[=mp_edms]{mp_edms()}}

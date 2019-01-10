@@ -3,24 +3,24 @@
 #'
 #' Imports data in a tibble on House of Commons written questions.
 #'
-#' 
+#'
 #' @param mp_id Accepts a member ID or a list of member IDs and returns a
 #' tibble with all written questions asked by that MP or list of MPs. If
 #' `NULL`, mp_id is not included as a query parameter.
 #' Defaults to `NULL`.
-#' 
+#'
 #' @param answering_department Accepts a string with a department name or
 #' partial name, or a list of such strings. The query acts as a search, so
 #' passing `'health'` will return all questions answered by the
 #' Department of Health. If `NULL`, answering_department is not included
 #' as a query parameter. Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes questions tabled on or after this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
 #' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes questions tabled on or before this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
@@ -29,18 +29,23 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on written questions in the House of Commons.
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # Returns a tibble with written questions from Jon Trickett,
 #' # answered by the Cabinet Office.
-#' x <- commons_written_questions(mp_id = 410,
-#'                                answering_department = 'cabinet office')
-#'
+#' x <- commons_written_questions(
+#'   mp_id = 410,
+#'   answering_department = "cabinet office"
+#' )
+#' 
 #' # Returns a tibble with written questions from Jon Trickett or Diane Abbott,
 #' # and answered by the Cabinet Office or the Home Office.
-#' x <- commons_written_questions(mp_id = c(410,172),
-#'                                answering_department = c('cabinet','home'))
+#' x <- commons_written_questions(
+#'   mp_id = c(410, 172),
+#'   answering_department = c("cabinet", "home")
+#' )
 #' }
-
+#' 
 commons_written_questions <- function(mp_id = NULL,
                                       answering_department = NULL,
                                       start_date = "1900-01-01",

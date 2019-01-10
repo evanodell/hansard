@@ -4,20 +4,20 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a
 #' tibble of of all their oral and written questions.
 #'
-#' 
+#'
 #' @param mp_id The ID number of a member of the House of Commons, or a vector
 #' of IDs. Defaults to `NULL`.
-#' 
+#'
 #' @param question_type Accepts the arguments `'all'`, `'oral'` and
 #' `'written'`. This parameter is not case sensitive.
 #' Defaults to `'all'`.
-#' 
+#'
 #' @param start_date Only includes questions answered on or after this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
 #' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
@@ -38,7 +38,7 @@
 #' @examples \dontrun{
 #' x <- mp_questions(c(172,3967) 'all')
 #'
-#' y <- mp_questions(172, 'all')
+#' y <- mp_questions(mp_id = 172, question_type = 'all')
 #'
 #' z <- mp_questions(c(172,3967) 'written')
 #' }

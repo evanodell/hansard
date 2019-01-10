@@ -18,14 +18,15 @@
 #' \item{research_types_list}{A list of types of Parliamentary
 #' Research Briefings}
 #' }
-#' @examples  \dontrun{
+#' @examples
+#' \dontrun{
 #' research_topics_list <- research_topics_list()
-#'
+#' 
 #' research_subtopics_list <- research_subtopics_list()
-#'
+#' 
 #' research_types_list <- research_types_list()
 #' }
-
+#' 
 research_topics_list <- function() {
   x <- jsonlite::fromJSON(paste0(url_util, "researchbriefingtopics.json?"),
     flatten = TRUE

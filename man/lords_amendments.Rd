@@ -58,6 +58,7 @@ to parameters.
 \dontrun{
 x <- lords_amendments()
 
-x <- lords_amendments(decision='Withdrawn')
+x <- lords_amendments(decision = "Withdrawn")
 }
+
 }

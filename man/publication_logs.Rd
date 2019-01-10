@@ -61,9 +61,10 @@ Imports data on House of Commons and House of Lords publications.
 \examples{
 \dontrun{
 # All publications in the house of commons
-x <- publication_logs(house = 'commons')
+x <- publication_logs(house = "commons")
 
 # Returns a given publication
 y <- publication_logs(683267)
 }
+
 }

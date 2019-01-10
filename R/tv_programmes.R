@@ -29,11 +29,14 @@
 #' \item{tv_channels}{Details on the different parliamentary TV channels}
 #' }
 #' @export
-#' @examples \dontrun{
-#' x <- tv_programmes('commons', start_date ='2016-11-01',
-#'                    end_date='2016-12-01')
+#' @examples
+#' \dontrun{
+#' x <- tv_programmes("commons",
+#'   start_date = "2016-11-01",
+#'   end_date = "2016-12-01"
+#' )
 #' }
-
+#' 
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
@@ -101,10 +104,11 @@ hansard_tv_programmes <- tv_programmes
 #'
 #' @export
 #' @rdname tv_programmes
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- tv_clips(4591)
 #' }
-
+#' 
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
                      end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
                      tidy_style = "snake_case", verbose = TRUE) {

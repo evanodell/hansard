@@ -33,6 +33,7 @@ Returns a tibble with all possible bill stage types.
 \dontrun{
 x <- bill_stage_types()
 }
+
 }
 \seealso{
 \code{\link[=bills]{bills()}}

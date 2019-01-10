@@ -77,6 +77,7 @@ If both \code{ID} and \code{type} are used to query the API,
 \dontrun{
 x <- elections(517994)
 }
+
 }
 \seealso{
 \code{\link[=election_results]{election_results()}}

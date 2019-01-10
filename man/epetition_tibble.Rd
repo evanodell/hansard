@@ -68,10 +68,11 @@ indidivual epetitions, see \code{\link[=epetition]{epetition()}}.
 \dontrun{
 x <- epetition_tibble()
 
-y <- epetition_tibble(max_signatures=500)
+y <- epetition_tibble(max_signatures = 500)
 
-z <- epetition_tibble(start_date='2016-12-01', end_date='2017-04-25')
+z <- epetition_tibble(start_date = "2016-12-01", end_date = "2017-04-25")
 }
+
 }
 \seealso{
 \code{\link[=epetition]{epetition()}}

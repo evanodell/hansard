@@ -63,13 +63,16 @@ names, or a list of IDs or department names, respectively.
 \dontrun{
 
 # Oral questions from a single MP to a single department
-x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
+x <- commons_oral_questions(mp_id = 4019, answering_department = "education")
 
 
 ## Questions from multiple MPs and to multiple departments
-y <- commons_oral_questions(mp_id=c(4019,4051,4588),
-                            answering_department = c('education', 'health'))
+y <- commons_oral_questions(
+  mp_id = c(4019, 4051, 4588),
+  answering_department = c("education", "health")
+)
 }
+
 }
 \seealso{
 \code{\link[=all_answered_questions]{all_answered_questions()}}

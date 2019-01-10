@@ -5,11 +5,11 @@
 #' each constituency. Note that for general elections this can return a very
 #' large tibble with hundreds of variables.
 #'
-#' 
+#'
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
 #' Election onwards, and returns the results. If `NULL`, returns all
 #' available election results. Defaults to `NULL`.
-#' 
+#'
 #' @param constit_details If `TRUE`, returns additional details on each
 #' constituency, including its GSS (Government Statistical Service) code.
 #' Defaults to `FALSE`.
@@ -18,15 +18,15 @@
 #' @seealso [elections()]
 #' @seealso [election_results()]
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- election_candidates(ID = 382037)
-#'
+#' 
 #' y <- election_candidates()
-#'
+#' 
 #' z <- election_candidates(constit_details = TRUE)
 #' }
-#'
-
+#' 
 election_candidates <- function(ID = NULL, constit_details = FALSE,
                                 extra_args = NULL, tidy = TRUE,
                                 tidy_style = "snake_case", verbose = TRUE) {

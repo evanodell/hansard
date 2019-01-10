@@ -43,8 +43,9 @@ requests at a time, so some use of parameters is required.
 }
 \examples{
 \dontrun{
-x <- commons_terms(search='estate')
+x <- commons_terms(search = "estate")
 
-x <- commons_terms(search='estate', class='ORG')
+x <- commons_terms(search = "estate", class = "ORG")
 }
+
 }

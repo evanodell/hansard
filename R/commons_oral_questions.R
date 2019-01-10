@@ -9,16 +9,16 @@
 #'
 #' @param mp_id The ID of a given MP asking an oral question, or a list of
 #' MP Ids. Defaults to `NULL`.
-#' 
+#'
 #' @param answering_department The name of a department, or a list of
 #' departments. Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes questions answered on or after this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
 #' else that can be coerced to a date with `as.Date()`. ]
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes questions answered on or before this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything else
@@ -33,17 +33,20 @@
 #' @seealso [lords_written_questions()]
 #' @seealso [mp_questions()]
 #' @export
-#' @examples \dontrun{
-#'
+#' @examples
+#' \dontrun{
+#' 
 #' # Oral questions from a single MP to a single department
-#' x <- commons_oral_questions(mp_id=4019, answering_department = 'education')
-#'
-#'
+#' x <- commons_oral_questions(mp_id = 4019, answering_department = "education")
+#' 
+#' 
 #' ## Questions from multiple MPs and to multiple departments
-#' y <- commons_oral_questions(mp_id=c(4019,4051,4588),
-#'                             answering_department = c('education', 'health'))
+#' y <- commons_oral_questions(
+#'   mp_id = c(4019, 4051, 4588),
+#'   answering_department = c("education", "health")
+#' )
 #' }
-
+#' 
 commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
                                    start_date = "1900-01-01",
                                    end_date = Sys.Date(),

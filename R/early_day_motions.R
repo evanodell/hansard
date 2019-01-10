@@ -41,16 +41,16 @@
 #'
 #' @seealso [mp_edms()]
 #' @export
-#' @examples \dontrun{
-#'
+#' @examples
+#' \dontrun{
+#' 
 #' # Returns all EDMs with a given ID
 #' x <- early_day_motions(edm_id = 1073)
-#'
+#' 
 #' # Return a specific early day motion by ID
-#' x <- early_day_motions(edm_id = 1073, session='2017/19')
+#' x <- early_day_motions(edm_id = 1073, session = "2017/19")
 #' }
-
-
+#' 
 early_day_motions <- function(edm_id = NULL, session = NULL,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), signatures = 1,

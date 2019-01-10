@@ -3,20 +3,20 @@
 #' Papers laid
 #'
 #' Imports data on papers laid before the House.
-#' 
+#'
 #' @param withdrawn If `TRUE`, only returns withdrawn papers.
 #' Defaults to `FALSE`.
-#' 
+#'
 #' @param house The house the paper was laid in. Accepts `'commons'`
 #' and `'lords'`. If `NULL`, returns both House of Commons and
 #' House of Lords. This parameter is case-insensitive. Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes papers laid before the House on or after
 #' this date. Accepts character values in `'YYYY-MM-DD'` format, and
 #' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
 #' or anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes papers laid before the House on or before
 #' this date. Accepts character values in `'YYYY-MM-DD'` format, and
 #' objects of class `Date`, `POSIXt`, `POSIXct`, `POSIXlt`
@@ -25,12 +25,13 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on papers laid before the given House.
 #' @export
-#' @examples \dontrun{
-#' x <- papers_laid(withdrawn = FALSE, house = 'commons')
-#'
+#' @examples
+#' \dontrun{
+#' x <- papers_laid(withdrawn = FALSE, house = "commons")
+#' 
 #' x <- papers_laid(withdrawn = TRUE, house = NULL)
 #' }
-
+#' 
 papers_laid <- function(withdrawn = FALSE, house = NULL,
                         start_date = "1900-01-01", end_date = Sys.Date(),
                         extra_args = NULL, tidy = TRUE,

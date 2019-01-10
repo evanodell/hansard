@@ -5,24 +5,24 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a
 #' tibble of their votes.
 #'
-#' 
+#'
 #' @param mp_id The ID number of a member of the House of Commons.
-#' 
+#'
 #' @param lobby Accepts one of `'all'`, `'aye'` or `'no'`.
 #' `'aye'` returns votes where the MP voted `'aye'`, `'no'`
 #' returns votes where the MP voted `'no'`, `'all'` returns all
 #' available votes by the MP. This parameter is not case sensitive.
 #' Defaults to `'all'`.
-#' 
+#'
 #' @param session The parliamentary session to return votes from, in
 #' `'YYYY/YY'` format. Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
 #' else that can be coerced to a date with `as.Date()`. Defaults to
 #' `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes divisions on or before this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
@@ -31,17 +31,17 @@
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the voting record of the given MP.
 #' @export
-#' @examples \dontrun{
-#' x <- mp_vote_record(172, lobby='all')
-#'
-#' x <- mp_vote_record(172, lobby='aye')
-#'
-#' x <- mp_vote_record(172, lobby='no')
-#'
-#' x <- mp_vote_record(172, session = '2016/17')
+#' @examples
+#' \dontrun{
+#' x <- mp_vote_record(172, lobby = "all")
+#' 
+#' x <- mp_vote_record(172, lobby = "aye")
+#' 
+#' x <- mp_vote_record(172, lobby = "no")
+#' 
+#' x <- mp_vote_record(172, session = "2016/17")
 #' }
-
-
+#' 
 mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            start_date = "1900-01-01", end_date = Sys.Date(),
                            extra_args = NULL, tidy = TRUE,

@@ -41,18 +41,22 @@
 #'
 #' @seealso [early_day_motions()]
 #' @export
-#' @examples \dontrun{
-#'
+#' @examples
+#' \dontrun{
+#' 
 #' # All EDMs primarily sponsored, sponsored or signed by Mike Crockart
-#' x <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
-#'              sponsor = TRUE, signatory = TRUE)
-#'
+#' x <- mp_edms(
+#'   mp_id = 3967, primary_sponsor = TRUE,
+#'   sponsor = TRUE, signatory = TRUE
+#' )
+#' 
 #' # Detailed data on all EDMs primarily sponsored by Mike Crockart
-#' y <- mp_edms(mp_id = 3967, primary_sponsor = TRUE,
-#'              sponsor = TRUE, signatory = FALSE, full_data = TRUE)
+#' y <- mp_edms(
+#'   mp_id = 3967, primary_sponsor = TRUE,
+#'   sponsor = TRUE, signatory = FALSE, full_data = TRUE
+#' )
 #' }
-
-
+#' 
 mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
                     signatory = TRUE, full_data = FALSE,
                     start_date = "1900-01-01", end_date = Sys.Date(),

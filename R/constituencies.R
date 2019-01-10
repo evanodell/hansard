@@ -3,20 +3,20 @@
 #'
 #' Imports data on House of Commons constituencies, returning a tibble of all
 #' current and/or former Westminster constituencies, subject to parameters.
-#' 
+#'
 #' @param current If `TRUE`, returns only current constituencies. If
 #' `FALSE`, returns only former constituencies. If `NULL`, returns
 #' all current and former constituencies. Defaults to `NULL`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with details of Westminster constituencies.
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- constituencies()
-#'
+#' 
 #' y <- constituencies(current = FALSE)
 #' }
-
-
+#' 
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake_case", verbose = TRUE) {
   baseurl <- paste0(url_util, "constituencies.json?")

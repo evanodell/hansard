@@ -68,10 +68,15 @@ and/or directed to a given department.
 \dontrun{
 x <- lords_written_questions() # Returns all written questions ever
 
-x <- lords_written_questions(peer_id = c(3526,4176),
-                             answering_department = c('cabinet',
-                                                      'Transport'))
+x <- lords_written_questions(
+  peer_id = c(3526, 4176),
+  answering_department = c(
+    "cabinet",
+    "Transport"
+  )
+)
 }
+
 }
 \seealso{
 \code{\link[=all_answered_questions]{all_answered_questions()}}

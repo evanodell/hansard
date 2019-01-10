@@ -65,12 +65,17 @@ Imports data in a tibble on House of Commons written questions.
 \dontrun{
 # Returns a tibble with written questions from Jon Trickett,
 # answered by the Cabinet Office.
-x <- commons_written_questions(mp_id = 410,
-                               answering_department = 'cabinet office')
+x <- commons_written_questions(
+  mp_id = 410,
+  answering_department = "cabinet office"
+)
 
 # Returns a tibble with written questions from Jon Trickett or Diane Abbott,
 # and answered by the Cabinet Office or the Home Office.
-x <- commons_written_questions(mp_id = c(410,172),
-                               answering_department = c('cabinet','home'))
+x <- commons_written_questions(
+  mp_id = c(410, 172),
+  answering_department = c("cabinet", "home")
+)
 }
+
 }

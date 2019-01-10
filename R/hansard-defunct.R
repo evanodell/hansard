@@ -31,17 +31,17 @@ lords_vote_record <- function(lord.id,
 #' data is not as tidy as some of the others that are accessible through this
 #' API, and so additional work to prepare this data in a way that you want may
 #' be required.
-#' 
+#'
 #' @param session_id The ID of the House of Lords session. If `NULL`,
 #' returns a list of all sessions, subject to other parameters.
 #' Defaults to `NULL`.
-#' 
+#'
 #' @param start_date Only includes attendance on or after this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything else
 #' that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes attendance on or before this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
@@ -50,7 +50,8 @@ lords_vote_record <- function(lord.id,
 #' @inheritParams all_answered_questions
 #' @return A tibble with details on the lords who attended a given session.
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- lords_attendance(session_id = 706178)
 #' }
 #' @export

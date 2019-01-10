@@ -129,7 +129,6 @@ aaq_tidy <- function(df, tidy_style) {
     df$dateOfAnswer._datatype <- "POXIXct"
 
     if ("attachment" %in% colnames(df)) {
-
       seq_list <- seq(from = 1, to = nrow(df), by = 1)
 
       for (i in seq_along(seq_list)) {

@@ -29,16 +29,19 @@
 #' @return A tibble with the results of divisions in the House of Lords.
 #'
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- lords_divisions(division_id = 705891, summary = TRUE)
-#'
+#' 
 #' x <- lords_divisions(division_id = 705891, summary = FALSE)
-#'
+#' 
 #' # Return all lords divisions in 2016
-#' x <- lords_divisions(NULL, FALSE, start_date = '2016-01-01',
-#'                      end_date = '2016-12-31')
+#' x <- lords_divisions(NULL, FALSE,
+#'   start_date = "2016-01-01",
+#'   end_date = "2016-12-31"
+#' )
 #' }
-
+#' 
 lords_divisions <- function(division_id = NULL, summary = FALSE,
                             start_date = "1900-01-01", end_date = Sys.Date(),
                             extra_args = NULL, tidy = TRUE,

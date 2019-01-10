@@ -52,7 +52,7 @@ description of the research briefing, represented as \code{'\\n'}.
 }
 \examples{
 \dontrun{
-x <- research_briefings('Housing and planning')
+x <- research_briefings("Housing and planning")
 
 # Requests can be made using lists created using `research_topics_list`
 # and `research_subtopics_list`
@@ -72,6 +72,7 @@ research_types_list <- research_types_list()
 
 x <- research_briefings(type = research_types_list[[3]])
 }
+
 }
 \seealso{
 \code{\link[=research_subtopics_list]{research_subtopics_list()}}

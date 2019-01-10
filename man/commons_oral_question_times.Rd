@@ -48,8 +48,9 @@ datetime variables are converted to \code{POSIXct} class.
 }
 \examples{
 \dontrun{
-x <- commons_oral_question_times(session='2016/17', question_id='685697')
+x <- commons_oral_question_times(session = "2016/17", question_id = "685697")
 }
+
 }
 \seealso{
 \code{\link[=all_answered_questions]{all_answered_questions()}}

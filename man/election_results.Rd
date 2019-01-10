@@ -75,6 +75,7 @@ z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
 
 w <- election_results(ID = 730039, all_data = TRUE)
 }
+
 }
 \seealso{
 \code{\link[=elections]{elections()}}

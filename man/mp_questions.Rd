@@ -63,7 +63,7 @@ tibble of of all their oral and written questions.
 \dontrun{
 x <- mp_questions(c(172,3967) 'all')
 
-y <- mp_questions(172, 'all')
+y <- mp_questions(mp_id = 172, question_type = 'all')
 
 z <- mp_questions(c(172,3967) 'written')
 }

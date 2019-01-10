@@ -45,8 +45,9 @@ updated with data after 2017-01-31.
 }
 \examples{
 \dontrun{
-x <- lords_attendance_date(date = '2016-03-01')
+x <- lords_attendance_date(date = "2016-03-01")
 }
+
 }
 \seealso{
 \code{\link[=lords_attendance_session]{lords_attendance_session()}}

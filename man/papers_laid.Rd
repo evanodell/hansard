@@ -59,8 +59,9 @@ Imports data on papers laid before the House.
 }
 \examples{
 \dontrun{
-x <- papers_laid(withdrawn = FALSE, house = 'commons')
+x <- papers_laid(withdrawn = FALSE, house = "commons")
 
 x <- papers_laid(withdrawn = TRUE, house = NULL)
 }
+
 }

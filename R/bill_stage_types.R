@@ -7,10 +7,11 @@
 #' @seealso [bills()]
 #' @seealso [bill_publications()]
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- bill_stage_types()
 #' }
-
+#' 
 bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case",
                              verbose = TRUE) {
   stages <- jsonlite::fromJSON(

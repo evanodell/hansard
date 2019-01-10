@@ -4,11 +4,11 @@
 #' Imports results from general and by-elections from the
 #' 2010 General Election onwards.
 #'
-#' 
+#'
 #' @param ID Accepts an ID for a general or by-election from the 2010 General
 #' Election onwards, and returns the results. If `NULL`, returns all
 #' available election results. Defaults to `NULL`.
-#' 
+#'
 #' @param all_data If `TRUE`, returns vote share for all parties standing
 #' in any constituency in the election/elections returned. Defaults to
 #' `FALSE`. Note that aside from shorthand for the Conservatives, Labour,
@@ -19,13 +19,13 @@
 #' its vote count is listed as NA. There is a drawback to using this parameter,
 #' as multiple candidates from the same party in a constituency, or multiple
 #' independent candidates, have their vote totals combined.
-#' 
+#'
 #' @param calculate_percent If `TRUE`, calculates the turnout percentage
 #' for each constituency in the tibble and the majority of the winning
 #' candidate to one decimal place, and includes this information in the
 #' tibble in additional columns labelled 'turnout_percentage' and
 #' 'majority_percentage'. Defaults to `FALSE`.
-#' 
+#'
 #' @param constit_details If `TRUE`, returns additional details on each
 #' constituency, including its GSS (Government Statistical Service) code.
 #' Defaults to `FALSE`.
@@ -36,16 +36,17 @@
 #' @seealso [elections()]
 #' @seealso [election_candidates()]
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' x <- election_results(ID = 382037)
-#'
+#' 
 #' y <- election_results()
-#'
+#' 
 #' z <- election_results(calculate_percent = TRUE, constit_details = TRUE)
-#'
+#' 
 #' w <- election_results(ID = 730039, all_data = TRUE)
 #' }
-
+#' 
 election_results <- function(ID = NULL, all_data = FALSE,
                              calculate_percent = FALSE,
                              constit_details = FALSE,

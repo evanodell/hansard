@@ -257,22 +257,25 @@ lords_interests_tidy2 <- function(df, tidy_style) {
       if ("amendedDate" %in% colnames(df[i, ]$hasRegisteredInterest[[1]])) {
         # as not all entries have been amended
 
-        seq_list2 <- seq(from = 1,
-                         to = nrow(df[i, ]$hasRegisteredInterest[[1]]),
-                         by = 1)
+        seq_list2 <- seq(
+          from = 1,
+          to = nrow(df[i, ]$hasRegisteredInterest[[1]]),
+          by = 1
+        )
 
         for (x in seq_along(seq_list2)) {
           # because apply wasn't working with all the NULL values
 
           if (is.null(
-            df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]) == FALSE) {
+            df[i, ]$hasRegisteredInterest[[1]]$amendedDate[[x]]
+          ) == FALSE) {
             ## If there is an amended date value, extract it
-
           }
         }
 
         df[i, ]$hasRegisteredInterest[[1]]$amendedDate[
-          df[i, ]$hasRegisteredInterest[[1]]$amendedDate == "NULL"] <- NA
+          df[i, ]$hasRegisteredInterest[[1]]$amendedDate == "NULL"
+        ] <- NA
         # Change the NULL values to NA to be more R like
 
         df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- do.call(
@@ -281,12 +284,14 @@ lords_interests_tidy2 <- function(df, tidy_style) {
         ## Extract dates from list into 'normal' vector column
 
         df[i, ]$hasRegisteredInterest[[1]]$amendedDate <- as.POSIXct(
-          df[i, ]$hasRegisteredInterest[[1]]$amendedDate, na.omit=TRUE
+          df[i, ]$hasRegisteredInterest[[1]]$amendedDate,
+          na.omit = TRUE
         )
       } #
 
       df[i, ]$hasRegisteredInterest[[1]]$date._value <- as.POSIXct(
-        df[i, ]$hasRegisteredInterest[[1]]$date._value, na.omit=TRUE
+        df[i, ]$hasRegisteredInterest[[1]]$date._value,
+        na.omit = TRUE
       )
 
       df[i, ]$hasRegisteredInterest[[1]]$date._datatype <- "POSIXct"

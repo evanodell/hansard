@@ -19,7 +19,6 @@
 #' Also note that this API does not appear to have been
 #' updated with data after 2017-01-31.
 #'
-#' 
 #' @param session_id The ID of the House of Lords session. If `NULL`,
 #' returns a list of all sessions, subject to other parameters.
 #' Defaults to `NULL`.

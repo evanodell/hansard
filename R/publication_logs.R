@@ -26,14 +26,15 @@
 #' @return A tibble with details from publications in the House of
 #' Commons and House of Lords
 #' @export
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # All publications in the house of commons
-#' x <- publication_logs(house = 'commons')
-#'
+#' x <- publication_logs(house = "commons")
+#' 
 #' # Returns a given publication
 #' y <- publication_logs(683267)
 #' }
-
+#' 
 publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
                              tidy = TRUE, tidy_style = "snake_case",
@@ -47,9 +48,9 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
   if (is.null(house)) {
     house_query <- ""
   } else {
-  house <- tolower(house)
+    house <- tolower(house)
 
-  house_query <- house_query_util(house) ## in utils-house.R
+    house_query <- house_query_util(house) ## in utils-house.R
   }
 
   dates <- paste0(

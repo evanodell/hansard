@@ -6,13 +6,13 @@
 #' House of Lords sittings. Note that this API does not appear to have been
 #' updated with data after 2017-01-31.
 #'
-#' 
+#'
 #' @param start_date Only includes sessions starting on or after this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
 #' anything else that can be coerced to a date with `as.Date()`.
 #' Defaults to `'1900-01-01'`.
-#' 
+#'
 #' @param end_date Only includes sessions ending on or before this date.
 #' Accepts character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
@@ -23,12 +23,12 @@
 #'
 #' @inheritParams all_answered_questions
 #' @export
-#' @examples \dontrun{
-#'
+#' @examples
+#' \dontrun{
+#' 
 #' a <- lords_sessions(start_date = "2017-01-01", end_date = "2017-01-31")
-#'
 #' }
-
+#' 
 lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
                            tidy = TRUE, tidy_style = "snake_case",
                            verbose = TRUE) {

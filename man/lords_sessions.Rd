@@ -45,8 +45,8 @@ updated with data after 2017-01-31.
 \dontrun{
 
 a <- lords_sessions(start_date = "2017-01-01", end_date = "2017-01-31")
-
 }
+
 }
 \seealso{
 \code{\link[=lords_attendance_session]{lords_attendance_session()}}

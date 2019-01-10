@@ -10,7 +10,7 @@
 #' Also note that this API does not appear to have been
 #' updated with data after 2017-01-31.
 #'
-#' 
+#'
 #' @param date Accepts a date to return attendance data for. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of
 #' class `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or
@@ -21,10 +21,11 @@
 #' @return A tibble with details on the lords who attended on a given date.
 #' @export
 #' @seealso [lords_attendance_session()]
-#' @examples \dontrun{
-#' x <- lords_attendance_date(date = '2016-03-01')
+#' @examples
+#' \dontrun{
+#' x <- lords_attendance_date(date = "2016-03-01")
 #' }
-
+#' 
 lords_attendance_date <- function(date = NULL, tidy = TRUE,
                                   tidy_style = "snake_case", verbose = TRUE) {
   if (is.null(date) == TRUE) {

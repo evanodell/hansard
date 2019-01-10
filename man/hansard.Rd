@@ -10,7 +10,7 @@ Provides functions to request data from the data.parliament.uk APIs.
 Because of the structure of the data.parliament.uk API, there is a named
 function for each type of available data for ease of use. Functions for
 each new API will be added as and when they become available on
-\url{data.parliament.uk}. The API is rate limited to returning 5500 rows
+<data.parliament.uk>. The API is rate limited to returning 5500 rows
 per request in some instances, though this has been inconsistent in testing.
 }
 \details{

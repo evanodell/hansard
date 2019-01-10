@@ -4,26 +4,26 @@
 #' Imports data on House of Commons divisions (votes), either full details
 #' on how each member voted, or a summary of vote totals.
 #'
-#' 
+#'
 #' @param division_id The id of a particular vote. If empty, returns a
 #' tibble with information on all commons divisions, subject to all other
 #' parameters. Defaults to `NULL`. Only accepts a single division ID
 #' at a time, but to return details on a list of division IDs use with
 #' `lapply`.
 #'
-#' 
+#'
 #' @param summary If `TRUE`, returns a small tibble summarising a
 #' division outcome. Otherwise returns a tibble with details on how each
 #' MP voted. Has no effect if `division_id` is empty. Defaults to `FALSE`.
 #'
-#' 
+#'
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
 #' else that can be coerced to a date with `as.Date()`. Defaults
 #' to `'1900-01-01'`.
 #'
-#' 
+#'
 #' @param end_date Only includes divisions on or before this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
 #' `Date`, `POSIXt`, `POSIXct`, `POSIXlt` or anything
@@ -34,15 +34,16 @@
 #'
 #' @return A tibble with the results of divisions in the House of Commons.
 #' @export
-#' @examples \dontrun{
-#'
+#' @examples
+#' \dontrun{
+#' 
 #' ## All commons divisions
 #' x <- commons_divisions()
-#'
+#' 
 #' ## Vote breakdown of specific commons division
 #' y <- commons_divisions(division_id = 694163, summary = FALSE)
 #' }
-
+#' 
 commons_divisions <- function(division_id = NULL, summary = FALSE,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), extra_args = NULL,

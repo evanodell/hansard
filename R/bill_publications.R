@@ -39,10 +39,11 @@
 #' @seealso [bills()]
 #' @seealso [bill_publication_types()]
 #'
-#' @examples \dontrun{
+#' @examples
+#' \dontrun{
 #' # Requesting a specific publication
 #' x <- bill_publications(ID = 752025)
-#'
+#' 
 #' # Requesting all publications after a given date
 #' y <- bill_publications(start_date = "2018-01-01")
 #' }

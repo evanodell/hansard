@@ -4,21 +4,22 @@
 #'
 #' Imports the parliamentary thesaurus. The API is rate limited to 5500
 #' requests at a time, so some use of parameters is required.
-#' 
+#'
 #' @param search A string to search the parliamentary thesaurus for.
-#' 
+#'
 #' @param class The class of definition to be returned Accepts one of
 #' `'ID'`, `'ORG'`, `'SIT'`, `'NAME'`, `'LEG'`,
 #' `'CTP'`, `'PBT'` and `'TPG'`.  Defaults to `NULL`.
 #' @inheritParams all_answered_questions
 #' @return A tibble with results from the parliamentary thesaurus.
 #' @export
-#' @examples \dontrun{
-#' x <- commons_terms(search='estate')
-#'
-#' x <- commons_terms(search='estate', class='ORG')
+#' @examples
+#' \dontrun{
+#' x <- commons_terms(search = "estate")
+#' 
+#' x <- commons_terms(search = "estate", class = "ORG")
 #' }
-
+#' 
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           tidy = TRUE, tidy_style = "snake_case",
                           verbose = TRUE) {
