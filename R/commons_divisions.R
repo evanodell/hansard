@@ -164,7 +164,11 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
                 Please check your parameters.")
   } else {
     if (tidy == TRUE) {
-      df <- cd_tidy(df, tidy_style, division_id, summary)
+       if (!is.null(division_uin)) {
+        df <- cd_tidy(df, tidy_style, division_uin = division_uin, summary)
+      } else {
+        df <- cd_tidy(df, tidy_style, division_id = division_id, summary)
+      }
       ## in utils-commons.R
     }
 
