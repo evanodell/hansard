@@ -36,15 +36,16 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' ## All commons divisions
 #' x <- commons_divisions()
-#' 
+#'
 #' ## Vote breakdown of specific commons division
 #' y <- commons_divisions(division_id = 694163, summary = FALSE)
 #' }
-#' 
-commons_divisions <- function(division_id = NULL, summary = FALSE,
+#'
+commons_divisions <- function(division_id = NULL, division_uin = NULL,
+                              summary = FALSE,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), extra_args = NULL,
                               tidy = TRUE, tidy_style = "snake_case",
@@ -55,7 +56,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
     as.Date(start_date)
   )
 
-  if (is.null(division_id) == TRUE) {
+  if (is.null(division_id) == TRUE & is.null(division_uin) == TRUE) {
     baseurl <- paste0(url_util, "commonsdivisions")
 
     if (verbose == TRUE) {
@@ -77,7 +78,44 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
-  } else {
+  } else if (!is.null(division_uin)) {
+    baseurl <- paste0(url_util, "commonsdivisions.json?uin=")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
+
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, division_uin,
+      dates, extra_args
+    ),
+    flatten = TRUE
+    )
+
+    if (summary == TRUE) {
+      df <- tibble::tibble(
+        abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
+        ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
+        noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
+        didNotVoteCount =
+          divis$result$primaryTopic$Didnotvotecount$`_value`,
+        errorVoteCount =
+          divis$result$primaryTopic$Errorvotecount$`_value`,
+        nonEligibleCount =
+          divis$result$primaryTopic$Noneligiblecount$`_value`,
+        suspendedOrExpelledVotesCount =
+          divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
+        margin = divis$result$primaryTopic$Margin$`_value`,
+        date = divis$result$primaryTopic$date$`_value`,
+        divisionNumber = divis$result$primaryTopic$divisionNumber,
+        session = divis$result$primaryTopic$session[[1]],
+        title = divis$result$primaryTopic$title,
+        uin = divis$result$primaryTopic$uin
+      )
+    } else {
+      df <- tibble::as_tibble(divis$result$items[["vote"]][[1]])
+    }
+  } else if (!is.null(division_id)) {
     baseurl <- paste0(url_util, "commonsdivisions/id/")
 
     if (verbose == TRUE) {
