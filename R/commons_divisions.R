@@ -11,6 +11,11 @@
 #' at a time, but to return details on a list of division IDs use with
 #' `lapply`.
 #'
+#' @param division_uin The UIN of a particular vote. If empty, returns a
+#' tibble with information on all commons divisions, subject to all other
+#' parameters. Defaults to `NULL`. Only accepts a single division UIN
+#' at a time, but to return details on a list of division UINs use with
+#' `lapply`.
 #'
 #' @param summary If `TRUE`, returns a small tibble summarising a
 #' division outcome. Otherwise returns a tibble with details on how each
