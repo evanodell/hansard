@@ -187,9 +187,11 @@ cdd_tidy <- function(df, tidy_style) {
 
 
 
-cd_tidy <- function(df, tidy_style, division_id, division_uin, summary = FALSE) {
+cd_tidy <- function(df, tidy_style, division_id = NULL, division_uin = NULL, summary = FALSE) {
   if (nrow(df) > 0) {
-    if (is.null(division_id) == TRUE & is.null(division_uin)) {
+    print(is.null(division_id))
+          print(is.null(division_uin))
+    if (is.null(division_id) == TRUE & is.null(division_uin) == FALSE) {
       df$date._datatype <- "POSIXct"
 
       df$date._value <- as.POSIXct(df$date._value)

@@ -83,7 +83,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
-  } else if (!is.null(division_uin)) {
+  } else if (!is.null(division_uin) & is.null(division_id) == TRUE) {
     baseurl <- paste0(url_util, "commonsdivisions.json?uin=")
 
     if (verbose == TRUE) {
@@ -120,7 +120,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     } else {
       df <- tibble::as_tibble(divis$result$items[["vote"]][[1]])
     }
-  } else if (!is.null(division_id)) {
+  } else if (!is.null(division_id) & is.null(division_uin) == TRUE) {
     baseurl <- paste0(url_util, "commonsdivisions/id/")
 
     if (verbose == TRUE) {
