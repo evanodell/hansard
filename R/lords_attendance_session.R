@@ -39,7 +39,7 @@
 #' }
 
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
-                                     tidy = TRUE, tidy_style = "snake_case",
+                                     tidy = TRUE, tidy_style = "snake",
                                      verbose = TRUE) {
   json_query <- ifelse(
     is.null(session_id) == FALSE,
@@ -67,10 +67,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
   } else {
     jpage <- floor(attend$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, json_query, extra_args,
-      "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, json_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

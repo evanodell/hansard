@@ -26,10 +26,10 @@
 #' \dontrun{
 #' x <- commons_oral_question_times(session = "2016/17", question_id = "685697")
 #' }
-#' 
+#'
 commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
-                                        tidy_style = "snake_case",
+                                        tidy_style = "snake",
                                         verbose = TRUE) {
   session_query <- ifelse(is.null(session) == FALSE,
     utils::URLencode(paste0("session=", session)), ""
@@ -58,10 +58,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
     jpage <- floor(times$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, ".json?", session_query,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, ".json?", session_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

@@ -1,4 +1,5 @@
 library(hansard)
+
 context("commons functions")
 
 test_that("commons functions return expected format", {
@@ -25,12 +26,13 @@ test_that("commons functions return expected format", {
   expect_true(tibble::is_tibble(xcd))
 
   xcds <- hansard_commons_divisions(
-    division_id = 694163,
+    division_uin = "CD:2019-03-12:623",
     summary = TRUE, verbose = TRUE
   )
-  expect_length(xcds, 13)
+  expect_length(xcds, 3)
   expect_type(xcds, "list")
   expect_true(tibble::is_tibble(xcds))
+  expect_equal(nrow(xcds), 2)
 
   xcdall <- hansard_commons_divisions(
     start_date = "2017-02-01",
@@ -39,6 +41,12 @@ test_that("commons functions return expected format", {
   expect_length(xcdall, 5)
   expect_type(xcdall, "list")
   expect_true(tibble::is_tibble(xcdall))
+  expect_equal(nrow(xcds), 39)
+
+  uin <- hansard_commons_divisions(division_uin = "CD:2019-03-12:623",
+                                   summary = FALSE, verbose = TRUE)
+
+  expect_equal(uin, xcds)
 
   # Divisions by Date
   cdd <- commons_division_date("2017-02-24", verbose = TRUE)

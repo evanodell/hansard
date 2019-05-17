@@ -27,13 +27,13 @@
 #' @examples
 #' \dontrun{
 #' x <- lords_amendments()
-#' 
+#'
 #' x <- lords_amendments(decision = "Withdrawn")
 #' }
-#' 
+#'
 lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
-                             tidy = TRUE, tidy_style = "snake_case",
+                             tidy = TRUE, tidy_style = "snake",
                              verbose = TRUE) {
   dates <- paste0(
     "&min-bill.date=", as.Date(start_date),
@@ -67,10 +67,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
 
   pages <- list()
 
-  query <- paste0(
-    baseurl, decision_query, dates,
-    extra_args, "&_pageSize=100&_page="
-  )
+  query <- paste0(baseurl, decision_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

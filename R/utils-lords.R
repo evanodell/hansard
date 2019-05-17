@@ -124,22 +124,8 @@ ldsum_tidy <- function(df, tidy_style) {
       df$vote.member
     )
 
-    if (tidy_style == "camelCase") {
-      df$vote.type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2",
-        df$vote.type,
-        perl = TRUE
-      )
-
-      substr(df$vote.type, 1, 1) <- tolower(substr(df$vote.type, 1, 1))
-    } else if (tidy_style == "period.case") {
-      df$vote.type <- gsub("_", ".", df$vote.type)
-
-      df$vote.type <- tolower(df$vote.type)
-    } else {
-      df$vote.type <- tolower(df$vote.type)
-    }
+    names(df) <- snakecase::to_any_case(names(df), case = tidy_style)
   }
-
   df
 }
 

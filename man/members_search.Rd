@@ -5,11 +5,11 @@
 \alias{hansard_members_search}
 \title{Search for an MP or Peer by name and constituency}
 \usage{
-members_search(search = NULL, tidy = TRUE, tidy_style = "snake_case",
+members_search(search = NULL, tidy = TRUE, tidy_style = "snake",
   verbose = TRUE)
 
 hansard_members_search(search = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{search}{Accepts any lucene query string, using * as a multiple
@@ -22,8 +22,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}
@@ -32,6 +32,10 @@ progress of the API request. Defaults to \code{TRUE}.}
 A tibble with the results of the search.
 }
 \description{
+Note that there are problems with the remote endpoint for this
+API, and that correct search queries may not return any results.
+}
+\details{
 Function searches for the string and returns a tibble with all matches from
 both houses of parliament. Returns all partial matches in the members'
 names, constituencies, twitter handle and webpage. The default search is

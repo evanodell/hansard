@@ -4,7 +4,6 @@
 #' Accepts an ID number for a member of the House of Commons, and returns a
 #' tibble of of all their oral and written questions.
 #'
-#'
 #' @param mp_id The ID number of a member of the House of Commons, or a vector
 #' of IDs. Defaults to `NULL`.
 #'
@@ -46,7 +45,7 @@
 mp_questions <- function(mp_id = NULL, question_type = "all",
                          start_date = "1900-01-01", end_date = Sys.Date(),
                          extra_args = NULL, tidy = TRUE,
-                         tidy_style = "snake_case", verbose = TRUE) {
+                         tidy_style = "snake", verbose = TRUE) {
   if (is.null(mp_id) == TRUE) {
     stop("mp_id must not be empty", call. = FALSE)
   }
@@ -126,10 +125,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
       jpage <- floor(oral$result$totalResults / 100)
 
-      query <- paste0(
-        baseurl, mp_id, dates, extra_args,
-        "&_pageSize=100&_page="
-      )
+      query <- paste0(baseurl, mp_id, dates, extra_args)
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
     } else if (question_type == "written") {
@@ -148,10 +144,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
       pages <- list()
 
-      query <- paste0(
-        baseurl, mp_id, dates, extra_args,
-        "&_pageSize=100&_page="
-      )
+      query <- paste0(baseurl, mp_id, dates, extra_args)
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
     }

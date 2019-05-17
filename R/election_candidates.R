@@ -21,15 +21,15 @@
 #' @examples
 #' \dontrun{
 #' x <- election_candidates(ID = 382037)
-#' 
+#'
 #' y <- election_candidates()
-#' 
+#'
 #' z <- election_candidates(constit_details = TRUE)
 #' }
-#' 
+#'
 election_candidates <- function(ID = NULL, constit_details = FALSE,
                                 extra_args = NULL, tidy = TRUE,
-                                tidy_style = "snake_case", verbose = TRUE) {
+                                tidy_style = "snake", verbose = TRUE) {
   id_query <- ifelse(
     is.null(ID) == FALSE,
     paste0("electionId=", ID),
@@ -51,7 +51,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
   jpage <- floor(elect$result$totalResults / 100)
 
-  query <- paste0(baseurl, id_query, extra_args, "&_pageSize=100&_page=")
+  query <- paste0(baseurl, id_query, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

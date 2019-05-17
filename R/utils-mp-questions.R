@@ -18,7 +18,7 @@ mp_question_multi <- function(mp_id, question_type, start_date,
       extra_args = extra_args,
       verbose = verbose,
       tidy = FALSE,
-      tidy_style = "snake_case"
+      tidy_style = "snake"
     )
   }
 

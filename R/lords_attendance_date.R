@@ -27,7 +27,7 @@
 #' }
 #' 
 lords_attendance_date <- function(date = NULL, tidy = TRUE,
-                                  tidy_style = "snake_case", verbose = TRUE) {
+                                  tidy_style = "snake", verbose = TRUE) {
   if (is.null(date) == TRUE) {
     stop("Please include a date.", call. = FALSE)
   }

@@ -35,23 +35,23 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' # Oral questions from a single MP to a single department
 #' x <- commons_oral_questions(mp_id = 4019, answering_department = "education")
-#' 
-#' 
+#'
+#'
 #' ## Questions from multiple MPs and to multiple departments
 #' y <- commons_oral_questions(
 #'   mp_id = c(4019, 4051, 4588),
 #'   answering_department = c("education", "health")
 #' )
 #' }
-#' 
+#'
 commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
                                    start_date = "1900-01-01",
                                    end_date = Sys.Date(),
                                    extra_args = NULL, tidy = TRUE,
-                                   tidy_style = "snake_case", verbose = TRUE) {
+                                   tidy_style = "snake", verbose = TRUE) {
   if (length(mp_id) > 1 || length(answering_department) > 1) {
     df <- commons_oral_questions_multi(
       mp_id, answering_department,
@@ -97,7 +97,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
 
     query <- paste0(
       baseurl, json_query, mp_id, dates,
-      extra_args, "&_pageSize=100&_page="
+      extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

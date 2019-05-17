@@ -64,28 +64,91 @@ Almost all `hansard` functions (the exceptions being the functions that retrieve
 
 The `commons_divisions()` function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. `mp_vote_record()` returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the [`members_search()` function described below](#special-functions).
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
+```{r, eval = FALSE}
 library(hansard)
-library(tibble)##for the `tibble::glimpse()` function
-z <- mp_vote_record(172, "aye", start_date = "2017-01-01", end_date = "2017-05-03")
-tibble::glimpse(z)
+z <- mp_vote_record(172, "aye", start_date = "2017-01-01",
+                    end_date = "2017-02-07", verbose = FALSE)
+z
+```
 
+```{r, echo = FALSE}
+library(hansard)
+library(tibble)
+about <- c("685695", "685768", "685669", "685670", "685672", "678297",
+           "678341", "677700", "671450", "670447", "670448")
+title <- c("EU (Notification of Withdrawal) Bill Committee of the whole House: New Clause 110",
+           "EU (Notification of Withdrawal) Bill Committee of the whole House: New Clause 5",
+           "EU (Notification of Withdrawal) Bill: Committee of the whole House New Clause 3",
+           "EU (Notification of Withdrawal) Bill Committee: New Clause 4",
+           "EU (Notification of Withdrawal) Bill Committee of the whole House: New Clause 158", "Opposition Motion: Prisons", "Opposition Motion: School Funding",
+           "Wales Bill: Lords Amendment 36 - Amdt (a)",
+           "Opposition Motion: NHS and social care funding",
+           "Commonwealth Development Corporation Bill: Report Stage New Clause 1",
+           "Commonwealth Development Corporation Bill: Report Stage Amdt 3")
+uin <- c("CD:2017-02-07:204", "CD:2017-02-07:210", "CD:2017-02-06:206",
+         "CD:2017-02-06:205", "CD:2017-02-06:208", "CD:2017-01-25:199",
+         "CD:2017-01-25:200", "CD:2017-01-24:196", "CD:2017-01-11:189",
+         "CD:2017-01-10:184", "CD:2017-01-10:185")
+date_value <- c("2017-02-07 GMT", "2017-02-07 GMT", "2017-02-06 GMT",
+                "2017-02-06 GMT", "2017-02-06 GMT", "2017-01-25 GMT",
+                "2017-01-25 GMT", "2017-01-24 GMT", "2017-01-11 GMT",
+                "2017-01-10 GMT", "2017-01-10 GMT")
+date_datatype <- c(rep ("POSIXct", 11))
+
+z <- tibble::tibble(about, title, uin, date_value, date_datatype)
+z
 ```
 
 
 Using `commons_divisions()`, we can see the result of one of those votes, ID 722300, the Early Parliamentary General Election bill that dissolved parliament for the 2017 General Election. The function default is to return a list of every MP and how they voted:
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
-x <- commons_divisions(722300)
-tibble::glimpse(x)
+```{r, eval=FALSE, message=TRUE, warning=FALSE}
+x <- commons_divisions(722300, verbose = FALSE)
+head(x)
+```
+
+```{r, echo = FALSE}
+library(hansard)
+library(tibble)
+
+number <- c("1", "10", 100:103)
+member_party <- c(rep("Labour", 3), "Labour (Co-op)", "Conservative", "Labour")
+type <- c(rep("aye_vote", 6))
+member_printed_value <- c("Ms Diane Abbott", "Dr Rosena Allin-Khan", 
+                          "Mary Creagh", "Stella Creasy", "Tracey Crouch",
+                          "Jon Cruddas")
+vote_id <- c(rep("722300", 6))
+about <- c("172", "4573", "1579", "4088", "3950", "1406")
+label_value <- c("Biography information for Ms Diane Abbott",
+                 "Biography information for Dr Rosena Allin-Khan",
+                 "Biography information for Mary Creagh",
+                 "Biography information for Stella Creasy",
+                 "Biography information for Tracey Crouch",
+                 "Biography information for Jon Cruddas")
+
+x <- tibble::tibble(number, member_party, type, member_printed_value,
+                    vote_id, about, label_value)
+head(x)
 ```
 
 With the `summary` parameter, we can return a brief summary table of votes:
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
-y <- commons_divisions(722300, summary = TRUE)
+```{r, echo=TRUE, eval=FALSE, message=TRUE, warning=FALSE}
+y <- commons_divisions(division_id = 722300, summary = TRUE, verbose = FALSE)
 tibble::glimpse(y)
 ```
+
+```{r, echo=FALSE}
+y <- tibble(abstain_count = "0", ayes_count = "522", noes_vote_count = "13",
+            did_not_vote_count = "0", error_vote_count = "0", 
+            non_eligible_count = "0", suspended_or_expelled_votes_count = "0",
+            margin = "509", date = as.POSIXct("2017-04-19"),
+            division_number = "196", session = "2016/17",
+            title = "Early Parliamentary General Election", 
+            uin = "CD:2017-04-19:264")
+tibble::glimpse(y)
+```
+
 
 The results of votes in the House of Lords can be retrieved with the `lords_divisions` function. The voting record of individual Lords can  be retrieved using the `lords_vote_record` functions.
 
@@ -109,14 +172,101 @@ For example, the following function returns all questions answered by Nichola Bl
 
 
 ```{r, echo=TRUE, message=TRUE, warning=FALSE}
-w <- hansard_all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
-                                     answering_body = c("health", "justice"),
-                                      start_date = "2016-12-18", end_date = "2017-03-12")
+w <- all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
+                            answering_body = c("health", "justice"),
+                            start_date = "2016-12-18", end_date = "2017-03-12")
 
-tibble::glimpse(w)
-
+tibble::glimpse(w) ## need to fix this
 ```
 
+```{r, echo=FALSE}
+about <- c("705625", "705626", "705627", "678067", "678080", "675525", "675527",
+       "672116", "672117", "672127", "672132", "672133", "672134", "672138",
+       "672139", "671774", "705690", "679142", "679147", "679150", "679151",
+       "671821", "661743")
+answering_body <- c(rep("Department of Health", 16),
+                    rep ("Ministry of Justice", 7))  
+question_text <- c("To ask the Secretary of State for Health, how many clinical commissioning groups have applied for Wave 2 funding under the Diabetes Prevention Programme.",  "To ask the Secretary of State for Health, what has been the (a) total cost and (b) cost of each contract given to bodies implementing the Diabetes Prevention Programme to date.",  "To ask the Secretary of State for Health, which areas bid for funding via the Diabetes Transformation Fund.",  "To ask the Secretary of State for Health, how much on average GPs are paid for each influenza jab administered.",  "To ask the Secretary of State for Health, how much on average pharmacists are paid for each influenza jab administered.",  "To ask the Secretary of State for Health, which clinical commissioning groups (CCGs) have received funding under the NHS Diabetes Prevention Programme; and how much funding each of those CCGs received.",  "To ask the Secretary of State for Health, how many people have been tested for diabetes under the NHS Diabetes Prevention Programme.",  "To ask the Secretary of State for Health, what the average length of hospital admittance of diabetic inpatients was in 2016.",  "To ask the Secretary of State for Health, how many ambulance call-outs there were for patients experiencing diabetic complications in 2016.", "To ask the Secretary of State for Health, how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients in 2016.", "To ask the Secretary of State for Health, how many admissions to hospital from accident and emergency there were of patients with complications arising from diabetes (a) in total and (b) where the patient required use of an ambulance in 2016.", "To ask the Secretary of State for Health, how many bids for NHS transformation funding for diabetes prevention and treatment were received between 12 December 2016 and 18 January 2017.", "To ask the Secretary of State for Health, how many admissions to hospital from accident and emergency there were of patients with complications arising from diabetes (a) in total and (b) where the patient required use of an ambulance in Leicester in 2016.", "To ask the Secretary of State for Health, what specialist support is provided for diabetic patients who are pregnant and receiving care (a) in hospital and (b) at home.", "To ask the Secretary of State for Health, what specialist support is provided for patients with gestational diabetes who are receiving care (a) in hospital and (b) at home.", "To ask the Secretary of State for Health, what the estimated cost to the NHS was of accident and emergency admissions for people with diabetes complications in each of the last three years.", "To ask the Secretary of State for Justice, when she last met the leaders of the Prison Officers Association.", "To ask the Secretary of State for Justice, how much of the budget for HM Prison Maidstone is spent on (a) prisoner education and (b) prisoners' access to leisure activities.", "To ask the Secretary of State for Justice, what the budget is of HMP Maidstone for 2017-18; and how that budget is broken down.", "To ask the Secretary of State for Justice, how much of the budget of HM Prison Huntercombe is spent on (a) prisoner education and (b) prisoners' access to leisure activities.", "To ask the Secretary of State for Justice, what the budget is of HM Prison Huntercombe for 2017-18; and how that budget is broken down.", "To ask the Secretary of State for Justice, how many foreign nationals of which nationalities there were in prisons in England and Wales on 1 January 2017.", "To ask the Secretary of State for Justice, what steps she is taking to reduce the incidence of suicide in prisons.")
+tabling_member_printed <- c(rep("Keith Vaz", 22), "Ms Diane Abbott")
+uin <- c("65590", "65591", "65592", "61355", "61365", "60779", "60810", "59793",
+         "59794", "59795", "59858", "59859", "59857", "59860", "59861", "59529",
+         "65587", "61924", "61928", "61949", "61950", "59524", "58329")
+attachment <- vector(mode="list", length=23)
+attachment[[1]] <- data.frame(
+  about = c("http://data.parliament.uk/resources/705625/answer/attachment/1",
+            "http://data.parliament.uk/resources/705625/answer/attachment/2"),
+  title = c("PQ65590 attached table 1", "PQ65590 attached table 2"),
+  fileName = c("PQ65590 attached table 1.xlsx", "PQ65590 attached table 2.xlsx")
+  )
+
+attachment[[2]] <- data.frame(
+  about = c("http://data.parliament.uk/resources/705626/answer/attachment/1",
+            "http://data.parliament.uk/resources/705626/answer/attachment/2"),
+  title = c("PQ65590 attached table 1", "PQ65590 attached table 2"),
+  fileName = c("PQ65590 attached table 1.xlsx", "PQ65590 attached table 2.xlsx")
+  )
+
+attachment[[3]] <- data.frame(
+  about = c("http://data.parliament.uk/resources/705627/answer/attachment/1",
+            "http://data.parliament.uk/resources/705627/answer/attachment/2"),
+  title = c("PQ65590 attached table 1", "PQ65590 attached table 2"),
+  fileName = c("PQ65590 attached table 1.xlsx", "PQ65590 attached table 2.xlsx")
+  )
+
+grouped_question_uin <- list("list(c(\"65591\", \"65592\"))", "list(c(\"65590\", \"65592\"))", "list(c(\"65590\", \"65591\"))", "list(\"61365\")", "list(\"61355\")", NA, NA, "list(c(\"59794\", \"59795\", \"59857\", \"59858\", \"59859\"))", "list(c(\"59793\", \"59795\", \"59857\", \"59858\", \"59859\"))", "list(c(\"59793\", \"59794\", \"59857\", \"59858\", \"59859\"))", "list(c(\"59793\", \"59794\", \"59795\", \"59857\", \"59859\"))", "list(c(\"59793\", \"59794\", \"59795\", \"59857\", \"59858\"))", "list(c(\"59793\", \"59794\", \"59795\", \"59858\", \"59859\"))", 
+    "list(\"59861\")", "list(\"59860\")", NA, NA, "61928", "61924", "61950", "61949", NA, NA)
+answer_text_value <- c("<p>73 clinical commissioning groups (CCGs) applied for Wave 2 funding under the diabetes prevention programme. Their bids were made as part of collaborative arrangements involving several CCGs, and not all CCGs will implement the programme at the same pace.</p><p>The estimated total cost of implementing the diabetes prevention programme to date, covering the wave 1 areas, is £12 million. Actual payments are dependent on the performance of providers. The details of these contracts are shown in the attached table. Contracts for Wave 2 are due to be approved and awarded in March 2017.</p><p>The attached table shows the lead CCGs that have applied for diabetes transformation funding for any of the following interventions (this does not include details of all CCGs that are involved with bids, as in some cases many CCGs collaborated to deliver a project):</p><p>- improving uptake of structured education for people with diabetes;</p><p>- improving the achievement of the treatment targets recommended by the National Institute for Health and Care Excellence;</p><p>- new or expanded multi-disciplinary footcare teams; and</p><p>- new or expanded diabetes inpatient specialist nursing services.</p>",                   
+"<p>73 clinical commissioning groups (CCGs) applied for Wave 2 funding under the diabetes prevention programme. Their bids were made as part of collaborative arrangements involving several CCGs, and not all CCGs will implement the programme at the same pace.</p><p>The estimated total cost of implementing the diabetes prevention programme to date, covering the wave 1 areas, is £12 million. Actual payments are dependent on the performance of providers. The details of these contracts are shown in the attached table. Contracts for Wave 2 are due to be approved and awarded in March 2017.</p><p>The attached table shows the lead CCGs that have applied for diabetes transformation funding for any of the following interventions (this does not include details of all CCGs that are involved with bids, as in some cases many CCGs collaborated to deliver a project):</p><p>- improving uptake of structured education for people with diabetes;</p><p>- improving the achievement of the treatment targets recommended by the National Institute for Health and Care Excellence;</p><p>- new or expanded multi-disciplinary footcare teams; and</p><p>- new or expanded diabetes inpatient specialist nursing services.</p>",            
+ "<p>73 clinical commissioning groups (CCGs) applied for Wave 2 funding under the diabetes prevention programme. Their bids were made as part of collaborative arrangements involving several CCGs, and not all CCGs will implement the programme at the same pace.</p><p>The estimated total cost of implementing the diabetes prevention programme to date, covering the wave 1 areas, is £12 million. Actual payments are dependent on the performance of providers. The details of these contracts are shown in the attached table. Contracts for Wave 2 are due to be approved and awarded in March 2017.</p><p>The attached table shows the lead CCGs that have applied for diabetes transformation funding for any of the following interventions (this does not include details of all CCGs that are involved with bids, as in some cases many CCGs collaborated to deliver a project):</p><p>- improving uptake of structured education for people with diabetes;</p><p>- improving the achievement of the treatment targets recommended by the National Institute for Health and Care Excellence;</p><p>- new or expanded multi-disciplinary footcare teams; and</p><p>- new or expanded diabetes inpatient specialist nursing services.</p>",
+"<p>General practitioners are paid £9.80 for each dose of influenza vaccine that they administer to eligible patients under the General Medical Services contract 2016/17.</p><p> </p><p>Participating pharmacists are paid a total of £9.14 for each dose of the influenza vaccine that they administer to eligible patients under the national Influenza Adult Vaccination Service delivered through the Community Pharmacy Contractual Framework for 2016/17.</p>",
+ "<p>General practitioners are paid £9.80 for each dose of influenza vaccine that they administer to eligible patients under the General Medical Services contract 2016/17.</p><p> </p><p>Participating pharmacists are paid a total of £9.14 for each dose of the influenza vaccine that they administer to eligible patients under the national Influenza Adult Vaccination Service delivered through the Community Pharmacy Contractual Framework for 2016/17.</p>",
+ "<p>In 2016/17, NHS England funded local health economies with a total of £1,474,500 to support implementation activities and costs relating to the NHS Diabetes Prevention Programme (NHS DPP). Health economies are partnerships of clinical commissioning groups and local authorities.</p><p> </p><p>NHS England has also nationally commissioned the NHS DPP behavioural interventions that are provided to local health economies.</p>",
+ "<p>The NHS Diabetes Prevention Programme (NHS DPP) is for individuals diagnosed as high risk of type 2 diabetes, with a high blood sugar recorded in the past 12 months either through a National Health Service health check or other means. NHS DPP does not test for diabetes but rather offers support to those at risk of type 2 diabetes.</p>",                             
+ "<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+ "<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+"<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+"<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+"<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+"<p>The mean and median average length of stay for hospital patients with a primary diagnosis for diabetes and a primary or secondary diagnosis of diabetes in England for 2015/16 are shown in the table below.</p><p> </p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Mean Length of stay (days)</p></td><td><p>Median length of stay (days)</p></td></tr><tr><td><p>Primary diagnosis of diabetes</p></td><td><p>3</p></td><td><p>1</p></td></tr><tr><td><p>Primary and secondary diagnosis of diabetes</p></td><td><p>4</p></td><td><p>1</p></td></tr></tbody></table><p> </p><p>A count of finished admission episodes where patients have been admitted from accident and emergency with a primary diagnosis for diabetes and arrived to accident and emergency by ambulance in England and within East Leicestershire and Rutland, Leicester City and West Leicestershire clinical commissioning groups (CCGs) areas of residence for 2015/16 are provided in the following table.</p><p> </p><table><tbody><tr><td><p> </p></td><td><p>Primary diagnosis admissions for diabetes</p></td><td><p>Admissions for diabetes who arrived by ambulance</p></td></tr><tr><td><p>England</p></td><td><p>27,201</p></td><td><p>16,937</p></td></tr><tr><td><p>East Leicestershire and Rutland CCG</p></td><td><p>90</p></td><td><p>62</p></td></tr><tr><td><p>Leicester City CCG</p></td><td><p>174</p></td><td><p>130</p></td></tr><tr><td><p>West Leicestershire CCG</p></td><td><p>110</p></td><td><p>70</p></td></tr></tbody></table><p> </p><p>Data on how many diabetic patients experienced complications with that condition, separate from the reason for their admittance, while they were in hospital as inpatients is not available in the format requested.</p><p> </p><p>Data on the number of ambulance call-outs for patients experiencing diabetic complications in 2016 is not available in the format requested.</p><p> </p><p>Approximately 240 bids have been received for National Health Service transformation funding for diabetes prevention and treatment.</p>",
+"<p>The National Institute for Health and Clinical Excellence Guidance NG3, as updated in August 2015, covers the care of diabetic patients who are pregnant, and patients with gestational diabetes. The guidance can be found here:</p><p><a href=\"https://www.nice.org.uk/guidance/ng3\" target=\"_blank\">https://www.nice.org.uk/guidance/ng3</a></p><p> </p><p>In addition, there is a specific module of the National Diabetes Audit – the Diabetes and Pregnancy Audit that audits quality of care (including pre-conception care) and outcomes for those who have Type 1 or Type 2 diabetes and are pregnant. Further information on the audit can be found here:</p><p><a href=\"http://content.digital.nhs.uk/npid\" target=\"_blank\">http://content.digital.nhs.uk/npid</a></p>",
+"<p>The National Institute for Health and Clinical Excellence Guidance NG3, as updated in August 2015, covers the care of diabetic patients who are pregnant, and patients with gestational diabetes. The guidance can be found here:</p><p><a href=\"https://www.nice.org.uk/guidance/ng3\" target=\"_blank\">https://www.nice.org.uk/guidance/ng3</a></p><p> </p><p>In addition, there is a specific module of the National Diabetes Audit – the Diabetes and Pregnancy Audit that audits quality of care (including pre-conception care) and outcomes for those who have Type 1 or Type 2 diabetes and are pregnant. Further information on the audit can be found here:</p><p><a href=\"http://content.digital.nhs.uk/npid\" target=\"_blank\">http://content.digital.nhs.uk/npid</a></p>",
+"<p>The information is not available in the format requested.</p>",               
+"<p>The Secretary of State for Justice last met with the Prison Officers Association (POA) on 10<sup>th</sup> January 2017.</p>",
+"<p>The budget of HM Prison Maidstone for 2017-18 has not yet been set. Discussions on the prison’s Performance Agreement 2017-18 which will include its budget are due to conclude by 31 March 2017</p><p>The budget of HM Prison Maidstone does not presently include provision for prisoner education as this is made through the central Offender Learning &amp; Skills Service. In future that funding will be devolved to the prison under the changes proposed in the White Paper Prison Safety &amp; Reform. In its present 2016-17 budget the prison has provision of 0.32% of the total budget for prisoner recreation.</p><p> </p>",
+"<p>The budget of HM Prison Maidstone for 2017-18 has not yet been set. Discussions on the prison’s Performance Agreement 2017-18 which will include its budget are due to conclude by 31 March 2017</p><p>The budget of HM Prison Maidstone does not presently include provision for prisoner education as this is made through the central Offender Learning &amp; Skills Service. In future that funding will be devolved to the prison under the changes proposed in the White Paper Prison Safety &amp; Reform. In its present 2016-17 budget the prison has provision of 0.32% of the total budget for prisoner recreation.</p><p> </p>",
+"<p>The budget of HM Prison Huntercombe for 2017-18 has not yet been set. Discussions on the prison’s Performance Agreement 2017-18 which will include its budget are due to conclude by 31 March 2017.</p><p> </p><p>The budget of HM Prison Huntercombe does not presently include provision for prisoner education as this is made through the central Offender Learning &amp; Skills Service. In future that funding will be devolved to the prison under the changes proposed in the White Paper <em>Prison Safety &amp; Reform</em>. In its present 2016-17 budget the prison has provision of 0.15% of the total budget for prisoner recreation.</p>",
+"<p>The budget of HM Prison Huntercombe for 2017-18 has not yet been set. Discussions on the prison’s Performance Agreement 2017-18 which will include its budget are due to conclude by 31 March 2017.</p><p> </p><p>The budget of HM Prison Huntercombe does not presently include provision for prisoner education as this is made through the central Offender Learning &amp; Skills Service. In future that funding will be devolved to the prison under the changes proposed in the White Paper <em>Prison Safety &amp; Reform</em>. In its present 2016-17 budget the prison has provision of 0.15% of the total budget for prisoner recreation.</p>",       
+"<p>This data is published quarterly on gov.uk. The data as at 31 December 2016 is scheduled to be published on 26 January 2017.</p>",  
+"The Government believes that prisons should be places of safety and reform. As part of this, reducing the incidence of suicide is a key priority. Our recent White Paper sets out the specific steps that we are taking to improve safety. They include investing over £100m to recruit an additional 2,500 staff across the estate by the end of 2018. The National Offender Management Service has launched a suicide and self-harm reduction project, led by an experienced prison governor, which is driving work in this area. This includes implementing the recommendations of a review of the Assessment, Care in Custody and Teamwork (ACCT) process, the multi-disciplinary case management process that is the main tool for managing prisoners at risk of suicide and self-harm. Providing the right intervention and treatment is vital to improving the outcomes for people who are in distress, and all prisons have established procedures in place to identify, manage and support people at risk of suicide or self-harm. But we recognise that more can be done. That is why we have invested in specialist mental health training for prison officers and allocated more funding for prison safety. These improvements and reforms will benefit prisoners who are vulnerable, suffering from mental health problems or at risk of committing suicide.")
+answering_member_about <- c(rep("4019", 16), rep("3980", 7))
+answering_member_label_value <- c(rep("Biography information for Baroness Blackwood of North Oxford", 16), rep("Biography information for Mr Sam Gyimah", 7))
+answering_member_constituency_value <- c(rep("Oxford West and Abingdon", 16), rep("East Surrey", 7))
+answering_member_printed_value <- c("Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Nicola Blackwood", "Mr Sam Gyimah", "Mr Sam Gyimah", "Mr Sam Gyimah", "Mr Sam Gyimah", "Mr Sam Gyimah", "Mr Sam Gyimah", "Mr Sam Gyimah")
+date_of_answer_value <- as.POSIXct(c("2017-03-07", "2017-03-07", "2017-03-07", "2017-01-27", "2017-01-27", "2017-01-27", "2017-01-24", "2017-01-20", "2017-01-20", "2017-01-20", "2017-01-20", "2017-01-20", "2017-01-20", "2017-01-19", "2017-01-19", "2017-01-18", "2017-03-07", "2017-02-13", "2017-02-13", "2017-02-13", "2017-02-13", "2017-01-23", "2017-01-13"))
+answer_date_time <- as.POSIXct(c(1488906939.89, 1488906939.953, 1488906940.013, 1485519348.847, 1485519348.897, 1485517489.11, 1485275067.01, 1484920109.533, 1484920109.593, 1484920109.673, 1484920109.737, 1484920109.813, 1484920109.453, 1484827382.323, 1484827382.4, 1484740917.15, 1488907643.557, 1486991285.387, 1486991285.433, 1486991718.683, 1486991718.763, 1485184936.807, 1484320085.87), origin = "1970-01-01")
+date_of_answer_datatype <- c(rep("POXIXct", 23))
+is_ministerial_correction_value <- c(rep("false", 23))
+is_ministerial_correction_datatype <- c(rep("boolean", 23))
+answering_dept_id_value <- c(rep("17", 16), rep("54", 7))
+answering_dept_short_name_value <- c(rep("Health", 16), rep("Justice", 7))
+answering_dept_sort_name_value <- c(rep("Health", 16), rep("Justice", 7))
+date_value <- c("2017-02-27", "2017-02-27", "2017-02-27", "2017-01-24", "2017-01-24", "2017-01-19", "2017-01-19", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-12", "2017-01-11", "2017-02-27", "2017-01-26", "2017-01-26", "2017-01-26", "2017-01-26", "2017-01-11", "2016-12-19")
+date_datatype <- c("dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime", "dateTime")
+hansard_heading_value <- c("Diabetes", "Diabetes", "Diabetes", "Influenza: Vaccination", "Influenza: Vaccination", "Diabetes: Health Education", "Diabetes: Screening", "Diabetes", "Diabetes", "Diabetes", "Diabetes", "Diabetes", "Diabetes: Leicester", "Diabetes: Pregnancy", "Diabetes: Pregnancy", "Diabetes", "Prison Officers Association", "Maidstone Prison", "Maidstone Prison", "Huntercombe Prison", "Huntercombe Prison", "Prisoners: Foreign Nationals", "Prisoners: Suicide")
+house_id_value <- c(rep("1", 23))
+registered_interest_value <- c(rep("false", 23))
+registered_interest_datatype <- c(rep("boolean", 23))
+tabling_member_about <- c(rep("338", 22), "172")
+tabling_member_label_value <- c(rep("Biography information for Keith Vaz", 22),
+                                "Biography information for Ms Diane Abbott")
+tabling_member_constituency_value <- c(rep("Leicester East", 22), 
+                                       "Hackney North and Stoke Newington")
+legislature_pref_label_value<- c(rep("House of Commons", 23))
+legislature_about <- c(rep("25259", 23))
+
+w <- tibble::tibble(about, answering_body, question_text, tabling_member_printed, uin,attachment, grouped_question_uin, answer_text_value, answering_member_about, answering_member_label_value, answering_member_constituency_value,answering_member_printed_value, date_of_answer_value, answer_date_time, date_of_answer_datatype, is_ministerial_correction_value, is_ministerial_correction_datatype, answering_dept_id_value, answering_dept_short_name_value, answering_dept_sort_name_value, date_value, date_datatype, hansard_heading_value, house_id_value, registered_interest_value, registered_interest_datatype, tabling_member_about, tabling_member_label_value, tabling_member_constituency_value, legislature_pref_label_value, legislature_about)
+glimpse(w)
+```
 
 
 
@@ -135,50 +285,40 @@ Several functions have special or experimental features:
 
 The `research_briefings()` function includes the feature of requesting data using lists created using the `research_briefings_lists` functions:
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
+```{r eval=false, message=TRUE, warning=FALSE}
 research_topics_list <- research_topics_list()
 
-research_subtopics_list <- research_subtopics_list()
+research_topics_list[[7]]
+```
 
-research_types_list <- research_types_list()
+```{r echo=FALSE}
+research_topics_list <- list("Agriculture, animals, food and rural affairs", 
+     "Asylum, immigration and nationality", "Business, industry and consumers",
+     "Communities and families", "Crime, civil law, justice and rights", 
+     "Culture, media and sport", "Defence", "Economy and finance", "Education",
+     "Employment and training", "Energy and environment", "European Union", 
+     "Health services and medicine", "Housing and planning", 
+     "International affairs", "Parliament, government and politics", 
+     "Science and technology", "Social Security and pensions", 
+     "Social services", "Transport")
 
 research_topics_list[[7]]
-
-research_subtopics_list[[7]][10]
-
-research_types_list[[1]]
 ```
+
 
 In this case I have given them the same name as their function, but you can assign any name you wish to them.
 
 Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used. In the example below, `a` and `c` contain the same data.
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
+```{r echo=TRUE, eval=FALSE, message=TRUE, warning=FALSE}
 a <- research_briefings(topic = research_topics_list[[7]])
-
-b <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10])
 
 c <- research_briefings(topic = "Defence")
 ```
 
 If a specific subtopic is called, but the topic is not specified, the function will still return all data within that specific subtopic. Note that this is slower than specifying the topic and subtopic.
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
-
-research_topics_list <- research_topics_list()
-
-research_subtopics_list <- research_subtopics_list()
-
-system.time(without_topic <- research_briefings(subtopic = research_subtopics_list[[7]][10]))
-
-system.time(with_topic <- research_briefings(topic = research_topics_list[[7]], subtopic=research_subtopics_list[[7]][10]))
-
-identical(with_topic, without_topic)
-```
-
-
 If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.
-
 
 ### The `hansard_generic()` function
 
@@ -189,29 +329,3 @@ x <- hansard_generic("commonsansweredquestions.json")
 ```
 
 Note that the API defaults to returning 10 items per page, but allows up to 500 items per page, the default used by `hansard`.
-
-
-### The `members_search()` function
-
-Looking up information on an individual MP or Lord through the Parliamentary API requires knowing their parliamentary ID number. This can be hard to find on the web, but luckily you can look it up through the API. We want information on the voting record of the Labour MP for Hackney North and Stoke Newington Diane Abbott, but we don't know her ID number, so we search for her:
-
-```{r echo=TRUE}
-library(hansard)
-members_search("abbot")
-```
-
-The same function, without the use of the tidy parameter, illustrating the differences in the variable names and the presentation of information in the first column:
-
-```{r, echo=TRUE}
-library(hansard)
-members_search("abbot", tidy = FALSE)
-```
-
-The same function as above, but with `tidy_style = "period.case"`, so it returns variables with a different naming convention.
-
-```{r, echo=TRUE}
-library(hansard)
-members_search("abbot", tidy = TRUE, tidy_style = "period.case")
-```
-
-The search function is not case sensitive, and searchs in the names and constituencies of all MPs and Lords. So even though we spelled her surname incorrectly, we can still find her. This API provides limited biographical details, to retrieve more detailed biographical information, use the [`mnis`](https://cran.r-project.org/package=mnis) package to retrive data from the Members' Names Information Service.

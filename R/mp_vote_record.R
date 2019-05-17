@@ -34,18 +34,18 @@
 #' @examples
 #' \dontrun{
 #' x <- mp_vote_record(172, lobby = "all")
-#' 
+#'
 #' x <- mp_vote_record(172, lobby = "aye")
-#' 
+#'
 #' x <- mp_vote_record(172, lobby = "no")
-#' 
+#'
 #' x <- mp_vote_record(172, session = "2016/17")
 #' }
-#' 
+#'
 mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            start_date = "1900-01-01", end_date = Sys.Date(),
                            extra_args = NULL, tidy = TRUE,
-                           tidy_style = "snake_case", verbose = TRUE) {
+                           tidy_style = "snake", verbose = TRUE) {
   if (is.null(mp_id) == TRUE) {
     stop("mp_id must not be empty", call. = FALSE)
   }
@@ -85,10 +85,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     jpage <- floor(url_aye$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, mp_id, dates, session_query,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (lobby == "no") {
@@ -108,10 +105,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     jpage <- floor(url_no$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, mp_id, dates, session_query,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

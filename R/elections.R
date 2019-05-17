@@ -50,10 +50,10 @@
 #' \dontrun{
 #' x <- elections(517994)
 #' }
-#' 
+#'
 elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
                       end_date = Sys.Date(), label = NULL, extra_args = NULL,
-                      tidy = TRUE, tidy_style = "snake_case", verbose = TRUE) {
+                      tidy = TRUE, tidy_style = "snake", verbose = TRUE) {
   dates <- paste0(
     "&max-date=", as.Date(end_date),
     "&min-date=", as.Date(start_date)
@@ -108,7 +108,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     query <- paste0(
       baseurl, type_query, dates, label,
-      extra_args, "&_pageSize=100&_page="
+      extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

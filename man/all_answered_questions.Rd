@@ -8,12 +8,12 @@
 all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
   house = NULL, answering_body = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 
 hansard_all_answered_questions(mp_id = NULL, tabling_mp_id = NULL,
   house = NULL, answering_body = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{mp_id}{Accepts a member ID or vector of member IDs, and returns a
@@ -66,8 +66,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}
@@ -99,7 +99,7 @@ x <- all_answered_questions(4019, start_date = "2017-01-01")
 # returns variables in camelCase style
 y <- all_answered_questions(4019,
   start_date = "2017-01-01",
-  tidy_style = "camelCase"
+  tidy_style = "small_camel"
 )
 
 # All questions asked by Andrew Dismore from 1 January 2017 onwards

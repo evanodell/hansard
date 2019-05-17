@@ -187,22 +187,13 @@ cdd_tidy <- function(df, tidy_style) {
 
 
 
-cd_tidy <- function(df, tidy_style, division_id = NULL, division_uin = NULL, summary = FALSE) {
-  if (nrow(df) > 0) {
-    print(is.null(division_id))
-          print(is.null(division_uin))
-    if (is.null(division_id) == TRUE & is.null(division_uin) == FALSE) {
-      df$date._datatype <- "POSIXct"
-
-      df$date._value <- as.POSIXct(df$date._value)
-    } else {
+cd_tidy <- function(df, tidy_style, summary) {
       if (summary == TRUE) {
-        df$date <- as.POSIXct(df$date)
+        df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
+
+        df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)
       } else {
-        df$`_about` <- gsub(
-          "http://data.parliament.uk/resources/", "",
-          df$`_about`
-        )
+        df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
 
         df$voteId <- gsub("/.*$", "", df$`_about`)
 
@@ -222,36 +213,12 @@ cd_tidy <- function(df, tidy_style, division_id = NULL, division_uin = NULL, sum
           df$type
         )
 
-        if (tidy_style == "camelCase") {
-          df$type <- gsub("(^|[^[:alnum:]])([[:alnum:]])", "\\U\\2",
-            df$type,
-            perl = TRUE
-          )
-
-          substr(df$type, 1, 1) <- tolower(substr(df$type, 1, 1))
-        } else if (tidy_style == "period.case") {
-          df$type <- gsub("_", ".", df$type)
-
-          df$type <- tolower(df$type)
-        } else {
-          df$type <- tolower(df$type)
-        }
       }
-    }
-  }
 
+    names(df) <- snakecase::to_any_case(names(df), case = tidy_style)
 
-
-  df <- hansard_tidy(df, tidy_style)
-
-  if (summary == FALSE) {
-    df$about <- gsub("http://data.parliament.uk/members/", "", df$about)
-  }
-
-  df
+    df
 }
-
-
 
 ## commons_written_questions utilities -----------------------------------------
 

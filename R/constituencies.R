@@ -13,12 +13,12 @@
 #' @examples
 #' \dontrun{
 #' x <- constituencies()
-#' 
+#'
 #' y <- constituencies(current = FALSE)
 #' }
-#' 
+#'
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
-                           tidy_style = "snake_case", verbose = TRUE) {
+                           tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "constituencies.json?")
 
   if (verbose == TRUE) {
@@ -39,7 +39,7 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
     current_query <- ""
   }
 
-  query <- paste0(baseurl, extra_args, current_query, "&_pageSize=100&_page=")
+  query <- paste0(baseurl, extra_args, current_query)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

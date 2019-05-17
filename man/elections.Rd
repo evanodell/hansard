@@ -7,11 +7,11 @@
 \usage{
 elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), label = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 
 hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
   end_date = Sys.Date(), label = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 General
@@ -55,8 +55,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}

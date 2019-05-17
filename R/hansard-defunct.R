@@ -58,7 +58,7 @@ lords_vote_record <- function(lord.id,
 lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(),
                              extra_args = NULL, tidy = TRUE,
-                             tidy_style = "snake_case", verbose = TRUE) {
+                             tidy_style = "snake", verbose = TRUE) {
 
   # .Deprecated('lords_attendance_session')
 
@@ -130,7 +130,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
 hansard_lords_attendance <- function(session_id = NULL,
                                      start_date = "1900-01-01",
                                      end_date = Sys.Date(), extra_args = NULL,
-                                     tidy = TRUE, tidy_style = "snake_case",
+                                     tidy = TRUE, tidy_style = "snake",
                                      verbose = TRUE) {
   df <- lords_attendance(
     session_id = session_id,

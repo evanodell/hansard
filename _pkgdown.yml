@@ -37,6 +37,10 @@ navbar:
           href: http://docs.evanodell.com/fixerapi
         - text: "refuge"
           href: http://docs.evanodell.com/refuge
+        - text: "guardianapi"
+          href: http://docs.evanodell.com/guardianapi
+        - text: "ukpolice"
+          href: http://docs.evanodell.com/ukpolice
         - text: "emisc"
           href: http://docs.evanodell.com/emisc
 

@@ -28,14 +28,14 @@
 #' @examples
 #' \dontrun{
 #' x <- papers_laid(withdrawn = FALSE, house = "commons")
-#' 
+#'
 #' x <- papers_laid(withdrawn = TRUE, house = NULL)
 #' }
-#' 
+#'
 papers_laid <- function(withdrawn = FALSE, house = NULL,
                         start_date = "1900-01-01", end_date = Sys.Date(),
                         extra_args = NULL, tidy = TRUE,
-                        tidy_style = "snake_case", verbose = TRUE) {
+                        tidy_style = "snake", verbose = TRUE) {
   house <- tolower(house)
 
   house_query <- house_query_util(house) ## in utils-house.R
@@ -66,10 +66,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
   jpage <- floor(papers$result$totalResults / 100)
 
-  query <- paste0(
-    baseurl, withdrawn_query, house_query, dates,
-    extra_args, "&_pageSize=100&_page="
-  )
+  query <- paste0(baseurl, withdrawn_query, house_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

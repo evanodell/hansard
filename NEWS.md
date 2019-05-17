@@ -1,4 +1,15 @@
+# hansard 0.6.3.9000
 
+## Changes
+
+
+
+
+## Bug Fixes
+
+* Fixed vignette to reduce calls to API when building.
+
+* Fixed a couple typos in tidying functions
 
 # hansard 0.6.3
 

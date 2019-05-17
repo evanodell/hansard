@@ -37,7 +37,7 @@
 #'   mp_id = 410,
 #'   answering_department = "cabinet office"
 #' )
-#' 
+#'
 #' # Returns a tibble with written questions from Jon Trickett or Diane Abbott,
 #' # and answered by the Cabinet Office or the Home Office.
 #' x <- commons_written_questions(
@@ -45,14 +45,14 @@
 #'   answering_department = c("cabinet", "home")
 #' )
 #' }
-#' 
+#'
 commons_written_questions <- function(mp_id = NULL,
                                       answering_department = NULL,
                                       start_date = "1900-01-01",
                                       end_date = Sys.Date(),
                                       extra_args = NULL,
                                       tidy = TRUE,
-                                      tidy_style = "snake_case",
+                                      tidy_style = "snake",
                                       verbose = TRUE) {
   ## For lists queries
   if (length(mp_id) > 1 || length(answering_department) > 1) {
@@ -104,7 +104,7 @@ commons_written_questions <- function(mp_id = NULL,
 
     query <- paste0(
       baseurl, json_query, mp_id_query, dates,
-      extra_args, "&_pageSize=100&_page="
+      extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

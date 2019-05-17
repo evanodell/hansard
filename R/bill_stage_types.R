@@ -12,7 +12,7 @@
 #' x <- bill_stage_types()
 #' }
 #' 
-bill_stage_types <- function(tidy = TRUE, tidy_style = "snake_case",
+bill_stage_types <- function(tidy = TRUE, tidy_style = "snake",
                              verbose = TRUE) {
   stages <- jsonlite::fromJSON(
     "http://lda.data.parliament.uk/billstagetypes.json?_pageSize=100",

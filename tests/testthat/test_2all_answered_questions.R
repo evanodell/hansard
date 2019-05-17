@@ -3,6 +3,7 @@ library(hansard)
 context("all_answered_questions part2")
 
 test_that("all_answered_questions return expected format", {
+  skip_on_cran()
   anameid <- hansard_all_answered_questions(
     house = "lords", answering_body = 60,
     start_date = "2017-03-01",

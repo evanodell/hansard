@@ -32,20 +32,20 @@
 #' @examples
 #' \dontrun{
 #' x <- lords_divisions(division_id = 705891, summary = TRUE)
-#' 
+#'
 #' x <- lords_divisions(division_id = 705891, summary = FALSE)
-#' 
+#'
 #' # Return all lords divisions in 2016
 #' x <- lords_divisions(NULL, FALSE,
 #'   start_date = "2016-01-01",
 #'   end_date = "2016-12-31"
 #' )
 #' }
-#' 
+#'
 lords_divisions <- function(division_id = NULL, summary = FALSE,
                             start_date = "1900-01-01", end_date = Sys.Date(),
                             extra_args = NULL, tidy = TRUE,
-                            tidy_style = "snake_case", verbose = TRUE) {
+                            tidy_style = "snake", verbose = TRUE) {
   dates <- paste0(
     "&_properties=date&max-date=", as.Date(end_date),
     "&min-date=", as.Date(start_date)
@@ -65,7 +65,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
 
     jpage <- floor(divis$result$totalResults / 100)
 
-    query <- paste0(baseurl, dates, extra_args, "&_pageSize=100&_page=")
+    query <- paste0(baseurl, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

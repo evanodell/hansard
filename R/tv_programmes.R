@@ -36,10 +36,10 @@
 #'   end_date = "2016-12-01"
 #' )
 #' }
-#' 
+#'
 tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL,
-                          tidy = TRUE, tidy_style = "snake_case",
+                          tidy = TRUE, tidy_style = "snake",
                           verbose = TRUE) {
   dates <- paste0(
     "&max-endDate=", as.Date(end_date),
@@ -72,10 +72,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
 
   jpage <- floor(tv$result$totalResults / 100)
 
-  query <- paste0(
-    baseurl, leg_query, dates, extra_args,
-    "&_pageSize=100&_page="
-  )
+  query <- paste0(baseurl, leg_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -108,10 +105,10 @@ hansard_tv_programmes <- tv_programmes
 #' \dontrun{
 #' x <- tv_clips(4591)
 #' }
-#' 
+#'
 tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
                      end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-                     tidy_style = "snake_case", verbose = TRUE) {
+                     tidy_style = "snake", verbose = TRUE) {
   dates <- paste0(
     "&max-startDate=", as.Date(end_date), "T00:00:00Z",
     "&min-startDate=", as.Date(start_date), "T00:00:00Z"
@@ -134,10 +131,7 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
 
   jpage <- floor(tv$result$totalResults / 100)
 
-  query <- paste0(
-    baseurl, member_query, dates,
-    extra_args, "&_pageSize=100&_page="
-  )
+  query <- paste0(baseurl, member_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -166,7 +160,7 @@ hansard_tv_clips <- tv_clips
 #'
 #' @export
 
-tv_channels <- function(tidy = TRUE, tidy_style = "snake_case",
+tv_channels <- function(tidy = TRUE, tidy_style = "snake",
                         verbose = TRUE) {
   channels <- jsonlite::fromJSON(paste0(
     url_util, "tvchannels.json?_pageSize=100"

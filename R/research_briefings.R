@@ -25,29 +25,29 @@
 #' @examples
 #' \dontrun{
 #' x <- research_briefings("Housing and planning")
-#' 
+#'
 #' # Requests can be made using lists created using `research_topics_list`
 #' # and `research_subtopics_list`
-#' 
+#'
 #' research_topics_list <- research_topics_list()
-#' 
+#'
 #' x <- research_briefings(topic = research_topics_list[[7]])
-#' 
+#'
 #' research_subtopics_list <- research_subtopics_list()
-#' 
+#'
 #' x <- research_briefings(subtopic = research_subtopics_list[[7]][10])
-#' 
+#'
 #' # Requests for certain briefing types can also be made using lists
 #' # created with `research_types_list`.
-#' 
+#'
 #' research_types_list <- research_types_list()
-#' 
+#'
 #' x <- research_briefings(type = research_types_list[[3]])
 #' }
-#' 
+#'
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
-                               tidy_style = "snake_case", verbose = TRUE) {
+                               tidy_style = "snake", verbose = TRUE) {
   if (verbose == TRUE) {
     message("Connecting to API")
   }
@@ -72,10 +72,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     jpage <- floor(research$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, type_query, extra_args,
-      "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, type_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -127,8 +124,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     query <- paste0(
       baseurl, topic_query, subtopic_query,
-      ".json?", null_type_query, extra_args,
-      "&_pageSize=100&_page="
+      ".json?", null_type_query, extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
