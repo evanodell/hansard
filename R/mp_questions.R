@@ -34,14 +34,15 @@
 #' @seealso [lords_written_questions()]
 #'
 #' @export
-#' @examples \dontrun{
-#' x <- mp_questions(c(172,3967), 'all')
+#' @examples
+#' \dontrun{
+#' x <- mp_questions(c(172, 3967), "all")
 #'
-#' y <- mp_questions(mp_id = 172, question_type = 'all')
+#' y <- mp_questions(mp_id = 172, question_type = "all")
 #'
-#' z <- mp_questions(c(172,3967) 'written')
+#' z <- mp_questions(c(172, 3967), "written")
 #' }
-
+#'
 mp_questions <- function(mp_id = NULL, question_type = "all",
                          start_date = "1900-01-01", end_date = Sys.Date(),
                          extra_args = NULL, tidy = TRUE,

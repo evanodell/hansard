@@ -59,12 +59,12 @@ updated with data after 2017-01-31.
 \dontrun{
 x <- lords_attendance_session(session_id = 706178)
 
-#Returns a list of data frames with details of
-#attendance for each day of a given vector of sessions.
-u <- lords_sessions(start_date='2017-01-01')
+# Returns a list of data frames with details of
+# attendance for each day of a given vector of sessions.
+u <- lords_sessions(start_date = "2017-01-01")
 m <- lapply(u$about, lords_attendance_session)
-
 }
+
 }
 \seealso{
 \code{\link[=lords_attendance_date]{lords_attendance_date()}}
