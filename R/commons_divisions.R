@@ -101,7 +101,6 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     }
 
     df$date <- as.POSIXct(divis$result$primaryTopic$date$`_value`)
-
   } else if (!is.null(division_uin)) { # division_uin queries
     baseurl <- paste0(url_util, "commonsdivisions.json?uin=")
 
@@ -124,7 +123,6 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     }
 
     df$date <- as.POSIXct(divis$result$items$date._value)
-
   }
 
   if (nrow(df) == 0) {
@@ -132,11 +130,10 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
                 Please check your parameters.")
   } else {
     if (tidy == TRUE) {
-      if(is.null(division_id) & is.null(division_uin)) {
-
+      if (is.null(division_id) & is.null(division_uin)) {
         df <- hansard_tidy(df, tidy_style)
       } else {
-        df <- cd_tidy(df, tidy_style, summary)## in utils-commons.R
+        df <- cd_tidy(df, tidy_style, summary) ## in utils-commons.R
       }
     }
     df

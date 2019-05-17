@@ -114,7 +114,7 @@
 #'   end_date = "2017-03-12"
 #' )
 #' }
-
+#'
 all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
                                    house = NULL, answering_body = NULL,
                                    start_date = "1900-01-01",

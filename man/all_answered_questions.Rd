@@ -125,6 +125,7 @@ w <- hansard_all_answered_questions(
   end_date = "2017-03-12"
 )
 }
+
 }
 \seealso{
 \code{\link[=commons_answered_questions]{commons_answered_questions()}}

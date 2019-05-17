@@ -11,7 +11,7 @@
 #' \dontrun{
 #' x <- bill_stage_types()
 #' }
-#' 
+#'
 bill_stage_types <- function(tidy = TRUE, tidy_style = "snake",
                              verbose = TRUE) {
   stages <- jsonlite::fromJSON(

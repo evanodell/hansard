@@ -21,12 +21,12 @@
 #' @examples
 #' \dontrun{
 #' research_topics_list <- research_topics_list()
-#' 
+#'
 #' research_subtopics_list <- research_subtopics_list()
-#' 
+#'
 #' research_types_list <- research_types_list()
 #' }
-#' 
+#'
 research_topics_list <- function() {
   x <- jsonlite::fromJSON(paste0(url_util, "researchbriefingtopics.json?"),
     flatten = TRUE

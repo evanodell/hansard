@@ -188,36 +188,35 @@ cdd_tidy <- function(df, tidy_style) {
 
 
 cd_tidy <- function(df, tidy_style, summary) {
-      if (summary == TRUE) {
-        df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
+  if (summary == TRUE) {
+    df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
 
-        df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)
-      } else {
-        df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
+    df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)
+  } else {
+    df$`_about` <- gsub("http://data.parliament.uk/resources/", "", df$`_about`)
 
-        df$voteId <- gsub("/.*$", "", df$`_about`)
+    df$voteId <- gsub("/.*$", "", df$`_about`)
 
-        df$`_about` <- gsub("^.*/*/", "", df$`_about`)
+    df$`_about` <- gsub("^.*/*/", "", df$`_about`)
 
-        names(df)[names(df) == "_about"] <- "number"
+    names(df)[names(df) == "_about"] <- "number"
 
-        df <- tidyr::unnest(df)
+    df <- tidyr::unnest(df)
 
-        df$type <- gsub(
-          "http://data.parliament.uk/schema/parl#", "",
-          df$type
-        )
+    df$type <- gsub(
+      "http://data.parliament.uk/schema/parl#", "",
+      df$type
+    )
 
-        df$type <- gsub(
-          "([[:lower:]])([[:upper:]])", "\\1_\\2",
-          df$type
-        )
+    df$type <- gsub(
+      "([[:lower:]])([[:upper:]])", "\\1_\\2",
+      df$type
+    )
+  }
 
-      }
+  names(df) <- snakecase::to_any_case(names(df), case = tidy_style)
 
-    names(df) <- snakecase::to_any_case(names(df), case = tidy_style)
-
-    df
+  df
 }
 
 ## commons_written_questions utilities -----------------------------------------

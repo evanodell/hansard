@@ -43,11 +43,6 @@ test_that("commons functions return expected format", {
   expect_true(tibble::is_tibble(xcdall))
   expect_equal(nrow(xcds), 39)
 
-  uin <- hansard_commons_divisions(division_uin = "CD:2019-03-12:623",
-                                   summary = FALSE, verbose = TRUE)
-
-  expect_equal(uin, xcds)
-
   # Divisions by Date
   cdd <- commons_division_date("2017-02-24", verbose = TRUE)
   expect_length(cdd, 5)

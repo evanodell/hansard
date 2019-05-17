@@ -35,7 +35,7 @@
 #'
 #' @export
 #' @examples \dontrun{
-#' x <- mp_questions(c(172,3967) 'all')
+#' x <- mp_questions(c(172,3967), 'all')
 #'
 #' y <- mp_questions(mp_id = 172, question_type = 'all')
 #'
