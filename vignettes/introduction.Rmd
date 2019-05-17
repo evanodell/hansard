@@ -285,7 +285,7 @@ Several functions have special or experimental features:
 
 The `research_briefings()` function includes the feature of requesting data using lists created using the `research_briefings_lists` functions:
 
-```{r eval=false, message=TRUE, warning=FALSE}
+```{r eval=FALSE, message=TRUE, warning=FALSE}
 research_topics_list <- research_topics_list()
 
 research_topics_list[[7]]
