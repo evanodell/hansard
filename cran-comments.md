@@ -2,18 +2,17 @@
 
 # Resubmission 
 
-This is the 7th update of this package. The previous version, 0.6.0, was 
-accepted and published on CRAN on 2018-03-03. This version features reduced
-dependencies, code changes to accomodate new API limits, and improved 
-list-column handling.
+This is the 8th update of this package. The previous version, 0.6.3, was 
+accepted and published on CRAN on 2019-01-10. This version fixes errors that
+were sometimes occuring in CRAN checks, and introduces a new parameter option
+to the `commons_division()` function.
 
 There are no notes, warnings or errors from R CMD check
 
 ## Test environments
 
 * Ubuntu 14.04.5 (on Travis-CI): R devel
-* local MacOS 10.14.2 installation: R 3.5.2
-* local Windows installation: R 3.5.2
+* local MacOS 10.14.2 installation: R 3.6.0
 * win-builder (devel)
  
 

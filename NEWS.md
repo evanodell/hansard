@@ -7,14 +7,13 @@
   values if there are errors.
   
 * `commons_divisions()` now accepts `division_id` or `division_uin` (#13). 
-  Thanks to @basilesimon for getting the ball rolling with this.
-
+  Thanks to @basilesimon for getting the ball rolling with this parameter.
 
 ## Bug Fixes
 
 * Fixed vignette to reduce calls to API when building.
 
-* Fixed a couple typos in tidying functions.
+* Fixed a couple typos in custom tidying functions.
 
 # hansard 0.6.3
 
