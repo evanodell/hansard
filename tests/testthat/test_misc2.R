@@ -3,7 +3,7 @@ context("papers, publications, sessions, tv part 2")
 
 test_that("papers laid, publications, sessions, tv part 2, expected format", {
   skip_on_cran()
-skip_on_travis()
+  skip_on_travis()
 
   tvclipsmp <- hansard_tv_clips(4591,
     start_date = "2016-01-11",
