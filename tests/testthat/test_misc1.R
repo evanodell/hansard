@@ -3,6 +3,7 @@ context("papers, publications, sessions, tv part 1")
 
 test_that("papers laid, publications, sessions, tv return expected format", {
   skip_on_cran()
+skip_on_travis()
 
   pldec <- hansard_papers_laid(
     withdrawn = TRUE, house = "lords",

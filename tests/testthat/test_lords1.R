@@ -3,6 +3,7 @@ context("lords part 1 functions")
 
 test_that("lords functions return expected format", {
   skip_on_cran()
+skip_on_travis()
 
   # Voting Records
   lvotesall <- hansard_lord_vote_record(530,

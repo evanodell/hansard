@@ -4,6 +4,7 @@ context("commons functions")
 
 test_that("commons functions return expected format", {
   skip_on_cran()
+  skip_on_travis()
 
   xcaq <- hansard_commons_answered_questions(
     answering_department = c("health", "education"),

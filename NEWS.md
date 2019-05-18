@@ -11,7 +11,8 @@
 
 ## Bug Fixes
 
-* Fixed vignette to reduce calls to API when building.
+* Fixed vignette to reduce calls to API when building, to eliminate CRAN errors
+  and prevent hammering the API.
 
 * Fixed a couple typos in custom tidying functions.
 

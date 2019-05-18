@@ -3,6 +3,7 @@ context("epetitions")
 
 test_that("epetitions functions return expected format", {
   skip_on_cran()
+skip_on_travis()
 
   epetit <- hansard_epetition(
     ID = 706964,
