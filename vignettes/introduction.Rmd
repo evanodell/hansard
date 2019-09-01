@@ -171,7 +171,7 @@ The following functions accept vectors of member IDs and departmental names for 
 For example, the following function returns all questions answered by Nichola Blackwood (4019) or Sam Gyimah (3980), asked by Keith Vaz (338) or Diane Abbot (172), and covered by the Department for Health or the Ministry of Justice, between 2016-12-18 and 2017-03-12.
 
 
-```{r, echo=TRUE, message=TRUE, warning=FALSE}
+```{r echo=TRUE, eval=FALSE, message=TRUE, warning=FALSE}
 w <- all_answered_questions(mp_id = c(4019, 3980), tabling_mp_id = c(338, 172),
                             answering_body = c("health", "justice"),
                             start_date = "2016-12-18", end_date = "2017-03-12")
@@ -265,7 +265,7 @@ legislature_pref_label_value<- c(rep("House of Commons", 23))
 legislature_about <- c(rep("25259", 23))
 
 w <- tibble::tibble(about, answering_body, question_text, tabling_member_printed, uin,attachment, grouped_question_uin, answer_text_value, answering_member_about, answering_member_label_value, answering_member_constituency_value,answering_member_printed_value, date_of_answer_value, answer_date_time, date_of_answer_datatype, is_ministerial_correction_value, is_ministerial_correction_datatype, answering_dept_id_value, answering_dept_short_name_value, answering_dept_sort_name_value, date_value, date_datatype, hansard_heading_value, house_id_value, registered_interest_value, registered_interest_datatype, tabling_member_about, tabling_member_label_value, tabling_member_constituency_value, legislature_pref_label_value, legislature_about)
-glimpse(w)
+tibble::glimpse(w)
 ```
 
 

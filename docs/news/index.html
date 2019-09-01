@@ -70,7 +70,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -159,13 +159,34 @@
       
     </div>
 
+    <div id="hansard-070" class="section level1">
+<h1 class="page-header">
+<a href="#hansard-070" class="anchor"></a>hansard 0.7.0<small> 2019-05-21 </small>
+</h1>
+<div id="changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#changes" class="anchor"></a>Changes</h2>
+<ul>
+<li><p>Now using the <code>snakecase</code> package to tidy tibble names. This has resulted in minor changes to style options, please check the <code>tidy_style</code> parameter values if there are errors.</p></li>
+<li><p><code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> now accepts <code>division_id</code> or <code>division_uin</code> (#13). Thanks to <a href='https://github.com/basilesimon'>@basilesimon</a> for getting the ball rolling with this parameter.</p></li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li><p>Fixed vignette to reduce calls to API when building, to eliminate CRAN errors and prevent hammering the API.</p></li>
+<li><p>Fixed a couple typos in custom tidying functions.</p></li>
+</ul>
+</div>
+</div>
     <div id="hansard-063" class="section level1">
 <h1 class="page-header">
 <a href="#hansard-063" class="anchor"></a>hansard 0.6.3<small> 2019-01-10 </small>
 </h1>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>The max number of items per page has changed at some point. Please check your code to ensure that functions return the data you expect. If it is returning tibbles with multiples of 100 rows it is likely that your data is incomplete.</p></li>
 <li><p>Fixed an bug where the the <code><a href="../reference/early_day_motions.html">early_day_motions()</a></code> function mishandled list columns.</p></li>
@@ -224,9 +245,9 @@
 <p>Changed default value of <code>verbose</code> parameter to <code>TRUE</code>.</p>
 <p>Adapted <code><a href="../reference/members.html">members()</a></code> to fit follow changes in API structure.</p>
 </div>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <p>Remove URL from <code>about</code> column from <code>all_answered_questions</code> if <code>tidy=TRUE</code>.</p>
 <p>Fixed error in <code><a href="../reference/members_search.html">members_search()</a></code> that produced a 404 error if left empty.</p>
 </div>
@@ -240,9 +261,9 @@
 <h1 class="page-header">
 <a href="#hansard-059" class="anchor"></a>hansard 0.5.9<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <p>Fixed bugs where capitalised conjunctions in department names were causing queries to fail.</p>
 </div>
 </div>
@@ -284,9 +305,9 @@
 <p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (#4, <a href='https://github.com/pssguy'>@pssguy</a>)</p>
 <p>New function <code><a href="../reference/lords_sessions.html">lords_sessions()</a></code> returns a tibble with details of all sessions in the House of Lords between two given dates.</p>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
 <p><code><a href="../reference/commons_oral_question_times.html">commons_oral_question_times()</a></code> now only returns one question ID.</p>
 </div>
 <div id="general-improvements" class="section level2">
@@ -330,9 +351,9 @@
 <p><code><a href="../reference/all_answered_questions.html">all_answered_questions()</a></code> can now handle departmental ID numbers passed as characters.</p>
 <p>Now uses the <code>stringr</code> package to remove case sensitivity from queries.</p>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
 <p>Fixed bug that prevented <code><a href="../reference/lords_written_questions.html">lords_written_questions()</a></code> from retrieving more than 500 results at a time.</p>
 </div>
 </div>
@@ -346,9 +367,9 @@
 <p><code><a href="../reference/mp_edms.html">mp_edms()</a></code> now accepts lists and character vectors of MP IDs, and returns them all in one tibble.</p>
 <p><code><a href="../reference/mp_edms.html">mp_edms()</a></code> now includes <code>start_date</code> and <code>end_date</code> parameters</p>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
 <p>Fixed <code><a href="../reference/mp_edms.html">mp_edms()</a></code> to return more useful error if the requested MP does not have any Early Day Motions that meet the search parameters.</p>
 <p>The <code>signatory</code> parameter in <code><a href="../reference/mp_edms.html">mp_edms()</a></code> is now behaving properly.</p>
 </div>
@@ -368,9 +389,9 @@
 <p>All functions have a wrapper function with the same name, but with <code>hansard_</code> prefixed. Existing names have remained untouched.</p>
 <p>Addition of <code>house</code> and <code>answering_body</code> parameters to <code><a href="../reference/all_answered_questions.html">all_answered_questions()</a></code> function.</p>
 </div>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
 <p>Fixed bug in <code><a href="../reference/lord_vote_record.html">lord_vote_record()</a></code> which produced an error if requesting both lobbies, but a peer had only voted in one of the lobbies.</p>
 </div>
 </div>
@@ -383,9 +404,9 @@
 <a href="#new-features-3" class="anchor"></a>New features</h2>
 <p>Party name columns in <code><a href="../reference/election_candidates.html">election_candidates()</a></code> and <code><a href="../reference/election_results.html">election_results(all_data=TRUE)</a></code> are now in alphabetical order.</p>
 </div>
-<div id="bug-fixes-7" class="section level2">
+<div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
 <p>Fixed bug in <code><a href="../reference/all_answered_questions.html">all_answered_questions()</a></code> that wasn’t returning results when <code>tabling_mp_id</code> is a parameter.</p>
 </div>
 <div id="documentation-changes" class="section level2">
@@ -416,9 +437,9 @@
 <p>Additional URL stripping from variable values if <code>tidy</code>=TRUE.</p>
 <p>Added <code>tabling_mp_id</code> parameter to <code><a href="../reference/all_answered_questions.html">all_answered_questions()</a></code>.</p>
 </div>
-<div id="bug-fixes-8" class="section level2">
+<div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
 <p>Fixed bug in <code><a href="../reference/members.html">members()</a></code> where looking up a single member returned a tibble with two rows.</p>
 <p>Fixed bug in <code><a href="../reference/mp_edms.html">mp_edms()</a></code> where additional data was not being returned if <code>full_data</code>=TRUE.</p>
 <p>Fixed bug in <code><a href="../reference/election_results.html">election_results()</a></code> where it did not return data if <code>constit_details</code>=TRUE.</p>
@@ -437,9 +458,9 @@
 <p>The <code>tidy</code> parameter now changes date values to POSIXct class with <code><a href="https://www.rdocumentation.org/packages/base/topics/as.POSIXlt">as.POSIXct()</a></code> when the API returns date information, or to POSIXct with the <code>parse_date_time</code> from the <code>lubridate</code> package where the API returns both date and time information.</p>
 <p><code>tidy</code> parameter now strips out more unneeded character strings from API response.</p>
 </div>
-<div id="bug-fixes-9" class="section level2">
+<div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-9" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
 <p>Updated <code><a href="../reference/elections.html">elections()</a></code> to work with new API syntax.</p>
 </div>
 </div>
@@ -467,9 +488,9 @@
 <a href="#constituency-details" class="anchor"></a>Constituency details</h2>
 <p>Added optional <code>constit_details</code> parameter to <code>election_result()</code> function. If TRUE, <code>constit_details</code> retrieves additional constituency details from <code><a href="../reference/constituencies.html">constituencies()</a></code>, most notably including GSS code.</p>
 </div>
-<div id="bug-fixes-10" class="section level2">
+<div id="bug-fixes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-11" class="anchor"></a>Bug fixes</h2>
 <p>Fixed bug on <code><a href="../reference/commons_oral_question_times.html">commons_oral_question_times()</a></code> where some calls did not return tibbles.</p>
 <p>Fixed bug in <code>lords_divisons()</code> that did prevented vote summary queries from being returned.</p>
 <p>Removed superfluous <code>x</code> from names in <code><a href="../reference/elections.html">elections()</a></code> when tidy=TRUE.</p>
@@ -541,9 +562,9 @@
 <h1 class="page-header">
 <a href="#hansard-034" class="anchor"></a>hansard 0.3.4<small> 2016-12-13 </small>
 </h1>
-<div id="bug-fixes-11" class="section level2">
+<div id="bug-fixes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-11" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-12" class="anchor"></a>Bug fixes</h2>
 <p>The <code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, <a href='https://github.com/meenaparam'>@meenaparam</a>)</p>
 <p>Fixed spelling of amendments, so that <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> is now <code><a href="../reference/lords_amendments.html">lords_amendments()</a></code>. The <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> function has been deprecated, and will be removed in a future release.</p>
 </div>
@@ -552,18 +573,18 @@
 <h1 class="page-header">
 <a href="#hansard-033" class="anchor"></a>hansard 0.3.3<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-12" class="section level2">
+<div id="bug-fixes-13" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-12" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-13" class="anchor"></a>Bug Fixes</h2>
 </div>
 </div>
     <div id="hansard-032" class="section level1">
 <h1 class="page-header">
 <a href="#hansard-032" class="anchor"></a>hansard 0.3.2<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-13" class="section level2">
+<div id="bug-fixes-14" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-13" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-14" class="anchor"></a>Bug Fixes</h2>
 </div>
 </div>
     <div id="hansard-030" class="section level1">
@@ -580,9 +601,9 @@
 <p><code><a href="../reference/mp_edms.html">mp_edms()</a></code></p>
 <p>The option to use console input has been preserved in <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code>, <code><a href="../reference/lords_divisions.html">lords_divisions()</a></code>, <code><a href="../reference/commons_written_questions.html">commons_written_questions()</a></code> and <code><a href="../reference/commons_oral_questions.html">commons_oral_questions()</a></code>, along with other features not available in the new functions.</p>
 </div>
-<div id="bug-fixes-14" class="section level2">
+<div id="bug-fixes-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-14" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-15" class="anchor"></a>Bug fixes</h2>
 <p>This update fixes an issue with <code><a href="../reference/lords_written_questions.html">lords_written_questions()</a></code> and <code><a href="../reference/commons_written_questions.html">commons_written_questions()</a></code> where the functions returned a 404 error on some requests.</p>
 </div>
 </div>
@@ -603,6 +624,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#hansard-070">0.7.0</a></li>
         <li><a href="#hansard-063">0.6.3</a></li>
         <li><a href="#hansard-062">0.6.2</a></li>
         <li><a href="#hansard-061">0.6.1</a></li>

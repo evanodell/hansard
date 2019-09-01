@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -173,12 +173,12 @@
 
     <pre class="usage"><span class='fu'>election_results</span>(<span class='kw'>ID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>all_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>calculate_percent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>constit_details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>,
+  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>hansard_election_results</span>(<span class='kw'>ID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>all_data</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>calculate_percent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>constit_details</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>,
+  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>,
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -233,8 +233,8 @@ converts the variable names to a consistent style. Defaults to <code>TRUE</code>
     <tr>
       <th>tidy_style</th>
       <td><p>The style to convert variable names to, if
-<code>tidy = TRUE</code>. Accepts one of <code>'snake_case'</code>, <code>'camelCase'</code>
-and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
+<code>tidy = TRUE</code>. Accepts any style accepted by <a href='https://www.rdocumentation.org/packages/snakecase/topics/to_any_case'>to_any_case</a>.
+Defaults to <code>'snake'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>

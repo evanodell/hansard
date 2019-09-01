@@ -74,7 +74,7 @@ House of Commons on a given date." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -172,10 +172,10 @@ House of Commons on a given date.</p>
     </div>
 
     <pre class="usage"><span class='fu'>commons_division_date</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>hansard_commons_division_date</span>(<span class='kw'>date</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,20 +192,20 @@ Defaults to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>tidy</th>
-      <td><p>Logical parameter. If TRUE, fixes the variable names in the
-tibble to remove special characters and superfluous text, and converts
-the variable names to a consistent style. Defaults to <code>TRUE</code>.</p></td>
+      <td><p>Logical parameter. If <code>TRUE</code>, fixes the variable names
+in the tibble to remove special characters and superfluous text, and
+converts the variable names to a consistent style. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>tidy_style</th>
       <td><p>The style to convert variable names to, if
-<code>tidy = TRUE</code>. Accepts one of <code>'snake_case'</code>, <code>'camelCase'</code>
-and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
+<code>tidy = TRUE</code>. Accepts any style accepted by <a href='https://www.rdocumentation.org/packages/snakecase/topics/to_any_case'>to_any_case</a>.
+Defaults to <code>'snake'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>If <code>TRUE</code>, returns data to console on the progress of
-the API request. Defaults to <code>FALSE</code>.</p></td>
+      <td><p>If <code>TRUE</code>, displayes messages on the console on the
+progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     </tr>
     </table>
     

@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="House of Lords attendance by session — lords_attendance_session" />
 
-<meta property="og:description" content="Imports data on House of Lords attendance for each parliamentary session.
+<meta property="og:description" content="Imports data on House of Lords attendance from each parliamentary session.
 Please note that the attendance data is not as tidy as some of the others
 that are accessible through this API, and so additional work to prepare
 this data in a way that you want may be required." />
@@ -76,7 +76,7 @@ this data in a way that you want may be required." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
       </span>
     </div>
 
@@ -168,7 +168,7 @@ this data in a way that you want may be required." />
 
     <div class="ref-description">
     
-    <p>Imports data on House of Lords attendance for each parliamentary session.
+    <p>Imports data on House of Lords attendance from each parliamentary session.
 Please note that the attendance data is not as tidy as some of the others
 that are accessible through this API, and so additional work to prepare
 this data in a way that you want may be required.</p>
@@ -176,10 +176,10 @@ this data in a way that you want may be required.</p>
     </div>
 
     <pre class="usage"><span class='fu'>lords_attendance_session</span>(<span class='kw'>session_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>hansard_lords_attendance_session</span>(<span class='kw'>session_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake_case"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -206,8 +206,8 @@ converts the variable names to a consistent style. Defaults to <code>TRUE</code>
     <tr>
       <th>tidy_style</th>
       <td><p>The style to convert variable names to, if
-<code>tidy = TRUE</code>. Accepts one of <code>'snake_case'</code>, <code>'camelCase'</code>
-and <code>'period.case'</code>. Defaults to <code>'snake_case'</code>.</p></td>
+<code>tidy = TRUE</code>. Accepts any style accepted by <a href='https://www.rdocumentation.org/packages/snakecase/topics/to_any_case'>to_any_case</a>.
+Defaults to <code>'snake'</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -222,7 +222,7 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>To return a tibble with all codes for available individual sessions, use
+    <p>To return a tibble with all codes from available individual sessions, use
 <code>lords_attendance_session(session_id=NULL)</code>, or use
 <code><a href='lords_sessions.html'>lords_sessions()</a></code> to retrieve codes for a given date range.
 Attendance from multiple sessions can be accessed by using <code>lapply</code>
@@ -240,16 +240,15 @@ updated with data after 2017-01-31.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"># NOT RUN {
-x <- lords_attendance_session(session_id = 706178)
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>lords_attendance_session</span>(<span class='kw'>session_id</span> <span class='kw'>=</span> <span class='fl'>706178</span>)
 
-#Returns a list of data frames with details of
-attendance for each day of a given vector of sessions.
-u <- lords_sessions(start_date='2017-01-01')
-m <- lapply(u$about, lords_attendance_session)
-
-# }
-</pre>
+<span class='co'># Returns a list of data frames with details of</span>
+<span class='co'># attendance for each day of a given vector of sessions.</span>
+<span class='no'>u</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='lords_sessions.html'>lords_sessions</a></span>(<span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2017-01-01"</span>)
+<span class='no'>m</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></span>(<span class='no'>u</span>$<span class='no'>about</span>, <span class='no'>lords_attendance_session</span>)
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
