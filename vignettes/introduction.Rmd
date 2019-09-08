@@ -36,10 +36,6 @@ library(hansard)
 
 `hansard` contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <http://www.data.parliament.uk/> API. The parameter options for each function vary, depending on the specific information available from each API, but there are four constant parameters in every function (with the exception of the `hansard_generic()` and `research_topics_list()` functions [described below](#special-functions)): `extra_args`,  `tidy`, `tidy_style` and `verbose`.
 
-#### `extra_args`
-
-The `extra_args` parameters allows additional arguments and queries to be passed to the API. This can include searching, limiting the parameters actually returned and ordering data. `extra_args` queries must follow the syntax used by the API, which requires an ampersand at the beginning of each argument e.g. `&_search=education`. Multiple arguments can be included, e.g. `&_search=education&_sort=title`. See the [http://explore.data.parliament.uk/](API documentation for more details.)
-
 #### `tidy`
 
 `tidy` is a logical parameter accepting either `TRUE` or `FALSE`, defaulting to `TRUE`. If `TRUE`, `hansard` will fix variable names, which by default contain non alpha-numeric characters and appear to use an inconsistent/idiosyncratic naming convention, at least by the standards of the various naming conventions used in R. Dates and datetimes are converted to POSIXct class. Some extra URL data included in the API is also stripped out.

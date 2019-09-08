@@ -1,3 +1,8 @@
+
+# hansard 0.7.0.9000
+
+Updates to vignette to prevent calls to API in demos.
+
 # hansard 0.7.0
 
 ## Changes
