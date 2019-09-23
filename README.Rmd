@@ -1,13 +1,18 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- rmarkdown v1 -->
+---
+output: github_document
+---
 
-```{r, echo = FALSE}
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 ```
+
 
 # hansard: Accessing Westminster Parliament Data
 
@@ -21,7 +26,7 @@ knitr::opts_chunk$set(
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
 
 
-An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data is not yet accessible through the API. To explore all available data see <http://www.data.parliament.uk/>. Documentation for the API itself is available [here](http://explore.data.parliament.uk/).
+An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data (as in speeches) is not yet accessible through the API. To explore all available data see <http://www.data.parliament.uk/>. Documentation for the API itself is available [here](http://explore.data.parliament.uk/).
 
 Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <https://docs.evanodell.com/hansard/>.
 
@@ -40,12 +45,8 @@ remotes::install_github("evanodell/hansard")
 
 ## Using hansard
 
-For an introduction to `hansard`, please see the [vignette](http://ropengov.github.io/hansard/articles/introduction.html). If you are unfamiliar with web APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
+For an introduction to `hansard`, please see the [vignette](https://docs.evanodell.com/hansard/articles/introduction.html). If you are unfamiliar with web APIs [this introductory course](https://zapier.com/learn/apis/) is useful.
 
 ### Disclaimer
 
-This package is in no way officially related to or endorsed by the UK Parliamentary Data Service. It is released under an MIT license. Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
-
-### Acknowledgements
-
-This package is part of [rOpenGov](http://ropengov.github.io). [Evan Odell](https://evanodell.com) is the creator and maintainer.
+This package is in no way officially related to or endorsed by the UK Parliamentary Data Service. It is released under an MIT license. Please note that this project is released with a [Contributor Code of Conduct](https://github.com/evanodell/hansard/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.

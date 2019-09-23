@@ -15,11 +15,11 @@
 #' @examples
 #' \dontrun{
 #' x <- lords_interests(4170)
-#' 
+#'
 #' y <- lords_interests()
 #' }
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
-                            tidy_style = "snake_case", verbose = TRUE) {
+                            tidy_style = "snake", verbose = TRUE) {
   json_query <- ifelse(
     is.null(peer_id) == TRUE,
     ".json?",
@@ -41,7 +41,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
 
   jpage <- floor(members$result$totalResults / 100)
 
-  query <- paste0(baseurl, json_query, extra_args, "&_pageSize=100&_page=")
+  query <- paste0(baseurl, json_query, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

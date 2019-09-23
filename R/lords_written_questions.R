@@ -41,7 +41,7 @@
 #' @examples
 #' \dontrun{
 #' x <- lords_written_questions() # Returns all written questions ever
-#' 
+#'
 #' x <- lords_written_questions(
 #'   peer_id = c(3526, 4176),
 #'   answering_department = c(
@@ -50,13 +50,13 @@
 #'   )
 #' )
 #' }
-#' 
+#'
 lords_written_questions <- function(peer_id = NULL,
                                     answering_department = NULL,
                                     start_date = "1900-01-01",
                                     end_date = Sys.Date(),
                                     extra_args = NULL, tidy = TRUE,
-                                    tidy_style = "snake_case",
+                                    tidy_style = "snake",
                                     verbose = TRUE) {
   if (length(answering_department) > 1 || length(peer_id) > 1) {
     df <- lwq_multi(
@@ -107,10 +107,7 @@ lords_written_questions <- function(peer_id = NULL,
 
     jpage <- floor(writ$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, dept_query, peer_id, dates,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, dept_query, peer_id, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

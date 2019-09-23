@@ -3,6 +3,7 @@ context("misc MP functions")
 
 test_that("members vote record, questions functions return expected format", {
   skip_on_cran()
+  skip_on_travis()
 
   mpqs <- hansard_mp_questions(c(172, 4019), "all",
     start_date = "2015-02-01",

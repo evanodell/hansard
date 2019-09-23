@@ -6,10 +6,10 @@
 \title{House of Lords attendance by session}
 \usage{
 lords_attendance_session(session_id = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 
 hansard_lords_attendance_session(session_id = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If \code{NULL},
@@ -26,8 +26,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}
@@ -36,13 +36,13 @@ progress of the API request. Defaults to \code{TRUE}.}
 A tibble with details on the lords who attended a given session.
 }
 \description{
-Imports data on House of Lords attendance for each parliamentary session.
+Imports data on House of Lords attendance from each parliamentary session.
 Please note that the attendance data is not as tidy as some of the others
 that are accessible through this API, and so additional work to prepare
 this data in a way that you want may be required.
 }
 \details{
-To return a tibble with all codes for available individual sessions, use
+To return a tibble with all codes from available individual sessions, use
 \code{lords_attendance_session(session_id=NULL)}, or use
 \code{\link[=lords_sessions]{lords_sessions()}} to retrieve codes for a given date range.
 Attendance from multiple sessions can be accessed by using \code{lapply}
@@ -59,12 +59,12 @@ updated with data after 2017-01-31.
 \dontrun{
 x <- lords_attendance_session(session_id = 706178)
 
-#Returns a list of data frames with details of
-attendance for each day of a given vector of sessions.
-u <- lords_sessions(start_date='2017-01-01')
+# Returns a list of data frames with details of
+# attendance for each day of a given vector of sessions.
+u <- lords_sessions(start_date = "2017-01-01")
 m <- lapply(u$about, lords_attendance_session)
-
 }
+
 }
 \seealso{
 \code{\link[=lords_attendance_date]{lords_attendance_date()}}

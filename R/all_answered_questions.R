@@ -64,8 +64,8 @@
 #' converts the variable names to a consistent style. Defaults to `TRUE`.
 #'
 #' @param tidy_style The style to convert variable names to, if
-#' `tidy = TRUE`. Accepts one of `'snake_case'`, `'camelCase'`
-#' and `'period.case'`. Defaults to `'snake_case'`.
+#' `tidy = TRUE`. Accepts any style accepted by \link[snakecase]{to_any_case}.
+#' Defaults to `'snake'`.
 #'
 #' @param verbose If `TRUE`, displayes messages on the console on the
 #' progress of the API request. Defaults to `TRUE`.
@@ -88,7 +88,7 @@
 #' # returns variables in camelCase style
 #' y <- all_answered_questions(4019,
 #'   start_date = "2017-01-01",
-#'   tidy_style = "camelCase"
+#'   tidy_style = "small_camel"
 #' )
 #'
 #' # All questions asked by Andrew Dismore from 1 January 2017 onwards
@@ -114,12 +114,12 @@
 #'   end_date = "2017-03-12"
 #' )
 #' }
-
+#'
 all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
                                    house = NULL, answering_body = NULL,
                                    start_date = "1900-01-01",
                                    end_date = Sys.Date(), extra_args = NULL,
-                                   tidy = TRUE, tidy_style = "snake_case",
+                                   tidy = TRUE, tidy_style = "snake",
                                    verbose = TRUE) {
   if (length(mp_id) > 1 ||
     length(tabling_mp_id) > 1 ||
@@ -203,8 +203,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     query <- paste0(
       baseurl, answering_member_query, tabling_member_query,
-      house_query, dept_query, dates, extra_args,
-      "&_pageSize=100&_page="
+      house_query, dept_query, dates, extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

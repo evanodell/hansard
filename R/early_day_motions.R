@@ -43,19 +43,19 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' # Returns all EDMs with a given ID
 #' x <- early_day_motions(edm_id = 1073)
-#' 
+#'
 #' # Return a specific early day motion by ID
 #' x <- early_day_motions(edm_id = 1073, session = "2017/19")
 #' }
-#' 
+#'
 early_day_motions <- function(edm_id = NULL, session = NULL,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), signatures = 1,
                               extra_args = NULL, tidy = TRUE,
-                              tidy_style = "snake_case", verbose = TRUE) {
+                              tidy_style = "snake", verbose = TRUE) {
   edm_query <- ifelse(
     is.null(edm_id) == FALSE,
     paste0("&edmNumber=", edm_id),

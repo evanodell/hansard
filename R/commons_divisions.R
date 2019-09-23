@@ -9,13 +9,17 @@
 #' tibble with information on all commons divisions, subject to all other
 #' parameters. Defaults to `NULL`. Only accepts a single division ID
 #' at a time, but to return details on a list of division IDs use with
-#' `lapply`.
+#' `lapply`. The `division_id` takes priority over the `division_uid` parameter.
 #'
+#' @param division_uin The UIN of a particular vote. If empty, returns a
+#' tibble with information on all commons divisions, subject to all other
+#' parameters. Defaults to `NULL`. Only accepts a single division UIN
+#' at a time, but to return details on a list of division UINs use with
+#' `lapply`.
 #'
 #' @param summary If `TRUE`, returns a small tibble summarising a
 #' division outcome. Otherwise returns a tibble with details on how each
 #' MP voted. Has no effect if `division_id` is empty. Defaults to `FALSE`.
-#'
 #'
 #' @param start_date Only includes divisions on or after this date. Accepts
 #' character values in `'YYYY-MM-DD'` format, and objects of class
@@ -36,18 +40,19 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' ## All commons divisions
 #' x <- commons_divisions()
-#' 
+#'
 #' ## Vote breakdown of specific commons division
 #' y <- commons_divisions(division_id = 694163, summary = FALSE)
 #' }
-#' 
-commons_divisions <- function(division_id = NULL, summary = FALSE,
+#'
+commons_divisions <- function(division_id = NULL, division_uin = NULL,
+                              summary = FALSE,
                               start_date = "1900-01-01",
                               end_date = Sys.Date(), extra_args = NULL,
-                              tidy = TRUE, tidy_style = "snake_case",
+                              tidy = TRUE, tidy_style = "snake",
                               verbose = TRUE) {
   dates <- paste0(
     "&_properties=date&max-date=",
@@ -55,7 +60,7 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
     as.Date(start_date)
   )
 
-  if (is.null(division_id) == TRUE) {
+  if (is.null(division_id) & is.null(division_uin)) {
     baseurl <- paste0(url_util, "commonsdivisions")
 
     if (verbose == TRUE) {
@@ -71,13 +76,10 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
 
     jpage <- floor(divis$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, ".json?", dates,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, ".json?", dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
-  } else {
+  } else if (!is.null(division_id)) { # division_id queries
     baseurl <- paste0(url_util, "commonsdivisions/id/")
 
     if (verbose == TRUE) {
@@ -91,29 +93,34 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
     flatten = TRUE
     )
 
+    df <- tibble::as_tibble(divis$result$primaryTopic$vote)
+
     if (summary == TRUE) {
-      df <- tibble::tibble(
-        abstainCount = divis$result$primaryTopic$AbstainCount$`_value`,
-        ayesCount = divis$result$primaryTopic$AyesCount$`_value`,
-        noesVoteCount = divis$result$primaryTopic$Noesvotecount$`_value`,
-        didNotVoteCount =
-          divis$result$primaryTopic$Didnotvotecount$`_value`,
-        errorVoteCount =
-          divis$result$primaryTopic$Errorvotecount$`_value`,
-        nonEligibleCount =
-          divis$result$primaryTopic$Noneligiblecount$`_value`,
-        suspendedOrExpelledVotesCount =
-          divis$result$primaryTopic$Suspendedorexpelledvotescount$`_value`,
-        margin = divis$result$primaryTopic$Margin$`_value`,
-        date = divis$result$primaryTopic$date$`_value`,
-        divisionNumber = divis$result$primaryTopic$divisionNumber,
-        session = divis$result$primaryTopic$session[[1]],
-        title = divis$result$primaryTopic$title,
-        uin = divis$result$primaryTopic$uin
-      )
-    } else {
-      df <- tibble::as_tibble(divis$result$primaryTopic$vote)
+      df <- dplyr::summarise(dplyr::group_by(df, "type"), count = dplyr::n())
     }
+
+    df$date <- as.POSIXct(divis$result$primaryTopic$date$`_value`)
+  } else if (!is.null(division_uin)) { # division_uin queries
+    baseurl <- paste0(url_util, "commonsdivisions.json?uin=")
+
+    if (verbose == TRUE) {
+      message("Connecting to API")
+    }
+
+    divis <- jsonlite::fromJSON(paste0(
+      baseurl, division_uin,
+      dates, extra_args
+    ),
+    flatten = TRUE
+    )
+
+    df <- tibble::as_tibble(divis$result$items[["vote"]][[1]])
+
+    if (summary == TRUE) {
+      df <- dplyr::summarise(dplyr::group_by(df, "type"), count = dplyr::n())
+    }
+
+    df$date <- as.POSIXct(divis$result$items$date._value)
   }
 
   if (nrow(df) == 0) {
@@ -121,10 +128,12 @@ commons_divisions <- function(division_id = NULL, summary = FALSE,
                 Please check your parameters.")
   } else {
     if (tidy == TRUE) {
-      df <- cd_tidy(df, tidy_style, division_id, summary)
-      ## in utils-commons.R
+      if (is.null(division_id) & is.null(division_uin)) {
+        df <- hansard_tidy(df, tidy_style)
+      } else {
+        df <- cd_tidy(df, tidy_style, summary) ## in utils-commons.R
+      }
     }
-
     df
   }
 }

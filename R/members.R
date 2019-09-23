@@ -26,16 +26,16 @@
 #' @examples
 #' \dontrun{
 #' a <- members()
-#' 
+#'
 #' x <- members(172)
-#' 
+#'
 #' y <- commons_members()
-#' 
+#'
 #' z <- lords_members()
 #' }
-#' 
+#'
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
-                    tidy_style = "snake_case", verbose = TRUE) {
+                    tidy_style = "snake", verbose = TRUE) {
   id_query <- ifelse(
     is.null(ID) == TRUE,
     ".json?",
@@ -55,7 +55,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
   if (is.null(ID) == TRUE) {
     jpage <- floor(q_members$result$totalResults / 100)
 
-    query <- paste0(baseurl, id_query, extra_args, "&_pageSize=100&_page=")
+    query <- paste0(baseurl, id_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -98,7 +98,7 @@ hansard_members <- members
 #' @export
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
-                            tidy_style = "snake_case", verbose = TRUE) {
+                            tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=100")
 
   if (verbose == TRUE) {
@@ -134,7 +134,7 @@ hansard_commons_members <- commons_members
 #' @export
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
-                          tidy_style = "snake_case", verbose = TRUE) {
+                          tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=100")
 
   if (verbose == TRUE) {

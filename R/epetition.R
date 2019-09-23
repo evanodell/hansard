@@ -22,10 +22,10 @@
 #' \dontrun{
 #' x <- epetition(ID = 706964, by_constituency = TRUE)
 #' }
-#' 
+#'
 epetition <- function(ID = NULL, by_constituency = FALSE,
                       extra_args = NULL, tidy = TRUE,
-                      tidy_style = "snake_case", verbose = TRUE) {
+                      tidy_style = "snake", verbose = TRUE) {
   if (is.null(ID) == FALSE) {
     ID <- paste0("/", ID)
   }
@@ -77,10 +77,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
 
     jpage <- floor(petition$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, ID, json_query, extra_args,
-      "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, ID, json_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

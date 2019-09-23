@@ -2,6 +2,9 @@
 
 #' Search for an MP or Peer by name and constituency
 #'
+#' Note that there are problems with the remote endpoint for this
+#' API, and that correct search queries may not return any results.
+#'
 #' Function searches for the string and returns a tibble with all matches from
 #' both houses of parliament. Returns all partial matches in the members'
 #' names, constituencies, twitter handle and webpage. The default search is
@@ -21,12 +24,12 @@
 #' @examples
 #' \dontrun{
 #' x <- members_search("*chris*")
-#' 
+#'
 #' x <- members_search(search = "*chris*")
 #' }
-#' 
+#'
 members_search <- function(search = NULL, tidy = TRUE,
-                           tidy_style = "snake_case", verbose = TRUE) {
+                           tidy_style = "snake", verbose = TRUE) {
   if (is.null(search)) {
     df <- members(tidy = tidy, tidy_style = tidy_style, verbose = verbose)
 
@@ -46,7 +49,7 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     jpage <- floor(results$result$totalResults / 100)
 
-    query <- paste0(baseurl, search, "&_pageSize=100&_page=")
+    query <- paste0(baseurl, search)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

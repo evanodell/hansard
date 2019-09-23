@@ -43,14 +43,14 @@
 #' \dontrun{
 #' # Requesting a specific publication
 #' x <- bill_publications(ID = 752025)
-#' 
+#'
 #' # Requesting all publications after a given date
 #' y <- bill_publications(start_date = "2018-01-01")
 #' }
 bill_publications <- function(ID = NULL, publication_type = NULL,
                               start_date = "1900-01-01", end_date = Sys.Date(),
                               extra_args = NULL, tidy = TRUE,
-                              tidy_style = "snake_case", verbose = FALSE) {
+                              tidy_style = "snake", verbose = FALSE) {
   baseurl <- paste0(url_util, "billpublications.json?")
 
   dates <- paste0(
@@ -87,8 +87,7 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
   jpage <- floor(bills$result$totalResults / 100)
 
   query <- paste0(
-    baseurl, bill_id, dates, extra_args,
-    "&_pageSize=100&_page="
+    baseurl, bill_id, dates, extra_args
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

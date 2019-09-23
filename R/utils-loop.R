@@ -7,7 +7,10 @@ loop_query <- function(query, jpage, verbose) {
   pages <- list()
 
   for (i in seq_along(seq_list)) {
-    mydata <- jsonlite::fromJSON(paste0(query, seq_list[[i]]), flatten = TRUE)
+    mydata <- jsonlite::fromJSON(paste0(
+      query, "&_pageSize=100&_page=",
+      seq_list[[i]]
+    ), flatten = TRUE)
     if (verbose == TRUE) {
       message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }

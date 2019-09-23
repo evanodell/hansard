@@ -3,6 +3,7 @@
 language: r
 r:
   - devel
+  - release
 sudo: required
 cache: false
 

@@ -3,6 +3,7 @@ context("early day motions")
 
 test_that("edm functions return expected format", {
   skip_on_cran()
+  skip_on_travis()
 
   # xedmid <- hansard_early_day_motions(edm_id = 1073)
   # expect_length(xedmid, 11)

@@ -16,12 +16,12 @@
 #' @examples
 #' \dontrun{
 #' x <- commons_terms(search = "estate")
-#' 
+#'
 #' x <- commons_terms(search = "estate", class = "ORG")
 #' }
-#' 
+#'
 commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
-                          tidy = TRUE, tidy_style = "snake_case",
+                          tidy = TRUE, tidy_style = "snake",
                           verbose = TRUE) {
   warning("Search functions are not consistently working on the API")
 
@@ -65,7 +65,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
 
   query <- paste0(
     baseurl, search_query, class_query,
-    extra_args, "&_pageSize=100&_page="
+    extra_args
   )
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R

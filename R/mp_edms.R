@@ -43,25 +43,25 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' # All EDMs primarily sponsored, sponsored or signed by Mike Crockart
 #' x <- mp_edms(
 #'   mp_id = 3967, primary_sponsor = TRUE,
 #'   sponsor = TRUE, signatory = TRUE
 #' )
-#' 
+#'
 #' # Detailed data on all EDMs primarily sponsored by Mike Crockart
 #' y <- mp_edms(
 #'   mp_id = 3967, primary_sponsor = TRUE,
 #'   sponsor = TRUE, signatory = FALSE, full_data = TRUE
 #' )
 #' }
-#' 
+#'
 mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
                     signatory = TRUE, full_data = FALSE,
                     start_date = "1900-01-01", end_date = Sys.Date(),
                     extra_args = NULL, tidy = TRUE,
-                    tidy_style = "snake_case", verbose = TRUE) {
+                    tidy_style = "snake", verbose = TRUE) {
   dates <- paste0(
     "&max-dateSigned=", as.Date(end_date),
     "&min-dateSigned=", as.Date(start_date)
@@ -103,10 +103,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
       jpage <- floor(edms$result$totalResults / 100)
 
-      query <- paste0(
-        baseurl, z_query, dates, extra_args,
-        "&_pageSize=100&_page="
-      )
+      query <- paste0(baseurl, z_query, dates, extra_args)
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

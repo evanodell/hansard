@@ -1,20 +1,16 @@
 
-
 # Resubmission 
 
-This is the 7th update of this package. The previous version, 0.6.0, was 
-accepted and published on CRAN on 2018-03-03. This version features reduced
-dependencies, code changes to accomodate new API limits, and improved 
-list-column handling.
+This is a resubmission due to web access errors being detected in CRAN checks.
+All calls to the external API have been removed from the vignette.
 
-There are no notes, warnings or errors from R CMD check
+There are no notes, warnings or errors from R CMD check.
 
 ## Test environments
 
-* Ubuntu 14.04.5 (on Travis-CI): R devel
-* local MacOS 10.14.2 installation: R 3.5.2
-* local Windows installation: R 3.5.2
-* win-builder (devel)
+* Ubuntu 14.04.5 (on Travis-CI): R devel and release
+* local MacOS 10.14.6 installation: R 3.6.1
+* win-builder (devel and release)
  
 
 ##R CMD check results

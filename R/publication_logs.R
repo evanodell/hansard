@@ -30,14 +30,14 @@
 #' \dontrun{
 #' # All publications in the house of commons
 #' x <- publication_logs(house = "commons")
-#' 
+#'
 #' # Returns a given publication
 #' y <- publication_logs(683267)
 #' }
-#' 
+#'
 publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
                              end_date = Sys.Date(), extra_args = NULL,
-                             tidy = TRUE, tidy_style = "snake_case",
+                             tidy = TRUE, tidy_style = "snake",
                              verbose = TRUE) {
   id_query <- ifelse(
     is.null(ID) == FALSE,
@@ -78,10 +78,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
   } else {
     jpage <- floor(logs$result$totalResults / 100)
 
-    query <- paste0(
-      baseurl, id_query, house_query, dates,
-      extra_args, "&_pageSize=100&_page="
-    )
+    query <- paste0(baseurl, id_query, house_query, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

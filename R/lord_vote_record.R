@@ -34,19 +34,19 @@
 #' @examples
 #' \dontrun{
 #' x <- lord_vote_record(530, lobby = "all")
-#' 
+#'
 #' x <- lord_vote_record(530, lobby = "content")
-#' 
+#'
 #' x <- lord_vote_record(530, lobby = "notcontent")
-#' 
+#'
 #' x <- lord_vote_record(530, lobby = "not-content")
 #' # This will also work
 #' }
-#' 
+#'
 lord_vote_record <- function(peer_id = NULL, lobby = "all",
                              start_date = "1900-01-01", end_date = Sys.Date(),
                              extra_args = NULL, tidy = TRUE,
-                             tidy_style = "snake_case", verbose = TRUE) {
+                             tidy_style = "snake", verbose = TRUE) {
   if (is.null(peer_id) == TRUE) {
     stop("peer_id must not be empty", call. = FALSE)
   }
@@ -111,7 +111,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     query <- paste0(
       baseurl, lobby, ".json?mnisId=", peer_id,
-      dates, extra_args, "&_pageSize=100&_page="
+      dates, extra_args
     )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R

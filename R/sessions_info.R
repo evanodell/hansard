@@ -32,13 +32,13 @@
 #' @examples
 #' \dontrun{
 #' x <- sessions_info(days = TRUE)
-#' 
+#'
 #' y <- sessions_info(days = FALSE)
 #' }
-#' 
+#'
 sessions_info <- function(days = FALSE, start_date = "1900-01-01",
                           end_date = Sys.Date(), extra_args = NULL,
-                          tidy = TRUE, tidy_style = "snake_case",
+                          tidy = TRUE, tidy_style = "snake",
                           verbose = TRUE) {
   days_query <- ifelse(
     days == FALSE,
@@ -62,7 +62,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
 
   jpage <- floor(session$result$totalResults / 100)
 
-  query <- paste0(baseurl, days_query, extra_args, "&_pageSize=100&_page=")
+  query <- paste0(baseurl, days_query, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

@@ -5,14 +5,14 @@
 \alias{hansard_commons_divisions}
 \title{House of Commons divisions}
 \usage{
-commons_divisions(division_id = NULL, summary = FALSE,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+commons_divisions(division_id = NULL, division_uin = NULL,
+  summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
   verbose = TRUE)
 
-hansard_commons_divisions(division_id = NULL, summary = FALSE,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake_case",
+hansard_commons_divisions(division_id = NULL, division_uin = NULL,
+  summary = FALSE, start_date = "1900-01-01", end_date = Sys.Date(),
+  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
   verbose = TRUE)
 }
 \arguments{
@@ -20,6 +20,12 @@ hansard_commons_divisions(division_id = NULL, summary = FALSE,
 tibble with information on all commons divisions, subject to all other
 parameters. Defaults to \code{NULL}. Only accepts a single division ID
 at a time, but to return details on a list of division IDs use with
+\code{lapply}. The \code{division_id} takes priority over the \code{division_uid} parameter.}
+
+\item{division_uin}{The UIN of a particular vote. If empty, returns a
+tibble with information on all commons divisions, subject to all other
+parameters. Defaults to \code{NULL}. Only accepts a single division UIN
+at a time, but to return details on a list of division UINs use with
 \code{lapply}.}
 
 \item{summary}{If \code{TRUE}, returns a small tibble summarising a
@@ -48,8 +54,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}

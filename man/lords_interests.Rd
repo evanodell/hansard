@@ -6,10 +6,10 @@
 \title{Peers' registered interests}
 \usage{
 lords_interests(peer_id = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 
 hansard_lords_interests(peer_id = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake_case", verbose = TRUE)
+  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{peer_id}{The ID of a member of the House of lords. If \code{NULL},
@@ -26,8 +26,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}

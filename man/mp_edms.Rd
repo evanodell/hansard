@@ -8,12 +8,12 @@
 mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 
 hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
   signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
   end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake_case", verbose = TRUE)
+  tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{mp_id}{The ID number of an MP or Peer. Required parameter, Defaults
@@ -58,8 +58,8 @@ in the tibble to remove special characters and superfluous text, and
 converts the variable names to a consistent style. Defaults to \code{TRUE}.}
 
 \item{tidy_style}{The style to convert variable names to, if
-\code{tidy = TRUE}. Accepts one of \code{'snake_case'}, \code{'camelCase'}
-and \code{'period.case'}. Defaults to \code{'snake_case'}.}
+\code{tidy = TRUE}. Accepts any style accepted by \link[snakecase]{to_any_case}.
+Defaults to \code{'snake'}.}
 
 \item{verbose}{If \code{TRUE}, displayes messages on the console on the
 progress of the API request. Defaults to \code{TRUE}.}

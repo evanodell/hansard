@@ -46,19 +46,19 @@
 #'   answered_by = c("4019", "1542", "111"),
 #'   start_date = "2017-01-01"
 #' )
-#' 
+#'
 #' y <- commons_answered_questions(
 #'   start_date = "2017-03-26",
 #'   end_date = "2017-04-01"
 #' )
 #' }
-#' 
+#'
 commons_answered_questions <- function(answering_department = NULL,
                                        answered_by = NULL,
                                        start_date = "1900-01-01",
                                        end_date = Sys.Date(),
                                        extra_args = NULL, tidy = TRUE,
-                                       tidy_style = "snake_case",
+                                       tidy_style = "snake",
                                        verbose = TRUE) {
   if (length(answered_by) > 1 || length(answering_department) > 1) {
     df <- caq_multi(
@@ -111,7 +111,7 @@ commons_answered_questions <- function(answering_department = NULL,
     query <- paste0(
       baseurl, dept_query, ".json?",
       answering_dept_query, answered_by,
-      dates, extra_args, "&_pageSize=100&_page="
+      dates, extra_args
     )
 
     df <- loop_query(query, jpage, verbose)
