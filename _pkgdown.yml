@@ -24,21 +24,6 @@ navbar:
       menu:
         - text: "Documentation Home"
           href: http://docs.evanodell.com
-        - text: "---------"
-        - text: "hansard"
-          href: http://docs.evanodell.com/hansard
-        - text: "mnis"
-          href: http://docs.evanodell.com/mnis
-        - text: "parlitools"
-          href: http://docs.evanodell.com/parlitools
-        - text: "nomisr"
-          href: http://docs.evanodell.com/nomisr
-        - text: "fixerapi"
-          href: http://docs.evanodell.com/fixerapi
-        - text: "refuge"
-          href: http://docs.evanodell.com/refuge
-        - text: "emisc"
-          href: http://docs.evanodell.com/emisc
 
   right:
     - icon: fa-github fa-lg
