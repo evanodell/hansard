@@ -59,8 +59,10 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
   dat <- vector("list", nrow(df))
 
-  df$election_about <- gsub("http://data.parliament.uk/resources/", "",
-                            df$election_about)
+  df$election_about <- gsub(
+    "http://data.parliament.uk/resources/", "",
+    df$election_about
+  )
 
   seq_list <- seq(from = 1, to = nrow(df), by = 1)
 
@@ -76,24 +78,15 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
     df2 <- x$result$primaryTopic$candidate
 
     names(df2)[names(df2) == "_about"] <- "election_about"
+
     df2$election_about <- gsub(
       "http://data.parliament.uk/resources/",
       "", df2$election_about
     )
+
     df2$election_about <- gsub("/.*", "", df2$election_about)
-#
-#     df2 <- stats::aggregate(fullName._value ~ party._value + about,
-#       data = df2, c
-#     )
-#
-#    df2$fullName._value <- as.list(df2$fullName._value)
 
     dat[[i]] <- df2
-
-    # dat[[i]] <- tidyr::pivot_wider(df2,
-    #   id_cols = "party._value",
-    #   names_from = "fullName._value"
-    # )
 
     if (verbose == TRUE) {
       message(
@@ -112,7 +105,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
     constits <- suppressMessages(constituencies(current = FALSE))
 
     df <- dplyr::left_join(df, constits,
-                           by = c(constituency._about = "about")
+      by = c(constituency._about = "about")
     )
   }
 

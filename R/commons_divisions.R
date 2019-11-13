@@ -96,7 +96,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     df <- tibble::as_tibble(divis$result$primaryTopic$vote)
 
     if (summary == TRUE) {
-      df <- dplyr::summarise(dplyr::group_by(df, "type"), count = dplyr::n())
+      df <- dplyr::summarise(dplyr::group_by_at(df, "type"), count = dplyr::n())
     }
 
     df$date <- as.POSIXct(divis$result$primaryTopic$date$`_value`)
@@ -117,7 +117,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     df <- tibble::as_tibble(divis$result$items[["vote"]][[1]])
 
     if (summary == TRUE) {
-      df <- dplyr::summarise(dplyr::group_by(df, type), count = dplyr::n())
+      df <- dplyr::summarise(dplyr::group_by_at(df, "type"), count = dplyr::n())
     }
 
     df$date <- as.POSIXct(divis$result$items$date._value)

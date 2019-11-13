@@ -3,12 +3,15 @@
 
 # hansard: Accessing Westminster Parliament Data
 
+<!-- badges: start -->
+
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/hansard)](https://cran.r-project.org/package=hansard)
 [![GitHub
 tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
-[![](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://dgrtwo.shinyapps.io/cranview/)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://cran.r-project.org/package=hansard)
 [![Travis-CI Build
 Status](https://travis-ci.org/evanodell/hansard.svg?branch=master)](https://travis-ci.org/evanodell/hansard)
 [![AppVeyor Build
@@ -16,6 +19,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/evanodell/hansard?bra
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg)](https://codecov.io/github/evanodell/hansard?branch=master)
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
+<!-- badges: end -->
 
 An R package to automatically fetch data from the UK Parliament API.
 Ironically, Hansard data (as in speeches) is not yet accessible through
@@ -57,8 +61,8 @@ By participating in this project you agree to abide by its terms.
 Odell E (2017). *hansard: Provides Easy Downloading Capabilities for the
 UK Parliament API*. doi:
 [10.5281/zenodo.591264](https://doi.org/10.5281/zenodo.591264), R
-package version 0.7.1, \<URL:
-<https://cran.r-project.org/package=hansard>\>.
+package version 0.8.0, URL:
+<https://cran.r-project.org/package=hansard>.
 
 A BibTeX entry for LaTeX users is
 
@@ -66,7 +70,7 @@ A BibTeX entry for LaTeX users is
   @Manual{,
     title = {{hansard}: Provides Easy Downloading Capabilities for the UK Parliament API},
     author = {Evan Odell},
-    note = {R package version 0.7.1},
+    note = {R package version 0.8.0},
     doi = {10.5281/zenodo.591264},
     url = {https://cran.r-project.org/package=hansard},
   }

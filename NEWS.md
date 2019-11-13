@@ -1,7 +1,9 @@
 
-# hansard 0.7.1.9000
+# hansard 0.8.0
 
-* Removing deprecated `tidyr` functions.
+* Replacing deprecated `tidyr` functions with up-to-date ones
+  (#14, thanks @counterpig). This may result in some slight differences in 
+  data structures, please check your code.
 
 ## Changes
 
@@ -62,70 +64,69 @@ functions.
 
 ## Documentation updates
 
-Improvements to some example descriptions
+* Improvements to some example descriptions
 
 
 # hansard 0.6.1
 
 ## Code changes
 
-`members_search()` now allows custom lucene queries, with or without wildcards.
+* `members_search()` now allows custom lucene queries, with or without wildcards.
 
 
 # hansard 0.6.0
 
 ## Code changes
 
-Changed default value of `verbose` parameter to `TRUE`.
+* Changed default value of `verbose` parameter to `TRUE`.
 
-Adapted `members()` to fit follow changes in API structure.
+* Adapted `members()` to fit follow changes in API structure.
 
 ## Bug fixes
 
-Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
+* Remove URL from `about` column from `all_answered_questions` if `tidy=TRUE`.
 
-Fixed error in `members_search()` that produced a 404 error if left empty.
+* Fixed error in `members_search()` that produced a 404 error if left empty.
 
 ## Testing
 
-Expanded test coverage
-
+* Expanded test coverage
 
 # hansard 0.5.9
 
 ## Bug fixes
 
-Fixed bugs where capitalised conjunctions in department names were causing 
-queries to fail.
+* Fixed bugs where capitalised conjunctions in department names were causing 
+  queries to fail.
 
 
 # hansard 0.5.8
 
 ## New Functions
 
-`bill_publications()` function introduced, to retrieve data on publications
-associated with different bills.
+* `bill_publications()` function introduced, to retrieve data on publications
+  associated with different bills.
 
 ## Performance improvements
 
-Transitioned from if and else statements to `dplyr`'s `case_when()` 
-and `if_else()` functions for internal use. Also replacing `gsub()` with 
-faster `stringi` functions in some cases. These changes are intended to 
-increase speed and improve ease of maintenance.
+* Transitioned from if and else statements to `dplyr`'s `case_when()` 
+  and `if_else()` functions for internal use. Also replacing `gsub()` with  
+  faster `stringi` functions in some cases. These changes are intended to  
+  increase speed and improve ease of maintenance.
 
 
 # hansard 0.5.7
 
-Internal rewrites to make maintenance easier and produce a few very small 
-increases in speed in several functions.
+* Internal rewrites to make maintenance easier and produce a few very small 
+  increases in speed in several functions.
 
-Fixed some typos in documentation, brought documentation into line with the 
-recommended 80 character maximum width for each line.
+* Fixed some typos in documentation, brought documentation into line with the 
+  recommended 80 character maximum width for each line.
 
 # hansard 0.5.6
 
-Fixed bug on `constituencies()` so that the `NULL` default value of parameter 
-`current` works properly.
+* Fixed bug on `constituencies()` so that the `NULL` default value of parameter 
+  `current` works properly.
 
 # hansard 0.5.5
 
