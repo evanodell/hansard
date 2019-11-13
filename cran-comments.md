@@ -1,8 +1,8 @@
 
 # Resubmission 
 
-This is a resubmission due to web access errors being detected in CRAN checks.
-All calls to the external API have been removed from the vignette.
+This is an update that replaces deprecated tidyr functions used
+in data processing.
 
 There are no notes, warnings or errors from R CMD check.
 

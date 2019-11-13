@@ -19,6 +19,8 @@ Status](https://ci.appveyor.com/api/projects/status/github/evanodell/hansard?bra
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg)](https://codecov.io/github/evanodell/hansard?branch=master)
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
+[![Travis build
+status](https://travis-ci.org/evanodell/hansard.svg?branch=master)](https://travis-ci.org/evanodell/hansard)
 <!-- badges: end -->
 
 An R package to automatically fetch data from the UK Parliament API.
