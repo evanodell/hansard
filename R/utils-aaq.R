@@ -109,7 +109,7 @@ aaq_tidy <- function(df, tidy_style) {
 
     df$questionFirstAnswered <- df$questionFirstAnswered
 
-    df <- tidyr::unnest_(df, "questionFirstAnswered")
+    df <- tidyr::unnest(df, "questionFirstAnswered")
 
     names(df)[names(df) == "_value"] <- "answerDateTime"
 

@@ -8,8 +8,8 @@ test_that("election_candidates return expected format", {
   # skip_on_travis()
 
   xec <- hansard_election_candidates(ID = 650517, verbose = TRUE)
-  expect_length(xec, 18)
+  expect_length(xec, 13)
   expect_type(xec, "list")
   expect_true(tibble::is_tibble(xec))
-  expect_true(nrow(xec) == 1)
+  expect_equal(nrow(xec), 10)
 })

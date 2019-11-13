@@ -31,12 +31,12 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake",
                                         verbose = TRUE) {
-  session_query <- ifelse(is.null(session) == FALSE,
+  session_query <- ifelse(!is.null(session),
     utils::URLencode(paste0("session=", session)), ""
   )
 
   question_query <- ifelse(
-    is.null(question_id) == FALSE,
+    !is.null(question_id),
     paste0("/", question_id),
     ""
   )
@@ -47,7 +47,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     message("Connecting to API")
   }
 
-  if (is.null(question_id) == TRUE) {
+  if (is.null(question_id)) {
     times <- jsonlite::fromJSON(paste0(
       baseurl, ".json?",
       session_query,
@@ -71,7 +71,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     )
 
     df <- tibble::tibble(
-      about = mydata$result$primaryTopic$`_about`,
+      `_about` = mydata$result$primaryTopic$`_about`,
       AnswerBody = list(mydata$result$primaryTopic$AnswerBody),
       session = mydata$result$primaryTopic$session,
       title = mydata$result$primaryTopic$title,

@@ -52,11 +52,9 @@ tv_tidy <- function(df, tidy_style) {
 tv_tidy2 <- function(df, mp_id, tidy_style) {
   if (nrow(df) > 0) {
     if (is.null(mp_id) == FALSE) {
-      df <- tidyr::unnest_(df, "member")
+      df <- tidyr::unnest_wider(df, "member", names_sep = "_")
 
-      names(df)[names(df) == "_about1"] <- "member_about"
-
-      names(df)[names(df) == "label._value"] <- "member_label_value"
+      names(df) <- snakecase::to_any_case(names(df))
 
       df$member_label_value <- gsub(
         "Biography information for ", "",

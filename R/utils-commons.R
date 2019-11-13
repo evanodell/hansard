@@ -201,7 +201,7 @@ cd_tidy <- function(df, tidy_style, summary) {
 
     names(df)[names(df) == "_about"] <- "number"
 
-    df <- tidyr::unnest(df)
+    df <- tidyr::unnest(df, cols = "member")
 
     df$type <- gsub(
       "http://data.parliament.uk/schema/parl#", "",
@@ -255,9 +255,7 @@ coqt_tidy <- function(df, tidy_style) {
   if (nrow(df) > 0) {
     df$session <- as.character(df$session)
 
-    df <- tidyr::unnest_(df, "AnswerBody")
-
-    df$`_about1` <- NULL
+    df <- tidyr::unnest_wider(df, "AnswerBody", "_")
 
     df$AnswerDateTime._value <- gsub("T", " ", df$AnswerDateTime._value)
 

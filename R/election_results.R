@@ -116,7 +116,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
     names(df2)[names(df2) == "_about"] <- "about"
 
-    df3 <- tidyr::spread_(df2, "party._value", "numberOfVotes")
+    df3 <- tidyr::spread(df2, "party._value", "numberOfVotes")
 
     df3$about <- gsub(
       "http://data.parliament.uk/resources/",

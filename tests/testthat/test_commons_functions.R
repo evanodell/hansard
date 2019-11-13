@@ -22,7 +22,7 @@ test_that("commons functions return expected format", {
     division_id = 694163,
     summary = FALSE, verbose = TRUE
   )
-  expect_length(xcd, 7)
+  expect_length(xcd, 8)
   expect_type(xcd, "list")
   expect_true(tibble::is_tibble(xcd))
 
@@ -42,7 +42,7 @@ test_that("commons functions return expected format", {
   expect_length(xcdall, 5)
   expect_type(xcdall, "list")
   expect_true(tibble::is_tibble(xcdall))
-  expect_equal(nrow(xcds), 39)
+  expect_equal(nrow(xcdall), 39)
 
   # Divisions by Date
   cdd <- commons_division_date("2017-02-24", verbose = TRUE)
@@ -65,14 +65,14 @@ test_that("commons functions return expected format", {
     session = "2015/16",
     verbose = TRUE
   )
-  expect_length(xcoqs, 15)
+  expect_length(xcoqs, 16)
   expect_type(xcoqs, "list")
   expect_true(tibble::is_tibble(xcoqs))
 
   xcoqe <- hansard_commons_oral_questions(
     mp_id = c(4019, 4051, 4588),
     answering_department = c("education", "health"),
-    verbose = TRUE, tidy_style = "period.case"
+    verbose = TRUE, tidy_style = "big_camel"
   )
   expect_length(xcoqe, 24)
   expect_type(xcoqe, "list")

@@ -1,7 +1,18 @@
 
+# hansard 0.7.1.9000
+
+* Removing deprecated `tidyr` functions.
+
+## Changes
+
+* `election_candidates()` returns a tibble, with different formats and names 
+  than previous versions that will be easier to work with. 
+  Please check your code as the structure may have changed in a way that breaks
+  existing code.
+
 # hansard 0.7.1
 
-Updates to vignette to prevent calls to API in demos.
+* Updates to vignette to prevent calls to API in demos.
 
 # hansard 0.7.0
 

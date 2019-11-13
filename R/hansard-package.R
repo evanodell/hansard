@@ -34,7 +34,7 @@
 #' @importFrom dplyr left_join bind_rows grouped_df summarise_all distinct
 #' summarise group_by n
 #' @importFrom tibble as_tibble
-#' @importFrom tidyr spread_ unnest_
+#' @importFrom tidyr spread unnest unnest_wider
 #' @importFrom lubridate parse_date_time
 #' @importFrom snakecase to_any_case
 NULL

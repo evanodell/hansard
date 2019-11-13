@@ -42,7 +42,7 @@ edm_search <- function(df, verbose) {
       flatten = TRUE
     )
 
-    dat3[[i]] <- tibble::data_frame(
+    dat3[[i]] <- tibble::tibble(
       about = list(search$result$primaryTopic$`_about`),
       title = list(search$result$primaryTopic$title),
       dateTabled._value = as.POSIXct(

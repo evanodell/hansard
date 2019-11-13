@@ -51,3 +51,23 @@ Parliamentary Data Service. It is released under an MIT license. Please
 note that this project is released with a [Contributor Code of
 Conduct](https://github.com/evanodell/hansard/blob/master/CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
+
+## Citing hansard
+
+Odell E (2017). *hansard: Provides Easy Downloading Capabilities for the
+UK Parliament API*. doi:
+[10.5281/zenodo.591264](https://doi.org/10.5281/zenodo.591264), R
+package version 0.7.1, \<URL:
+<https://cran.r-project.org/package=hansard>\>.
+
+A BibTeX entry for LaTeX users is
+
+``` 
+  @Manual{,
+    title = {{hansard}: Provides Easy Downloading Capabilities for the UK Parliament API},
+    author = {Evan Odell},
+    note = {R package version 0.7.1},
+    doi = {10.5281/zenodo.591264},
+    url = {https://cran.r-project.org/package=hansard},
+  }
+```
