@@ -5,15 +5,27 @@
 \alias{hansard_commons_oral_questions}
 \title{House of Commons Oral Questions}
 \usage{
-commons_oral_questions(mp_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+commons_oral_questions(
+  mp_id = NULL,
+  answering_department = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_commons_oral_questions(mp_id = NULL,
-  answering_department = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_commons_oral_questions(
+  mp_id = NULL,
+  answering_department = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{mp_id}{The ID of a given MP asking an oral question, or a list of

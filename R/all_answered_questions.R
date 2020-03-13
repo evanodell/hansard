@@ -206,7 +206,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       house_query, dept_query, dates, extra_args
     )
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query_aaq(query, jpage, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0 & verbose == TRUE) {

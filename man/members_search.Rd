@@ -5,11 +5,19 @@
 \alias{hansard_members_search}
 \title{Search for an MP or Peer by name and constituency}
 \usage{
-members_search(search = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+members_search(
+  search = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_members_search(search = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_members_search(
+  search = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{search}{Accepts any lucene query string, using * as a multiple

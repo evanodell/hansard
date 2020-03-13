@@ -24,7 +24,7 @@ Imports:
     lubridate,
     tidyr,
     snakecase
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 Suggests: 

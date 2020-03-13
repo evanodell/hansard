@@ -7,13 +7,25 @@
 Deprecated function, please see \code{\link[=lords_attendance_date]{lords_attendance_date()}} and
 \code{\link[=lords_attendance_session]{lords_attendance_session()}}.}
 \usage{
-lords_attendance(session_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+lords_attendance(
+  session_id = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_attendance(session_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_lords_attendance(
+  session_id = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If \code{NULL},

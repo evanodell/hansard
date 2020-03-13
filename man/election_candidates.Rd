@@ -5,13 +5,23 @@
 \alias{hansard_election_candidates}
 \title{Election candidate details}
 \usage{
-election_candidates(ID = NULL, constit_details = FALSE,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+election_candidates(
+  ID = NULL,
+  constit_details = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_election_candidates(ID = NULL, constit_details = FALSE,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_election_candidates(
+  ID = NULL,
+  constit_details = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 General

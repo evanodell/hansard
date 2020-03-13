@@ -5,15 +5,29 @@
 \alias{hansard_early_day_motions}
 \title{Early day motion data}
 \usage{
-early_day_motions(edm_id = NULL, session = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+early_day_motions(
+  edm_id = NULL,
+  session = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  signatures = 1,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_early_day_motions(edm_id = NULL, session = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(), signatures = 1,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_early_day_motions(
+  edm_id = NULL,
+  session = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  signatures = 1,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{edm_id}{Accepts the ID number of an early day motion, and returns

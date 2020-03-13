@@ -5,15 +5,27 @@
 \alias{hansard_lords_written_questions}
 \title{House of Lords written questions}
 \usage{
-lords_written_questions(peer_id = NULL, answering_department = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+lords_written_questions(
+  peer_id = NULL,
+  answering_department = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_written_questions(peer_id = NULL,
-  answering_department = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_lords_written_questions(
+  peer_id = NULL,
+  answering_department = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{peer_id}{Accepts a member ID or list of IDs, and returns a tibble

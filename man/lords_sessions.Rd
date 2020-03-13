@@ -5,12 +5,21 @@
 \alias{hansard_lords_sessions}
 \title{Lords sessions}
 \usage{
-lords_sessions(start_date = "1900-01-01", end_date = Sys.Date(),
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+lords_sessions(
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_sessions(start_date = "1900-01-01",
-  end_date = Sys.Date(), tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_lords_sessions(
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{start_date}{Only includes sessions starting on or after this date.

@@ -5,7 +5,9 @@
 \alias{bill_publication_types}
 \title{A character vector of possible types of bill publications.
 For use with \code{\link[=bill_publications]{bill_publications()}}}
-\format{A character vector containing 38 elements}
+\format{
+A character vector containing 38 elements
+}
 \usage{
 bill_publication_types
 }

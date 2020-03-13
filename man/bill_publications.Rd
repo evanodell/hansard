@@ -5,15 +5,27 @@
 \alias{hansard_bill_publications}
 \title{Bill Publications}
 \usage{
-bill_publications(ID = NULL, publication_type = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = FALSE)
+bill_publications(
+  ID = NULL,
+  publication_type = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = FALSE
+)
 
-hansard_bill_publications(ID = NULL, publication_type = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = FALSE)
+hansard_bill_publications(
+  ID = NULL,
+  publication_type = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = FALSE
+)
 }
 \arguments{
 \item{ID}{The ID of a specific bill to return publications for.

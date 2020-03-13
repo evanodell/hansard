@@ -7,8 +7,7 @@
 \usage{
 bill_stage_types(tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 
-hansard_bill_stage_types(tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_bill_stage_types(tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{tidy}{Logical parameter. If \code{TRUE}, fixes the variable names

@@ -5,11 +5,19 @@
 \alias{hansard_lords_attendance_date}
 \title{House of Lords attendance by date}
 \usage{
-lords_attendance_date(date = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+lords_attendance_date(
+  date = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_attendance_date(date = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_lords_attendance_date(
+  date = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{date}{Accepts a date to return attendance data for. Accepts

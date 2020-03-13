@@ -5,15 +5,33 @@
 \alias{hansard_mp_edms}
 \title{Early Day Motions by MP or Peer}
 \usage{
-mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
-  signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+mp_edms(
+  mp_id = NULL,
+  primary_sponsor = TRUE,
+  sponsor = TRUE,
+  signatory = TRUE,
+  full_data = FALSE,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_mp_edms(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
-  signatory = TRUE, full_data = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_mp_edms(
+  mp_id = NULL,
+  primary_sponsor = TRUE,
+  sponsor = TRUE,
+  signatory = TRUE,
+  full_data = FALSE,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{mp_id}{The ID number of an MP or Peer. Required parameter, Defaults

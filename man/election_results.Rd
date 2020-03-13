@@ -5,15 +5,27 @@
 \alias{hansard_election_results}
 \title{General and By-Election Results}
 \usage{
-election_results(ID = NULL, all_data = FALSE,
-  calculate_percent = FALSE, constit_details = FALSE,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+election_results(
+  ID = NULL,
+  all_data = FALSE,
+  calculate_percent = FALSE,
+  constit_details = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_election_results(ID = NULL, all_data = FALSE,
-  calculate_percent = FALSE, constit_details = FALSE,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_election_results(
+  ID = NULL,
+  all_data = FALSE,
+  calculate_percent = FALSE,
+  constit_details = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 General

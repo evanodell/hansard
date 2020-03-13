@@ -5,11 +5,21 @@
 \alias{hansard_commons_division_date}
 \title{House of Commons Division Dates}
 \usage{
-commons_division_date(date = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+commons_division_date(
+  date = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_commons_division_date(date = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+hansard_commons_division_date(
+  date = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{date}{Returns all divisions on a given date.

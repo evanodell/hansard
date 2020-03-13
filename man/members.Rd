@@ -9,23 +9,49 @@
 \alias{hansard_lords_members}
 \title{Members of both houses}
 \usage{
-members(ID = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+members(
+  ID = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_members(ID = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_members(
+  ID = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-commons_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+commons_members(
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_commons_members(extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_commons_members(
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-lords_members(extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+lords_members(
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_members(extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_lords_members(
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{The ID of a member of the House of Commons or the House of Lords

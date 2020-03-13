@@ -5,15 +5,29 @@
 \alias{hansard_epetition_tibble}
 \title{Bulk Epetition data}
 \usage{
-epetition_tibble(min_signatures = 1, max_signatures = NULL,
-  status = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+epetition_tibble(
+  min_signatures = 1,
+  max_signatures = NULL,
+  status = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_epetition_tibble(min_signatures = 1, max_signatures = NULL,
-  status = NULL, start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_epetition_tibble(
+  min_signatures = 1,
+  max_signatures = NULL,
+  status = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{min_signatures}{The minimum number of signatures required for

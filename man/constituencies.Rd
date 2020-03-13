@@ -5,11 +5,21 @@
 \alias{hansard_constituencies}
 \title{House of Commons constituencies}
 \usage{
-constituencies(current = NULL, extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+constituencies(
+  current = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_constituencies(current = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+hansard_constituencies(
+  current = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{current}{If \code{TRUE}, returns only current constituencies. If
