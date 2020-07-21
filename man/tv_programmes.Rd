@@ -9,26 +9,49 @@
 \alias{hansard_tv_channels}
 \title{TV broadcast data}
 \usage{
-tv_programmes(legislature = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+tv_programmes(
+  legislature = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_tv_programmes(legislature = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_tv_programmes(
+  legislature = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-tv_clips(mp_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+tv_clips(
+  mp_id = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_tv_clips(mp_id = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_tv_clips(
+  mp_id = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
 tv_channels(tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 
-hansard_tv_channels(tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_tv_channels(tidy = TRUE, tidy_style = "snake", verbose = TRUE)
 }
 \arguments{
 \item{legislature}{Accepts one of either \code{'commons'} or

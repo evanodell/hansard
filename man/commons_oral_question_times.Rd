@@ -5,13 +5,23 @@
 \alias{hansard_commons_oral_question_times}
 \title{Commons oral question times}
 \usage{
-commons_oral_question_times(session = NULL, question_id = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+commons_oral_question_times(
+  session = NULL,
+  question_id = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_commons_oral_question_times(session = NULL, question_id = NULL,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_commons_oral_question_times(
+  session = NULL,
+  question_id = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{session}{Accepts a session in format \code{yyyy/yy}

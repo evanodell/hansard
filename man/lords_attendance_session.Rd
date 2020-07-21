@@ -5,11 +5,21 @@
 \alias{hansard_lords_attendance_session}
 \title{House of Lords attendance by session}
 \usage{
-lords_attendance_session(session_id = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+lords_attendance_session(
+  session_id = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_lords_attendance_session(session_id = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+hansard_lords_attendance_session(
+  session_id = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{session_id}{The ID of the House of Lords session. If \code{NULL},

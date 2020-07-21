@@ -87,6 +87,17 @@ test_that("commons functions return expected format", {
   expect_true(tibble::is_tibble(xcwq))
   expect_equal(nrow(xcwq), 61)
 
+
+  xcwq_single <- hansard_commons_written_questions(
+    mp_id = 4830, start_date = "2020-01-01", end_date="2020-07-20"
+  )
+
+  expect_length(xcwq_single, 12)
+  expect_equal(nrow(xcwq_single), 5)
+  expect_s3_class(xcwq_single, "data.frame")
+  expect_s3_class(xcwq_single, "tbl")
+  expect_equal(xcwq_single$tabling_member_printed[[1]], "Paul Howell")
+
   # Commons Terms
 
   # xcte <- hansard_commons_terms(search = "estate", verbose = TRUE)

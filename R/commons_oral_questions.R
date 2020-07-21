@@ -59,19 +59,6 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
       extra_args, verbose
     )
   } else {
-    mp_id <- ifelse(
-      is.null(mp_id) == FALSE && is.na(mp_id) == FALSE,
-      paste0("&tablingMember=http://data.parliament.uk/members/", mp_id), ""
-    )
-
-    json_query <- ifelse(
-      is.null(answering_department) == FALSE &&
-        is.na(answering_department) == FALSE,
-      utils::URLencode(paste0(
-        "/answeringdepartment.json?q=",
-        answering_department
-      )), ".json?"
-    )
 
     dates <- paste0(
       "&_properties=AnswerDate&max-AnswerDate=",
@@ -80,6 +67,8 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
       as.Date(start_date)
     )
 
+    json_query <- question_query_construction(mp_id, answering_department)
+
     baseurl <- paste0(url_util, "commonsoralquestions")
 
     if (verbose == TRUE) {
@@ -87,7 +76,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
     }
 
     oral <- jsonlite::fromJSON(paste0(
-      baseurl, json_query, mp_id,
+      baseurl, json_query,
       dates, extra_args, "&_pageSize=1"
     ),
     flatten = TRUE
@@ -96,7 +85,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
     jpage <- floor(oral$result$totalResults / 100)
 
     query <- paste0(
-      baseurl, json_query, mp_id, dates,
+      baseurl, json_query, mp_id_query, dates,
       extra_args
     )
 

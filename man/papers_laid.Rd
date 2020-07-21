@@ -5,15 +5,27 @@
 \alias{hansard_papers_laid}
 \title{Papers laid}
 \usage{
-papers_laid(withdrawn = FALSE, house = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+papers_laid(
+  withdrawn = FALSE,
+  house = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_papers_laid(withdrawn = FALSE, house = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_papers_laid(
+  withdrawn = FALSE,
+  house = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{withdrawn}{If \code{TRUE}, only returns withdrawn papers.

@@ -5,13 +5,29 @@
 \alias{hansard_elections}
 \title{General and By-Elections}
 \usage{
-elections(ID = NULL, type = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), label = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+elections(
+  ID = NULL,
+  type = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  label = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_elections(ID = NULL, type = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), label = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+hansard_elections(
+  ID = NULL,
+  type = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  label = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{Accepts an ID for a general or by-election from the 2010 General

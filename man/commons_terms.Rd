@@ -5,11 +5,23 @@
 \alias{hansard_commons_terms}
 \title{Parliamentary Thesaurus}
 \usage{
-commons_terms(search = NULL, class = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+commons_terms(
+  search = NULL,
+  class = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_commons_terms(search = NULL, class = NULL, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+hansard_commons_terms(
+  search = NULL,
+  class = NULL,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{search}{A string to search the parliamentary thesaurus for.}

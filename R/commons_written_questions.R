@@ -69,23 +69,7 @@ commons_written_questions <- function(mp_id = NULL,
       as.Date(start_date)
     )
 
-    mp_id_query <- ifelse(
-      is.null(mp_id) &&
-        is.na(mp_id), "",
-      utils::URLencode(
-        paste0(
-          "&tablingMember=http://data.parliament.uk/members/", mp_id
-        )
-      )
-    )
-
-    json_query <- ifelse(
-      is.null(answering_department) &&
-        is.na(answering_department), ".json?",
-      utils::URLencode(
-        paste0("/answeringdepartment.json?q=", answering_department)
-      )
-    )
+    json_query <- question_query_construction(mp_id, answering_department)
 
     baseurl <- paste0(url_util, "commonswrittenquestions")
 
@@ -94,7 +78,7 @@ commons_written_questions <- function(mp_id = NULL,
     }
 
     writ <- jsonlite::fromJSON(paste0(
-      baseurl, json_query, mp_id_query,
+      baseurl, json_query,
       dates, extra_args, "&_pageSize=1"
     ),
     flatten = TRUE

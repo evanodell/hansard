@@ -3,7 +3,6 @@
 \docType{package}
 \name{hansard}
 \alias{hansard}
-\alias{hansard-package}
 \title{hansard: Provides Easy Downloading Capabilities for the UK Parliament API}
 \description{
 Provides functions to request data from the data.parliament.uk APIs.

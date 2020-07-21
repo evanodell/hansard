@@ -8,21 +8,29 @@
 
 <title>Changelog • hansard</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+
 
 
 
@@ -54,9 +64,10 @@
   gtag('config', 'UA-90706059-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
       </span>
     </div>
 
@@ -98,38 +109,9 @@
     <li>
       <a href="http://docs.evanodell.com">Documentation Home</a>
     </li>
-    <li class="divider"></li>
-    <li>
-      <a href="http://docs.evanodell.com/hansard">hansard</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/mnis">mnis</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/parlitools">parlitools</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/nomisr">nomisr</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/fixerapi">fixerapi</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/refuge">refuge</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/guardianapi">guardianapi</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/ukpolice">ukpolice</a>
-    </li>
-    <li>
-      <a href="http://docs.evanodell.com/emisc">emisc</a>
-    </li>
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/EvanOdell/hansard">
@@ -150,25 +132,50 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/EvanOdell/hansard/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="hansard-070" class="section level1">
-<h1 class="page-header">
-<a href="#hansard-070" class="anchor"></a>hansard 0.7.0<small> 2019-05-21 </small>
+    <div id="hansard-080" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.0">
+<a href="#hansard-080" class="anchor"></a>hansard 0.8.0<small> 2019-11-13 </small>
 </h1>
+<ul>
+<li>Replacing deprecated <code>tidyr</code> functions with up-to-date ones (<a href='https://github.com/EvanOdell/hansard/issues/14'>#14</a>, thanks <a href='https://github.com/counterpig'>@counterpig</a>). This may result in some slight differences in data structures, please check your code.</li>
+</ul>
 <div id="changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#changes" class="anchor"></a>Changes</h2>
 <ul>
+<li>
+<code><a href="../reference/election_candidates.html">election_candidates()</a></code> returns a tibble, with different formats and names than previous versions that will be easier to work with. Please check your code as the structure may have changed in a way that breaks existing code.</li>
+</ul>
+</div>
+</div>
+    <div id="hansard-071" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.1">
+<a href="#hansard-071" class="anchor"></a>hansard 0.7.1<small> 2019-09-08 </small>
+</h1>
+<ul>
+<li>Updates to vignette to prevent calls to API in demos.</li>
+</ul>
+</div>
+    <div id="hansard-070" class="section level1">
+<h1 class="page-header" data-toc-text="0.7.0">
+<a href="#hansard-070" class="anchor"></a>hansard 0.7.0<small> 2019-05-21 </small>
+</h1>
+<div id="changes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#changes-1" class="anchor"></a>Changes</h2>
+<ul>
 <li><p>Now using the <code>snakecase</code> package to tidy tibble names. This has resulted in minor changes to style options, please check the <code>tidy_style</code> parameter values if there are errors.</p></li>
-<li><p><code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> now accepts <code>division_id</code> or <code>division_uin</code> (#13). Thanks to <a href='https://github.com/basilesimon'>@basilesimon</a> for getting the ball rolling with this parameter.</p></li>
+<li><p><code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> now accepts <code>division_id</code> or <code>division_uin</code> (<a href='https://github.com/EvanOdell/hansard/issues/13'>#13</a>). Thanks to <a href='https://github.com/basilesimon'>@basilesimon</a> for getting the ball rolling with this parameter.</p></li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -181,7 +188,7 @@
 </div>
 </div>
     <div id="hansard-063" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.3">
 <a href="#hansard-063" class="anchor"></a>hansard 0.6.3<small> 2019-01-10 </small>
 </h1>
 <div id="bug-fixes-1" class="section level2">
@@ -209,7 +216,7 @@
 </div>
 </div>
     <div id="hansard-062" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.2">
 <a href="#hansard-062" class="anchor"></a>hansard 0.6.2<small> Unreleased </small>
 </h1>
 <div id="code-changes" class="section level2">
@@ -222,87 +229,111 @@
 <div id="documentation-updates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation-updates" class="anchor"></a>Documentation updates</h2>
-<p>Improvements to some example descriptions</p>
+<ul>
+<li>Improvements to some example descriptions</li>
+</ul>
 </div>
 </div>
     <div id="hansard-061" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.1">
 <a href="#hansard-061" class="anchor"></a>hansard 0.6.1<small> Unreleased </small>
 </h1>
 <div id="code-changes-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#code-changes-1" class="anchor"></a>Code changes</h2>
-<p><code><a href="../reference/members_search.html">members_search()</a></code> now allows custom lucene queries, with or without wildcards.</p>
+<ul>
+<li>
+<code><a href="../reference/members_search.html">members_search()</a></code> now allows custom lucene queries, with or without wildcards.</li>
+</ul>
 </div>
 </div>
     <div id="hansard-060" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.6.0">
 <a href="#hansard-060" class="anchor"></a>hansard 0.6.0<small> 2018-03-02 </small>
 </h1>
 <div id="code-changes-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#code-changes-2" class="anchor"></a>Code changes</h2>
-<p>Changed default value of <code>verbose</code> parameter to <code>TRUE</code>.</p>
-<p>Adapted <code><a href="../reference/members.html">members()</a></code> to fit follow changes in API structure.</p>
+<ul>
+<li><p>Changed default value of <code>verbose</code> parameter to <code>TRUE</code>.</p></li>
+<li><p>Adapted <code><a href="../reference/members.html">members()</a></code> to fit follow changes in API structure.</p></li>
+</ul>
 </div>
 <div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
-<p>Remove URL from <code>about</code> column from <code>all_answered_questions</code> if <code>tidy=TRUE</code>.</p>
-<p>Fixed error in <code><a href="../reference/members_search.html">members_search()</a></code> that produced a 404 error if left empty.</p>
+<ul>
+<li><p>Remove URL from <code>about</code> column from <code>all_answered_questions</code> if <code>tidy=TRUE</code>.</p></li>
+<li><p>Fixed error in <code><a href="../reference/members_search.html">members_search()</a></code> that produced a 404 error if left empty.</p></li>
+</ul>
 </div>
 <div id="testing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#testing" class="anchor"></a>Testing</h2>
-<p>Expanded test coverage</p>
+<ul>
+<li>Expanded test coverage</li>
+</ul>
 </div>
 </div>
     <div id="hansard-059" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.9">
 <a href="#hansard-059" class="anchor"></a>hansard 0.5.9<small> Unreleased </small>
 </h1>
 <div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
-<p>Fixed bugs where capitalised conjunctions in department names were causing queries to fail.</p>
+<ul>
+<li>Fixed bugs where capitalised conjunctions in department names were causing queries to fail.</li>
+</ul>
 </div>
 </div>
     <div id="hansard-058" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.8">
 <a href="#hansard-058" class="anchor"></a>hansard 0.5.8<small> Unreleased </small>
 </h1>
 <div id="new-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New Functions</h2>
-<p><code><a href="../reference/bill_publications.html">bill_publications()</a></code> function introduced, to retrieve data on publications associated with different bills.</p>
+<ul>
+<li>
+<code><a href="../reference/bill_publications.html">bill_publications()</a></code> function introduced, to retrieve data on publications associated with different bills.</li>
+</ul>
 </div>
 <div id="performance-improvements" class="section level2">
 <h2 class="hasAnchor">
 <a href="#performance-improvements" class="anchor"></a>Performance improvements</h2>
-<p>Transitioned from if and else statements to <code>dplyr</code>’s <code>case_when()</code> and <code>if_else()</code> functions for internal use. Also replacing <code><a href="https://www.rdocumentation.org/packages/base/topics/grep">gsub()</a></code> with faster <code>stringi</code> functions in some cases. These changes are intended to increase speed and improve ease of maintenance.</p>
+<ul>
+<li>Transitioned from if and else statements to <code>dplyr</code>’s <code>case_when()</code> and <code>if_else()</code> functions for internal use. Also replacing <code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code> with<br>
+faster <code>stringi</code> functions in some cases. These changes are intended to<br>
+increase speed and improve ease of maintenance.</li>
+</ul>
 </div>
 </div>
     <div id="hansard-057" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.7">
 <a href="#hansard-057" class="anchor"></a>hansard 0.5.7<small> Unreleased </small>
 </h1>
-<p>Internal rewrites to make maintenance easier and produce a few very small increases in speed in several functions.</p>
-<p>Fixed some typos in documentation, brought documentation into line with the recommended 80 character maximum width for each line.</p>
+<ul>
+<li><p>Internal rewrites to make maintenance easier and produce a few very small increases in speed in several functions.</p></li>
+<li><p>Fixed some typos in documentation, brought documentation into line with the recommended 80 character maximum width for each line.</p></li>
+</ul>
 </div>
     <div id="hansard-056" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.6">
 <a href="#hansard-056" class="anchor"></a>hansard 0.5.6<small> Unreleased </small>
 </h1>
-<p>Fixed bug on <code><a href="../reference/constituencies.html">constituencies()</a></code> so that the <code>NULL</code> default value of parameter <code>current</code> works properly.</p>
+<ul>
+<li>Fixed bug on <code><a href="../reference/constituencies.html">constituencies()</a></code> so that the <code>NULL</code> default value of parameter <code>current</code> works properly.</li>
+</ul>
 </div>
     <div id="hansard-055" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.5">
 <a href="#hansard-055" class="anchor"></a>hansard 0.5.5<small> 2017-10-09 </small>
 </h1>
 <div id="function-changes-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#function-changes-1" class="anchor"></a>Function changes</h2>
-<p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (#4, <a href='https://github.com/pssguy'>@pssguy</a>)</p>
+<p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/pssguy'>@pssguy</a>)</p>
 <p>New function <code><a href="../reference/lords_sessions.html">lords_sessions()</a></code> returns a tibble with details of all sessions in the House of Lords between two given dates.</p>
 </div>
 <div id="bug-fixes-4" class="section level2">
@@ -321,7 +352,7 @@
 </div>
 </div>
     <div id="hansard-054" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.4">
 <a href="#hansard-054" class="anchor"></a>hansard 0.5.4<small> Unreleased </small>
 </h1>
 <div id="general-improvements-1" class="section level2">
@@ -333,7 +364,7 @@
 </div>
 </div>
     <div id="hansard-053" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.3">
 <a href="#hansard-053" class="anchor"></a>hansard 0.5.3<small> Unreleased </small>
 </h1>
 <div id="new-features" class="section level2">
@@ -358,7 +389,7 @@
 </div>
 </div>
     <div id="hansard-052" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.2">
 <a href="#hansard-052" class="anchor"></a>hansard 0.5.2<small> 2017-08-13 </small>
 </h1>
 <div id="new-features-1" class="section level2">
@@ -380,7 +411,7 @@
 </div>
 </div>
     <div id="hansard-050" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.5.0">
 <a href="#hansard-050" class="anchor"></a>hansard 0.5.0<small> 2017-07-10 </small>
 </h1>
 <div id="new-features-2" class="section level2">
@@ -396,7 +427,7 @@
 </div>
 </div>
     <div id="hansard-049" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.9">
 <a href="#hansard-049" class="anchor"></a>hansard 0.4.9<small> Unreleased </small>
 </h1>
 <div id="new-features-3" class="section level2">
@@ -416,7 +447,7 @@
 </div>
 </div>
     <div id="hansard-048" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.8">
 <a href="#hansard-048" class="anchor"></a>hansard 0.4.8<small> Unreleased </small>
 </h1>
 <div id="new-features-4" class="section level2">
@@ -428,7 +459,7 @@
 </div>
 </div>
     <div id="hansard-047" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.7">
 <a href="#hansard-047" class="anchor"></a>hansard 0.4.7<small> Unreleased </small>
 </h1>
 <div id="new-features-5" class="section level2">
@@ -447,7 +478,7 @@
 </div>
 </div>
     <div id="hansard-046" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.6">
 <a href="#hansard-046" class="anchor"></a>hansard 0.4.6<small> 2017-06-05 </small>
 </h1>
 <div id="new-features-6" class="section level2">
@@ -455,7 +486,7 @@
 <a href="#new-features-6" class="anchor"></a>New features</h2>
 <p>Added optional <code>tidy_style</code> parameter, allowing users to decide which style of “snake_case”, “camelCase” and “period.case” they want variable names to be in, if <code>tidy</code>=TRUE.</p>
 <p>The <code><a href="../reference/elections.html">elections()</a></code> function now accepts <code>start_date</code> and <code>end_date</code> parameters. As the API called by the <code><a href="../reference/elections.html">elections()</a></code> function only accepts one additional argument not included in the package (the label of the election), changed the <code>extra_args</code> parameter to <code>label</code> to query that argument.</p>
-<p>The <code>tidy</code> parameter now changes date values to POSIXct class with <code><a href="https://www.rdocumentation.org/packages/base/topics/as.POSIXlt">as.POSIXct()</a></code> when the API returns date information, or to POSIXct with the <code>parse_date_time</code> from the <code>lubridate</code> package where the API returns both date and time information.</p>
+<p>The <code>tidy</code> parameter now changes date values to POSIXct class with <code><a href="https://rdrr.io/r/base/as.POSIXlt.html">as.POSIXct()</a></code> when the API returns date information, or to POSIXct with the <code>parse_date_time</code> from the <code>lubridate</code> package where the API returns both date and time information.</p>
 <p><code>tidy</code> parameter now strips out more unneeded character strings from API response.</p>
 </div>
 <div id="bug-fixes-10" class="section level2">
@@ -465,17 +496,17 @@
 </div>
 </div>
     <div id="hansard-045" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.5">
 <a href="#hansard-045" class="anchor"></a>hansard 0.4.5<small> Unreleased </small>
 </h1>
 <div id="date-classes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#date-classes" class="anchor"></a>Date Classes</h2>
-<p><code><a href="../reference/hansard.html">hansard()</a></code> functions with <code>start_date</code> and <code>end_date</code> parameters now accept any input that can be coerced to a date with the <code><a href="https://www.rdocumentation.org/packages/base/topics/as.Date">as.Date()</a></code> function.</p>
+<p><code><a href="../reference/hansard.html">hansard()</a></code> functions with <code>start_date</code> and <code>end_date</code> parameters now accept any input that can be coerced to a date with the <code><a href="https://rdrr.io/r/base/as.Date.html">as.Date()</a></code> function.</p>
 </div>
 </div>
     <div id="hansard-044" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.4">
 <a href="#hansard-044" class="anchor"></a>hansard 0.4.4<small> Unreleased </small>
 </h1>
 <div id="election-types" class="section level2">
@@ -497,7 +528,7 @@
 </div>
 </div>
     <div id="hansard-043" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.3">
 <a href="#hansard-043" class="anchor"></a>hansard 0.4.3<small> Unreleased </small>
 </h1>
 <div id="voting-margins" class="section level2">
@@ -507,7 +538,7 @@
 </div>
 </div>
     <div id="hansard-042" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.2">
 <a href="#hansard-042" class="anchor"></a>hansard 0.4.2<small> Unreleased </small>
 </h1>
 <div id="tibbling" class="section level2">
@@ -517,14 +548,14 @@
 </div>
 </div>
     <div id="hansard-041" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.1">
 <a href="#hansard-041" class="anchor"></a>hansard 0.4.1<small> Unreleased </small>
 </h1>
-<p>Fixes discrepency between output displayed and vignette and actual package output (#7, <a href='https://github.com/pssguy'>@pssguy</a>).</p>
+<p>Fixes discrepency between output displayed and vignette and actual package output (<a href='https://github.com/EvanOdell/hansard/issues/7'>#7</a>, <a href='https://github.com/pssguy'>@pssguy</a>).</p>
 <p>tidy parameter in <code><a href="../reference/members_search.html">members_search()</a></code> now does some additional tidying up.</p>
 </div>
     <div id="hansard-040" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.4.0">
 <a href="#hansard-040" class="anchor"></a>hansard 0.4.0<small> 2017-03-24 </small>
 </h1>
 <p>Major re-write, breaks compatibility with previous versions, please check your code to ensure it still works with the new package, as console input functionality has been removed from all functions. These changes ensure greater consistency insyntax across the package, in both the body and formals of the functions.</p>
@@ -559,18 +590,18 @@
 <p>Adding of <code>research_briefings_lists()</code> functions.</p>
 </div>
     <div id="hansard-034" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.4">
 <a href="#hansard-034" class="anchor"></a>hansard 0.3.4<small> 2016-12-13 </small>
 </h1>
 <div id="bug-fixes-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-12" class="anchor"></a>Bug fixes</h2>
-<p>The <code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (#4, <a href='https://github.com/meenaparam'>@meenaparam</a>)</p>
+<p>The <code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/meenaparam'>@meenaparam</a>)</p>
 <p>Fixed spelling of amendments, so that <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> is now <code><a href="../reference/lords_amendments.html">lords_amendments()</a></code>. The <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> function has been deprecated, and will be removed in a future release.</p>
 </div>
 </div>
     <div id="hansard-033" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.3">
 <a href="#hansard-033" class="anchor"></a>hansard 0.3.3<small> Unreleased </small>
 </h1>
 <div id="bug-fixes-13" class="section level2">
@@ -579,7 +610,7 @@
 </div>
 </div>
     <div id="hansard-032" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.2">
 <a href="#hansard-032" class="anchor"></a>hansard 0.3.2<small> Unreleased </small>
 </h1>
 <div id="bug-fixes-14" class="section level2">
@@ -588,7 +619,7 @@
 </div>
 </div>
     <div id="hansard-030" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.3.0">
 <a href="#hansard-030" class="anchor"></a>hansard 0.3.0<small> Unreleased </small>
 </h1>
 <div id="requesting-data-through-function-parameters" class="section level2">
@@ -608,7 +639,7 @@
 </div>
 </div>
     <div id="hansard-025" class="section level1">
-<h1 class="page-header">
+<h1 class="page-header" data-toc-text="0.2.5">
 <a href="#hansard-025" class="anchor"></a>hansard 0.2.5<small> 2016-11-12 </small>
 </h1>
 <div id="introducing-the-hansard-package" class="section level2">
@@ -620,44 +651,14 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#hansard-070">0.7.0</a></li>
-        <li><a href="#hansard-063">0.6.3</a></li>
-        <li><a href="#hansard-062">0.6.2</a></li>
-        <li><a href="#hansard-061">0.6.1</a></li>
-        <li><a href="#hansard-060">0.6.0</a></li>
-        <li><a href="#hansard-059">0.5.9</a></li>
-        <li><a href="#hansard-058">0.5.8</a></li>
-        <li><a href="#hansard-057">0.5.7</a></li>
-        <li><a href="#hansard-056">0.5.6</a></li>
-        <li><a href="#hansard-055">0.5.5</a></li>
-        <li><a href="#hansard-054">0.5.4</a></li>
-        <li><a href="#hansard-053">0.5.3</a></li>
-        <li><a href="#hansard-052">0.5.2</a></li>
-        <li><a href="#hansard-050">0.5.0</a></li>
-        <li><a href="#hansard-049">0.4.9</a></li>
-        <li><a href="#hansard-048">0.4.8</a></li>
-        <li><a href="#hansard-047">0.4.7</a></li>
-        <li><a href="#hansard-046">0.4.6</a></li>
-        <li><a href="#hansard-045">0.4.5</a></li>
-        <li><a href="#hansard-044">0.4.4</a></li>
-        <li><a href="#hansard-043">0.4.3</a></li>
-        <li><a href="#hansard-042">0.4.2</a></li>
-        <li><a href="#hansard-041">0.4.1</a></li>
-        <li><a href="#hansard-040">0.4.0</a></li>
-        <li><a href="#hansard-034">0.3.4</a></li>
-        <li><a href="#hansard-033">0.3.3</a></li>
-        <li><a href="#hansard-032">0.3.2</a></li>
-        <li><a href="#hansard-030">0.3.0</a></li>
-        <li><a href="#hansard-025">0.2.5</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -665,13 +666,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

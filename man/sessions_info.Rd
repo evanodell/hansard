@@ -5,13 +5,25 @@
 \alias{hansard_sessions_info}
 \title{Parliamentary Session data}
 \usage{
-sessions_info(days = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+sessions_info(
+  days = FALSE,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_sessions_info(days = FALSE, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+hansard_sessions_info(
+  days = FALSE,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{days}{If \code{TRUE}, returns data for all available days. If

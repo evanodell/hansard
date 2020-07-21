@@ -5,12 +5,23 @@
 \alias{hansard_epetition}
 \title{Individual epetitions}
 \usage{
-epetition(ID = NULL, by_constituency = FALSE, extra_args = NULL,
-  tidy = TRUE, tidy_style = "snake", verbose = TRUE)
+epetition(
+  ID = NULL,
+  by_constituency = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_epetition(ID = NULL, by_constituency = FALSE,
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_epetition(
+  ID = NULL,
+  by_constituency = FALSE,
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{The ID of a given petition. If \code{NULL}, returns all

@@ -5,15 +5,29 @@
 \alias{hansard_mp_vote_record}
 \title{Individual MP voting records}
 \usage{
-mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+mp_vote_record(
+  mp_id = NULL,
+  lobby = "all",
+  session = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_mp_vote_record(mp_id = NULL, lobby = "all", session = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_mp_vote_record(
+  mp_id = NULL,
+  lobby = "all",
+  session = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{mp_id}{The ID number of a member of the House of Commons.}

@@ -5,14 +5,27 @@
 \alias{hansard_publication_logs}
 \title{House publications}
 \usage{
-publication_logs(ID = NULL, house = NULL, start_date = "1900-01-01",
-  end_date = Sys.Date(), extra_args = NULL, tidy = TRUE,
-  tidy_style = "snake", verbose = TRUE)
+publication_logs(
+  ID = NULL,
+  house = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 
-hansard_publication_logs(ID = NULL, house = NULL,
-  start_date = "1900-01-01", end_date = Sys.Date(),
-  extra_args = NULL, tidy = TRUE, tidy_style = "snake",
-  verbose = TRUE)
+hansard_publication_logs(
+  ID = NULL,
+  house = NULL,
+  start_date = "1900-01-01",
+  end_date = Sys.Date(),
+  extra_args = NULL,
+  tidy = TRUE,
+  tidy_style = "snake",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{ID}{Publication ID. Defaults to \code{NULL}. If not \code{NULL},

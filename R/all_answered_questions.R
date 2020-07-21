@@ -155,7 +155,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     )
 
     tabling_member_query <- ifelse(
-      is.null(tabling_mp_id) == TRUE || is.na(tabling_mp_id) == TRUE, "",
+      is.null(tabling_mp_id)|| is.na(tabling_mp_id), "",
       paste0(
         "&tablingMember=http://data.parliament.uk/members/", tabling_mp_id
       )
@@ -166,7 +166,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     )
     ## In case departmental IDs are passed as strings.
 
-    if (is.null(answering_body) == TRUE || is.na(answering_body) == TRUE) {
+    if (is.null(answering_body) || is.na(answering_body)) {
       dept_query <- ""
     } else if (is.na(answering_body_check) == FALSE) {
       dept_query <- paste0("&answeringDeptId=", answering_body)
