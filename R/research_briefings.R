@@ -52,7 +52,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     message("Connecting to API")
   }
 
-  if (is.null(topic) == TRUE & is.null(subtopic) == TRUE) {
+  if (is.null(topic) & is.null(subtopic)) {
     type_query <- ifelse(
       is.null(type) == FALSE,
       utils::URLencode(
@@ -92,22 +92,27 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     subtopic_query <- ifelse(
       is.null(subtopic) == FALSE,
-      utils::URLencode(paste0("/", subtopic)),
+
       ""
     )
 
-    topic_query <- ifelse(
-      is.null(topic) == FALSE,
-      utils::URLencode(topic),
-      ""
-    )
+    if (!is.null(subtopic)) {
+      subtopic_query <- utils::URLencode(paste0("/", subtopic))
+    } else {
+      subtopic_query <- ""
+    }
 
-    null_type_query <- ifelse(
-      is.null(type) == FALSE, utils::URLencode(
-        paste0("&subType.prefLabel=", type)
-      ),
-      ""
-    )
+    if (!is.null(topic)) {
+      topic_query <-  utils::URLencode(topic)
+    } else {
+      topic_query <- ""
+    }
+
+    if (!is.null(type)) {
+      null_type_query <- paste0("&subType.prefLabel=", type)
+    } else {
+      null_type_query <- ""
+    }
 
     baseurl <- paste0(url_util, "researchbriefings/bridgeterm/")
 

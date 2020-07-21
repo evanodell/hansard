@@ -3,7 +3,7 @@ context("all_answered_questions part1")
 
 test_that("all_answered_questions return expected format", {
   skip_on_cran()
-#skip_on_travis(Sys.getenv(x = "TRAVIS_R_VERSION_STRING"))
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   aaqx <- hansard_all_answered_questions(
     mp_id = c(4019, 3980),

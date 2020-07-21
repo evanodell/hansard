@@ -30,12 +30,12 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
     ID <- paste0("/", ID)
   }
 
+  if (by_constituency) {
+    json_query <- "/signaturesbyconstituency.json?"
+  } else {
+    json_query <- ".json?"
+  }
 
-  json_query <- ifelse(
-    by_constituency == TRUE,
-    "/signaturesbyconstituency.json?",
-    ".json?"
-  )
 
   baseurl <- paste0(url_util, "epetitions")
 

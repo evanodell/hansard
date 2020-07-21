@@ -46,19 +46,19 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
                            start_date = "1900-01-01", end_date = Sys.Date(),
                            extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake", verbose = TRUE) {
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     stop("mp_id must not be empty", call. = FALSE)
   }
 
-  if (is.null(extra_args) == FALSE) {
+  if (!is.null(extra_args)) {
     extra_args <- utils::URLencode(extra_args)
   }
 
-  session_query <- ifelse(
-    is.null(session) == FALSE,
-    paste0("&session=", session),
-    ""
-  )
+  if(!is.null(session)) {
+    session_query <- paste0("&session=", session)
+  } else {
+    session_query <- ""
+  }
 
   lobby <- tolower(lobby)
 

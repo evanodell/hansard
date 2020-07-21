@@ -20,11 +20,13 @@
 #' }
 lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake", verbose = TRUE) {
-  json_query <- ifelse(
-    is.null(peer_id) == TRUE,
-    ".json?",
-    paste0(".json?member=", peer_id)
-  )
+
+
+  if(is.null(peer_id)){
+    json_query <-    ".json?"
+  } else {
+    json_query <-     paste0(".json?member=", peer_id)
+  }
 
   baseurl <- paste0(url_util, "lordsregisteredinterests")
 

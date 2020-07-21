@@ -36,11 +36,12 @@
 #'
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
                     tidy_style = "snake", verbose = TRUE) {
-  id_query <- ifelse(
-    is.null(ID) == TRUE,
-    ".json?",
-    paste0("/", ID, ".json?")
-  )
+
+  if(is.null(ID)) {
+    id_query <-".json?"
+  } else {
+    id_query <- paste0("/", ID, ".json?")
+  }
 
   baseurl <- paste0(url_util, "members")
 

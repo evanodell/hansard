@@ -65,13 +65,14 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
     paste0("&bill=http://data.parliament.uk/resources/", ID)
   )
 
-  pub_query <- ifelse(is.null(publication_type),
-    "",
-    utils::URLencode(paste0(
+  if (is.null(publication_type)) {
+    pub_query <- ""
+  } else {
+    pub_query <-  utils::URLencode(paste0(
       "&publicationType=",
       publication_type
     ))
-  )
+  }
 
   if (verbose == TRUE) {
     message("Connecting to API")

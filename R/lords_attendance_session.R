@@ -41,11 +41,12 @@
 lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
                                      tidy = TRUE, tidy_style = "snake",
                                      verbose = TRUE) {
-  json_query <- ifelse(
-    is.null(session_id) == FALSE,
-    paste0("/", session_id, ".json?"),
-    ".json?"
-  )
+
+  if(!is.null(session_id)) {
+    json_query <- paste0("/", session_id, ".json?")
+  } else {
+    json_query <-     ".json?"
+  }
 
   baseurl <- paste0(url_util, "lordsattendances")
 

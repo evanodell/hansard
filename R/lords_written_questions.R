@@ -72,25 +72,27 @@ lords_written_questions <- function(peer_id = NULL,
     )
 
 
-    peer_id <- ifelse(
-      is.null(peer_id) == FALSE && is.na(peer_id) == FALSE,
-      utils::URLencode(
+    if (!is.null(peer_id) && !is.na(peer_id)) {
+      peer_id <- utils::URLencode(
         paste0(
           "&tablingMember=http://data.parliament.uk/members/",
           peer_id
         )
-      ),
-      ""
-    )
+      )
+    } else {
+      peer_id <- ""
+    }
 
-    dept_query <- ifelse(
-      is.null(answering_department) == FALSE &&
-        is.na(answering_department) == FALSE,
-      utils::URLencode(
+
+    if (!is.null(answering_department) &&
+        !is.na(answering_department)) {
+      dept_query <- utils::URLencode(
         paste0("/answeringdepartment.json?q=", answering_department)
-      ),
-      ".json?"
-    )
+      )
+    } else {
+      dept_query <-  ".json?"
+    }
+
 
     baseurl <- paste0(url_util, "lordswrittenquestions")
 
