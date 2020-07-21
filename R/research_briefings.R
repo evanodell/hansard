@@ -53,13 +53,13 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
   }
 
   if (is.null(topic) & is.null(subtopic)) {
-    type_query <- ifelse(
-      is.null(type) == FALSE,
-      utils::URLencode(
+    if (!is.null(type)) {
+      type_query <- utils::URLencode(
         paste0("&subType.prefLabel=", type)
-      ),
-      ""
-    )
+      )
+    } else {
+      type_query <- ""
+    }
 
     baseurl <- paste0(url_util, "researchbriefings.json?")
 
@@ -90,12 +90,6 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       topic <- names(hansard::research_subtopics_list())[dex]
     }
 
-    subtopic_query <- ifelse(
-      is.null(subtopic) == FALSE,
-
-      ""
-    )
-
     if (!is.null(subtopic)) {
       subtopic_query <- utils::URLencode(paste0("/", subtopic))
     } else {
@@ -103,7 +97,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     }
 
     if (!is.null(topic)) {
-      topic_query <-  utils::URLencode(topic)
+      topic_query <- utils::URLencode(topic)
     } else {
       topic_query <- ""
     }

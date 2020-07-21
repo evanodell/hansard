@@ -56,17 +56,17 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
                               end_date = Sys.Date(), signatures = 1,
                               extra_args = NULL, tidy = TRUE,
                               tidy_style = "snake", verbose = TRUE) {
-  edm_query <- ifelse(
-    is.null(edm_id) == FALSE,
-    paste0("&edmNumber=", edm_id),
-    ""
-  )
+  if (!is.null(edm_id)) {
+    edm_query <- paste0("&edmNumber=", edm_id)
+  } else {
+    edm_query <- ""
+  }
 
-  session_query <- ifelse(
-    is.null(session) == FALSE,
-    paste0("&session.=", session),
-    ""
-  )
+  if (!is.null(session)) {
+    session_query <- paste0("&session.=", session)
+  } else {
+    session_query <- ""
+  }
 
   dates <- paste0(
     "&_properties=dateTabled&max-dateTabled=", as.Date(end_date),

@@ -59,7 +59,6 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
       extra_args, verbose
     )
   } else {
-
     dates <- paste0(
       "&_properties=AnswerDate&max-AnswerDate=",
       as.Date(end_date),

@@ -85,12 +85,12 @@ lords_written_questions <- function(peer_id = NULL,
 
 
     if (!is.null(answering_department) &&
-        !is.na(answering_department)) {
+      !is.na(answering_department)) {
       dept_query <- utils::URLencode(
         paste0("/answeringdepartment.json?q=", answering_department)
       )
     } else {
-      dept_query <-  ".json?"
+      dept_query <- ".json?"
     }
 
 

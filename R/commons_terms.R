@@ -25,10 +25,11 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
                           verbose = TRUE) {
   warning("Search functions are not consistently working on the API")
 
-  search_query <- ifelse(
-    is.null(search) == FALSE,
-    paste0("&_search=", utils::URLencode(search)), NULL
-  )
+  if (!is.null(search)) {
+    search_query <- paste0("&_search=", utils::URLencode(search))
+  } else {
+    search_query <- NULL
+  }
 
   if (is.null(class) == FALSE) {
     class_list <- list(

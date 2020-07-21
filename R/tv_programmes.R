@@ -114,11 +114,12 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     "&min-startDate=", as.Date(start_date), "T00:00:00Z"
   )
 
-  member_query <- ifelse(
-    is.null(mp_id) == FALSE,
-    paste0("&member=http://data.parliament.uk/members/", mp_id),
-    ""
-  )
+
+  if (!is.null(mp_id)) {
+    member_query <- paste0("&member=http://data.parliament.uk/members/", mp_id)
+  } else {
+    member_query <- ""
+  }
 
   baseurl <- paste0(url_util, "tvclips.json?")
 

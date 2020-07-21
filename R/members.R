@@ -36,9 +36,8 @@
 #'
 members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
                     tidy_style = "snake", verbose = TRUE) {
-
-  if(is.null(ID)) {
-    id_query <-".json?"
+  if (is.null(ID)) {
+    id_query <- ".json?"
   } else {
     id_query <- paste0("/", ID, ".json?")
   }

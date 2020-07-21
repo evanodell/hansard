@@ -59,14 +59,15 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     paste0("&status=", status)
   )
 
-  signature_query <- ifelse(
-    is.null(max_signatures) == TRUE,
-    paste0("&min-numberOfSignatures=", min_signatures),
-    paste0(
+
+  if (is.null(max_signatures)) {
+    signature_query <- paste0("&min-numberOfSignatures=", min_signatures)
+  } else {
+    signature_query <- paste0(
       "&min-numberOfSignatures=", min_signatures,
       "&max-numberOfSignatures=", max_signatures
     )
-  )
+  }
 
   baseurl <- paste0(url_util, "epetitions.json?")
 

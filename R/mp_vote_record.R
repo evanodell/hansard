@@ -54,7 +54,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     extra_args <- utils::URLencode(extra_args)
   }
 
-  if(!is.null(session)) {
+  if (!is.null(session)) {
     session_query <- paste0("&session=", session)
   } else {
     session_query <- ""

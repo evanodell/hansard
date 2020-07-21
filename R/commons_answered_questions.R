@@ -71,11 +71,11 @@ commons_answered_questions <- function(answering_department = NULL,
       "&min-dateOfAnswer=", as.Date(start_date)
     )
 
-    if (!is.null(answered_by)&& !is.na(answered_by)) {
-    answered_by <- paste0(
-      "&answeringMember=http://data.parliament.uk/members/",
-      answered_by
-    )
+    if (!is.null(answered_by) && !is.na(answered_by)) {
+      answered_by <- paste0(
+        "&answeringMember=http://data.parliament.uk/members/",
+        answered_by
+      )
     } else {
       answered_by <- ""
     }

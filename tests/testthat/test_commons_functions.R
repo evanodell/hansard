@@ -89,7 +89,7 @@ test_that("commons functions return expected format", {
 
 
   xcwq_single <- hansard_commons_written_questions(
-    mp_id = 4830, start_date = "2020-01-01", end_date="2020-07-20"
+    mp_id = 4830, start_date = "2020-01-01", end_date = "2020-07-20"
   )
 
   expect_length(xcwq_single, 12)

@@ -68,7 +68,7 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
   if (is.null(publication_type)) {
     pub_query <- ""
   } else {
-    pub_query <-  utils::URLencode(paste0(
+    pub_query <- utils::URLencode(paste0(
       "&publicationType=",
       publication_type
     ))

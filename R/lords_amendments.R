@@ -40,15 +40,15 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     "&max-bill.date=", as.Date(end_date)
   )
 
-  decision_query <- ifelse(
-    is.null(decision) == FALSE,
-    paste0("&decision=", gsub(
+  if (!is.null(decision)) {
+    decision_query <- paste0("&decision=", gsub(
       "\\b([[:lower:]])([[:lower:]]+)", "\\U\\1\\L\\2",
       tolower(decision),
       perl = TRUE
-    )),
-    ""
-  )
+    ))
+  } else {
+    decision_query <- ""
+  }
 
   baseurl <- paste0(url_util, "lordsbillamendments.json?")
 

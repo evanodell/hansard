@@ -31,15 +31,14 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
                                         extra_args = NULL, tidy = TRUE,
                                         tidy_style = "snake",
                                         verbose = TRUE) {
-
-  if(!is.null(session)) {
+  if (!is.null(session)) {
     session_query <- utils::URLencode(paste0("session=", session))
   } else {
     session_query <- ""
   }
 
 
-  if(!is.null(question_id)) {
+  if (!is.null(question_id)) {
     question_query <- paste0("/", question_id)
   } else {
     question_query <- ""

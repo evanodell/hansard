@@ -147,7 +147,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     }
 
 
-    if(is.null(mp_id) || is.na(mp_id)) {
+    if (is.null(mp_id) || is.na(mp_id)) {
       answering_member_query <- ""
     } else {
       answering_member_query <- paste0(
@@ -156,7 +156,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       )
     }
 
-    if(   is.null(tabling_mp_id)|| is.na(tabling_mp_id)) {
+    if (is.null(tabling_mp_id) || is.na(tabling_mp_id)) {
       tabling_member_query <- ""
     } else {
       tabling_member_query <- paste0(
