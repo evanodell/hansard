@@ -71,21 +71,20 @@ commons_answered_questions <- function(answering_department = NULL,
       "&min-dateOfAnswer=", as.Date(start_date)
     )
 
-    answered_by <- ifelse(
-      is.null(answered_by) == FALSE && is.na(answered_by) == FALSE,
-      paste0(
-        "&answeringMember=http://data.parliament.uk/members/",
-        answered_by
-      ),
-      ""
+    if (!is.null(answered_by)&& !is.na(answered_by)) {
+    answered_by <- paste0(
+      "&answeringMember=http://data.parliament.uk/members/",
+      answered_by
     )
+    } else {
+      answered_by <- ""
+    }
 
     dept_query <- NULL
 
     answering_dept_query <- NULL
 
-    if (is.null(answering_department) == FALSE &&
-      is.na(answering_department) == FALSE) {
+    if (!is.null(answering_department) && !is.na(answering_department)) {
       dept_query <- "/answeringdepartment"
 
       answering_dept_query <- paste0("q=", answering_department)
