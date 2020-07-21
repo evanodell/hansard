@@ -4,7 +4,7 @@ context("lords part 2 functions")
 
 test_that("lords functions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   # Divisions
   ldivsum <- hansard_lords_divisions(

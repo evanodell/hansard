@@ -3,7 +3,7 @@ context("bills")
 
 test_that("bills return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   xb <- hansard_bills(start_date = "2017-07-01", verbose = TRUE)
   expect_length(xb, 10)

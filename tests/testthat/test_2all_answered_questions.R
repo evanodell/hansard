@@ -4,7 +4,7 @@ context("all_answered_questions part2")
 
 test_that("all_answered_questions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   anameid <- hansard_all_answered_questions(
     house = "lords", answering_body = 60,

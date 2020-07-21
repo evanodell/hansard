@@ -4,7 +4,7 @@ context("election_candidates")
 
 test_that("election_candidates return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
   # skip_on_travis()
 
   xec <- hansard_election_candidates(ID = 650517, verbose = TRUE)

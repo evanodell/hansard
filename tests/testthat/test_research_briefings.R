@@ -4,7 +4,7 @@ context("research_briefings")
 
 test_that("research_briefings return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   rtl <- hansard_research_topics_list()
   expect_is(rtl, "list")

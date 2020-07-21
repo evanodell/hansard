@@ -3,7 +3,7 @@ context("epetitions")
 
 test_that("epetitions functions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   epetit <- hansard_epetition(
     ID = 706964,

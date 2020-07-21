@@ -3,7 +3,7 @@ context("constituencies")
 
 test_that("constituencies functions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   ctx <- hansard_constituencies(current = TRUE, verbose = TRUE)
   expect_length(ctx, 7)

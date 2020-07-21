@@ -3,7 +3,7 @@ context("members")
 
 test_that("members functions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   # Members search
   # msabbot <- hansard_members_search(search = "*abbot*", verbose = TRUE)

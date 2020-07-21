@@ -75,19 +75,14 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
       message("Connecting to API")
     }
 
-    oral <- jsonlite::fromJSON(paste0(
-      baseurl, json_query,
-      dates, extra_args, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
-
-    jpage <- floor(oral$result$totalResults / 100)
-
     query <- paste0(
-      baseurl, json_query, mp_id_query, dates,
+      baseurl, json_query, dates,
       extra_args
     )
+
+    oral <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+
+    jpage <- floor(oral$result$totalResults / 100)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

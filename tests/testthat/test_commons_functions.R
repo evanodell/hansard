@@ -4,7 +4,7 @@ context("commons functions")
 
 test_that("commons functions return expected format", {
   skip_on_cran()
-#skip_on_travis()
+  skip_if(Sys.getenv(x = "TRAVIS_R_VERSION_STRING") == "devel")
 
   xcaq <- hansard_commons_answered_questions(
     answering_department = c("health", "education"),
