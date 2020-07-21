@@ -4,7 +4,7 @@ context("election_results")
 
 test_that("election_results return expected format", {
   skip_on_cran()
-  skip_on_travis()
+#skip_on_travis()
 
   elect_all_data <- hansard_election_results(
     ID = 382037,
