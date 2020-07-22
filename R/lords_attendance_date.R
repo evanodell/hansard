@@ -36,9 +36,7 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
   baseurl <- paste0(url_util, "lordsattendances/date/")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
   attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"),
     flatten = TRUE

@@ -71,24 +71,20 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
 
   baseurl <- paste0(url_util, "epetitions.json?")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
-
-  petition <- jsonlite::fromJSON(paste0(
-    baseurl, status_query,
-    signature_query, dates,
-    extra_args, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
-
-  jpage <- floor(petition$result$totalResults / 100)
+  veb(verbose)
 
   query <- paste0(
     baseurl, status_query, signature_query,
     dates, extra_args
   )
+
+  petition <- jsonlite::fromJSON(paste0(
+    query, "&_pageSize=1"
+  ),
+  flatten = TRUE
+  )
+
+  jpage <- floor(petition$result$totalResults / 100)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

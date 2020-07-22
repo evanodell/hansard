@@ -94,16 +94,17 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
       baseurl <- paste0(url_util, "edmsignatures.json?")
 
+      veb(verbose)
+
+      query <- paste0(baseurl, z_query, dates, extra_args)
+
       edms <- jsonlite::fromJSON(paste0(
-        baseurl, z_query, dates,
-        extra_args, "&_pageSize=1"
+        query, "&_pageSize=1"
       ),
       flatten = TRUE
       )
 
       jpage <- floor(edms$result$totalResults / 100)
-
-      query <- paste0(baseurl, z_query, dates, extra_args)
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

@@ -41,15 +41,13 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     baseurl <- paste0(url_util, "members.json?_search=")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
-
-    results <- jsonlite::fromJSON(paste0(baseurl, search))
-
-    jpage <- floor(results$result$totalResults / 100)
+    veb(verbose)
 
     query <- paste0(baseurl, search)
+
+    results <- jsonlite::fromJSON(query)
+
+    jpage <- floor(results$result$totalResults / 100)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

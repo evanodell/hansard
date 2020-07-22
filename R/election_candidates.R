@@ -38,20 +38,17 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
   baseurl <- paste0(url_util, "electionresults.json?")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
+
+  query <- paste0(baseurl, id_query, extra_args)
 
   elect <- jsonlite::fromJSON(paste0(
-    baseurl, id_query,
-    extra_args, "&_pageSize=1"
+    query, "&_pageSize=1"
   ),
   flatten = TRUE
   )
 
   jpage <- floor(elect$result$totalResults / 100)
-
-  query <- paste0(baseurl, id_query, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

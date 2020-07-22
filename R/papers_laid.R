@@ -53,20 +53,17 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
   baseurl <- paste0(url_util, "paperslaid.json?")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
+
+  query <- paste0(baseurl, withdrawn_query, house_query, dates, extra_args)
 
   papers <- jsonlite::fromJSON(paste0(
-    baseurl, withdrawn_query, house_query,
-    dates, extra_args, "&_pageSize=1"
+    query, "&_pageSize=1"
   ),
   flatten = TRUE
   )
 
   jpage <- floor(papers$result$totalResults / 100)
-
-  query <- paste0(baseurl, withdrawn_query, house_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

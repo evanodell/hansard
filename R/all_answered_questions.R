@@ -191,23 +191,19 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     baseurl <- paste0(url_util, "answeredquestions.json?")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
-
-    all <- jsonlite::fromJSON(paste0(
-      baseurl, answering_member_query,
-      tabling_member_query, house_query,
-      dept_query, dates, extra_args,
-      "&_pageSize=1"
-    ), flatten = TRUE)
-
-    jpage <- floor(all$result$totalResults / 100)
+    veb(verbose)
 
     query <- paste0(
       baseurl, answering_member_query, tabling_member_query,
       house_query, dept_query, dates, extra_args
     )
+
+    all <- jsonlite::fromJSON(paste0(
+      query,
+      "&_pageSize=1"
+    ), flatten = TRUE)
+
+    jpage <- floor(all$result$totalResults / 100)
 
     df <- loop_query_aaq(query, jpage, verbose) # in utils-loop.R
   }

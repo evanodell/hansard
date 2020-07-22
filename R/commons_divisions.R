@@ -63,28 +63,23 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
   if (is.null(division_id) & is.null(division_uin)) {
     baseurl <- paste0(url_util, "commonsdivisions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(baseurl, ".json?", dates, extra_args)
 
     divis <- jsonlite::fromJSON(paste0(
-      baseurl, ".json?", dates,
-      extra_args, "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(divis$result$totalResults / 100)
 
-    query <- paste0(baseurl, ".json?", dates, extra_args)
-
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (!is.null(division_id)) { # division_id queries
     baseurl <- paste0(url_util, "commonsdivisions/id/")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     divis <- jsonlite::fromJSON(paste0(
       baseurl, division_id,
@@ -103,9 +98,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
   } else if (!is.null(division_uin)) { # division_uin queries
     baseurl <- paste0(url_util, "commonsdivisions.json?uin=")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     divis <- jsonlite::fromJSON(paste0(
       baseurl, division_uin,

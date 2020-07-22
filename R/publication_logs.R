@@ -62,23 +62,16 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
 
   baseurl <- paste0(url_util, "publicationlogs")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
-  logs <- jsonlite::fromJSON(paste0(
-    baseurl, id_query, house_query,
-    dates, extra_args
-  ),
-  flatten = TRUE
-  )
+  query <- paste0(baseurl, id_query, house_query, dates, extra_args)
+
+  logs <- jsonlite::fromJSON(query, flatten = TRUE)
 
   if (is.null(ID) == FALSE) {
     df <- tibble::as_tibble(as.data.frame(logs$result$primaryTopic))
   } else {
     jpage <- floor(logs$result$totalResults / 100)
-
-    query <- paste0(baseurl, id_query, house_query, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

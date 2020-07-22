@@ -28,9 +28,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
     baseurl <- paste0(url_util, "commonsdivisions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     divis <- jsonlite::fromJSON(paste0(
       baseurl, ".json?", date,

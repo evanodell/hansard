@@ -92,9 +92,7 @@ commons_answered_questions <- function(answering_department = NULL,
 
     baseurl <- paste0(url_util, "commonsansweredquestions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     answered <- jsonlite::fromJSON(paste0(
       baseurl, dept_query, ".json?",

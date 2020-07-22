@@ -44,18 +44,14 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
   baseurl <- paste0(url_util, "members")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
-  q_members <- jsonlite::fromJSON(paste0(baseurl, id_query, extra_args),
-    flatten = TRUE
-  )
+query <- paste0(baseurl, id_query, extra_args)
+
+  q_members <- jsonlite::fromJSON(query, flatten = TRUE)
 
   if (is.null(ID) == TRUE) {
     jpage <- floor(q_members$result$totalResults / 100)
-
-    query <- paste0(baseurl, id_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

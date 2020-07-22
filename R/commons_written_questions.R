@@ -73,9 +73,7 @@ commons_written_questions <- function(mp_id = NULL,
 
     baseurl <- paste0(url_util, "commonswrittenquestions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     query <- paste0(baseurl, json_query, dates, extra_args)
 

@@ -71,41 +71,33 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
   if (lobby == "aye") {
     baseurl <- paste0(url_util, "commonsdivisions/aye.json?mnisId=")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
 
     url_aye <- jsonlite::fromJSON(paste0(
-      baseurl, mp_id, dates,
-      session_query, extra_args,
-      "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(url_aye$result$totalResults / 100)
 
-    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
-
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (lobby == "no") {
     baseurl <- paste0(url_util, "commonsdivisions/no.json?mnisId=")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
 
     url_no <- jsonlite::fromJSON(paste0(
-      baseurl, mp_id, dates,
-      session_query, extra_args,
-      "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(url_no$result$totalResults / 100)
-
-    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

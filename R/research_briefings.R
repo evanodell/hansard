@@ -48,9 +48,8 @@
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
                                tidy_style = "snake", verbose = TRUE) {
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+
+  veb(verbose)
 
   if (is.null(topic) & is.null(subtopic)) {
     if (!is.null(type)) {
@@ -63,16 +62,15 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     baseurl <- paste0(url_util, "researchbriefings.json?")
 
+    query <- paste0(baseurl, type_query, extra_args)
+
     research <- jsonlite::fromJSON(paste0(
-      baseurl, type_query,
-      extra_args, "&_pageSize=1"
+    query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(research$result$totalResults / 100)
-
-    query <- paste0(baseurl, type_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -110,21 +108,19 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     baseurl <- paste0(url_util, "researchbriefings/bridgeterm/")
 
+    query <- paste0(
+      baseurl, topic_query, subtopic_query,
+      ".json?", null_type_query, extra_args
+    )
+
     research <- jsonlite::fromJSON(paste0(
-      baseurl, topic_query,
-      subtopic_query, ".json?",
-      null_type_query, extra_args,
+      query,
       "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(research$result$totalResults / 100)
-
-    query <- paste0(
-      baseurl, topic_query, subtopic_query,
-      ".json?", null_type_query, extra_args
-    )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

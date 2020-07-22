@@ -77,9 +77,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
   baseurl <- paste0(url_util, "edms")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
   edms <- jsonlite::fromJSON(paste0(
     baseurl, ".json?", edm_query, dates,

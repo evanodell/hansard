@@ -96,20 +96,17 @@ lords_written_questions <- function(peer_id = NULL,
 
     baseurl <- paste0(url_util, "lordswrittenquestions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(baseurl, dept_query, peer_id, dates, extra_args)
 
     writ <- jsonlite::fromJSON(paste0(
-      baseurl, dept_query, peer_id,
-      dates, extra_args, "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(writ$result$totalResults / 100)
-
-    query <- paste0(baseurl, dept_query, peer_id, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

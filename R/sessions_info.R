@@ -51,18 +51,15 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
 
   baseurl <- paste0(url_util, "sessions")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+veb(verbose)
+
+  query <- paste0(baseurl, days_query, extra_args)
 
   session <- jsonlite::fromJSON(paste0(
-    baseurl, days_query,
-    extra_args, "&_pageSize=1"
+    query, "&_pageSize=1"
   ))
 
   jpage <- floor(session$result$totalResults / 100)
-
-  query <- paste0(baseurl, days_query, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

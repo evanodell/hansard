@@ -49,14 +49,11 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
 
   baseurl <- paste0(url_util, "lordsattendances")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
-  attend <- jsonlite::fromJSON(paste0(
-    baseurl, json_query,
-    extra_args
-  ), flatten = TRUE)
+  query <- paste0(baseurl, json_query, extra_args)
+
+  attend <- jsonlite::fromJSON(paste0(query), flatten = TRUE)
 
   if (is.null(session_id) == FALSE) {
     if (verbose == TRUE) {
@@ -66,8 +63,6 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
     jpage <- floor(attend$result$totalResults / 100)
-
-    query <- paste0(baseurl, json_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

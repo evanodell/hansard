@@ -36,7 +36,6 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
     json_query <- ".json?"
   }
 
-
   baseurl <- paste0(url_util, "epetitions")
 
   if (verbose == TRUE) {

@@ -70,9 +70,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
 
     baseurl <- paste0(url_util, "commonsoralquestions")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     query <- paste0(
       baseurl, json_query, dates,

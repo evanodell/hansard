@@ -52,22 +52,15 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
 
   baseurl <- paste0(url_util, "lordsbillamendments.json?")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
-  ammend <- jsonlite::fromJSON(paste0(
-    baseurl, decision_query,
-    dates, extra_args, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+  query <- paste0(baseurl, decision_query, dates, extra_args)
+
+  ammend <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
 
   jpage <- floor(ammend$result$totalResults / 100)
 
   pages <- list()
-
-  query <- paste0(baseurl, decision_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

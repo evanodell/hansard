@@ -57,12 +57,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
     leg_query <- ""
   }
 
-  baseurl <- paste0(url_util, "tvprogrammes.json?")
+  query <- paste0(url_util, "tvprogrammes.json?", leg_query, dates, extra_args)
 
-  tv <- jsonlite::fromJSON(paste0(
-    baseurl, leg_query, dates,
-    extra_args, "&_pageSize=1"
-  ),
+  tv <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"),
   flatten = TRUE
   )
 
@@ -71,8 +68,6 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
   }
 
   jpage <- floor(tv$result$totalResults / 100)
-
-  query <- paste0(baseurl, leg_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -121,18 +116,16 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     member_query <- ""
   }
 
-  baseurl <- paste0(url_util, "tvclips.json?")
+  veb(verbose)
 
-  tv <- jsonlite::fromJSON(paste0(
-    baseurl, member_query,
-    dates, extra_args
+  query <- paste0(url_util, "tvclips.json?", member_query, dates, extra_args)
+
+  tv <- jsonlite::fromJSON(paste0(query
   ),
   flatten = TRUE
   )
 
   jpage <- floor(tv$result$totalResults / 100)
-
-  query <- paste0(baseurl, member_query, dates, extra_args)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

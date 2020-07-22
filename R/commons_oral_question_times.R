@@ -46,22 +46,18 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
   baseurl <- paste0(url_util, "commonsoralquestiontimes")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
   if (is.null(question_id)) {
+    query <- paste0(baseurl, ".json?", session_query, extra_args)
+
     times <- jsonlite::fromJSON(paste0(
-      baseurl, ".json?",
-      session_query,
-      extra_args, "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(times$result$totalResults / 100)
-
-    query <- paste0(baseurl, ".json?", session_query, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {

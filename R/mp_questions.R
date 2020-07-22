@@ -139,13 +139,13 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         as.Date(start_date)
       )
 
-      wr <- jsonlite::fromJSON(paste0(baseurl, mp_id, dates, extra_args))
+      query <- paste0(baseurl, mp_id, dates, extra_args)
+
+      wr <- jsonlite::fromJSON(query)
 
       jpage <- floor(wr$result$totalResults / 100)
 
       pages <- list()
-
-      query <- paste0(baseurl, mp_id, dates, extra_args)
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
     }

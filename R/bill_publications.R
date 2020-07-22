@@ -74,22 +74,21 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
     ))
   }
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
+
+  query <- paste0(
+    baseurl, bill_id, dates, extra_args
+  )
 
   bills <- jsonlite::fromJSON(paste0(
-    baseurl, bill_id, dates,
-    extra_args, "&_pageSize=1"
+    query, "&_pageSize=1"
   ),
   flatten = TRUE
   )
 
   jpage <- floor(bills$result$totalResults / 100)
 
-  query <- paste0(
-    baseurl, bill_id, dates, extra_args
-  )
+
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

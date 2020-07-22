@@ -68,9 +68,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     baseurl <- paste0(url_util, "elections")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     elect <- jsonlite::fromJSON(paste0(
       baseurl, ID, dates,
@@ -93,23 +91,20 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
       ".json?"
     )
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
-
-    elect <- jsonlite::fromJSON(paste0(
-      baseurl, type_query, dates,
-      label, extra_args, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
-
-    jpage <- floor(elect$result$totalResults / 100)
+    veb(verbose)
 
     query <- paste0(
       baseurl, type_query, dates, label,
       extra_args
     )
+
+    elect <- jsonlite::fromJSON(paste0(
+      query, "&_pageSize=1"
+    ),
+    flatten = TRUE
+    )
+
+    jpage <- floor(elect$result$totalResults / 100)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }

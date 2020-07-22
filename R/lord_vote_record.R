@@ -95,24 +95,21 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
   } else {
     baseurl <- paste0(url_util, "lordsdivisions/")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(
+      baseurl, lobby, ".json?mnisId=", peer_id,
+      dates, extra_args
+    )
 
     content <- jsonlite::fromJSON(paste0(
-      baseurl, lobby, ".json?mnisId=",
-      peer_id, dates, extra_args,
+      query,
       "&_pageSize=1"
     ),
     flatten = TRUE
     )
 
     jpage <- floor(content$result$totalResults / 100)
-
-    query <- paste0(
-      baseurl, lobby, ".json?mnisId=", peer_id,
-      dates, extra_args
-    )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

@@ -54,26 +54,21 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
   if (is.null(division_id) == TRUE) {
     baseurl <- paste0(url_util, "lordsdivisions.json?")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
+
+    query <- paste0(baseurl, dates, extra_args)
 
     divis <- jsonlite::fromJSON(paste0(
-      baseurl, dates,
-      extra_args, "&_pageSize=1"
+      query, "&_pageSize=1"
     ))
 
     jpage <- floor(divis$result$totalResults / 100)
-
-    query <- paste0(baseurl, dates, extra_args)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
     baseurl <- paste0(url_util, "lordsdivisions/id/")
 
-    if (verbose == TRUE) {
-      message("Connecting to API")
-    }
+    veb(verbose)
 
     divis <- jsonlite::fromJSON(paste0(
       baseurl, division_id,
