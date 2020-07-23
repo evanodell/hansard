@@ -51,11 +51,10 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
     "&min-ddpModified=", as.Date(start_date)
   )
 
-  baseurl <- paste0(url_util, "paperslaid.json?")
-
   veb(verbose)
 
-  query <- paste0(baseurl, withdrawn_query, house_query, dates, extra_args)
+  query <- paste0(url_util, "paperslaid.json?", withdrawn_query,
+                  house_query, dates, extra_args)
 
   papers <- jsonlite::fromJSON(paste0(
     query, "&_pageSize=1"

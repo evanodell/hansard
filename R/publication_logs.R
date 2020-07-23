@@ -60,11 +60,9 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
     as.Date(start_date)
   )
 
-  baseurl <- paste0(url_util, "publicationlogs")
-
   veb(verbose)
 
-  query <- paste0(baseurl, id_query, house_query, dates, extra_args)
+  query <- paste0(url_util, "publicationlogs", id_query, house_query, dates, extra_args)
 
   logs <- jsonlite::fromJSON(query, flatten = TRUE)
 

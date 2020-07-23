@@ -44,13 +44,14 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     question_query <- ""
   }
 
-  baseurl <- paste0(url_util, "commonsoralquestiontimes")
+  query <- paste0(
+    url_util, "commonsoralquestiontimes", question_query,
+    ".json?", session_query, extra_args
+  )
 
   veb(verbose)
 
   if (is.null(question_id)) {
-    query <- paste0(baseurl, ".json?", session_query, extra_args)
-
     times <- jsonlite::fromJSON(paste0(
       query, "&_pageSize=1"
     ),
@@ -61,13 +62,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
-    mydata <- jsonlite::fromJSON(paste0(
-      baseurl, question_query,
-      ".json?", session_query,
-      extra_args
-    ),
-    flatten = TRUE
-    )
+    mydata <- jsonlite::fromJSON(query, flatten = TRUE)
 
     df <- tibble::tibble(
       `_about` = mydata$result$primaryTopic$`_about`,

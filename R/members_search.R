@@ -39,11 +39,9 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     search <- utils::URLencode(search)
 
-    baseurl <- paste0(url_util, "members.json?_search=")
-
     veb(verbose)
 
-    query <- paste0(baseurl, search)
+    query <- paste0(url_util, "members.json?_search=", search)
 
     results <- jsonlite::fromJSON(query)
 

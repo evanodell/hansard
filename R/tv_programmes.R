@@ -60,7 +60,7 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
   query <- paste0(url_util, "tvprogrammes.json?", leg_query, dates, extra_args)
 
   tv <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"),
-  flatten = TRUE
+    flatten = TRUE
   )
 
   if (verbose == TRUE) {
@@ -120,9 +120,8 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
 
   query <- paste0(url_util, "tvclips.json?", member_query, dates, extra_args)
 
-  tv <- jsonlite::fromJSON(paste0(query
-  ),
-  flatten = TRUE
+  tv <- jsonlite::fromJSON(paste0(query),
+    flatten = TRUE
   )
 
   jpage <- floor(tv$result$totalResults / 100)

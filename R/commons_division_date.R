@@ -26,20 +26,15 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
   } else {
     date <- paste0("&date=", as.character(date))
 
-    baseurl <- paste0(url_util, "commonsdivisions")
-
     veb(verbose)
 
+    query <- paste0(url_util, "commonsdivisions.json?", date, extra_args)
+
     divis <- jsonlite::fromJSON(paste0(
-      baseurl, ".json?", date,
-      extra_args, "&_pageSize=1"
+      query, "&_pageSize=1"
     ))
 
     jpage <- floor(divis$result$totalResults / 100)
-
-    query <- paste0(
-      baseurl, ".json?", date, extra_args
-    )
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

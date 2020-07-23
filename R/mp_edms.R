@@ -92,11 +92,10 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
         "&isSponsor=", tolower(sponsor)
       )
 
-      baseurl <- paste0(url_util, "edmsignatures.json?")
-
       veb(verbose)
 
-      query <- paste0(baseurl, z_query, dates, extra_args)
+      query <- paste0(url_util, "edmsignatures.json?", z_query,
+                      dates, extra_args)
 
       edms <- jsonlite::fromJSON(paste0(
         query, "&_pageSize=1"

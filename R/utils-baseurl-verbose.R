@@ -3,7 +3,7 @@ url_util <- "http://lda.data.parliament.uk/"
 
 
 veb <- function(verbose) {
-if (verbose) {
-  message("Connecting to API")
-}
+  if (verbose) {
+    message("Connecting to API")
+  }
 }

@@ -38,9 +38,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
 
   baseurl <- paste0(url_util, "epetitions")
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
   if (is.null(ID) == FALSE & by_constituency == FALSE) {
     petition <- jsonlite::fromJSON(paste0(

@@ -49,11 +49,9 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
     days_query <- "/days.json?"
   }
 
-  baseurl <- paste0(url_util, "sessions")
+  veb(verbose)
 
-veb(verbose)
-
-  query <- paste0(baseurl, days_query, extra_args)
+  query <- paste0(url_util, "sessions", days_query, extra_args)
 
   session <- jsonlite::fromJSON(paste0(
     query, "&_pageSize=1"

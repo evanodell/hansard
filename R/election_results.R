@@ -54,11 +54,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
                              tidy_style = "snake", verbose = TRUE) {
   id_query <- ifelse(is.null(ID), "", paste0("electionId=", ID))
 
-  baseurl <- paste0(url_util, "electionresults.json?")
-
   veb(verbose)
 
-  query <- paste0(baseurl, id_query, extra_args)
+  query <- paste0(url_util, "electionresults.json?", id_query, extra_args)
 
   elect <- jsonlite::fromJSON(paste0(
     query, "&_pageSize=1"

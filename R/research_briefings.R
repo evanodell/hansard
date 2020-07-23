@@ -48,7 +48,6 @@
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
                                tidy_style = "snake", verbose = TRUE) {
-
   veb(verbose)
 
   if (is.null(topic) & is.null(subtopic)) {
@@ -60,12 +59,10 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       type_query <- ""
     }
 
-    baseurl <- paste0(url_util, "researchbriefings.json?")
-
-    query <- paste0(baseurl, type_query, extra_args)
+    query <- paste0(url_util, "researchbriefings.json?", type_query, extra_args)
 
     research <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
+      query, "&_pageSize=1"
     ),
     flatten = TRUE
     )
@@ -106,10 +103,8 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       null_type_query <- ""
     }
 
-    baseurl <- paste0(url_util, "researchbriefings/bridgeterm/")
-
     query <- paste0(
-      baseurl, topic_query, subtopic_query,
+      url_util, "researchbriefings/bridgeterm/", topic_query, subtopic_query,
       ".json?", null_type_query, extra_args
     )
 

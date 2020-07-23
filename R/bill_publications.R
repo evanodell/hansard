@@ -51,8 +51,6 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
                               start_date = "1900-01-01", end_date = Sys.Date(),
                               extra_args = NULL, tidy = TRUE,
                               tidy_style = "snake", verbose = FALSE) {
-  baseurl <- paste0(url_util, "billpublications.json?")
-
   dates <- paste0(
     "&max-date=",
     as.Date(end_date),
@@ -77,18 +75,12 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
   veb(verbose)
 
   query <- paste0(
-    baseurl, bill_id, dates, extra_args
+    url_util, "billpublications.json?", bill_id, dates, extra_args
   )
 
-  bills <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+  bills <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
 
   jpage <- floor(bills$result$totalResults / 100)
-
-
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

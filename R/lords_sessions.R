@@ -32,27 +32,20 @@
 lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
                            tidy = TRUE, tidy_style = "snake",
                            verbose = TRUE) {
-  baseurl <- paste0(url_util, "lordsattendances.json?")
+  baseurl <- paste0()
 
   dates <- paste0(
     "&min-date=", as.Date(start_date),
     "&max-date=", as.Date(end_date)
   )
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
-  attend <- jsonlite::fromJSON(paste0(
-    baseurl, dates,
-    "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+  query <- paste0(url_util, "lordsattendances.json?", dates)
+
+  attend <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
 
   jpage <- floor(attend$result$totalResults / 100)
-
-  query <- paste0(baseurl, dates)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

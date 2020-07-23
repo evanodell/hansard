@@ -90,26 +90,17 @@ commons_answered_questions <- function(answering_department = NULL,
       answering_dept_query <- paste0("q=", answering_department)
     }
 
-    baseurl <- paste0(url_util, "commonsansweredquestions")
-
-    veb(verbose)
-
-    answered <- jsonlite::fromJSON(paste0(
-      baseurl, dept_query, ".json?",
-      answering_dept_query,
-      answered_by, dates,
-      extra_args, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
-
-    jpage <- floor(answered$result$totalResults / 100)
-
     query <- paste0(
-      baseurl, dept_query, ".json?",
+      url_util, "commonsansweredquestions", dept_query, ".json?",
       answering_dept_query, answered_by,
       dates, extra_args
     )
+
+    veb(verbose)
+
+    ans <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+
+    jpage <- floor(ans$result$totalResults / 100)
 
     df <- loop_query(query, jpage, verbose)
   }

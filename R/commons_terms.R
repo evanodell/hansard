@@ -48,26 +48,18 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     class_query <- NULL
   }
 
-  baseurl <- paste0(url_util, "terms.json?&_view=description")
-
   if (verbose == TRUE) {
     message("Connecting to API")
   }
 
-  terms <- jsonlite::fromJSON(paste0(
-    baseurl, search_query,
-    class_query, extra_args,
-    "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
-
-  jpage <- floor(terms$result$totalResults / 100)
-
   query <- paste0(
-    baseurl, search_query, class_query,
+    url_util, "terms.json?&_view=description", search_query, class_query,
     extra_args
   )
+
+  terms <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+
+  jpage <- floor(terms$result$totalResults / 100)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

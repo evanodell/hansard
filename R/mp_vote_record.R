@@ -67,13 +67,10 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     as.Date(end_date), "&min-date=",
     as.Date(start_date)
   )
-
+  veb(verbose)
   if (lobby == "aye") {
-    baseurl <- paste0(url_util, "commonsdivisions/aye.json?mnisId=")
 
-    veb(verbose)
-
-    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
+    query <- paste0(url_util, "commonsdivisions/aye.json?mnisId=", mp_id, dates, session_query, extra_args)
 
     url_aye <- jsonlite::fromJSON(paste0(
       query, "&_pageSize=1"
@@ -85,11 +82,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (lobby == "no") {
-    baseurl <- paste0(url_util, "commonsdivisions/no.json?mnisId=")
-
-    veb(verbose)
-
-    query <- paste0(baseurl, mp_id, dates, session_query, extra_args)
+    query <- paste0(url_util, "commonsdivisions/no.json?mnisId=", mp_id, dates, session_query, extra_args)
 
     url_no <- jsonlite::fromJSON(paste0(
       query, "&_pageSize=1"

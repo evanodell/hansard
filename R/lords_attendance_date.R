@@ -34,11 +34,10 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
 
   date_query <- as.Date(date)
 
-  baseurl <- paste0(url_util, "lordsattendances/date/")
-
   veb(verbose)
 
-  attend <- jsonlite::fromJSON(paste0(baseurl, date_query, ".json"),
+  attend <- jsonlite::fromJSON(
+    paste0(url_util, "lordsattendances/date/", date_query, ".json"),
     flatten = TRUE
   )
 

@@ -42,11 +42,9 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
     id_query <- paste0("/", ID, ".json?")
   }
 
-  baseurl <- paste0(url_util, "members")
-
   veb(verbose)
 
-query <- paste0(baseurl, id_query, extra_args)
+  query <- paste0(url_util, "members", id_query, extra_args)
 
   q_members <- jsonlite::fromJSON(query, flatten = TRUE)
 

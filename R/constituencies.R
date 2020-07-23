@@ -19,13 +19,13 @@
 #'
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake", verbose = TRUE) {
-  baseurl <- paste0(url_util, "constituencies.json?")
+  baseurl <- paste0(url_util, "constituencies.json?", extra_args)
 
   if (verbose == TRUE) {
     message("Connecting to API")
   }
 
-  conts <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
+  conts <- jsonlite::fromJSON(baseurl, flatten = TRUE)
 
   jpage <- floor(conts$result$totalResults / 100)
 
@@ -39,7 +39,7 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
     current_query <- ""
   }
 
-  query <- paste0(baseurl, extra_args, current_query)
+  query <- paste0(baseurl, current_query)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 

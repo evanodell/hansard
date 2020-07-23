@@ -64,12 +64,10 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
 
   amend_query <- ifelse(amendments, "withamendments.json?", ".json?")
 
-  baseurl <- paste0(url_util, "bills")
-
   veb(verbose)
 
   query <- paste0(
-    baseurl, amend_query,
+    url_util, "bills", amend_query,
     dates, id_query, extra_args
   )
 

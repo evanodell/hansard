@@ -75,9 +75,12 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
   sig_min <- paste0("&min-numberOfSignatures=", signatures)
 
-  baseurl <- paste0(url_util, "edms")
-
   veb(verbose)
+
+  query <- paste0(
+    url_util, "edms", ".json?", edm_query, dates, session_query, sig_min,
+    extra_args, "&_pageSize=100&_page="
+  )
 
   edms <- jsonlite::fromJSON(paste0(
     baseurl, ".json?", edm_query, dates,
@@ -87,10 +90,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 
   jpage <- floor(edms$result$totalResults / 100)
 
-  query <- paste0(
-    baseurl, ".json?", edm_query, dates, session_query, sig_min,
-    extra_args, "&_pageSize=100&_page="
-  )
+  query <- paste0(query, "&_pageSize=100&_page=")
 
   df <- edm_loop_query(query, jpage, verbose) # in utils-loop.R
 

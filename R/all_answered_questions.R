@@ -189,13 +189,11 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     dept_query <- gsub("Of", "of", dept_query)
     dept_query <- gsub("For", "for", dept_query)
 
-    baseurl <- paste0(url_util, "answeredquestions.json?")
-
     veb(verbose)
 
     query <- paste0(
-      baseurl, answering_member_query, tabling_member_query,
-      house_query, dept_query, dates, extra_args
+      url_util, "answeredquestions.json?", answering_member_query,
+      tabling_member_query, house_query, dept_query, dates, extra_args
     )
 
     all <- jsonlite::fromJSON(paste0(

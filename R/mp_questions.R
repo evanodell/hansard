@@ -63,9 +63,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
     )
   } else {
     if (question_type == "all") {
-      if (verbose == TRUE) {
-        message("Retrieving oral questions")
-      }
+    veb(verbose)
 
       df_oral <- hansard::mp_questions(
         mp_id = mp_id,
@@ -117,21 +115,17 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         as.Date(start_date)
       )
 
-      baseurl <- paste0(url_util, "commonsoralquestions.json?mnisId=")
+      query <- paste0(url_util, "commonsoralquestions.json?mnisId=",
+                      mp_id, dates, extra_args)
 
       oral <- jsonlite::fromJSON(paste0(
-        baseurl, mp_id, dates,
-        extra_args, "&_pageSize=1"
+        query, "&_pageSize=1"
       ))
 
       jpage <- floor(oral$result$totalResults / 100)
 
-      query <- paste0(baseurl, mp_id, dates, extra_args)
-
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
     } else if (question_type == "written") {
-      baseurl <- paste0(url_util, "commonswrittenquestions.json?mnisId=")
-
       dates <- paste0(
         "&_properties=dateTabled&max-dateTabled=",
         as.Date(end_date),
@@ -139,7 +133,8 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         as.Date(start_date)
       )
 
-      query <- paste0(baseurl, mp_id, dates, extra_args)
+      query <- paste0(url_util, "commonswrittenquestions.json?mnisId=",
+                      mp_id, dates, extra_args)
 
       wr <- jsonlite::fromJSON(query)
 
