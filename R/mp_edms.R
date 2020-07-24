@@ -67,7 +67,7 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
     "&min-dateSigned=", as.Date(start_date)
   )
 
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     stop("mp_id must not be empty", call. = FALSE)
   }
 
@@ -94,16 +94,14 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
 
       veb(verbose)
 
-      query <- paste0(url_util, "edmsignatures.json?", z_query,
-                      dates, extra_args)
-
-      edms <- jsonlite::fromJSON(paste0(
-        query, "&_pageSize=1"
-      ),
-      flatten = TRUE
+      query <- paste0(
+        url_util, "edmsignatures.json?", z_query,
+        dates, extra_args
       )
 
-      jpage <- floor(edms$result$totalResults / 100)
+jpage <- jpage_func(query)
+
+      
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -113,13 +111,13 @@ mp_edms <- function(mp_id = NULL, primary_sponsor = TRUE, sponsor = TRUE,
     }
   }
 
-  if (full_data == TRUE) {
+  if (full_data) {
     df2 <- edm_search(df, verbose)
 
     df <- dplyr::left_join(df, df2)
   }
 
-  if (tidy == TRUE) {
+  if (tidy) {
     if (full_data == FALSE) {
       df$about <- gsub(
         "http://data.parliament.uk/resources/", "",

@@ -98,9 +98,9 @@ commons_answered_questions <- function(answering_department = NULL,
 
     veb(verbose)
 
-    ans <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-    jpage <- floor(ans$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose)
   }
@@ -110,7 +110,7 @@ commons_answered_questions <- function(answering_department = NULL,
                 Please check your parameters.")
   }
 
-  if (tidy == TRUE) {
+  if (tidy) {
     df <- caq_tidy(df, tidy_style) ## in utils-commons.R
   }
 

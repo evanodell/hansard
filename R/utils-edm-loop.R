@@ -9,7 +9,7 @@ edm_loop_query <- function(query, jpage, verbose) {
 
   for (i in seq_along(seq_list)) {
     mydata <- jsonlite::fromJSON(paste0(query, seq_list[[i]]), flatten = TRUE)
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }
     mydata$result$items$primarySponsorPrinted <-

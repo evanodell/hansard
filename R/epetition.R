@@ -26,7 +26,7 @@
 epetition <- function(ID = NULL, by_constituency = FALSE,
                       extra_args = NULL, tidy = TRUE,
                       tidy_style = "snake", verbose = TRUE) {
-  if (is.null(ID) == FALSE) {
+  if (!is.null(ID)) {
     ID <- paste0("/", ID)
   }
 
@@ -40,7 +40,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
 
   veb(verbose)
 
-  if (is.null(ID) == FALSE & by_constituency == FALSE) {
+  if (!is.null(ID) & !by_constituency) {
     petition <- jsonlite::fromJSON(paste0(
       baseurl, ID,
       json_query, extra_args
@@ -72,7 +72,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
     flatten = TRUE
     )
 
-    jpage <- floor(petition$result$totalResults / 100)
+    
 
     query <- paste0(baseurl, ID, json_query, extra_args)
 
@@ -85,7 +85,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
     }
 

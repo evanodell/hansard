@@ -53,15 +53,13 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
 
   query <- paste0(url_util, "sessions", days_query, extra_args)
 
-  session <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ))
+jpage <- jpage_func(query)
 
-  jpage <- floor(session$result$totalResults / 100)
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
-  if (days == TRUE) {
+  if (days) {
     df$date._value <- as.POSIXct(df$date._value)
     df <- df[df$date._value <= as.Date(end_date) &
       df$date._value >= as.Date(start_date), ]
@@ -71,7 +69,7 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- sessions_tidy(df, days, tidy_style) ## in utils-sessions.R
     }
 

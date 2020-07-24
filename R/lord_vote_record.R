@@ -47,7 +47,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
                              start_date = "1900-01-01", end_date = Sys.Date(),
                              extra_args = NULL, tidy = TRUE,
                              tidy_style = "snake", verbose = TRUE) {
-  if (is.null(peer_id) == TRUE) {
+  if (is.null(peer_id)) {
     stop("peer_id must not be empty", call. = FALSE)
   }
 
@@ -61,7 +61,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
   lobby <- tolower(lobby)
 
   if (lobby == "all") {
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving 'content' votes")
     }
 
@@ -75,7 +75,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
       verbose = verbose
     )
 
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving 'not-content' votes")
     }
 
@@ -93,23 +93,16 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
 
     df
   } else {
-    baseurl <- paste0(url_util, "lordsdivisions/")
-
     veb(verbose)
 
     query <- paste0(
-      baseurl, lobby, ".json?mnisId=", peer_id,
+      url_util, "lordsdivisions/", lobby, ".json?mnisId=", peer_id,
       dates, extra_args
     )
 
-    content <- jsonlite::fromJSON(paste0(
-      query,
-      "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
+jpage <- jpage_func(query)
 
-    jpage <- floor(content$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -126,7 +119,7 @@ lord_vote_record <- function(peer_id = NULL, lobby = "all",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lord_vote_record_tidy(df, tidy_style) ## in utils-lords.R
     }
 

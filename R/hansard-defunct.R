@@ -5,7 +5,7 @@
 #'
 
 lords_ammendments <- function() {
-  .Defunct("lords_amendments")
+  .Deprecated("lords_amendments")
   lords_amendments()
 }
 
@@ -67,9 +67,9 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
             use lords_attendance_session. By date, use lords_attendance_date")
 
   if (is.null(session_id) == FALSE) {
-    query <- paste0("/", session_id, ".json?")
+    s_query <- paste0("/", session_id, ".json?")
   } else {
-    query <- ".json?"
+    s_query <- ".json?"
   }
 
   dates <- paste0(
@@ -77,33 +77,28 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
     "&min-date=", as.Date(start_date)
   )
 
-  baseurl <- paste0(url_util, "lordsattendances")
+  query <- paste0(url_util, "lordsattendances", s_query, dates, extra_args)
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  veb(verbose)
 
   attend <- jsonlite::fromJSON(paste0(
-    baseurl, query,
-    dates, extra_args
+    query
   ), flatten = TRUE)
 
   if (is.null(session_id) == FALSE) {
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
-    jpage <- floor(attend$result$totalResults / 100)
+    
 
     pages <- list()
 
     for (i in 0:jpage) {
       mydata <- jsonlite::fromJSON(paste0(
-        baseurl, query, dates,
-        extra_args,
-        "&_pageSize=100&_page=", i
+        query,"&_pageSize=100&_page=", i
       ),
       flatten = TRUE
       )
-      if (verbose == TRUE) {
+      if (verbose) {
         message("Retrieving page ", i + 1, " of ", jpage + 1)
       }
       pages[[i + 1]] <- mydata$result$items
@@ -116,7 +111,7 @@ lords_attendance <- function(session_id = NULL, start_date = "1900-01-01",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lords_attendance_tidy(df, tidy_style)
     }
 

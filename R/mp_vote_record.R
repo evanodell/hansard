@@ -69,7 +69,6 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
   )
   veb(verbose)
   if (lobby == "aye") {
-
     query <- paste0(url_util, "commonsdivisions/aye.json?mnisId=", mp_id, dates, session_query, extra_args)
 
     url_aye <- jsonlite::fromJSON(paste0(
@@ -78,23 +77,19 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(url_aye$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (lobby == "no") {
     query <- paste0(url_util, "commonsdivisions/no.json?mnisId=", mp_id, dates, session_query, extra_args)
 
-    url_no <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
+jpage <- jpage_func(query)
 
-    jpage <- floor(url_no$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving aye votes:")
     }
 
@@ -108,7 +103,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     df_aye$vote <- "aye"
 
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving no votes:")
     }
 
@@ -126,7 +121,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
 
     df <- dplyr::bind_rows(df_aye, df_no)
 
-    if (tidy == TRUE) {
+    if (tidy) {
       df$vote <- as.factor(df$vote)
     }
   }
@@ -135,7 +130,7 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df$date._datatype <- "POSIXct"
 
       df$date._value <- as.POSIXct(df$date._value)

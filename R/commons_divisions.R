@@ -71,8 +71,6 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(divis$result$totalResults / 100)
-
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else if (!is.null(division_id)) { # division_id queries
     veb(verbose)
@@ -86,7 +84,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
 
     df <- tibble::as_tibble(divis$result$primaryTopic$vote)
 
-    if (summary == TRUE) {
+    if (summary) {
       df <- dplyr::summarise(dplyr::group_by_at(df, "type"), count = dplyr::n())
     }
 
@@ -103,7 +101,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
 
     df <- tibble::as_tibble(divis$result$items[["vote"]][[1]])
 
-    if (summary == TRUE) {
+    if (summary) {
       df <- dplyr::summarise(dplyr::group_by_at(df, "type"), count = dplyr::n())
     }
 
@@ -114,7 +112,7 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       if (is.null(division_id) & is.null(division_uin)) {
         df <- hansard_tidy(df, tidy_style)
       } else {
@@ -124,7 +122,6 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     df
   }
 }
-
 
 #' @rdname commons_divisions
 #' @export

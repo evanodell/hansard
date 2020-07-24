@@ -82,7 +82,7 @@ edm_search <- function(df, verbose) {
       #    )
     )
 
-    if (verbose == TRUE) {
+    if (verbose) {
       message(
         "Retrieving motion ", match(i, search_list),
         " of ", length(search_list)
@@ -139,7 +139,7 @@ multi_mp_edms <- function(mp_id = mp_id, extra_args = extra_args,
     )
   }
 
-  dat <- dat[vapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[vapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 
@@ -159,8 +159,8 @@ sig_type <- function(mp_id, primary_sponsor, sponsor,
   sig2 <- NULL
   sig3 <- NULL
 
-  if (primary_sponsor == TRUE) {
-    if (verbose == TRUE) {
+  if (primary_sponsor) {
+    if (verbose) {
       message("Retrieving Primary Sponsored EDMs")
     }
 
@@ -177,8 +177,8 @@ sig_type <- function(mp_id, primary_sponsor, sponsor,
     }
   }
 
-  if (sponsor == TRUE) {
-    if (verbose == TRUE) {
+  if (sponsor) {
+    if (verbose) {
       message("Retrieving Sponsored EDMs")
     }
 
@@ -195,8 +195,8 @@ sig_type <- function(mp_id, primary_sponsor, sponsor,
     }
   }
 
-  if (signatory == TRUE) {
-    if (verbose == TRUE) {
+  if (signatory) {
+    if (verbose) {
       message("Retrieving Signed EDMs")
     }
 

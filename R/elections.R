@@ -59,16 +59,16 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
     "&min-date=", as.Date(start_date)
   )
 
-  if (is.null(label) == FALSE) {
+  if (!is.null(label)) {
     label <- utils::URLencode(paste0("&label=", label))
   }
 
-  if (is.null(ID) == FALSE) {
+  baseurl <- paste0(url_util, "elections")
+
+  veb(verbose)
+
+  if (!is.null(ID)) {
     ID <- paste0("/", ID, ".json?")
-
-    baseurl <- paste0(url_util, "elections")
-
-    veb(verbose)
 
     elect <- jsonlite::fromJSON(paste0(
       baseurl, ID, dates,
@@ -81,17 +81,13 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
 
     df <- tibble::as_tibble(as.data.frame(df))
   } else {
-    baseurl <- paste0(url_util, "elections")
-
     type_query <- ifelse(
-      is.null(type) == FALSE,
+      !is.null(type),
       utils::URLencode(
         paste0(".json?&electionType=", type)
       ),
       ".json?"
     )
-
-    veb(verbose)
 
     query <- paste0(
       baseurl, type_query, dates, label,
@@ -104,7 +100,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
     flatten = TRUE
     )
 
-    jpage <- floor(elect$result$totalResults / 100)
+
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -113,7 +109,7 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- elections_tidy(df, tidy_style) ## in utils-elections.R
     }
 

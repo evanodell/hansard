@@ -78,17 +78,13 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
   veb(verbose)
 
   query <- paste0(
-    url_util, "edms", ".json?", edm_query, dates, session_query, sig_min,
-    extra_args, "&_pageSize=100&_page="
+    url_util, "edms.json?", edm_query, dates, session_query, sig_min,
+    extra_args
   )
 
-  edms <- jsonlite::fromJSON(paste0(
-    baseurl, ".json?", edm_query, dates,
-    session_query, sig_min, extra_args,
-    "&_pageSize=1"
-  ), flatten = TRUE)
+jpage <- jpage_func(query) ## check that this works, create a function to use for everything like this or similar.
 
-  jpage <- floor(edms$result$totalResults / 100)
+
 
   query <- paste0(query, "&_pageSize=100&_page=")
 
@@ -98,7 +94,7 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- edm_tidy(df, tidy_style)
     }
 

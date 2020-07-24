@@ -58,11 +58,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
   query <- paste0(url_util, "electionresults.json?", id_query, extra_args)
 
-  elect <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ))
+jpage <- jpage_func(query)
 
-  jpage <- floor(elect$result$totalResults / 100)
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -79,7 +77,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
   names(df)[names(df) == "_about"] <- "about"
   df$about <- gsub("http://data.parliament.uk/resources/", "", df$about)
 
-  if (all_data == TRUE) {
+  if (all_data) {
     dat <- vector("list", nrow(df))
 
     seq_list <- seq(from = 1, to = nrow(df), by = 1)
@@ -95,7 +93,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
 
       dat[[i]] <- x$result$primaryTopic$candidate
 
-      if (verbose == TRUE) {
+      if (verbose) {
         message(
           "Retrieving ", i, " of ", nrow(df), ": ",
           df$constituency.label._value[[i]], ", ",
@@ -138,7 +136,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (calculate_percent == TRUE) {
+    if (calculate_percent) {
       df$turnout_percentage <- round(
         (df$turnout / df$electorate) * 100,
         digits = 2
@@ -150,7 +148,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
       )
     }
 
-    if (tidy == TRUE) {
+    if (tidy) {
       df$election._about <- gsub(
         "http://data.parliament.uk/resources/", "", df$election._about
       )
@@ -160,7 +158,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
         df$constituency._about
       )
 
-      if (all_data == TRUE) {
+      if (all_data) {
         df <- dplyr::left_join(df, df4, by = "about")
       }
 
@@ -168,7 +166,7 @@ election_results <- function(ID = NULL, all_data = FALSE,
     } else {
       df <- tibble::as_tibble(df)
 
-      if (all_data == TRUE) {
+      if (all_data) {
         df <- dplyr::left_join(df, df4, by = "about")
       }
     }

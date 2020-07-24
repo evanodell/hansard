@@ -51,33 +51,25 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
     "&min-date=", as.Date(start_date)
   )
 
-  if (is.null(division_id) == TRUE) {
-    baseurl <- paste0(url_util, "lordsdivisions.json?")
+  veb(verbose)
 
-    veb(verbose)
+  if (is.null(division_id)) {
+    query <- paste0(url_util, "lordsdivisions.json?", dates, extra_args)
 
-    query <- paste0(baseurl, dates, extra_args)
+    divis <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"))
 
-    divis <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ))
-
-    jpage <- floor(divis$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
-    baseurl <- paste0(url_util, "lordsdivisions/id/")
-
-    veb(verbose)
-
     divis <- jsonlite::fromJSON(paste0(
-      baseurl, division_id,
+      url_util, "lordsdivisions/id/", division_id,
       ".json?", dates, extra_args
     ),
     flatten = TRUE
     )
 
-    if (summary == TRUE) {
+    if (summary) {
       df <- list()
 
       df$about <- divis$result$primaryTopic$`_about`
@@ -103,7 +95,7 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lords_division_tidy(
         df, division_id,
         summary, tidy_style

@@ -5,19 +5,19 @@
 
 aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
                       start_date, end_date, extra_args, verbose) {
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     mp_id_list <- NA
   } else {
     mp_id_list <- as.list(mp_id)
   }
 
-  if (is.null(tabling_mp_id) == TRUE) {
+  if (is.null(tabling_mp_id)) {
     tabling_mp_id_list <- NA
   } else {
     tabling_mp_id_list <- as.list(tabling_mp_id)
   }
 
-  if (is.null(answering_body) == TRUE) {
+  if (is.null(answering_body)) {
     answering_body_list <- NA
   } else {
     answering_body_list <- as.list(answering_body)
@@ -52,7 +52,7 @@ aaq_multi <- function(mp_id, tabling_mp_id, house, answering_body,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 

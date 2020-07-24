@@ -25,7 +25,7 @@ bill_stage_types <- function(tidy = TRUE, tidy_style = "snake",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
     }
 

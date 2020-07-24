@@ -43,9 +43,9 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
 
   query <- paste0(url_util, "lordsattendances.json?", dates)
 
-  attend <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-  jpage <- floor(attend$result$totalResults / 100)
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -53,7 +53,7 @@ lords_sessions <- function(start_date = "1900-01-01", end_date = Sys.Date(),
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lords_attendance_tidy(df, tidy_style)
     }
 

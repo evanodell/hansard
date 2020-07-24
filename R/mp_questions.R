@@ -47,7 +47,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
                          start_date = "1900-01-01", end_date = Sys.Date(),
                          extra_args = NULL, tidy = TRUE,
                          tidy_style = "snake", verbose = TRUE) {
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     stop("mp_id must not be empty", call. = FALSE)
   }
 
@@ -63,7 +63,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
     )
   } else {
     if (question_type == "all") {
-    veb(verbose)
+      veb(verbose)
 
       df_oral <- hansard::mp_questions(
         mp_id = mp_id,
@@ -75,7 +75,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         tidy_style = tidy_style
       )
 
-      if (verbose == TRUE) {
+      if (verbose) {
         message("Retrieving written questions")
       }
 
@@ -89,7 +89,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         tidy_style = tidy_style
       )
 
-      if (verbose == TRUE) {
+      if (verbose) {
         message("Combining oral and written questions")
       }
 
@@ -115,14 +115,16 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         as.Date(start_date)
       )
 
-      query <- paste0(url_util, "commonsoralquestions.json?mnisId=",
-                      mp_id, dates, extra_args)
+      query <- paste0(
+        url_util, "commonsoralquestions.json?mnisId=",
+        mp_id, dates, extra_args
+      )
 
       oral <- jsonlite::fromJSON(paste0(
         query, "&_pageSize=1"
       ))
 
-      jpage <- floor(oral$result$totalResults / 100)
+      
 
       df <- loop_query(query, jpage, verbose) # in utils-loop.R
     } else if (question_type == "written") {
@@ -133,12 +135,14 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         as.Date(start_date)
       )
 
-      query <- paste0(url_util, "commonswrittenquestions.json?mnisId=",
-                      mp_id, dates, extra_args)
+      query <- paste0(
+        url_util, "commonswrittenquestions.json?mnisId=",
+        mp_id, dates, extra_args
+      )
 
       wr <- jsonlite::fromJSON(query)
 
-      jpage <- floor(wr$result$totalResults / 100)
+      
 
       pages <- list()
 
@@ -150,7 +154,7 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- mp_question_tidy(df, tidy_style)
     }
 

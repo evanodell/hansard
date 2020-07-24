@@ -61,30 +61,23 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
 
 
   if (is.null(max_signatures)) {
-    signature_query <- paste0("&min-numberOfSignatures=", min_signatures)
+    sig_q <- paste0("&min-numberOfSignatures=", min_signatures)
   } else {
-    signature_query <- paste0(
+    sig_q <- paste0(
       "&min-numberOfSignatures=", min_signatures,
       "&max-numberOfSignatures=", max_signatures
     )
   }
 
-  baseurl <- paste0(url_util, "epetitions.json?")
-
   veb(verbose)
 
   query <- paste0(
-    baseurl, status_query, signature_query,
-    dates, extra_args
+    url_util, "epetitions.json?", status_query, sig_q, dates, extra_args
   )
 
-  petition <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+jpage <- jpage_func(query)
 
-  jpage <- floor(petition$result$totalResults / 100)
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -92,7 +85,7 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- epetition_tibble_tidy(df, tidy_style) ## in utils-epetition.R
     }
 

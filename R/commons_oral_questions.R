@@ -68,18 +68,15 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
 
     json_query <- question_query_construction(mp_id, answering_department)
 
-    baseurl <- paste0(url_util, "commonsoralquestions")
-
     veb(verbose)
 
     query <- paste0(
-      baseurl, json_query, dates,
-      extra_args
+      url_util, "commonsoralquestions", json_query, dates, extra_args
     )
 
-    oral <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-    jpage <- floor(oral$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -88,7 +85,7 @@ commons_oral_questions <- function(mp_id = NULL, answering_department = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- coq_tidy(df, tidy_style) ## in utils-commons.R
     }
 

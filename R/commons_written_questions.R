@@ -71,19 +71,15 @@ commons_written_questions <- function(mp_id = NULL,
 
     json_query <- question_query_construction(mp_id, answering_department)
 
-    baseurl <- paste0(url_util, "commonswrittenquestions")
-
     veb(verbose)
 
-    query <- paste0(baseurl, json_query, dates, extra_args)
-
-    writ <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
+    query <- paste0(
+      url_util, "commonswrittenquestions", json_query, dates, extra_args
     )
 
-    jpage <- floor(writ$result$totalResults / 100)
+jpage <- jpage_func(query)
+
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -92,7 +88,7 @@ commons_written_questions <- function(mp_id = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- cwq_tidy(df, tidy_style) ## in utils-commons.R
     }
 

@@ -21,19 +21,19 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "constituencies.json?", extra_args)
 
-  if (verbose == TRUE) {
+  if (verbose) {
     message("Connecting to API")
   }
 
   conts <- jsonlite::fromJSON(baseurl, flatten = TRUE)
 
-  jpage <- floor(conts$result$totalResults / 100)
+
 
   if (is.null(current)) {
     current_query <- ""
-  } else if (current == TRUE) {
+  } else if (current) {
     current_query <- "&exists-endedDate=false"
-  } else if (current == FALSE) {
+  } else if (!current) {
     current_query <- "&exists-endedDate=true"
   } else {
     current_query <- ""
@@ -47,7 +47,7 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- cons_tidy(df, current, tidy_style)
     }
 

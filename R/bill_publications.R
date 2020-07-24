@@ -78,9 +78,9 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
     url_util, "billpublications.json?", bill_id, dates, extra_args
   )
 
-  bills <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-  jpage <- floor(bills$result$totalResults / 100)
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -88,7 +88,7 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- bills_tidy(df, tidy_style) # in utils-bills.R
     }
 

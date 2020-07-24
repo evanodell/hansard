@@ -21,7 +21,7 @@
 #'
 commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
                                   tidy_style = "snake", verbose = TRUE) {
-  if (is.null(date) == TRUE) {
+  if (is.null(date)) {
     stop("Please include a date.", call. = FALSE)
   } else {
     date <- paste0("&date=", as.character(date))
@@ -30,11 +30,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
 
     query <- paste0(url_util, "commonsdivisions.json?", date, extra_args)
 
-    divis <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ))
-
-    jpage <- floor(divis$result$totalResults / 100)
+    jpage <- jpage_func(query)
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -42,7 +38,7 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
       message("The request did not return any data.
                     Please check your parameters.")
     } else {
-      if (tidy == TRUE) {
+      if (tidy) {
         df <- cdd_tidy(df, tidy_style) ## utils-commons.R
       }
 

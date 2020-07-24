@@ -4,13 +4,13 @@
 
 lwq_multi <- function(answering_department, peer_id,
                       start_date, end_date, extra_args, verbose) {
-  if (is.null(peer_id) == TRUE) {
+  if (is.null(peer_id)) {
     mp_id_list <- NA
   } else {
     mp_id_list <- as.list(peer_id)
   }
 
-  if (is.null(answering_department) == TRUE) {
+  if (is.null(answering_department)) {
     dep_list <- NA
   } else {
     dep_list <- as.list(answering_department)
@@ -37,7 +37,7 @@ lwq_multi <- function(answering_department, peer_id,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 
@@ -81,7 +81,7 @@ lwq_tidy <- function(df, tidy_style) {
 
 lords_division_tidy <- function(df, division_id, summary, tidy_style) {
   if (nrow(df) > 0) {
-    if (is.null(division_id) == TRUE) {
+    if (is.null(division_id)) {
       df$date._datatype <- "POSIXct"
 
       df$date._value <- as.POSIXct(df$date._value)

@@ -93,20 +93,16 @@ lords_written_questions <- function(peer_id = NULL,
       dept_query <- ".json?"
     }
 
-
-    baseurl <- paste0(url_util, "lordswrittenquestions")
-
     veb(verbose)
 
-    query <- paste0(baseurl, dept_query, peer_id, dates, extra_args)
-
-    writ <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
+    query <- paste0(
+      url_util, "lordswrittenquestions", dept_query,
+      peer_id, dates, extra_args
     )
 
-    jpage <- floor(writ$result$totalResults / 100)
+jpage <- jpage_func(query)
+
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -115,7 +111,7 @@ lords_written_questions <- function(peer_id = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lwq_tidy(df, tidy_style) ## in utils-lords.R
     }
 

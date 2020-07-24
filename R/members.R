@@ -48,8 +48,8 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
 
   q_members <- jsonlite::fromJSON(query, flatten = TRUE)
 
-  if (is.null(ID) == TRUE) {
-    jpage <- floor(q_members$result$totalResults / 100)
+  if (is.null(ID)) {
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -69,7 +69,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
 
       df$about <- gsub(
@@ -95,13 +95,13 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=100")
 
-  if (verbose == TRUE) {
+  if (verbose) {
     message("Connecting to API")
   }
 
   c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-  jpage <- floor(c_members$result$totalResults / 100)
+  
 
   query <- paste0(baseurl, extra_args, "&_page=")
 
@@ -111,7 +111,7 @@ commons_members <- function(extra_args = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
     }
 
@@ -131,13 +131,13 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake", verbose = TRUE) {
   baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=100")
 
-  if (verbose == TRUE) {
+  if (verbose) {
     message("Connecting to API")
   }
 
   l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
 
-  jpage <- floor(l_members$result$totalResults / 100)
+  
 
   query <- paste0(baseurl, extra_args, "&_page=")
 
@@ -147,7 +147,7 @@ lords_members <- function(extra_args = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
     }
 

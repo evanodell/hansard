@@ -7,3 +7,9 @@ veb <- function(verbose) {
     message("Connecting to API")
   }
 }
+
+jpage_func <- function(query){
+  x <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+
+  floor(x$result$totalResults / 100)
+}

@@ -22,7 +22,7 @@ mp_question_multi <- function(mp_id, question_type, start_date,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 

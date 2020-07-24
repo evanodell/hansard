@@ -31,24 +31,18 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
                                 extra_args = NULL, tidy = TRUE,
                                 tidy_style = "snake", verbose = TRUE) {
   id_query <- ifelse(
-    is.null(ID) == FALSE,
+    !is.null(ID),
     paste0("electionId=", ID),
     ""
   )
 
-  baseurl <- paste0(url_util, "electionresults.json?")
-
   veb(verbose)
 
-  query <- paste0(baseurl, id_query, extra_args)
+  query <- paste0(url_util, "electionresults.json?", id_query, extra_args)
 
-  elect <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+jpage <- jpage_func(query)
 
-  jpage <- floor(elect$result$totalResults / 100)
+
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -85,7 +79,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
     dat[[i]] <- df2
 
-    if (verbose == TRUE) {
+    if (verbose) {
       message(
         "Retrieving ", i, " of ", nrow(df), ": ",
         df$constituency.label._value[[i]], ", ",
@@ -115,7 +109,7 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
 
     df <- dplyr::left_join(df, df4, by = "election_about")
 
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- elect_can_tidy(df, tidy_style)
     }
 

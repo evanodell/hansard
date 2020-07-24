@@ -45,7 +45,7 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     results <- jsonlite::fromJSON(query)
 
-    jpage <- floor(results$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -53,7 +53,7 @@ members_search <- function(search = NULL, tidy = TRUE,
       message("The request did not return any data.
                 Please check your parameters.")
     } else {
-      if (tidy == TRUE) {
+      if (tidy) {
         names(df)[names(df) == "_about"] <- "mnis_id"
 
         df$mnis_id <- gsub(

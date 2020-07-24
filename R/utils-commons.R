@@ -4,13 +4,13 @@
 commons_oral_questions_multi <- function(mp_id, answering_department,
                                          start_date, end_date,
                                          extra_args, verbose) {
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     mp_id_list <- NA
   } else {
     mp_id_list <- as.list(mp_id)
   }
 
-  if (is.null(answering_department) == TRUE) {
+  if (is.null(answering_department)) {
     dep_list <- NA
   } else {
     dep_list <- as.list(answering_department)
@@ -37,7 +37,7 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 
@@ -53,13 +53,13 @@ commons_oral_questions_multi <- function(mp_id, answering_department,
 commons_written_questions_multi <- function(mp_id, answering_department,
                                             start_date, end_date,
                                             extra_args, verbose) {
-  if (is.null(mp_id) == TRUE) {
+  if (is.null(mp_id)) {
     mp_id_list <- NA
   } else {
     mp_id_list <- as.list(mp_id)
   }
 
-  if (is.null(answering_department) == TRUE) {
+  if (is.null(answering_department)) {
     dep_list <- NA
   } else {
     dep_list <- as.list(answering_department)
@@ -86,7 +86,7 @@ commons_written_questions_multi <- function(mp_id, answering_department,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 
@@ -101,13 +101,13 @@ commons_written_questions_multi <- function(mp_id, answering_department,
 
 caq_multi <- function(answering_department, answered_by,
                       start_date, end_date, extra_args, verbose) {
-  if (is.null(answered_by) == TRUE) {
+  if (is.null(answered_by)) {
     mp_id_list <- NA
   } else {
     mp_id_list <- as.list(answered_by)
   }
 
-  if (is.null(answering_department) == TRUE) {
+  if (is.null(answering_department)) {
     dep_list <- NA
   } else {
     dep_list <- as.list(answering_department)
@@ -134,7 +134,7 @@ caq_multi <- function(answering_department, answered_by,
     )
   }
 
-  dat <- dat[sapply(dat, function(d) is.null(d) == FALSE)]
+  dat <- dat[sapply(dat, function(d) !is.null(d))]
 
   df <- dplyr::bind_rows(dat)
 
@@ -188,7 +188,7 @@ cdd_tidy <- function(df, tidy_style) {
 
 
 cd_tidy <- function(df, tidy_style, summary) {
-  if (summary == TRUE) {
+  if (summary) {
     df$type <- gsub("http://data.parliament.uk/schema/parl#", "", df$type)
 
     df$type <- gsub("([[:lower:]])([[:upper:]])", "\\1_\\2", df$type)

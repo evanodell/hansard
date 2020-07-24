@@ -47,22 +47,20 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
     json_query <- ".json?"
   }
 
-  baseurl <- paste0(url_util, "lordsattendances")
-
   veb(verbose)
 
-  query <- paste0(baseurl, json_query, extra_args)
+  query <- paste0(url_util, "lordsattendances", json_query, extra_args)
 
-  attend <- jsonlite::fromJSON(paste0(query), flatten = TRUE)
+  attend <- jsonlite::fromJSON(query, flatten = TRUE)
 
-  if (is.null(session_id) == FALSE) {
-    if (verbose == TRUE) {
+  if (!is.null(session_id)) {
+    if (verbose) {
       message("Retrieving attendance data")
     }
 
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
-    jpage <- floor(attend$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -71,7 +69,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lords_attendance_tidy(df, tidy_style)
     }
 

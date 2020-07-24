@@ -67,7 +67,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     flatten = TRUE
     )
 
-    jpage <- floor(research$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -108,14 +108,9 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       ".json?", null_type_query, extra_args
     )
 
-    research <- jsonlite::fromJSON(paste0(
-      query,
-      "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
+jpage <- jpage_func(query)
 
-    jpage <- floor(research$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   }
@@ -124,7 +119,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- research_tidy(df, tidy_style) ## in utils-research.R
     }
 

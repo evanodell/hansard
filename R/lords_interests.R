@@ -26,22 +26,11 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
     json_query <- paste0(".json?member=", peer_id)
   }
 
-  baseurl <- paste0(url_util, "lordsregisteredinterests")
+  veb(verbose)
 
-  if (verbose == TRUE) {
-    message("Connecting to API")
-  }
+  query <- paste0(url_util, "lordsregisteredinterests", json_query, extra_args)
 
-  members <- jsonlite::fromJSON(paste0(
-    baseurl, json_query,
-    extra_args, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
-
-  jpage <- floor(members$result$totalResults / 100)
-
-  query <- paste0(baseurl, json_query, extra_args)
+jpage <- jpage_func(query)
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -49,7 +38,7 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       if (is.null(peer_id)) {
         df <- lords_interests_tidy2(df, tidy_style) ## in utils-lords.R
       } else {

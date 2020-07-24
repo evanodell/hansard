@@ -52,13 +52,9 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
   veb(verbose)
 
   if (is.null(question_id)) {
-    times <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
+jpage <- jpage_func(query)
 
-    jpage <- floor(times$result$totalResults / 100)
+    
 
     df <- loop_query(query, jpage, verbose) # in utils-loop.R
   } else {
@@ -91,7 +87,7 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- coqt_tidy(df, tidy_style) ## in utils-commons.R
     }
 

@@ -146,7 +146,6 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       house_query <- ""
     }
 
-
     if (is.null(mp_id) || is.na(mp_id)) {
       answering_member_query <- ""
     } else {
@@ -171,7 +170,7 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
 
     if (is.null(answering_body) || is.na(answering_body)) {
       dept_query <- ""
-    } else if (is.na(answering_body_check) == FALSE) {
+    } else if (!is.na(answering_body_check)) {
       dept_query <- paste0("&answeringDeptId=", answering_body)
     } else {
       dept_query <- utils::URLencode(
@@ -196,21 +195,16 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
       tabling_member_query, house_query, dept_query, dates, extra_args
     )
 
-    all <- jsonlite::fromJSON(paste0(
-      query,
-      "&_pageSize=1"
-    ), flatten = TRUE)
-
-    jpage <- floor(all$result$totalResults / 100)
+    jpage <- jpage_func(query)
 
     df <- loop_query_aaq(query, jpage, verbose) # in utils-loop.R
   }
 
-  if (nrow(df) == 0 & verbose == TRUE) {
+  if (nrow(df) == 0 & verbose) {
     message("The request did not return any data.
               Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- aaq_tidy(df, tidy_style) ### in utils-aaq.R
     }
 

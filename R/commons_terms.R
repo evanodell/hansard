@@ -31,7 +31,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     search_query <- NULL
   }
 
-  if (is.null(class) == FALSE) {
+  if (!is.null(class)) {
     class_list <- list(
       "ID", "ORG", "SIT", "NAME", "LEG",
       "CTP", "PBT", "TPG"
@@ -48,7 +48,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     class_query <- NULL
   }
 
-  if (verbose == TRUE) {
+  if (verbose) {
     message("Connecting to API")
   }
 
@@ -57,9 +57,9 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     extra_args
   )
 
-  terms <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-  jpage <- floor(terms$result$totalResults / 100)
+
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -67,7 +67,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- hansard_tidy(df, tidy_style)
     }
 

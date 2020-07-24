@@ -60,7 +60,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
     as.Date(start_date)
   )
 
-  id_query <- ifelse(is.null(ID) == FALSE, paste0("&identifier=", ID), "")
+  id_query <- ifelse(!is.null(ID), paste0("&identifier=", ID), "")
 
   amend_query <- ifelse(amendments, "withamendments.json?", ".json?")
 
@@ -71,13 +71,9 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
     dates, id_query, extra_args
   )
 
-  bills <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ),
-  flatten = TRUE
-  )
+jpage <- jpage_func(query)
 
-  jpage <- floor(bills$result$totalResults / 100)
+
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -85,7 +81,7 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- bills_tidy(df, tidy_style) ### in utils-bills.R
     }
 

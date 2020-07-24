@@ -28,7 +28,7 @@
 #'
 lords_attendance_date <- function(date = NULL, tidy = TRUE,
                                   tidy_style = "snake", verbose = TRUE) {
-  if (is.null(date) == TRUE) {
+  if (is.null(date)) {
     stop("Please include a date.", call. = FALSE)
   }
 
@@ -49,7 +49,7 @@ lords_attendance_date <- function(date = NULL, tidy = TRUE,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       names(df)[names(df) == "X_about"] <- "about"
 
       names(df)[names(df) == "_about"] <- "peer_id"

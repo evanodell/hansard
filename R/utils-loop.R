@@ -11,7 +11,7 @@ loop_query <- function(query, jpage, verbose) {
       query, "&_pageSize=100&_page=",
       seq_list[[i]]
     ), flatten = TRUE)
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }
     pages[[seq_list[[i]] + 1]] <- mydata$result$items
@@ -35,7 +35,7 @@ loop_query_aaq <- function(query, jpage, verbose) {
       query, "&_pageSize=100&_page=",
       seq_list[[i]]
     ), flatten = TRUE)
-    if (verbose == TRUE) {
+    if (verbose) {
       message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
     }
     mydata$result$items$answer.previousAnswerVersion.answeringMember <- NULL

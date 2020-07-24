@@ -50,15 +50,16 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     decision_query <- ""
   }
 
-  baseurl <- paste0(url_util, "lordsbillamendments.json?")
-
   veb(verbose)
 
-  query <- paste0(baseurl, decision_query, dates, extra_args)
+  query <- paste0(
+    url_util, "lordsbillamendments.json?",
+    decision_query, dates, extra_args
+  )
 
-  ammend <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"), flatten = TRUE)
+jpage <- jpage_func(query)
 
-  jpage <- floor(ammend$result$totalResults / 100)
+  
 
   pages <- list()
 
@@ -68,7 +69,7 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) {
+    if (tidy) {
       df <- lords_amendments_tidy(df, tidy_style)
     }
 

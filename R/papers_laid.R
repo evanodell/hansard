@@ -40,7 +40,7 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
   house_query <- house_query_util(house) ## in utils-house.R
 
-  withdrawn_query <- ifelse(
+  with_q <- ifelse(
     withdrawn == TRUE,
     "&withdrawn=true",
     "&withdrawn=false"
@@ -53,16 +53,13 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
 
   veb(verbose)
 
-  query <- paste0(url_util, "paperslaid.json?", withdrawn_query,
-                  house_query, dates, extra_args)
-
-  papers <- jsonlite::fromJSON(paste0(
-    query, "&_pageSize=1"
-  ),
-  flatten = TRUE
+  query <- paste0(
+    url_util, "paperslaid.json?", with_q, house_query, dates, extra_args
   )
 
-  jpage <- floor(papers$result$totalResults / 100)
+jpage <- jpage_func(query)
+
+  
 
   df <- loop_query(query, jpage, verbose) # in utils-loop.R
 
@@ -70,13 +67,13 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
     message("The request did not return any data.
                 Please check your parameters.")
   } else {
-    if (tidy == TRUE) { ### move this to external utils file?
+    if (tidy) { ### move this to external utils file?
 
       df$dateLaid._value <- as.POSIXct(df$dateLaid._value)
 
       df$dateLaid._datatype <- "POSIXct"
 
-      if (withdrawn == TRUE) {
+      if (withdrawn) {
         df$dateWithdrawn._value <- gsub(
           "T", " ",
           df$dateWithdrawn._value
