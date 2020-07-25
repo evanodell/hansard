@@ -94,15 +94,9 @@ elections <- function(ID = NULL, type = NULL, start_date = "1900-01-01",
       extra_args
     )
 
-    elect <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
 
 
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0) {

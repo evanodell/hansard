@@ -51,17 +51,11 @@ papers_laid <- function(withdrawn = FALSE, house = NULL,
     "&min-ddpModified=", as.Date(start_date)
   )
 
-  veb(verbose)
-
   query <- paste0(
     url_util, "paperslaid.json?", with_q, house_query, dates, extra_args
   )
 
-jpage <- jpage_func(query)
-
-  
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

@@ -26,13 +26,9 @@ lords_interests <- function(peer_id = NULL, extra_args = NULL, tidy = TRUE,
     json_query <- paste0(".json?member=", peer_id)
   }
 
-  veb(verbose)
-
   query <- paste0(url_util, "lordsregisteredinterests", json_query, extra_args)
 
-jpage <- jpage_func(query)
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.
@@ -45,7 +41,6 @@ jpage <- jpage_func(query)
         df <- lords_interests_tidy(df, tidy_style) ## in utils-lords.R
       }
     }
-
     df
   }
 }

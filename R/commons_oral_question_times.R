@@ -37,7 +37,6 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     session_query <- ""
   }
 
-
   if (!is.null(question_id)) {
     question_query <- paste0("/", question_id)
   } else {
@@ -49,15 +48,11 @@ commons_oral_question_times <- function(session = NULL, question_id = NULL,
     ".json?", session_query, extra_args
   )
 
-  veb(verbose)
-
   if (is.null(question_id)) {
-jpage <- jpage_func(query)
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else {
+    veb(verbose)
+
     mydata <- jsonlite::fromJSON(query, flatten = TRUE)
 
     df <- tibble::tibble(

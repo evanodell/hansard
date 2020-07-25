@@ -71,17 +71,11 @@ commons_written_questions <- function(mp_id = NULL,
 
     json_query <- question_query_construction(mp_id, answering_department)
 
-    veb(verbose)
-
     query <- paste0(
       url_util, "commonswrittenquestions", json_query, dates, extra_args
     )
 
-jpage <- jpage_func(query)
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0) {

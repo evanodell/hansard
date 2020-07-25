@@ -96,13 +96,7 @@ commons_answered_questions <- function(answering_department = NULL,
       dates, extra_args
     )
 
-    veb(verbose)
-
-jpage <- jpage_func(query)
-
-    
-
-    df <- loop_query(query, jpage, verbose)
+    df <- loop_query(query, verbose)
   }
 
   if (nrow(df) == 0) {

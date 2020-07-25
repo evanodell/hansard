@@ -36,15 +36,9 @@ election_candidates <- function(ID = NULL, constit_details = FALSE,
     ""
   )
 
-  veb(verbose)
-
   query <- paste0(url_util, "electionresults.json?", id_query, extra_args)
 
-jpage <- jpage_func(query)
-
-
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   names(df)[names(df) == "_about"] <- "election_about"
 

@@ -42,17 +42,15 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
     id_query <- paste0("/", ID, ".json?")
   }
 
-  veb(verbose)
-
   query <- paste0(url_util, "members", id_query, extra_args)
 
-  q_members <- jsonlite::fromJSON(query, flatten = TRUE)
-
   if (is.null(ID)) {
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else {
+  veb(verbose)
+
+    q_members <- jsonlite::fromJSON(query, flatten = TRUE)
+
     df <- tibble::as_tibble(as.data.frame(q_members$result$primaryTopic))
 
     names(df)[names(df) == "X_about"] <- "about"
@@ -93,19 +91,10 @@ hansard_members <- members
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake", verbose = TRUE) {
-  baseurl <- paste0(url_util, "commonsmembers.json?_pageSize=100")
+  query <- paste0(url_util, "commonsmembers.json?",
+                  extra_args)
 
-  if (verbose) {
-    message("Connecting to API")
-  }
-
-  c_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-
-  
-
-  query <- paste0(baseurl, extra_args, "&_page=")
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.
@@ -129,19 +118,10 @@ hansard_commons_members <- commons_members
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake", verbose = TRUE) {
-  baseurl <- paste0(url_util, "lordsmembers.json?_pageSize=100")
 
-  if (verbose) {
-    message("Connecting to API")
-  }
+  query <- paste0(url_util, "lordsmembers.json?")
 
-  l_members <- jsonlite::fromJSON(paste0(baseurl, extra_args), flatten = TRUE)
-
-  
-
-  query <- paste0(baseurl, extra_args, "&_page=")
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

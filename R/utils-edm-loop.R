@@ -2,7 +2,11 @@
 
 # Bespoke looping function to manage the weird stuff going on
 # with EDM primary sponsors
-edm_loop_query <- function(query, jpage, verbose) {
+edm_loop_query <- function(query, verbose) {
+  veb(verbose)
+
+  jpage <- jpage_func(query)
+
   seq_list <- seq(from = 0, to = jpage, by = 1)
 
   pages <- list()

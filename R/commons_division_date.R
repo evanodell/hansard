@@ -26,13 +26,9 @@ commons_division_date <- function(date = NULL, extra_args = NULL, tidy = TRUE,
   } else {
     date <- paste0("&date=", as.character(date))
 
-    veb(verbose)
-
     query <- paste0(url_util, "commonsdivisions.json?", date, extra_args)
 
-    jpage <- jpage_func(query)
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
 
     if (nrow(df) == 0) {
       message("The request did not return any data.

@@ -19,16 +19,6 @@
 #'
 constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
                            tidy_style = "snake", verbose = TRUE) {
-  baseurl <- paste0(url_util, "constituencies.json?", extra_args)
-
-  if (verbose) {
-    message("Connecting to API")
-  }
-
-  conts <- jsonlite::fromJSON(baseurl, flatten = TRUE)
-
-
-
   if (is.null(current)) {
     current_query <- ""
   } else if (current) {
@@ -39,9 +29,9 @@ constituencies <- function(current = NULL, extra_args = NULL, tidy = TRUE,
     current_query <- ""
   }
 
-  query <- paste0(baseurl, current_query)
+  query <- paste0(url_util, "constituencies.json?", extra_args, current_query)
 
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

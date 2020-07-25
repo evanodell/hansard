@@ -49,15 +49,9 @@ sessions_info <- function(days = FALSE, start_date = "1900-01-01",
     days_query <- "/days.json?"
   }
 
-  veb(verbose)
-
   query <- paste0(url_util, "sessions", days_query, extra_args)
 
-jpage <- jpage_func(query)
-
-  
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (days) {
     df$date._value <- as.POSIXct(df$date._value)

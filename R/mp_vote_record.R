@@ -67,27 +67,15 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
     as.Date(end_date), "&min-date=",
     as.Date(start_date)
   )
-  veb(verbose)
+
   if (lobby == "aye") {
     query <- paste0(url_util, "commonsdivisions/aye.json?mnisId=", mp_id, dates, session_query, extra_args)
 
-    url_aye <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else if (lobby == "no") {
     query <- paste0(url_util, "commonsdivisions/no.json?mnisId=", mp_id, dates, session_query, extra_args)
 
-jpage <- jpage_func(query)
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else {
     if (verbose) {
       message("Retrieving aye votes:")

@@ -69,9 +69,7 @@ publication_logs <- function(ID = NULL, house = NULL, start_date = "1900-01-01",
   if (is.null(ID) == FALSE) {
     df <- tibble::as_tibble(as.data.frame(logs$result$primaryTopic))
   } else {
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0) {

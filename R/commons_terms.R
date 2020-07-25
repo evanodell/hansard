@@ -57,11 +57,7 @@ commons_terms <- function(search = NULL, class = NULL, extra_args = NULL,
     extra_args
   )
 
-jpage <- jpage_func(query)
-
-
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

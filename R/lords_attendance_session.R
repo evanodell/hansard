@@ -47,22 +47,15 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
     json_query <- ".json?"
   }
 
-  veb(verbose)
-
   query <- paste0(url_util, "lordsattendances", json_query, extra_args)
 
   attend <- jsonlite::fromJSON(query, flatten = TRUE)
 
   if (!is.null(session_id)) {
-    if (verbose) {
-      message("Retrieving attendance data")
-    }
-
+      veb(verbose)
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0) {

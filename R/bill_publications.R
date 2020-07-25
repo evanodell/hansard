@@ -72,17 +72,11 @@ bill_publications <- function(ID = NULL, publication_type = NULL,
     ))
   }
 
-  veb(verbose)
-
   query <- paste0(
     url_util, "billpublications.json?", bill_id, dates, extra_args
   )
 
-jpage <- jpage_func(query)
-
-  
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

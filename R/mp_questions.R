@@ -124,9 +124,9 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
         query, "&_pageSize=1"
       ))
 
-      
 
-      df <- loop_query(query, jpage, verbose) # in utils-loop.R
+
+      df <- loop_query(query, verbose) # in utils-loop.R
     } else if (question_type == "written") {
       dates <- paste0(
         "&_properties=dateTabled&max-dateTabled=",
@@ -142,11 +142,11 @@ mp_questions <- function(mp_id = NULL, question_type = "all",
 
       wr <- jsonlite::fromJSON(query)
 
-      
+
 
       pages <- list()
 
-      df <- loop_query(query, jpage, verbose) # in utils-loop.R
+      df <- loop_query(query, verbose) # in utils-loop.R
     }
   }
 

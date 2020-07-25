@@ -1,7 +1,11 @@
 
 
 ## Retrieves data from the API, using pagination
-loop_query <- function(query, jpage, verbose) {
+loop_query <- function(query, verbose) {
+  veb(verbose)
+
+  jpage <- jpage_func(query)
+
   seq_list <- seq(from = 0, to = jpage, by = 1)
 
   pages <- list()
@@ -25,7 +29,11 @@ loop_query <- function(query, jpage, verbose) {
 
 
 # Special all_answered_questions loop query
-loop_query_aaq <- function(query, jpage, verbose) {
+loop_query_aaq <- function(query, verbose) {
+  veb(verbose)
+
+  jpage <- jpage_func(query)
+
   seq_list <- seq(from = 0, to = jpage, by = 1)
 
   pages <- list()

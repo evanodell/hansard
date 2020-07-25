@@ -188,16 +188,12 @@ all_answered_questions <- function(mp_id = NULL, tabling_mp_id = NULL,
     dept_query <- gsub("Of", "of", dept_query)
     dept_query <- gsub("For", "for", dept_query)
 
-    veb(verbose)
-
     query <- paste0(
       url_util, "answeredquestions.json?", answering_member_query,
       tabling_member_query, house_query, dept_query, dates, extra_args
     )
 
-    jpage <- jpage_func(query)
-
-    df <- loop_query_aaq(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query_aaq(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0 & verbose) {

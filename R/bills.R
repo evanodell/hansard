@@ -64,18 +64,12 @@ bills <- function(ID = NULL, amendments = FALSE, start_date = "1900-01-01",
 
   amend_query <- ifelse(amendments, "withamendments.json?", ".json?")
 
-  veb(verbose)
-
   query <- paste0(
     url_util, "bills", amend_query,
     dates, id_query, extra_args
   )
 
-jpage <- jpage_func(query)
-
-
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.
@@ -84,7 +78,6 @@ jpage <- jpage_func(query)
     if (tidy) {
       df <- bills_tidy(df, tidy_style) ### in utils-bills.R
     }
-
     df
   }
 }

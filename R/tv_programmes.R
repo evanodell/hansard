@@ -67,9 +67,9 @@ tv_programmes <- function(legislature = NULL, start_date = "1900-01-01",
     message("Connecting to API")
   }
 
-  
 
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.
@@ -116,17 +116,9 @@ tv_clips <- function(mp_id = NULL, start_date = "1900-01-01",
     member_query <- ""
   }
 
-  veb(verbose)
-
   query <- paste0(url_util, "tvclips.json?", member_query, dates, extra_args)
 
-  tv <- jsonlite::fromJSON(paste0(query),
-    flatten = TRUE
-  )
-
-  
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

@@ -54,15 +54,9 @@ election_results <- function(ID = NULL, all_data = FALSE,
                              tidy_style = "snake", verbose = TRUE) {
   id_query <- ifelse(is.null(ID), "", paste0("electionId=", ID))
 
-  veb(verbose)
-
   query <- paste0(url_util, "electionresults.json?", id_query, extra_args)
 
-jpage <- jpage_func(query)
-
-  
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (constit_details == TRUE & (nrow(df) > 0)) {
     message("Retrieving constituency information")

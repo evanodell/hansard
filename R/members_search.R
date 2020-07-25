@@ -45,9 +45,7 @@ members_search <- function(search = NULL, tidy = TRUE,
 
     results <- jsonlite::fromJSON(query)
 
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
 
     if (nrow(df) == 0) {
       message("The request did not return any data.

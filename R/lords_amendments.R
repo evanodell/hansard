@@ -50,20 +50,12 @@ lords_amendments <- function(decision = NULL, start_date = "1900-01-01",
     decision_query <- ""
   }
 
-  veb(verbose)
-
   query <- paste0(
     url_util, "lordsbillamendments.json?",
     decision_query, dates, extra_args
   )
 
-jpage <- jpage_func(query)
-
-  
-
-  pages <- list()
-
-  df <- loop_query(query, jpage, verbose) # in utils-loop.R
+  df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {
     message("The request did not return any data.

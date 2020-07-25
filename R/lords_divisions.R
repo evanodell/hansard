@@ -51,17 +51,15 @@ lords_divisions <- function(division_id = NULL, summary = FALSE,
     "&min-date=", as.Date(start_date)
   )
 
-  veb(verbose)
-
   if (is.null(division_id)) {
     query <- paste0(url_util, "lordsdivisions.json?", dates, extra_args)
 
     divis <- jsonlite::fromJSON(paste0(query, "&_pageSize=1"))
 
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else {
+    veb(verbose)
+
     divis <- jsonlite::fromJSON(paste0(
       url_util, "lordsdivisions/id/", division_id,
       ".json?", dates, extra_args

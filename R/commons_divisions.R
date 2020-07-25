@@ -60,9 +60,9 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     as.Date(start_date)
   )
 
-  if (is.null(division_id) & is.null(division_uin)) {
-    veb(verbose)
+  veb(verbose)
 
+  if (is.null(division_id) & is.null(division_uin)) {
     query <- paste0(url_util, "commonsdivisions.json?", dates, extra_args)
 
     divis <- jsonlite::fromJSON(paste0(
@@ -71,10 +71,8 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
     flatten = TRUE
     )
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else if (!is.null(division_id)) { # division_id queries
-    veb(verbose)
-
     divis <- jsonlite::fromJSON(paste0(
       url_util, "commonsdivisions/id/", division_id,
       ".json?", dates, extra_args
@@ -90,8 +88,6 @@ commons_divisions <- function(division_id = NULL, division_uin = NULL,
 
     df$date <- as.POSIXct(divis$result$primaryTopic$date$`_value`)
   } else if (!is.null(division_uin)) { # division_uin queries
-    veb(verbose)
-
     divis <- jsonlite::fromJSON(paste0(
       url_util, "commonsdivisions.json?uin=", division_uin,
       dates, extra_args

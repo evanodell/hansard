@@ -38,9 +38,10 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
 
   baseurl <- paste0(url_util, "epetitions")
 
+  if (!is.null(ID) & !by_constituency) {
+
   veb(verbose)
 
-  if (!is.null(ID) & !by_constituency) {
     petition <- jsonlite::fromJSON(paste0(
       baseurl, ID,
       json_query, extra_args
@@ -65,18 +66,9 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
       website = petition$result$primaryTopic$website
     )
   } else {
-    petition <- jsonlite::fromJSON(paste0(
-      baseurl, ID, json_query,
-      "&_pageSize=1", extra_args
-    ),
-    flatten = TRUE
-    )
-
-    
-
     query <- paste0(baseurl, ID, json_query, extra_args)
 
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
 
     df$member <- NULL # Removes superfluous member column
   }

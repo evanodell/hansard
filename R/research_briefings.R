@@ -48,8 +48,6 @@
 research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
                                extra_args = NULL, tidy = TRUE,
                                tidy_style = "snake", verbose = TRUE) {
-  veb(verbose)
-
   if (is.null(topic) & is.null(subtopic)) {
     if (!is.null(type)) {
       type_query <- utils::URLencode(
@@ -61,15 +59,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
 
     query <- paste0(url_util, "researchbriefings.json?", type_query, extra_args)
 
-    research <- jsonlite::fromJSON(paste0(
-      query, "&_pageSize=1"
-    ),
-    flatten = TRUE
-    )
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   } else {
     if (is.null(topic) == TRUE & is.null(subtopic) == FALSE) {
       g <- rep(
@@ -108,11 +98,7 @@ research_briefings <- function(topic = NULL, subtopic = NULL, type = NULL,
       ".json?", null_type_query, extra_args
     )
 
-jpage <- jpage_func(query)
-
-    
-
-    df <- loop_query(query, jpage, verbose) # in utils-loop.R
+    df <- loop_query(query, verbose) # in utils-loop.R
   }
 
   if (nrow(df) == 0) {
