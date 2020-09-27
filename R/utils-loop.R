@@ -20,10 +20,7 @@ loop_query <- function(query, verbose) {
     }
     pages[[seq_list[[i]] + 1]] <- mydata$result$items
   }
-
-  df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-  df
+  tibble::as_tibble(dplyr::bind_rows(pages))
 }
 
 
@@ -50,8 +47,5 @@ loop_query_aaq <- function(query, verbose) {
 
     pages[[seq_list[[i]] + 1]] <- mydata$result$items
   }
-
-  df <- tibble::as_tibble(dplyr::bind_rows(pages))
-
-  df
+  tibble::as_tibble(dplyr::bind_rows(pages))
 }

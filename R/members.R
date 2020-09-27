@@ -47,7 +47,7 @@ members <- function(ID = NULL, extra_args = NULL, tidy = TRUE,
   if (is.null(ID)) {
     df <- loop_query(query, verbose) # in utils-loop.R
   } else {
-  veb(verbose)
+    veb(verbose)
 
     q_members <- jsonlite::fromJSON(query, flatten = TRUE)
 
@@ -91,8 +91,10 @@ hansard_members <- members
 #' @rdname members
 commons_members <- function(extra_args = NULL, tidy = TRUE,
                             tidy_style = "snake", verbose = TRUE) {
-  query <- paste0(url_util, "commonsmembers.json?",
-                  extra_args)
+  query <- paste0(
+    url_util, "commonsmembers.json?",
+    extra_args
+  )
 
   df <- loop_query(query, verbose) # in utils-loop.R
 
@@ -118,7 +120,6 @@ hansard_commons_members <- commons_members
 #' @rdname members
 lords_members <- function(extra_args = NULL, tidy = TRUE,
                           tidy_style = "snake", verbose = TRUE) {
-
   query <- paste0(url_util, "lordsmembers.json?")
 
   df <- loop_query(query, verbose) # in utils-loop.R

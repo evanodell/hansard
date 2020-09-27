@@ -75,10 +75,6 @@ epetition_tibble <- function(min_signatures = 1, max_signatures = NULL,
     url_util, "epetitions.json?", status_query, sig_q, dates, extra_args
   )
 
-  
-
-
-
   df <- loop_query(query, verbose) # in utils-loop.R
 
   if (nrow(df) == 0) {

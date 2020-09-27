@@ -52,7 +52,7 @@ lords_attendance_session <- function(session_id = NULL, extra_args = NULL,
   attend <- jsonlite::fromJSON(query, flatten = TRUE)
 
   if (!is.null(session_id)) {
-      veb(verbose)
+    veb(verbose)
     df <- tibble::as_tibble(as.data.frame(attend$result$primaryTopic))
   } else {
     df <- loop_query(query, verbose) # in utils-loop.R

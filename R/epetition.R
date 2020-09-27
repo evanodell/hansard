@@ -39,8 +39,7 @@ epetition <- function(ID = NULL, by_constituency = FALSE,
   baseurl <- paste0(url_util, "epetitions")
 
   if (!is.null(ID) & !by_constituency) {
-
-  veb(verbose)
+    veb(verbose)
 
     petition <- jsonlite::fromJSON(paste0(
       baseurl, ID,
