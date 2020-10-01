@@ -95,6 +95,64 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 }
 
 
+
+#' Early Day Motion Text
+#'
+#' A quick and dirty function for a specific use case, use with caution.
+#'
+#' @param id The ID of an individual Early Day Motion, or a vector of IDs,
+#' as found in the `about` column of returns from [early_day_motions()]
+#' @inheritParams early_day_motions
+#'
+#' @return A tibble of containing the EDM text and its ID.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' y <- edm_text(c("811291", "811292", "811293"))
+#' }
+edm_text <- function(id, tidy = TRUE,
+                     tidy_style = "snake", verbose = TRUE) {
+
+  if (length(id) <= 1) {
+
+  xt <- jsonlite::fromJSON(paste0(url_util, "edms/",id[[i]], ".json"))
+
+   df <- dplyr::as_tibble(xt$result$primaryTopic[c("_about", "motionText") ])
+
+  } else {
+
+    req_list <- list()
+
+    for (i in seq_along(id)) {
+      if (verbose) {
+        message("Retrieving page ", i, " of ", length(id))
+      }
+
+      xt <- jsonlite::fromJSON(paste0(url_util, "edms/",id[[i]], ".json"))
+      req_list[[i]]  <- xt$result$primaryTopic
+
+      req_list[[i]] <- req_list[[i]][c("_about", "motionText") ]
+    }
+
+    df<- dplyr::bind_rows(req_list)
+
+  }
+
+  if (nrow(df) == 0) {
+    message("The request did not return any data.
+                Please check your parameters.")
+  } else {
+    if (tidy) {
+      df <- hansard_tidy(df, tidy_style)
+    }
+
+    df
+  }
+
+}
+
+
 #' @rdname early_day_motions
 #' @export
 hansard_early_day_motions <- early_day_motions
