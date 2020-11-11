@@ -1,4 +1,11 @@
 
+# hansard 0.8.0.9000
+
+* Now using `httr` to handle API requests and return more helpful errors.
+
+* New `edm_text()` function to return the content of Early Day Motions.
+
+
 # hansard 0.8.0
 
 * Replacing deprecated `tidyr` functions with up-to-date ones

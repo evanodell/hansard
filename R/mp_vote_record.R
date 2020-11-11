@@ -69,11 +69,17 @@ mp_vote_record <- function(mp_id = NULL, lobby = "all", session = NULL,
   )
 
   if (lobby == "aye") {
-    query <- paste0(url_util, "commonsdivisions/aye.json?mnisId=", mp_id, dates, session_query, extra_args)
+    query <- paste0(
+      url_util, "commonsdivisions/aye.json?mnisId=",
+      mp_id, dates, session_query, extra_args
+    )
 
     df <- loop_query(query, verbose) # in utils-loop.R
   } else if (lobby == "no") {
-    query <- paste0(url_util, "commonsdivisions/no.json?mnisId=", mp_id, dates, session_query, extra_args)
+    query <- paste0(
+      url_util, "commonsdivisions/no.json?mnisId=",
+      mp_id, dates, session_query, extra_args
+    )
 
     df <- loop_query(query, verbose) # in utils-loop.R
   } else {

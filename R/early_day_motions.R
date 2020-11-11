@@ -113,15 +113,11 @@ early_day_motions <- function(edm_id = NULL, session = NULL,
 #' }
 edm_text <- function(id, tidy = TRUE,
                      tidy_style = "snake", verbose = TRUE) {
-
   if (length(id) <= 1) {
+    xt <- jsonlite::fromJSON(paste0(url_util, "edms/", id[[i]], ".json"))
 
-  xt <- jsonlite::fromJSON(paste0(url_util, "edms/",id[[i]], ".json"))
-
-   df <- dplyr::as_tibble(xt$result$primaryTopic[c("_about", "motionText") ])
-
+    df <- dplyr::as_tibble(xt$result$primaryTopic[c("_about", "motionText")])
   } else {
-
     req_list <- list()
 
     for (i in seq_along(id)) {
@@ -129,14 +125,13 @@ edm_text <- function(id, tidy = TRUE,
         message("Retrieving page ", i, " of ", length(id))
       }
 
-      xt <- jsonlite::fromJSON(paste0(url_util, "edms/",id[[i]], ".json"))
-      req_list[[i]]  <- xt$result$primaryTopic
+      xt <- jsonlite::fromJSON(paste0(url_util, "edms/", id[[i]], ".json"))
+      req_list[[i]] <- xt$result$primaryTopic
 
-      req_list[[i]] <- req_list[[i]][c("_about", "motionText") ]
+      req_list[[i]] <- req_list[[i]][c("_about", "motionText")]
     }
 
-    df<- dplyr::bind_rows(req_list)
-
+    df <- dplyr::bind_rows(req_list)
   }
 
   if (nrow(df) == 0) {
@@ -149,7 +144,6 @@ edm_text <- function(id, tidy = TRUE,
 
     df
   }
-
 }
 
 

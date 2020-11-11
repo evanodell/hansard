@@ -27,7 +27,6 @@
 #' This package is in no way officially related to or endorsed by the UK
 #' Parliamentary Data Service.
 #'
-#'
 #' @docType package
 #' @name hansard
 #' @importFrom jsonlite fromJSON
@@ -37,4 +36,5 @@
 #' @importFrom tidyr spread unnest unnest_wider
 #' @importFrom lubridate parse_date_time
 #' @importFrom snakecase to_any_case
+#' @importFrom httr content GET status_code http_type
 NULL
