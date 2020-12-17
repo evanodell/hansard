@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -142,6 +142,15 @@
       <small>Source: <a href='https://github.com/EvanOdell/hansard/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="hansard-0809000" class="section level1">
+<h1 class="page-header" data-toc-text="0.8.0.9000">
+<a href="#hansard-0809000" class="anchor"></a>hansard 0.8.0.9000<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Now using <code>httr</code> to handle API requests and return more helpful errors.</p></li>
+<li><p>New <code><a href="../reference/edm_text.html">edm_text()</a></code> function to return the content of Early Day Motions.</p></li>
+</ul>
+</div>
     <div id="hansard-080" class="section level1">
 <h1 class="page-header" data-toc-text="0.8.0">
 <a href="#hansard-080" class="anchor"></a>hansard 0.8.0<small> 2019-11-13 </small>
@@ -333,7 +342,7 @@ increase speed and improve ease of maintenance.</li>
 <div id="function-changes-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#function-changes-1" class="anchor"></a>Function changes</h2>
-<p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/pssguy'>@pssguy</a>)</p>
+<p><code>lords_attendance()</code> has been deprecated. Please use <code><a href="../reference/lords_attendance_date.html">lords_attendance_date()</a></code> for attendance data for a given date, and <code><a href="../reference/lords_attendance_session.html">lords_attendance_session()</a></code> for attendance from a given session ID. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/pssguy'>@pssguy</a>)</p>
 <p>New function <code><a href="../reference/lords_sessions.html">lords_sessions()</a></code> returns a tibble with details of all sessions in the House of Lords between two given dates.</p>
 </div>
 <div id="bug-fixes-4" class="section level2">
@@ -574,7 +583,7 @@ increase speed and improve ease of maintenance.</li>
 <p><code><a href="../reference/early_day_motions.html">early_day_motions()</a></code>: Changed all camelCase to snake_case.</p>
 <p><code><a href="../reference/election_results.html">election_results()</a></code>: Removed console input, simplified formals.</p>
 <p><code><a href="../reference/elections.html">elections()</a></code>: Removed console input, simplified formals.</p>
-<p><code><a href="../reference/lords_attendance.html">lords_attendance()</a></code>: Removed console input, simplified formals.</p>
+<p><code>lords_attendance()</code>: Removed console input, simplified formals.</p>
 <p><code><a href="../reference/lord_vote_record.html">lord_vote_record()</a></code>: Removed console input, simplified formals.</p>
 <p><code><a href="../reference/lords_divisions.html">lords_divisions()</a></code>: Removed console input, simplified formals.</p>
 <p><code><a href="../reference/members.html">members()</a></code>: Added additional <code><a href="../reference/members.html">commons_members()</a></code>, <code>commons_interests()</code>, <code><a href="../reference/members.html">lords_members()</a></code> and <code><a href="../reference/lords_interests.html">lords_interests()</a></code> functions.</p>
@@ -596,8 +605,8 @@ increase speed and improve ease of maintenance.</li>
 <div id="bug-fixes-12" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-12" class="anchor"></a>Bug fixes</h2>
-<p>The <code><a href="../reference/lords_attendance.html">lords_attendance()</a></code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/meenaparam'>@meenaparam</a>)</p>
-<p>Fixed spelling of amendments, so that <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> is now <code><a href="../reference/lords_amendments.html">lords_amendments()</a></code>. The <code><a href="../reference/lords_ammendments.html">lords_ammendments()</a></code> function has been deprecated, and will be removed in a future release.</p>
+<p>The <code>lords_attendance()</code> function was not working. It was returning empty data frames when searching by date and failing entirely when trying to retrieve all attendance. This was due to url encoding issues, which have now been identified and fixed. (<a href='https://github.com/EvanOdell/hansard/issues/4'>#4</a>, <a href='https://github.com/meenaparam'>@meenaparam</a>)</p>
+<p>Fixed spelling of amendments, so that <code>lords_ammendments()</code> is now <code><a href="../reference/lords_amendments.html">lords_amendments()</a></code>. The <code>lords_ammendments()</code> function has been deprecated, and will be removed in a future release.</p>
 </div>
 </div>
     <div id="hansard-033" class="section level1">
@@ -666,7 +675,7 @@ increase speed and improve ease of maintenance.</li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

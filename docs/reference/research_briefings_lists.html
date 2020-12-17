@@ -83,7 +83,7 @@ These functions do not accept any arguments." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -150,17 +150,17 @@ These functions do not accept any arguments." />
 These functions do not accept any arguments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>research_topics_list</span>()
+    <pre class="usage"><span class='fu'>research_topics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>hansard_research_topics_list</span>()
+<span class='fu'>hansard_research_topics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>research_subtopics_list</span>()
+<span class='fu'>research_subtopics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>hansard_research_subtopics_list</span>()
+<span class='fu'>hansard_research_subtopics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>research_types_list</span>()
+<span class='fu'>research_types_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>hansard_research_types_list</span>()</pre>
+<span class='fu'>hansard_research_types_list</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -170,7 +170,7 @@ These functions do not accept any arguments.</p>
 
     
 
-<dl'>
+<dl>
 <dt>research_topics_list</dt><dd><p>A list with the different research
 topics available</p></dd>
 <dt>research_subtopics_list</dt><dd><p>A list of Parliamentary Research
@@ -185,13 +185,15 @@ Research Briefings</p></dd>
     <div class='dont-index'><p><code><a href='research_briefings.html'>research_briefings()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>research_topics_list</span> <span class='kw'>&lt;-</span> <span class='fu'>research_topics_list</span>()
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>research_topics_list</span> <span class='op'>&lt;-</span> <span class='fu'>research_topics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='no'>research_subtopics_list</span> <span class='kw'>&lt;-</span> <span class='fu'>research_subtopics_list</span>()
+<span class='va'>research_subtopics_list</span> <span class='op'>&lt;-</span> <span class='fu'>research_subtopics_list</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='no'>research_types_list</span> <span class='kw'>&lt;-</span> <span class='fu'>research_types_list</span>()
-}</div></pre>
+<span class='va'>research_types_list</span> <span class='op'>&lt;-</span> <span class='fu'>research_types_list</span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -207,7 +209,7 @@ Research Briefings</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

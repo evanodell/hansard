@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -106,10 +106,10 @@
 <p>An R package to automatically fetch data from the UK Parliament API. Ironically, Hansard data (as in speeches) is not yet accessible through the API. To explore all available data see <a href="http://www.data.parliament.uk/" class="uri">http://www.data.parliament.uk/</a>. Documentation for the API itself is available <a href="http://explore.data.parliament.uk/">here</a>.</p>
 <p>Like the UK parliament API, this package is a work in progress. Additional functionalities will be added to the package as they are developed in the API. The most up-to-date documentation for this package will always be available at <a href="https://docs.evanodell.com/hansard/" class="uri">https://docs.evanodell.com/hansard/</a>.</p>
 <p>To install from CRAN run:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"hansard"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"hansard"</span>)</span></code></pre></div>
 <p>To install the development version run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">#install.packages("remotes")</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"evanodell/hansard"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("remotes")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"evanodell/hansard"</span>)</span></code></pre></div>
 <div id="using-hansard" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-hansard" class="anchor"></a>Using hansard</h2>
@@ -123,15 +123,15 @@
 <div id="citing-hansard" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citing-hansard" class="anchor"></a>Citing hansard</h2>
-<p>Odell E (2017). <em>hansard: Provides Easy Downloading Capabilities for the UK Parliament API</em>. doi: <a href="https://doi.org/10.5281/zenodo.591264">10.5281/zenodo.591264</a>, R package version 0.8.0, URL: <a href="https://cran.r-project.org/package=hansard" class="uri">https://cran.r-project.org/package=hansard</a>.</p>
+<p>Odell E (2017). <em>hansard: Provides Easy Downloading Capabilities for the UK Parliament API</em>. doi: <a href="https://doi.org/10.5281/zenodo.591264">10.5281/zenodo.591264</a>, R package version 0.8.0.9000, URL: <a href="https://cran.r-project.org/package=hansard" class="uri">https://cran.r-project.org/package=hansard</a>.</p>
 <p>A BibTeX entry for LaTeX users is</p>
-<pre><code>  @Manual{,
-    title = {{hansard}: Provides Easy Downloading Capabilities for the UK Parliament API},
-    author = {Evan Odell},
-    note = {R package version 0.8.0},
-    doi = {10.5281/zenodo.591264},
-    url = {https://cran.r-project.org/package=hansard},
-  }</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Manual{,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {{hansard}<span class="sc">:</span> Provides Easy Downloading Capabilities <span class="cf">for</span> the UK Parliament API},</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Evan Odell},</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">0</span>.<span class="dv">8</span>.<span class="fl">0.9000</span>},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.591264</span>},</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>cran.r<span class="sc">-</span>project.org<span class="sc">/</span>package<span class="ot">=</span>hansard},</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -182,11 +182,10 @@
 <li><a href="https://cran.r-project.org/package=hansard"><img src="https://www.r-pkg.org/badges/version/hansard" alt="CRAN_Status_Badge"></a></li>
 <li><a href="https://github.com/evanodell/hansard"><img src="https://img.shields.io/github/tag/evanodell/hansard.svg" alt="GitHub tag"></a></li>
 <li><a href="https://cran.r-project.org/package=hansard"><img src="https://cranlogs.r-pkg.org/badges/grand-total/hansard" alt="CRAN Downloads"></a></li>
-<li><a href="https://travis-ci.org/evanodell/hansard"><img src="https://travis-ci.org/evanodell/hansard.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/evanodell/hansard"><img src="https://ci.appveyor.com/api/projects/status/github/evanodell/hansard?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/evanodell/hansard?branch=master"><img src="https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg" alt="Coverage Status"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/72111315"><img src="https://zenodo.org/badge/72111315.svg" alt="DOI"></a></li>
-<li><a href="https://travis-ci.org/evanodell/hansard"><img src="https://travis-ci.org/evanodell/hansard.svg?branch=master" alt="Travis build status"></a></li>
+<li><a href="https://github.com/EvanOdell/hansard/actions"><img src="https://github.com/EvanOdell/hansard/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
 </div>
@@ -198,7 +197,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

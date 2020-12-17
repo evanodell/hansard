@@ -12,13 +12,14 @@ MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/
 tag](https://img.shields.io/github/tag/evanodell/hansard.svg)](https://github.com/evanodell/hansard)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/grand-total/hansard)](https://cran.r-project.org/package=hansard)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/evanodell/hansard?branch=master&svg=true)](https://ci.appveyor.com/project/evanodell/hansard)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/evanodell/hansard/master.svg)](https://codecov.io/github/evanodell/hansard?branch=master)
 [![DOI](https://zenodo.org/badge/72111315.svg)](https://zenodo.org/badge/latestdoi/72111315)
 [![R build
 status](https://github.com/EvanOdell/hansard/workflows/R-CMD-check/badge.svg)](https://github.com/EvanOdell/hansard/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/EvanOdell/hansard/branch/master/graph/badge.svg)](https://codecov.io/gh/EvanOdell/hansard?branch=master)
+[![R-CMD-check](https://github.com/EvanOdell/hansard/workflows/R-CMD-check/badge.svg)](https://github.com/EvanOdell/hansard/actions)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/EvanOdell/hansard?branch=master&svg=true)](https://ci.appveyor.com/project/EvanOdell/hansard)
 <!-- badges: end -->
 
 An R package to automatically fetch data from the UK Parliament API.
@@ -45,18 +46,10 @@ To install the development version run:
 
 For an introduction to `hansard`, please see the
 [vignette](https://docs.evanodell.com/hansard/articles/introduction.html).
-If you are unfamiliar with web APIs [this introductory
-course](https://zapier.com/learn/apis/) is useful.
-
-### Disclaimer
-
-This package is in no way officially related to or endorsed by the UK
-Parliamentary Data Service. It is released under an MIT license. Please
-note that this project is released with a [Contributor Code of
-Conduct](https://github.com/evanodell/hansard/blob/master/CODE_OF_CONDUCT.md).
-By participating in this project you agree to abide by its terms.
 
 ## Citing hansard
+
+Please cite this package as:
 
 Odell E (2017). *hansard: Provides Easy Downloading Capabilities for the
 UK Parliament API*. doi:
@@ -73,3 +66,14 @@ A BibTeX entry for LaTeX users is
         doi = {10.5281/zenodo.591264},
         url = {https://cran.r-project.org/package=hansard},
       }
+
+### Disclaimer
+
+This package is in no way officially related to or endorsed by the UK
+Parliamentary Data Service. It is released under an MIT license. Please
+note that this project is released with a [Contributor Code of
+Conduct](https://github.com/evanodell/hansard/blob/master/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+Data obtained through the `hansard` package is licensed under the Open
+Government License. The code in `hansard` uses the MIT license.

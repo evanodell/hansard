@@ -83,7 +83,7 @@ API, and that correct search queries may not return any results." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -150,11 +150,19 @@ API, and that correct search queries may not return any results." />
 API, and that correct search queries may not return any results.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>members_search</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+    <pre class="usage"><span class='fu'>members_search</span><span class='op'>(</span>
+  search <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
 
-<span class='fu'>hansard_members_search</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+<span class='fu'>hansard_members_search</span><span class='op'>(</span>
+  search <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,11 +208,13 @@ same result as <code><a href='members.html'>members()</a></code>.</p>
     <div class='dont-index'><p><code><a href='members.html'>members()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>members_search</span>(<span class='st'>"*chris*"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>members_search</span><span class='op'>(</span><span class='st'>"*chris*"</span><span class='op'>)</span>
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>members_search</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>"*chris*"</span>)
-}</div></pre>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>members_search</span><span class='op'>(</span>search <span class='op'>=</span> <span class='st'>"*chris*"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -220,7 +230,7 @@ same result as <code><a href='members.html'>members()</a></code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

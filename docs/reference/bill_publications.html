@@ -83,7 +83,7 @@ or all bills." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -150,15 +150,27 @@ or all bills." />
 or all bills.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>bill_publications</span>(<span class='kw'>ID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>publication_type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(),
-  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>bill_publications</span><span class='op'>(</span>
+  ID <span class='op'>=</span> <span class='cn'>NULL</span>,
+  publication_type <span class='op'>=</span> <span class='cn'>NULL</span>,
+  start_date <span class='op'>=</span> <span class='st'>"1900-01-01"</span>,
+  end_date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>,
+  extra_args <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>hansard_bill_publications</span>(<span class='kw'>ID</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>publication_type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>end_date</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span>(),
-  <span class='kw'>extra_args</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>tidy_style</span> <span class='kw'>=</span> <span class='st'>"snake"</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+<span class='fu'>hansard_bill_publications</span><span class='op'>(</span>
+  ID <span class='op'>=</span> <span class='cn'>NULL</span>,
+  publication_type <span class='op'>=</span> <span class='cn'>NULL</span>,
+  start_date <span class='op'>=</span> <span class='st'>"1900-01-01"</span>,
+  end_date <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>,
+  extra_args <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,13 +241,14 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
 <p><code><a href='bill_publication_types.html'>bill_publication_types()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># Requesting a specific publication</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>bill_publications</span>(<span class='kw'>ID</span> <span class='kw'>=</span> <span class='fl'>752025</span>)
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>bill_publications</span><span class='op'>(</span>ID <span class='op'>=</span> <span class='fl'>752025</span><span class='op'>)</span>
 
 <span class='co'># Requesting all publications after a given date</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>bill_publications</span>(<span class='kw'>start_date</span> <span class='kw'>=</span> <span class='st'>"2018-01-01"</span>)
-}</div></pre>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>bill_publications</span><span class='op'>(</span>start_date <span class='op'>=</span> <span class='st'>"2018-01-01"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -251,7 +264,7 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

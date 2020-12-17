@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">hansard</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -91,13 +91,14 @@
 
       
 
-      </header><script src="introduction_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="introduction_files/header-attrs-2.5/header-attrs.js"></script><link href="introduction_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="introduction_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to hansard</h1>
                         <h4 class="author">Evan Odell</h4>
             
-            <h4 class="date">2020-04-22</h4>
+            <h4 class="date">2020-11-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/EvanOdell/hansard/blob/master/../docs/vignettes/introduction.Rmd"><code>../docs/vignettes/introduction.Rmd</code></a></small>
       <div class="hidden name"><code>introduction.Rmd</code></div>
@@ -124,13 +125,13 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 <div id="load-hansard" class="section level3">
 <h3 class="hasAnchor">
 <a href="#load-hansard" class="anchor"></a>Load hansard</h3>
-<pre><code><a href="https://rdrr.io/pkg/hansard/man">library(hansard)</a></code></pre>
+<pre><code><a href="https://docs.evanodell.com/hansard">library(hansard)</a></code></pre>
 </div>
 </div>
 <div id="using-hansard" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-hansard" class="anchor"></a>Using hansard</h2>
-<p><code>hansard</code> contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <a href="http://www.data.parliament.uk/" class="uri">http://www.data.parliament.uk/</a> API. The parameter options for each function vary, depending on the specific information available from each API, but there are four constant parameters in every function (with the exception of the <code>hansard_generic()</code> and <code><a href="../reference/research_briefings_lists.html">research_topics_list()</a></code> functions <a href="#special-functions">described below</a>): <code>extra_args</code>, <code>tidy</code>, <code>tidy_style</code> and <code>verbose</code>.</p>
+<p><code>hansard</code> contains functions for calling data for the UK Parliament API. The functions are designed to call data from a specific <a href="http://www.data.parliament.uk/" class="uri">http://www.data.parliament.uk/</a> API. The parameter options for each function vary, depending on the specific information available from each API, but there are four constant parameters in every function (with the exception of the <code>hansard_generic()</code> and <code><a href="../reference/research_topics_list.html">research_topics_list()</a></code> functions <a href="#special-functions">described below</a>): <code>extra_args</code>, <code>tidy</code>, <code>tidy_style</code> and <code>verbose</code>.</p>
 <div id="tidy" class="section level4">
 <h4 class="hasAnchor">
 <a href="#tidy" class="anchor"></a><code>tidy</code>
@@ -158,11 +159,12 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 <div id="example-using-the-commons_divisions-and-mp_vote_record-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-using-the-commons_divisions-and-mp_vote_record-functions" class="anchor"></a>Example using the <code>commons_divisions()</code> and <code>mp_vote_record()</code> functions</h3>
-<p>The <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. <code><a href="../reference/mp_vote_record.html">mp_vote_record()</a></code> returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the <a href="#special-functions"><code><a href="../reference/members_search.html">members_search()</a></code> function described below</a>.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">hansard</span>)
-<span class="no">z</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mp_vote_record.html">mp_vote_record</a></span>(<span class="fl">172</span>, <span class="st">"aye"</span>, <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2017-01-01"</span>,
-                    <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2017-02-07"</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="no">z</span></pre></body></html></div>
+<p>The <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code> function returns divisions in the House of Commons, including the result of votes and information on what we being voted on. <code><a href="../reference/mp_vote_record.html">mp_vote_record()</a></code> returns a data frame the voting record of a given MP on each division they voted in. The example below returns all Commons Divisions where Diane Abbott voted aye in 2017. To find the parliamentary ID of Diane Abbott (or any other member of the House of Commons or House of Lords), use the <a href="#special-functions"><code>members_search()</code> function described below</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.evanodell.com/hansard">hansard</a></span><span class="op">)</span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mp_vote_record.html">mp_vote_record</a></span><span class="op">(</span><span class="fl">172</span>, <span class="st">"aye"</span>, start_date <span class="op">=</span> <span class="st">"2017-01-01"</span>,
+                    end_date <span class="op">=</span> <span class="st">"2017-02-07"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">z</span></code></pre></div>
 <pre><code>## # A tibble: 11 x 5
 ##    about  title                              uin       date_value  date_datatype
 ##    &lt;chr&gt;  &lt;chr&gt;                              &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;        
@@ -178,8 +180,9 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 ## 10 670447 Commonwealth Development Corporat… CD:2017-… 2017-01-10… POSIXct      
 ## 11 670448 Commonwealth Development Corporat… CD:2017-… 2017-01-10… POSIXct</code></pre>
 <p>Using <code><a href="../reference/commons_divisions.html">commons_divisions()</a></code>, we can see the result of one of those votes, ID 722300, the Early Parliamentary General Election bill that dissolved parliament for the 2017 General Election. The function default is to return a list of every MP and how they voted:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/commons_divisions.html">commons_divisions</a></span>(<span class="fl">722300</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">x</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/commons_divisions.html">commons_divisions</a></span><span class="op">(</span><span class="fl">722300</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##   number member_party  type   member_printed_v… vote_id about label_value       
 ##   &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;             
@@ -190,8 +193,9 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 ## 5 102    Conservative  aye_v… Tracey Crouch     722300  3950  Biography informa…
 ## 6 103    Labour        aye_v… Jon Cruddas       722300  1406  Biography informa…</code></pre>
 <p>With the <code>summary</code> parameter, we can return a brief summary table of votes:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/commons_divisions.html">commons_divisions</a></span>(<span class="kw">division_id</span> <span class="kw">=</span> <span class="fl">722300</span>, <span class="kw">summary</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(<span class="no">y</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/commons_divisions.html">commons_divisions</a></span><span class="op">(</span>division_id <span class="op">=</span> <span class="fl">722300</span>, summary <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1
 ## Columns: 13
 ## $ abstain_count                     &lt;chr&gt; "0"
@@ -222,11 +226,12 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 <li><p><code><a href="../reference/mp_edms.html">mp_edms()</a></code></p></li>
 </ul>
 <p>For example, the following function returns all questions answered by Nichola Blackwood (4019) or Sam Gyimah (3980), asked by Keith Vaz (338) or Diane Abbot (172), and covered by the Department for Health or the Ministry of Justice, between 2016-12-18 and 2017-03-12.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/all_answered_questions.html">all_answered_questions</a></span>(<span class="kw">mp_id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">4019</span>, <span class="fl">3980</span>), <span class="kw">tabling_mp_id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">338</span>, <span class="fl">172</span>),
-                            <span class="kw">answering_body</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"health"</span>, <span class="st">"justice"</span>),
-                            <span class="kw">start_date</span> <span class="kw">=</span> <span class="st">"2016-12-18"</span>, <span class="kw">end_date</span> <span class="kw">=</span> <span class="st">"2017-03-12"</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/all_answered_questions.html">all_answered_questions</a></span><span class="op">(</span>mp_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4019</span>, <span class="fl">3980</span><span class="op">)</span>, tabling_mp_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">338</span>, <span class="fl">172</span><span class="op">)</span>,
+                            answering_body <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"health"</span>, <span class="st">"justice"</span><span class="op">)</span>,
+                            start_date <span class="op">=</span> <span class="st">"2016-12-18"</span>, end_date <span class="op">=</span> <span class="st">"2017-03-12"</span><span class="op">)</span>
 
-<span class="kw pkg">tibble</span><span class="kw ns">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span>(<span class="no">w</span>) <span class="co">## need to fix this</span></pre></body></html></div>
+<span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span> <span class="co">## need to fix this</span></code></pre></div>
 <pre><code>## Rows: 23
 ## Columns: 31
 ## $ about                               &lt;chr&gt; "705625", "705626", "705627", "67…
@@ -242,7 +247,7 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 ## $ answering_member_constituency_value &lt;chr&gt; "Oxford West and Abingdon", "Oxfo…
 ## $ answering_member_printed_value      &lt;chr&gt; "Nicola Blackwood", "Nicola Black…
 ## $ date_of_answer_value                &lt;dttm&gt; 2017-03-07, 2017-03-07, 2017-03-…
-## $ answer_date_time                    &lt;dttm&gt; 2017-03-07 17:15:39, 2017-03-07 …
+## $ answer_date_time                    &lt;dttm&gt; 2017-03-07 18:15:39, 2017-03-07 …
 ## $ date_of_answer_datatype             &lt;chr&gt; "POXIXct", "POXIXct", "POXIXct", …
 ## $ is_ministerial_correction_value     &lt;chr&gt; "false", "false", "false", "false…
 ## $ is_ministerial_correction_datatype  &lt;chr&gt; "boolean", "boolean", "boolean", …
@@ -275,15 +280,17 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 <h3 class="hasAnchor">
 <a href="#the-research_briefings-function" class="anchor"></a>The <code>research_briefings()</code> function</h3>
 <p>The <code><a href="../reference/research_briefings.html">research_briefings()</a></code> function includes the feature of requesting data using lists created using the <code>research_briefings_lists</code> functions:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">research_topics_list</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/research_briefings_lists.html">research_topics_list</a></span>()
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">research_topics_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/research_topics_list.html">research_topics_list</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="no">research_topics_list</span><span class="kw">[[</span><span class="fl">7</span>]]</pre></body></html></div>
+<span class="va">research_topics_list</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Defence"</code></pre>
 <p>In this case I have given them the same name as their function, but you can assign any name you wish to them.</p>
 <p>Having created the lists, they can be used to specify which topics and subtopics to call, although strings can also be used. In the example below, <code>a</code> and <code>c</code> contain the same data.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">a</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/research_briefings.html">research_briefings</a></span>(<span class="kw">topic</span> <span class="kw">=</span> <span class="no">research_topics_list</span><span class="kw">[[</span><span class="fl">7</span>]])
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/research_briefings.html">research_briefings</a></span><span class="op">(</span>topic <span class="op">=</span> <span class="va">research_topics_list</span><span class="op">[[</span><span class="fl">7</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 
-<span class="no">c</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/research_briefings.html">research_briefings</a></span>(<span class="kw">topic</span> <span class="kw">=</span> <span class="st">"Defence"</span>)</pre></body></html></div>
+<span class="va">c</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/research_briefings.html">research_briefings</a></span><span class="op">(</span>topic <span class="op">=</span> <span class="st">"Defence"</span><span class="op">)</span></code></pre></div>
 <p>If a specific subtopic is called, but the topic is not specified, the function will still return all data within that specific subtopic. Note that this is slower than specifying the topic and subtopic.</p>
 <p>If a specified subtopic is not a subtopic of the specified topic, the function will not return any data.</p>
 </div>
@@ -291,7 +298,8 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 <h3 class="hasAnchor">
 <a href="#the-hansard_generic-function" class="anchor"></a>The <code>hansard_generic()</code> function</h3>
 <p>The <code>hansard_generic()</code> function allows you to put in your own paths to the API. Information on all the paths available in the API can be found on the <a href="http://explore.data.parliament.uk/">DDP Explorer website</a>.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu">hansard_generic</span>(<span class="st">"commonsansweredquestions.json"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">hansard_generic</span><span class="op">(</span><span class="st">"commonsansweredquestions.json"</span><span class="op">)</span></code></pre></div>
 <p>Note that the API defaults to returning 10 items per page, but allows up to 500 items per page, the default used by <code>hansard</code>.</p>
 </div>
 </div>
@@ -312,7 +320,7 @@ devtools::install_github("EvanOdell/hansard")</a></code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

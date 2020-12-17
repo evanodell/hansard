@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parliamentary Thesaurus — commons_terms • hansard</title>
+<title>Early Day Motion Text — edm_text • hansard</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Parliamentary Thesaurus — commons_terms" />
-<meta property="og:description" content="Imports the parliamentary thesaurus. The API is rate limited to 5500
-requests at a time, so some use of parameters is required." />
+<meta property="og:title" content="Early Day Motion Text — edm_text" />
+<meta property="og:description" content="A quick and dirty function for a specific use case, use with caution." />
 
 
 
@@ -140,53 +139,24 @@ requests at a time, so some use of parameters is required." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parliamentary Thesaurus</h1>
-    <small class="dont-index">Source: <a href='https://github.com/EvanOdell/hansard/blob/master/R/commons_terms.R'><code>R/commons_terms.R</code></a></small>
-    <div class="hidden name"><code>commons_terms.Rd</code></div>
+    <h1>Early Day Motion Text</h1>
+    <small class="dont-index">Source: <a href='https://github.com/EvanOdell/hansard/blob/master/R/early_day_motions.R'><code>R/early_day_motions.R</code></a></small>
+    <div class="hidden name"><code>edm_text.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Imports the parliamentary thesaurus. The API is rate limited to 5500
-requests at a time, so some use of parameters is required.</p>
+    <p>A quick and dirty function for a specific use case, use with caution.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>commons_terms</span><span class='op'>(</span>
-  search <span class='op'>=</span> <span class='cn'>NULL</span>,
-  class <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extra_args <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
-  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='fu'>hansard_commons_terms</span><span class='op'>(</span>
-  search <span class='op'>=</span> <span class='cn'>NULL</span>,
-  class <span class='op'>=</span> <span class='cn'>NULL</span>,
-  extra_args <span class='op'>=</span> <span class='cn'>NULL</span>,
-  tidy <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>,
-  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>edm_text</span><span class='op'>(</span><span class='va'>id</span>, tidy <span class='op'>=</span> <span class='cn'>TRUE</span>, tidy_style <span class='op'>=</span> <span class='st'>"snake"</span>, verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>search</th>
-      <td><p>A string to search the parliamentary thesaurus for.</p></td>
-    </tr>
-    <tr>
-      <th>class</th>
-      <td><p>The class of definition to be returned Accepts one of
-<code>'ID'</code>, <code>'ORG'</code>, <code>'SIT'</code>, <code>'NAME'</code>, <code>'LEG'</code>,
-<code>'CTP'</code>, <code>'PBT'</code> and <code>'TPG'</code>.  Defaults to <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>extra_args</th>
-      <td><p>Additional parameters and queries to pass to API. These
-queries must be strings and start with "&amp;". See the
-<a href='http://explore.data.parliament.uk/'>API documentation</a>
-or the package vignette for more details. Defaults to <code>NULL</code>.</p></td>
+      <th>id</th>
+      <td><p>The ID of an individual Early Day Motion, or a vector of IDs,
+as found in the <code>about</code> column of returns from <code><a href='early_day_motions.html'>early_day_motions()</a></code></p></td>
     </tr>
     <tr>
       <th>tidy</th>
@@ -209,15 +179,12 @@ progress of the API request. Defaults to <code>TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble with results from the parliamentary thesaurus.</p>
+    <p>A tibble of containing the EDM text and its ID.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>commons_terms</span><span class='op'>(</span>search <span class='op'>=</span> <span class='st'>"estate"</span><span class='op'>)</span>
-
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>commons_terms</span><span class='op'>(</span>search <span class='op'>=</span> <span class='st'>"estate"</span>, class <span class='op'>=</span> <span class='st'>"ORG"</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>edm_text</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"811291"</span>, <span class='st'>"811292"</span>, <span class='st'>"811293"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
-
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
