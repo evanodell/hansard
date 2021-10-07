@@ -25,7 +25,6 @@ loop_query <- function(query, verbose) {
       )
 
     } else {
-
       mydata <- jsonlite::fromJSON(
         httr::content(api_get, as = "text", encoding = "utf8"),
         flatten = TRUE
@@ -34,7 +33,6 @@ loop_query <- function(query, verbose) {
         message("Retrieving page ", seq_list[[i]] + 1, " of ", jpage + 1)
       }
       pages[[seq_list[[i]] + 1]] <- mydata$result$items
-
     }
   }
   tibble::as_tibble(dplyr::bind_rows(pages))

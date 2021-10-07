@@ -88,6 +88,11 @@ test_that("commons functions return expected format", {
   expect_equal(nrow(xcwq), 61)
 
 
+  xcwq <- hansard_commons_written_questions(
+    mp_id = NULL, verbose = TRUE,
+    start_date = "2019-12-01", end_date = "2021-05-11"
+  )
+
   xcwq_single <- hansard_commons_written_questions(
     mp_id = 4830, start_date = "2020-01-01", end_date = "2020-07-20"
   )

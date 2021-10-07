@@ -1,5 +1,5 @@
 ## Base URL for API calls
-url_util <- "http://lda.data.parliament.uk/"
+url_util <- "https://lda.data.parliament.uk/"
 
 veb <- function(verbose) {
   if (verbose) {
